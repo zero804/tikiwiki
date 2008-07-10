@@ -16,8 +16,6 @@ bin/index.php -text
 /changelog.txt -text
 /comments.php -text
 /commxmlrpc.php -text
-components/comp-iframe.php -text
-components/comp-wiki.php -text
 /contribution.php -text
 /copyright.txt -text
 /copyrights.php -text
@@ -2009,7 +2007,6 @@ lib/mootools/extensions/mooRainbow/images/moor_boverlay.png -text
 lib/mootools/extensions/mooRainbow/images/moor_cursor.gif -text
 lib/mootools/extensions/mooRainbow/images/moor_slider.png -text
 lib/mootools/extensions/mooRainbow/images/moor_woverlay.png -text
-lib/mootools/extensions/mooRainbow/mooRainbow-mypage.css -text
 lib/mootools/extensions/mooRainbow/mooRainbow.css -text
 lib/mootools/extensions/mooRainbow/mooRainbow.js -text
 lib/mootools/extensions/mooRainbow/mooRainbow_compressed.js -text svneol=unset#application/octet-stream
@@ -2062,17 +2059,6 @@ lib/mootools/extensions/windoo/themes/windoo.aqua/ssouth.png -text
 lib/mootools/extensions/windoo/themes/windoo.aqua/ssw.png -text
 lib/mootools/extensions/windoo/themes/windoo.aqua/swest.png -text
 lib/mootools/extensions/windoo/themes/windoo.css -text
-lib/mootools/extensions/windoo/themes/windoo.mypage.css -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/bg-center.gif -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/bg-left.gif -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/bg-right.gif -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/border-4-000.png -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/border-4-333.png -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/buttons.gif -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/hd-sprite.gif -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/index.php -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/se-handle.gif -text
-lib/mootools/extensions/windoo/themes/windoo.mypage_view.css -text
 lib/mootools/extensions/windoo/themes/windoo.nada.css -text
 lib/mootools/extensions/windoo/themes/windoo.nada/index.php -text
 lib/mootools/extensions/windoo/themes/windoo/index.php -text
@@ -2131,9 +2117,6 @@ lib/mootools/src/Window/Window.DomReady.js -text
 lib/mootools/src/Window/Window.Size.js -text
 lib/mootools/src/scripts.json -text
 lib/multilingual/multilinguallib.php -text
-lib/mypage/mypage.js -text
-lib/mypage/mypagelib.php -text
-lib/mypage/smarty_mypage.php -text
 lib/newsletters/index.php -text
 lib/newsletters/nllib.php -text
 lib/newsreader/index.php -text
@@ -4113,11 +4096,6 @@ templates/tiki-mods.tpl -text
 templates/tiki-mods_admin.tpl -text
 templates/tiki-mods_config.tpl -text
 templates/tiki-my_tiki.tpl -text
-templates/tiki-mypage.tpl -text
-templates/tiki-mypage_content.tpl -text
-templates/tiki-mypage_sidebar.tpl -text
-templates/tiki-mypage_types.tpl -text
-templates/tiki-mypages.tpl -text
 templates/tiki-mytiki_bar.tpl -text
 templates/tiki-mytiki_mootabs.tpl -text
 templates/tiki-newsletter_archives.tpl -text
@@ -4541,11 +4519,6 @@ tests/test_cvs_file.txt -text
 /tiki-module_controls.php -text
 /tiki-modules.php -text
 /tiki-my_tiki.php -text
-/tiki-mypage.php -text
-/tiki-mypage_ajax.php -text
-/tiki-mypage_edit.php -text
-/tiki-mypage_types.php -text
-/tiki-mypages.php -text
 /tiki-mytiki_shared.php -text
 /tiki-newsletter_archives.php -text
 /tiki-newsletters.php -text
