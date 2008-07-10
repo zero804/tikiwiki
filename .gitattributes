@@ -91,6 +91,7 @@ doc/devtools/recover_wiki_from_google.pl -text
 doc/devtools/removehtaccess.sh -text
 doc/devtools/restorehelp.php -text
 doc/devtools/search_smarty_prefs-1.10.php -text
+doc/devtools/securitycheck.php -text
 doc/devtools/set_perms.py -text
 doc/devtools/sharetiki.sh -text
 doc/devtools/sharetikidev.sh -text
@@ -2085,8 +2086,6 @@ lib/mootools/mootools.js -text svneol=unset#application/octet-stream
 lib/mootools/mootools_packed.js -text svneol=unset#application/octet-stream
 lib/mootools/packer/class.JavaScriptPacker.php -text
 lib/mootools/packer/class.JavaScriptPacker.php4 -text
-lib/mootools/packer/example-file.php -text
-lib/mootools/packer/example-inline.php -text
 lib/mootools/packer/readme.txt -text
 lib/mootools/src/Class/Class.Extras.js -text
 lib/mootools/src/Class/Class.js -text
@@ -2665,23 +2664,6 @@ lib/themecontrol/tcontrol.php -text
 lib/tiki-dynamic-js.php -text
 lib/tiki-js.js -text
 lib/tikiaccesslib.php -text
-lib/tikibot/README -text
-lib/tikibot/index.php -text
-lib/tikibot/modules/Wollabot_Base.php -text
-lib/tikibot/modules/act.php -text
-lib/tikibot/modules/amiop.php -text
-lib/tikibot/modules/faq.php -text
-lib/tikibot/modules/fortune.php -text
-lib/tikibot/modules/google.php -text
-lib/tikibot/modules/index.php -text
-lib/tikibot/modules/nickometer.php -text
-lib/tikibot/modules/php.def -text
-lib/tikibot/modules/phpfunctions.php -text
-lib/tikibot/modules/say.php -text
-lib/tikibot/modules/tiki.php -text
-lib/tikibot/modules/translate.php -text
-lib/tikibot/start.php -text
-lib/tikibot/wollabot.ini -text
 lib/tikidate.php -text
 lib/tikidblib-debug.php -text
 lib/tikidblib.php -text
