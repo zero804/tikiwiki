@@ -4134,7 +4134,6 @@ templates/tiki-old_polls.tpl -text
 templates/tiki-openid_register.tpl -text
 templates/tiki-openid_select.tpl -text
 templates/tiki-orphan_pages.tpl -text
-templates/tiki-p_share_page.tpl -text
 templates/tiki-page.tpl -text
 templates/tiki-page_bar.tpl -text
 templates/tiki-pagehistory.tpl -text
@@ -4561,7 +4560,6 @@ tests/test_cvs_file.txt -text
 /tiki-objectpermissions.php -text
 /tiki-old_polls.php -text
 /tiki-orphan_pages.php -text
-/tiki-p_share_page.php -text
 /tiki-page.php -text
 /tiki-page_loader.php -text
 /tiki-pagehistory.php -text
