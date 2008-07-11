@@ -1274,11 +1274,6 @@ lang/tw/language.php -text
 lang/uk/index.php -text
 lang/uk/language.php -text
 lib/Babelfish.php -text
-lib/Date/Calc.php -text
-lib/Date/Human.php -text
-lib/Date/TimeZone.php -text
-lib/Date/TimeZoneWindows.php -text
-lib/Date/index.php -text
 lib/Galaxia/API.php -text
 lib/Galaxia/GUI.php -text
 lib/Galaxia/ProcessManager.php -text
