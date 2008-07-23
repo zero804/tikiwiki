@@ -64,7 +64,7 @@ doc/devtools/backupdb.sh -text
 doc/devtools/capitalize_buttons.pl -text
 doc/devtools/cleanCatTrackers.php -text
 doc/devtools/cleanwatch.sh -text
-doc/devtools/convert_templates_prefs-1.10.php -text
+doc/devtools/convert_templates_prefs-2.0.php -text
 doc/devtools/csscheck.sh -text
 doc/devtools/cssmap.pl -text
 doc/devtools/diffsql.cmd -text
@@ -87,7 +87,7 @@ doc/devtools/premerge_report.sh -text
 doc/devtools/recover_wiki_from_google.pl -text
 doc/devtools/removehtaccess.sh -text
 doc/devtools/restorehelp.php -text
-doc/devtools/search_smarty_prefs-1.10.php -text
+doc/devtools/search_smarty_prefs-2.0.php -text
 doc/devtools/securitycheck.php -text
 doc/devtools/set_perms.py -text
 doc/devtools/sharetiki.sh -text
