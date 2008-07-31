@@ -2056,6 +2056,8 @@ lib/mootools/extensions/windoo/windoo.js -text svneol=unset#application/octet-st
 lib/mootools/extensions/windoo/windoo_packed.js -text svneol=unset#application/octet-stream
 lib/mootools/index.php -text
 lib/mootools/make-js.php -text
+lib/mootools/mootools-1.2-core.js -text
+lib/mootools/mootools-1.2-more.js -text
 lib/mootools/mootools.js -text svneol=unset#application/octet-stream
 lib/mootools/mootools_packed.js -text svneol=unset#application/octet-stream
 lib/mootools/packer/class.JavaScriptPacker.php -text
