@@ -1809,7 +1809,6 @@ lib/jquery_tiki/tablesorter/themes/tiki/blue.zip -text
 lib/jquery_tiki/tablesorter/themes/tiki/desc.gif -text
 lib/jquery_tiki/tablesorter/themes/tiki/style.css -text
 lib/jquery_tiki/tiki-jquery.js -text
-lib/jquery_tiki/tiki-jquery.min.js -text
 lib/live_support/index.php -text
 lib/live_support/live-support.js -text svneol=unset#application/octet-stream
 lib/live_support/lsadminlib.php -text
@@ -2535,7 +2534,6 @@ lib/themecontrol/tcontrol.php -text
 lib/tiki-dynamic-js.php -text
 lib/tiki-js-sorttable.js -text
 lib/tiki-js.js -text
-lib/tiki-js.min.js -text
 lib/tikiaccesslib.php -text
 lib/tikidate-pear-date.php -text
 lib/tikidate-php5.php -text
@@ -2591,7 +2589,6 @@ lib/tikisession-pdo.php -text
 lib/tikiticketlib.php -text
 lib/toolbars/index.php -text
 lib/toolbars/tiki-admin_toolbars.js -text
-lib/toolbars/tiki-admin_toolbars.min.js -text
 lib/toolbars/toolbarslib.php -text
 lib/trackers/dynamic_list.js -text
 lib/trackers/index.php -text
