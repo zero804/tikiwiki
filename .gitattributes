@@ -3732,6 +3732,7 @@ templates/tiki-admin-include-calendar.tpl -text
 templates/tiki-admin-include-category.tpl -text
 templates/tiki-admin-include-cms.tpl -text
 templates/tiki-admin-include-community.tpl -text
+templates/tiki-admin-include-connect.tpl -text
 templates/tiki-admin-include-copyright.tpl -text
 templates/tiki-admin-include-directory.tpl -text
 templates/tiki-admin-include-faqs.tpl -text
@@ -4139,6 +4140,7 @@ tests/testfile.txt -text
 /tiki-admin_include_category.php -text
 /tiki-admin_include_cms.php -text
 /tiki-admin_include_community.php -text
+/tiki-admin_include_connect.php -text
 /tiki-admin_include_copyright.php -text
 /tiki-admin_include_directory.php -text
 /tiki-admin_include_faqs.php -text
