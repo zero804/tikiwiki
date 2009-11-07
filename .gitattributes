@@ -3320,6 +3320,7 @@ styles/coelesce/pics/icons/oleftcol.png -text svneol=unset#image/png
 styles/coelesce/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/coelesce/search_wide.jpg -text svneol=unset#image/jpeg
 styles/coelesce/tiki-centerbg.jpg -text svneol=unset#image/jpeg
+styles/darkroom/474747_5e5e5e_40.png -text svneol=unset#image/png
 styles/darkroom/button.png -text svneol=unset#image/png
 styles/darkroom/darkroom.png -text
 styles/darkroom/options/small-type.css -text
@@ -3369,9 +3370,9 @@ styles/strasa/options/cool/headermenuitem-hover.png -text
 styles/strasa/options/cool/login.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cool/loginlong.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cool/register.jpg -text svneol=unset#image/jpeg
-styles/strasa/options/fixed.css -text
-styles/strasa/options/fixed/box_bottom.gif -text
-styles/strasa/options/fixed/box_top.gif -text
+styles/strasa/options/fixed_width.css -text
+styles/strasa/options/fixed_width/box_bottom.gif -text
+styles/strasa/options/fixed_width/box_top.gif -text
 styles/strasa/options/mono.css -text
 styles/strasa/options/mono/arrows-000000.png -text svneol=unset#image/png
 styles/strasa/options/mono/box_bottom.gif -text
