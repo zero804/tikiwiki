@@ -3373,6 +3373,7 @@ styles/strasa/options/cool/login.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cool/loginlong.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cool/register.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/fixed_width.css -text
+styles/strasa/options/fixed_width/body-bg.png -text svneol=unset#image/png
 styles/strasa/options/fixed_width/box_bottom.gif -text
 styles/strasa/options/fixed_width/box_top.gif -text
 styles/strasa/options/mono.css -text
