@@ -3574,7 +3574,6 @@ templates/module-error.tpl -text
 templates/module.tpl -text
 templates/modules/index.php -text
 templates/modules/mod-action_calendar.tpl -text
-templates/modules/mod-admin_menu.tpl -text
 templates/modules/mod-adsense.tpl -text
 templates/modules/mod-application_menu.tpl.nocache -text
 templates/modules/mod-article_archives.tpl -text
