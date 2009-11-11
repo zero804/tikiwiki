@@ -21,6 +21,7 @@ css/calendar.css -text
 css/freetags.css -text
 css/ie6.css -text
 css/ie8.css -text
+css/index.php -text
 css/jscalendar.css -text
 db/.htaccess -text
 db/case_patch.php -text
@@ -111,6 +112,8 @@ dump/index.php -text
 /favicon.png -text
 /fgal_listing_conf.php -text
 files/index.php -text
+files/templates/index.php -text
+files/templates/listpages/index.php -text
 files/templates/listpages/smarty-tikiwiki-1.0-shortlist.txt -text
 /freetag_apply.php -text
 /freetag_list.php -text
@@ -1234,6 +1237,7 @@ installer/schema/20091028_quota_tiki.sql -text
 installer/schema/20091030_wiki_watch_tiki.sql -text
 installer/schema/20091103_upgrade_categperm_tiki.php -text
 installer/schema/20091111_fgal_size_tiki.sql -text
+installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
@@ -1343,6 +1347,7 @@ lib/ajax/lib/activex_off.js -text
 lib/ajax/tiki-ajax.js -text
 lib/articles/artlib.php -text
 lib/articles/index.php -text
+lib/auth/index.php -text
 lib/auth/ldap.php -text
 lib/bablotron.php -text
 lib/ban/banlib.php -text
