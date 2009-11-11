@@ -4312,7 +4312,6 @@ tests/testfile.txt -text
 /tiki-gmap_usermap.php -text
 /tiki-graph_formula.php -text
 /tiki-graph_sheet.php -text
-/tiki-handlers.php -text
 /tiki-history_sheets.php -text
 /tiki-image_galleries_rss.php -text
 /tiki-image_gallery_rss.php -text
