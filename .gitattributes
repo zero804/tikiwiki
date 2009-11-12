@@ -4328,7 +4328,6 @@ tests/testfile.txt -text
 /tiki-index_raw.php -text
 /tiki-information.php -text
 /tiki-install.php -text
-/tiki-install_disable.php -text
 /tiki-integrator.php -text
 /tiki-interactive_trans.php -text
 /tiki-jscalendar.php -text
