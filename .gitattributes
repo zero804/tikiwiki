@@ -2879,6 +2879,7 @@ modules/mod-func-quick_edit.php -text
 modules/mod-func-random_images.php -text
 modules/mod-func-random_pages.php -text
 modules/mod-func-register.php -text
+modules/mod-func-rsslist.php -text
 modules/mod-func-semantic_links.php -text
 modules/mod-func-shoutbox.php -text
 modules/mod-func-switch_lang.php -text
