@@ -2922,7 +2922,6 @@ modules/mod-func-whats_related.php -text
 modules/mod-func-who_is_there.php -text
 modules/mod-func-wiki_last_comments.php -text
 modules/mod-func-youtube.php -text
-modules/mod-last_visitors.php -text
 pics/help_icon.png -text
 pics/icons/accept.png -text
 pics/icons/add.png -text
