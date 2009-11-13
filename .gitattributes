@@ -3609,7 +3609,6 @@ templates/modules/mod-comm_received_objects.tpl -text
 templates/modules/mod-directory_last_sites.tpl -text
 templates/modules/mod-directory_stats.tpl -text
 templates/modules/mod-directory_top_sites.tpl -text
-templates/modules/mod-events.tpl -text
 templates/modules/mod-featured_links.tpl -text
 templates/modules/mod-file_galleries.tpl -text
 templates/modules/mod-forums_best_voted_topics.tpl -text
