@@ -2910,6 +2910,7 @@ modules/mod-func-user_image_galleries.php -text
 modules/mod-func-user_pages.php -text
 modules/mod-func-user_tasks.php -text
 modules/mod-func-user_tasks_public.php -text
+modules/mod-func-usergroup_tracker.php -text
 modules/mod-func-users_rank.php -text
 modules/mod-func-webmail_inbox.php -text
 modules/mod-func-whats_related.php -text
