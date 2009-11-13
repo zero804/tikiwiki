@@ -4036,7 +4036,6 @@ templates/tiki-rollback.tpl -text
 templates/tiki-search_stats.tpl -text
 templates/tiki-searchindex.tpl -text
 templates/tiki-searchresults.tpl -text
-templates/tiki-send_blog_post.tpl -text
 templates/tiki-send_newsletters.tpl -text
 templates/tiki-send_objects.tpl -text
 templates/tiki-sheets.tpl -text
@@ -4449,7 +4448,6 @@ tests/testfile.txt -text
 /tiki-searchresults.php -text
 /tiki-section_options.php -text
 /tiki-sefurl.php -text
-/tiki-send_blog_post.php -text
 /tiki-send_mail.php -text
 /tiki-send_newsletters.php -text
 /tiki-send_objects.php -text
