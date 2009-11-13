@@ -3235,6 +3235,8 @@ pics/large/display-capplet.png -text
 pics/large/display-capplet48x48.png -text
 pics/large/evolution.png -text
 pics/large/evolution48x48.png -text
+pics/large/feed-icon-48x48.png -text
+pics/large/feed-icon.png -text
 pics/large/file-manager.png -text
 pics/large/file-manager48x48.png -text
 pics/large/gftp.png -text
@@ -3261,6 +3263,7 @@ pics/large/icon-configuration.png -text
 pics/large/icon-configuration48x48.png -text
 pics/large/intertiki.png -text
 pics/large/intertiki48x48.png -text
+pics/large/kaltura.png -text
 pics/large/kaltura48x48.png -text
 pics/large/maps.png -text
 pics/large/maps48x48.png -text
