@@ -3603,7 +3603,6 @@ templates/modules/mod-assistant.tpl -text
 templates/modules/mod-blog_last_comments.tpl -text
 templates/modules/mod-breadcrumb.tpl -text
 templates/modules/mod-breadcrumb.tpl.nocache -text
-templates/modules/mod-calendar.tpl -text
 templates/modules/mod-calendar.tpl.nocache -text
 templates/modules/mod-calendar_new.tpl -text
 templates/modules/mod-categories.tpl -text
