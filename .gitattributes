@@ -2889,6 +2889,7 @@ modules/mod-func-shoutbox.php -text
 modules/mod-func-switch_lang.php -text
 modules/mod-func-switch_theme.php -text
 modules/mod-func-terminology.php -text
+modules/mod-func-tikitests.php -text
 modules/mod-func-top_active_blogs.php -text
 modules/mod-func-top_articles.php -text
 modules/mod-func-top_file_galleries.php -text
