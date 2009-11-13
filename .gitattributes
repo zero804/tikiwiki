@@ -2880,6 +2880,10 @@ modules/mod-func-random_images.php -text
 modules/mod-func-random_pages.php -text
 modules/mod-func-register.php -text
 modules/mod-func-rsslist.php -text
+modules/mod-func-search_box.php -text
+modules/mod-func-search_new.php -text
+modules/mod-func-search_wiki_page.php -text
+modules/mod-func-search_wiki_page_new.php -text
 modules/mod-func-semantic_links.php -text
 modules/mod-func-shoutbox.php -text
 modules/mod-func-switch_lang.php -text
