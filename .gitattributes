@@ -2888,6 +2888,7 @@ modules/mod-func-search_wiki_page.php -text
 modules/mod-func-search_wiki_page_new.php -text
 modules/mod-func-semantic_links.php -text
 modules/mod-func-shoutbox.php -text
+modules/mod-func-since_last_visit_new.php -text
 modules/mod-func-switch_lang.php -text
 modules/mod-func-switch_theme.php -text
 modules/mod-func-terminology.php -text
@@ -2921,7 +2922,6 @@ modules/mod-func-wiki_last_comments.php -text
 modules/mod-func-youtube.php -text
 modules/mod-last_visitors.php -text
 modules/mod-since_last_visit.php -text
-modules/mod-since_last_visit_new.php -text
 pics/help_icon.png -text
 pics/icons/accept.png -text
 pics/icons/add.png -text
