@@ -2865,6 +2865,7 @@ modules/mod-func-last_submissions.php -text
 modules/mod-func-last_tracker_comments.php -text
 modules/mod-func-last_tracker_items.php -text
 modules/mod-func-last_validated_faq_questions.php -text
+modules/mod-func-last_visitors.php -text
 modules/mod-func-live_support.php -text
 modules/mod-func-login_box.php -text
 modules/mod-func-logo.php -text
