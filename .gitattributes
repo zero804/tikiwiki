@@ -1236,6 +1236,7 @@ installer/schema/20091028_quota_tiki.sql -text
 installer/schema/20091030_wiki_watch_tiki.sql -text
 installer/schema/20091103_upgrade_categperm_tiki.php -text
 installer/schema/20091111_fgal_size_tiki.sql -text
+installer/schema/20091112_rename_mnu_application_menu_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
