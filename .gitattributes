@@ -2621,8 +2621,6 @@ lib/userprefs/userprefslib.php -text
 lib/userslib.php -text
 lib/videogals/KalturaClientBase_v3.php -text
 lib/videogals/KalturaClient_v3.php -text
-lib/videogals/kaltura_client.php -text
-lib/videogals/kaltura_client_base.php -text
 lib/videogals/videogallib.php -text
 lib/webdav/webdavlib.php -text
 lib/webmail/API.txt -text
