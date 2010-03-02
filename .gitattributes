@@ -53,6 +53,7 @@ db/tiki-secdb_3.1_mysql.sql -text
 db/tiki-secdb_3.2_mysql.sql -text
 db/tiki-secdb_3.3_mysql.sql -text
 db/tiki-secdb_3.4_mysql.sql -text
+db/tiki-secdb_3.5_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
 db/tiki_1.9to2.0.sql -text
