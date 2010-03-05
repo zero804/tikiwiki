@@ -40,6 +40,7 @@ db/tiki-db.php -text
 db/tiki-pgsql-test.sql -text
 db/tiki-secdb_4.0_mysql.sql -text
 db/tiki-secdb_4.1_mysql.sql -text
+db/tiki-secdb_4.2_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
 db/tiki_1.9to2.0.sql -text
