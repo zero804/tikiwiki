@@ -58,6 +58,7 @@ doc/devtools/findstyledef.pl -text
 doc/devtools/findstyledef.sh -text
 doc/devtools/ggg-trace.php -text
 doc/devtools/index.php -text
+doc/devtools/lessermagicreport.php -text
 doc/devtools/mergelang.pl -text
 doc/devtools/mods.sh -text
 doc/devtools/myspell_dic_2_tikiWiki_sql.pl -text
