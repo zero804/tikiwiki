@@ -2335,6 +2335,7 @@ lib/prefs/rssfeed.php -text
 lib/prefs/search.php -text
 lib/prefs/section.php -text
 lib/prefs/sender.php -text
+lib/prefs/server.php -text
 lib/prefs/session.php -text
 lib/prefs/shib.php -text
 lib/prefs/short.php -text
