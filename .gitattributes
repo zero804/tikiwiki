@@ -1305,6 +1305,7 @@ installer/schema/20100309_add_sheet_parent_tiki.sql -text
 installer/schema/20100409_bigger_module_params_tiki.sql -text
 installer/schema/20100414_actionlog_pref_tiki.sql -text
 installer/schema/20100414_actionlog_system_tiki.sql -text
+installer/schema/20100419_bigbluebutton_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
@@ -1443,6 +1444,7 @@ lib/ban/banlib.php -text
 lib/ban/index.php -text
 lib/banners/bannerlib.php -text
 lib/banners/index.php -text
+lib/bigbluebuttonlib.php -text
 lib/blogs/bloglib.php -text
 lib/blogs/index.php -text
 lib/bookmarks/bookmarklib.php -text
@@ -2249,6 +2251,7 @@ lib/prefs/article.php -text
 lib/prefs/articles.php -text
 lib/prefs/auth.php -text
 lib/prefs/available.php -text
+lib/prefs/bigbluebutton.php -text
 lib/prefs/blog.php -text
 lib/prefs/blogues.php -text
 lib/prefs/bot.php -text
@@ -2870,6 +2873,7 @@ lib/wiki-plugins/wikiplugin_avatar.php -text
 lib/wiki-plugins/wikiplugin_back.php -text
 lib/wiki-plugins/wikiplugin_backlinks.php -text
 lib/wiki-plugins/wikiplugin_banner.php -text
+lib/wiki-plugins/wikiplugin_bigbluebutton.php -text
 lib/wiki-plugins/wikiplugin_bloglist.php -text
 lib/wiki-plugins/wikiplugin_box.php -text
 lib/wiki-plugins/wikiplugin_calendar.php -text
@@ -4597,6 +4601,8 @@ templates/translated-lang.tpl -text
 templates/web.config -text
 templates/wiki-discussion.tpl -text
 templates/wiki-plugins/error_tracker.tpl -text
+templates/wiki-plugins/wikiplugin_bigbluebutton.tpl -text
+templates/wiki-plugins/wikiplugin_bigbluebutton_create.tpl -text
 templates/wiki-plugins/wikiplugin_bloglist.tpl -text
 templates/wiki-plugins/wikiplugin_catorphans.tpl -text
 templates/wiki-plugins/wikiplugin_colobox.tpl -text
