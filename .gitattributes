@@ -4462,7 +4462,6 @@ templates/tiki-notepad_write.tpl -text
 templates/tiki-object_watches.tpl -text
 templates/tiki-objectpermissions.tpl -text
 templates/tiki-old_polls.tpl -text
-templates/tiki-openid_register.tpl -text
 templates/tiki-openid_select.tpl -text
 templates/tiki-orphan_pages.tpl -text
 templates/tiki-page.tpl -text
