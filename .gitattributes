@@ -3153,6 +3153,7 @@ modules/mod-func-whats_related.php -text
 modules/mod-func-who_is_there.php -text
 modules/mod-func-wiki_last_comments.php -text
 modules/mod-func-youtube.php -text
+modules/mod-last_youtube_playlist_videos.php -text
 modules/web.config -text
 pics/help_icon.png -text
 pics/icons/accept.png -text
@@ -4088,6 +4089,7 @@ templates/modules/mod-last_tracker_comments.tpl -text
 templates/modules/mod-last_tracker_items.tpl -text
 templates/modules/mod-last_validated_faq_questions.tpl -text
 templates/modules/mod-last_visitors.tpl -text
+templates/modules/mod-last_youtube_playlist_videos.tpl -text
 templates/modules/mod-live_support.tpl -text
 templates/modules/mod-logged_users.tpl.nocache -text
 templates/modules/mod-login_box.tpl -text
