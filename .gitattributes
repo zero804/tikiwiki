@@ -4437,7 +4437,6 @@ templates/tiki-list_submissions.tpl -text
 templates/tiki-list_surveys.tpl -text
 templates/tiki-list_trackers.tpl -text
 templates/tiki-list_users.tpl -text
-templates/tiki-listmovies.tpl -text
 templates/tiki-listpages.tpl -text
 templates/tiki-listpages_content.tpl -text
 templates/tiki-live_support_admin.tpl -text
@@ -4878,7 +4877,6 @@ tests/testfile.txt -text
 /tiki-list_surveys.php -text
 /tiki-list_trackers.php -text
 /tiki-list_users.php -text
-/tiki-listmovies.php -text
 /tiki-listpages.php -text
 /tiki-live_support_admin.php -text
 /tiki-live_support_chat_frame.php -text
