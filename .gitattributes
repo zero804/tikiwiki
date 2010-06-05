@@ -4214,6 +4214,7 @@ templates/styles/coelesce/tiki-top_bar.tpl -text
 templates/styles/darkroom/index.php -text
 templates/styles/feb12/index.php -text
 templates/styles/fivealive/tiki-bot_bar.tpl -text
+templates/styles/fivealive/tiki-searchindex.tpl -text
 templates/styles/index.php -text
 templates/styles/strasa/custom_site_footer.tpl -text
 templates/styles/strasa/index.php -text
