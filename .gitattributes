@@ -1690,7 +1690,6 @@ lib/fckeditor_tiki/plugins/tikiswitch/fckplugin.js -text
 lib/fckeditor_tiki/plugins/tikiswitch/index.php -text
 lib/fckeditor_tiki/tikistyles.xml -text
 lib/fckeditor_tiki/tikitemplates.xml -text
-lib/fckeditor_tiki/web.config -text
 lib/featured_links/flinkslib.php -text
 lib/featured_links/index.php -text
 lib/feedcreator/feedcreator.class.php -text
@@ -3057,7 +3056,6 @@ modules/.htaccess -text
 modules/cache/.htaccess -text
 modules/cache/README -text
 modules/cache/index.php -text
-modules/cache/web.config -text
 modules/index.php -text
 modules/mod-func-action_calendar.php -text
 modules/mod-func-action_similarcontent.php -text
@@ -3885,7 +3883,6 @@ temp/index.php -text
 temp/mail_attachs/README -text
 temp/mail_attachs/index.php -text
 temp/public/.htaccess -text
-temp/public/web.config -text
 temp/web.config -text
 templates/.htaccess -text
 templates/advanced_search_help.tpl -text
