@@ -4833,7 +4833,6 @@ tests/testfile.txt -text
 /tiki-file_galleries_rss.php -text
 /tiki-file_gallery_rss.php -text
 /tiki-filter-base.php -text
-/tiki-finish_install.php -text
 /tiki-forum_import.php -text
 /tiki-forum_queue.php -text
 /tiki-forum_rankings.php -text
