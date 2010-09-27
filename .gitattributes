@@ -4038,7 +4038,6 @@ templates/freetag_list.tpl -text
 templates/header.tpl -text
 templates/header_simple.tpl -text
 templates/index.php -text
-templates/information.tpl -text
 templates/list_file_gallery.tpl -text
 templates/list_file_gallery_content.tpl -text
 templates/mail/blogs_send_link.tpl -text
