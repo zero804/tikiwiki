@@ -4460,7 +4460,6 @@ templates/tiki-browse_categories.tpl -text
 templates/tiki-browse_freetags.tpl -text
 templates/tiki-browse_gallery.tpl -text
 templates/tiki-browse_image.tpl -text
-templates/tiki-browse_video.tpl -text
 templates/tiki-calendar.tpl -text
 templates/tiki-calendar_box.tpl -text
 templates/tiki-calendar_box_multiple.tpl -text
@@ -4514,7 +4513,6 @@ templates/tiki-edit_submission.tpl -text
 templates/tiki-edit_templates.tpl -text
 templates/tiki-edit_topic.tpl -text
 templates/tiki-edit_translation.tpl -text
-templates/tiki-edit_video.tpl -text
 templates/tiki-editpage.tpl -text
 templates/tiki-export-sheets.tpl -text
 templates/tiki-export_comment_xml.tpl -text
