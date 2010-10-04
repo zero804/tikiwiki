@@ -2900,9 +2900,9 @@ lib/validators/validator_password.php -text
 lib/validators/validator_regex.php -text
 lib/validators/validator_username.php -text
 lib/validatorslib.php -text
-lib/videogals/KalturaClientBase_v3.php -text
+lib/videogals/KalturaClient.php -text
+lib/videogals/KalturaClientBase.php -text
 lib/videogals/KalturaClientReadme.txt -text
-lib/videogals/KalturaClient_v3.php -text
 lib/videogals/videogallib.php -text
 lib/videogals/watershedlib.php -text
 lib/web.config -text
