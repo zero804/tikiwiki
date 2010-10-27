@@ -1422,6 +1422,7 @@ lang/el/language.php -text
 lang/en-uk/index.php -text
 lang/en-uk/language.php -text
 lang/en/index.php -text
+lang/en/language.js -text
 lang/en/language.php -text
 lang/es/custom.php_example -text
 lang/es/index.php -text
