@@ -1351,7 +1351,7 @@ installer/schema/20100720_tiki_p_view_page_contribution_tiki.sql -text
 installer/schema/20100721_batch_transition_rollback_tiki.sql -text
 installer/schema/20100721_todo_tiki.sql -text
 installer/schema/20100721_todonotif_tiki.sql -text
-installer/schema/20100727_tiki_p_promote_page.sql -text
+installer/schema/20100727_tiki_p_promote_page_tiki.sql -text
 installer/schema/20100730_list_image_article_tiki.sql -text
 installer/schema/20100802_tiki_p_share_tiki.sql -text
 installer/schema/20100802_url_shortener_tiki.sql -text
