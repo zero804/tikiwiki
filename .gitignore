@@ -15,6 +15,7 @@ db/lock
 db/virtuals.inc
 /dummy.php
 dump/*
+files/*
 images/.htaccess
 img/.htaccess
 img/trackers/*
