@@ -15,7 +15,7 @@ db/lock
 db/virtuals.inc
 /dummy.php
 dump/*
-files/*
+files/visorFreemind.swf
 images/.htaccess
 img/.htaccess
 img/trackers/*
