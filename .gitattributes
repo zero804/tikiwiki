@@ -1940,7 +1940,8 @@ lib/images/images.php -text
 lib/images/imagick_new.php -text
 lib/images/imagick_old.php -text
 lib/importer/index.php -text
-lib/importer/mediawiki_dump.xsd -text
+lib/importer/mediawiki_dump_v0.3.xsd -text
+lib/importer/mediawiki_dump_v0.4.xsd -text
 lib/importer/tikiimporter.php -text
 lib/importer/tikiimporter_wiki.php -text
 lib/importer/tikiimporter_wiki_mediawiki.php -text
@@ -2802,6 +2803,10 @@ lib/test/importer/fixtures/mediawiki_page_as_array.php -text
 lib/test/importer/fixtures/mediawiki_revision.xml -text
 lib/test/importer/fixtures/mediawiki_revision_invalid_syntax.xml -text
 lib/test/importer/fixtures/mediawiki_sample.xml -text
+lib/test/importer/fixtures/mediawiki_sample_v0.2.xml -text
+lib/test/importer/fixtures/mediawiki_sample_v0.4.xml -text
+lib/test/importer/fixtures/wikipedia_train_article.txt -text
+lib/test/importer/fixtures/wikipedia_train_article_parsed.txt -text
 lib/test/importer/index.php -text
 lib/test/importer/tikiimporter_testcase.php -text
 lib/test/index.php -text
