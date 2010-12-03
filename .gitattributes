@@ -3815,6 +3815,7 @@ styles/feb12/page.jpg -text svneol=unset#image/jpeg
 styles/fivealive/fivealive.png -text svneol=unset#image/png
 styles/fivealive/index.php -text
 styles/fivealive/menu_divider.png -text svneol=unset#image/png
+styles/fivealive/newsletter.css -text
 styles/fivealive/options/akebi/akebi.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/arrows-0b8a98.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/index.php -text
@@ -3827,6 +3828,7 @@ styles/fivealive/options/blueberry/siteheader.jpg -text svneol=unset#image/jpeg
 styles/fivealive/options/grape/arrows-8e286a.png -text svneol=unset#image/png
 styles/fivealive/options/grape/grape.png -text svneol=unset#image/png
 styles/fivealive/options/grape/index.php -text
+styles/fivealive/options/grape/newsletter.css -text
 styles/fivealive/options/grape/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/grape/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/index.php -text
