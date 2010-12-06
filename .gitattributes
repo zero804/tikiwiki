@@ -3863,6 +3863,7 @@ styles/integrator/index.php -text
 styles/jqui/arrows-1174a5.png -text svneol=unset#image/png
 styles/jqui/index.php -text
 styles/jqui/jqui.png -text svneol=unset#image/png
+styles/jqui/newsletter.css -text
 styles/jqui/options/element.css -text
 styles/jqui/options/excitebike/excitebike.png -text svneol=unset#image/png
 styles/jqui/options/excitebike/index.php -text
