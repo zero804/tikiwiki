@@ -3358,6 +3358,7 @@ lib/wiki-plugins/wikiplugin_watershed.php -text
 lib/wiki-plugins/wikiplugin_webservice.php -text
 lib/wiki-plugins/wikiplugin_youtube.php -text
 lib/wiki-plugins/wikiplugin_zotero.php -text
+lib/wiki-plugins/wikiplugin_zoterolist.php -text
 lib/wiki/editlib.php -text
 lib/wiki/exportlib.php -text
 lib/wiki/flaggedrevisionlib.php -text
