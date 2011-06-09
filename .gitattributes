@@ -1418,7 +1418,6 @@ installer/schema/20101130_tiki_accounting_tiki.sql -text
 installer/schema/20101201_tiki_accounting_fix_index_tiki.sql -text
 installer/schema/20101203_fgal_archive_default_tiki.sql -text
 installer/schema/20101207_feature_file_drafts_tiki.sql -text
-installer/schema/20101207_unique_login_tiki.php -text
 installer/schema/20101208_webservice_soap_tiki.sql -text
 installer/schema/20101210_fgal_add_wiki_attachments_tiki.php -text
 installer/schema/20101210_sync_users_ldap_tiki.sql -text
