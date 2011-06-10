@@ -1449,6 +1449,7 @@ installer/schema/20110421_compact_search_in_topbar_tiki.sql -text
 installer/schema/20110507_remove_module_style_params_tiki.sql -text
 installer/schema/20110609_missing_sql_tiki.sql -text
 installer/schema/20110609_unique_login_tiki.php -text
+installer/schema/20110610_readd_sefurl_index_left_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
