@@ -2225,6 +2225,8 @@ lib/notifications/notificationlib.php -text
 lib/oauthlib.php -text
 lib/objectlib.php -text
 lib/ointegratelib.php -text
+lib/payment/behavior/cancel_cart_order.php -text
+lib/payment/behavior/cart_send_confirm_email.php -text
 lib/payment/behavior/execute_datachannel.php -text
 lib/payment/behavior/extend_membership.php -text
 lib/payment/behavior/index.php -text
@@ -4471,6 +4473,8 @@ templates/list_file_gallery_content.tpl -text
 templates/mail/blogs_send_link.tpl -text
 templates/mail/cart_order_received_anon.tpl -text
 templates/mail/cart_order_received_anon_subject.tpl -text
+templates/mail/cart_order_received_reg.tpl -text
+templates/mail/cart_order_received_reg_subject.tpl -text
 templates/mail/confirm_newsletter_subscription.tpl -text
 templates/mail/confirm_user_email.tpl -text
 templates/mail/confirm_user_email_after_approval.tpl -text
