@@ -116,6 +116,7 @@ files/test.swf -text
 /freetag_apply.php -text
 /freetag_list.php -text
 /get_strings.php -text
+/group_tracker_ajax.php -text
 /help.php -text
 /htaccess.sh -text
 images/.htaccess -text
@@ -1397,6 +1398,9 @@ installer/schema/20101027_rename_invit_to_invite_tiki.sql -text
 installer/schema/20101028_p_invit_tiki.sql -text
 installer/schema/20101203_fgal_archive_default_tiki.sql -text
 installer/schema/20110104_sefurl_trackeritem_tiki.sql -text
+installer/schema/20110413_blog_post_priv_default_value_tiki.sql -text
+installer/schema/20110610_readd_sefurl_index_left_tiki.sql -text
+installer/schema/20110615_structure_alias_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -2003,6 +2007,7 @@ lib/init/smarty.php -text
 lib/init/tra.php -text
 lib/integrator/index.php -text
 lib/integrator/integrator.php -text
+lib/jquery_tiki/6.x_only/jquery.hoverIntent.js -text
 lib/jquery_tiki/brosho/tiki.brosho.css -text
 lib/jquery_tiki/brosho/tiki_brosho.js -text
 lib/jquery_tiki/index.php -text
@@ -3931,6 +3936,9 @@ styles/lite/lite.css -text
 styles/ohia/header.png -text svneol=unset#image/png
 styles/ohia/index.php -text
 styles/ohia/ohia.png -text svneol=unset#image/png
+styles/ohia/options/cornflower/bluebg1.png -text
+styles/ohia/options/cornflower/custom.css -text
+styles/ohia/options/cornflower/header.png -text
 styles/ohia/options/index.php -text
 styles/slides/index.php -text
 styles/slides/wiredot.png -text svneol=unset#unset
