@@ -3153,6 +3153,8 @@ lib/core/WikiPlugin/textlinkbutton.php -text
 lib/core/index.php -text
 lib/credits/creditslib.php -text
 lib/credits/index.php -text
+lib/crypt/cryptlib.php -text
+lib/crypt/index.php -text
 lib/csslib.php -text
 lib/db/index.php -text
 lib/db/tiki_registration_fields.php -text
@@ -5032,6 +5034,7 @@ modules/mod-func-credits.php -text
 modules/mod-func-directory_last_sites.php -text
 modules/mod-func-directory_stats.php -text
 modules/mod-func-directory_top_sites.php -text
+modules/mod-func-domain_password.php -text
 modules/mod-func-facebook.php -text
 modules/mod-func-featured_links.php -text
 modules/mod-func-file_galleries.php -text
@@ -6097,6 +6100,7 @@ templates/modules/mod-credits.tpl -text
 templates/modules/mod-directory_last_sites.tpl -text
 templates/modules/mod-directory_stats.tpl -text
 templates/modules/mod-directory_top_sites.tpl -text
+templates/modules/mod-domain_password.tpl -text
 templates/modules/mod-facebook.tpl -text
 templates/modules/mod-featured_links.tpl -text
 templates/modules/mod-file_galleries.tpl -text
