@@ -2200,6 +2200,7 @@ installer/schema/20140203_menu_item_and_icon_user_wizard_tiki.sql -text
 installer/schema/20140210_user_wizard_add_section_name_tiki.sql -text
 installer/schema/20140301_add_column_rating_choice_topic_on_forums_tiki.sql -text
 installer/schema/20140318_user_wizard_add_groupname_tiki.sql -text
+installer/schema/20140402_payment_authorization_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -3702,6 +3703,7 @@ lib/payment/cclitelib.php -text
 lib/payment/creditspaylib.php -text
 lib/payment/discountlib.php -text
 lib/payment/index.php -text
+lib/payment/israelpostlib.php -text
 lib/payment/paymentlib.php -text
 lib/payment/paypallib.php -text
 lib/pdflib.php -text
@@ -6589,6 +6591,7 @@ templates/tiki-page_contribution.tpl -text
 templates/tiki-page_contribution_form.tpl -text
 templates/tiki-pagehistory.tpl -text
 templates/tiki-payment-cclite.tpl -text
+templates/tiki-payment-israelpost.tpl -text
 templates/tiki-payment-list-past.tpl -text
 templates/tiki-payment-list.tpl -text
 templates/tiki-payment-paypal.tpl -text
