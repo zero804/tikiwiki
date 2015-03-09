@@ -4793,6 +4793,7 @@ lib/wiki-plugins/wikiplugin_freetagged.php -text
 lib/wiki-plugins/wikiplugin_ftp.php -text
 lib/wiki-plugins/wikiplugin_galleriffic.php -text
 lib/wiki-plugins/wikiplugin_gauge.php -text
+lib/wiki-plugins/wikiplugin_gdgraph.php -text
 lib/wiki-plugins/wikiplugin_getaccesstoken.php -text
 lib/wiki-plugins/wikiplugin_googleanalytics.php -text
 lib/wiki-plugins/wikiplugin_googledoc.php -text
