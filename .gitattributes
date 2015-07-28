@@ -7138,6 +7138,7 @@ tests/testfile.txt -text
 /tiki-friends.php -text
 /tiki-galleries.php -text
 /tiki-galleries_rankings.php -text
+/tiki-gdgraph.php -text
 /tiki-gmap_usermap.php -text
 /tiki-graph_formula.php -text
 /tiki-graph_sheet.php -text
