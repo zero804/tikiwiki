@@ -4939,6 +4939,7 @@ lib/wiki-plugins/wikiplugin_watershed.php -text
 lib/wiki-plugins/wikiplugin_webdocviewer.php -text
 lib/wiki-plugins/wikiplugin_webservice.php -text
 lib/wiki-plugins/wikiplugin_wysiwyg.php -text
+lib/wiki-plugins/wikiplugin_xmlupdate.php -text
 lib/wiki-plugins/wikiplugin_youtube.php -text
 lib/wiki-plugins/wikiplugin_zotero.php -text
 lib/wiki-plugins/wikiplugin_zoterolist.php -text
@@ -6922,6 +6923,7 @@ templates/wiki-plugins/wikiplugin_watershedarchive.tpl -text
 templates/wiki-plugins/wikiplugin_watershedbroadcaster.tpl -text
 templates/wiki-plugins/wikiplugin_watershedchat.tpl -text
 templates/wiki-plugins/wikiplugin_watershedviewer.tpl -text
+templates/wiki-plugins/wikiplugin_xmlupdate.tpl -text
 templates/wiki/get_page.tpl -text
 templates/wiki_authors.tpl -text
 templates/wiki_authors_style.tpl -text
