@@ -4902,7 +4902,6 @@ lib/zoterolib.php -text
 /list-file_backlinks_ajax.php -text
 /list-tracker_field_values_ajax.php -text
 lists/articles.php -text
-maps/index.php -text
 /messu-archive.php -text
 /messu-broadcast.php -text
 /messu-compose.php -text
