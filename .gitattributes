@@ -5349,9 +5349,6 @@ templates/layouts/classic/module.tpl -text
 templates/layouts/fixed_top_modules/index.php -text
 templates/layouts/fixed_top_modules/layout_edit.tpl -text
 templates/layouts/fixed_top_modules/layout_view.tpl -text
-templates/layouts/header_middle_footer_containers/index.php -text
-templates/layouts/header_middle_footer_containers/layout_edit.tpl -text
-templates/layouts/header_middle_footer_containers/layout_view.tpl -text
 templates/layouts/header_middle_footer_containers_3-6-3/index.php -text
 templates/layouts/header_middle_footer_containers_3-6-3/layout_edit.tpl -text
 templates/layouts/header_middle_footer_containers_3-6-3/layout_view.tpl -text
