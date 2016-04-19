@@ -6538,7 +6538,6 @@ themes/cupid/images/index.php -text
 themes/cupid/index.php -text
 themes/cupid/less/bootstrap-variables.less -text
 themes/cupid/less/cupid.less -text
-themes/cupid/less/cupidcss.less -text
 themes/cupid/less/index.php -text
 themes/cupid/less/tiki-selectors.less -text
 themes/cupid/templates/index.php -text
