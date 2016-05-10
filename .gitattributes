@@ -6243,7 +6243,6 @@ templates/trackeroutput/freetags.tpl -text
 templates/trackeroutput/icon.tpl -text
 templates/trackeroutput/index.php -text
 templates/trackeroutput/itemslist.tpl -text
-templates/trackeroutput/kaltura.tpl -text
 templates/trackeroutput/language.tpl -text
 templates/trackeroutput/layout_flat.tpl -text
 templates/trackeroutput/layout_tab.tpl -text
