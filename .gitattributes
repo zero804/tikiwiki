@@ -5835,7 +5835,6 @@ templates/activity/tiki.comment.reply.tpl -text
 templates/activity/tiki.forumpost.create.tpl -text
 templates/activity/tiki.forumpost.reply.tpl -text
 templates/activity/tiki.forumpost.update.tpl -text
-templates/activity/tiki.mustread.required.tpl -text
 templates/activity/tiki.query.critical.tpl -text
 templates/activity/tiki.query.high.tpl -text
 templates/activity/tiki.query.low.tpl -text
