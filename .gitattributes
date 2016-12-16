@@ -2351,6 +2351,7 @@ lib/core/Search/Formatter/Builder.php -text
 lib/core/Search/Formatter/DataSource/Declarative.php -text
 lib/core/Search/Formatter/DataSource/Interface.php -text
 lib/core/Search/Formatter/DataSource/index.php -text
+lib/core/Search/Formatter/Plugin/ArrayTemplate.php -text
 lib/core/Search/Formatter/Plugin/Interface.php -text
 lib/core/Search/Formatter/Plugin/SmartyTemplate.php -text
 lib/core/Search/Formatter/Plugin/WikiTemplate.php -text
@@ -3354,6 +3355,7 @@ lib/jquery_tiki/tiki-toolbars.js -text
 lib/jquery_tiki/tiki-trackers.js -text
 lib/jquery_tiki/tiki-workspace-ui.js -text
 lib/jquery_tiki/wikiplugin-annotation.js -text
+lib/jquery_tiki/wikiplugin-pivottable.js -text
 lib/language/CollectFiles.php -text
 lib/language/Exception.php -text
 lib/language/File.php -text
@@ -4748,6 +4750,7 @@ lib/wiki-plugins/wikiplugin_payment.php -text
 lib/wiki-plugins/wikiplugin_paypal.php -text
 lib/wiki-plugins/wikiplugin_perm.php -text
 lib/wiki-plugins/wikiplugin_perspective.php -text
+lib/wiki-plugins/wikiplugin_pivottable.php -text
 lib/wiki-plugins/wikiplugin_piwik.php -text
 lib/wiki-plugins/wikiplugin_playscorm.php -text
 lib/wiki-plugins/wikiplugin_pluginmanager.php -text
@@ -6343,6 +6346,7 @@ templates/wiki-plugins/wikiplugin_mail.tpl -text
 templates/wiki-plugins/wikiplugin_memberlist.tpl -text
 templates/wiki-plugins/wikiplugin_memberpayment.tpl -text
 templates/wiki-plugins/wikiplugin_paypal.tpl -text
+templates/wiki-plugins/wikiplugin_pivottable.tpl -text
 templates/wiki-plugins/wikiplugin_playscorm.tpl -text
 templates/wiki-plugins/wikiplugin_profile.tpl -text
 templates/wiki-plugins/wikiplugin_proposal.tpl -text
