@@ -3327,6 +3327,7 @@ lib/jquery_tiki/index.php -text
 lib/jquery_tiki/inline_edit.js -text
 lib/jquery_tiki/multilike.js -text
 lib/jquery_tiki/mustread.js -text
+lib/jquery_tiki/pdf.js -text
 lib/jquery_tiki/social.js -text
 lib/jquery_tiki/tablesorter.js -text
 lib/jquery_tiki/tiki-admin.js -text
@@ -5196,6 +5197,7 @@ templates/admin/include_module.tpl -text
 templates/admin/include_payment.tpl -text
 templates/admin/include_performance.tpl -text
 templates/admin/include_polls.tpl -text
+templates/admin/include_print.tpl -text
 templates/admin/include_profiles.tpl -text
 templates/admin/include_rating.tpl -text
 templates/admin/include_rss.tpl -text
@@ -6445,6 +6447,7 @@ themes/amelia/less/bootswatch.less -text
 themes/amelia/less/index.php -text
 themes/amelia/less/variables.less -text
 themes/amelia/templates/index.php -text
+themes/base_files/css/printpdf.css -text
 themes/base_files/css/tiki_base.css -text
 themes/base_files/feature_css/admin.css -text
 themes/base_files/feature_css/calendar-print.css -text
