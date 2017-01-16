@@ -212,6 +212,7 @@ files/test.swf -text
 img/arrows-000000.png -text
 img/avatars/README -text
 img/avatars/index.php -text
+img/edge.gif -text
 img/flags/Afghanistan.gif -text
 img/flags/Aland_Islands.gif -text
 img/flags/Albania.gif -text
@@ -472,6 +473,7 @@ img/graph.barstack.png -text
 img/graph.multibar.png -text
 img/graph.multiline.png -text
 img/graph.pie.png -text
+img/h_trenner.gif -text
 img/icons/PastLink.svg -text
 img/icons/accept.png -text
 img/icons/add.png -text
