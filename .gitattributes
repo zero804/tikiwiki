@@ -1188,30 +1188,30 @@ img/screencast-no-video.png -text
 img/screencast-player-close.png -text
 img/screencast-player-frame.png -text
 img/separator.gif -text
-img/smiles/icon_arrow.gif -text
-img/smiles/icon_biggrin.gif -text
-img/smiles/icon_confused.gif -text
-img/smiles/icon_cool.gif -text
-img/smiles/icon_cry.gif -text
-img/smiles/icon_eek.gif -text
-img/smiles/icon_evil.gif -text
-img/smiles/icon_exclaim.gif -text
-img/smiles/icon_frown.gif -text
-img/smiles/icon_idea.gif -text
-img/smiles/icon_lol.gif -text
-img/smiles/icon_mad.gif -text
+img/smiles/icon_arrow.svg -text svneol=unset#image/svg
+img/smiles/icon_biggrin.svg -text svneol=unset#image/svg
+img/smiles/icon_confused.svg -text svneol=unset#image/svg
+img/smiles/icon_cool.svg -text svneol=unset#image/svg
+img/smiles/icon_cry.svg -text svneol=unset#image/svg
+img/smiles/icon_eek.svg -text svneol=unset#image/svg
+img/smiles/icon_evil.svg -text svneol=unset#image/svg
+img/smiles/icon_exclaim.svg -text svneol=unset#image/svg
+img/smiles/icon_frown.svg -text svneol=unset#image/svg
+img/smiles/icon_idea.svg -text svneol=unset#image/svg
+img/smiles/icon_lol.svg -text svneol=unset#image/svg
+img/smiles/icon_mad.svg -text svneol=unset#image/svg
 img/smiles/icon_mrgreen.gif -text
-img/smiles/icon_neutral.gif -text
-img/smiles/icon_question.gif -text
-img/smiles/icon_razz.gif -text
-img/smiles/icon_redface.gif -text
-img/smiles/icon_rolleyes.gif -text
-img/smiles/icon_sad.gif -text
-img/smiles/icon_santa.gif -text
-img/smiles/icon_smile.gif -text
-img/smiles/icon_surprised.gif -text
-img/smiles/icon_twisted.gif -text
-img/smiles/icon_wink.gif -text
+img/smiles/icon_neutral.svg -text svneol=unset#image/svg
+img/smiles/icon_question.svg -text svneol=unset#image/svg
+img/smiles/icon_razz.svg -text svneol=unset#image/svg
+img/smiles/icon_redface.svg -text svneol=unset#image/svg
+img/smiles/icon_rolleyes.svg -text svneol=unset#image/svg
+img/smiles/icon_sad.svg -text svneol=unset#image/svg
+img/smiles/icon_santa.svg -text svneol=unset#image/svg
+img/smiles/icon_smile.svg -text svneol=unset#image/svg
+img/smiles/icon_surprised.svg -text svneol=unset#image/svg
+img/smiles/icon_twisted.svg -text svneol=unset#image/svg
+img/smiles/icon_wink.svg -text svneol=unset#image/svg
 img/smiles/index.php -text
 img/spinner.gif -text
 img/superfish/arrows-ffffff.png -text
