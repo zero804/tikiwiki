@@ -1188,30 +1188,30 @@ img/screencast-no-video.png -text
 img/screencast-player-close.png -text
 img/screencast-player-frame.png -text
 img/separator.gif -text
-img/smiles/icon_arrow.svg -text svneol=unset#image/svg
-img/smiles/icon_biggrin.svg -text svneol=unset#image/svg
-img/smiles/icon_confused.svg -text svneol=unset#image/svg
-img/smiles/icon_cool.svg -text svneol=unset#image/svg
-img/smiles/icon_cry.svg -text svneol=unset#image/svg
-img/smiles/icon_eek.svg -text svneol=unset#image/svg
-img/smiles/icon_evil.svg -text svneol=unset#image/svg
-img/smiles/icon_exclaim.svg -text svneol=unset#image/svg
-img/smiles/icon_frown.svg -text svneol=unset#image/svg
-img/smiles/icon_idea.svg -text svneol=unset#image/svg
-img/smiles/icon_lol.svg -text svneol=unset#image/svg
-img/smiles/icon_mad.svg -text svneol=unset#image/svg
-img/smiles/icon_mrgreen.gif -text
-img/smiles/icon_neutral.svg -text svneol=unset#image/svg
-img/smiles/icon_question.svg -text svneol=unset#image/svg
-img/smiles/icon_razz.svg -text svneol=unset#image/svg
-img/smiles/icon_redface.svg -text svneol=unset#image/svg
-img/smiles/icon_rolleyes.svg -text svneol=unset#image/svg
-img/smiles/icon_sad.svg -text svneol=unset#image/svg
-img/smiles/icon_santa.svg -text svneol=unset#image/svg
-img/smiles/icon_smile.svg -text svneol=unset#image/svg
-img/smiles/icon_surprised.svg -text svneol=unset#image/svg
-img/smiles/icon_twisted.svg -text svneol=unset#image/svg
-img/smiles/icon_wink.svg -text svneol=unset#image/svg
+img/smiles/icon_arrow.png -text svneol=unset#image/png
+img/smiles/icon_biggrin.png -text svneol=unset#image/png
+img/smiles/icon_confused.png -text svneol=unset#image/png
+img/smiles/icon_cool.png -text svneol=unset#image/png
+img/smiles/icon_cry.png -text svneol=unset#image/png
+img/smiles/icon_eek.png -text svneol=unset#image/png
+img/smiles/icon_evil.png -text svneol=unset#image/png
+img/smiles/icon_exclaim.png -text svneol=unset#image/png
+img/smiles/icon_frown.png -text svneol=unset#image/png
+img/smiles/icon_idea.png -text svneol=unset#image/png
+img/smiles/icon_lol.png -text svneol=unset#image/png
+img/smiles/icon_mad.png -text svneol=unset#image/png
+img/smiles/icon_mrgreen.png -text svneol=unset#image/png
+img/smiles/icon_neutral.png -text svneol=unset#image/png
+img/smiles/icon_question.png -text svneol=unset#image/png
+img/smiles/icon_razz.png -text svneol=unset#image/png
+img/smiles/icon_redface.png -text svneol=unset#image/png
+img/smiles/icon_rolleyes.png -text svneol=unset#image/png
+img/smiles/icon_sad.png -text svneol=unset#image/png
+img/smiles/icon_santa.png -text svneol=unset#image/png
+img/smiles/icon_smile.png -text svneol=unset#image/png
+img/smiles/icon_surprised.png -text svneol=unset#image/png
+img/smiles/icon_twisted.png -text svneol=unset#image/png
+img/smiles/icon_wink.png -text svneol=unset#image/png
 img/smiles/index.php -text
 img/spinner.gif -text
 img/superfish/arrows-ffffff.png -text
