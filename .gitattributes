@@ -3109,6 +3109,8 @@ lib/core/TikiFilter.php -text
 lib/core/TikiFilter/AttributeType.php -text
 lib/core/TikiFilter/Callback.php -text
 lib/core/TikiFilter/HtmlPurifier.php -text
+lib/core/TikiFilter/Lang.php -text
+lib/core/TikiFilter/PregFilter.php -text
 lib/core/TikiFilter/PrepareInput.php -text
 lib/core/TikiFilter/PreventXss.php -text
 lib/core/TikiFilter/RawUnsafe.php -text
