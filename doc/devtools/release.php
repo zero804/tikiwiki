@@ -562,7 +562,7 @@ function build_packages($releaseVersion)
 		echo $shellout."\n";
 
 	echo "Creating $fileName.7z\n";
-	$shellout =  shell_exec("cd $relDir; 7za a -mx9 ".escapeshellarg($fileName.".7z").' '.escapeshellarg($fileName).' -r -x!*.DS_Store 2>&1');
+	$shellout =  shell_exec("cd $relDir; 7za a ".escapeshellarg($fileName.".7z").' '.escapeshellarg($fileName).' 2>&1');
 	if (strpos($shellout, 'command not found'))
 		error("7za not installed. Archive creation failed.\n");
 	if ($options['debug-packaging'])
