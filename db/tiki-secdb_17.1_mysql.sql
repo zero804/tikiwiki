@@ -2425,7 +2425,7 @@ INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib
 INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib/setup/ids.php', '36fe7028be2128e90aeb042eec7e3751', '17.1');
 INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib/setup/index.php', '92bc1ad825a481736418859b7c4ec24d', '17.1');
 INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib/setup/integrator.php', '9dd2f2c548342118cba9378a704f0e1c', '17.1');
-INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib/setup/javascript.php', 'd7830ed8fafd531cf8127cd0fec86845', '17.1');
+INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib/setup/javascript.php', 'b9285ae6d7cb97acadb09036b54846a8', '17.1');
 INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib/setup/language.php', 'b7ddf56a5af1cb98c542c5a193f6d627', '17.1');
 INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib/setup/last_update.php', '1fe9311127c78fc6bb7504acd3271781', '17.1');
 INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib/setup/live_support.php', '4e1bada9e0450609fbf0990d7c22c727', '17.1');
