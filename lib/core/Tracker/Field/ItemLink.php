@@ -503,8 +503,6 @@ class Tracker_Field_ItemLink extends Tracker_Field_Abstract implements Tracker_F
 				);
 				// decode & and = chars
 				return str_replace(array('%26','%3D'), array('&','='), $link);
-			} else if ($this->getOption('linkToItem') && $this->getOption('displayFieldsListType') !== 'table') {
-				return smarty_function_object_link(array('type' => 'trackeritem',	'id' => $item,	'title' => $label), $smarty);
 			} else {
 				return parent::renderOutput($context);
 			}
@@ -640,6 +638,10 @@ class Tracker_Field_ItemLink extends Tracker_Field_Abstract implements Tracker_F
 		return $fields;
 	}
 
+	function getItemValue($itemId) {
+		return $label = TikiLib::lib('object')->get_title('trackeritem', $itemId);
+	}
+
 	function getItemLabel($itemIds, $context = array('list_mode' => ''))
 	{
 		$items = explode(',', $itemIds);
@@ -699,7 +701,7 @@ class Tracker_Field_ItemLink extends Tracker_Field_Abstract implements Tracker_F
 						$status,
 						' ',
 						$context['list_mode'],
-						$this->getOption('linkToItem'),
+						!$this->getOption('linkToItem'),
 						$this->getOption('displayFieldsListFormat'),
 						$item
 					);
@@ -968,7 +970,7 @@ class Tracker_Field_ItemLink extends Tracker_Field_Abstract implements Tracker_F
 		return array(
 			Search_Query_Facet_Term::fromField($baseKey)
 				->setLabel($this->getConfiguration('name'))
-				->setRenderCallback(array($this, 'getItemLabel')),
+				->setRenderCallback(array($this, 'getItemValue')),
 		);
 	}
 
