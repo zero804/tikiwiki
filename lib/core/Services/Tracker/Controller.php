@@ -1138,6 +1138,7 @@ class Services_Tracker_Controller
 	{
 		$trackerId = $input->trackerId->int();
 		$mode = $input->mode->word();						// output|input (default input)
+		$listMode = $input->listMode->word();
 		$definition = Tracker_Definition::get($trackerId);
 
 		if (! $definition) {
@@ -1165,6 +1166,7 @@ class Services_Tracker_Controller
 		return array(
 			'field' => $processed,
 			'mode' => $mode,
+			'listMode' => $listMode,
 			'itemId' => $itemId
 		);
 	}
