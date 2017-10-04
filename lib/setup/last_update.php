@@ -8,6 +8,11 @@
 //this script may only be included - so its better to die if called directly.
 $access->check_script($_SERVER['SCRIPT_NAME'], basename(__FILE__));
 
+if ($svn = $cachelib->getSerialized('svninfo')) {
+	$smarty->assign('svnrev', $svn['svnrev']);
+	$smarty->assign('lastup', $svn['lastup']);
+}
+
 if (is_readable('.svn')) {
 	$svn = array();
 	if (is_readable('.svn/entries')) {
@@ -53,6 +58,11 @@ if (is_readable('.svn')) {
 
 				// Release/Unlock the database afterwards
 				$handle->close();
+
+				$cachelib->cacheItem('svninfo', serialize([
+					'svnrev' => $svnrev,
+					'lastup' => $strDT
+				]));
 			}
 		}
 	}
