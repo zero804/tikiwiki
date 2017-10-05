@@ -3254,6 +3254,11 @@ class TrackerLib extends TikiLib
 			$this->remove_field_images($fieldId);
 		}
 
+		$handler = $this->get_field_handler($field);
+		if ($handler && method_exists($handler, 'handleFieldRemove')) {
+			$handler->handleFieldRemove();
+		}
+
 		$conditions = array(
 			'fieldId' => (int) $fieldId,
 		);

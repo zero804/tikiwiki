@@ -217,7 +217,7 @@ class RelationLib extends TikiDb_Bridge
 	 * @param $get_invert default=false
 	 * @return int
 	 */
-	function get_relation_count($relation, $type, $object, $get_invert=false )
+	function get_relation_count($relation, $type, $object = null, $get_invert=false )
 	{
 		$relation = TikiFilter::get('attribute_type')->filter($relation);
 
@@ -227,22 +227,26 @@ class RelationLib extends TikiDb_Bridge
 
 		if ( $get_invert ) {
 			$count = $this->table->fetchCount(
-				array(
+				array_filter(array(
 					'relation' => $relation,
 					'source_type' => $type,
 					'source_itemId' => $object,
-				)
+				))
 			);
 		} else {
 			$count = $this->table->fetchCount(
-				array(
+				array_filter(array(
 					'relation' => $relation,
 					'target_type' => $type,
 					'target_itemId' => $object,
-				)
+				))
 			);
 		}
 		return $count;
+	}
+
+	public function relation_exists($relation, $type) {
+		return $this->get_relation_count($relation, $type) || $this->get_relation_count($relation, $type, null, true);
 	}
 
 	/**
@@ -287,6 +291,32 @@ class RelationLib extends TikiDb_Bridge
 
 		TikiLib::lib('tiki')->refresh_index($relation_info['source_type'], $relation_info['source_itemId']);
 		TikiLib::lib('tiki')->refresh_index($relation_info['target_type'], $relation_info['target_itemId']);
+	}
+
+	/**
+	 * Remove all relations from that type.
+	 * @param $relation - the relation type
+	 */
+	public function remove_relation_type($relation) {
+		return $this->table->deleteMultiple(
+			array(
+				'relation' => $relation,
+			)
+		);
+	}
+
+	/**
+	 * Changes to relation name should update existing relation table entries
+	 *
+	 * @param $from - old relation name
+	 * @param $to - new relation name
+	 */
+	public function update_relation($from, $to) {
+		$this->table->updateMultiple(array(
+			'relation' => $to
+		), array(
+			'relation' => $from
+		));
 	}
 
 	/**

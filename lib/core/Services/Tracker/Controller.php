@@ -276,6 +276,8 @@ class Services_Tracker_Controller
 
 	function action_edit_field($input)
 	{
+		global $prefs;
+
 		$trackerId = $input->trackerId->int();
 
 		$perms = Perms::get('tracker', $trackerId);
@@ -297,6 +299,13 @@ class Services_Tracker_Controller
 
 		$types = $this->utilities->getFieldTypes();
 		$typeInfo = $types[$field['type']];
+		if( $prefs['tracker_change_field_type'] !== 'y' ) {
+			if( empty($typeInfo['supported_changes']) ) {
+				$types = array();
+			} else {
+				$types = $this->utilities->getFieldTypes($typeInfo['supported_changes']);
+			}
+		}
 
 		$permName = $input->permName->word();
 		if ($field['permName'] != $permName) {
@@ -315,15 +324,53 @@ class Services_Tracker_Controller
 			$visibleBy = $input->asArray('visible_by', ',');
 			$editableBy = $input->asArray('editable_by', ',');
 
-			global $prefs;
-			if ($prefs['tracker_change_field_type'] === 'y') {
+			$options = $this->utilities->buildOptions($input->option, $typeInfo);
+
+			$trklib = TikiLib::lib('trk');
+			$handler = $trklib->get_field_handler($field);
+			if (!$handler) {
+				throw new Services_Exception(tr('Field handler not found'), 400);
+			}
+			if (method_exists($handler, 'validateFieldOptions')) {
+				try {
+					$params = $this->utilities->parseOptions($options, $typeInfo);
+					$handler->validateFieldOptions($params);
+				} catch(Exception $e) {
+					throw new Services_Exception($e->getMessage(), 400);
+				}
+			}
+
+			if (!empty($types)) {
 				$type = $input->type->text();
 				if ($field['type'] !== $type) {
 					if (!isset($types[$type])) {
 						throw new Services_Exception(tr('Type does not exist'), 400);
 					}
-					$typeInfo = $types[$type]; // update typeInfo and clear out old options if changed type
-					$input->offsetSet('option', new JitFilter(array()));
+					$oldTypeInfo = $typeInfo;
+					$typeInfo = $types[$type];
+					if( !empty($oldTypeInfo['supported_changes']) && in_array($type, $oldTypeInfo['supported_changes']) ) {
+						// changing supported types should not clear all options but only the ones that are not available in the new type
+						$options = Tracker_Options::fromInput($input->option, $oldTypeInfo);
+						$params = $options->getAllParameters();
+						foreach( array_keys($params) as $param ) {
+							if( empty($typeInfo['params'][$param]) ) {
+								unset($params[$param]);
+							}
+						}
+						// convert underneath data if field type supports it
+						if (method_exists($handler, 'convertFieldTo')) {
+							$convertedOptions = $handler->convertFieldTo($type);
+							$params = array_merge($params, $convertedOptions);
+						}
+						// prepare options
+						$options = json_encode($params);
+					} else {
+						// clear options for unsupported field type changes
+						$options = json_encode(array());
+					}
+				} elseif (method_exists($handler, 'convertFieldOptions')) {
+					$params = $this->utilities->parseOptions($options, $typeInfo);
+					$handler->convertFieldOptions($params);
 				}
 			} else {
 				$type = $field['type'];
@@ -333,7 +380,7 @@ class Services_Tracker_Controller
 				'name' => $input->name->text(),
 				'description' => $input->description->text(),
 				'descriptionIsParsed' => $input->description_parse->int() ? 'y' : 'n',
-				'options' => $this->utilities->buildOptions($input->option, $typeInfo),
+				'options' => $options,
 				'validation' => $input->validation_type->word(),
 				'validationParam' => $input->validation_parameter->none(),
 				'validationMessage' => $input->validation_message->text(),
