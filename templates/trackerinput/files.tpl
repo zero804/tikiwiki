@@ -1,4 +1,4 @@
-<div class="files-field uninitialized {if $data.replaceFile}replace{/if}" data-galleryid="{$field.galleryId|escape}" data-firstfile="{$field.firstfile|escape}" data-filter="{$field.filter|escape}" data-limit="{$field.limit|escape}">
+<div id="display_f{$field.fieldId|escape}" class="files-field display_f{$field.fieldId|escape} uninitialized {if $data.replaceFile}replace{/if}" data-galleryid="{$field.galleryId|escape}" data-firstfile="{$field.firstfile|escape}" data-filter="{$field.filter|escape}" data-limit="{$field.limit|escape}">
 	{if $field.canUpload}
 		{if $field.limit}
 			{remarksbox _type=info title="{tr}Attached files limitation{/tr}"}
@@ -15,9 +15,9 @@
 					{else}
 						<img src="tiki-download_file.php?fileId={$info.fileId|escape}&icon" width="32" height="32">
 					{/if}
-					{$info.name|escape} <label class="file-delete-icon">
+					{$info.name|escape} <a href="#" class="file-delete-icon">
 						{icon name='delete'}
-					</label>
+					</a>
 				</li>
 			{/foreach}
 		</ol>
@@ -97,7 +97,7 @@
 				$field.input_csv('add', ',', fileId);
 
 				li.prepend($.fileTypeIcon(fileId, { type: type, name: name }));
-				li.append($('<label class="file-delete-icon">{{icon name='delete'}}</label>'));
+				li.append($('<a class="file-delete-icon">{{icon name='delete'}}</a>'));
 
 				if (replaceFile && $self.data('firstfile') > 0) {
 					li.prev('li').remove();
@@ -166,6 +166,7 @@
 					$field.change();
 					toggleWarning();
 				}
+				return false;
 			});
 
 			$url.keypress(function (e) {
