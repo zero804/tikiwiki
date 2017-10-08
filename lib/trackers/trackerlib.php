@@ -1627,7 +1627,7 @@ class TrackerLib extends TikiLib
 					array($itemId), array(
 						'lastModif' => $tikilib->now,
 						'lastModifBy' => $user,
-					)
+					), false
 				);
 			}
 
@@ -4302,11 +4302,11 @@ class TrackerLib extends TikiLib
 				'status' => $status,
 				'lastModif' => $tikilib->now,
 				'lastModifBy' => $user,
-			)
+			), true
 		);
 	}
 
-	private function update_items(array $toUpdate, array $fields)
+	private function update_items(array $toUpdate, array $fields, $refresh_index)
 	{
 		global $prefs;
 		$logslib = TikiLib::lib('logs');
@@ -4327,6 +4327,11 @@ class TrackerLib extends TikiLib
 
 			foreach ($toUpdate as $child) {
 				$searchlib->invalidateObject('trackeritem', $child);
+			}
+
+			if ($refresh_index && $toUpdate) {
+				require_once('lib/search/refresh-functions.php');
+				refresh_index('trackeritem', $toUpdate[0]);
 			}
 		}
 	}
