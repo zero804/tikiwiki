@@ -263,11 +263,10 @@ class Search_Elastic_QueryBuilder
 			if( preg_match('/^tracker_field_/', $field) ) {
 				$msg = tr('Field %0 does not exist in the current index. Please check field permanent name and if you have any items in that tracker.', $field);
 			} else {
-				$msg = tr('Field %0 does not exist in the current index. If this is a tracker field, the proper syntax is tracker_field_%0.', $field, $field);
+				$msg = tr('Field %0 does not exist in the current index or this is a brand new tracker and you have to (re)build the search index for the first time. If this is a tracker field, the proper syntax is tracker_field_%0.', $field, $field);
 			}
 			throw new Search_Elastic_QueryParsingException($msg);
 		}
 		return $field;
 	}
 }
-
