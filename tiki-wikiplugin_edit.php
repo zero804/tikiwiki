@@ -63,9 +63,11 @@ foreach ( $matches as $match ) {
 		$parsed = $matches->getText();
 
 		$tikilib->update_page($page, $parsed, $_POST['message'], $user, $tikilib->get_ip_address());
-		break;
+		header("Location: {$_SERVER['HTTP_REFERER']}");
+		exit;
 	}
 }
 
-header("Location: {$_SERVER['HTTP_REFERER']}");
-exit;
+$errorreportlib = TikiLib::lib('errorreport');
+$errorreportlib->report('Plugin edit failed');
+throw new Exception('Plugin edit failed');
