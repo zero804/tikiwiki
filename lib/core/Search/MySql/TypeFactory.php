@@ -54,7 +54,7 @@ class Search_MySql_TypeFactory implements Search_Type_Factory_Interface
 		return null;
 	}
 
-	/* Not supported in Lucene indexes - use elasticsearch */
+	/* Not supported in MySQL indexes - use elasticsearch */
 	function geopoint($values)
 	{
 		return null;
@@ -63,6 +63,11 @@ class Search_MySql_TypeFactory implements Search_Type_Factory_Interface
 	function sortable($value)
 	{
 		return new Search_Type_PlainShortText($value);
+	}
+
+	function json($value)
+	{
+		return new Search_Type_PlainText($value);
 	}
 }
 
