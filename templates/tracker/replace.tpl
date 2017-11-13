@@ -190,10 +190,12 @@
 					{tr}Hide empty fields from item view{/tr}
 				</label>
 			</div>
+			{if $info.trackerId}
 			<div class="form-group">
 				<label for="showPopup">{tr}List detail popup{/tr}</label>
 				{object_selector_multi type=trackerfield tracker_id=$info.trackerId _simplevalue=$info.showPopup _separator="," _simplename="showPopup"}
 			</div>
+			{/if}
 		{/accordion_group}
 	{accordion_group title="{tr}Section Format{/tr}"}
 		<div class="panel panel-default">
