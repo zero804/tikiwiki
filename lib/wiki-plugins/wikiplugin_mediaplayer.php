@@ -207,7 +207,6 @@ function wikiplugin_mediaplayer($data, $params)
 		'width' => 320,
 		'height' => 240,
 	);
-	$params['type']=strtolower($params['type']);
 	if (preg_match('/webm/', $params['type']) >0 && $params['type'] != 'video/webm') {
 		$params['type'] = 'video/webm';
 	}
