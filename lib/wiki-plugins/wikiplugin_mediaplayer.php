@@ -179,6 +179,7 @@ function wikiplugin_mediaplayer($data, $params)
 	$access = TikiLib::lib('access');
 	static $iMEDIAPLAYER = 0;
 	$id = 'mediaplayer'.++$iMEDIAPLAYER;
+	$params['type'] = strtolower($params['type']);
 
 	if (empty($params['mp3']) && empty($params['flv']) && empty($params['src'])) {
 		return '';
@@ -206,6 +207,7 @@ function wikiplugin_mediaplayer($data, $params)
 		'width' => 320,
 		'height' => 240,
 	);
+	$params['type']=strtolower($params['type']);
 	if (preg_match('/webm/', $params['type']) >0 && $params['type'] != 'video/webm') {
 		$params['type'] = 'video/webm';
 	}
@@ -247,7 +249,7 @@ function wikiplugin_mediaplayer($data, $params)
 
 		// check for support for PDF or ODF as indicated here http://viewerjs.org
 
-		if ($params['type'] === 'pdf' || $params['type'] === 'odt' || $params['type'] === 'ods' || $params['type'] === 'odp' || $params['type'] === 'viewerjs' ) {
+		if ($params['type'] === 'pdf' || $params['type'] === 'odt'|| $params['type'] === 'ods' || $params['type'] === 'odp' || $params['type'] === 'viewerjs' ) {
 			if ($prefs['fgal_viewerjs_feature'] === 'y') {
 
 				$src = \ZendOpenId\OpenId::absoluteUrl($params['src']);
@@ -257,7 +259,7 @@ function wikiplugin_mediaplayer($data, $params)
 
 				return $out;
 
-			} elseif ($params['type'] === 'pdf') {
+			} elseif ($params['type'] === 'pdf' || $params['type'] === 'PDF') {
 
 				$js = '
 var found = false;
