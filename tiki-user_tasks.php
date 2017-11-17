@@ -6,6 +6,11 @@
 // $Id$
 
 $section = 'mytiki';
+$inputConfiguration =	array(array(
+	'staticKeyFilters'	=> array(
+		'show_history'	=> 'digits',
+	),
+));
 require_once ('tiki-setup.php');
 include_once ('lib/tasks/tasklib.php');
 include_once ('lib/messu/messulib.php');
