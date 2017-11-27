@@ -102,7 +102,9 @@ if ($isInstalled && ! $installer->requiresUpdate()) {
 	$console->add(new Tiki\Command\DailyReportSendCommand);
 	$console->add(new Tiki\Command\GoalCheckCommand);
 	$console->add(new Tiki\Command\FilesBatchuploadCommand);
+	$console->add(new Tiki\Command\FilesCopyCommand);
 	$console->add(new Tiki\Command\FilesDeleteoldCommand);
+	$console->add(new Tiki\Command\FilesMoveCommand);
 	$console->add(new Tiki\Command\IndexRebuildCommand);
 	$console->add(new Tiki\Command\IndexOptimizeCommand);
 	$console->add(new Tiki\Command\IndexCatchUpCommand);
