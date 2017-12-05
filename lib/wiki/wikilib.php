@@ -216,9 +216,12 @@ class WikiLib extends TikiLib
 	 */
 	public function wiki_duplicate_page($name, $copyName = null)
 	{
+		global $user;
+
 		$tikilib = TikiLib::lib('tiki');
 
 		$info = $tikilib->get_page_info($name);
+		$ip = $tikilib->get_ip_address();
 
 		if (!$info) {
 			return false;
@@ -234,8 +237,8 @@ class WikiLib extends TikiLib
 			$info['data'],
 			$tikilib->now,
 			$info['comment'],
-			$info['user'],
-			$info['ip'],
+			$user,
+			$ip,
 			$info['description'],
 			$info['lang'],
 			$info['is_html']
