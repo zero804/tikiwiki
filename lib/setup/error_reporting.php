@@ -33,7 +33,9 @@ if (!empty($prefs['smarty_notice_reporting']) and $prefs['smarty_notice_reportin
 		$errorHandlerReportingLevel = $errorReportingLevel | E_USER_NOTICE ;
 }
 
-set_error_handler('tiki_error_handling', $errorHandlerReportingLevel);
+if (php_sapi_name() != 'cli') {
+	set_error_handler('tiki_error_handling', $errorReportingLevel);
+}
 error_reporting($errorReportingLevel);
 
 if ( $prefs['log_sql'] == 'y' && $api_tiki == 'adodb' ) {
