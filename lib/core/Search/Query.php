@@ -303,7 +303,8 @@ class Search_Query implements Search_Query_Interface
 			$this->sortOrder = null;
 			$resultset = $index->find($this, $this->start, $this->count);
 		} catch(Exception $e) {
-			TikiLib::lib('errorreport')->report($e->getMessage());
+			TikiLib::lib('errorreport')->report(tra("Malformed search query"));
+			trigger_error($e->getMessage(),E_USER_WARNING);
 			return Search_ResultSet::create([]);
 		}
 

@@ -784,6 +784,7 @@ $lang = array(
 // "Parsing search query failed: \"%0\"" => "Parsing search query failed: \"%0\"",
 // "Sort field %0 not found in index" => "Sort field %0 not found in index",
 "No results for query" => "Aucun résultat pour la requête",
+"Malformed search query" => "Requête de recherche invalide",
 // "Missing template \"%0\"" => "Missing template \"%0\"",
 "No value for '%0'" => "Pas de valeur pour '%0'",
 "Unknown formatting rule '%0' for '%1'" => "Règle de formatage '%0' inconnue pour '%1'",

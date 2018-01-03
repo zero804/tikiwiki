@@ -165,6 +165,13 @@ class Services_Search_CustomSearchController
 		$index = $unifiedsearchlib->getIndex();
 		$resultSet = $query->search($index);
 
+		if (isset($_SESSION['errorreport'])) {
+			global $smarty;
+			include_once('lib/smarty_tiki/function.error_report.php');
+			echo smarty_function_error_report(array(), $smarty);
+			return null;
+		}
+
 		$results = $formatter->format($resultSet);
 
 		$results = TikiLib::lib('tiki')->parse_data($results, array('is_html' => true, 'skipvalidation' => true));
