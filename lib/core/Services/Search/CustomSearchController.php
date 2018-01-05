@@ -178,9 +178,7 @@ class Services_Search_CustomSearchController
 
 		$index = $unifiedsearchlib->getIndex();
 		$resultSet = $query->search($index);
-		var_dump($resultSet);
 		$errors = Feedback::get();
-		var_dump($errors);
 		if ($errors !== false) {
 			echo $errors;
 			return;
