@@ -1,13 +1,13 @@
 <?php
 // (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
-// 
+//
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
 /**
  * Handler class for Text
- * 
+ *
  * Letter key: ~t~
  *
  */
@@ -124,13 +124,13 @@ class Tracker_Field_Text extends Tracker_Field_Abstract implements Tracker_Field
 		}
 	}
 
-	protected function processMultilingual($requestData, $id_string) 
+	protected function processMultilingual($requestData, $id_string)
 	{
-		global $prefs, $jitRequest;
+		global $prefs;
 		$language = $prefs['language'];
 		$multilingual = $this->getConfiguration('isMultilingual') == 'y';
 
-		if (!isset($requestData[$id_string])) { // although we're using jitRequest test for $requestData here as it gets unset once processed
+		if (! isset($requestData[$id_string])) {
 			$value = $this->getValue();
 			if ($multilingual) {
 				$newValue = @json_decode($value, true);
@@ -140,7 +140,8 @@ class Tracker_Field_Text extends Tracker_Field_Abstract implements Tracker_Field
 				}
 			}
 		} else {
-			$value = $jitRequest->$id_string->wikicontent();
+			$jit = new JitFilter($requestData);
+			$value = $jit->$id_string->wikicontent();
 		}
 
 		if (is_array($value)) {
