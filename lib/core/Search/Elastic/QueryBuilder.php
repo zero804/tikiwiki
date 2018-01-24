@@ -199,7 +199,7 @@ class Search_Elastic_QueryBuilder
 	private function getTerm($node)
 	{
 		$value = $node->getValue($this->factory);
-		return strtolower($value->getValue());
+		return mb_strtolower($value->getValue());
 	}
 
 	private function handleToken($node)
@@ -253,7 +253,7 @@ class Search_Elastic_QueryBuilder
 		} else {
 			return array("match" => array(
 				$this->getNodeField($node) => array(
-					"query" => strtolower($value),
+					"query" => mb_strtolower($value),
 					"boost" => $node->getWeight(),
 					"operator" => "and",
 				),
