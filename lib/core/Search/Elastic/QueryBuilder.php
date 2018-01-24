@@ -188,7 +188,7 @@ class Search_Elastic_QueryBuilder
 	private function getTerm($node)
 	{
 		$value = $node->getValue($this->factory);
-		return strtolower($value->getValue());
+		return tikilib::strtolower($value->getValue());
 	}
 
 	private function handleToken($node)
