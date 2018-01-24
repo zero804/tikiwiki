@@ -2031,6 +2031,9 @@ if ( \$('#$id') ) {
 	{
 		global $prefs;
 
+		// pretty trackers use pipe for output|template specification, so we need to escape
+		$data = preg_replace('/{\$f_(\w+)\|(output|template:.*?)}/i', '{\$f_$1-escapedpipe-$2}', $data);
+
 		/*
 		 * Wiki Tables syntax
 		 */
@@ -2126,6 +2129,9 @@ if ( \$('#$id') ) {
 				}
 			}
 		}
+
+		// unescape the pipes for pretty tracker
+		$data = preg_replace('/{\$f_(\w+)-escapedpipe-(output|template:.*?)}/i', '{\$f_$1|$2}', $data);
 
 		return $data;
 	}
