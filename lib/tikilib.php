@@ -5439,6 +5439,12 @@ class TikiLib extends TikiDb_Bridge
 		$tmp_dest = $prefs['tmpDir'] . "/" . $file_name.".tmp";
 		if (!move_uploaded_file($file_tmp_name, $tmp_dest))
 			return array("ok"=>false, "error"=>tra('Errors detected'));
+		try {
+			$filegallib = TikiLib::lib('filegal');
+			$filegallib->assertUploadedFileIsSafe($tmp_dest, $file_name);
+		} catch (Exception $e) {
+			return array('ok' => false, 'error' => $e->getMessage());
+		}
 		$fp = fopen($tmp_dest, "rb");
 		$data = '';
 		$fhash = '';

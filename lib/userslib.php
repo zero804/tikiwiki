@@ -4303,6 +4303,15 @@ class UsersLib extends TikiLib
 				'scope' => 'object',
 			),
 			array(
+				'name' => 'tiki_p_upload_svg',
+				'description' => tra('Can upload SVG files'),
+				'level' => 'admin',
+				'type' => 'file galleries',
+				'admin' => false,
+				'prefs' => array('fgal_allow_svg'),
+				'scope' => 'object',
+			),
+			array(
 				'name' => 'tiki_p_admin_forum',
 				'description' => tra('Can admin forums'),
 				'level' => 'admin',

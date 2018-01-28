@@ -269,6 +269,17 @@ As soon as the limit is reached not other files can be uploaded. The user will s
 			'tags' => array('experimental'),
 			'help' => 'File+Gallery+config',
 		),
+		'fgal_allow_svg' => [
+			'name' => tra('Allow SVG file upload'),
+			'description' => tra('SVG files may contain malicious code and compromise system security. Users will require SVG uploading permission to be able to upload SVG files.'),
+			'type' => 'flag',
+			'default' => 'n',
+			'help' => 'File+Gallery+config',
+			'keywords' => 'svg upload',
+			'permission' => array(
+				'textFilter' => 'upload_svg',
+			),
+		],
 		'fgal_browse_name_max_length' => array(
 			'name' => tra('Maximum name length'),
 			'description' => tra('Length to which to truncate file names in browse view.'),
