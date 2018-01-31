@@ -94,6 +94,8 @@
 				<input type="submit" class="btn btn-default" name="updateMime" id="updateMime" value="{tr}Update mime of all non archived octet-stream files{/tr}" />
 				</div>
 
+				{preference name='fgal_allow_svg'}
+
 				{preference name='fgal_upload_from_source'}
 				<div class="adminoptionboxchild" id="fgal_upload_from_source_childcontainer">
 					{preference name='fgal_source_refresh_frequency'}

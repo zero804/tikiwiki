@@ -39,6 +39,15 @@ if (isset($_FILES['userfile1']) && is_uploaded_file($_FILES['userfile1']['tmp_na
 	$type = $_FILES['userfile1']['type'];
 	$size = $_FILES['userfile1']['size'];
 	$name = $_FILES['userfile1']['name'];
+	$filegallib = TikiLib::lib('filegal');
+	try {
+		$filegallib->assertUploadedFileIsSafe($_FILES['userfile1']['tmp_name'], $_FILES['userfile1']['name']);
+	} catch (Exception $e) {
+		$smarty->assign('errortype', 403);
+		$smarty->assign('msg', $e->getMessage());
+		$smarty->display("error.tpl");
+		die;
+	}
 	$fp = fopen($_FILES['userfile1']['tmp_name'], "rb");
 	$data = fread($fp, filesize($_FILES['userfile1']['tmp_name']));
 	fclose($fp);
