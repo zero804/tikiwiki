@@ -3942,6 +3942,60 @@ class FileGalLib extends TikiLib
 		return true;
 	}
 
+	/**
+	 * Sanitize XML based files
+	 *
+	 * @param string $data Image data
+	 * @param int $galleryId
+	 * @return string
+	 */
+	public function clean_xml($data, $galleryId)
+	{
+
+		// We're not backporting fgal_clean_xml_always & upload_javascript.
+		// If these should be backported in the future, the lines below should be uncommented
+		/*
+		global $prefs;
+
+		$perms = Perms::get([
+			'file gallery',
+			$galleryId
+		]);
+
+		if ($prefs['fgal_clean_xml_always'] === 'y' || ! $perms->upload_javascript) {
+		*/
+			$dom = new DOMDocument();
+
+			if ($dom->loadXML($data, LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_NONET)) {
+
+				$elements = [];
+				/** @var DOMElement $element */
+				foreach ($dom->getElementsByTagName('*') as $element) {
+					$elements[] = $element;
+				}
+
+				foreach ($elements as $element) {
+
+					if (in_array($element->tagName, ['script', 'embed', 'object', 'applet', 'iframe', 'frame'])) {
+						$element->parentNode->removeChild($element);
+					} else {
+						foreach ($element->attributes as $name => $node) {
+							if (stripos($name, 'on') === 0) {
+								$element->removeAttribute($name);
+							}
+						}
+					}
+				}
+
+				$data = $dom->saveXML();
+
+			}
+		/*
+		}
+		*/
+		return $data;
+	}
+
 	function get_info_from_url($url, $lastCheck = false, $eTag = false)
 	{
 		if (! $url) {
