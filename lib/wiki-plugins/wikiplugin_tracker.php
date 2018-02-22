@@ -1141,7 +1141,7 @@ function wikiplugin_tracker($data, $params)
 					if ($transactionFinalStep == 'y') {
 						//-- final step: commit the transaction of registrations and tracker changes of all the transaction steps
 						foreach ($_SESSION[$transactionName] as $saveStep) {
-							$rid = wikiplugin_tracker_save($saveStep);
+							$rid = wikiplugin_tracker_save_item($saveStep);
 						}
 						unset($_SESSION[$transactionName]); // the tracker transaction can be closed
 					} else {
@@ -1149,7 +1149,7 @@ function wikiplugin_tracker($data, $params)
 					}
 				} else {
 					// no transaction is used
-					$rid = wikiplugin_tracker_save($saveThis);
+					$rid = wikiplugin_tracker_save_item($saveThis);
 				}
 				// now for wiki output if desired
 				if (isset($outputtowiki) && !empty($outputwiki)) {
@@ -2051,7 +2051,7 @@ function wikiplugin_tracker_process_email_recipient($emailOrField, $fields, $ite
 	return $output;
 }
 
-function wikiplugin_tracker_save($trackerSavedState)
+function wikiplugin_tracker_save_item($trackerSavedState)
 {
 	global $user;
 	$trklib = TikiLib::lib('trk');
