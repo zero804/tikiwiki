@@ -31,6 +31,183 @@ When possible, it's also nice to indicate what feature is concerned by the chang
 Before 2.0, there was only [MOD] for both [ENH] and [MOD]:
 
 ----------------------------------------------------------------------
+Version 15.6
+<http://doc.tiki.org/Tiki15>
+------------------
+
+----------------------------------------------
+r65699 | lfagundes | 2018-03-07 16:14:29 +0100 (Wed, 07 Mar 2018) | 2 lines
+
+releasing 15.6
+
+----------------------------------------------
+r65645 | rjsmelo | 2018-03-05 00:37:12 +0100 (Mon, 05 Mar 2018) | 2 lines
+
+[bp/62868][bp/62869][FIX] Escape HTML special characters in context, added and deleted lines
+
+----------------------------------------------
+r65563 | rjsmelo | 2018-02-24 20:43:30 +0100 (Sat, 24 Feb 2018) | 2 lines
+
+[bp/65108][FIX] Avoid code injection
+
+----------------------------------------------
+r65558 | robertokir | 2018-02-22 11:27:49 +0100 (Thu, 22 Feb 2018) | 2 lines
+
+[bp/r65557] tracker: Rename wikiplugin_tracker_save to wikiplugin_tracker_save_item to avoid post save handler events from creating spurious empty tracker items if the markup for a tracker plugin is found by \TikiLib::plugin_post_save_actions() in the item's content
+
+----------------------------------------------
+r65539 | robertokir | 2018-02-19 14:48:22 +0100 (Mon, 19 Feb 2018) | 2 lines
+
+[bp/r65538] better external link handling
+
+----------------------------------------------
+r65412 | robertokir | 2018-02-01 19:07:24 +0100 (Thu, 01 Feb 2018) | 2 lines
+
+[bp/r65411] [FIX] calendars: Escape special chars in calendar item titles
+
+----------------------------------------------
+r65409 | robertokir | 2018-02-01 16:41:12 +0100 (Thu, 01 Feb 2018) | 2 lines
+
+[bp/65407] clean_xml on svg drawings
+
+----------------------------------------------
+r65386 | robertokir | 2018-01-30 13:29:12 +0100 (Tue, 30 Jan 2018) | 2 lines
+
+[bp/65348] File gallery upload safety improvements.
+
+----------------------------------------------
+r65346 | jonnybradley | 2018-01-27 19:26:29 +0100 (Sat, 27 Jan 2018) | 2 lines
+
+[bp/r65345][bp/r65343][FIX] trackers: Use the insert key for "cat_managed" hidden inputs on checkboxes mode category fields so you can deselect all of them.
+Missed from r59831 (by me, apologies)
+----------------------------------------------
+r65331 | kerzay | 2018-01-24 17:21:43 +0100 (Wed, 24 Jan 2018) | 2 lines
+
+[bp/r65330][FIX] Correct encoding errors when searching for words containing accents.
+json_encode returns null when performing on strtolower results
+----------------------------------------------
+r65190 | jonnybradley | 2018-01-13 16:00:55 +0100 (Sat, 13 Jan 2018) | 2 lines
+
+[bp/r65189][bp/r65188][FIX] trackers: Send input field data at $requestData['ins id'] as expected by getFieldData when executing clone_item action with some fields being altered in the $requestData. Also use $requestData in Text field processing so new incoming values are used.
+As seen in cartograf for 15.x (worked ok in 12.x though but i can't see how)
+----------------------------------------------
+r65158 | jonnybradley | 2018-01-11 18:52:20 +0100 (Thu, 11 Jan 2018) | 1 line
+
+[bp/r63357][FIX] list: Allow empty default values when using plain wiki output formatting, i.e. without a separate {FORMAT} plugin
+----------------------------------------------
+r65062 | kerzay | 2018-01-03 19:24:11 +0100 (Wed, 03 Jan 2018) | 2 lines
+
+[FIX] Error message shown on next page load request
+Similar change have been introduced on r65061
+----------------------------------------------
+r64988 | chibaguy | 2017-12-26 13:44:40 +0100 (Tue, 26 Dec 2017) | 1 line
+
+[FIX][UX] Prevent preference settings toggle down arrow from wrapping below icon.
+----------------------------------------------
+r64987 | chibaguy | 2017-12-26 12:38:47 +0100 (Tue, 26 Dec 2017) | 1 line
+
+[FIX][UX][bp/r64985] Admin preference settings toggle was overlapping navbar collapse/expand button, preventing prefs search form, etc. from displaying, so a grid div class was added to limit its width. Thanks, Marc. [from branch 18]
+----------------------------------------------
+r64980 | lfagundes | 2017-12-24 14:58:50 +0100 (Sun, 24 Dec 2017) | 3 lines
+
+[FIX] Page version that was restored with rollback would be lost from history after new edition
+
+
+----------------------------------------------
+r64890 | jyhem | 2017-12-13 18:23:58 +0100 (Wed, 13 Dec 2017) | 1 line
+
+[FIX][bp/r64888] It was breaking for languages like catalan with a comma in the translation. Thanks Eduard.
+----------------------------------------------
+r64872 | robertokir | 2017-12-11 19:47:21 +0100 (Mon, 11 Dec 2017) | 2 lines
+
+[bp/r64871][FIX] Page comment on copied page was misleading.
+
+----------------------------------------------
+r64806 | robertokir | 2017-12-05 10:36:41 +0100 (Tue, 05 Dec 2017) | 2 lines
+
+[bp/r64784][FIX] "Copy" action on wiki page credits author of copied page as author of copy
+
+----------------------------------------------
+r64774 | rjsmelo | 2017-12-01 18:33:18 +0100 (Fri, 01 Dec 2017) | 2 lines
+
+[bp/63272][FIX] Multiple warnings with undefined variables, and a issue with passing the wrong argument to scandir.
+
+----------------------------------------------
+r64756 | chibaguy | 2017-11-30 07:25:00 +0100 (Thu, 30 Nov 2017) | 2 lines
+
+Merged from 18.x
+[FIX][bp/64754] In log-in dropdown, make left alignment of links even with inputs. Thanks, Marc.
+----------------------------------------------
+r64726 | robertokir | 2017-11-27 11:53:29 +0100 (Mon, 27 Nov 2017) | 3 lines
+
+[bp/r63718][NEW] Console command files:copy to copy files from a file gallery to a regular directory on the file system.
+[bp/r63834][NEW] Console command files:move to move files from a file gallery to a regular directory on the file system.
+
+----------------------------------------------
+r64609 | jonnybradley | 2017-11-17 13:21:50 +0100 (Fri, 17 Nov 2017) | 1 line
+
+[bp/r64608][bp/r64414][FIX] Better check of input parameters and use parameterized query
+----------------------------------------------
+r64602 | rjsmelo | 2017-11-17 01:22:02 +0100 (Fri, 17 Nov 2017) | 2 lines
+
+[bp/62451][FIX] Made fixes to the fancyfilter and adjusted the UI to make it clearer.
+
+----------------------------------------------
+r64595 | chealer | 2017-11-16 22:39:09 +0100 (Thu, 16 Nov 2017) | 2 lines
+
+Remove duplicate statement
+From r64593. Oops
+----------------------------------------------
+r64593 | chealer | 2017-11-16 22:17:26 +0100 (Thu, 16 Nov 2017) | 1 line
+
+[bp r64592]force type parameter to lower case
+----------------------------------------------
+r64589 | jyhem | 2017-11-16 19:50:13 +0100 (Thu, 16 Nov 2017) | 1 line
+
+[FIX][bp/r64586] Handle correctly radio fields with = sign
+----------------------------------------------
+r64543 | rjsmelo | 2017-11-13 01:10:04 +0100 (Mon, 13 Nov 2017) | 2 lines
+
+[FIX] In a new deployment, trackerId may not be available Ref: https://dev.tiki.org/item6151
+
+----------------------------------------------
+r64535 | rjsmelo | 2017-11-12 18:46:35 +0100 (Sun, 12 Nov 2017) | 2 lines
+
+[bp/r64533][FIX] Fix error when a group that was deleted is used to limit users from that given group in trackers
+
+----------------------------------------------
+r64507 | kroky6 | 2017-11-08 18:37:14 +0100 (Wed, 08 Nov 2017) | 1 line
+
+[bp/r64505] [FIX] tikiroot relative path setup when running from CLI
+----------------------------------------------
+r64493 | chealer | 2017-11-06 22:43:08 +0100 (Mon, 06 Nov 2017) | 2 lines
+
+[FIX] Throw exception and report error when replacement fails
+Backport of r64474. Unfortunately the error message displays at the top in Tiki 15, which may mean it does not fit in the viewport.
+----------------------------------------------
+r64439 | yonixxx | 2017-10-31 08:42:57 +0100 (Tue, 31 Oct 2017) | 1 line
+
+[DOC] Added information on the error message to cover the tracker first activation case.
+----------------------------------------------
+r64437 | jonnybradley | 2017-10-30 19:00:23 +0100 (Mon, 30 Oct 2017) | 2 lines
+
+[bp/r64436][bp.r64435][FIX] customsearch: Move the "form ready" trigger event to the end of the customsearch initialisation code so the change triggers when set from the url hash values and it populate the form data correctly under all circumstances (thanks Chealer).
+Also remove some stray custom code and fix an incorrect var name.
+----------------------------------------------
+r64373 | nkoth | 2017-10-25 19:38:02 +0200 (Wed, 25 Oct 2017) | 2 lines
+
+[bp/r64371][FIX] In some cases when indexing remote tracker fields, specifically e.g. language fields, you might end up replacing the local tracker field indexed value instead which is not a good thing.
+
+----------------------------------------------
+r64170 | kroky6 | 2017-10-08 13:08:55 +0200 (Sun, 08 Oct 2017) | 1 line
+
+[bp/r64167] [FIX] process search index queue after item status change like it does after normal item update
+----------------------------------------------
+r63980 | chealer | 2017-09-22 18:26:11 +0200 (Fri, 22 Sep 2017) | 2 lines
+
+[bp/r63979] tr(): Fix undefined test
+Possibly not exposed
+----------------------------------------------
 Version 15.5
 <http://doc.tiki.org/Tiki15>
 ------------------
