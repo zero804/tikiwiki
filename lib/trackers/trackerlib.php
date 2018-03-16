@@ -925,7 +925,7 @@ class TrackerLib extends TikiLib
 
 			$itemObject = Tracker_Item::fromId($itemId);
 
-			if ($itemObject->canView()) {
+			if (isset($itemObject) && $itemObject->canView()) {
 
 				$field['value'] = $res['value'];
 
@@ -5319,7 +5319,7 @@ class TrackerLib extends TikiLib
 		// check wether we have a value assigned to $fields. 
 		// This might be the case if $fields was passed through $params and not from the tracker definition.
 		// Build the $items['fieldId'] = value structure 
-		if (isset($field['value'])) {
+		if (isset($field['fieldId'],$field['value'])) {
 			$item[$field['fieldId']] = $field['value'];
 		}
 
