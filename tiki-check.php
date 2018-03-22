@@ -1819,7 +1819,7 @@ if (!$standalone) {
 	deack_on_state_change($security, 'PHP Security');
 }
 
-$sensitiveDataDetectedFiles = [];
+$sensitiveDataDetectedFiles = array();
 check_for_remote_readable_files($sensitiveDataDetectedFiles);
 
 if (!empty($sensitiveDataDetectedFiles)) {
@@ -2092,9 +2092,9 @@ if ($standalone && !$nagios) {
 
 	if ($trimCapable) {
 
-		$trimRequirements = [];
+		$trimRequirements = array();
 
-		$commands = [
+		$commands = array(
 			'make' => 'make',
 			'php-cli' => 'php',
 			'rsync' => 'rsync',
@@ -2103,17 +2103,17 @@ if ($standalone && !$nagios) {
 			'ssh-copy-id' => 'ssh-copy-id',
 			'scp' => 'scp',
 			'sqlite' => 'sqlite3'
-		];
+		);
 
 		foreach ($commands as $key => $command) {
 			$trimRequirements[$key] = `which $command` ? true : false;
 		}
 
-		$phpExtensions = [
+		$phpExtensions = array(
 			'php5-sqlite' => 'sqlite3',
 			'gz' => 'zlib',
 			'bz2' => 'bz2',
-		];
+		);
 
 		foreach ($phpExtensions as $key => $extension) {
 			$trimRequirements[$key] = extension_loaded($extension);

@@ -44,9 +44,9 @@ class Search_Elastic_RescoreQueryBuilderTest extends PHPUnit_Framework_TestCase
 
 		$query = $builder->build(
 			new AndX(
-				[
+				array(
 					new Token('Hello', 'plaintext', 'contents', 1.5),
-				]
+				)
 			)
 		);
 
@@ -65,10 +65,10 @@ class Search_Elastic_RescoreQueryBuilderTest extends PHPUnit_Framework_TestCase
 
 		$query = $builder->build(
 			new ImplicitPhrase(
-				[
+				array(
 					new Token('Hello', 'plaintext', 'contents', 1.0),
 					new Token('World', 'plaintext', 'contents', 1.0),
-				]
+				)
 			)
 		);
 
@@ -87,10 +87,10 @@ class Search_Elastic_RescoreQueryBuilderTest extends PHPUnit_Framework_TestCase
 
 		$query = $builder->build(
 			new OrX(
-				[
+				array(
 					new Token('Hello', 'plaintext', 'contents', 1.0),
 					new Token('World', 'plaintext', 'contents', 1.5),
-				]
+				)
 			)
 		);
 
@@ -112,10 +112,10 @@ class Search_Elastic_RescoreQueryBuilderTest extends PHPUnit_Framework_TestCase
 
 		$query = $builder->build(
 			new AndX(
-				[
+				array(
 					new Token('Hello', 'plaintext', 'contents', 1.0),
 					new Token('World', 'plaintext', 'contents', 1.5),
-				]
+				)
 			)
 		);
 
@@ -144,8 +144,7 @@ class Search_Elastic_RescoreQueryBuilderTest extends PHPUnit_Framework_TestCase
 		);
 
 		$this->assertEquals(
-			[
-			], $query['rescore']['query']['rescore_query']['bool']['should']
+			array(), $query['rescore']['query']['rescore_query']['bool']['should']
 		);
 	}
 
@@ -156,8 +155,7 @@ class Search_Elastic_RescoreQueryBuilderTest extends PHPUnit_Framework_TestCase
 		$query = $builder->build(new Token('Some entry', 'identifier', 'username', 1.5));
 
 		$this->assertEquals(
-			[
-			], $query['rescore']['query']['rescore_query']['bool']['should']
+			array(), $query['rescore']['query']['rescore_query']['bool']['should']
 		);
 	}
 
@@ -168,8 +166,7 @@ class Search_Elastic_RescoreQueryBuilderTest extends PHPUnit_Framework_TestCase
 		$query = $builder->build(new Range('Hello', 'World', 'plaintext', 'title', 1.5));
 
 		$this->assertEquals(
-			[
-			], $query['rescore']['query']['rescore_query']['bool']['should']
+			array(), $query['rescore']['query']['rescore_query']['bool']['should']
 		);
 	}
 
@@ -180,8 +177,7 @@ class Search_Elastic_RescoreQueryBuilderTest extends PHPUnit_Framework_TestCase
 		$query = $builder->build(new Initial('Hello', 'plaintext', 'title', 1.5));
 
 		$this->assertEquals(
-			[
-			], $query['rescore']['query']['rescore_query']['bool']['should']
+			array(), $query['rescore']['query']['rescore_query']['bool']['should']
 		);
 	}
 
@@ -200,15 +196,14 @@ class Search_Elastic_RescoreQueryBuilderTest extends PHPUnit_Framework_TestCase
 
 		$query = $builder->build(
 			new AndX(
-				[
+				array(
 					new MoreLikeThis('wiki page', 'A'),
-				]
+				)
 			)
 		);
 
 		$this->assertEquals(
-			[
-			],
+			array(),
 			$query['rescore']['query']['rescore_query']['bool']['should']
 		);
 	}

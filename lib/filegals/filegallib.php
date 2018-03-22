@@ -3860,10 +3860,10 @@ class FileGalLib extends TikiLib
 			if ($prefs['fgal_allow_svg'] !== 'y') {
 				throw new FileIsNotSafeException($svgErrorMsg);
 			}
-			$perms = Perms::get([
+			$perms = Perms::get(array(
 				'file gallery',
 				$galleryId
-			]);
+			));
 
 			if (!$perms->upload_svg) {
 				throw new FileIsNotSafeException($svgErrorMsg);
@@ -3891,10 +3891,10 @@ class FileGalLib extends TikiLib
 			if ($prefs['fgal_allow_svg'] !== 'y') {
 				throw new FileIsNotSafeException($svgErrorMsg);
 			}
-			$perms = Perms::get([
+			$perms = Perms::get(array(
 				'file gallery',
 				$galleryId
-			]);
+			));
 
 			if (!$perms->upload_svg) {
 				throw new FileIsNotSafeException($svgErrorMsg);
@@ -3929,7 +3929,7 @@ class FileGalLib extends TikiLib
 
 			if ($dom->loadXML($data, LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_NONET)) {
 
-				$elements = [];
+				$elements = array();
 				/** @var DOMElement $element */
 				foreach ($dom->getElementsByTagName('*') as $element) {
 					$elements[] = $element;
@@ -3937,7 +3937,7 @@ class FileGalLib extends TikiLib
 
 				foreach ($elements as $element) {
 
-					if (in_array($element->tagName, ['script', 'embed', 'object', 'applet', 'iframe', 'frame'])) {
+					if (in_array($element->tagName, array('script', 'embed', 'object', 'applet', 'iframe', 'frame'))) {
 						$element->parentNode->removeChild($element);
 					} else {
 						foreach ($element->attributes as $name => $node) {

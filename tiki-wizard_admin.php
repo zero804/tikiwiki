@@ -8,8 +8,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 $yo = 1;
-$inputConfiguration =	[[
-	'staticKeyFilters'	=> [
+$inputConfiguration =	array(array(
+	'staticKeyFilters'	=> array(
 		'use-default-prefs'	=> 'alnum', 		// request
 		'use-upgrade-wizard'=> 'alnum', 		// request
 		'url'				=> 'relativeurl',	// request
@@ -18,8 +18,8 @@ $inputConfiguration =	[[
 		'wizard_step'		=> 'int',			// post
 		'stepNr'			=> 'int',			// get
 		'back'				=> 'alnum',			// post
-	],
-]];
+	),
+));
 
 require 'tiki-setup.php';
 

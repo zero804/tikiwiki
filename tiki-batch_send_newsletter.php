@@ -8,12 +8,12 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-$inputConfiguration = [[
-	'staticKeyFilters'	=> [
+$inputConfiguration = array(array(
+	'staticKeyFilters'	=> array(
 		'editionId'		=> 'int',
-	]],[
+	)), array(
 	'catchAllUnset' => null
-	]];
+));
 
 include('tiki-setup.php');
 

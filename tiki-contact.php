@@ -7,15 +7,15 @@
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
-$inputConfiguration =	[[
-	'staticKeyFilters'	=> [
+$inputConfiguration =	array(array(
+	'staticKeyFilters'	=> array(
 		'send'			=> 'word', 		// post
 		'priority'		=> 'int', 		// post
 		'from'			=> 'striptags',	// post
 		'subject'		=> 'striptags',	// post
 		'body'			=> 'xss',		// post
 		'to'			=> 'email',		// post
-	]]];
+	)));
 
 require_once ('tiki-setup.php');
 
