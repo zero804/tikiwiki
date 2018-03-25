@@ -172,7 +172,7 @@
 	{elseif $mid eq 'tiki-read_article.tpl'}
 		<meta content="{$base_url_canonical}{if $hasImage eq 'y'}article_image.php?image_type=article&id={$articleId}{else}article_image.php?image_type=topic&id={$topicId}{/if}" property="og:image">
 		<meta content="{$base_url_canonical}{if $hasImage eq 'y'}article_image.php?image_type=article&id={$articleId}{else}article_image.php?image_type=topic&id={$topicId}{/if}" name="twitter:image">
-	{else}
+	{elseif empty($header_featured_images)}
 		{if $prefs.socialnetworks_facebook_site_image}<meta property="og:image" content="{$prefs.socialnetworks_facebook_site_image}">{/if}
 		{if $prefs.socialnetworks_twitter_site_image}<meta name="twitter:image" content="{$prefs.socialnetworks_twitter_site_image}">{/if}
 	{/if}
