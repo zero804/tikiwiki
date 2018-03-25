@@ -20,7 +20,7 @@
 
 {title}{tr}Tiki Action Calendar{/tr}{/title}
 
-<form id="filtercal" method="get" action="{$myurl}" name="f" style="display:none;">
+<form id="filtercal" class="modal-content" method="get" action="{$myurl}" name="f" style="display:none;">
 <div class="caltitle">{tr}Tools Calendars{/tr}</div>
 	<div class="caltoggle">
 		{select_all checkbox_names='tikicals[]' label="{tr}Check / Uncheck All{/tr}"}
