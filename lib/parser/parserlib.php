@@ -1926,7 +1926,7 @@ if ( \$('#$id') ) {
 			$description = $pages[6][$i];
 			$anchor = null;
 
-			if ($description{0} == '#') {
+			if ($description && $description{0} == '#') {
 				$temp = $description;
 				$anchor = strtok($temp, '|');
 				$description = strtok('|');
