@@ -50,8 +50,11 @@ class HistLib extends TikiLib
 		$res = $result->fetchRow();
 		
 		global $prefs;
-		// add rollback comment to existing one (after truncating if needed)
-		$ver_comment = " [" . tra("rollback version ") . $version . "]";
+		// add both an optional, manual comment, and an automatic comment to existing one (after truncating if needed)
+		if (trim($comment) <> '') {
+			$comment = ". " . trim($comment);
+		}
+		$ver_comment = " [" . tr('Rollback by %0 to version %1', $GLOBALS['user'], $version) . $comment . "]";
 		$too_long = 200 - strlen($res["comment"] . $ver_comment);
 		if ($too_long < 0) {
 			$too_long -= 4;
@@ -1226,7 +1229,7 @@ function histlib_strip_irrelevant( $data )
 	return $data;
 }
 
-function rollback_page_to_version($page, $version, $check_key = true, $keep_lastModif = false)
+function rollback_page_to_version($page, $version, $check_key = true, $keep_lastModif = false, $comment = '')
 {
 	global $prefs;
 	$histlib = TikiLib::lib('hist');
@@ -1236,7 +1239,7 @@ function rollback_page_to_version($page, $version, $check_key = true, $keep_last
 	if ($check_key) {
 		$access->check_authenticity();
 	}		
-	$histlib->use_version($page, $version, '', $keep_lastModif);
+	$histlib->use_version($page, $version, $comment, $keep_lastModif);
 	
 	$tikilib->invalidate_cache($page);
 }

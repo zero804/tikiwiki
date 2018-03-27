@@ -45,7 +45,8 @@ $access->check_permission(array('tiki_p_rollback', 'tiki_p_edit'));
 if (isset($_REQUEST["rollback"])) {
 	require_once('lib/diff/difflib.php');
 	$categlib = TikiLib::lib('categ');
-	rollback_page_to_version($_REQUEST['page'], $_REQUEST['version']);
+	$comment = $_REQUEST["comment"];
+	rollback_page_to_version($_REQUEST['page'], $_REQUEST['version'],'', '', $comment);
 	header("location: tiki-index.php?page=" . urlencode($page));
 	die;
 }
