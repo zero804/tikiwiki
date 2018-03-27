@@ -1297,6 +1297,12 @@ div.categbar {
   margin-left: 0;
   margin-right: 0;
 }
+.cat_Full_width_content #col2,
+.cat_full_width_content #col2,
+.cat_Full_width_content #col3,
+.cat_full_width_content #col3 {
+  display: none;
+}
 .cat_Full_width_content #col1,
 .cat_full_width_content #col1 {
   padding-left: 0;
