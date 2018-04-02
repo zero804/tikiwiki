@@ -1273,7 +1273,7 @@ class UnifiedSearchLib
 	 * @param int $rebuildType    0: no log, 1: browser rebuild, 2: console rebuild
 	 * @return string
 	 */
-	public function getLogFilename($rebuildType = 0): string
+	public function getLogFilename($rebuildType = 0)
 	{
 		global $prefs;
 
