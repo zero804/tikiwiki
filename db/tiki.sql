@@ -634,8 +634,7 @@ CREATE TABLE `tiki_custom_route` (
   `type` varchar(255) NOT NULL,
   `from` varchar(255) NOT NULL,
   `redirect` text NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '1',
-  `user_id` int(11) NOT NULL
+  `active` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `tiki_directory_categories`;
