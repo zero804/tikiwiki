@@ -185,7 +185,7 @@
 			{/if}
 			{tabset name='tabs_editpage' cookietab=1}
 				{tab name="{tr}Edit page{/tr}"}
-					<h2>{tr}Edit page{/tr}</h2>
+					<h2 class="not-in-fullscreen">{tr}Edit page{/tr}</h2>
 					{if $translation_mode == 'y'}
 						<div class="translation_message">
 							<h2>{tr}Translate to:{/tr} {$target_page|escape}</h2>
