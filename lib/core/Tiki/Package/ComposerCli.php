@@ -247,7 +247,7 @@ class ComposerCli
 			$args = [$args];
 		}
 
-		$output = $errors = '';
+		$command = $output = $errors = '';
 
 		try {
 			$builder = new ProcessBuilder();
@@ -268,6 +268,8 @@ class ComposerCli
 
 			$process = $builder->getProcess();
 
+			$command = $process->getCommandLine();
+
 			$process->setTimeout($this->timeout);
 
 			$process->run();
@@ -282,7 +284,7 @@ class ComposerCli
 		}
 
 		$this->lastResult = [
-			'command' => $process->getCommandLine(),
+			'command' => $command,
 			'output' => $output,
 			'errors' => $errors,
 			'code' => $code
