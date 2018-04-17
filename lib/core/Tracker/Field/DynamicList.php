@@ -241,31 +241,49 @@ $("input[name=ins_' . $filterFieldIdHere . '], select[name=ins_' . $filterFieldI
 				//$listFieldThere = array_merge($listFieldThere, array('value' => $remoteItemId));
 				$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
 				// array selected_categories etc.
-				$valueField = $handler->getFieldData();
+				if ($handler) {
+					$valueField = $handler->getFieldData();
+				} else {
+					Feedback::error(tr('DynamicList field: Field "%0" not found', $listFieldThere['permName']));
+				}
 				// for some reason, need to apply the values back, otherwise renderOutput does not return a value - bug or intended?
 				$listFieldThere = array_merge($listFieldThere, $valueField);
 				$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
 				$context = ['showlinks' => 'n'];
-				$labelField = $handler->renderOutput($context);
-				return $labelField;
-			break;
+				if ($handler) {
+					$labelField = $handler->renderOutput($context);
+					return $labelField;
+				} else {
+					Feedback::error(tr('DynamicList field: Field "%0" not found', $listFieldThere['permName']));
+					return '';
+				}
+				break;
 
-			// r = item-link requires $listFieldThere = array_merge($listFieldThere, array('value' => $remoteItemId));
-			case 'r':
-				$listFieldThere = array_merge($listFieldThere, ['value' => $remoteItemId]);
-				$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
-				// do not inherit showlinks settings from remote items.
-				$context = ['showlinks' => 'n'];
-				$labelField = $handler->renderOutput($context);
-				return $labelField;
-			break;
+				// r = item-link requires $listFieldThere = array_merge($listFieldThere, array('value' => $remoteItemId));
+				case 'r':
+					$listFieldThere = array_merge($listFieldThere, ['value' => $remoteItemId]);
+					$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
+					// do not inherit showlinks settings from remote items.
+					$context = ['showlinks' => 'n'];
+					if ($handler) {
+						$labelField = $handler->renderOutput($context);
+						return $labelField;
+					} else {
+						Feedback::error(tr('DynamicList field: Field "%0" not found', $listFieldThere['permName']));
+						return '';
+					}
+					break;
 
 			//l = item-list
 			case 'l':
 				// show selected item of that list - requires match in tiki-tracker_http_request.php
 				//$listFieldThere = array_merge($listFieldThere, array('value' => $remoteItemId));
 				$handler = $trklib->get_field_handler($listFieldThere);
-				$displayFieldIdThere = $handler->getOption('displayFieldIdThere');
+				if ($handler) {
+					$displayFieldIdThere = $handler->getOption('displayFieldIdThere');
+				} else {
+					Feedback::error(tr('DynamicList field: Field "%0" not found', $listFieldThere['permName']));
+				}
 				// do not inherit showlinks settings from remote items.
 				$context = ['showlinks' => 'n'];
 				foreach ($displayFieldIdThere as $displayFieldId) {
@@ -274,7 +292,11 @@ $("input[name=ins_' . $filterFieldIdHere . '], select[name=ins_' . $filterFieldI
 					//renderOutput() in abstract checks only $this->definition['value'], not $this->itemdata
 					$displayField = array_merge($displayField, ['value' => $itemInfo[$displayFieldId]]);
 					$handler = $trklib->get_field_handler($displayField, $itemInfo);
-					$labelFields[] = $handler->renderOutput($context);
+					if ($handler) {
+						$labelFields[] = $handler->renderOutput($context);
+					} else {
+						Feedback::error(tr('DynamicList field: Field "%0" not found', $displayField['permName']));
+					}
 				}
 				$labelField = implode(' ', $labelFields);
 				return $labelField;
@@ -289,8 +311,13 @@ $("input[name=ins_' . $filterFieldIdHere . '], select[name=ins_' . $filterFieldI
 				$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
 				// do not inherit showlinks settings from remote items.
 				$context = ['showlinks' => 'n'];
-				$labelField = $handler->renderOutput($context);
-				return $labelField;
+				if ($handler) {
+					$labelField = $handler->renderOutput($context);
+					return $labelField;
+				} else {
+					Feedback::error(tr('DynamicList field: Field "%0" not found', $listFieldThere['permName']));
+					return '';
+				}
 			break;
 		}
 	}
