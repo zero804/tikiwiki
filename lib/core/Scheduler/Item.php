@@ -256,7 +256,10 @@ class Scheduler_Item
 			];
 		}
 
-		list('run_id' => $runId, 'start_time' => $startTime) = $schedlib->start_scheduler_run($this->id);
+		$result = $schedlib->start_scheduler_run($this->id);
+		$runId = $result['run_id'];
+		$startTime = $result['start_time'];
+
 		$this->logger->debug("Start time: " . $startTime);
 
 		$params = json_decode($this->params, true);
