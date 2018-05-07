@@ -209,6 +209,9 @@
 		"vendor/pear/xml_rpc"
 	],
 	"scripts": {
+		"pre-install-cmd": [
+			"Tiki\\Composer\\CleanVendorAfterVendorBundledMigration::cleanLinks"
+		],
 		"post-install-cmd": [
 			"Tiki\\Composer\\ThemeInstaller::setup",
 			"Tiki\\Composer\\BootstrapCompiler::build",
@@ -216,7 +219,8 @@
 			"Tiki\\Composer\\CleanVendorAfterVendorBundledMigration::clean"
 		],
 		"pre-update-cmd": [
-			"Tiki\\Composer\\ThemeInstaller::setup"
+			"Tiki\\Composer\\ThemeInstaller::setup",
+			"Tiki\\Composer\\CleanVendorAfterVendorBundledMigration::cleanLinks"
 		],
 		"post-update-cmd": [
 			"Tiki\\Composer\\BootstrapCompiler::build",
