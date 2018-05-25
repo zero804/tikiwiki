@@ -5876,7 +5876,7 @@ class UsersLib extends TikiLib
 				'type' => 'wiki',
 				'admin' => false,
 				'prefs' => ['feature_backlinks'],
-				'scope' => 'global',
+				'scope' => 'object',
 			],
 			[
 				'name' => 'tiki_p_wiki_view_latest',
