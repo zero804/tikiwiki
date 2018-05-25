@@ -67,7 +67,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label" for="email">{tr}Email{/tr}</label>
 					<div class="col-sm-7">
-						<input type="text" name="email" id="email" value="{$email|escape}" class="form-control">
+						<input type="email" name="email" id="email" value="{$email|escape}" class="form-control">
 					</div>
 				</div>
 			{else}
