@@ -16,6 +16,82 @@ class PreferencesLib
 	// prefs with system info etc
 	private $system_info = [ 'fgal_use_dir', 'sender_email' ];
 
+	/**
+	 * Returns a list of preferences that can be translated
+	 *
+	 * @return array List of preferences
+	 */
+	public function getTranslatablePreferences()
+	{
+		global $prefs;
+
+		// Due to performance reasons and the small list of preferences to be translated, returned the current
+		// list of translatable preferences as hardcoded list instead of dynamically searching all preferences
+		/*
+		$translatablePreferences = [];
+		foreach ($prefs as $key => $val) {
+			$definition = $this->getPreference($key);
+			if ($definition['translatable'] === true) {
+				$translatablePreferences[] = $key;
+			}
+		}
+		*/
+
+		$translatablePreferences = [
+			'browsertitle',
+			'metatag_keywords',
+			'metatag_description',
+		];
+
+		return $translatablePreferences;
+	}
+
+	/**
+	 * Set the translated value for a given preference
+	 *
+	 * @param string $pref preference to translate
+	 * @param string $lang target language
+	 * @param string $val value for the preference
+	 * @param string $defaultLanguage the default language
+	 */
+	public function setTranslatedPreference($pref, $lang, $val, $defaultLanguage)
+	{
+		$tikiLib = TikiLib::lib('tiki');
+		if ($lang != $defaultLanguage) {
+			$pref .= "_" . $lang;
+		}
+
+		if (empty($val)) {
+			$tikiLib->delete_preference($pref);
+		} else {
+			$tikiLib->set_preference($pref, $val);
+		}
+	}
+
+	/**
+	 * Retrieve a translated preference, in a given language, or the default if not set
+	 *
+	 * @param string $name preference name
+	 * @param string $lang language to retrieve
+	 * @return string translated preference with fallback for the default preference or empty string
+	 * @throws Exception
+	 */
+	public function getTranslatedPreference($name, $lang)
+	{
+		global $prefs;
+
+		$translatedPreference = $name;
+		if ($prefs['site_language'] != $lang) {
+			$translatedPreference .= '_' . $lang;
+		}
+
+		if (isset($prefs[$translatedPreference])) {
+			return $prefs[$translatedPreference];
+		}
+
+		return '';
+	}
+
 	function getPreference($name, $deps = true, $source = null, $get_pages = false)
 	{
 		global $prefs, $systemConfiguration;
@@ -48,6 +124,7 @@ class PreferencesLib
 			'plugin' => '',
 			'view' => '',
 			'public' => false,
+			'translatable' => false,
 		];
 		if ($data[$name]['type'] === 'textarea') {
 			$defaults['size'] = 10;
