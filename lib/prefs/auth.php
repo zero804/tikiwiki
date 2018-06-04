@@ -188,7 +188,7 @@ function prefs_auth_list()
 		],
 		'auth_ldap_debug' => [
 			'name' => tra('Write LDAP debug Information in Tiki Logs'),
-			'description' => tra('Write debug information to Tiki logs (Admin -> Tiki Logs, Tiki Logs have to be enable).'),
+			'description' => tra('Write debug information to Tiki logs (Admin -> Tiki Logs, Tiki Logs have to be enabled).'),
 			'type' => 'flag',
 			'perspective' => false,
 			'warning' => tra('Do not enable this option for production sites.'),
@@ -411,7 +411,7 @@ function prefs_auth_list()
 		],
 		'auth_ldap_group_debug' => [
 			'name' => tra('Write LDAP debug Information in Tiki Logs'),
-			'description' => tra('Write debug information to Tiki logs (Admin -> Tiki Logs, Tiki Logs have to be enable).'),
+			'description' => tra('Write debug information to Tiki logs (Admin -> Tiki Logs, Tiki Logs have to be enabled).'),
 			'type' => 'flag',
 			'perspective' => false,
 			'warning' => tra('Do not enable this option for production sites.'),
