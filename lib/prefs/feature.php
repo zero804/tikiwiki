@@ -1106,7 +1106,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_display_my_to_others' => [
 			'name' => tra("Show user's contribution on the user information page"),
-			'description' => tra(""View user's contribution on the user information page.""),
+			'description' => tra("View user's contribution on the user information page."),
 			'help' => 'User+Preferences',
 			'type' => 'flag',
 			'default' => 'n',
