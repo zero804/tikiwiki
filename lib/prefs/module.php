@@ -10,7 +10,7 @@ function prefs_module_list()
 	return [
 		'module_zones_top' => [
 			'name' => tra('Top module zone'),
-			'description' => tra('Activate zone for modules such as site logo, log-in form, etc. (page header)'),
+			'description' => tra('Visibility of horizontal zone for such modules as site logo, log-in form, etc. (page header)'),
 			'type' => 'list',
 			'keywords' => tra('sidebar'),
 			'help' => 'Users+Flip+Columns',
@@ -24,7 +24,7 @@ function prefs_module_list()
 		],
 		'module_zones_topbar' => [
 			'name' => tra('Topbar module zone'),
-			'description' => tra('Activate zone for modules such as horizontal menu (navbar), search form, page-wide content, etc.'),
+			'description' => tra('Visibility of horizontal  zone for modules such as menu (navbar), search form, full-width content, etc.'),
 			'type' => 'list',
 			'keywords' => tra('topbar'),
 			'help' => 'Users+Flip+Columns',
@@ -38,7 +38,7 @@ function prefs_module_list()
 		],
 		'module_zones_pagetop' => [
 			'name' => tra('Page top module zone'),
-			'description' => tra('Activate zone for modules such as breadcrumbs, banners, share icons, etc'),
+			'description' => tra('Visibility of horizontal zone above main page area for modules such as breadcrumbs, banners, share icons, etc'),
 			'type' => 'list',
 			'keywords' => tra('sidebar'),
 			'help' => 'Users+Flip+Columns',
@@ -52,7 +52,7 @@ function prefs_module_list()
 		],
 		'module_zones_bottom' => [
 			'name' => tra('Bottom module zone'),
-			'description' => tra('Activate zone for modules such as "powered by" and "rss list" (page footer)'),
+			'description' => tra('Visibility of horizontal zone for modules such as "powered by" and "rss list" (page footer)'),
 			'type' => 'list',
 			'keywords' => tra('sidebar'),
 			'help' => 'Users+Flip+Columns',
@@ -66,7 +66,7 @@ function prefs_module_list()
 		],
 		'module_zones_pagebottom' => [
 			'name' => tra('Page bottom module zone'),
-			'description' => tra('Activate zone for modules at the bottom of the main column of each page'),
+			'description' => tra('Visibility of horizontal zone below the main page area for modules such as banners or other information'),
 			'type' => 'list',
 			'keywords' => tra('sidebar'),
 			'help' => 'Users+Flip+Columns',

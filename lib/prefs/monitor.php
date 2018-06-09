@@ -24,7 +24,7 @@ function prefs_monitor_list()
 		],
 		'monitor_individual_clear' => [
 			'name' => tra('Clear individual notifications'),
-			'description' => tra('Allow users to selectively clear notifications instead of simply having a clear-all button.'),
+			'description' => tra('Enable users to selectively clear notifications instead of only being able to clear all.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],

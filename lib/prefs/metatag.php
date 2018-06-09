@@ -92,7 +92,7 @@ function prefs_metatag_list()
 		],
 		'metatag_robots' => [
 			'name' => tra('Meta robots'),
-			'description' => tra('Specify how Web robots should index your site. Valid values include: INDEX or NOINDEX, and FOLLOW or NOFOLLOW'),
+			'description' => tra('Specify how web robots should index this site. Valid values include: INDEX or NOINDEX, and FOLLOW or NOFOLLOW'),
 			'type' => 'text',
 			'help' => 'Robots-Exclusion-Protocol#HTML_META_Directives',
 			'size' => '50',
@@ -100,7 +100,7 @@ function prefs_metatag_list()
 		],
 		'metatag_revisitafter' => [
 			'name' => tra('Revisit after'),
-			'description' => tra('Specify how often (in days) Web robots should visit your site.'),
+			'description' => tra('How often (in days) web robots should visit this site.'),
 			'type' => 'text',
 			'unit' => tr('days'),
 			'size' => '50',

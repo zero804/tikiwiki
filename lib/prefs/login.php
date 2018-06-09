@@ -125,7 +125,7 @@ function prefs_login_list()
 		],
 		'login_autologin_logoutremote' => [
 			'name' => tr('Automatically logout remote Tiki after logout.'),
-			'description' => tr('When the user logs out of this Tiki, redirect the user to logout of the other Tiki as well.'),
+			'description' => tr('When the user logs out of this Tiki, redirect the user to log out of the other Tiki as well.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'tags' => ['advanced'],
@@ -142,8 +142,8 @@ function prefs_login_list()
 			'tags' => ['advanced'],
 		],
 		'login_autologin_redirectlogin_url' => [
-			'name' => tr('URL of autologin page on remote Tiki to redirect user to login'),
-			'description' => tr('URL of autologin page on remote Tiki to redirect user to login, e.g. https://www.remotetiki.com/PageWithRedirectPlugin'),
+			'name' => tr('URL of autologin page on remote Tiki to redirect user to log in'),
+			'description' => tr('URL of autologin page on remote Tiki to redirect user to log in, e.g. https://www.remotetiki.com/PageWithRedirectPlugin'),
 			'type' => 'text',
 			'default' => '',
 			'tags' => ['advanced'],

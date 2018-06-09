@@ -12,7 +12,7 @@ function prefs_morelikethis_list()
 		// Used in templates/tiki-admin-include-freetags.tpl
 		'morelikethis_algorithm' => [
 			'name' => tra('"More Like This" algorithm'),
-			'description' => tra('enables tagged material to offer a find potentially related content. Basic will present content where a minimum number of tags match the item or page being viewed. Weighted is the same, but items are presented in Weighted (highest value first) sort order.'),
+			'description' => tra('Enable tagged material to be considered in order to find potentially related content. Basic will present content where a minimum number of tags match the item or page being viewed. Weighted is the same, but items are presented in Weighted (highest value first) sort order.'),
 			'type' => 'list',
 			'options' => [
 				'basic' => tra('Basic'),

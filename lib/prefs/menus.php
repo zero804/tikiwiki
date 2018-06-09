@@ -10,7 +10,7 @@ function prefs_menus_list()
 	return [
 		'menus_items_icons' => [
 			'name' => tra('Menu icons'),
-			'description' => tra('Allows icons to be defined for menu entries'),
+			'description' => tra('Enable icons to be defined for menu items'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -22,7 +22,7 @@ function prefs_menus_list()
 		],
 		'menus_edit_icon' => [
 			'name' => tra('Edit menu icon'),
-			'description' => tra('Adds an icon on the navbar to edit menu entries'),
+			'description' => tra('Add an icon on the navbar to edit menu items'),
 			'type' => 'flag',
 			'default' => 'n',
 		],

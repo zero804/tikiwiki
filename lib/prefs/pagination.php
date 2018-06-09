@@ -10,7 +10,7 @@ function prefs_pagination_list()
 	return [
 		'pagination_firstlast' => [
 			'name' => tra("Display 'First' and 'Last' links"),
-			'description' => tra('if set, will display \'first\' and \'last\' links on pages'),
+			'description' => tra('Display \'first\' and \'last\' links on pages'),
 			'type' => 'flag',
 			'default' => 'y',
 		],
