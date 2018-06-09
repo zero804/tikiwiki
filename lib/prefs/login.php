@@ -19,7 +19,7 @@ function prefs_login_list()
 		],
 		'login_is_email_obscure' => [
 			'name' => tra('Obscure email when using email as username'),
-			'description' => tra('This will attempt as much as possible to hide the email address, showing the real name or the truncated email address instead.'),
+			'description' => tra('As much as possible, attempt to not display the email address, showing the real name or the truncated email address instead.'),
 			'warning' => tra('Coverage will not be complete'),
 			'type' => 'flag',
 			'dependencies' => [
@@ -29,7 +29,7 @@ function prefs_login_list()
 		],
 		'login_allow_email' => [
 			'name' => tra('User can login via username or email.'),
-			'description' => tra('This will allow users to login using their email (as well as their username).'),
+			'description' => tra('Allow users to log in using their email address (as well as their username).'),
 			'type' => 'flag',
 			'dependencies' => [
 				'user_unique_email',
@@ -67,7 +67,7 @@ function prefs_login_list()
 		],
 		'login_grab_session' => [
 			'name' => tr('Grab session if already logged in'),
-			'description' => tr('If users are blocked from logging in simultaneously, grab the session. Will force existing user to be logged out'),
+			'description' => tr('If users are blocked from logging in simultaneously, grab the session. This will cause the user to be logged out'),
 			'type' => 'flag',
 			'default' => 'n',
 			'dependencies' => [
