@@ -10,7 +10,7 @@ function prefs_page_list()
 	return [
 		'page_bar_position' => [
 			'name' => tra('Wiki buttons'),
-			'description' => tra('Specify the location  of the wiki-specific options (such as Backlinks, Page Description, and so on)'),
+			'description' => tra('The location of the row of Edit, Source, Rename, History, More buttons, etc.'),
 			'type' => 'list',
 			'options' => [
 				'top' => tra('Top '),
@@ -21,7 +21,7 @@ function prefs_page_list()
 		],
 		'page_n_times_in_a_structure' => [
 			'name' => tra('Pages can reoccur in structure'),
-			'description' => tra('A page can be listed multiple times in a structure'),
+			'description' => tra('A page can be listed multiple times in a structure.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],

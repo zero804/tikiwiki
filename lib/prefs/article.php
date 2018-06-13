@@ -23,7 +23,7 @@ function prefs_article_list()
 
 	return [
 		'article_comments_per_page' => [
-			'name' => tra('Default number per page'),
+			'name' => tra('Number per page'),
 			'description' => tra('Sets the number of comments per page.'),
 			'type' => 'text',
 			'size' => '5',
@@ -32,7 +32,7 @@ function prefs_article_list()
 			'default' => 10,
 		],
 		'article_comments_default_ordering' => [
-			'name' => tra('Default Ordering'),
+			'name' => tra('Display order'),
 			'description' => tra('Sets the default ordering filter for comments.'),
 			'type' => 'list',
 			'options' => $comment_sort_orders,
@@ -67,7 +67,7 @@ function prefs_article_list()
 		],
 		'article_image_size_x' => [
 			'name' => tra('Default maximum width for custom article images'),
-			'description' => tra('Sets the maximum width of article image'),
+			'description' => tra('Set the default maximum width of the article image'),
 			'type' => 'text',
 			'size' => 3,
 			'filter' => 'int',
@@ -77,7 +77,7 @@ function prefs_article_list()
 		],
 		'article_image_size_y' => [
 			'name' => tra('Default maximum height for custom article images'),
-			'description' => tra('Sets the maximum height of article images'),
+			'description' => tra('Set the default maximum height of article images'),
 			'type' => 'text',
 			'size' => 3,
 			'filter' => 'int',
@@ -97,7 +97,7 @@ function prefs_article_list()
 		],
 		'article_default_list_image_size_y' => [
 			'name' => tra('Default maximum height of custom article images in list mode (on View Articles page)'),
-			'description' => tra('Sets the default maximum height of custom article images in list mode (on View Articles page)'),
+			'description' => tra('Set the default maximum height of custom article images in list mode (on the View Articles page)'),
 			'type' => 'text',
 			'size' => 3,
 			'filter' => 'int',

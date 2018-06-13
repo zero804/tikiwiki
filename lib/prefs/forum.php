@@ -58,7 +58,7 @@ function prefs_forum_list()
 			'default' => 'n',
 		],
 		'forum_comments_per_page' => [
-			'name' => tra('Default number per page'),
+			'name' => tra('Number per page'),
 			'description' => tra(''),
 			'type' => 'text',
 			'size' => '5',

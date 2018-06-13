@@ -18,7 +18,7 @@ function prefs_mustread_list()
 		],
 		'mustread_tracker' => [
 			'name' => tr('Must read tracker'),
-			'description' => tr('Tracker containing the individual read requests.'),
+			'description' => tr('Tracker containing the individual read requests'),
 			'hint' => tr('Tracker ID'),
 			'type' => 'text',
 			'filter' => 'int',

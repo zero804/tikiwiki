@@ -278,7 +278,7 @@ function prefs_auth_list()
 		],
 		'auth_ldap_nameattr' => [
 			'name' => tra('Realname attribute'),
-			'description' => tra(' Synchronize Tiki user attributes with the LDAP values.'),
+			'description' => tra('Synchronize Tiki user attributes with the LDAP values.'),
 			'type' => 'text',
 			'size' => 20,
 			'help' => 'LDAP-attributes-synchronization',
@@ -287,7 +287,7 @@ function prefs_auth_list()
 		],
 		'auth_ldap_countryattr' => [
 			'name' => tra('Country attribute'),
-			'description' => tra(' Synchronize Tiki user attributes with the LDAP values.'),
+			'description' => tra('Synchronize Tiki user attributes with the LDAP values.'),
 			'type' => 'text',
 			'size' => 20,
 			'help' => 'LDAP-attributes-synchronization',
@@ -296,7 +296,7 @@ function prefs_auth_list()
 		],
 		'auth_ldap_emailattr' => [
 			'name' => tra('Email attribute'),
-			'description' => tra(' Synchronize Tiki user attributes with the LDAP values.'),
+			'description' => tra('Synchronize Tiki user attributes with the LDAP values.'),
 			'type' => 'text',
 			'size' => 20,
 			'help' => 'LDAP-attributes-synchronization',

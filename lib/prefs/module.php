@@ -10,7 +10,7 @@ function prefs_module_list()
 	return [
 		'module_zones_top' => [
 			'name' => tra('Top module zone'),
-			'description' => tra('Visibility of horizontal zone for such modules as site logo, log-in form, etc. (page header)'),
+			'description' => tra('Visibility of horizontal zone for modules such as site logo, log-in form, etc. (page header)'),
 			'type' => 'list',
 			'keywords' => tra('sidebar'),
 			'help' => 'Users+Flip+Columns',
@@ -86,7 +86,7 @@ function prefs_module_list()
 		],
 		'module_zone_available_extra' => [
 			'name' => tr('Extra module zones available'),
-			'description' => tr('Extra module zones to be managed through the module administration interface. Useful if your custom theme requires a special zone other than the predefined ones.'),
+			'description' => tr('Extra module zones to be managed through the module administration interface. Useful if a custom theme or layout  requires a special zone other than the predefined ones.'),
 			'hint' => tr('Comma-separated list, maximum of 20 characters per entry.'),
 			'type' => 'text',
 			'separator' => ',',
