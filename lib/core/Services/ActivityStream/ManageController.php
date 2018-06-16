@@ -43,7 +43,7 @@ class Services_ActivityStream_ManageController
 	/**
 	 * Delete an activity rule from tiki_activity_stream_rules table
 	 */
-	function action_delete(JitRequest $request)
+	function action_delete(JitFilter $request)
 	{
 		$id = $request->ruleId->int();
 		$rule = $this->getRule($id);
@@ -65,7 +65,7 @@ class Services_ActivityStream_ManageController
 	/**
 	 * Delete a recorded activity from tiki_activity_stream table
 	 */
-	function action_deleteactivity(JitRequest $request)
+	function action_deleteactivity(JitFilter $request)
 	{
 		$id = $request->activityId->int();
 
