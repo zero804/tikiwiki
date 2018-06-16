@@ -22,7 +22,7 @@ function wikiplugin_pdfpage_info()
 
 					'orientation' => [
 						'name' => tra('PDF Orientation'),
-						'description' => tra('Landscape or Portrait'),
+						'description' => tra('Landscape or portrait PDF orientation'),
 						'type' => 'list',
 						'default' => $prefs['print_pdf_mpdf_orientation'],
 						'options' => [
@@ -153,13 +153,13 @@ function wikiplugin_pdfpage_info()
 					],
 					'background' => [
 						'name' => tra('Page background color'),
-						'description' => tra('Enter color code'),
+						'description' => tra('Enter a valid CSS color code.'),
 						'type' => 'text',
 						'default' => '',
 					],
 					'background_image' => [
 						'name' => tra('Page background image'),
-						'description' => tra('Enter complete URL'),
+						'description' => tra('Enter the full URL.'),
 						'type' => 'text',
 						'default' => '',
 					],

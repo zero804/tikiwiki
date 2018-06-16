@@ -24,7 +24,7 @@ function prefs_print_list()
 		],
 		'print_pdf_webservice_url' => [
 			'name' => tra('Webservice URL'),
-			'description' => tra('URL to a service that takes a URL as the query string and returns a PDF document.'),
+			'description' => tra('URL to a service that takes a URL as the query string and returns a PDF document'),
 			'type' => 'text',
 			'size' => 50,
 			'dependencies' => ['auth_token_access'],
@@ -50,14 +50,14 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_printfriendly' => [
 			'name' => tra('Print Friendly PDF'),
-			'description' => tra('Useful for dark themes, Enabling this option will change theme background color to white and text / headings color to black. If turned off, theme colors will be retained in pdf'),
+			'description' => tra('Useful for dark themes, enabling this option will change the theme background color to white and the color of text to black. If not activated, theme colors will be retained in the PDF file.'),
 			'type' => 'flag',
 			'default' => 'n'
 
 		],
 		'print_pdf_mpdf_orientation' => [
 			'name' => tra('PDF Orientation'),
-			'description' => tra('Landscape or Portrait'),
+			'description' => tra('Landscape or portrait PDF orientation'),
 			'tags' => ['advanced'],
 			'type' => 'list',
 			'options' => [
@@ -96,21 +96,21 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_toclinks' => [
 			'name' => tra('Link TOC with content'),
-			'description' => tra('Link TOC headings with content in PDF'),
+			'description' => tra('Link table of contents headings with content in the PDF'),
 			'type' => 'flag',
 			'default' => 'n'
 
 		],
 		'print_pdf_mpdf_tocheading' => [
 			'name' => tra('TOC heading'),
-			'description' => tra('Text heading to be appeared before table of contents'),
+			'description' => tra('Heading to be displayed above the table of contents'),
 			'type' => 'text',
 			'default' => 'Table of Contents'
 
 		],
 		'print_pdf_mpdf_toclevels' => [
-			'name' => tra('PDF TOC Levels'),
-			'description' => tra('Will be autopicked from content, default will be heading 1, heading 2 and heading 3.For example:H1|H2|H3'),
+			'name' => tra('PDF TOC levels'),
+			'description' => tra('These will be automatically created from the content; the default will be heading 1, heading 2 and heading 3 - for example, H1|H2|H3.'),
 			'tags' => ['advanced'],
 			'type' => 'text',
 			'default' => 'H1|H2|H3',
@@ -189,7 +189,7 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_margin_header' => [
 			'name' => tra('Header margin from top of document'),
-			'description' => tra('Only applicable if header is set. Numeric value, no need to add px. For example 10'),
+			'description' => tra('Only applicable if the header is set. Specify a numeric value, and there is no need to add "px". For example, 10.'),
 			'tags' => ['advanced'],
 			'units' => tra('pixels'),
 			'type' => 'text',
@@ -200,7 +200,7 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_margin_footer' => [
 			'name' => tra('Footer margin from bottom of document'),
-			'description' => tra('Only applicable if footer is set.Numeric value, no need to add px. For example 10'),
+			'description' => tra('Only applicable if the footer is set. Specify a numeric value, and there is no need to add "px". For example, 10.'),
 			'tags' => ['advanced'],
 			'units' => tra('pixels'),
 			'type' => 'text',
@@ -244,7 +244,7 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_password' => [
 			'name' => tra('PDF password for viewing'),
-			'description' => tra('Password protect generated PDF'),
+			'description' => tra('Password-protect the generated PDF.'),
 			'tags' => ['advanced'],
 			'type' => 'password',
 			'default' => '',
@@ -258,21 +258,21 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_watermark_image' => [
 			'name' => tra('Watermark Image URL'),
-			'description' => tra('Watermark image will appear under text,enter complete image url'),
+			'description' => tra('The watermark image will appear under the text. Enter the complete image URL.'),
 			'tags' => ['advanced'],
 			'type' => 'text',
 			'default' => '',
 		],
 		'print_pdf_mpdf_background' => [
 			'name' => tra('PDF page background color'),
-			'description' => tra('Enter color code'),
+			'description' => tra('Enter a valid CSS color code.'),
 			'tags' => ['advanced'],
 			'type' => 'text',
 			'default' => '',
 		],
 		'print_pdf_mpdf_background_image' => [
 			'name' => tra('PDF page background image'),
-			'description' => tra('Enter full URL'),
+			'description' => tra('Enter the full URL.'),
 			'tags' => ['advanced'],
 			'type' => 'text',
 			'default' => '',
@@ -286,21 +286,21 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_coverpage_text_settings' => [
 			'name' => tra('CoverPage text settings'),
-			'description' => tra('Heading|Subheading|Alignment|Background color|Text color|Page border|Border color. Enter settings separated by |,leave blank for default'),
+			'description' => tra('Heading|Subheading|Alignment|Background color|Text color|Page border|Border color. Enter settings separated by |. Leave blank to use default settings.'),
 			'tags' => ['advanced'],
 			'type' => 'text',
 			'default' => '',
 		],
 		'print_pdf_mpdf_coverpage_image_settings' => [
 			'name' => tra('Coverpage image URL'),
-			'description' => tra('Enter complete URL'),
+			'description' => tra('Enter the full URL.'),
 			'type' => 'text',
 			'tags' => ['advanced'],
 			'default' => '',
 		],
 		'print_wiki_authors' => [
 			'name' => tra('Print wiki authors'),
-			'description' => tra('Include wiki authors and date in wiki page print outs.'),
+			'description' => tra('Include wiki page authors and date in print versions of wiki pages.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_wiki',
@@ -309,7 +309,7 @@ function prefs_print_list()
 		],
 		'print_original_url_wiki' => [
 			'name' => tra('Print original wiki URL'),
-			'description' => tra('Include orginal wiki page URL in print outs.'),
+			'description' => tra('Include original wiki page URL in print versions of wiki pages.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_wiki',
@@ -318,7 +318,7 @@ function prefs_print_list()
 		],
 		'print_original_url_tracker' => [
 			'name' => tra('Print original tracker item URL'),
-			'description' => tra('Include orginal wiki page URL in print outs.'),
+			'description' => tra('Include original wiki page URL in print versions of wiki pages.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_trackers',
@@ -327,7 +327,7 @@ function prefs_print_list()
 		],
 		'print_original_url_forum' => [
 			'name' => tra('Print original forum post URL'),
-			'description' => tra('Include orginal forum post URL in print outs.'),
+			'description' => tra('Include original forum post URL in print version of forum posts.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_forums',

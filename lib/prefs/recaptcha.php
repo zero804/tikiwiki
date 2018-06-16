@@ -9,8 +9,8 @@ function prefs_recaptcha_list()
 {
 	return  [
 		'recaptcha_enabled' => [
-			'name' => tra('Use ReCaptcha'),
-			'description' => tra('Use ReCaptcha, a specialized captcha service, instead of default CAPTCHA'),
+			'name' => tra('Use ReCAPTCHA'),
+			'description' => tra('Use this security service provided by Google instead of the default CAPTCHA'),
 			'hint' => tra('You will need to register at [http://www.google.com/recaptcha]'),
 			'help' => 'Spam+protection',
 			'type' => 'flag',
@@ -19,21 +19,21 @@ function prefs_recaptcha_list()
 		'recaptcha_pubkey' => [
 			'name' => tra('Site key'),
 			'type' => 'text',
-			'description' => tra('ReCaptcha public key obtained after registering.'),
+			'description' => tra('ReCAPTCHA public key obtained after registering'),
 			'size' => 60,
 			'default' => '',
 		],
 		'recaptcha_privkey' => [
 			'name' => tra('Secret key'),
 			'type' => 'text',
-			'description' => tra('ReCaptcha private key obtained after registering.'),
+			'description' => tra('ReCAPTCHA private key obtained after registering'),
 			'size' => 60,
 			'default' => '',
 		],
 		'recaptcha_theme' => [
-			'name' => tra('ReCaptcha theme'),
+			'name' => tra('ReCAPTCHA theme'),
 			'type' => 'list',
-			'description' => tra('Choose a theme for the ReCaptcha widget.'),
+			'description' => tra('Choose a theme for the ReCAPTCHA widget.'),
 			'options' => [
 				'clean' => tra('Clean'),
 				'blackglass' => tra('Black Glass'),
@@ -45,7 +45,7 @@ function prefs_recaptcha_list()
 		'recaptcha_version' => [
 			'name' => tra('Version'),
 			'type' => 'list',
-			'description' => tra('ReCaptcha version.'),
+			'description' => tra('ReCAPTCHA version'),
 			'options' => [
 				'1' => tra('1.0'),
 				'2' => tra('2.0'),
