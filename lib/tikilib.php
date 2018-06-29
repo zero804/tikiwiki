@@ -5086,9 +5086,8 @@ class TikiLib extends TikiDb_Bridge
 		}
 
 		$tikidate = TikiLib::lib('tikidate');
-		$tikidate->setTZbyID('UTC');
 		try {
-			$tikidate->setDate($timestamp);
+			$tikidate->setDate($timestamp, 'UTC');
 		} catch (Exception $e) {
 			return $e->getMessage();
 		}
