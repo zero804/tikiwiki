@@ -11,7 +11,7 @@ function prefs_sitelogo_list()
 		'sitelogo_src' => [
 			'name' => tra('Logo source (image path)'),
 			'type' => 'text',
-			'description' => 'This can be a conventional path to the image file, or the syntax for an image in a Tiki gallery.',
+			'description' => 'This can be a conventional path to the image file, or the syntax to display an image in a Tiki gallery.',
 			'default' => 'img/tiki/Tiki_WCG.png',
 			'tags' => ['basic'],
 		],
@@ -36,7 +36,7 @@ function prefs_sitelogo_list()
 			'name' => tra('HTML "alt" tag description'),
 			'type' => 'text',
 			'size' => '50',
-			'description' => tr('Normally a description of the image, such as “Example.com logo”.'),
+			'description' => tr('Normally a description of the image, such as \"Example.com logo\".'),
 			'default' => 'Site Logo',
 			'tags' => ['basic'],
 			'hint' => tr('Used by text browsers, screen readers, etc.'),

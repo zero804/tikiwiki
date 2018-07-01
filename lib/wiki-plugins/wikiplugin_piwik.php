@@ -31,7 +31,7 @@ function wikiplugin_piwik_info()
 			'idSite' => [
 				'required' => false,
 				'name' => tra('Site Id'),
-				'description' => tr('The ID of your website in Piwik. To be improved.'),
+				'description' => tr('The ID of this website in Piwik To be improved.'),
 				'since' => '15',
 				'filter' => 'digits',
 				'default' => '',
