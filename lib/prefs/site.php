@@ -84,7 +84,7 @@ function prefs_site_list()
 		],
 		'site_favicon_enable' => [
 			'name' => tr('Favicons'),
-			'description' => tra('You may drop custom favicons into /themes/yourtheme/favicons, or use the default tiki icons.'),
+			'description' => tra('Custom favicon image files can be put in the /themes/(themename)/favicons directory, or the default Tiki favicons can be used.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'help' => 'Favicon',
@@ -129,7 +129,7 @@ function prefs_site_list()
 		],
 		'site_google_credentials' => [
 			'name' => tra('Google authentication credentials file'),
-			'description' => tr('Path to your Google Service Account credentials JSON file.'),
+			'description' => tr('Path to the Google Service Account credentials JSON file.'),
 			'type' => 'text',
 			'size' => 30,
 			'default' => '',
@@ -146,7 +146,7 @@ function prefs_site_list()
 		],
 		'site_layout_admin' => [
 			'name' => tr('Admin layout'),
-			'description' => tr('Changes the layout templates for admin pages'),
+			'description' => tr('Specify which layout template to use for admin pages'),
 			'type' => 'list',
 			'default' => 'basic',
 			'tags' => ['advanced'],
@@ -161,8 +161,8 @@ function prefs_site_list()
 		],
 		'site_piwik_analytics_server_url' => [
 			'name' => tr('Piwik server URL'),
-			'description' => tr('The url to your Piwik server') . '<br />'
-					. tr('In your Piwik, your selected site (Site Id) MUST have view permission for anonymous OR you can insert in your Piwik server url a token authentification parameter.'),
+			'description' => tr('The URL to the Piwik server of this site') . '<br />'
+					. tr('In Piwik, the selected site (Site Id) must have view permission set for anonymous, or a token authentication parameter can be inserted in the Piwik server URL.'),
 			'type' => 'text',
 			'filter' => 'url',
 			'size' => 30,
