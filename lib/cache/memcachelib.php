@@ -153,6 +153,9 @@ class Memcachelib
 	 */
 	function getMulti($keys)
 	{
+		if(!$this->isEnabled()) {
+			return null;
+		}
 
 		// Run each key passed in through the buildKey() method.
 		$keys_built = [];
@@ -183,6 +186,10 @@ class Memcachelib
 	 */
 	function set($key, $value, $flags = false, $expiration = false)
 	{
+		if(!$this->isEnabled()) {
+			return false;
+		}
+
 		$key = $this->buildKey($key);
 		$flags = ($flags) ?
 			$flags : $this->getOption('flags', 0);
@@ -202,8 +209,11 @@ class Memcachelib
 	 */
 	function delete($key)
 	{
-		$key = $this->buildKey($key);
-		return $this->memcache->delete($key);
+		if($this->isEnabled()) {
+			$key = $this->buildKey($key);
+			return $this->memcache->delete($key);
+		}
+		return false;
 	}
 
 	/**
@@ -211,7 +221,10 @@ class Memcachelib
 	 */
 	function flush()
 	{
-		return $this->memcache->flush();
+		if($this->isEnabled()) {
+			return $this->memcache->flush();
+		}
+		return false;
 	}
 
 	/**
@@ -232,8 +245,9 @@ class Memcachelib
 	{
 
 		if (is_string($key)) {
-			return (strpos($key, $this->key_prefix) !== 0) ?
-				$this->key_prefix . $key : $key;
+			return !empty($this->key_prefix) && (strpos($key, $this->key_prefix) !== 0)
+				? $this->key_prefix . $key
+				: $key;
 		}
 
 		if (is_array($key)) {
