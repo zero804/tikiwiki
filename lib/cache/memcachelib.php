@@ -133,9 +133,12 @@ class Memcachelib
 	 */
 	function get($key, $default = null)
 	{
-		$key = $this->buildKey($key);
-		$val = $this->memcache->get($key);
-		return ($val !== null) ? $val : $default;
+		if($this->isEnabled()) {
+			$key = $this->buildKey($key);
+			$val = $this->memcache->get($key);
+			return ($val !== null) ? $val : $default;
+		}
+		return $default;
 	}
 
 	/**
