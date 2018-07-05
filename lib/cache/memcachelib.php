@@ -117,11 +117,11 @@ class Memcachelib
 	function isEnabled()
 	{
 		global $prefs;
-		if (isset($prefs['memcache_enabled']) && $prefs['memcache_enabled'] == 'y') {
-			return $this->memcache && $this->getOption('enabled', false);
-		} else {
-			return false;
-		}
+		return class_exists('\Memcache')
+			&& isset($prefs['memcache_enabled'])
+			&& $prefs['memcache_enabled'] === 'y'
+			&& is_object($this->memcache)
+			&& $this->getOption('enabled', false);
 	}
 
 	/**
