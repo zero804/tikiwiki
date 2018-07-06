@@ -109,7 +109,9 @@ class TikiDate
 		'Turkey',
 		'Universal',
 		'W-SU',
-		'Zulu'
+		'Zulu',
+		'tzdata.zi',
+		'leapseconds'
 	];
 
 	/**
