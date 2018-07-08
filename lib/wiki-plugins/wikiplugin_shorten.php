@@ -10,7 +10,7 @@ function wikiplugin_shorten_info()
 	return [
 		'name' => tra('Shorten'),
 		'documentation' => 'Shorten',
-		'description' => tra('Show/hide a portion of text'),
+		'description' => tra('Show/hide a portion of text.'),
 		'prefs' => ['wikiplugin_shorten', 'wikiplugin_button'],
 		'body' => tra('Code to be displayed'),
 		'iconname' => 'shorten',

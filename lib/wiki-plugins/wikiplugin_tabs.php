@@ -10,7 +10,7 @@ function wikiplugin_tabs_info()
 	return [
 		'name' => tra('Tabs'),
 		'documentation' => 'PluginTabs',
-		'description' => tra('Arrange content in tabs'),
+		'description' => tra('Create a set of tabs to contain page content.'),
 		'prefs' => [ 'wikiplugin_tabs' ],
 		'body' => tra('Tabs content, separated by "/////"'),
 		'iconname' => 'th-large',

@@ -12,7 +12,7 @@ function wikiplugin_showreference_info()
 	return [
 		'name' => tra('Add Bibliography'),
 		'documentation' => 'PluginShowReference',
-		'description' => tra('Add bibliography listing in the footer of a wiki page'),
+		'description' => tra('Add a bibliography listing in the footer of a wiki page.'),
 		'format' => 'html',
 		'iconname' => 'list',
 		'introduced' => 10,

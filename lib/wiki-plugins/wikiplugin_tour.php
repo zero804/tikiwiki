@@ -10,7 +10,7 @@ function wikiplugin_tour_info()
 	return [
 		'name' => tra('Tour'),
 		'documentation' => 'PluginTour',
-		'description' => tra('Quick and easy way to build your product tours with Bootstrap popovers'),
+		'description' => tra('Quickly and easily create a "tour" of one or more pages, to explain page contents, etc., using Bootstrap popovers.'),
 		'prefs' => [ 'wikiplugin_tour' ],
 		'iconname' => 'information',
 		'introduced' => 15,

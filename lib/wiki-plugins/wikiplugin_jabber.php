@@ -10,7 +10,7 @@ function wikiplugin_jabber_info()
 	return [
 		'name' => tra('Jabber'),
 		'documentation' => 'PluginJabber',
-		'description' => tra('Chat using Jabber'),
+		'description' => tra('Chat using the Jabber instant messaging client.'),
 		'prefs' => [ 'wikiplugin_jabber' ],
 		'iconname' => 'comments',
 		'introduced' => 1,

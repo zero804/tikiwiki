@@ -10,7 +10,7 @@ function wikiplugin_sub_info()
 	return [
 		'name' => tra('Subscript'),
 		'documentation' => 'PluginSub',
-		'description' => tra('Apply subscript font to text'),
+		'description' => tra('Create subscript text.'),
 		'prefs' => [ 'wikiplugin_sub' ],
 		'body' => tra('text'),
 		'iconname' => 'subscript',

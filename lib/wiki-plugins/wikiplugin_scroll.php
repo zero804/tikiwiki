@@ -10,7 +10,7 @@ function wikiplugin_scroll_info()
 	return [
 		'name' => tra('Scroll'),
 		'documentation' => 'PluginScroll',
-		'description' => tra('Show animated text that scrolls up or down'),
+		'description' => tra('Create a section of text that is scrolled up and down with JavaScript.'),
 		'prefs' => ['wikiplugin_scroll'],
 		'body' => tra('text'),
 		'iconname' => 'sort-down',

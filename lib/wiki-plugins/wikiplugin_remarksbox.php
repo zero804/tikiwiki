@@ -10,7 +10,7 @@ function wikiplugin_remarksbox_info()
 	return [
 		'name' => tra('Remarks Box'),
 		'documentation' => 'PluginRemarksBox',
-		'description' => tra('Display a comment, tip, note or warning box'),
+		'description' => tra('Display an alert box containing a comment, tip, note or warning.'),
 		'prefs' => [ 'wikiplugin_remarksbox' ],
 		'body' => tra('remarks text'),
 		'iconname' => 'comment',

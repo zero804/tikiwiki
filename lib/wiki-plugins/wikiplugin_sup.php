@@ -10,7 +10,7 @@ function wikiplugin_sup_info()
 	return [
 		'name' => tra('Superscript'),
 		'documentation' => 'PluginSup',
-		'description' => tra('Apply superscript font to text'),
+		'description' => tra('Create superscript text.'),
 		'prefs' => [ 'wikiplugin_sup' ],
 		'body' => tra('text'),
 		'iconname' => 'superscript',

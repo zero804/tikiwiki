@@ -10,7 +10,7 @@ function wikiplugin_split_info()
 	return [
 		'name' => tra('Split'),
 		'documentation' => 'PluginSplit',
-		'description' => tra('Arrange content on a page into rows and columns'),
+		'description' => tra('Split wiki content into two or more columns and rows using the deprecated method of an HTML table.'),
 		'prefs' => [ 'wikiplugin_split' ],
 		'filter' => 'wikicontent',
 		'iconname' => 'th-large',

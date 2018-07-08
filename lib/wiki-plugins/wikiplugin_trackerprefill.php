@@ -10,7 +10,7 @@ function wikiplugin_trackerprefill_info()
 	return [
 		'name' => tra('Tracker Prefill'),
 		'documentation' => 'PluginTrackerPrefill',
-		'description' => tra('Create a button to prefill tracker fields'),
+		'description' => tra('Create a button to enable users to prefill tracker fields.'),
 		'prefs' => [ 'feature_trackers', 'wikiplugin_trackerprefill' ],
 		'iconname' => 'trackers',
 		'introduced' => 2,

@@ -10,7 +10,7 @@ function wikiplugin_toc_info()
 	return [
 		'name' => tra('Table of Contents (Structure)'),
 		'documentation' => 'PluginTOC',
-		'description' => tra('Display a table of contents of pages in a structure'),
+		'description' => tra('Display a table of contents that lists the pages in a structure.'),
 		'prefs' => [ 'wikiplugin_toc', 'feature_wiki_structure' ],
 		'iconname' => 'list-numbered',
 		'introduced' => 3,

@@ -12,7 +12,7 @@ function wikiplugin_trackerif_info()
 	return [
 		'name' => tra('Tracker If'),
 		'documentation' => 'PluginTrackerIf',
-		'description' => tra('Display content based on results of a tracker field test'),
+		'description' => tra('Display content based on the results of a tracker field test.'),
 		'prefs' => [ 'wikiplugin_trackerif', 'feature_trackers', 'wikiplugin_tracker' ], // ML: is wikiplugin_tracker necessary?
 		'iconname' => 'trackers',
 		'introduced' => 7,
