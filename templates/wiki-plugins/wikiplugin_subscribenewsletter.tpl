@@ -6,7 +6,7 @@
 		{$subscribeThanks|escape}
 	{/if}
 {else}
-	<form method="post" class="form-horizontal">
+	<form name="wpSubscribeNL" method="post" {if $inmodule ne 'moduleSubscribeNL'}class="form-horizontal"{/if}>
 		<input type="hidden" name="wpNlId" value="{$subscribeInfo.nlId|escape}">
 		{if empty($user)}
 			{if !empty($wpError)}
@@ -14,15 +14,15 @@
 						{$wpError|escape}
 				{/remarksbox}
 			{/if}
-			<div class="form-group">
-				<label class="col-md-3 control-label" for="wpEmail">{tr}Email:{/tr}</label>
-				<div class="col-md-9">
+			<div class="form-group row">
+				<label class="{if $inmodule}col-md-12{else}col-md-3{/if} control-label" for="wpEmail">{tr}Email{/tr} <strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong></label>
+				<div class="{if $inmodule}col-md-12{else}col-md-9{/if}">
 					<input type="email" class="form-control" id="wpEmail" name="wpEmail" value="{$subscribeEmail|escape}">
 				</div>
 			</div>
 		{/if}
 		{if !$user and $prefs.feature_antibot eq 'y'}
-			{include file='antibot.tpl' antibot_table="y"}
+			{include file='antibot.tpl' antibot_table="y" showmandatory="y" form="$inmodule"}
 		{/if}
 		<div class="form-group text-center">
 			{if empty($subcribeMessage)}
