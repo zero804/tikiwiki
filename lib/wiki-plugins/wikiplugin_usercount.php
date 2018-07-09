@@ -10,7 +10,7 @@ function wikiplugin_usercount_info()
 	return [
 		'name' => tra('User Count'),
 		'documentation' => 'PluginUserCount',
-		'description' => tra('Display number of users for a site or one or more groups'),
+		'description' => tra('Display the number of users of the Tiki site or of one or more user groups.'),
 		'prefs' => [ 'wikiplugin_usercount' ],
 		'body' => tra('Group name. If left blank, the total number of users for the site will be shown.'),
 		'iconname' => 'group',

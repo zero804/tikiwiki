@@ -40,7 +40,7 @@ function prefs_wysiwyg_list()
 
 		// TODO: wysiwyg_wiki_semi_parsed depends on wysiwyg_wiki_parsed. These 2 booleans should be replaced by a select with 3 options, but we would need to indicate that one of the options is experimental. Chealer
 		'wysiwyg_wiki_parsed' => [
-			'name' => tra("Support Tiki's \"wiki syntax\""),
+			'name' => tra("Support Tiki's wiki syntax"),
 			'description' => tra('This allows a mixture of wiki syntax and HTML in the code of a text field in WYSIWYG mode.'),
 			'type' => 'flag',
 			'dependencies' => [
@@ -50,7 +50,7 @@ function prefs_wysiwyg_list()
 		],
 		'wysiwyg_wiki_semi_parsed' => [
 			'name' => tra('Limited wiki parsing'),
-			'description' => tra('If this preference is enabled, the set of features from Tiki\'s markup language allowed in parsed text fields is limited. Only some wiki syntax is parsed, such as plugins (not inline character styles, etc). If this preference is disabled, all markup features allowed in "wiki mode" are available.'),
+			'description' => tra('Enabling this preference limits the features from Tiki\'s wiki markup language allowed when editing text. Only some wiki syntax is parsed, such as plugins (not inline character styles, etc). When this preference is not enabled, all markup features in wiki syntax mode are available.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_wysiwyg',

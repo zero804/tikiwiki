@@ -9,7 +9,7 @@ function wikiplugin_zotero_info()
 {
 	return [
 		'name' => tra('Zotero Citation'),
-		'description' => tra('Retrieves and includes a Zotero reference in the page.'),
+		'description' => tra('Retrieve and include a Zotero reference in the page.'),
 		'prefs' => ['zotero_enabled', 'wikiplugin_zotero', 'wikiplugin_footnote'],
 		'iconname' => 'bookmark',
 		'introduced' => 7,

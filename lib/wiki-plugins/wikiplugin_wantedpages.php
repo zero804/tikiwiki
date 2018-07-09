@@ -12,7 +12,7 @@ function wikiplugin_wantedpages_info()
 	return [
 		'name' => tra('Wanted Pages'),
 		'documentation' => 'PluginWantedPages',
-		'description' => tra('Show location of links to pages not yet created'),
+		'description' => tra('Show the locations (on wiki pages) of links to pages not yet created.'),
 		'prefs' => [ 'wikiplugin_wantedpages' ],
 		'body' => tr('Custom level regex. A custom filter for wanted pages to be listed (only used when %0). Possible
 			values: a valid regex-expression (PCRE).', '<code>level="custom"</code>'),

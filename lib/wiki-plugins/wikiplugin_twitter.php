@@ -10,7 +10,7 @@ function wikiplugin_twitter_info()
 	return [
 		'name' => tra('Twitter'),
 		'documentation' => 'PluginTwitter',
-		'description' => tra('Display the activity for a twitter account'),
+		'description' => tra('Display the activity of a Twitter account.'),
 		'prefs' => ['wikiplugin_twitter'],
 		'body' => '',
 		'iconname' => 'twitter',

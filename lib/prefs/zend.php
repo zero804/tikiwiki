@@ -55,7 +55,7 @@ function prefs_zend_list()
 		],
 		'zend_mail_handler' => [
 			'name' => tra('Mail sender'),
-			'description' => tra('Specify if Tiki should use Sendmail(the PHP mail() function), SMTP or File (Debug) (to debug email sending by means of storing emails as files on disk at ./temp/Mail_yyyymmddhhmmss_randomstring.tmp ) to send mail notifications.'),
+			'description' => tra('Specify if Tiki should use Sendmail (the PHP mail() function), SMTP, or File (Debug) (to debug email sending by means of storing emails as files on disk at ./temp/Mail_yyyymmddhhmmss_randomstring.tmp ) to send mail notifications.'),
 			'type' => 'list',
 			'options' => [
 				'sendmail' => tra('Sendmail'),
@@ -87,7 +87,7 @@ function prefs_zend_list()
 		'zend_mail_queue' => [
 			'name' => tra('Mail delivery'),
 			'description' => tr(
-				'When set to Queue, messages will be stored in the database. Requires using the shell script %0 to be run for actual delivery. Only works with SMTP mail.',
+				'When set to "Queue", messages will be stored in the database. Requires using the shell script <code>php console.php mail-queue:send</code> to be run for actual delivery. Only works with SMTP mail.',
 				'<code>php console.php mail-queue:send</code>'
 			),
 			'type' => 'list',
@@ -99,7 +99,7 @@ function prefs_zend_list()
 		],
 		'zend_http_sslverifypeer' => [
 			'name' => tra('Verify HTTPS certificates of remote servers'),
-			'description' => tra('When set to enforce, the server will fail to connect over HTTPS to a remote server that do not have a SSL certificate that is valid and can be verified against the local list of Certificate Authority (CA)'),
+			'description' => tra('When set to enforce, the server will fail to connect over HTTPS to a remote server that doesn\'t have a SSL certificate that is valid and can be verified against the local list of the Certificate Authority (CA).'),
 			'type' => 'list',
 			'options' => [
 				'' => tra('Do not enforce verification'),

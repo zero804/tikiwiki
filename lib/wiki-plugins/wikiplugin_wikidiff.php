@@ -12,7 +12,7 @@ function wikiplugin_wikidiff_info()
 	return [
 		'name' => tra('Wiki Diff'),
 		'documentation' => 'PluginWikidiff',
-		'description' => tra('Display the differences between two wiki objects'),
+		'description' => tra('Display the differences between two wiki pages.'),
 		'prefs' => [ 'wikiplugin_wikidiff', 'feature_wiki' ],
 		'iconname' => 'code-fork',
 		'introduced' => 15.3,

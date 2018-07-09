@@ -12,7 +12,7 @@ function wikiplugin_wysiwyg_info()
 	return [
 		'name' => 'WYSIWYG',
 		'documentation' => 'PluginWYSIWYG',
-		'description' => tra('Use a WYSIWYG editor to edit a section of content'),
+		'description' => tra('Use a WYSIWYG editor to edit a section of text content.'),
 		'prefs' => ['wikiplugin_wysiwyg'],
 		'iconname' => 'wysiwyg',
 		'introduced' => 9,

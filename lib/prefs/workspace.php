@@ -10,7 +10,7 @@ function prefs_workspace_list()
 	return [
 		'workspace_ui' => [
 			'name' => tr('Workspace UI'),
-			'description' => tr('Combines multiple site features to create a workspace experience for workgroups.'),
+			'description' => tr('Combine site features to create a workspace experience for work groups.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'perspective' => false,

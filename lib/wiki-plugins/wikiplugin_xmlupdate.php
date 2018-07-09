@@ -11,7 +11,7 @@ function wikiplugin_xmlupdate_info()
 	$info = [
 		'name' => tra('XMLupdate'),
 		'documentation' => 'PluginXMLupdate',
-		'description' => tra('Allows multiple elements of an XML file stored in a File Gallery to be updated - the File Gallery (at present) is assumed to store all files in a Directory.'),
+		'description' => tra('Allow multiple elements of an XML file stored in a file gallery to be updated. This assumes that all files are stored in a directory on the server.'),
 		'prefs' => [ 'wikiplugin_xmlupdate' ],
 		'body' => tra('list (one per line) of the XML element (node) names irrespective of their path and must (at present) be unique in the file '),
 		'tags' => [ 'basic' ],

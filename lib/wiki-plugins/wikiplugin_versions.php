@@ -10,7 +10,7 @@ function wikiplugin_versions_info()
 	return [
 		'name' => tra('Versions'),
 		'documentation' => 'PluginVersions',
-		'description' => tra('Create tabs for showing alternate versions of content'),
+		'description' => tra('Create tabs to show alternate versions of content, such as earlier and updated information.'),
 		'prefs' => [ 'wikiplugin_versions' ],
 		'body' => tra('Block of text separated by ---(version x)--- markers. Text before the first marker is used by
 			default.'),

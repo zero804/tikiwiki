@@ -12,7 +12,7 @@ function wikiplugin_useringroup_info()
 		'name' => tra('UserInGroup'),
 		'documentation' => 'PluginUserInGroup',
 		'icon' => 'img/icons/group_gear.png',
-		'description' => tra('checks if an individual user is in a particular Group and simply return a string set to either true or false'),
+		'description' => tra('Check if an individual user is in a particular group and display either "yes" or "no".'),
 		'prefs' => [ 'wikiplugin_useringroup' ],
 		'tags' => [ 'basic' ],
 		'introduced' => 15,
