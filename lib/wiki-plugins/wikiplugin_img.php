@@ -443,6 +443,8 @@ function wikiplugin_img( $data, $params )
 	$imgdata['checkItemPerms']  = 'y';	// ditto
 	$imgdata['noDrawIcon']  = 'n';
 
+	$params = array_map(function ($param) {return  str_replace('"', '%22', $param);}, $params);
+
 	$imgdata = array_merge($imgdata, $params);
 
 	//function calls
@@ -975,7 +977,7 @@ function wikiplugin_img( $data, $params )
 	} elseif ( !empty($imgdata['desc']) ) {
 		$replimg .= ' alt="' . $imgdata['desc'] . '"';
 	} elseif (!empty($dbinfo['description'])) {
-		$replimg .= ' alt="' . $dbinfo['description'] . '"';
+		$replimg .= ' alt="' . str_replace('"', '%22', $dbinfo['description']) . '"';
 	} else {
 		$replimg .= ' alt="Image"';
 	}
@@ -1000,8 +1002,8 @@ function wikiplugin_img( $data, $params )
 				$desc = $dbinfo['comment'];
 				$imgname = $dbinfo['comment'];
 			} elseif (isset($dbinfo)) {
-				$desc = !empty($dbinfo['description']) ? $dbinfo['description'] : '';
-				$imgname = !empty($dbinfo['name']) ? $dbinfo['name'] : '';
+				$desc = !empty($dbinfo['description']) ? str_replace('"', '%22', $dbinfo['description']) : '';
+				$imgname = !empty($dbinfo['name']) ? str_replace('"', '%22', $dbinfo['name']) : '';
 			}
 			switch ($imgdata['desc']) {
 				case 'desc':
