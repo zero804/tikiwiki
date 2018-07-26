@@ -170,12 +170,24 @@ class CalRecurrence extends TikiLib
 	 */
 	public function delete($fromTime = null)
 	{
+		global $user;
+
 		if (is_null($fromTime)) {
 			$fromTime = time();
 		}
-		$query = "DELETE FROM tiki_calendar_items WHERE recurrenceId = ? AND start > ?";
-		$bindvars = [(int)$this->getId(),$fromTime];
-		$this->query($query, $bindvars);
+
+		$calendarlib = TikiLib::lib('calendar');
+		$tiki_calendar_items = TikiDb::get()->table('tiki_calendar_items');
+
+		$calItemIds = $tiki_calendar_items->fetchColumn('calItemId', [
+			'start' => $tiki_calendar_items->greaterThan($fromTime),
+		]);
+
+		foreach ($calItemIds as $calItemId) {
+			$calendarlib->drop_item($user, $calItemId);
+		}
+
+		// this seems to leave ones in the past alone by default but detatches them from the recurrence rule (odd)
 		$query = "UPDATE tiki_calendar_items SET recurrenceId = NULL WHERE recurrenceId = ?";
 		$bindvars = [(int)$this->getId()];
 		$this->query($query, $bindvars);
