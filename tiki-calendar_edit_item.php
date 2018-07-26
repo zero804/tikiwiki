@@ -299,7 +299,7 @@ if (isset($_POST['act'])) {
 				$calRecurrence->setUser($save['user']);
 				if (empty($save['calitemId'])) {
 					// create the initial event if it's a new one
-					$save['calitemId'] = $calendarlib->set_item($user, $save['calitemId'], $save);
+					$save['calitemId'] = $calendarlib->set_item($user, $save['calitemId'], $save, [], true);
 				}
 				$calRecurrence->setInitialItem($save);
 
