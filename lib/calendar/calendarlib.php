@@ -613,6 +613,14 @@ class CalendarLib extends TikiLib
 			$r[] = (int)$calitemId;
 
 			$result = $this->query($query, $r);
+
+			$trackerItemsIds = $this->getAttachedTrackerItems($calitemId);
+
+			require_once 'lib/search/refresh-functions.php';
+			foreach ($trackerItemsIds as $trackerItemId) {
+				refresh_index('trackeritem', $trackerItemId);
+			}
+
 		} else {
 			$finalEvent = 'tiki.calendaritem.create';
 			$new = true;
@@ -664,6 +672,26 @@ class CalendarLib extends TikiLib
 		]);
 
 		return $calitemId;
+	}
+
+	/**
+	 * Get all tracker items attached to a calender item
+	 *
+	 * @param $calitemId
+	 *
+	 * @return array
+	 * @throws Exception
+	 */
+	public function getAttachedTrackerItems($calitemId)
+	{
+		$trackerItems = [];
+		$attributes = TikiLib::lib('attribute')->find_objects_with('tiki.calendar.item', $calitemId);
+
+		foreach ($attributes as $attribute) {
+			$trackerItems[] = (int)$attribute['itemId'];
+		}
+
+		return $trackerItems;
 	}
 
 	/**
