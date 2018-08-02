@@ -226,6 +226,18 @@ function wikiplugin_pivottable_info()
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n']
 				]
+			],
+			'translate' => [
+				'name' => tr('Translate displayed data'),
+				'description' => tr('Use translated data values for calculations and display.'),
+				'since' => '18.3',
+				'required' => false,
+				'filter' => 'alpha',
+				'default' => 'n',
+				'options' => [
+					['text' => tra('No'), 'value' => 'n'],
+					['text' => tra('Yes'), 'value' => 'y']
+				]
 			]
 		],
 	];
@@ -256,6 +268,8 @@ function wikiplugin_pivottable($data, $params)
 	if (file_exists('vendor_bundled/vendor/nicolaskruchten/pivottable/dist/pivot.' . $lang . '.js')) {
 		$headerlib->add_jsfile('vendor_bundled/vendor/nicolaskruchten/pivottable/dist/pivot.' . $lang . '.js', true);
 	}
+
+	$translate = ( $params['translate'] == 'y' )?true:false;
 
 	$smarty = TikiLib::lib('smarty');
 	$smarty->assign('lang', $lang);
@@ -471,8 +485,14 @@ function wikiplugin_pivottable($data, $params)
 		$row = [];
 		foreach ($entry as $fieldName => $value) {
 			if ($field = $definition->getFieldFromPermName($fieldName)) {
-				$row[$field['name']] = $value;
+				// Actual data values
+				if ($translate) {
+					$row[$field['name']] = tra($value);
+				} else {
+					$row[$field['name']] = $value;
+				}
 			} else {
+				// predefined fields (created date, lastmod, etc.)
 				$row[$fieldName] = $value;
 			}
 		}
@@ -666,6 +686,7 @@ function wikiplugin_pivottable($data, $params)
 		'yAxisLabel' => empty($params['yAxisLabel']) ? null : $params['yAxisLabel'],
 		'chartTitle' => empty($params['chartTitle']) ? null : $params['chartTitle'],
 		'chartHoverBar' => empty($params['chartHoverBar']) ? null : $params['chartHoverBar'],
+		'translate' => empty($params['translate']) ? 'n' : $params['translate'],
 		'index' => $id
 	]);
 
