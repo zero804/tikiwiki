@@ -403,7 +403,7 @@
 						{/if}
 					</div>
 					<div class="col-md-3 start time">
-						{html_select_time prefix="start_" display_seconds=false time=$calitem.start minute_interval=$prefs.calendar_timespan use_24_hours=$use_24hr_clock class='form-control date nochosen'}
+						{html_select_time prefix="start_" display_seconds=false time=$calitem.start minute_interval=$prefs.calendar_minute_interval use_24_hours=$use_24hr_clock class='form-control date nochosen'}
 					</div>
 					<label class="col-md-2">
 						<input type="checkbox" name="allday" id="allday" value="true" {if $calitem.allday} checked="checked"{/if}>
@@ -437,10 +437,10 @@
 							{/if}
 					</div>
 					<div class="col-md-3 end time">
-						{html_select_time prefix="end_" display_seconds=false time=$calitem.end minute_interval=$prefs.calendar_timespan use_24_hours=$use_24hr_clock class='form-control date nochosen'}
+						{html_select_time prefix="end_" display_seconds=false time=$calitem.end minute_interval=$prefs.calendar_minute_interval use_24_hours=$use_24hr_clock class='form-control date nochosen'}
 					</div>
 					<div class="col-md-3 duration time" style="display:none;">
-						{html_select_time prefix="duration_" display_seconds=false time=$calitem.duration|default:'01:00' minute_interval=$prefs.calendar_timespan class='form-control date nochosen'}
+						{html_select_time prefix="duration_" display_seconds=false time=$calitem.duration|default:'01:00' minute_interval=$prefs.calendar_minute_interval class='form-control date nochosen'}
 					</div>
 					<div class="col-md-2 time">
 						<a href="#" id="durationBtn" class="btn btn-xs btn-default">
