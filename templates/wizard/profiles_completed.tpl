@@ -1,11 +1,10 @@
 {* $Id$ *}
 
 <div class="media">
-	{icon name="check" size=2}{tr}Congratulations{/tr}. {tr}You are done with the Configuration Profiles Wizard{/tr}.<br>
-	<br/><br/>
+	<div class="media-left">{icon name="check" size=2}</div>
 	<div class="media-body">
-		<fieldset>
-			<legend>{tr}Next?{/tr}</legend>
+		<h4 class="media-heading margin-bottom-md">{tr}Congratulations{/tr}. {tr}You are done with the Configuration Profiles Wizard{/tr}.</h4>
+		<h3>{tr}Next?{/tr}</h3>
 			<div class="row">
 				<div class="col-md-9">
 				<ul>
@@ -17,6 +16,5 @@
 				</ul>
 				</div>
 			</div>
-		</fieldset>
 	</div>
 </div>
