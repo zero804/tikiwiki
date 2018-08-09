@@ -411,9 +411,11 @@ function wikiplugin_pivottable($data, $params)
 		return WikiParser_PluginOutput::userError(tr('Unified search index not found.'));
 	}
 
-	$query->setRange(0, TikiLib::lib('trk')->get_nb_items($trackerId));
-
-	$result = $query->search($index);
+	$result = [];
+	foreach ($query->scroll($index) as $row) {
+		$result[] = $row;
+	}
+	$result = Search_ResultSet::create($result);
 	$result->setId('wppivottable-' . $id);
 
 	$resultBuilder = new Search_ResultSet_WikiBuilder($result);
