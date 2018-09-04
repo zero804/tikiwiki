@@ -1,5 +1,5 @@
 {* Upload Mine *}
-{* $Id: tiki-print_multi_pages.tpl 53267 2014-12-04 23:57:46Z jyhem $ *}<!DOCTYPE html>
+{* $Id$ *}<!DOCTYPE html>
 <html id="print" lang="{if !empty($pageLang)}{$pageLang}{else}{$prefs.language}{/if}">
 	<head>
 		{include file='header.tpl'}

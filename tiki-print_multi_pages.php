@@ -6,7 +6,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: tiki-print_multi_pages.php 64607 2017-11-17 02:06:23Z rjsmelo $
+// $Id$
 
 require_once('tiki-setup.php');
 

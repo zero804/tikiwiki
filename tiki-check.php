@@ -6,7 +6,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: tiki-check.php 65522 2018-02-11 23:42:16Z rjsmelo $
+// $Id$
 /*
 About the design:
 tiki-check.php is designed to run in 2 modes
@@ -1804,8 +1804,8 @@ if (isset($prefs) && $prefs['feature_blogs'] == 'y') {
 $fcts = array(
 		 array(
 			'function' => 'exec',
-			'risky' => tra('Exec can potentially be used to execute arbitrary code on the server.') . ' ' . tra('Tiki does not need it; perhaps it should be disabled.'),
-			'safe' => tra('Exec can be potentially be used to execute arbitrary code on the server.') . ' ' . tra('Tiki does not need it; it is good that it is disabled.')
+			'risky' => tra('Exec can potentially be used to execute arbitrary code on the server.') . ' ' . tra('Tiki does not need it; perhaps it should be disabled.') . ' ' . tra('However, the Plugins R/RR need it. If you use the Plugins R/RR and the other PHP software on the server can be trusted, this should be enabled.'),
+			'safe' => tra('Exec can be potentially be used to execute arbitrary code on the server.') . ' ' . tra('Tiki needs it to run the Plugins R/RR.') . tra('If this is needed and the other PHP software on the server can be trusted, this should be enabled.')
 		 ),
 		 array(
 			'function' => 'passthru',
