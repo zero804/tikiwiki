@@ -75,24 +75,22 @@ function wikiplugin_footnote($data, $params)
 	if (! isset($footnotes['lists'])) {   // if this is the first time the script has run, initialise
 		$footnotes['count'] = 0;
 		$footnotes['nest'] = 0;
-		$footnotes['tag'] = [];      // record of tags and associated footnote numbers
-		$footnotes['lists'] = [];    // data for general footnotes
+		$footnotes['tag'] = array();      // record of tags and associated footnote numbers
+		$footnotes['lists'] = array();    // data for general footnotes
 		$footnotes['lists']['.def.']['listType'] = 'decimal';    // set the default display type for lists
 	}
 
-	if (isset($params['scheme'])) {
+	if (isset($params['scheme']))
 		setScheme($params['scheme']);
-	}
-
+	
 	$data = trim($data);
 	if (! empty($data)) {
 		$footnotes['count']++;                      // keep a record of how many times footones is called to generate unique id's
 
 		// Create an array of classes to be applied
-		$classes = (isset($params['class'])) ? explode(' ', trim($params["class"])) : [];
-		if ($footnotes['nest'] > 0) {   // if we are in a nested footnote, add a nested class
-			$classes[] = 'footnest' . $footnotes['nest'];
-		}
+		$classes = (isset($params['class'])) ? explode(' ',trim($params["class"])) : array();
+		if ($footnotes['nest'] > 0)   // if we are in a nested footnote, add a nested class
+			$classes[] ='footnest'.$footnotes['nest'];
 
 		//set the current list to create
 		$list = '.def.';                            // Set the default to illegal class name to prevent conflicts
@@ -107,21 +105,20 @@ function wikiplugin_footnote($data, $params)
 		$footnote = &$footnotes['lists'][$list]['entry'];
 
 		// set the current number of list entries
-		$listNum = count($footnote) + 1;
+		$listNum = count($footnote)+1;
 
-		if (isset($params["tag"]) && ! isset($footnotes['tag'][$params["tag"]])) {  // do nothing if duplicate tag
+		if (isset($params["tag"]) && !isset($footnotes['tag'][$params["tag"]])) {  // do nothing if duplicate tag
 			// Keep track of where data can be found for this Tag
 			$footnotes['tag'][$params["tag"]]['class'] = $list;
 			$footnotes['tag'][$params["tag"]]['num'] = $listNum;
 			$footnote[$listNum]['unique'] = $params["tag"];
-		} else {
+		}else
 			$footnote[$listNum]['unique'] = $footnotes['count'];
-		}
 
-		$footnote[$listNum]['class'] = implode(' ', $classes);
+		$footnote[$listNum]['class'] = implode(' ',$classes);
 
 		$footnotes['nest']++;
-		$footnote[$listNum]['data'] = TikiLib::lib('parser')->parse_data_plugin($data, true);
+		$footnote[$listNum]['data'] = TikiLib::lib('parser')->parse_data_plugin($data,true);
 		$footnotes['nest']--;
 
 
@@ -132,11 +129,10 @@ function wikiplugin_footnote($data, $params)
 		$smarty->assign('listType',$footnotes['lists'][$list]['listType']);
 		return $smarty->fetch('templates/wiki-plugins/wikiplugin_footnote.tpl');
 	} else {                             // if there is no data
-		if (isset($params['sameastag'])) {
+		if (isset($params['sameastag']))
 			$sameas = $params['sameastag'];
-		} elseif (isset($params['sameas'])) {
+		elseif (isset($params['sameas']))
 			$sameas = $params['sameas'];
-		}
 		if (isset($sameas)) {
 			if (isset($footnotes['tag'][$sameas])) {
 				$listNum =$footnotes['tag'][$sameas]['num'];
