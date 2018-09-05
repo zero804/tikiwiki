@@ -329,7 +329,7 @@
 					$("#newItemForm").validate({
 						{{$validationjs}},
 						ignore: '.ignore',
-						submitHandler: function(){return process_submit(this.currentForm);}
+						submitHandler: function(form, event){return process_submit(form, event);}
 					});
 				{/jq}
 			{/if}
