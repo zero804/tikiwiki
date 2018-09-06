@@ -93,7 +93,7 @@ class Scheduler_Item
 
 		$threshold = $tikilib->get_preference('scheduler_stalled_timeout', 15);
 
-		if ($threshold === 0) {
+		if ($threshold == 0) {
 			return false;
 		}
 
@@ -156,7 +156,7 @@ class Scheduler_Item
 
 		$threshold = $tikilib->get_preference('scheduler_healing_timeout', 30);
 
-		if ($threshold === 0 && ! $force) {
+		if ($threshold == 0 && ! $force) {
 			return false;
 		}
 
