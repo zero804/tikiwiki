@@ -9,9 +9,15 @@
 {/if}
 <div class="t_navbar margin-bottom-md">
 	{if $tiki_p_create_tracker_items eq 'y' && $prefs.tracker_legacy_insert neq 'y'}
-		<a class="btn btn-default" href="{bootstrap_modal controller=tracker action=insert_item trackerId=$trackerId}">
-			{icon name="create"} {tr}Create Item{/tr}
-		</a>
+		{if $fields_count gt 0}
+			<a class="btn btn-default" href="{bootstrap_modal controller=tracker action=insert_item trackerId=$trackerId}">
+				{icon name="create"} {tr}Create Item{/tr}
+			</a>
+		{else}
+			<a class="btn btn-default disabled" aria-disabled="true" href="{bootstrap_modal controller=tracker action=insert_item trackerId=$trackerId}">
+				{icon name="create"} {tr}Create Item{/tr}
+			</a>
+		{/if}
 	{/if}
 	{include file="tracker_actions.tpl" showitems="n"}
 	{if $prefs.javascript_enabled != 'y'}
