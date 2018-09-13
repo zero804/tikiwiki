@@ -293,6 +293,9 @@
 					{include file='categorize.tpl'}<br/>
 				{/if}
 			{else}
+				{if $prefs.javascript_enabled eq 'y' and !$editFileId and $category_jail}
+					{include file='categorize.tpl'}<br/>
+				{/if}
 				<input type="hidden" name="galleryId[]" value="{$galleryId}">
 			{/if}
 			{if $prefs.javascript_enabled eq 'y' and !$editFileId}
