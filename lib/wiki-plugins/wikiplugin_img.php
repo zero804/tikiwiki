@@ -617,7 +617,7 @@ function wikiplugin_img($data, $params)
 	$imgdata['sizes']  = '';
 	$imgdata['featured']  = 'n';
 
-	$params = array_map(function ($param) {return  str_replace('"', '%22', $param);}, $params);
+	$params = array_map(function ($param) {return  str_replace('"', '&quot;', $param);}, $params);
 
 	$imgdata = array_merge($imgdata, $params);
 
@@ -1245,9 +1245,9 @@ function wikiplugin_img($data, $params)
 	} elseif (! empty($imgdata['desc'])) {
 		$replimg .= ' alt="' . $imgdata['desc'] . '"';
 	} elseif (! empty($dbinfo['description'])) {
-		$replimg .= ' alt="' . str_replace('"', '%22', $dbinfo['description']) . '"';
+		$replimg .= ' alt="' . str_replace('"', '&quot;', $dbinfo['description']) . '"';
 	} elseif (! empty($dbinfo['name'])) {
-		$replimg .= ' alt="' . str_replace('"', '%22', $dbinfo['name']) . '"';
+		$replimg .= ' alt="' . str_replace('"', '&quot;', $dbinfo['name']) . '"';
 	} else {
 		$replimg .= ' alt="Image"';
 	}
@@ -1269,8 +1269,8 @@ function wikiplugin_img($data, $params)
 			$desc = $dbinfo['comment'];
 			$imgname = $dbinfo['comment'];
 		} else {
-			$desc = ! empty($dbinfo['description']) ? str_replace('"', '%22', $dbinfo['description']) : '';
-			$imgname = ! empty($dbinfo['name']) ? str_replace('"', '%22', $dbinfo['name']) : '';
+			$desc = ! empty($dbinfo['description']) ? str_replace('"', '&quot;', $dbinfo['description']) : '';
+			$imgname = ! empty($dbinfo['name']) ? str_replace('"', '&quot;', $dbinfo['name']) : '';
 		}
 		if (! empty($imgdata['desc'])) {
 			switch ($imgdata['desc']) {
