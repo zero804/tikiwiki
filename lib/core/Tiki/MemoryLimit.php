@@ -45,6 +45,7 @@ class Tiki_MemoryLimit
 	{
 		$s = trim($memory_limit);
 		$last = strtolower($s{strlen($s)-1});
+		$s = preg_replace('/\D+/m','',$s);
 		switch ( $last ) {
 			case 'g': $s *= 1024;
 			case 'm': $s *= 1024;
