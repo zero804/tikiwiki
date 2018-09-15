@@ -1795,10 +1795,14 @@ a.flipmodtitle .icon {
   padding-left: 1.3em;
 }
 .modcontrols {
-  display: block;
+  visibility: hidden;
   float: right;
-  width: 64px;
-  height: 16px;
+}
+.modcontrols > div > button.btn-link {
+  padding: 0;
+}
+.module:hover .modcontrols {
+  visibility: visible;
 }
 .box-minichat {
   width: 100%;
