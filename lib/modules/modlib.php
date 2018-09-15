@@ -723,22 +723,26 @@ class ModLib extends TikiLib
 		return false;
 	}
 
-    /**
-     * @param $user
-     * @param array $module_zones
-     * @return array
-     */
-    private function get_raw_module_list_for_user( $user, array $module_zones )
+	/**
+	 * @param       $user
+	 * @param array $module_zones
+	 *
+	 * @return array
+	 * @throws Exception
+	 */
+	private function get_raw_module_list_for_user($user, array $module_zones)
 	{
-		global $prefs, $tiki_p_configure_modules;
+		global $prefs;
 		$usermoduleslib = TikiLib::lib('usermodules');
 
 		$out = array_fill_keys(array_values($module_zones), array());
 
 		if ( ! empty($prefs['module_file']) ) {
 			$out = array_merge($out, $this->read_module_file($prefs['module_file']));
-		} elseif ( $prefs['user_assigned_modules'] == 'y'
-			&& $tiki_p_configure_modules == 'y'
+		} elseif ($prefs['user_assigned_modules'] == 'y'
+			//need to use Perms class instead of $tiki_p_configure_modules global as the global is null
+			//for some reason when feature_modulecontrols is not set
+			&& Perms::get()->configure_modules
 			&& $user
 			&& $usermoduleslib->user_has_assigned_modules($user) ) {
 
