@@ -22,11 +22,13 @@ class Email
 	 */
 	public static function sendSchedulerNotification($subjectTpl, $txtTpl, $scheduler)
 	{
-		global $prefs;
-
+		$tikilib = \TikiLib::lib('tiki');
 		$smarty = \TikiLib::lib('smarty');
+
 		$smarty->assign('schedulerName', $scheduler->name);
-		$smarty->assign('stalledTimeout', $prefs['scheduler_stalled_timeout']);
+		$smarty->assign('siteName', $tikilib->get_preference('browsertitle'));
+		$smarty->assign('stalledTimeout', $tikilib->get_preference('scheduler_stalled_timeout'));
+		$smarty->assign('healingTimeout', $tikilib->get_preference('scheduler_healing_timeout'));
 
 		// Need to fetch users with email address listed
 		$userlib = \TikiLib::lib('user');
