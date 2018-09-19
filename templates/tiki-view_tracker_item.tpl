@@ -79,6 +79,11 @@
 						</li>
 					{/if}
 				{/if}
+				<li>
+					{if $prefs.user_favorites eq 'y' and isset($itemId)}
+						{favorite button_classes="favorite-icon" label="{tr}Favorite{/tr}"  type="trackeritem" object=$itemId }
+					{/if}
+				</li>
 			</ul>
 			{if $js == 'n'}</li></ul>{/if}
 		</div>
