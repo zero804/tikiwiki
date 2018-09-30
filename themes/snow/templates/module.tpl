@@ -6,7 +6,7 @@
 {if !empty($module_params.topclass)}<div class="{$module_params.topclass}">{/if}
 {if $module_nobox neq 'y'}
 	{if !isset($moduleId)}{assign var=moduleId value=' '}{/if}
-	<div id="module_{$moduleId}" class="clearfix panel panel-default box-{$module_name}{if $module_type eq 'cssmenu'} cssmenubox{/if} module"{if !empty($tpl_module_style)} style="{$tpl_module_style}"{/if}>
+	<div id="module_{$moduleId}" class="panel panel-default box-{$module_name}{if $module_type eq 'cssmenu'} cssmenubox{/if} module"{if !empty($tpl_module_style)} style="{$tpl_module_style}"{/if}>
 	{if $module_decorations ne 'n'}
         <div class="panel-heading">
 		<h3 class="panel-title" {if !empty($module_params.bgcolor)} style="background-color:{$module_params.bgcolor};"{/if}>
@@ -46,7 +46,7 @@
 	{/if}
 		<div id="mod-{$smarty.capture.name}" style="display: {if !isset($module_display) or $module_display}block{else}none{/if};{$module_params.style}" class="clearfix panel-body{if !empty($module_params.class)} {$module_params.class}{/if}">
 {else}{* $module_nobox eq 'y' *}
-		<div id="module_{$moduleId}" style="{$module_params.style}{$tpl_module_style}" class="clearfix module{if !empty($module_params.class)} {$module_params.class}{/if} box-{$module_name} clearfix">
+		<div id="module_{$moduleId}" style="{$module_params.style}{$tpl_module_style}" class="module{if !empty($module_params.class)} {$module_params.class}{/if} box-{$module_name} clearfix">
 			<div id="mod-{$smarty.capture.name}">
 {/if}
 {$module_content}

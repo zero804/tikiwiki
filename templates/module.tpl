@@ -8,7 +8,7 @@
     {if $module_nobox neq 'y'}
     {if !isset($moduleId)}{assign var=moduleId value=' '}{/if}
     <div id="module_{$moduleId}"
-         class="clearfix panel panel-default box-{$module_name}{if $module_type eq 'cssmenu'} cssmenubox{/if} module"{if !empty($tpl_module_style)} style="{$tpl_module_style}"{/if}>
+         class="panel panel-default box-{$module_name}{if $module_type eq 'cssmenu'} cssmenubox{/if} module"{if !empty($tpl_module_style)} style="{$tpl_module_style}"{/if}>
         {if $module_decorations ne 'n'}
             <div class="panel-heading">
                 {if ($module_notitle ne 'y' && !empty($module_title)) || ($module_flip eq 'y' and $prefs.javascript_enabled ne 'n') || $prefs.menus_items_icons eq 'y'}
@@ -58,7 +58,7 @@
                  class="clearfix panel-body{if !empty($module_params.class)} {$module_params.class}{/if}">
                 {else}{* $module_nobox eq 'y' *}
                 <div id="module_{$moduleId}" style="{$module_params.style}{$tpl_module_style}"
-                     class="clearfix module{if !empty($module_params.class)} {$module_params.class}{/if} box-{$module_name}">
+                     class="module{if !empty($module_params.class)} {$module_params.class}{/if} box-{$module_name}">
                     <div id="mod-{$smarty.capture.name}">
                         {/if}
                         {$module_content}
