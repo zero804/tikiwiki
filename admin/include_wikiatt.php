@@ -43,12 +43,11 @@ if ($access->ticketMatch()) {
 			}
 		}
 	}
-
-	if (isset($_REQUEST['find'])) {
-		$find = $_REQUEST['find'];
-	}
 }
 
+if (isset($_REQUEST['find'])) {
+	$find = $_REQUEST['find'];
+}
 if (isset($_REQUEST['offset'])) {
 	$offset = $_REQUEST['offset'];
 }
