@@ -157,6 +157,8 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 
 				if ($new || ($calitemId != $this->getCalendarItemId())) {    // added a new one or changed event id?
 					$this->setCalendarItemId($calitemId);
+				} else if ($event['start'] != $value) {
+					$value = (int) $event['start'];
 				}
 			}
 			//$itemInfo = $calendarlib->get_item($calitemId);
