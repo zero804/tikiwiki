@@ -613,6 +613,7 @@ function cs_design_input($id, $fieldname, $fieldid, $arguments, $default, &$scri
 		}
 
 		customsearch.add($(this).attr('id'), filter);
+		customsearch.offset = 0;
 	});
 
 	if (config['default'] || $(field).attr('type') === 'hidden') {
