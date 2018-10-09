@@ -3,6 +3,7 @@
 	<form action="tiki-admin.php?page=wikiatt" method="post">
 		{ticket}
 		<input type="text" name="find" value="{$find|escape}">
+		<input type="hidden" name="redirect" value="0">
 		<input type="submit" class="btn btn-default btn-sm timeout" name="action" value="{tr}Find{/tr}">
 	</form>
 
