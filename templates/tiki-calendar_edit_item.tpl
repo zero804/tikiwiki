@@ -405,7 +405,7 @@
 				</div> <!-- / .row -->
 			{/if}{* end recurrence *}
 			<div class="row mt-md-3 form-group date">
-				<label class="col-form-label col-sm-3">{tr}Start{/tr}</label>
+				<label class="control-label col-sm-3">{tr}Start{/tr}</label>
 				{if $edit}
 					<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}5{else}4{/if} start">
 						{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}
@@ -440,7 +440,7 @@
 				{/if}
 			</div> <!-- / .form-group -->
 			<div class="row mt-md-3 form-group date">
-				<label class="col-form-label col-sm-3">{tr}End{/tr}</label>
+				<label class="control-label col-sm-3">{tr}End{/tr}</label>
 				{if $edit}
 					<input type="hidden" name="save[end_or_duration]" value="end" id="end_or_duration">
 					<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}5{else}4{/if} end ">
@@ -455,7 +455,7 @@
 							{html_select_time prefix="end_" display_seconds=false time=$calitem.end minute_interval=$prefs.calendar_minute_interval use_24_hours=$use_24hr_clock class='form-control date nochosen'}
 						</div>
 					{/if}
-					<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}7{else}4{/if} duration time" style="display:none;">
+					<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}5{else}4{/if} duration time" style="display:none;">
 						{html_select_time prefix="duration_" display_seconds=false time=$calitem.duration|default:'01:00' minute_interval=$prefs.calendar_minute_interval class='form-control date nochosen'}
 					</div>
 					<div class="col-sm-2 time">
