@@ -3712,12 +3712,6 @@ class TikiLib extends TikiDb_Bridge
 			return false;
 		}
 
-		$menulib = TikiLib::lib('menu');
-		$menulib->empty_menu_cache();
-
-		$cachelib = TikiLib::lib('cache');
-		$cachelib->invalidate('global_preferences');
-
 		$preferences = $this->table('tiki_preferences');
 		$preferences->insertOrUpdate(['value' => is_array($value) ? serialize($value) : $value], ['name' => $name]);
 
@@ -3730,6 +3724,14 @@ class TikiLib extends TikiDb_Bridge
 				$prefs[$name] = $value;
 			}
 		}
+
+		// Invalidate cache only after writing to DB to avoid other processes to cache the old info
+		$menulib = TikiLib::lib('menu');
+		$menulib->empty_menu_cache();
+
+		$cachelib = TikiLib::lib('cache');
+		$cachelib->invalidate('global_preferences');
+
 		return true;
 	}
 
