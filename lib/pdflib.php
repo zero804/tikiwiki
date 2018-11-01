@@ -347,12 +347,12 @@ class PdfGenerator
 		foreach ($pdfPages as $pdfPage) {
 			if (strip_tags(trim($pdfPage['pageContent'])) != '') {
 				//checking header and footer
-				if ($pdfPage['header'] == "off") {
+				if (trim(strtolower($pdfPage['header'])) == "off") {
 					$header = "";
 				} else {
 					$pdfPage['header'] == '' ? $header = $pdfSettings['header'] : $header = $pdfPage['header'];
 				}
-				if ($pdfPage['footer'] == "off") {
+				if (trim(strtolower($pdfPage['footer'])) == "off") {
 					$footer = "";
 				} elseif ($pdfPage['footer']) {
 					$footer = $pdfPage['footer'];
@@ -397,8 +397,8 @@ class PdfGenerator
 		$mpdf->setWatermarkText($pdfSettings['watermark']);
 		$mpdf->SetWatermarkImage($pdfSettings['watermark_image'], 0.15, '');
 		//resetting header,footer and watermark to blank
-		$mpdf->SetHeader($pdfSettings['header']);
-		$mpdf->SetFooter($pdfSettings['footer']);
+		trim(strtolower($pdfSettings['header']))=="off"?$mpdf->SetHeader():$mpdf->SetHeader(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"),$pdfSettings['header']));
+		trim(strtolower($pdfSettings['footer']))=="off"?$mpdf->SetFooter():$mpdf->SetFooter(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"),$pdfSettings['footer']));
 		$this->clearTempImg($tempImgArr);
 		return $mpdf->Output('', 'S');					// Return as a string
 	}
