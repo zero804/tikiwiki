@@ -428,6 +428,7 @@ function wikiplugin_listpages($data, $params)
 	if (!empty($showPageAlias) && $showPageAlias == 'y')
 		$smarty->assign_by_ref('showPageAlias', $showPageAlias);
 	if (isset($showNameOnly) && $showNameOnly == 'y') {
+		$smarty->assign_by_ref('listpages', $listpages['data']);
 		$ret = $smarty->fetch('wiki-plugins/wikiplugin_listpagenames.tpl');
 	} else {
 		if (!empty($start) || !empty($end) || $length > 0) {
