@@ -174,7 +174,7 @@
 						<form action="tiki-install.php#mail" method="post" role="form">
 							<div class="form-group">
 								<label for="email_test_to">{tr}Test email:{/tr}</label>
-								<input type="text" size="40" name="email_test_to" id="email_test_to" value="{if isset($email_test_to)}{$email_test_to}{/if}" placeholder="{tr}tiki@example.com{/tr}">
+								<input type="text" size="40" name="email_test_to" id="email_test_to"  value="{if isset($email_test_to)}{$email_test_to|escape}{/if}" placeholder="{tr}tiki@example.com{/tr}">
 								{if isset($email_test_err)}<span class="attention"><em>{$email_test_err}</em></span>
 								{else}<em>{tr}Email address to send test to.{/tr}</em>{/if}
 								<br><br>
