@@ -382,16 +382,43 @@ class Smarty_Tiki extends Smarty
 	}
 	/**
 	 * Returns the file path associated to the template name
+	 * Check if the path is a template inside one of the template dirs and not an arbitrary file
 	 * @param $template
 	 * @return string
 	 */
 	function get_filename($template)
 	{
-		if (preg_match('/^[a-z]+\:/', $template) || file_exists($template)) {
+		if (substr($template, 0, 5) === 'file:') {
+			$template = substr($template, 5);
+		}
+
+		// could be extends: or something else?
+		if (preg_match('/^[a-z]+\:/', $template)) {
 			return $template;
 		}
+
         //get the list of template directories
-        $dirs = $this->getTemplateDir();
+		$dirs = array_merge(
+			$this->getTemplateDir(),
+			array_map('realpath', $this->security_policy->secure_dir)
+		);
+
+		// sanity check
+		if (file_exists($template)) {
+			$valid_path = false;
+			foreach ($dirs as $dir) {
+				if (strpos(realpath($template), realpath($dir)) === 0) {
+					$valid_path = true;
+					break;
+				}
+			}
+			if (! $valid_path) {
+				$error = tr("Invalid template name: %0", $template);
+				TikiLib::lib('errorreport')->report($error);
+				return "";
+			}
+			return $template;
+		}
 
         //go through directories in search of the template
         foreach ($dirs as $dir){
