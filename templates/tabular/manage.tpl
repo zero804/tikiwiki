@@ -7,10 +7,10 @@
 {block name="navigation"}
 	<div class="form-group row">
 		{permission name=admin_trackers}
-			<a class="btn btn-primary" href="{service controller=tabular action=create}">{icon name=create} {tr}New{/tr}</a>
-			<a class="btn btn-primary" href="{service controller=tabular action=create_tracker}">{icon name=import} {tr}Create tracker from File{/tr}</a>
+			<a class="btn btn-link" href="{service controller=tabular action=create}">{icon name=create} {tr}New{/tr}</a>
+			<a class="btn btn-link" href="{service controller=tabular action=create_tracker}">{icon name=import} {tr}Create Tracker from File{/tr}</a>
 		{/permission}
-		<a class="btn btn-primary" href={''|sefurl:'tracker'}>{icon name=trackers} {tr}Trackers{/tr}</a>
+		<a class="btn btn-link" href={''|sefurl:'tracker'}>{icon name=trackers} {tr}Trackers{/tr}</a>
 	</div>
 {/block}
 
