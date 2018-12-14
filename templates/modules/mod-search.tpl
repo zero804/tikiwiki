@@ -131,11 +131,11 @@
 					{if $smod_params.compact eq "y"}
 						{jq}
 $(".search_mod_magnifier").mouseover( function () {
-	$(".search_mod_buttons", $(this).parent().parent())
-	.show('fast')
-	.mouseleave( function () {
-		$(this).hide('fast');
-	});
+	$(".search_mod_buttons", $(this).parents(".module"))
+		.show('fast')
+		.mouseleave( function () {
+			$(this).hide('fast');
+		});
 }).click( function () {
 	$(this).parents("form").submit();
 });
