@@ -259,7 +259,6 @@ class Search_Elastic_QueryBuilder
 					"query" => mb_strtolower($value),
 					"boost" => $node->getWeight(),
 					"operator" => "and",
-					"type" => "phrase",
 				],
 			]];
 		}
