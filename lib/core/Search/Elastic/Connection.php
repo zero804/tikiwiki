@@ -65,7 +65,7 @@ class Search_Elastic_Connection
 	}
 
 	/**
-	 * gets the elasticsearch version e.g. 2.2.0
+	 * gets the elasticsearch version string, e.g. 2.2.0
 	 *
 	 * @return float
 	 */
