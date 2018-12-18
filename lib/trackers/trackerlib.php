@@ -1240,6 +1240,9 @@ class TrackerLib extends TikiLib
 					case '*':
 					case 'q':
 					case 'n':
+					case 'f':	// DateTime
+					case 'j':	// JsCalendar
+					case 'CAL':	// CalendarItem
 						$numsort = true;
 						break;
 					case 'l':
@@ -1511,6 +1514,7 @@ class TrackerLib extends TikiLib
 			$csort_mode = "`" . $csort_mode . "`";
 			if ($csort_mode == '`itemId`') {
 				$csort_mode = 'tti.`itemId`';
+				$numsort = true;
 			}
 			$sort_tables = '';
 			$cat_tables = '';
