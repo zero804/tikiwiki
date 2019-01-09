@@ -188,7 +188,7 @@ function smarty_function_button($params, $smarty)
 		);
 	}
 
-	$type = isset($params['_type']) ? 'btn-' .$params['_type'] : '';
+	$type = isset($params['_type']) ? $params['_type'] : 'btn-primary';
 
 	$auto_query_args = $auto_query_args_orig;
 	$html = preg_replace('/<a /', '<a class="btn ' . $type . ' ' . $class . '" data-role="button" data-inline="true" ' . $id . ' ', $html);
