@@ -650,6 +650,10 @@ function iconset_default()
 				'id' => 'heading',
 				'size' => '.8'
 			],
+			'hacker-news' => [
+				'id' => 'hacker-news',
+				'prepend' => 'fab fa-'
+			],
 			'help' => [
 				'id' => 'question-circle',
 			],
@@ -660,6 +664,10 @@ function iconset_default()
 			//history in defaults
 			'horizontal-rule' => [
 				'id' => 'minus',
+			],
+			'houzz' => [
+				'id' => 'houzz',
+				'prepend' => 'fab fa-'
 			],
 			'html' => [
 				'id' => 'html5',
@@ -679,10 +687,54 @@ function iconset_default()
 			'information' => [
 				'id' => 'info-circle',
 			],
+			'instagram' => [
+				'id' => 'instagram',
+				'prepend' => 'fab fa-'
+			],
+			'internet-explorer' => [
+				'id' => 'internet-explorer',
+				'prepend' => 'fab fa-'
+			],
+			'ioxhost' => [
+				'id' => 'ioxhost',
+				'prepend' => 'fab fa-'
+			],
 			//italic in defaults
+			'java' => [
+				'id' => 'java',
+				'prepend' => 'fab fa-'
+			],
+			'joomla' => [
+				'id' => 'joomla',
+				'prepend' => 'fab fa-'
+			],
+			'js' => [
+				'id' => 'js',
+				'prepend' => 'fab fa-'
+			],
+			'jsfiddle' => [
+				'id' => 'jsfiddle',
+				'prepend' => 'fab fa-'
+			],
 			'keyboard' => [
 				'id' => 'keyboard',
 				'prepend' => 'far fa-'
+			],
+			'lastfm' => [
+				'id' => 'lastfm',
+				'prepend' => 'fab fa-'
+			],
+			'lastfm-square' => [
+				'id' => 'lastfm-square',
+				'prepend' => 'fab fa-'
+			],
+			'less' => [
+				'id' => 'less',
+				'prepend' => 'fab fa-'
+			],
+			'leanpub' => [
+				'id' => 'leanpub',
+				'prepend' => 'fab fa-'
 			],
 			'like' => [
 				'id' => 'thumbs-up',
@@ -693,6 +745,18 @@ function iconset_default()
 			],
 			'link-external-alt' => [
 				'id' => 'external-link-square-alt',
+			],
+			'linkedin' => [
+				'id' => 'linkedin',
+				'prepend' => 'fab fa-'
+			],
+			'linkedin-in' => [
+				'id' => 'linkedin-in',
+				'prepend' => 'fab fa-'
+			],
+			'linux' => [
+				'id' => 'linux',
+				'prepend' => 'fab fa-'
 			],
 			//list in defaults
 			'list-numbered' => [
@@ -756,6 +820,14 @@ function iconset_default()
 				'id' => 'inbox',
 			],
 			//map in defaults
+			'maxcdn' => [
+				'id' => 'maxcdn',
+				'prepend' => 'fab fa-'
+			],
+			'medium' => [
+				'id' => 'medium',
+				'prepend' => 'fab fa-'
+			],
 			'menu' => [
 				'id' => 'bars',
 			],
@@ -768,12 +840,24 @@ function iconset_default()
 			'merge' => [
 				'id' => 'random',
 			],
+			'microsoft' => [
+				'id' => 'microsoft',
+				'prepend' => 'fab fa-'
+			],
 			'minimize' => [
 				'id' => 'compress',
 			],
 			//minus in defaults
+			'mixcloud' => [
+				'id' => 'mixcloud',
+				'prepend' => 'fab fa-'
+			],
 			'module' => [
 				'id' => 'cogs',
+			],
+			'modx' => [
+				'id' => 'modx',
+				'prepend' => 'fab fa-'
 			],
 			'money' => [
 				'id' => 'money-bill',
@@ -800,6 +884,22 @@ function iconset_default()
 			],
 			'ok' => [
 				'id' => 'check-circle',
+			],
+			'opencart' => [
+				'id' => 'opencart',
+				'prepend' => 'fab fa-'
+			],
+			'openid' => [
+				'id' => 'openid',
+				'prepend' => 'fab fa-'
+			],
+			'opera' => [
+				'id' => 'opera',
+				'prepend' => 'fab fa-'
+			],
+			'optin-monster' => [
+				'id' => 'optin-monster',
+				'prepend' => 'fab fa-'
 			],
 			//outdent in defaults
 			'page-break' => [
@@ -1575,6 +1675,7 @@ function iconset_default()
 			'hacker-news',
 			'hacker-news-square',
 			'hackerrank',
+			'hammer',
 			'hamsa',
 			'hand-holding',
 			'hand-holding-heart',
@@ -1593,7 +1694,9 @@ function iconset_default()
 			'hands',
 			'hands-helping',
 			'handshake',
+			'hanukiah',
 			'hashtag',
+			'hat-wizard',
 			'haykal',
 			'hdd',
 			'heading',
@@ -1601,16 +1704,22 @@ function iconset_default()
 			'headphones-alt',
 			'headset',
 			'heart',
+			'heart-broken',
 			'heartbeat',
 			'helicopter',
 			'highlighter',
+			'hiking',
+			'hippo',
 			'hips',
 			'hire-a-helper',
 			'history',
 			'hockey-puck',
+			'holly-berry',
 			'home',
 			'hooli',
 			'hornbill',
+			'horse',
+			'horse-head',
 			'hospital',
 			'hospital-alt',
 			'hospital-symbol',
@@ -1621,7 +1730,9 @@ function iconset_default()
 			'hourglass-end',
 			'hourglass-half',
 			'hourglass-start',
+			'house-damage',
 			'houzz',
+			'hryvnia',
 			'html5',
 			'hubspot',
 			'i-cursor',
