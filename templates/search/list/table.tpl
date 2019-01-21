@@ -22,7 +22,7 @@
 				{if $actions}
 					{$fieldcount = 1}
 					<th>
-						<input type="checkbox" class="form-check-input" name="selectall" value="" class="listexecute-select-all">
+						<input type="checkbox" class="form-check-input listexecute-select-all" name="selectall" value="">
 						<input type="hidden" name="objects[]" value="" class="listexecute-all">
 					</th>
 				{/if}
