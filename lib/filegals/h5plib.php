@@ -260,7 +260,7 @@ class H5PLib
 			//$this->alter_assets($files, $preloaded_dependencies, $embed);
 
 			if ($embed === 'div') {
-				$this->enqueue_assets($files);
+				$this->enqueueAssets($files);
 			} elseif ($embed === 'iframe') {
 				self::$settings['contents'][$cid]['scripts'] = $core->getAssetsUrls($files['scripts']);
 				self::$settings['contents'][$cid]['styles'] = $core->getAssetsUrls($files['styles']);
@@ -381,7 +381,7 @@ class H5PLib
 	 *
 	 * @param array $assets
 	 */
-	public function enqueue_assets(&$assets)
+	public function enqueueAssets(&$assets)
 	{
 		$rel_url = \H5P_H5PTiki::$h5p_path;
 
@@ -588,7 +588,9 @@ class H5PLib
 			'ajaxPath' => $ajaxPath,
 			'libraryUrl' => $url,
 			'copyrightSemantics' => $contentvalidator->getCopyrightSemantics(),
+			'metadataSemantics' => $contentvalidator->getMetadataSemantics(),
 			'assets' => $assets,
+			'apiVersion' => H5PCore::$coreApi,
 		];
 
 		if ($id !== null) {
