@@ -1459,4 +1459,26 @@ GROUP BY l.`name`, l.`major_version`, l.`minor_version`');
 	{
 		// TODO: Implement getMessages() method.
 	}
+
+	/**
+	 * Load addon libraries
+	 *
+	 * @return array
+	 */
+	public function loadAddons()
+	{
+		// TODO: Implement loadAddons() method.
+	}
+
+	/**
+	 * Load config for libraries
+	 *
+	 * @param array $libraries
+	 *
+	 * @return array
+	 */
+	public function getLibraryConfig($libraries = null)
+	{
+		// TODO: Implement getLibraryConfig() method.
+	}
 }
