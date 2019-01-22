@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "96ed818d0d26b2fa300a5bc44f15cb4d",
+    "content-hash": "4cd6ca62bc6f737a31f505e3674f37be",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -4182,17 +4182,17 @@
         },
         {
             "name": "twbs/bootstrap",
-            "version": "v4.2.1",
+            "version": "v4.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "9e4e94747bd698f4f61d48ed54c9c6d4d199bd32"
+                "reference": "3b558734382ce58b51e5fc676453bfd53bba9201"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/twbs/bootstrap/twbs-bootstrap-9e4e94747bd698f4f61d48ed54c9c6d4d199bd32-zip-7f52df.zip",
-                "reference": "9e4e94747bd698f4f61d48ed54c9c6d4d199bd32",
-                "shasum": "23108f7d993e9f1e35445ac3f3ddd25037d0a4bb"
+                "url": "https://composer.tiki.org/dist/twbs/bootstrap/twbs-bootstrap-3b558734382ce58b51e5fc676453bfd53bba9201-zip-ae9408.zip",
+                "reference": "3b558734382ce58b51e5fc676453bfd53bba9201",
+                "shasum": "9a2e2536adcb04d8b20da9ac0f37f932302421ff"
             },
             "replace": {
                 "twitter/bootstrap": "self.version"
@@ -4229,7 +4229,7 @@
                 "sass",
                 "web"
             ],
-            "time": "2018-12-21T18:55:28+00:00"
+            "time": "2018-07-24T15:54:34+00:00"
         },
         {
             "name": "undojs/undojs",
@@ -7690,7 +7690,6 @@
         "candy-chat/xmpp-prebind-php": 20,
         "hesammousavi/bootstrap-v4-rtl": 20,
         "robicch/jquery-gantt": 20,
-        "twbs/bootstrap": 10,
         "zendframework/zendsearch": 20,
         "bafs/testify": 20
     },
