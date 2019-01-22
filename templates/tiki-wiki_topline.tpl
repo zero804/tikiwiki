@@ -89,7 +89,7 @@
 							{icon name="structure"}
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" role="menu">
-							<h6 class="dropdown-title">
+							<h6 class="dropdown-header">
 								{tr}Structures{/tr}
 							</h6>
 							<div class="dropdown-divider"></div>
@@ -125,6 +125,10 @@
 						{icon name="cog"}
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">
+						<h6 class="dropdown-header">
+							{tr}Page actions{/tr}
+						</h6>
+						<div class="dropdown-divider"></div>
 						{if $pdf_export eq 'y' and $pdf_warning eq 'n'}
 							<a class="dropdown-item" href="tiki-print.php?{query _keepall='y' display="pdf" page=$page}">
 								{icon name="pdf"} {tr} PDF{/tr}
