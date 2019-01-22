@@ -9,7 +9,7 @@
 					{icon name="history"}
 				</a>
 				<div class="dropdown-menu" role="menu">
-					<h6 class="dropdown-title">
+					<h6 class="dropdown-header">
 						{tr}Recent Preferences{/tr}
 					</h6>
 					<div class="dropdown-divider"></div>
@@ -26,17 +26,20 @@
 				<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 					{icon name='menu-extra'}
 				</a>
-				<div class="dropdown-menu">
-					<h6 class="dropdown-title">
+				<div class="dropdown-menu dropdown-menu-right">
+					<h6 class="dropdown-header">
 						{tr}Quick Administration{/tr}
 					</h6>
-					<div class="dropdown-item mb-2 mt-4">
+					<div class="dropdown-divider"></div>
+					<div class="dropdown-item mb-2 mt-2">
 						<form method="post" action="tiki-admin.php" class="form-inline my-2 my-md-0 ml-auto" role="form">
 							<div class="input-group">
 								<input type="text" name="lm_criteria" value="{$smarty.request.lm_criteria|escape}" class="form-control form-control-sm" placeholder="Search preferences...">
-								<button type="submit" class="btn btn-primary btn-sm input-group-append">
-									<span class="icon icon-search fas fa-search fa-fw "></span>
-								</button>
+								<div class="input-group-append">
+									<button type="submit" class="btn btn-primary btn-sm">
+										<span class="icon icon-search fas fa-search fa-fw "></span>
+									</button>
+								</div>
 							</div>
 						</form>
 					</div>
