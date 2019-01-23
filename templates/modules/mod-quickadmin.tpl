@@ -24,7 +24,7 @@
 			<div class="btn-group">
 				{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 				<a class="btn dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#">
-					{icon name='hammer'}
+					{icon name='cogs'}
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">
 					<h6 class="dropdown-header">
