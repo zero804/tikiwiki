@@ -5,7 +5,7 @@
 		<div id="quickadmin" class="btn-group">
 			<div class="btn-group">
 				{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-				<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#">
 					{icon name="history"}
 				</a>
 				<div class="dropdown-menu" role="menu">
@@ -23,7 +23,7 @@
 			</div>
 			<div class="btn-group">
 				{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-				<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#">
 					{icon name='hammer'}
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">
