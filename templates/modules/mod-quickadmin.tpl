@@ -48,7 +48,7 @@
 						{icon name="wizard"} {tr}Wizards{/tr}
 					</a>
 					<a class="dropdown-item" href="tiki-admin.php">
-							{icon name="cog"} {tr}Control panels{/tr}
+							{icon name="cogs"} {tr}Control panels{/tr}
 					</a>
 					<a class="dropdown-item" href="tiki-admin.php?page=look">
 						{icon name="image"} {tr}Themes{/tr}
@@ -94,7 +94,7 @@
 							{icon name="log"} {tr}Logs{/tr}
 						</a>
 						<a class="dropdown-item" href="tiki-admin_modules.php">
-							{icon name="module"} {tr}Modules{/tr}
+							{icon name="admin_module"} {tr}Modules{/tr}
 						</a>
 					{if $prefs.feature_scheduler eq "y"}
 						<a class="dropdown-item" href="tiki-admin_schedulers.php">
