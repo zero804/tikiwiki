@@ -96,6 +96,6 @@ input[type="submit"]:hover,
 .topbar .nav > li > a {
   color: #666;
 }
-    
-.topbar .bg-light { background: transparent !important; }
 
+.topbar .bg-light,
+.topbar .bg-dark { background: transparent !important; }
