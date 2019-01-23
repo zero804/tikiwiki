@@ -97,7 +97,5 @@ input[type="submit"]:hover,
   color: #666;
 }
     
-/*.topbar .cssmenu_horiz {
-    line-height: 0;
-}*/
+.topbar .bg-light { background: transparent !important; }
 
