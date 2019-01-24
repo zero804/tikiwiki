@@ -160,6 +160,7 @@
 						{preference name=feature_wiki_rankings}
 						{preference name=feature_wiki_ratings}
 						{preference name=feature_sandbox}
+						{preference name=wiki_date_field}
 						{preference name=feature_wiki_use_date}
 						<div class="adminoptionboxchild" id="feature_wiki_use_date_links">
 							{preference name=feature_wiki_use_date_links}
