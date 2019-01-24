@@ -599,14 +599,14 @@ class H5PLib
 		}
 
 		// Decode parameters input
-		$params = json_decode($content['params']);
+		$params = json_decode($content['params'], true);
 		if ($params === null) {
 			$core->h5pF->setErrorMessage(tr('Invalid content parameters.'));
 			return false;
 		}
 
-		$content['params'] = json_encode($params->params);
-		$content['metadata'] = $params->metadata;
+		$content['params'] = json_encode($params['params']);
+		$content['metadata'] = $params['metadata'];
 
 		// Trim title and check length
 		$content['title'] = $input->title->text();
@@ -666,7 +666,7 @@ class H5PLib
 
 		// Move images to parmanent storage and find all required content dependencies
 		$editor = \H5P_EditorTikiStorage::get_h5peditor_instance();
-		$editor->processParameters($content['id'], $content['library'], $params->params, $oldLibrary, $oldParams);
+		$editor->processParameters($content['id'], $content['library'], $params['params'], $oldLibrary, $oldParams);
 
 		// export the project into the new file gallery file
 		$content['file_id'] = $fileId;
