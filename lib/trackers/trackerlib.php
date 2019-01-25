@@ -6268,7 +6268,7 @@ class TrackerLib extends TikiLib
 		return array_filter(
 			array_map(function ($user) {
 				return trim($user);
-			}, str_getcsv($value))
+			}, is_array($value) ? $value : str_getcsv($value))
 		);
 	}
 }
