@@ -403,7 +403,7 @@
 	{/if}
 	<br>
 	{if !$editFileId}
-		<div class="col-md-8 col-md-offset-4">
+		<div class="col-md-12">
 			{remarksbox type="note" title="{tr}Information{/tr}"}
 				{tr}Maximum file size is around:{/tr}
 				{if $tiki_p_admin eq 'y'}<a title="|{$max_upload_size_comment}" class="btn btn-link tips">{/if}
