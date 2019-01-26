@@ -24,8 +24,6 @@
 			{$headerlib->add_jsfile("lib/jquery_tiki/tiki-connect.js")}
 
 			{assign var="provideFeedback" value="y" scope="root"}
-		{else}
-
 		{/if}
 	{/if}
 	<div class="col">
