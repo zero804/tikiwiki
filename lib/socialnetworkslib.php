@@ -20,6 +20,14 @@ $logslib = TikiLib::lib('logs');
  */
 class SocialNetworksLib extends LogsLib
 {
+	/**
+	 * Latest Facebook API version for accessing graph.facebook.com
+	 * Documentation says it's best to specify the version, otherwise the oldest version is used
+	 * Will need to be updated whenever the API version is updated
+	 *
+	 * @var string
+	 */
+	private $graphVersion = 'v3.2';
 
 	/**
 	 * @var	array	options for Twitter Zend functions
@@ -170,9 +178,9 @@ class SocialNetworksLib extends LogsLib
 		if (strpos($url, '?') != 0) {
 			$url = preg_replace('/\?.*/', '', $url);
 		}
-		$url = urlencode($url.'?request_facebook');
-		$url = 'https://www.facebook.com/v2.0/dialog/oauth?client_id=' . $prefs['socialnetworks_facebook_application_id'] .
-			'&scope=' . $scope . '&redirect_uri='.$url;
+		$url = urlencode($url . '?request_facebook');
+		$url = 'https://www.facebook.com/' . $this->graphVersion . '/dialog/oauth?client_id='
+			. $prefs['socialnetworks_facebook_application_id'] . '&scope=' . $scope . '&redirect_uri=' . $url;
 		header("Location: $url");
 		die();
 	}
@@ -193,31 +201,40 @@ class SocialNetworksLib extends LogsLib
 			return false;
 		}
 
-		$url = '/v2.0/oauth/access_token?client_id=' . $prefs['socialnetworks_facebook_application_id'] .
-			'&redirect_uri=' . $this->getURL() .'&client_secret=' . $prefs['socialnetworks_facebook_application_secr']; // code is already in the url
+		// code parameter provided by Facebook is already in the url
+		$url = '/' . $this->graphVersion . '/oauth/access_token?client_id='
+			. $prefs['socialnetworks_facebook_application_id']
+			. '&redirect_uri=' . $this->getURL() . '&client_secret='
+			. $prefs['socialnetworks_facebook_application_secr'];
+		//try socket first
+		$fp = fsockopen('ssl://graph.facebook.com', 443, $errno, $errstr);
+		if ($fp) {
+			$request = "GET $url HTTP/1.1\r\n" .
+				"Host: graph.facebook.com\r\n" .
+				"Accept: */*\r\n" .
+				"Expect: 100-continue\r\n" .
+				"Connection: close\r\n\r\n";
 
-
-		$request = "GET $url HTTP/1.1\r\n".
-			"Host: graph.facebook.com\r\n".
-			"Accept: */*\r\n".
-			"Expect: 100-continue\r\n".
-			"Connection: close\r\n\r\n";
-
-		$fp = fsockopen('ssl://graph.facebook.com', 443);
-		if ($fp === false) {
-			$this->add_log('getFacebookAccessToken', "can't connect");
-			return false;
-		} else {
 			fputs($fp, $request);
 			$ret = '';
-			while (!feof($fp)) {
+			while (! feof($fp)) {
 				$ret .= fgets($fp, 128);
 			}
 			fclose($fp);
-		}
-		$ret = preg_split('/(\r\n\r\n|\r\r|\n\n)/', $ret, 2);
-		$ret = $ret[1];
+			$ret = preg_split('/(\r\n\r\n|\r\r|\n\n)/', $ret, 2);
+			$ret = $ret[1];
+		} elseif (function_exists('curl_init')) {
+			// try cURL
+			$url = 'https://graph.facebook.com' . $url;
+			$ch = curl_init();
 
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+			$ret = curl_exec($ch);
+			curl_close($ch);
+		}
 		$json_decoded_ret = json_decode($ret, true);
 
 		if (isset($json_decoded_ret['access_token']) || substr($ret, 0, 13) == 'access_token=') {
@@ -623,7 +640,7 @@ class SocialNetworksLib extends LogsLib
 	}
 
 	/**
-	 * Talking to Facebook via the graph api at "https://graph.facebook.com/" using fsockopen
+	 * Talking to Facebook via the graph api at "https://graph.facebook.com/" using fsockopen or cURL
 	 *
 	 * @param	string	$user		userId of the user to send the request for
 	 * @param	string	$action		directory/file part of the graph api URL
@@ -656,10 +673,10 @@ class SocialNetworksLib extends LogsLib
 			$action .= "?$data";
 		}
 
-		$request = "$method /v2.0/$action HTTP/1.1\r\n".
-			"Host: graph.facebook.com\r\n".
-			"Accept: */*\r\n".
-			"Expect: 100-continue\r\n".
+		$request = "$method /$this->graphVersion/$action HTTP/1.1\r\n" .
+			"Host: graph.facebook.com\r\n" .
+			"Accept: */*\r\n" .
+			"Expect: 100-continue\r\n" .
 			"Connection: close\r\n";
 		if ($method == 'POST') {
 			$request .= "Content-type: application/x-www-form-urlencoded\r\n".
@@ -670,20 +687,37 @@ class SocialNetworksLib extends LogsLib
 			$request .= $data;
 		}
 
+		//try socket first
 		$fp = fsockopen('ssl://graph.facebook.com', 443);
-		if ($fp === false) {
-			$this->add_log('facebookGraph', "can't connect");
-			return false;
-		} else {
+		if ($fp) {
 			fputs($fp, $request);
 			$ret = '';
-			while (!feof($fp)) {
+			while (! feof($fp)) {
 				$ret .= fgets($fp, 128);
 			}
 			fclose($fp);
+			$ret = preg_split('/(\r\n\r\n|\r\r|\n\n)/', $ret, 2);
+			$ret = $ret[1];
+		} elseif (function_exists('curl_init')) {
+			// try cURL
+			$url = 'https://graph.facebook.com/' . $this->graphVersion . '/' .$action;
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			if ($method == 'POST') {
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+			}
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+			$ret = curl_exec($ch);
+			$curl_error = curl_error($ch);
+			curl_close($ch);
 		}
-		$ret = preg_split('/(\r\n\r\n|\r\r|\n\n)/', $ret, 2);
-		return $ret[1];
+		if (empty($ret) || ! empty($curl_error)) {
+			$msg = !empty($curl_error) ? ' ' . $curl_error : '';
+			$this->add_log('facebookGraph', tr('Cannot connect') . $msg);
+		}
+		return $ret;
 	}
 
 	/**
