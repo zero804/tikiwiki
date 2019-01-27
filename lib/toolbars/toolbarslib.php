@@ -61,6 +61,8 @@ abstract class Toolbar
 			return new ToolbarAdmin;
 		} elseif ($tagName == '-') {
 			return new ToolbarSeparator;
+		} elseif ($tagName == '|') {
+			return new ToolbarSpacer;
 		}
 	} // }}}
 
@@ -83,6 +85,7 @@ abstract class Toolbar
 			array_merge(
 				[
 					'-',
+					'|',
 					'bold',
 					'italic',
 					'underline',
@@ -284,6 +287,9 @@ abstract class Toolbar
 				break;
 			case 'Separator':
 				$tag = new ToolbarSeparator();
+				break;
+			case 'Spacer':
+				$tag = new ToolbarSpacer();
 				break;
 			case 'CkOnly':
 				$tag = new ToolbarCkOnly($tagName);
@@ -505,6 +511,21 @@ class ToolbarSeparator extends Toolbar
 	function getWikiHtml($areaId) // {{{
 	{
 		return '|';
+	} // }}}
+}
+
+class ToolbarSpacer extends Toolbar
+{
+	function __construct() // {{{
+	{
+		$this->setWysiwygToken('|')
+			->setIcon('img/trans.png')
+				->setType('Spacer');
+	} // }}}
+
+	function getWikiHtml($areaId) // {{{
+	{
+		return '||';
 	} // }}}
 }
 
@@ -2025,7 +2046,7 @@ class ToolbarsList
 				$thetags = $rtags;
 			}
 			foreach ($thetags as $tagName) {
-				if ($tagName == '-') {
+				if ($tagName === '-' || $tagName === '|') {
 					if (count($group)) {
 						$elements[$i][] = $group;
 						$group = [];
