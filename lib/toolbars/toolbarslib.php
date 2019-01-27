@@ -87,6 +87,7 @@ abstract class Toolbar
 					'italic',
 					'underline',
 					'strike',
+					'code',
 					'sub',
 					'sup',
 					'tikilink',
@@ -724,6 +725,13 @@ class ToolbarInline extends Toolbar
 				$iconname = 'strikethrough';
 				$wysiwyg = 'Strike';
 				$syntax = '--text--';
+				break;
+			case 'code':
+				$label = tra('Code');
+				$icon = tra('img/icons/page_white_code.png');
+				$iconname = 'code';
+				$wysiwyg = 'Code';
+				$syntax = '-+text+-';
 				break;
 			case 'nonparsed':
 				$label = tra('Non-parsed (wiki syntax does not apply)');
