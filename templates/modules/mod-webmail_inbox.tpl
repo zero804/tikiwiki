@@ -24,7 +24,7 @@
 						{/if}
 						{*icon _id='resultset_last' class=''*}
 					</div>
-					{if 0 and $prefs.feature_ajax}{* AJAX_TODO *}
+					{if $prefs.feature_ajax}
 						<a title="{tr}Refresh{/tr}" onclick="doRefreshWebmail(0, true);return false;">
 							{icon name='refresh' iclass='webmail_refresh_icon icon'}
 							{icon name='index' iclass='webmail_refresh_busy icon' istyle='display:none'}
@@ -65,14 +65,21 @@
 								</a>
 							{elseif $module_params.mode eq 'groupmail'}
 								<span class="mod_webmail_date">{$date_short}</span>&nbsp;
-								{if !empty($webmail_list[ix].operator)}
+{*								<pre>{$webmail_list[ix]|var_dump}</pre>*}
+								{if not empty($webmail_list[ix].operator)}
 									{if $webmail_list[ix].operator eq $user}
-										<a class="button mod_webmail_action webmail_taken" onclick="doPutBackWebmail({$webmail_list[ix].msgid})" href="#">{$webmail_list[ix].operator}</a>&nbsp;
+										<a class="btn btn-outline-secondary btn-sm tips mod_webmail_action webmail_taken" title="|{tr}Put this item back{/tr}" onclick="doPutBackWebmail({$webmail_list[ix].msgid}); return false;" href="#">
+											{$webmail_list[ix].operator}
+										</a>
+										&nbsp
 									{else}
-										<span class="button mod_webmail_action webmail_taken">{$webmail_list[ix].operator}</span>&nbsp;
+										<span class="btn btn-outline-secondary btn-sm tips mod_webmail_action webmail_taken" title="|{tr _0=$webmail_list[ix].operator}Taken by %0{/tr}">
+											{$webmail_list[ix].operator}
+										</span>&nbsp;
 									{/if}
 								{else}
-									<a class="button mod_webmail_action" onclick="doTakeWebmail({$webmail_list[ix].msgid})" href="#">{tr}TAKE{/tr}</a>&nbsp;
+									<a class="btn btn-outline-secondary btn-sm tips mod_webmail_action" title="|{tr}Take this email{/tr}" onclick="doTakeWebmail({$webmail_list[ix].msgid}); return false;" href="#">{tr}TAKE{/tr}</a>
+									&nbsp;
 								{/if}
 								{if $sender.contactId gt 0}
 									{if !empty($sender.wikiPage)}
