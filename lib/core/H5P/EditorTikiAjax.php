@@ -50,8 +50,8 @@ class H5P_EditorTikiAjax implements H5PEditorAjaxInterface
 
 		$out = [];
 
-		foreach ($results as $row) {
-			$out[] = $row;
+		foreach ($results->result as $row) {
+			$out[] = json_decode(json_encode($row));	// convert to stdClass objects
 		}
 
 		return $out;
