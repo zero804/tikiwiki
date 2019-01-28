@@ -47,10 +47,10 @@
 						{assign var='subject' value=$webmail_list[ix].subject}
 						{assign var='sender' value=$webmail_list[ix].sender}
 						{assign var='class' value="webmail_item"}
-						{if $webmail_list[ix].isRead eq 'y'}{assign var=class value="$class webmail_read"}{/if}
+						{if $webmail_list[ix].isRead eq 'y'}{assign var=class value="$class webmail_read text-muted"}{/if}
 						{if $webmail_list[ix].isFlagged eq 'y'}{assign var=class value="$class webmail_flagged"}{/if}
 						{if $webmail_list[ix].isReplied eq 'y'}{assign var=class value="$class webmail_replied"}{/if}
-						<div class="{cycle values='odd,even'} {$class}">
+						<div class="{cycle values='odd,'} {$class}">
 							{if $module_params.mode eq 'webmail' or $module_params.mode eq ''}
 								{if $nonums != 'n'}
 									<span class="mod_numbers">{$smarty.section.ix.index_next})</span>&nbsp;
@@ -64,7 +64,7 @@
 									{/if}
 								</a>
 							{elseif $module_params.mode eq 'groupmail'}
-								<span class="mod_webmail_date">{$date_short}</span>&nbsp;
+								<span class="mod_webmail_date tips" title="|{$date_value}">{$date_short}</span>&nbsp;
 {*								<pre>{$webmail_list[ix]|var_dump}</pre>*}
 								{if not empty($webmail_list[ix].operator)}
 									{if $webmail_list[ix].operator eq $user}
