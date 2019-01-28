@@ -104,7 +104,9 @@ function wikiplugin_diagram($data, $params)
 	$smarty->assign('sourcepage', $sourcepage);
 	$smarty->assign('allow_edit', $allowEdit);
 	$smarty->assign('file_id', $fileId);
-	$smarty->assign('file_name', $info['name']);
+	if (! empty($info['name'])) {
+		$smarty->assign('file_name', $info['name']);
+	}
 
 	return '~np~' . $smarty->fetch('wiki-plugins/wikiplugin_diagram.tpl') . '~/np~';
 }
