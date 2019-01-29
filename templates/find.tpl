@@ -277,7 +277,9 @@
 		{/if}
 	</div>
 	{/if}
+	{if (!isset($map_only) or $map_only ne 'y') or (isset($gmapbuttons) && $gmapbuttons)}
 		<button type="submit" class="btn btn-default" style="text-align: right" name="search">{tr}Find{/tr}</button>
+	{/if}
 	</form>
 </div>
 <!-- End of find -->
