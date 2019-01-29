@@ -3593,6 +3593,11 @@ body.layout_social.tiki.navbar-padding {
 body.fullscreen.tiki.navbar-padding {
   padding-top: 0;
 }
+#col2 img,
+#col3 img {
+  max-width: 100%;
+  height: auto;
+}
 .panel-body ul.nav {
   overflow: visible;
 }
@@ -4606,18 +4611,6 @@ table.tablesorter thead tr.tablesorter-filter-row {
 .footnotearea {
   margin-top: 2em;
   font-size: 0.9em;
-  border-collapse:separate;
-  border-spacing: 0 0em;
-}
-.footnotearea div{
-  display: table-row;
-}
-.footnotearea span{
-  display: table-cell;
-  vertical-align: top;
-}
-.footnotearea span p{
-  margin: 0 !important;
 }
 .footnotearea .sameas {
   vertical-align: super;
