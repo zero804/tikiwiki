@@ -3335,9 +3335,15 @@ body > .ui-front {
   bottom: 3px;
   text-align: right;
 }
-div.olMap {
+
+.olMap {
   position: relative;
   display: block;
+}
+
+#col2 .olMap img,
+#col3 .olMap img {
+  max-width: none;
 }
 /*** ESSENTIAL STYLES ***/
 .cssmenu_horiz,
