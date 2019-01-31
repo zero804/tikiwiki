@@ -3101,7 +3101,7 @@ div.form-group label.error {
   background: #17a2b8; }
 
 .chosen-container .chosen-results li.active-result.text-muted.bg-info {
-  color: #fff; }
+  color: #fff !important; }
 
 .tiki .anythingSlider, .tiki .anythingWindow, .tiki .anythingBase, .tiki .anythingBase > .card {
   -webkit-box-sizing: content-box;
