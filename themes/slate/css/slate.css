@@ -7764,3 +7764,6 @@ body {
 
 body.fullscreen {
   background: #272b30; }
+
+.chosen-container .chosen-results li.active-result.result-selected, .chosen-container .chosen-results li.active-result.highlighted {
+  background-color: #3a3f44; }
