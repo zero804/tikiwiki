@@ -19,7 +19,7 @@ class H5PLib
 	 * @since 1.0.0
 	 * @var string
 	 */
-	const VERSION = '1.0.0';
+	const VERSION = '1.6.0';
 
 	private $H5PTiki = null;
 
@@ -64,7 +64,7 @@ class H5PLib
 				// TODO: What to do if the file isn't a valid H5P? Seems a bit drastic to delete the file – but then again, why would we host broken files?
 				// @unlink($interface->getUploadedH5pPath());
 
-				Feedback::error($validator->get);
+				Feedback::error(Feedback::get());
 			}
 		}
 	}
@@ -260,7 +260,7 @@ class H5PLib
 			//$this->alter_assets($files, $preloaded_dependencies, $embed);
 
 			if ($embed === 'div') {
-				$this->enqueue_assets($files);
+				$this->enqueueAssets($files);
 			} elseif ($embed === 'iframe') {
 				self::$settings['contents'][$cid]['scripts'] = $core->getAssetsUrls($files['scripts']);
 				self::$settings['contents'][$cid]['styles'] = $core->getAssetsUrls($files['styles']);
@@ -322,48 +322,26 @@ class H5PLib
 
 		$userId = TikiLib::lib('tiki')->get_user_id($user);
 
+		$core = H5P_H5PTiki::get_h5p_instance('core');
+		$h5p  = H5P_H5PTiki::get_h5p_instance('interface');
+
 		$settings = [
-			'baseUrl' => $base_url,
-			'url' => $base_url . \H5P_H5PTiki::$h5p_path,
+			'baseUrl'            => $base_url,
+			'url'                => $base_url . \H5P_H5PTiki::$h5p_path,
 			'postUserStatistics' => ($prefs['h5p_track_user'] === 'y') && $userId,
-			'ajax' => [
-				'setFinished' => 'tiki-ajax_services.php?controller=h5p&action=results',
+			'ajax'               => [
+				'setFinished'     => 'tiki-ajax_services.php?controller=h5p&action=results',
 				'contentUserData' => 'tiki-ajax_services.php?controller=h5p&action=userdata&contentId=:contentId&dataType=:dataType&subContentId=:subContentId',
 			],
-			'saveFreq' => $prefs['h5p_save_content_state'] === 'y' ? $prefs['h5p_save_content_frequency'] : false,
-			'siteUrl' => $base_url,
-			'l10n' => [
-				'H5P' => [
-					'fullscreen' => tra('Fullscreen'),
-					'disableFullscreen' => tra('Disable fullscreen'),
-					'download' => tra('Download'),
-					'copyrights' => tra('Rights of use'),
-					'embed' => tra('Embed'),
-					'size' => tra('Size'),
-					'showAdvanced' => tra('Show advanced'),
-					'hideAdvanced' => tra('Hide advanced'),
-					'advancedHelp' => tra('Include this script on your website if you want dynamic sizing of the embedded content:'),
-					'copyrightInformation' => tra('Rights of use'),
-					'close' => tra('Close'),
-					'title' => tra('Title'),
-					'author' => tra('Author'),
-					'year' => tra('Year'),
-					'source' => tra('Source'),
-					'license' => tra('License'),
-					'thumbnail' => tra('Thumbnail'),
-					'noCopyrights' => tra('No copyright information available for this content.'),
-					'downloadDescription' => tra('Download this content as a H5P file.'),
-					'copyrightsDescription' => tra('View copyright information for this content.'),
-					'embedDescription' => tra('View the embed code for this content.'),
-					'h5pDescription' => tra('Visit H5P.org to check out more cool content.'),
-					'contentChanged' => tra('This content has changed since you last used it.'),
-					'startingOver' => tra("You'll be starting over."),
-					'confirmDialogHeader' => tra('Confirm action'),
-					'confirmDialogBody' => tra('Please confirm that you wish to proceed. This action is not reversible.'),
-					'cancelLabel' => tra('Cancel'),
-					'confirmLabel' => tra('Confirm')
-				],
+			'saveFreq'           => $prefs['h5p_save_content_state'] === 'y' ? $prefs['h5p_save_content_frequency'] : false,
+			'siteUrl'            => $base_url,
+			'l10n'               => [
+				'H5P' => $core->getLocalization(),
 			],
+			'hubIsEnabled'       => $prefs['h5p_hub_is_enabled'] === 'y',
+			'reportingIsEnabled' => $prefs['h5p_enable_lrs_content_types'] === 'y',
+			'libraryConfig'      => $h5p->getLibraryConfig(),
+			'crossorigin'        => defined('H5P_CROSSORIGIN') ? H5P_CROSSORIGIN : null,
 		];
 
 		if ($userId) {
@@ -381,7 +359,7 @@ class H5PLib
 	 *
 	 * @param array $assets
 	 */
-	public function enqueue_assets(&$assets)
+	public function enqueueAssets(&$assets)
 	{
 		$rel_url = \H5P_H5PTiki::$h5p_path;
 
@@ -449,7 +427,7 @@ class H5PLib
 	 */
 	public function getContentSettings($content)
 	{
-		global $prefs;
+		global $prefs, $user;
 
 		$core = \H5P_H5PTiki::get_h5p_instance('core');
 
@@ -487,6 +465,9 @@ class H5PLib
 			'fileId' => $content['file_id'],
 		], $smarty);
 
+		// Getting author's user id
+		$userId = TikiLib::lib('tiki')->get_user_id($user);
+		$author_id = (is_array($content) ? $content['user_id'] : $userId);
 
 		// Add JavaScript settings for this content
 		$settings = [
@@ -498,19 +479,16 @@ class H5PLib
 			'resizeCode' => '<script src="vendor_bundled/vendor/h5p/h5p-core/js/h5p-resizer.js" charset="UTF-8"></script>',
 			'url' => $embedUrl,
 			'title' => $content['title'],
-			'disable' => $content['disable'],
+			'displayOptions' => $core->getDisplayOptionsForView($content['disable'], $author_id),
+			'metadata' => $content['metadata'],
 			'contentUserData' => [
 				0 => [
 					'state' => '{}',
 				],
 			],
-			'displayOptions' => [],
 		];
 
 		// Get preloaded user data for the current user
-		global $user;
-
-		$userId = TikiLib::lib('tiki')->get_user_id($user);
 
 		if ($prefs['h5p_save_content_state'] === 'y' && $userId) {
 			$results = json_decode(TikiLib::lib('user')->get_user_preference($user, "h5p_content_{$content['id']}"), true);
@@ -588,7 +566,9 @@ class H5PLib
 			'ajaxPath' => $ajaxPath,
 			'libraryUrl' => $url,
 			'copyrightSemantics' => $contentvalidator->getCopyrightSemantics(),
+			'metadataSemantics' => $contentvalidator->getMetadataSemantics(),
 			'assets' => $assets,
+			'apiVersion' => H5PCore::$coreApi,
 		];
 
 		if ($id !== null) {
@@ -611,12 +591,37 @@ class H5PLib
 		$oldLibrary = empty($content['library']) ? null : $content['library'];
 		$oldParams = empty($content['params']) ? null : $content['params'];
 
-		// Check title input
+		// Check parameters input
+		$content['params'] = $input->parameters->xss();
+		if (empty($content['params'])) {
+			$core->h5pF->setErrorMessage(tr('Missing content parameters.'));
+			return false;
+		}
+
+		// Decode parameters input
+		$params = json_decode($content['params'], true);
+		if ($params === null) {
+			$core->h5pF->setErrorMessage(tr('Invalid content parameters.'));
+			return false;
+		}
+
+		$content['params'] = json_encode($params['params']);
+		$content['metadata'] = $params['metadata'];
+
+		// Trim title and check length
 		$content['title'] = $input->title->text();
-		if (empty($content['title'])) {
+		$trimmed_title = empty($content['title']) ? '' : trim($content['title']);
+		if ($trimmed_title === '') {
 			$core->h5pF->setErrorMessage(tr('Missing title.'));
 			return false;
 		}
+
+		if (strlen($trimmed_title) > 255) {
+			$core->h5pF->setErrorMessage(tr('Title is too long. Must be 256 letters or shorter.'));
+			return false;
+		}
+
+		$content['title'] = $trimmed_title;
 
 		// Get content type chosen in editor
 		$content['library'] = $core->libraryFromString($input->library->text());
@@ -629,20 +634,6 @@ class H5PLib
 		$content['library']['libraryId'] = $core->h5pF->getLibraryId($content['library']['machineName'], $content['library']['majorVersion'], $content['library']['minorVersion']);
 		if (! $content['library']['libraryId']) {
 			$core->h5pF->setErrorMessage(tr("The chosen content type isn't installed."));
-			return false;
-		}
-
-		// Check parameters input
-		$content['params'] = $input->parameters->xss();
-		if (empty($content['params'])) {
-			$core->h5pF->setErrorMessage(tr('Missing content parameters.'));
-			return false;
-		}
-
-		// Decode parameters input
-		$params = json_decode($content['params']);
-		if ($params === null) {
-			$core->h5pF->setErrorMessage(tr('Invalid content parameters.'));
 			return false;
 		}
 
@@ -675,7 +666,7 @@ class H5PLib
 
 		// Move images to parmanent storage and find all required content dependencies
 		$editor = \H5P_EditorTikiStorage::get_h5peditor_instance();
-		$editor->processParameters($content['id'], $content['library'], $params, $oldLibrary, $oldParams);
+		$editor->processParameters($content['id'], $content['library'], $params['params'], $oldLibrary, $oldParams);
 
 		// export the project into the new file gallery file
 		$content['file_id'] = $fileId;
@@ -690,9 +681,7 @@ class H5PLib
 
 	  // Locate files
 		$result = TikiDb::get()->query(
-			'SELECT tf.`path`
-FROM `tiki_h5p_tmpfiles` tf
-WHERE tf.`created_at` < ?',
+			'SELECT tf.`path` FROM `tiki_h5p_tmpfiles` tf WHERE tf.`created_at` < ?',
 			$older_than
 		);
 
@@ -703,8 +692,7 @@ WHERE tf.`created_at` < ?',
 
 		// Remove from tmpfiles table
 		TikiDb::get()->query(
-			'DELETE FROM `tiki_h5p_tmpfiles`
-WHERE `created_at` < ?',
+			'DELETE FROM `tiki_h5p_tmpfiles` WHERE `created_at` < ?',
 			$older_than
 		);
 	}

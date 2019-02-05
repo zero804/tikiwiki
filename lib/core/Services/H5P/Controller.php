@@ -321,13 +321,25 @@ class Services_H5P_Controller
 			);
 		} else {
 			$results = $editor->getLibraries();
-			$results = json_decode($results, true);
+			$results = json_decode(json_encode($results), true);
 		}
 
 		return [
 			'title' => tr('H5P Content Libraries'),
 			'results' => $results,
 		];
+	}
+
+	function action_library_install($input) {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+			//$token = func_get_arg(1);
+			//if (! $this->isValidEditorToken($token)) return;
+
+			$editor = \H5P_EditorTikiStorage::get_h5peditor_instance();
+			$editor->ajax->action(H5PEditorEndpoints::LIBRARY_INSTALL, '', $input->id->text());
+			exit;
+		}
 	}
 
 	function action_files($input)
@@ -484,10 +496,30 @@ LEFT JOIN `users_users` AS u ON u.`userId` = r.`user_id`');
 		// Clean up old temporary files
 		TikiLib::lib('h5p')->removeOldTmpFiles();
 
+		// update libs from hub if set
+		$H5PTiki = new H5P_H5PTiki();
+		$H5PTiki->getLibraryUpdates();
+
 		// Check for metadata updates
 		$core = \H5P_H5PTiki::get_h5p_instance('core');
 		$core->fetchLibrariesMetadata();
 
 		return '';
+	}
+
+	/**
+	 * Called as content-type-cache from H5PEditorEndpoints::CONTENT_TYPE_CACHE ("-"s replaced for "_"s in editor.js)
+	 *
+	 * @param JitFilter $input
+	 *
+	 * @return null
+	 */
+	function action_content_type_cache($input)
+	{
+		$token = $input->token->text();
+
+		$editor = \H5P_EditorTikiStorage::get_h5peditor_instance();
+		$editor->ajax->action(H5PEditorEndpoints::CONTENT_TYPE_CACHE, $token);
+		exit;
 	}
 }

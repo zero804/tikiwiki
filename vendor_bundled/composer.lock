@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e798f7c496d6098085591e2aa92a594",
+    "content-hash": "3910686f38ba90ea7556b0606a885365",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -946,17 +946,17 @@
         },
         {
             "name": "h5p/h5p-core",
-            "version": "1.17.0",
+            "version": "1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-php-library.git",
-                "reference": "95901159d0e6e4649a6c6696f0a8e5d1c71035d4"
+                "reference": "85b278bd52bba4d6cc9d5a1a7dd8ba061742a5f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/h5p/h5p-core/h5p-h5p-core-95901159d0e6e4649a6c6696f0a8e5d1c71035d4-zip-c17407.zip",
-                "reference": "95901159d0e6e4649a6c6696f0a8e5d1c71035d4",
-                "shasum": "eb034e2bdaf1b5f0dec02ec82d8b2360e6b548f1"
+                "url": "https://composer.tiki.org/dist/h5p/h5p-core/h5p-h5p-core-85b278bd52bba4d6cc9d5a1a7dd8ba061742a5f2-zip-1ed031.zip",
+                "reference": "85b278bd52bba4d6cc9d5a1a7dd8ba061742a5f2",
+                "shasum": "1919a5fae845688690faa8f3a371637fac7787d1"
             },
             "require": {
                 "php": ">=5.3.0"
@@ -968,7 +968,8 @@
                     "h5p-development.class.php",
                     "h5p-file-storage.interface.php",
                     "h5p-default-storage.class.php",
-                    "h5p-event-base.class.php"
+                    "h5p-event-base.class.php",
+                    "h5p-metadata.class.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -998,21 +999,21 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2017-11-23T14:15:03+00:00"
+            "time": "2018-11-02T09:25:35+00:00"
         },
         {
             "name": "h5p/h5p-editor",
-            "version": "1.17.1",
+            "version": "1.18.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-editor-php-library.git",
-                "reference": "06e52c65be4323a721172ee7eb8b80908c4ce6be"
+                "reference": "86baa08f790481cd139bf37639b898dcaa35a157"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/h5p/h5p-editor/h5p-h5p-editor-06e52c65be4323a721172ee7eb8b80908c4ce6be-zip-18f35b.zip",
-                "reference": "06e52c65be4323a721172ee7eb8b80908c4ce6be",
-                "shasum": "86c8e87cfdd6ddc2cf171942eb8a698978b9f23b"
+                "url": "https://composer.tiki.org/dist/h5p/h5p-editor/h5p-h5p-editor-86baa08f790481cd139bf37639b898dcaa35a157-zip-943427.zip",
+                "reference": "86baa08f790481cd139bf37639b898dcaa35a157",
+                "shasum": "02e8cdd22d5369f1431c7dbf0ec00ceca351886a"
             },
             "require": {
                 "php": ">=5.3.0"
@@ -1055,7 +1056,7 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2018-01-22T12:39:38+00:00"
+            "time": "2018-11-22T09:12:19+00:00"
         },
         {
             "name": "itsjavi/bootstrap-colorpicker",
