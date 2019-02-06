@@ -145,20 +145,20 @@
 					$('input#submit_form_{{$id}}').prop('disabled', false);
 				}
 			}
-	var params = $(this).find('option:selected').data('input');
-	if( typeof params === "object" && typeof params[0] === "object") {
-	$("#list_input_container").load(
-	$.service('tracker', 'fetch_item_field', params[0]),
-	function () {
-	$(this).tiki_popover().applyChosen();
-	}
-	).show();
-	} else if( params ) {
+			var params = $(this).find('option:selected').data('input');
+			if( typeof params === "object" && typeof params[0] === "object") {
+				$("#list_input_container").load(
+					$.service('tracker', 'fetch_item_field', params[0]),
+					function () {
+						$(this).tiki_popover().applyChosen();
+					}
+				).show();
+			} else if( params ) {
 				$(this).siblings('input[name=list_input]').show();
-	$("#list_input_container").hide();
+				$("#list_input_container").hide();
 			} else {
 				$(this).siblings('input[name=list_input]').hide();
-	$("#list_input_container").hide();
+				$("#list_input_container").hide();
 			}
 		});
 	$( "#{{$id}}-div .checkbox_objects" ).on( "click", countChecked );
@@ -166,28 +166,24 @@
 	$('#listexecute-{{$iListExecute}}').submit(function(){
 		feedback(tr('Action is being executed, please wait.'));
 		$(this).tikiModal(" ");
-	var filters = $('#list_filter{{$iListExecute|replace:'wplistexecute-':''}} form').serializeArray(),
-	inp, i;
-	for(i = 0, l = filters.length; i < l; i++) {
-	inp = $('
-	<input type="hidden">
-	');
+		var filters = $('#list_filter{{$iListExecute|replace:'wplistexecute-':''}} form').serializeArray(),
+			inp, i;
+		for(i = 0, l = filters.length; i < l; i++) {
+			inp = $('<input type="hidden">');
 			inp.attr('name', filters[i].name);
 			inp.val(filters[i].value);
 			$('#listexecute-{{$iListExecute}}').append(inp);
 		}
-	var trackerInputs = $("input,select,textarea", "#list_input_container").serializeArray();
-	if (trackerInputs) {
-	for (i = 0; i < trackerInputs.length; i++) {
-	inp = $('
-	<input type="hidden">
-	');
-	inp.attr("name", "list_input~" + trackerInputs[i].name);    // add tracker inputs as an array "inside" list_input
-	inp.val(trackerInputs[i].value);
-	$('#listexecute-{{$iListExecute}}').append(inp);
-	}
-	$("#listexecute-{{$iListExecute}}").remove("input[list_input]");
-	}
+		var trackerInputs = $("input,select,textarea", "#list_input_container").serializeArray();
+		if (trackerInputs) {
+			for (i = 0; i < trackerInputs.length; i++) {
+				inp = $('<input type="hidden">');
+				inp.attr("name", "list_input~" + trackerInputs[i].name);	// add tracker inputs as an array "inside" list_input
+				inp.val(trackerInputs[i].value);
+				$('#listexecute-{{$iListExecute}}').append(inp);
+			}
+			$("#listexecute-{{$iListExecute}}").remove("input[list_input]");
+		}
 	});
 })();
 {/jq}
