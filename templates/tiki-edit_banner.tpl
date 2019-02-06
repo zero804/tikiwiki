@@ -214,7 +214,7 @@
 						{tr}Pixels{/tr}
 					</div>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-3 col-sm-offset-1">
 					<input type="text" name="movieHeight" value="{$movie.height|escape}" class="form-control" placeholder="{tr}height in pixels{/tr}">
 					<div class="help-block">
 						{tr}Pixels{/tr}
