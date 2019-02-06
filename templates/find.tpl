@@ -129,7 +129,7 @@
 		{/if}
 		{if isset($find_show_date_range) && $find_show_date_range eq 'y'}
 			<div class="form-group findDateFrom">
-				<label class="text-right col-sm-4">
+				<label class="control-label col-sm-4">
 					{tr}Date From{/tr}
 				</label>
 				<div class="col-sm-8">
@@ -137,7 +137,7 @@
 				</div>
 			</div>
 			<div class="form-group findDateTo">
-				<label class="text-right col-sm-4">
+				<label class="control-label col-sm-4">
 					{tr}Date To{/tr}
 				</label>
 				<div class="col-sm-8">
@@ -226,12 +226,12 @@
 		{if !empty($find_durations)}
 			{foreach key=key item=duration from=$find_durations}
 				<div class="form-group">
-				<label class="find_duration control-label col-sm-6">
-					{tr}{$duration.label}{/tr}
-				</label>
-				<div class="col-sm-6">
-					{html_select_duration prefix=$duration.prefix default=$duration.default default_unit=$duration.default_unit}
-				</div>
+					<label class="find_duration control-label col-sm-4">
+						{tr}{$duration.label}{/tr}
+					</label>
+					<div class="col-sm-8">
+						{html_select_duration prefix=$duration.prefix default=$duration.default default_unit=$duration.default_unit}
+					</div>
 				</div>
 			{/foreach}
 		{/if}
@@ -247,20 +247,20 @@
 		{/if}
 		{if !empty($find_other)}
 			<div class="form-group find-other">
-				<label class="find_other control-label col-sm-6" for="find_other">
+				<label class="find_other control-label col-sm-4" for="find_other">
 					{tr}{$find_other}{/tr}
 				</label>
-				<div class="col-sm-6">
+				<div class="col-sm-8">
 					<input type="text" name="find_other" id="find_other" value="{if !empty($find_other_val)}{$find_other_val|escape}{/if}" class="form-control input-sm">
 				</div>
 			</div>
 		{/if}
 		{if isset($find_show_num_rows) && $find_show_num_rows eq 'y'}
 			<div class="form-group findnumrows">
-				<label class="control-label col-sm-6" for="findnumrows">
+				<label class="control-label col-sm-4" for="findnumrows">
 					{tr}Displayed rows{/tr}
 				</label>
-				<div class="col-sm-6">
+				<div class="col-sm-8">
 					<input type="text" name="maxRecords" id="findnumrows" value="{$maxRecords|escape}" size="3" class="form-control input-sm">
 				</div>
 			</div>
