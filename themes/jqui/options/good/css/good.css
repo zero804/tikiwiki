@@ -28,6 +28,7 @@ a:focus {
 .open > .dropdown-toggle.btn-default {
   color: #395bb0;
   background-color: #2d4789;
+  background-image: none;
   border-color: #2a4382;
 }
 .btn-default:active:hover,
@@ -42,11 +43,6 @@ a:focus {
   color: #395bb0;
   background-color: #24396f;
   border-color: #1a2950;
-}
-.btn-default:active,
-.btn-default.active,
-.open > .dropdown-toggle.btn-default {
-  background-image: none;
 }
 .btn-default.disabled:hover,
 .btn-default[disabled]:hover,

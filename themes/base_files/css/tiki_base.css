@@ -1156,6 +1156,7 @@ div[style*="text-align: center"] .img-responsive {
 .open > .dropdown-toggle.btn-social.btn-facebook {
   color: #ffffff;
   background-color: #2d4373;
+  background-image: none;
   border-color: #23345a;
 }
 .btn-social.btn-facebook:active:hover,
@@ -1170,11 +1171,6 @@ div[style*="text-align: center"] .img-responsive {
   color: #ffffff;
   background-color: #23345a;
   border-color: #10182a;
-}
-.btn-social.btn-facebook:active,
-.btn-social.btn-facebook.active,
-.open > .dropdown-toggle.btn-social.btn-facebook {
-  background-image: none;
 }
 .btn-social.btn-facebook.disabled:hover,
 .btn-social.btn-facebook[disabled]:hover,
@@ -1213,6 +1209,7 @@ fieldset[disabled] .btn-social.btn-facebook.focus {
 .open > .dropdown-toggle.btn-social.btn-linkedin {
   color: #ffffff;
   background-color: #395d90;
+  background-image: none;
   border-color: #2f4d76;
 }
 .btn-social.btn-linkedin:active:hover,
@@ -1227,11 +1224,6 @@ fieldset[disabled] .btn-social.btn-facebook.focus {
   color: #ffffff;
   background-color: #2f4d76;
   border-color: #1c2e47;
-}
-.btn-social.btn-linkedin:active,
-.btn-social.btn-linkedin.active,
-.open > .dropdown-toggle.btn-social.btn-linkedin {
-  background-image: none;
 }
 .btn-social.btn-linkedin.disabled:hover,
 .btn-social.btn-linkedin[disabled]:hover,
@@ -3335,12 +3327,10 @@ body > .ui-front {
   bottom: 3px;
   text-align: right;
 }
-
 .olMap {
   position: relative;
   display: block;
 }
-
 #col2 .olMap img,
 #col3 .olMap img {
   max-width: none;
@@ -3563,10 +3553,9 @@ div.form-group label.error {
   -moz-box-sizing: content-box;
   box-sizing: content-box;
 }
-
 .tiki-h5p-edit .form-item-title {
-  display: none; }
-
+  display: none;
+}
 body:not(.fixed_width) .container {
   padding-left: 15px;
   padding-right: 15px;
@@ -4243,8 +4232,8 @@ table.tablesorter thead tr.tablesorter-filter-row {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   border: 1px solid #cccccc;
-  border-top-right-radius: 4px;
   border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
@@ -4309,8 +4298,8 @@ table.tablesorter thead tr.tablesorter-filter-row {
 .chosen-container-single .chosen-search input[type="text"] {
   background: url("../../../vendor_bundled/vendor/alxlit/bootstrap-chosen/chosen-sprite.png") no-repeat 100% -20px, #ffffff;
   border: 1px solid #cccccc;
-  border-top-right-radius: 4px;
   border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
@@ -4333,8 +4322,8 @@ table.tablesorter thead tr.tablesorter-filter-row {
 .chosen-container-multi .chosen-choices {
   background-color: #ffffff;
   border: 1px solid #cccccc;
-  border-top-right-radius: 4px;
   border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
@@ -4375,8 +4364,8 @@ table.tablesorter thead tr.tablesorter-filter-row {
   background-clip: padding-box;
   background-color: #eeeeee;
   border: 1px solid #cccccc;
-  border-top-right-radius: 4px;
   border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
@@ -4833,7 +4822,7 @@ div.tiki_plugin {
 }
 @media (max-width: 767px) {
   .autotoc > .nav {
-    display: none !important;
+    position: static;
   }
 }
 /* end autotoc */
@@ -5511,6 +5500,7 @@ h6:hover .heading-link {
 .open > .dropdown-toggle.tiki #conversejs .button-primary {
   color: #ffffff;
   background-color: #286090;
+  background-image: none;
   border-color: #204d74;
 }
 .tiki #converse-embedded-chat .button-primary:active:hover,
@@ -5534,14 +5524,6 @@ h6:hover .heading-link {
   color: #ffffff;
   background-color: #204d74;
   border-color: #122b40;
-}
-.tiki #converse-embedded-chat .button-primary:active,
-.tiki #conversejs .button-primary:active,
-.tiki #converse-embedded-chat .button-primary.active,
-.tiki #conversejs .button-primary.active,
-.open > .dropdown-toggle.tiki #converse-embedded-chat .button-primary,
-.open > .dropdown-toggle.tiki #conversejs .button-primary {
-  background-image: none;
 }
 .tiki #converse-embedded-chat .button-primary.disabled:hover,
 .tiki #conversejs .button-primary.disabled:hover,
@@ -5597,6 +5579,7 @@ fieldset[disabled] .tiki #conversejs .button-primary.focus {
 .open > .dropdown-toggle.tiki #conversejs .button-secondary {
   color: #ffffff;
   background-color: #31b0d5;
+  background-image: none;
   border-color: #269abc;
 }
 .tiki #converse-embedded-chat .button-secondary:active:hover,
@@ -5620,14 +5603,6 @@ fieldset[disabled] .tiki #conversejs .button-primary.focus {
   color: #ffffff;
   background-color: #269abc;
   border-color: #1b6d85;
-}
-.tiki #converse-embedded-chat .button-secondary:active,
-.tiki #conversejs .button-secondary:active,
-.tiki #converse-embedded-chat .button-secondary.active,
-.tiki #conversejs .button-secondary.active,
-.open > .dropdown-toggle.tiki #converse-embedded-chat .button-secondary,
-.open > .dropdown-toggle.tiki #conversejs .button-secondary {
-  background-image: none;
 }
 .tiki #converse-embedded-chat .button-secondary.disabled:hover,
 .tiki #conversejs .button-secondary.disabled:hover,
@@ -5795,6 +5770,7 @@ fieldset[disabled] .tiki #conversejs .button-secondary.focus {
 .open > .dropdown-toggle.tiki #conversejs #controlbox .fancy-dropdown {
   color: #ffffff;
   background-color: #31b0d5;
+  background-image: none;
   border-color: #269abc;
 }
 .tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select:active:hover,
@@ -5836,20 +5812,6 @@ fieldset[disabled] .tiki #conversejs .button-secondary.focus {
   color: #ffffff;
   background-color: #269abc;
   border-color: #1b6d85;
-}
-.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select:active,
-.tiki #conversejs #controlbox #fancy-xmpp-status-select:active,
-.tiki #converse-embedded-chat #controlbox .fancy-dropdown:active,
-.tiki #conversejs #controlbox .fancy-dropdown:active,
-.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select.active,
-.tiki #conversejs #controlbox #fancy-xmpp-status-select.active,
-.tiki #converse-embedded-chat #controlbox .fancy-dropdown.active,
-.tiki #conversejs #controlbox .fancy-dropdown.active,
-.open > .dropdown-toggle.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select,
-.open > .dropdown-toggle.tiki #conversejs #controlbox #fancy-xmpp-status-select,
-.open > .dropdown-toggle.tiki #converse-embedded-chat #controlbox .fancy-dropdown,
-.open > .dropdown-toggle.tiki #conversejs #controlbox .fancy-dropdown {
-  background-image: none;
 }
 .tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select.disabled:hover,
 .tiki #conversejs #controlbox #fancy-xmpp-status-select.disabled:hover,
