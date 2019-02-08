@@ -1115,15 +1115,19 @@ function update_changelog_file($newVersion)
 			}
 
 			if (preg_match('/^Version (\d+)\.(\d+)/', $buffer, $versionMatches)) {
-				$lastReleaseNumber = $versionMatches[1] . '.' . $versionMatches[2];
-				if ($lastReleaseNumber == $newVersion) {
-					// The changelog file already contains log for the same final version
-					$sameFinalVersion = true;
-					$skipBuffer = true;
+				$versionString = $versionMatches[1] . '.' . $versionMatches[2];
+				if ((float) $lastReleaseNumber < (float) $versionString) {
+					$lastReleaseNumber = $versionString;
+					if ($lastReleaseNumber === $newVersion) {
+						// The changelog file already contains log for the same final version
+						$sameFinalVersion = true;
+						$skipBuffer = true;
+					}
+					$parseLogs = true;
+					$lastReleaseMajorNumber = $versionMatches[1];
 				}
-				$parseLogs = true;
-				$lastReleaseMajorNumber = $versionMatches[1];
-			} elseif ($parseLogs) {
+			}
+			if ($parseLogs) {
 				$matches = [];
 				if (preg_match('/^r(\d+) \|/', $buffer, $matches)) {
 					$skipBuffer = false;
@@ -1160,6 +1164,11 @@ function update_changelog_file($newVersion)
 
 	$return = ['nbCommits' => 0, 'sameFinalVersion' => $sameFinalVersion];
 	$matches = [];
+
+	if ($minRevision === 0) { // failed to get the last rev from the old file contents
+		$minRevision = get_tag_revision($lastReleaseNumber);
+	}
+
 	if ($minRevision > 0) {
 		if (preg_match_all('/^r(\d+) \|.*\n\n(.*)\-{46}/Ums', get_logs('.', $minRevision), $matches, PREG_SET_ORDER)) {
 			foreach ($matches as $logEntry) {
@@ -1171,7 +1180,7 @@ function update_changelog_file($newVersion)
 
 				// Add log entries only if they were not already listed (same revision number or same log message) in the previous version
 				if (! isset($lastReleaseLogs[$logEntry[1]]) && ! in_array("\n" . $logEntry[2], $lastReleaseLogs)) {
-					$newChangelog .= $logEntry[0] . "\n";
+					$newChangelog .= str_replace("\n\n", "\n", $logEntry[0]) . "\n";
 
 					$lastReleaseLogs[] = "\n" . $logEntry[2];
 					if ($return['nbCommits'] == 0) {
