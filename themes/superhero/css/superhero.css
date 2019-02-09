@@ -7105,18 +7105,20 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .tiki .ui-state-active a, .tiki .ui-state-active a:link, .tiki .ui-state-active a:visited {
     color: #ebebeb; }
   .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
-    border: 1px solid #4e5d6c;
+    border: 1px solid;
+    border-color: #4e5d6c;
     background: #2b3e50;
     font-weight: 400;
     color: #df691a; }
   .tiki .ui-state-active, .tiki .ui-widget-content .ui-state-active, .tiki .ui-widget-header .ui-state-active, .tiki a.ui-button:active, .tiki .ui-button:active, .tiki .ui-button.ui-state-active:hover {
-    border: 1px solid #4e5d6c #4e5d6c #4e5d6c;
-    border-bottom-width: 0;
+    border: 1px solid;
+    border-color: #4e5d6c #4e5d6c #4e5d6c;
     background: #2b3e50;
     font-weight: 400;
     color: #ebebeb; }
   .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
-    border: 1px solid #ebebeb;
+    border: 1px solid;
+    border-color: #ebebeb;
     background: #2b3e50;
     font-weight: normal;
     color: #ebebeb;
