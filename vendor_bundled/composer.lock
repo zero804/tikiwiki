@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4cd6ca62bc6f737a31f505e3674f37be",
+    "content-hash": "aea9ec37cc1ea84cddf67df3aeef56a6",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -3405,17 +3405,17 @@
         },
         {
             "name": "sorich87/bootstrap-tour",
-            "version": "v0.12.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sorich87/bootstrap-tour.git",
-                "reference": "1a06475e27f852bb642b9353574638d51673b0d5"
+                "reference": "65a49742e131d19f41e3f5bf63588995f7b8a9e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sorich87/bootstrap-tour/sorich87-bootstrap-tour-1a06475e27f852bb642b9353574638d51673b0d5-zip-c047fa.zip",
-                "reference": "1a06475e27f852bb642b9353574638d51673b0d5",
-                "shasum": "d3d538b9d49daced2a2b1f3e55aa9dc67856a833"
+                "url": "https://composer.tiki.org/dist/sorich87/bootstrap-tour/sorich87-bootstrap-tour-65a49742e131d19f41e3f5bf63588995f7b8a9e0-zip-ceae01.zip",
+                "reference": "65a49742e131d19f41e3f5bf63588995f7b8a9e0",
+                "shasum": "11a836a7b93481dd8c7b63e734210b1895a0f5b9"
             },
             "type": "component",
             "notification-url": "https://packagist.org/downloads/",
@@ -3428,7 +3428,7 @@
                 "bootstrap",
                 "tour"
             ],
-            "time": "2017-09-30T10:35:18+00:00"
+            "time": "2018-11-29T16:30:52+00:00"
         },
         {
             "name": "studio-42/elfinder",
@@ -7696,6 +7696,7 @@
         "candy-chat/xmpp-prebind-php": 20,
         "hesammousavi/bootstrap-v4-rtl": 20,
         "robicch/jquery-gantt": 20,
+        "sorich87/bootstrap-tour": 20,
         "zendframework/zendsearch": 20,
         "bafs/testify": 20
     },
