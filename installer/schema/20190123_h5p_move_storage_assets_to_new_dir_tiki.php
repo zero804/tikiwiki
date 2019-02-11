@@ -29,7 +29,5 @@ function upgrade_20190123_h5p_move_storage_assets_to_new_dir_tiki($installer)
 			}
 
 		}
-	} else {
-		trigger_error(tr('H5P assets move script: Directory storage/public not writable'));
 	}
 }
