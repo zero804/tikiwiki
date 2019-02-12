@@ -157,6 +157,7 @@ CREATE TABLE `tiki_articles` (
   `created` int(14) default NULL,
   `heading` text,
   `body` text,
+  `hash` varchar(32) default NULL,
   `author` varchar(200) default NULL,
   `nbreads` int(14) default NULL,
   `votes` int(8) default NULL,
