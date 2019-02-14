@@ -375,6 +375,7 @@ class ArtLib extends TikiLib
 			'list_image_y' => (int) $list_image_y,
 			'heading' => $heading,
 			'body' => $body,
+			'hash' => $hash,
 			'publishDate' => (int) $publishDate,
 			'expireDate' => (int) $expireDate,
 			'author' => $user,
