@@ -348,6 +348,7 @@ class ArtLib extends TikiLib
 		if ($expireDate < $publishDate) {
 			$expireDate = $publishDate;
 		}
+		$hash = md5($title . $heading . $body);
 		if (empty($imgdata) || $useImage === 'n') {	// remove image data if not using it
 			$imgdata = '';
 		}
