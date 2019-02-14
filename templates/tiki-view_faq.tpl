@@ -2,10 +2,10 @@
 <div class="description form-text">{$faq_info.description|escape}</div>
 
 <div class="t_navbar btn-group form-group row">
-	{self_link print='y' _icon_name='print' _menu_text='y' _menu_icon='y'}
+	{self_link print='y' _class='btn btn-info' _icon_name='print' _menu_text='y' _menu_icon='y'}
 		{tr}Print{/tr}
 	{/self_link}
-	{button href="tiki-list_faqs.php" class="btn btn-info" _text="{tr}List FAQs{/tr}"}
+	{button href="tiki-list_faqs.php" _type='btn btn-info' _text="{tr}List FAQs{/tr}"}
 
 	{if $tiki_p_admin_faqs eq 'y'}
 		{button href="tiki-list_faqs.php?faqId=$faqId" class="btn btn-primary" _text="{tr}Edit this FAQ{/tr}"}
