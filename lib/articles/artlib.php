@@ -241,6 +241,7 @@ class ArtLib extends TikiLib
 		}
 
 		$notificationlib = TikiLib::lib('notification');
+		$hash = md5($title . $heading . $body);
 		$query = 'select `name` from `tiki_topics` where `topicId` = ?';
 		$topicName = $this->getOne($query, [(int) $topicId]);
 		$size = strlen($body);
