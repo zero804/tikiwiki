@@ -1,9 +1,8 @@
 <?php
-// (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
+// (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id$
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
@@ -11,7 +10,7 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 	exit;
 }
 
-$opcode_stats = TikiLib::lib('admin')->getOpcodeCacheStatus();
+$opcode_stats = $adminlib->getOpcodeCacheStatus();
 $stat_flag = $opcode_stats['stat_flag'];
 if ($stat_flag) {
 	$smarty->assign('stat_flag', $stat_flag);
@@ -25,34 +24,20 @@ $txtUsed = tr('Used');
 $txtAvailable = tr('Available');
 $smarty->assign(
 	'memory_graph',
-	$tikilib->httpScheme() . '://chart.googleapis.com/chart?' . http_build_query(
-		[
-			'cht' => 'p3',
-			'chs' => '250x100',
-			'chd' => "t:{$opcode_stats['memory_used']},{$opcode_stats['memory_avail']}",
-			'chl' => $txtUsed . '|' . $txtAvailable,
-			'chtt' => tr('Memory'),
-		],
-		'',
-		'&'
-	)
+    (array(
+			'data' => $opcode_stats['memory_used'].':'.$opcode_stats['memory_avail'],
+			'data_labels' => $txtUsed . '|' . $txtAvailable,
+	   ))
 );
 
 $txtHit = tr('Hit');
 $txtMiss = tr('Miss');
 $smarty->assign(
 	'hits_graph',
-	$tikilib->httpScheme() . '://chart.googleapis.com/chart?' . http_build_query(
-		[
-			'cht' => 'p3',
-			'chs' => '250x100',
-			'chd' => "t:{$opcode_stats['hit_hit']},{$opcode_stats['hit_miss']}",
-			'chl' => $txtHit . '|' . $txtMiss,
-			'chtt' => tr('Cache'),
-		],
-		'',
-		'&'
-	)
+        (array(
+			'data' => $opcode_stats['hit_hit'].':'.$opcode_stats['hit_miss'],
+			'data_labels' => $txtHit . ':' . $txtMiss,
+            ))
 );
 
 // realpath_cache_size can make considerable difference on php performance apparently
