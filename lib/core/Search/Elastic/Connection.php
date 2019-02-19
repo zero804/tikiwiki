@@ -128,12 +128,12 @@ class Search_Elastic_Connection
 		}
 
 		$index = implode(',', $indices);
-		return $this->get("/$index/_search?" . http_build_query($args, '', '&'), json_encode($query));
+		return $this->post("/$index/_search?" . http_build_query($args, '', '&'), json_encode($query));
 	}
 
 	function validate($index, array $query)
 	{
-		$result = $this->get("/$index/_validate/query?explain=true", json_encode(['query' => $query['query']]));
+		$result = $this->post("/$index/_validate/query?explain=true", json_encode(['query' => $query['query']]));
 		if (isset($result->valid) && $result->valid === false) {
 			foreach ($result->explanations as $explanation) {
 				if ($explanation->valid === false) {
