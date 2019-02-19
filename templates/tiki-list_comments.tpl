@@ -96,7 +96,7 @@
 				<a
 					class="tips"
 					title="{tr}Actions{/tr}"
-					href="#"
+					href="javascript:void(0)"
 					{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.over_actions}{/if}
 					style="padding:0; margin:0; border:0"
 				>
@@ -155,7 +155,7 @@
 				<a
 					class="tips"
 					title="{tr}More information{/tr}"
-					href="#"
+					href="javascript:void(0)"
 					{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.over_more_info}{/if}
 					style="padding:0; margin:0; border:0"
 				>

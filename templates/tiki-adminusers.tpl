@@ -287,7 +287,7 @@
 												{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
 												<a
 													class="tips"
-													title="{tr}Actions{/tr}" href="#"
+													title="{tr}Actions{/tr}" href="javascript:void(0)"
 													{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.user_actions}{/if}
 													style="padding:0; margin:0; border:0"
 												>

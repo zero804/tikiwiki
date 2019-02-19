@@ -63,7 +63,7 @@
 							<a
 								class="tips"
 								title="{tr}Actions{/tr}"
-								href="#"
+								href="javascript:void(0)"
 								{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.content_actions}{/if}
 								style="padding:0; margin:0; border:0"
 							>
