@@ -539,6 +539,13 @@ function iconset_default()
 			'file-archive-open' => [
 				'id' => 'folder-open',
 			],
+			'file-text' => [
+				'id' => 'file-alt'
+			],
+			'file-text-o' => [
+				'id' => 'file-alt',
+				'prepend' => 'far fa-'
+			],
 			//filter in defaults
 			'firefox' => [
 				'id' => 'firefox',
