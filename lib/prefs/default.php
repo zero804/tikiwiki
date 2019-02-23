@@ -92,5 +92,13 @@ function prefs_default_list()
 			'options' => $cals,
 			'default' => [],
 		],
+		'default_group_transitions'         => [
+			'name'         => tra('Group transition sets default'),
+			'description'  => tra("Sets the group transitioned to as the user's default group."),
+			'type'         => 'flag',
+			'help'         => 'Group+Transitions',
+			'default'      => 'n',
+			'dependencies' => ['feature_group_transition'],
+		],
 	];
 }
