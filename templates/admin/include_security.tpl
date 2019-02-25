@@ -72,6 +72,7 @@
 			{preference name=tiki_allow_trust_input}
 			{preference name=feature_quick_object_perms}
 			{preference name=zend_http_sslverifypeer}
+			{preference name=zend_http_use_curl}
 			{preference name=feature_debug_console}
 			<fieldset>
 				<legend>{tr}User Encryption{/tr}{help url="User Encryption"}</legend>
