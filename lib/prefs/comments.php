@@ -91,5 +91,12 @@ function prefs_comments_list()
 			'default' => 'y',
 			'dependencies' => [],
 		],
+		'comments_per_page'         => [
+			'name'         => tr('Number of comments per page'),
+			'type'         => 'text',
+			'filter'       => 'digits',
+			'default'      => 25,
+			'dependencies' => [],
+		],
 	];
 }
