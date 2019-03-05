@@ -1,6 +1,6 @@
 {remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}Please see the <a class='alert-link' target='tikihelp' href='http://dev.tiki.org/Performance'>Performance page</a> on Tiki's developer site.{/tr}{/remarksbox}
 
-<form class="admin" id="performance" name="performance" action="tiki-admin.php?page=performance" method="post">
+<form class="admin form-horizontal" id="performance" name="performance" action="tiki-admin.php?page=performance" method="post">
 	{ticket}
 	<div class="row">
 		<div class="form-group col-lg-12 clearfix">
@@ -21,7 +21,6 @@
 			{preference name=tiki_cdn_ssl}
 			{preference name=tiki_cdn_check}
 			{preference name=tiki_minify_css}
-			{preference name=tiki_prefix_css}
 			<div class="adminoptionboxchild" id="tiki_minify_css_childcontainer">
 				{preference name=tiki_minify_css_single_file}
 			</div>
@@ -114,7 +113,7 @@
 					</p>
 				{/if}
 				{if $opcode_stats.warning_check}
-					<p>{tr}Clear all APC caches:{/tr} {self_link apc_clear=true _onclick="confirmSimple(event,'{tr}Clear APC caches?{/tr}', '{ticket mode=get}')"}{tr}Clear Caches{/tr}{/self_link}</p>
+					<p>{tr}Clear all APC caches:{/tr} {self_link apc_clear=true}{tr}Clear Caches{/tr}{/self_link}</p>
 				{/if}
 			{else}
 				{tr}Bytecode cache is not used. Using a bytecode cache (OPcache, APC, XCache, WinCache) is highly recommended for production environments.{/tr}
@@ -196,8 +195,6 @@
 
 		{tab name="{tr}Time and Memory Limits{/tr}"}
 			<br>
-			{preference name=allocate_memory_php_execution}
-			{preference name=allocate_time_php_execution}
 			{preference name=allocate_memory_tracker_export_items}
 			{preference name=allocate_time_tracker_export_items}
 			{preference name=allocate_time_tracker_clear_items}
