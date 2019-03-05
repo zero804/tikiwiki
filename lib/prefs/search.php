@@ -90,6 +90,9 @@ function prefs_search_list()
 			'filter' => 'digits',
 			'units' => tra('facet results'),
 			'default' => '10',
+			'dependencies' => [
+				'search_use_facets',
+			],
 		],
 		'search_index_outdated' => [
 			'name' => tra('Search index outdated'),
@@ -113,6 +116,18 @@ function prefs_search_list()
 			'type' => 'flag',
 			'packages_required' => ['media-alchemyst/media-alchemyst' => 'MediaAlchemyst\Alchemyst'],
 			'default' => 'n',
+		],
+		'search_excluded_facets' => [
+			'name' => tra('Excluded facets'),
+			'description' => tra('List of facets (a.k.a. aggregations) to exclude from the default search results'),
+			'hint' => 'For example: object_type,title_initial,title_firstword,tracker_field_userName',
+			'type' => 'text',
+			'filter' => 'word',
+			'separator' => ',',
+			'default' => [],
+			'dependencies' => [
+				'search_use_facets',
+			],
 		],
 	];
 }
