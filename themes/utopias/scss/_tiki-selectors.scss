@@ -129,3 +129,6 @@ li.menuoption a {
 	color: #555555;
 }
 
+.card-body a.btn-primary:hover {
+	color: color-yiq(theme-color("primary"));
+}
