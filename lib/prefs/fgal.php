@@ -653,5 +653,14 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 			'options' => $showOptions,
 			'default' => '',
 		],
+		'fgal_convert_documents_pdf' => [
+			'name' => tra('View or export office documents as PDF'),
+			'description' => tra('If enabled allows to view documents without download or to export documents as PDF files'),
+			'type' => 'flag',
+			'keywords' => 'convert files documents pdf',
+			'default' => 'n',
+			'tags' => ['basic'],
+			'packages_required' => ['media-alchemyst/media-alchemyst' => 'Unoconv\Unoconv'],
+		],
 	];
 }
