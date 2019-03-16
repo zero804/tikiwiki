@@ -145,8 +145,8 @@ $js = "(function()
 
 			// Main
 			var ui = new EditorUi(new Editor(urlParams['chrome'] == '0', themes));
-			var xml = `{$xmlDiagram}`;
-			handleXmlData(ui.editor.graph, `{$xmlDiagram}`);
+			var xml = '{$xmlDiagram}';
+			handleXmlData(ui.editor.graph, '{$xmlDiagram}');
 
 		}, function()
 		{
