@@ -6,8 +6,8 @@
 // $Id$
 
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-       header("location: index.php");
-       exit;
+	header("location: index.php");
+	exit;
 }
 
 /**
@@ -17,7 +17,7 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function upgrade_20190218_add_back_article_hash_column_tiki($installer)
 {
-       if (empty($installer->query("SHOW COLUMNS FROM `tiki_articles` LIKE 'hash';")->result)) {
-               $installer->query("ALTER TABLE `tiki_articles` ADD COLUMN `hash` VARCHAR(32) DEFAULT NULL AFTER `body`;");
-       }
+	if (empty($installer->query("SHOW COLUMNS FROM `tiki_articles` LIKE 'hash';")->result)) {
+		$installer->query("ALTER TABLE `tiki_articles` ADD COLUMN `hash` VARCHAR(32) DEFAULT NULL AFTER `body`;");
+	}
 }
