@@ -1,5 +1,5 @@
 <?php
-// (c) Copyright 2002-2017 by authors of the Tiki Wiki CMS Groupware Project
+// (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
@@ -20,6 +20,9 @@ use TWVersion;
 class CheckSchemaUpgrade
 {
 	const DB_URL_TEMPLATE = 'http://tiki.org/ci_%d.sql';
+
+	const DB_OLD = 'OLD';
+	const DB_NEW = 'NEW';
 
 	/**
 	 * @var string Tiki root folder
@@ -117,7 +120,7 @@ class CheckSchemaUpgrade
 			$this->printMessage('Updating database 1 from previous major to version ' . $tikiVersion->getVersion());
 			$this->runDatabaseUpdate();
 
-			$this->scrubDbCleanThingsThatShouldChange($dbConnectionOld, $this->oldDb);
+			$this->scrubDbCleanThingsThatShouldChange($dbConnectionOld, $this->oldDb, self::DB_OLD);
 
 			//
 			// Run clean db install
@@ -127,7 +130,7 @@ class CheckSchemaUpgrade
 			$dbConnectionNew = $this->prepareDb($this->newDb);
 			$this->runDatabaseInstall();
 
-			$this->scrubDbCleanThingsThatShouldChange($dbConnectionNew, $this->newDb);
+			$this->scrubDbCleanThingsThatShouldChange($dbConnectionNew, $this->newDb, self::DB_NEW);
 
 			//
 			// Compare the DBS
@@ -157,7 +160,7 @@ class CheckSchemaUpgrade
 	{
 		$this->printMessageError("\n" . 'How to execute this command:');
 		$this->printMessage(
-			'php check_schema_upgrade [-v] [-p] [-m=<major>] --db1=<user:pass@host:db> --db2=<user:pass@host:db>'
+			'php check_schema_upgrade [-v] [-p] [-e=<MyISAM|InnoDB>] [-m=<major>] --db1=<user:pass@host:db> --db2=<user:pass@host:db>'
 		);
 		$this->printMessage('db1 and db2 are the databases to be used to load the schema');
 		$this->printMessageError('!! Both databases will be erased !!' . "\n");
@@ -222,13 +225,14 @@ class CheckSchemaUpgrade
 		$this->previousMajor = $this->getOption($options, 'm', 'major');
 		$this->verbose = $this->getOption($options, 'v', 'verbose') === false ? true : false;
 		$this->ignorePreferenceChanges = $this->getOption($options, 'p', 'preferences') === false ? false : true;
+		$this->useInnoDB = strtolower($this->getOption($options, 'e', 'engine')) === 'myisam' ? false : true;
 
 		$this->oldDbRaw = $this->getOption($options, null, 'db1');
 		$result = $this->parseDbRaw($this->oldDbRaw);
 		$this->oldDb = $result;
 
 		if ($result === null) {
-			$this->printMessageError('Wrong value for db1, check the the right format bellow');
+			$this->printMessageError('Wrong value for db1, check the the right format below');
 			$this->usage();
 			throw new Exception('Wrong db1');
 		}
@@ -238,7 +242,7 @@ class CheckSchemaUpgrade
 		$this->newDb = $result;
 
 		if ($result === null) {
-			$this->printMessageError('Wrong value for db2, check the right format bellow');
+			$this->printMessageError('Wrong value for db2, check the right format below');
 			$this->usage();
 			throw new Exception('Wrong db2');
 		}
@@ -445,6 +449,8 @@ class CheckSchemaUpgrade
 					if ($this->useInnoDB) {
 						// Convert all MyISAM statments to InnoDB
 						$statement = str_ireplace("MyISAM", "InnoDB", $statement);
+					} else {
+						$statement = str_ireplace("InnoDB", "MyISAM", $statement);
 					}
 
 					if ($dbConnection->exec($statement) === false) {
@@ -523,12 +529,13 @@ class CheckSchemaUpgrade
 	 *
 	 * @param PDO $dbConnection
 	 * @param array $dbConfig
+	 * @param string $whatDb OLD|NEW
 	 */
-	protected function scrubDbCleanThingsThatShouldChange($dbConnection, $dbConfig)
+	protected function scrubDbCleanThingsThatShouldChange($dbConnection, $dbConfig, $whatDb)
 	{
-		// clean index rebuild related tables
+		// clean index rebuild related tables and tables marked as unused
 		$statement = $dbConnection->prepare(
-			"SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = :db AND TABLE_NAME LIKE 'index_%'"
+			"SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = :db AND (TABLE_NAME LIKE 'index_%' OR TABLE_NAME LIKE 'zzz_unused_%')"
 		);
 		$result = $statement->execute([':db' => $dbConfig['dbs']]);
 		if ($result === false) {
@@ -627,7 +634,7 @@ class CheckSchemaUpgrade
 			return;
 		}
 
-		$this->printMessageError("\n*** Issues found while validating database upgrade, see bellow ***\n");
+		$this->printMessageError("\n*** Issues found while validating database upgrade, see below ***\n");
 		$this->printMessageError('== Result of the db Analysis - missing statements ==');
 		echo $result . "\n";
 		$this->printMessageError('====================================================' . "\n");
@@ -685,11 +692,12 @@ class CheckSchemaUpgrade
 	 */
 	protected function getOpts()
 	{
-		$shortOpts = 'm:vp';
+		$shortOpts = 'm:vpe:';
 		$longOpts = [
 			'major:',
 			'verbose',
 			'preferences',
+			'engine:',
 			'db1:',
 			'db2:',
 		];
