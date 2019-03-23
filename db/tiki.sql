@@ -3,7 +3,7 @@
 -- --------------------------------------------------------
 
 ALTER DATABASE DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-SET FOREIGN_KEY_CHECKS = 0;   # tiki doesn't officially use foreign keys but sometimes they "appear", leading to table dropping errors
+SET FOREIGN_KEY_CHECKS = 0;   /* tiki doesn't officially use foreign keys but sometimes they "appear", leading to table dropping errors */
 
 DROP TABLE IF EXISTS `messu_messages`;
 CREATE TABLE `messu_messages` (
