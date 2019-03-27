@@ -472,6 +472,14 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 						</a>";
 					}
 
+					$smarty->loadPlugin('smarty_function_icon');
+					$viewicon = smarty_function_icon(['name' => 'view'], $smarty);
+
+					$src = smarty_modifier_sefurl($file['fileId'], 'display');
+					$ret .= " <a href='" . $src . "' target='_blank' class='tips' title='Preview: " . $file['filename'] . "'>
+						$viewicon
+					</a>";
+
 					$ret .= '</li>';
 				}
 				$ret .= '</ol>';
