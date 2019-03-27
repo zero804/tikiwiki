@@ -14,6 +14,7 @@ variables:
 
 stages:
   - lint
+  - vendors-security
   - tiki-check
   - unit-tests
 
@@ -127,3 +128,37 @@ unit-tests-72:
     - echo '<?php PHPUnit_Framework_Error_Deprecated::$enabled = false; $db_tiki = "mysqli"; $dbversion_tiki = "19.0"; $host_tiki = "mysql"; $user_tiki = "tikiuser"; $pass_tiki = "tikipass"; $dbs_tiki = "tikitest"; $client_charset = "utf8"; ' > lib/test/local.php
     - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
     - php -d display_errors=On vendor_bundled/vendor/phpunit/phpunit/phpunit --colors=always
+
+#
+# Vendors Security
+#
+
+sensiolabs-vendor-security-check:
+  stage: vendors-security
+  script:
+    - composer --ansi install -d vendor_bundled/ --no-progress --prefer-dist -n
+    - cp composer.json.dist composer.json
+    - composer require jerome-breton/casperjs-installer:dev-master --no-progress
+    - composer require enygma/expose:^3.0 --no-progress
+    - composer require fzaninotto/faker dev-master --no-progress
+    - composer require mpdf/mpdf ^7.0 --no-progress
+    - composer require onelogin/php-saml ^2.10 --no-progress
+    - composer require media-alchemyst/media-alchemyst ^0.5.1 --no-progress
+    - php bin/security-checker security:check composer.lock
+  allow_failure: false
+  only:
+    refs:
+      - schedules
+    variables:
+      - $SCHEDULER == "vendor_check"
+
+sensiolabs-vendor-bundled-security-check:
+  stage: vendors-security
+  script:
+    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
+    - php bin/security-checker security:check vendor_bundled/composer.lock
+  only:
+    refs:
+      - schedules
+    variables:
+      - $SCHEDULER == "vendor_check"
