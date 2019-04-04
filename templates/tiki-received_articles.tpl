@@ -28,7 +28,7 @@
 		(xx {tr}bytes{/tr})
 	</div>
 
-	<div class="articlebody">
+	<div class="articlebody py-3">
 		{$parsed_body}
 	</div>
 {/if}
