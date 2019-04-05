@@ -115,8 +115,8 @@
 			</a>
 		{/if}
 
-		<a href="{$file.id|sefurl:file}&display=true">
-			{icon name='eye' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Browser display{/tr}"}
+		<a href="{$file.id|sefurl:display}">
+			{icon name='eye' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Browser display{/tr} ({tr}Raw{/tr} / {tr}Download{/tr})"}
 		</a>
 
 		{if $gal_info.archives gt -1}
