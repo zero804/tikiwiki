@@ -66,9 +66,13 @@
 	</div>
 	<div class="showactive{$field.fieldId}_{$item.itemId}" {if $field.status neq 'ACTIV'}style="display: none;"{/if}>
 		{remarksbox type="info" title="{tr}Accessing the Tiki instance that demonstrates this bug{/tr}" close="n"}
-			<p>{tr _0="<a class=\"showurl{$field.fieldId}_{$item.itemId}\" href=\"http://{$field.showurl|escape}\" target=\"_blank\">http://{$field.showurl|escape}</a>"}The URL for the show.tiki.org instance that demonstrates this bug is at: %0.{/tr} <strong>{tr}Note that if you get a popup asking for a username/password, please just enter "show" and "show". This is different from the initial login and password for a new Tiki which is "admin" and "admin".{/tr}</strong></p>
-			<p>{tr _0="<a class=\"showlogurl{$field.fieldId}_{$item.itemId}\" href=\"http://{$field.showlogurl|escape}\" target=\"_blank\">http://{$field.showlogurl|escape}</a>"}The install log is at %0{/tr}</p>
-			<p><strong>{tr}Note that if you see PHP errors or a Tiki claiming to be missing third party software, the instance creation is probably not finished. Please wait 1 minute and reload.{/tr}</strong></p>
+			<p>{tr _0="<a class=\"showurl{$myId}\" href=\"http://{$field.showurl|escape}\" target=\"_blank\">http://{$field.showurl|escape}</a>"}The URL for the {$field.options_map.domain|escape} instance that demonstrates this bug is at: %0.{/tr}
+				<strong>{tr}Note that if you get a popup asking for a username/password, please just enter "show" and "show". This is different from the initial login and password for a new Tiki which is "admin" and "admin".{/tr}</strong>
+			</p>
+			<p>{tr _0="<a class=\"showlogurl{$myId}\" href=\"http://{$field.showlogurl|escape}\" target=\"_blank\">http://{$field.showlogurl|escape}</a>"}For the install log, see %0{/tr}</p>
+			<p>
+				<strong>{tr}Note that if you see PHP errors or a Tiki claiming to be missing third party software, the instance creation is probably not finished. Please wait a couple minutes and reload.{/tr}</strong>
+			</p>
 		{/remarksbox}
 		{remarksbox type="info" title="{tr}Snapshots{/tr}" close="n"}
 			<p>{tr}Snapshots are database dumps of the configuration that developers can download for debugging. Once you have reproduced your bug on the show.tiki.org instance, create a snapshot that can then be downloaded by developers for further investigation.{/tr}</p>
