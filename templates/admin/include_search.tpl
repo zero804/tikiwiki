@@ -219,7 +219,9 @@
 
 		{tab name="{tr}Tools{/tr}"}
 			<br>
-            {include file='admin/include_search_report_string_in_db.tpl'}
+			{include file='admin/include_search_report_string_in_db.tpl'}
+			<h2 class="card-title">{tr}Experiment with LIST plugin syntax{/tr}</h2>
+			<a href="tiki-pluginlist_experiment.php">{tr}After you have found the correct contents, you may copy-paste them in a LIST plugin.{/tr}</a>
 		{/tab}
 
 	{/tabset}
