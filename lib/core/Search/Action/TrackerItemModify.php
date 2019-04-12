@@ -138,6 +138,9 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 		$fieldInfo = $definition->getField($field);
 		$handler = $definition->getFieldFactory()->getHandler($fieldInfo, $info);
 
+		if(is_string($value)) {
+			$value = ['ins_'.$fieldInfo['fieldId'] => $value];
+		}
 		$data = $handler->getFieldData($value);
 		$value = $data['value'];
 
