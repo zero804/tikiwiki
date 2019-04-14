@@ -246,7 +246,7 @@
 							var $dialog = $( "#calendar_dialog" ).remove()
 							$( "#calendar_dialog_content", $dialog ).html(data);
 							$( "#calendar_dialog h1, #calendar_dialog .navbar", $dialog ).remove();
-							$( "#calendar_dialog .modal-title", $dialog ).html(event.title);
+							$( "#calendar_dialog .modal-title", $dialog ).html();
 							$dialog.appendTo("body").modal({backdrop:"static"});
 						}
 					});
