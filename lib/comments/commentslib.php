@@ -2395,6 +2395,11 @@ class Comments extends TikiLib
 			$bind_mid_cant = $bind_mid;
 		}
 
+		if ($parentId === null) {
+			$query_cant = str_replace('tc1.`parentId`=? and ', '', $query_cant);
+			unset($bind_mid_cant[2]);
+		}
+
 		$ret = [];
 
 		if ($reply_threadId > 0 && $style == 'commentStyle_threaded') {
@@ -2430,7 +2435,7 @@ class Comments extends TikiLib
 
 			if (! ($maxRecords <= 0 && $orig_maxRecords != 0)) {
 				// Get the replies
-				if ($parentId == 0 || $style != 'commentStyle_threaded' || $object[0] == "forum") {
+				if (empty($parentId) || $style != 'commentStyle_threaded' || $object[0] == "forum") {
 					if ($object[0] == "forum") {
 						// For plain style, don't handle replies at all.
 						if ($style == 'commentStyle_plain') {
