@@ -36,7 +36,7 @@ class Services_Comment_Controller
 		$commentslib = TikiLib::lib('comments');
 		// TODO : Add pagination, sorting, thread style, moderation, ...
 		$offset = 0;
-		$per_page = 100;
+		$per_page = 300;
 		$comments = $commentslib->get_comments("$type:$objectId", null, $offset, $per_page);
 
 		$this->markEditable($comments['data']);
