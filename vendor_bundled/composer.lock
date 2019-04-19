@@ -5505,7 +5505,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/zetacomponents/Webdav/zipball/44a182f559e5c7bebccab5a112dd3ba8c84a48c0",
                 "reference": "44a182f559e5c7bebccab5a112dd3ba8c84a48c0",
-                "shasum": "dbb389dad1f51d1331a2bc56c251967e24de9618"
+                "shasum": "0a54f7e2e25c69ac6687da486550d6a393d88dd7"
             },
             "require": {
                 "zetacomponents/base": "~1.8"
