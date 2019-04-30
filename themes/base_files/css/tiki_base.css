@@ -3012,6 +3012,9 @@ body > .ui-front {
   padding: 0;
   list-style: none; }
 
+.cssmenu_vert {
+  flex-direction: column !important; }
+
 .cssmenu_horiz li, .cssmenu_vert li {
   position: relative; }
 
@@ -3028,9 +3031,11 @@ body > .ui-front {
 .cssmenu_horiz li:hover > ul, .cssmenu_horiz li.sfHover > ul, .cssmenu_vert li:hover > ul, .cssmenu_vert li.sfHover > ul {
   display: block; }
 
-.cssmenu_horiz a, .cssmenu_vert a {
+.cssmenu_horiz a, .cssmenu_vert a, .cssmenu_horiz button.btn-link.link-list, .cssmenu_vert button.btn-link.link-list {
   display: block;
-  position: relative; }
+  position: relative;
+  padding: 3px 20px;
+  text-decoration: none; }
 
 .cssmenu_horiz ul ul, .cssmenu_vert ul ul {
   top: 0;
@@ -3044,14 +3049,10 @@ body > .ui-front {
   -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2); }
 
-.cssmenu_horiz a, .cssmenu_vert a {
-  padding: 3px 20px;
-  text-decoration: none; }
-
-.cssmenu_horiz a:first-of-type, .cssmenu_vert a:first-of-type {
+.cssmenu_horiz a:first-of-type, .cssmenu_vert a:first-of-type, .cssmenu_horiz button.btn-link.link-list:first-of-type, .cssmenu_vert button.btn-link.link-list:first-of-type {
   padding-top: 7px; }
 
-.cssmenu_horiz a:last-of-type, .cssmenu_vert a:last-of-type {
+.cssmenu_horiz a:last-of-type, .cssmenu_vert a:last-of-type, .cssmenu_horiz button.btn-link.link-list:last-of-type, .cssmenu_vert button.btn-link.link-list:last-of-type {
   padding-bottom: 7px; }
 
 .cssmenu_horiz li, .cssmenu_vert li {
@@ -3060,10 +3061,10 @@ body > .ui-front {
   -moz-transition: background 0.2s;
   -o-transition: background 0.2s;
   transition: background 0.2s; }
-/*** arrows (for all except IE7) **/
+
 .sf-arrows .sf-with-ul {
   padding-right: 2.5em; }
-/* styling for both css and generated arrows */
+
 .sf-arrows .sf-with-ul:after {
   content: '';
   position: absolute;
@@ -3071,9 +3072,8 @@ body > .ui-front {
   right: 1em;
   margin-top: -3px;
   height: 0;
-  width: 0;
-  /* order of following 3 rules important for fallbacks to work */ }
-/* styling for right-facing arrows */
+  width: 0; }
+
 .sf-arrows ul .sf-with-ul:after {
   margin-top: -5px;
   margin-right: -3px; }
@@ -3092,7 +3092,7 @@ body > .ui-front {
 
 .cssmenu_vert > li {
   float: none; }
-/*** alter arrow directions ***/
+
 .cssmenu_vert.sf-arrows > li > .sf-with-ul:after {
   margin-top: -5px;
   margin-right: -3px; }
@@ -3194,9 +3194,6 @@ body:not(.fixed_width) .container {
   padding-right: 15px;
   width: auto;
   max-width: 100%; }
-
-.row-middle {
-  word-wrap: break-word; }
 
 @media (max-width: 768px) {
   .tiki .col-md-12 {
@@ -3355,9 +3352,6 @@ body.fullscreen.tiki.navbar-padding {
 @media (min-width: 992px) {
   .hide_zone_left #col2, .hide_zone_right #col3 {
     display: none; }
-
-  .col1 .table-responsive > table {
-    table-layout: fixed; }
 
   .hide_zone_left #col1.col-lg-8 {
     width: 83.3334%;

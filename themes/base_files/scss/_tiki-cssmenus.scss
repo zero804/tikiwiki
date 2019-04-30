@@ -12,6 +12,8 @@
 	list-style: none;
 }
 
+.cssmenu_vert { flex-direction: column !important; }
+
 .cssmenu_horiz li,
 .cssmenu_vert li {
 	position: relative;
@@ -38,9 +40,13 @@
 }
 
 .cssmenu_horiz a,
-.cssmenu_vert a {
+.cssmenu_vert a,
+.cssmenu_horiz button.btn-link.link-list,
+.cssmenu_vert button.btn-link.link-list {
 	display: block;
 	position: relative;
+	padding: 3px 20px; // match Bootstrap dropdown-menu li.
+	text-decoration: none;
 }
 
 .cssmenu_horiz ul ul,
@@ -64,21 +70,16 @@
 	//  *width: 12em; /* no auto sub width for IE7, see white-space comment below */
 }
 
-.cssmenu_horiz a,
-.cssmenu_vert a {
-	//  border-left: 1px solid #ffffff;
-	//  border-top: 1px solid #dFeEFF; /* fallback colour must use full shorthand */
-	//  border-top: 1px solid rgba(255,255,255,.5);
-	padding: 3px 20px; // match Bootstrap dropdown-menu li.
-	text-decoration: none;
-}
-
 .cssmenu_horiz a:first-of-type,
-.cssmenu_vert a:first-of-type {
+.cssmenu_vert a:first-of-type,
+.cssmenu_horiz button.btn-link.link-list:first-of-type,
+.cssmenu_vert button.btn-link.link-list:first-of-type {
 	padding-top: 7px;
 }
 .cssmenu_horiz a:last-of-type,
-.cssmenu_vert a:last-of-type {
+.cssmenu_vert a:last-of-type,
+.cssmenu_horiz button.btn-link.link-list:last-of-type,
+.cssmenu_vert button.btn-link.link-list:last-of-type {
 	padding-bottom: 7px;
  }
 
@@ -98,29 +99,12 @@
 	transition: background .2s;
 }
 
-// moved to _tiki-selectors.scss
-// .cssmenu_horiz ul li,
-// .cssmenu_vert ul li,
-// .cssmenu_horiz ul ul li,
-// .cssmenu_vert ul ul li {
-//   background: $dropdown-bg;
-// }
-//
-// .cssmenu_horiz li:hover,
-// .cssmenu_horiz li.sfHover,
-// .cssmenu_vert li:hover,
-// .cssmenu_vert li.sfHover {
-//   background: $dropdown-link-hover-bg;
-//   /* only transition out, not in */
-//   -webkit-transition: none;
-//   transition: none;
-// }
-/*** arrows (for all except IE7) **/
+// /*** arrows (for all except IE7) **/
 .sf-arrows .sf-with-ul {
 	padding-right: 2.5em;
 }
 
-/* styling for both css and generated arrows */
+// /* styling for both css and generated arrows */
 .sf-arrows .sf-with-ul:after {
 	content: '';
 	position: absolute;
@@ -129,26 +113,13 @@
 	margin-top: -3px;
 	height: 0;
 	width: 0;
-	/* order of following 3 rules important for fallbacks to work */
-	//  border: 5px solid transparent;
-	//  border-top-color: $dropdown-link-color; /* edit this to suit design (no rgba in IE8) */
-	//  border-top-color: rgba(255,255,255,.5);
 }
 
-/* styling for right-facing arrows */
+// /* styling for right-facing arrows */
 .sf-arrows ul .sf-with-ul:after {
 	margin-top: -5px;
 	margin-right: -3px;
-	//  border-color: transparent; (moved to _tiki-selectors.scss)
-	//  border-left-color: $dropdown-link-color; // $link-color; /* edit this to suit design (no rgba in IE8) */
-	//  border-left-color: rgba(255,255,255,.5);
 }
-
-// .sf-arrows ul li > .sf-with-ul:focus:after,
-// .sf-arrows ul li:hover > .sf-with-ul:after,
-// .sf-arrows ul .sfHover > .sf-with-ul:after {
-//  border-left-color: $dropdown-link-hover-color;
-// }
 
 .card-body ul.cssmenu_vert,
 .card-body ul.cssmenu_horiz,
@@ -173,30 +144,17 @@
 	float: none;
 }
 
-// .cssmenu_vert li {
-//  width: 100%;
-// }
-
-/*** alter arrow directions ***/
+// /*** alter arrow directions ***/
 .cssmenu_vert.sf-arrows > li > .sf-with-ul:after {
 	margin-top: -5px;
 	margin-right: -3px;
-	//  border-color: transparent;
-	//  border-left-color: $dropdown-link-color;
 }
-
-// .cssmenu_vert.sf-arrows li > .sf-with-ul:focus:after,
-// .cssmenu_vert.sf-arrows li:hover > .sf-with-ul:after,
-// .cssmenu_vert.sf-arrows .sfHover > .sf-with-ul:after {
-//   border-left-color: $dropdown-link-hover-color; // white;
-// }
 
 a.structure-home {
 	padding: 0;
 }
 
 // The purpose here is to map legacy Tiki topbar menu classes to Bootstrap classes.
-
 .topbar {
 	.navbar {
 		margin-bottom: 0;
