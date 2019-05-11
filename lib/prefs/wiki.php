@@ -718,6 +718,7 @@ function prefs_wiki_list($partial = false)
 			'dependencies' => [
 				'wiki_auto_toc',
 			],
+			'keywords' => 'autotoc auto-toc',
 		],
 		'wiki_toc_offset' => [
 			'name' => tr('Table of contents offset'),
@@ -729,6 +730,21 @@ function prefs_wiki_list($partial = false)
 			'dependencies' => [
 				'wiki_auto_toc',
 			],
+			'keywords' => 'autotoc auto-toc',
+		],
+		'wiki_toc_default' => [
+			'name' => tr('Table of contents default'),
+			'description' => tr('Set the default for the table of contents (default "on" and can be toggled per page)'),
+			'type' => 'list',
+			'options' => [
+				'on' => tra('On'),
+				'off' => tra('Off'),
+			],
+			'default' => 'on',
+			'dependencies' => [
+				'wiki_auto_toc',
+			],
+			'keywords' => 'autotoc auto-toc',
 		],
 		'wiki_page_hide_title' => [
 			'name' => tr('Add an option to hide the page title per wiki page'),
