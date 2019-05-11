@@ -402,33 +402,32 @@ FORM;
 				}, this, [user]);
 			},
 			addDate: function(date) {
-				lockPage(function (date) {
-					if (!date) return;
-					date = Date.parseUnix(date);
-					var addedData = '';
-	
-					if (! this.users.length) {	// add current user if it's the first
-						this.users.push(jqueryTiki.username);
+				// should already be locked by the click event
+				if (!date) return;
+				date = Date.parseUnix(date);
+				var addedData = '';
+
+				if (! this.users.length) {	// add current user if it's the first
+					this.users.push(jqueryTiki.username);
+				}
+				for(var user in this.users) {
+					if (this.users.hasOwnProperty(user)) {
+						addedData += 'dates_' + date + '_' + this.users[user] + ' : 0$n';
 					}
-					for(var user in this.users) {
-						if (this.users.hasOwnProperty(user)) {
-							addedData += 'dates_' + date + '_' + this.users[user] + ' : 0$n';
-						}
+				}
+
+				this.data = (this.data + '$n' + addedData).split($regexN).sort();
+
+				//remove empty lines
+				for(var line in this.data) {
+					if (this.data.hasOwnProperty(line)) {
+						if (!this.data[line]) this.data.splice(line, 1);
 					}
-	
-					this.data = (this.data + '$n' + addedData).split($regexN).sort();
-	
-					//remove empty lines
-					for(var line in this.data) {
-						if (this.data.hasOwnProperty(line)) {
-							if (!this.data[line]) this.data.splice(line, 1);
-						}
-					}
-	
-					this.data = this.data.join('$n');
-	
-					this.save();
-				}, this, [date]);
+				}
+
+				this.data = this.data.join('$n');
+
+				this.save();
 			},
 			deleteDate: function(date) {
 				lockPage(function (date) {
@@ -532,47 +531,57 @@ FORM;
 					}
 				);
 			} else {
-				callback.apply(context, theArgs);
+				return callback.apply(context, theArgs);
 			}			
 		};
 		
 		// unset semaphore
 		var unlockPage = function () {
 			if (window.pageLocked) {
-				$.getJSON($.service("semaphore", "unset"), {
-					object_type: jqueryTiki.current_object.type,
-					object_id: jqueryTiki.current_object.object
-				}, function () {
-					window.pageLocked = false;
+				// needs to be synchronous to prevent page unload while executing
+				$.ajax($.service("semaphore", "unset"), {
+					async: false,
+					dataType: "json",
+					data: {
+						object_type: jqueryTiki.current_object.type,
+						object_id: jqueryTiki.current_object.object
+					},
+					success: function () {
+						window.pageLocked = false;
+					}
 				});
 			}
 		};
 
 		var initConvene$i = function () {
 			$('.conveneAddDate$i').click(function() {
-				var dialogOptions = {
-					modal: true,
-					title: tr("Add Date"),
-					buttons: {}
-				};
-
-				dialogOptions.buttons[tr("Add")] = function() {
-					convene$i.addDate(o.find('input:first').val());
-					o.dialog('close');
-				};
-
-				var o = $('<div><input type="text" style="width: 100%;" /></div>')
-					.dialog(dialogOptions);
-
-				o.find('input:first')
-					.datetimepicker()
-					.focus();
-				return false;
+				lockPage(function () {
+					var dialogOptions = {
+						modal: true,
+						title: tr("Add Date"),
+						buttons: {}
+					};
+	
+					dialogOptions.buttons[tr("Add")] = function() {
+						convene$i.addDate(o.find('input:first').val());
+						o.dialog('close');
+					};
+	
+					var o = $('<div><input type="text" style="width: 100%;" /></div>')
+						.dialog(dialogOptions);
+	
+					o.find('input:first')
+						.datetimepicker()
+						.focus();
+					return false;
+				}, this);
 			});
 
 			$('.conveneDeleteDate$i')
 				.click(function() {
-					convene$i.deleteDate($(this).data("date"));
+					if (confirm(tr("Delete this date?"))) {
+						convene$i.deleteDate($(this).data("date"));
+					}
 					return false;
 				});
 
@@ -586,13 +595,21 @@ FORM;
 				});
 
 			$('.conveneUpdateUser$i').click(function() {
-				if ($('.conveneDeleteUser$i:visible').length) {
+				if ($('.conveneDeleteUser$i.btn-danger').length) {
 					var updateButton = $(this);
 					lockPage(function () {
 						
 						updateButton.find(".icon").popover("hide");
 						$('.conveneUpdateUser$i').not(updateButton).hide();
-						$('.conveneDeleteUser$i').hide();
+						// change the delete button into cancel
+						$('.conveneDeleteUser$i')
+							.removeClass("btn-danger").addClass("btn-muted")
+							.attr("title", tr("Cancel"))
+							.off("click").click(function () {
+								history.go(0);
+							})
+							.find('.icon').setIcon("ban");
+						
 						$('.conveneDeleteDate$i').hide();
 						$('.conveneMain$i').hide();
 						updateButton.parent().parent()
