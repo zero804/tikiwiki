@@ -20,6 +20,7 @@ class ComposerCli
 	const COMPOSER_SETUP = 'temp/composer-setup.php';
 	const COMPOSER_PHAR = 'temp/composer.phar';
 	const COMPOSER_CONFIG = 'composer.json';
+	const COMPOSER_LOCK = 'composer.lock';
 	const COMPOSER_HOME = 'temp/composer';
 	const PHP_COMMAND_NAMES = [
 		'php',
@@ -79,12 +80,39 @@ class ComposerCli
 	}
 
 	/**
+	* Returns the the current working path location
+	* @return string
+	*/
+	public function getWorkingPath()
+	{
+		return $this->workingPath;
+	}
+
+	/**
+	 * Sets the current working path location
+	 * @return string
+	 */
+	public function setWorkingPath($path)
+	{
+		$this->workingPath = $path;
+	}
+
+	/**
 	 * Returns the location of the composer.json file
 	 * @return string
 	 */
 	public function getComposerConfigFilePath()
 	{
 		return $this->workingPath . self::COMPOSER_CONFIG;
+	}
+
+	/**
+	 * Returns the location of the composer.lock file
+	 * @return string
+	 */
+	public function getComposerLockFilePath()
+	{
+		return $this->workingPath . self::COMPOSER_LOCK;
 	}
 
 	/**
@@ -326,6 +354,46 @@ class ComposerCli
 	}
 
 	/**
+	 * Get list of packages from the composer.lock file
+	 * @return array|bool
+	 */
+	public function getListOfPackagesFromLock()
+	{
+		if (! $this->checkConfigExists() || ! $this->canExecuteComposer()) {
+			return false;
+		}
+
+		$content = json_decode(file_get_contents($this->getComposerLockFilePath()), true);
+		$packagesFromConfig = json_decode(file_get_contents($this->getComposerConfigFilePath()), true);
+
+		if (empty($content['packages']) || empty($packagesFromConfig)) {
+			return [];
+		}
+
+		// We will create a map with the required values to prevent extra logic afterwards
+		$configRequiredMap = [];
+		foreach ($packagesFromConfig['require'] as $packageName => $packageVersion) {
+			$configRequiredMap[$packageName] = $packageVersion;
+		}
+
+		$result = [];
+		foreach ($content['packages'] as $package) {
+			if (! isset($configRequiredMap[$package['name']])) {
+				continue;
+			}
+
+			$result[$package['name']] = [
+				'name'      => $package['name'],
+				'status'    => ComposerManager::STATUS_INSTALLED,
+				'required'  => $configRequiredMap[$package['name']],
+				'installed' => $package['version'],
+			];
+		}
+
+		return $result;
+	}
+
+	/**
 	 * Retrieve list of packages in composer.json
 	 *
 	 * @return array|bool
@@ -440,9 +508,10 @@ class ComposerCli
 	 * @param ComposerPackage $package
 	 * @return bool
 	 */
-	public function updatePackage(ComposerPackage $package) {
+	public function updatePackage(ComposerPackage $package)
+	{
 
-		if (!$this->canExecuteComposer() || !$this->checkConfigExists()) {
+		if (! $this->canExecuteComposer() || ! $this->checkConfigExists()) {
 			return false;
 		}
 
@@ -601,8 +670,8 @@ class ComposerCli
 	{
 		$string = $output;
 
-		if (!empty($errors)) {
-			if (!empty($string)) {
+		if (! empty($errors)) {
+			if (! empty($string)) {
 				$string .= "\n";
 			}
 			$string .= tr('Errors:') . "\n" . $errors;
@@ -677,5 +746,5 @@ class ComposerCli
 		$message = str_replace("\n", '<br>', trim($output));
 
 		return [$result, $message];
- 	}
+	}
 }
