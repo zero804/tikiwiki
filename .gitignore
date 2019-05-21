@@ -12,6 +12,8 @@
 /ZendStudioServer
 _custom/lib/setup/custom.php
 /bin
+/composer.json
+/composer.lock
 db/*.ini
 db/.htaccess
 db/cert/*.pem
@@ -33,10 +35,13 @@ lang/.htaccess
 lib/.htaccess
 lib/core/Tracker/Filter/Control/DateRange[!!-~](1).php
 lib/test/clover.xml
+lib/test/junit.xml
 lib/test/core/Search/Index/test_index
 lib/test/core/Search/test_index
 lib/test/local.php
+lib/test/phpunit-log.current.json
 lib/test/templates_c
+lib/test/traces-phpunit_with_baseline.txt
 /maps
 /mods
 modules/.htaccess
@@ -46,7 +51,8 @@ modules/cache/*
 /node_modules
 /phpmyadmin
 /project.index
-storage/public/*
+/storage/public/*
+/storage/fgal/*
 /svn-commit.tmp
 temp/*
 temp/cache/*
@@ -65,4 +71,5 @@ vendor/*
 vendor_bundled/vendor
 /vendor_custom
 vendor_custom/*
+/.vscode
 /whelp
