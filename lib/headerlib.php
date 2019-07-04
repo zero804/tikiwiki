@@ -302,6 +302,20 @@ class HeaderLib
 		return $this;
 	}
 
+	function drop_jsfile($file)
+	{
+		$out = [];
+		foreach ($this->jsfiles as $rank => $data) {
+			foreach ($data as $f) {
+				if ($f != $file) {
+					$out[$rank][] = $f;
+				}
+			}
+		}
+		$this->jsfiles = $out;
+		return $this;
+	}
+
 
 	/**
 	 * Add js that works as config. Usally created dynamically.
@@ -1145,10 +1159,11 @@ window.onload = loadScript;');
 		*/
 
 		if ($prefs['geo_openlayers_version'] === 'ol3') {
-			$this->add_jsfile_external('vendor_bundled/vendor/openlayers/ol3/ol-debug.js', true);
-			$this->add_js(
-				''
-			);
+			$this->add_jsfile_external('vendor_bundled/vendor/openlayers/openlayers/ol.js', true)
+				->add_cssfile('vendor_bundled/vendor/openlayers/openlayers/ol.css')
+				->add_js(
+					''
+				);
 		} else {
 			$this->add_jsfile_external('lib/openlayers/OpenLayers.js', true);
 		}

@@ -112,14 +112,62 @@ function wikiplugin_map_info()
 				],
 				'advanced' => true,
 			],
+			'library' => [
+				'required' => false,
+				'name' => tra('Open Layers Version'),
+				'description' => tra('OL2 or OL3+ so far (default ol2)'),
+				'since' => '20.1',
+				'default' => 'ol2',
+				'filter' => 'text',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('OpenLayers 2.x'), 'value' => 'ol2'],
+					['text' => tra('OpenLayers 3+ (experimental)'), 'value' => 'ol3']
+				],
+				'advanced' => true,
+			],
+			'tilesets' => [
+				'required' => false,
+				'name' => tra('Tileset layers'),
+				'description' => tra('Tilesets to use for background layers, comma separated. (requires Open Layers v3+, default is the geo_tilesets preference)'),
+				'since' => '20.1',
+				'default' => "86, 134, 200",
+				'filter' => 'text',
+				'advanced' => true,
+			],
+			'cluster' => [
+				'required' => false,
+				'name' => tra('Cluster Distance'),
+				'description' => tra('Distance between features before they are "clustered", 0 (off) to 100. (requires Open Layers v3+, default is 0)'),
+				'since' => '20.0',
+				'default' => 0,
+				'filter' => 'digits',
+				'advanced' => true,
+			],
+			'clusterFillColor' => [
+				'required' => false,
+				'name' => tra('Cluster Fill Color'),
+				'description' => tra('Cluster fill color in RGB. (requires Open Layers v3+, default is 86, 134, 200)'),
+				'since' => '20.1',
+				'default' => "86, 134, 200",
+				'filter' => 'text',
+				'advanced' => true,
+			],
+			'clusterTextColor' => [
+				'required' => false,
+				'name' => tra('Cluster Text Color'),
+				'description' => tra('Cluster text and outline color in RGB. (requires Open Layers v3+, default is 255, 255, 255)'),
+				'since' => '20.1',
+				'default' => "255, 255, 255",
+				'filter' => 'text',
+				'advanced' => true,
+			],
 		],
 	];
 }
 
 function wikiplugin_map($data, $params)
 {
-	global $tikilib, $prefs;
-
 	$smarty = TikiLib::lib('smarty');
 	$smarty->loadPlugin('smarty_modifier_escape');
 
@@ -145,15 +193,35 @@ function wikiplugin_map($data, $params)
 		$params['popupstyle'] = 'bubble';
 	}
 
+	$popupStyle = smarty_modifier_escape($params['popupstyle']);
+
 	if (! empty($params['tooltips']) && $params['tooltips'] === 'y') {
 		$tooltips = ' data-tooltips="1"';
 	} else {
 		$tooltips = '';
 	}
 
-	$popupStyle = smarty_modifier_escape($params['popupstyle']);
+	if (isset($params['cluster'])) {
+		$cluster = (int) $params['cluster'];
+	} else {
+		$cluster = 0;
+	}
+	if (isset($params['clusterFillColor'])) {
+		$clusterFillColor = ' data-clusterfillcolor="' . $params['clusterFillColor'] . '"';
+	} else {
+		$clusterFillColor = '';
+	}
+	if (isset($params['clusterTextColor'])) {
+		$clusterTextColor = ' data-clustertextcolor="' . $params['clusterTextColor'] . '"';
+	} else {
+		$clusterTextColor = '';
+	}
+	if (isset($params['tilesets'])) {
+		$tilesets = ' data-tilesets="' . $params['tilesets'] . '"';
+	} else {
+		$tilesets = '';
+	}
 
-	$controls = array_intersect($params['controls'], wp_map_available_controls());
 	$controls = array_intersect($params['controls'], wp_map_available_controls());
 	$controls = implode(',', $controls);
 
@@ -168,9 +236,35 @@ function wikiplugin_map($data, $params)
 	}
 
 	TikiLib::lib('header')->add_map();
+
+	global $prefs;
+
+	if (! isset($params['library'])) {
+		$params['library'] = $prefs['geo_openlayers_version'];
+	}
+
+	if ($params['library'] === 'ol3' && $prefs['geo_openlayers_version'] === 'ol2') {
+		TikiLib::lib('header')
+			->drop_cssfile('lib/openlayers/theme/default/style.css')
+			->drop_jsfile('lib/openlayers/OpenLayers.js')
+			->drop_jsfile('lib/jquery_tiki/tiki-maps.js')
+			->add_cssfile('vendor_bundled/vendor/openlayers/openlayers/ol.css')
+			->add_jsfile('lib/jquery_tiki/tiki-maps-ol3.js')
+			->add_jsfile('vendor_bundled/vendor/openlayers/openlayers/ol.js');
+	} else if ($params['library'] === 'ol2' && $prefs['geo_openlayers_version'] === 'ol3') {
+		TikiLib::lib('header')
+			->drop_cssfile('vendor_bundled/vendor/openlayers/openlayers/ol.css')
+			->drop_jsfile('lib/jquery_tiki/tiki-maps-ol3.js')
+			->drop_jsfile('vendor_bundled/vendor/openlayers/openlayers/ol.js')
+			->add_cssfile('lib/openlayers/theme/default/style.css')
+			->add_jsfile('lib/openlayers/OpenLayers.js')
+			->add_jsfile('lib/jquery_tiki/tiki-maps.js');
+	}
+
 	$scope = smarty_modifier_escape(wp_map_getscope($params));
 
-	$output = "<div class=\"map-container\" data-marker-filter=\"$scope\" data-map-controls=\"{$controls}\" data-popup-style=\"$popupStyle\" style=\"width: {$width}; height: {$height};\" $center{$tooltips}>";
+	$output = "<div class=\"map-container\" data-marker-filter=\"$scope\" data-map-controls=\"$controls\" data-popup-style=\"$popupStyle\"" .
+		" data-cluster=\"$cluster\" style=\"width: $width; height: $height;\" $center $tooltips $clusterFillColor $clusterTextColor $tilesets>";
 
 	$argumentParser = new WikiParser_PluginArgumentParser;
 	$matches = WikiParser_PluginMatcher::match($data);
