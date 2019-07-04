@@ -214,6 +214,7 @@ if (! timezone) {
 	$jqueryTiki['autoToc_inline'] = $prefs['wiki_inline_auto_toc'] === 'y' ? true : false;
 	$jqueryTiki['autoToc_pos'] = $prefs['wiki_toc_pos'];
 	$jqueryTiki['autoToc_offset'] = $prefs['wiki_toc_offset'];
+	$jqueryTiki['bingMapsAPIKey'] = $prefs['geo_bingmaps_key'];
 
 	if (empty($object)) {
 		$object = current_object();

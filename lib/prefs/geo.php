@@ -40,7 +40,7 @@ function prefs_geo_list()
 			'description' => tra('Enables replacement of the default OpenStreetMap tiles with tiles from other mapping services, such as Google or Bing.'),
 			'dependencies' => ['geo_enabled'],
 			'hint' => tr(
-				'Valid options are: %0',
+				'Valid options for OpenLayers 2 are: %0 and for OpenLayers 3+ are: %1',
 				implode(
 					', ',
 					[
@@ -52,14 +52,19 @@ function prefs_geo_list()
 						'google_physical',
 						'google_hybrid',
 						'blank',
-						/* Needs additional testing
-						'visualearth_road',
-						'visualearth_aerial',
-						'visualearth_hybrid',
-						'yahoo_street',
-						'yahoo_satellite',
-						'yahoo_hybrid',
-						*/
+					]
+				),
+				// for ol3+
+				implode(
+					', ',
+					[
+						'openstreetmap',
+						'bing_road',
+						'bing_road_on_demand',
+						'bing_aerial',
+						'bing_aerial_with_labels',
+						'bing_collins_bart',
+						'bing_ordnance_survey',
 					]
 				)
 			),
@@ -114,9 +119,17 @@ function prefs_geo_list()
 			'dependencies' => ['geo_enabled'],
 			'options' => [
 					'ol2' => tra('OpenLayers 2.x (for use up to at least 15.x)'),
-					'ol3' => tra('OpenLayers 3.x (experimental)'),
+					'ol3' => tra('OpenLayers 3+ (experimental)'),
 				],
 			'default' => 'ol2',
+		],
+		'geo_bingmaps_key' => [
+			'name' => tra('Bing Maps API Key'),
+			'description' => tra('Needed for Bing Map Layers'),
+			'type' => 'text',
+			'help' => 'http://www.bingmapsportal.com/',
+			'filter' => 'striptags',
+			'default' => '',
 		],
 
 	];
