@@ -12,6 +12,7 @@ class ImageAbstract
 {
 	var $data = null;
 	var $format = 'jpeg';
+	var $quality = 75;	// default quality for jpeg in GD
 	var $height = null;
 	var $width = null;
 	var $classname = 'ImageAbstract';
@@ -175,6 +176,22 @@ class ImageAbstract
 		} else {
 			return $this->format;
 		}
+	}
+
+	/**
+	 * @param int $quality
+	 */
+	public function setQuality($quality)
+	{
+		$this->quality = (int) $quality;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getQuality()
+	{
+		return $this->quality;
 	}
 
 	/**
