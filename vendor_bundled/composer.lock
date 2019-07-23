@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "81127193f0a3a16700a0cc8c8e9a1d7b",
+    "content-hash": "03f2eccd0c5bd4bf26ed550554816743",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -183,21 +183,23 @@
         },
         {
             "name": "blueimp/jquery-file-upload",
-            "version": "v9.32.0",
+            "version": "v9.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vkhramtsov/jQuery-File-Upload.git",
-                "reference": "09bd0417a97b084af6e7683cd15f6933180e648e"
+                "reference": "6d86a591f9a35bb811befb750dcd2c7da9ac05a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-09bd0417a97b084af6e7683cd15f6933180e648e-zip-e4fedc.zip",
-                "reference": "09bd0417a97b084af6e7683cd15f6933180e648e",
-                "shasum": "a5f1581043ad7675f18155a0c368df989b006b74"
+                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-6d86a591f9a35bb811befb750dcd2c7da9ac05a2-zip-f33d26.zip",
+                "reference": "6d86a591f9a35bb811befb750dcd2c7da9ac05a2",
+                "shasum": "c548560507b3b0bcef219c56ed6eb941d56380b6"
             },
             "type": "library",
             "autoload": {
-                "classmap": []
+                "classmap": [
+                    "server/php/UploadHandler.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -232,7 +234,7 @@
                 "upload",
                 "widget"
             ],
-            "time": "2019-06-24T07:58:20+00:00"
+            "time": "2019-07-22T13:10:51+00:00"
         },
         {
             "name": "bower-asset/bootstrap-rtol",
@@ -331,17 +333,17 @@
         },
         {
             "name": "ckeditor/ckeditor",
-            "version": "4.11.4",
+            "version": "4.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ckeditor/ckeditor-releases.git",
-                "reference": "b42e90185ed50054d3f4bd1b60446f21256ef1b1"
+                "reference": "b1a25e93ae0b038f45dcba458f4c2c18bd7318e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-b42e90185ed50054d3f4bd1b60446f21256ef1b1-zip-7abc1a.zip",
-                "reference": "b42e90185ed50054d3f4bd1b60446f21256ef1b1",
-                "shasum": "21ad539916aa6b4e91b9dc44120a5424a268e294"
+                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-b1a25e93ae0b038f45dcba458f4c2c18bd7318e5-zip-5a7537.zip",
+                "reference": "b1a25e93ae0b038f45dcba458f4c2c18bd7318e5",
+                "shasum": "e42555bf364ae3192fd003c58ce9216c6d6dc525"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -368,7 +370,7 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2019-04-09T14:01:57+00:00"
+            "time": "2019-06-28T10:41:23+00:00"
         },
         {
             "name": "ckeditor/ckeditor/skins/bootstrapck",
@@ -919,23 +921,23 @@
         },
         {
             "name": "ezyang/htmlpurifier",
-            "version": "v4.10.0",
+            "version": "v4.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "d85d39da4576a6934b72480be6978fb10c860021"
+                "reference": "83ab08bc1af7d808a9e0fbf024f1c24bfd73c0a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ezyang/htmlpurifier/ezyang-htmlpurifier-d85d39da4576a6934b72480be6978fb10c860021-zip-68f7aa.zip",
-                "reference": "d85d39da4576a6934b72480be6978fb10c860021",
-                "shasum": "d5ef1c54162f58b9b6d5d0e8753644153ebed7a5"
+                "url": "https://composer.tiki.org/dist/ezyang/htmlpurifier/ezyang-htmlpurifier-83ab08bc1af7d808a9e0fbf024f1c24bfd73c0a7-zip-e5cac8.zip",
+                "reference": "83ab08bc1af7d808a9e0fbf024f1c24bfd73c0a7",
+                "shasum": "984f255a67c5be9257352b987cf931886d9197b2"
             },
             "require": {
                 "php": ">=5.2"
             },
             "require-dev": {
-                "simpletest/simpletest": "^1.1"
+                "simpletest/simpletest": "dev-master#72de02a7b80c6bb8864ef9bf66d41d2f58f826bd"
             },
             "type": "library",
             "autoload": {
@@ -948,7 +950,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "LGPL"
+                "LGPL-2.1-or-later"
             ],
             "authors": [
                 {
@@ -962,7 +964,7 @@
             "keywords": [
                 "html"
             ],
-            "time": "2018-02-23T01:58:20+00:00"
+            "time": "2019-07-14T18:58:38+00:00"
         },
         {
             "name": "fullcalendar/fullcalendar",
@@ -3008,17 +3010,17 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.20",
+            "version": "2.0.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "d6819a55b05e123db1e881d8b230d57f912126be"
+                "reference": "9f1287e68b3f283339a9f98f67515dd619e5bf9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-d6819a55b05e123db1e881d8b230d57f912126be-zip-44307e.zip",
-                "reference": "d6819a55b05e123db1e881d8b230d57f912126be",
-                "shasum": "36d97e922c2545ffe99337ab90e6526860473b47"
+                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-9f1287e68b3f283339a9f98f67515dd619e5bf9d-zip-24eba7.zip",
+                "reference": "9f1287e68b3f283339a9f98f67515dd619e5bf9d",
+                "shasum": "9dafa69ec7e42a6956071cd359d6d9c9332be26a"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -3096,7 +3098,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2019-06-23T16:33:11+00:00"
+            "time": "2019-07-12T12:53:49+00:00"
         },
         {
             "name": "player/flv",
@@ -3312,13 +3314,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/robicch/jQueryGantt.git",
-                "reference": "03900eed8eda57a3a8611c912611e3d63b2ba487"
+                "reference": "786f863070e5277541d2cd3b32343d94d803a98b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/robicch/jquery-gantt/robicch-jquery-gantt-03900eed8eda57a3a8611c912611e3d63b2ba487-zip-9a90dc.zip",
-                "reference": "03900eed8eda57a3a8611c912611e3d63b2ba487",
-                "shasum": "7a0696093e2a11dfdd1cf94add39fe954ed24539"
+                "url": "https://composer.tiki.org/dist/robicch/jquery-gantt/robicch-jquery-gantt-786f863070e5277541d2cd3b32343d94d803a98b-zip-285f30.zip",
+                "reference": "786f863070e5277541d2cd3b32343d94d803a98b",
+                "shasum": "544c290bde76ff78e512edfbed53216cb999b856"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -3331,7 +3333,7 @@
                 "gantt",
                 "jquery"
             ],
-            "time": "2018-12-03T10:00:19+00:00"
+            "time": "2019-07-16T05:50:55+00:00"
         },
         {
             "name": "robloach/component-installer",
@@ -4291,6 +4293,16 @@
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/vimeo/froogaloop/vimeo-froogaloop-1.0.zip",
                 "shasum": "4cf4e5ca02b2a79c58f02b08c50164ecb8164bef"
+            },
+            "type": "library"
+        },
+        {
+            "name": "walkermatt/ol-layerswitcher",
+            "version": "3.3.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/walkermatt/ol-layerswitcher/walkermatt-ol-layerswitcher-3.3.0.zip",
+                "shasum": "48f4b1e1d9075f3babedbd76962efdbb9ad7d2f1"
             },
             "type": "library"
         },
