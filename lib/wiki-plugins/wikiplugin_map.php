@@ -129,7 +129,7 @@ function wikiplugin_map_info()
 			'tilesets' => [
 				'required' => false,
 				'name' => tra('Tileset layers'),
-				'description' => tra('Tilesets to use for background layers, comma separated. (requires Open Layers v3+, default is the geo_tilesets preference)'),
+				'description' => tra('Tilesets to use for background layers, comma separated. Tileset groups can be added separated by a tilde character (requires Open Layers v3+, default is the geo_tilesets preference)'),
 				'since' => '20.1',
 				'default' => "86, 134, 200",
 				'filter' => 'text',
@@ -269,15 +269,21 @@ function wikiplugin_map($data, $params)
 			->drop_jsfile('lib/jquery_tiki/tiki-maps.js')
 			->add_cssfile('vendor_bundled/vendor/openlayers/openlayers/ol.css')
 			->add_jsfile('lib/jquery_tiki/tiki-maps-ol3.js')
-			->add_jsfile('vendor_bundled/vendor/openlayers/openlayers/ol.js');
+			->add_jsfile('vendor_bundled/vendor/openlayers/openlayers/ol.js')
+			->add_cssfile('vendor_bundled/vendor/walkermatt/ol-layerswitcher/src/ol-layerswitcher.css')
+			->add_jsfile('vendor_bundled/vendor/walkermatt/ol-layerswitcher/dist/ol-layerswitcher.js')
+		;
 	} else if ($params['library'] === 'ol2' && $prefs['geo_openlayers_version'] === 'ol3') {
 		TikiLib::lib('header')
 			->drop_cssfile('vendor_bundled/vendor/openlayers/openlayers/ol.css')
 			->drop_jsfile('lib/jquery_tiki/tiki-maps-ol3.js')
 			->drop_jsfile('vendor_bundled/vendor/openlayers/openlayers/ol.js')
+			->drop_cssfile('vendor_bundled/vendor/walkermatt/ol-layerswitcher/src/ol-layerswitcher.css')
+			->drop_jsfile('vendor_bundled/vendor/walkermatt/ol-layerswitcher/dist/ol-layerswitcher.js')
 			->add_cssfile('lib/openlayers/theme/default/style.css')
 			->add_jsfile('lib/openlayers/OpenLayers.js')
-			->add_jsfile('lib/jquery_tiki/tiki-maps.js');
+			->add_jsfile('lib/jquery_tiki/tiki-maps.js')
+		;
 	}
 
 	$scope = smarty_modifier_escape(wp_map_getscope($params));
