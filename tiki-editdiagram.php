@@ -25,8 +25,8 @@ $headerlib = $tikilib::lib('header');
 
 $headerlib->add_cssfile('vendor/xorti/mxgraph-editor/grapheditor/styles/grapheditor.css');
 $headerlib->add_css("*, *::before, *::after { box-sizing: unset;}");
-$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', false);
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Init.js');
+$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', true);
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Init.js', true);
 $headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/deflate/pako.min.js', true);
 $headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/deflate/base64.js');
 $headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/jscolor/jscolor.js');
