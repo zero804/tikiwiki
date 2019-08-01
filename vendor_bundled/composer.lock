@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03f2eccd0c5bd4bf26ed550554816743",
+    "content-hash": "ddd3e001f73e9a3ec374c7b2b14fd75e",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -53,8 +53,8 @@
             "authors": [
                 {
                     "name": "John Lim",
-                    "email": "jlim@natsoft.com",
-                    "role": "Author"
+                    "role": "Author",
+                    "email": "jlim@natsoft.com"
                 },
                 {
                     "name": "Damien Regad",
@@ -830,6 +830,50 @@
             "time": "2015-12-01T23:35:57+00:00"
         },
         {
+            "name": "dragonmantank/cron-expression",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dragonmantank/cron-expression.git",
+                "reference": "9504fa9ea681b586028adaaa0877db4aecf32bad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/dragonmantank/cron-expression/dragonmantank-cron-expression-9504fa9ea681b586028adaaa0877db4aecf32bad-zip-befff6.zip",
+                "reference": "9504fa9ea681b586028adaaa0877db4aecf32bad",
+                "shasum": "718f4bb65dbe2513ec009bebde8fbdb7f4420857"
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0|~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cron\\": "src/Cron/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "CRON for PHP: Calculate the next or previous run date and determine if a CRON expression is due",
+            "keywords": [
+                "cron",
+                "schedule"
+            ],
+            "time": "2017-01-23T04:29:33+00:00"
+        },
+        {
             "name": "drmonty/smartmenus",
             "version": "1.1.0",
             "source": {
@@ -1118,15 +1162,15 @@
             "authors": [
                 {
                     "name": "Svein-Tore Griff With",
+                    "role": "CEO",
                     "email": "with@joubel.com",
-                    "homepage": "http://joubel.com",
-                    "role": "CEO"
+                    "homepage": "http://joubel.com"
                 },
                 {
                     "name": "Frode Petterson",
+                    "role": "Developer",
                     "email": "frode.petterson@joubel.com",
-                    "homepage": "http://joubel.com",
-                    "role": "Developer"
+                    "homepage": "http://joubel.com"
                 }
             ],
             "description": "H5P Editor functionality in PHP",
@@ -2232,9 +2276,9 @@
             "authors": [
                 {
                     "name": "Vladimir Kharalmpidi",
+                    "role": "Developer",
                     "email": "nolimits4web@gmail.com",
-                    "homepage": "https://idangero.us",
-                    "role": "Developer"
+                    "homepage": "https://idangero.us"
                 }
             ],
             "description": "Most modern mobile touch slider and framework with hardware accelerated transitions",
@@ -6336,8 +6380,8 @@
             "authors": [
                 {
                     "name": "Frank Kleine",
-                    "homepage": "http://frankkleine.de/",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "homepage": "http://frankkleine.de/"
                 }
             ],
             "description": "Virtual file system to mock the real file system in unit tests.",
@@ -7823,13 +7867,13 @@
                 },
                 {
                     "name": "Wim Godden",
-                    "homepage": "https://github.com/wimg",
-                    "role": "lead"
+                    "role": "lead",
+                    "homepage": "https://github.com/wimg"
                 },
                 {
                     "name": "Juliette Reinders Folmer",
-                    "homepage": "https://github.com/jrfnl",
-                    "role": "lead"
+                    "role": "lead",
+                    "homepage": "https://github.com/jrfnl"
                 }
             ],
             "description": "A set of sniffs for PHP_CodeSniffer that checks for PHP cross-version compatibility.",
