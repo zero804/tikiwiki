@@ -4065,7 +4065,8 @@ CREATE TABLE `tiki_scheduler` (
   `params` TEXT,
   `run_time` VARCHAR(255),
   `status` VARCHAR(10),
-  `re_run` TINYINT
+  `re_run` TINYINT,
+  `creation_date` INT(14)
 ) ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `tiki_scheduler_run`;

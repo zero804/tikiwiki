@@ -26,6 +26,7 @@
 		"components/jqueryui": "^1.12",
 		"cweagans/composer-patches": "^1.6",
 		"cwspear/bootstrap-hover-dropdown": "^2.2.1",
+		"dragonmantank/cron-expression": "^1.2",
 		"evert/sitemap-php": "^1.2",
 		"ezyang/htmlpurifier": "^4.8.0",
 		"fortawesome/font-awesome": "^4.6.3",
