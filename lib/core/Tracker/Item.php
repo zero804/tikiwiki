@@ -197,6 +197,10 @@ class Tracker_Item
 	private function canSeeOwn()
 	{
 		global $user;
+		if (! $this->definition) {
+			return false;
+		}
+
 		if ($this->definition->getConfiguration('userCanSeeOwn') == 'y') {
 			return ! empty($user) && $this->owners && in_array($user, $this->owners);
 		}
