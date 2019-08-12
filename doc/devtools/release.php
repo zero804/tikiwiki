@@ -329,9 +329,12 @@ function build_secdb_queries($dir, $version, &$queries, $excludes = [])
 
 	while (false !== ($e = $d->read())) {
 		$entry = $dir . '/' . $e;
+		if (is_link($entry)) {
+			continue; // if is a symlink we should not run any hash
+		}
 		if (is_dir($entry)) {
 			// do not descend and no CVS/Subversion files
-			if ($e != '..' && $e != '.' && $e != 'CVS' && $e != '.svn' && $entry != ROOT . '/temp' && $entry != ROOT . '/vendor_custom') {
+			if ($e != '..' && $e != '.' && $e != 'CVS' && $e != '.svn' && $entry != ROOT . '/temp' && $entry != ROOT . '/vendor_custom' && $entry != ROOT . '/_custom') {
 				build_secdb_queries($entry, $version, $queries, $excludes);
 			}
 		} else {
@@ -343,7 +346,7 @@ function build_secdb_queries($dir, $version, &$queries, $excludes = [])
 				}
 
 				// Escape filename. Since this requires a connection to MySQL (due to the charset), do so conditionally to reduce the risk of connection failure.
-				if (! preg_match('/^[a-zA-Z0-9\/ _+.-]+$/', $file)) {
+				if (! preg_match('/^[a-zA-Z!-9\/ _+.-@]+$/', $file)) {
 					if (! $link) {
 						$link = mysqli_connect();
 
@@ -465,6 +468,9 @@ function setPermissions($src)
 				setPermissions($full);
 				chmod($full, 0755);
 			} else {
+				if (is_link($full)) {
+					continue;
+				}
 				chmod($full, 0664);
 			}
 		}
@@ -511,7 +517,7 @@ function build_packages($releaseVersion)
 	}
 
 	// create a export in tikipack to work with
-	echo "Creating SVN export from working copy\n";
+	echo "Creating SVN export from working copy into $sourceDir\n";
 	$shellout = shell_exec('svn export ' . escapeshellarg(ROOT) . ' ' . escapeshellarg($sourceDir . '/.') . ' 2>&1');
 	if ($options['debug-packaging']) {
 		echo $shellout . "\n";
@@ -601,7 +607,7 @@ function build_packages($releaseVersion)
 	}
 
 	echo "Creating $fileName.zip\n";
-	$shellout = shell_exec("cd $relDir; zip -r " . escapeshellarg($fileName . ".zip") . ' ' . escapeshellarg($fileName) . ' -x "*.DS_Store" -9 2>&1');
+	$shellout = shell_exec("cd $relDir; zip -ry " . escapeshellarg($fileName . ".zip") . ' ' . escapeshellarg($fileName) . ' -x "*.DS_Store" -9 2>&1');
 	if ($options['debug-packaging']) {
 		echo $shellout . "\n";
 	}
@@ -690,9 +696,9 @@ function check_smarty_syntax(&$error_msg)
 	$prefs['site_layout'] = 'basic';
 	require_once 'vendor_bundled/vendor/smarty/smarty/libs/Smarty.class.php';
 	require_once 'lib/init/smarty.php';
+	require_once 'lib/init/initlib.php';
 	// needed in Smarty_Tiki
 	define('TIKI_PATH', getcwd());
-	require_once 'lib/core/TikiAddons.php';
 	require_once 'lib/smarty_tiki/prefilter.tr.php';
 	require_once 'lib/smarty_tiki/prefilter.jq.php';
 	require_once 'lib/smarty_tiki/prefilter.log_tpl.php';
