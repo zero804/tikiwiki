@@ -32,6 +32,657 @@ The tags info is also online: https://dev.tiki.org/Commit+Tags
 Before 2.0, there was only [MOD] for both [ENH] and [MOD]:
 
 ----------------------------------------------------------------------
+Version 18.4
+<http://doc.tiki.org/Tiki18>
+------------------
+
+----------------------------------------------
+r70556 | jonnybradley | 2019-08-05 12:58:20 +0100 (Mon, 05 Aug 2019) | 4 lines
+[bp/r69968][bp/r69060][ENH] autotoc: Add new pref to define the default behaviour of autotoc, so you can now have it default to "off" and then enable it per page 
+[bp/r69447][FIX] autotoc: Missing part from r69060 to make it actually work (also add some useful keywords to the relevant prefs) 
+[bp/r69558][FIX] autotoc: Fix faulty logic on per page autotoc decision (which fixes my new test :) 
+[bp/r70555][bp/r70215][FIX] autotoc: Handle html tags in autotoc links properly (thanks luiciash)
+----------------------------------------------
+r70518 | xorti | 2019-08-01 01:33:38 +0100 (Thu, 01 Aug 2019) | 3 lines
+[bp/r70027][ENH] Improvements in scheduler runs when cron is not set to run on every minute
+[manually re-applied after revision loss - old r70512]
+----------------------------------------------
+r70513 | jonnybradley | 2019-07-31 16:42:23 +0100 (Wed, 31 Jul 2019) | 3 lines
+[bp/r70511][bp/r69827][FIX] sefurl: In some setups this tries to redeclare smarty_modifier_sefurl as smarty_modifier_sefUrl which causes an error. Also the 'wiki' type parameter isn't required as that is the default (and should be a string any way). 
+[manually re-applied as it seems to have been reverted and svn thinks it's already been backported]
+[take #2 - file didn't get committed... svn is trying to tell us something I think]
+----------------------------------------------
+r70512 | jonnybradley | 2019-07-31 16:41:02 +0100 (Wed, 31 Jul 2019) | 2 lines
+[bp/r70511][bp/r69827][FIX] sefurl: In some setups this tries to redeclare smarty_modifier_sefurl as smarty_modifier_sefUrl which causes an error. Also the 'wiki' type parameter isn't required as that is the default (and should be a string any way). 
+[manually re-applied as it seems to have been reverted and svn thinks it's already been backported]
+----------------------------------------------
+r70500 | jonnybradley | 2019-07-25 18:18:50 +0100 (Thu, 25 Jul 2019) | 2 lines
+[bp/r70499][bp/r70496][ENH] maps: Add a way of optionally setting the name of a layer or layer group using Name=layer_name
+e.g. "Bing=bing_road,Watercolour=stamen_watercolor~stamen_terrain-labels,nextzen~stamen_toner-labels"
+----------------------------------------------
+r70489 | jonnybradley | 2019-07-24 16:57:04 +0100 (Wed, 24 Jul 2019) | 22 lines
+[bp/r70481][bp/r70444][FIX] maps: Various fixes, make the search and location buttons look like buttons, fix to my location for ol3 and fix removal of previous instances of a unique marker (like selection). 
+[bp/r70445][ENH] maps: Clicking on a cluster zooms to the contents of the cluster (thanks marclaporte) - also refactor displayFeatureInfo and showPopup functions so they can be overridden by custom code if needs be 
+[bp/r70452][ENH] maps: Add ZoomSlider and make coordinates work properly (although i'm not convinced that's really the right projection for our maps)
+Also define them all before the map constructor instead of adding them afterwards. 
+[bp/r70459][ENH] maps: Add 3rd party walkermatt/ol-layerswitcher to restore the layer switcher in ol3+ mode 
+[bp/r70460][REF] maps: Move some big blocks of stubborn code still needing updating to ol3+ to the end of the file to they don't get forgotten about (completely) 
+[bp/r70476][ENH] maps: Improve grouping of base and overlay layers in teh layer switcher. And allow tilesets to be grouped within one layer so you can have a map and labels combined in a single switchable map "layer"
+e.g.
+    tilesets="bing_road,stamen_watercolor~stamen_terrain-labels,nextzen~stamen_toner-labels" 
+[bp/r70480][FIX] maps: jqueryTiki.mapTileSets is already an array so only split string values from the plugin tilesets parameter 
+Also ran composer update with these automatic updates:
+  - Updating blueimp/jquery-file-upload (v9.32.0 => v9.34.0)
+  - Updating ckeditor/ckeditor (4.11.4 => 4.12.1)
+  - Updating ezyang/htmlpurifier (v4.10.0 => v4.11.0)
+  - Updating phpseclib/phpseclib (2.0.20 => 2.0.21) 
+[bp/r70488][bp/r70487][FIX] maps: Handle layers problems better (i.e. trying to show ol2 layers on ol3+ maps) 
+Also ran php56 composer update which auto-updated:
+  - Updating blueimp/jquery-file-upload (v9.32.0 => v9.34.0)
+  - Updating ckeditor/ckeditor (4.11.4 => 4.12.1)
+  - Updating ezyang/htmlpurifier (v4.10.0 => v4.11.0)
+  - Updating phpseclib/phpseclib (2.0.20 => 2.0.21)
+----------------------------------------------
+r70475 | jyhem | 2019-07-23 16:11:55 +0100 (Tue, 23 Jul 2019) | 1 line
+[UX][bp/70473] Replace ambiguous fun word with more expressive one (ugly {U+2192} unsure)
+----------------------------------------------
+r70464 | jyhem | 2019-07-23 01:12:36 +0100 (Tue, 23 Jul 2019) | 1 line
+[UX][bp/r70462] Hide scary messages for advanced users in 'more' option
+----------------------------------------------
+r70451 | montefuscolo | 2019-07-21 07:49:53 +0100 (Sun, 21 Jul 2019) | 1 line
+[FIX] composer was not running packages without git
+----------------------------------------------
+r70443 | robertokir | 2019-07-18 22:16:10 +0100 (Thu, 18 Jul 2019) | 1 line
+[bp/r70421][FIX][ENH] Report all occurrences of a string in any table: fixes and enhancements
+----------------------------------------------
+r70431 | jonnybradley | 2019-07-16 17:45:34 +0100 (Tue, 16 Jul 2019) | 4 lines
+[bp/r70429] More on ol3+ maps from 19.x
+[bp/r70426][FIX] maps: Better positioning of "popover" popups when selected 
+[bp/r70427][FIX] maps: Add colouring for ferries and airports on nextzen vector maps 
+[bp/r70428][FIX] maps: When over a cluster make the tooltips appear correctly for the features revealed within.
+----------------------------------------------
+r70425 | jonnybradley | 2019-07-16 15:16:29 +0100 (Tue, 16 Jul 2019) | 6 lines
+[bp/r70424] Combined ol3+ enhancements and fixes form 19.x
+[bp/r70377][ENH] maps: Show what's inside a cluster on hover (optionally). Can cause flickering which needs fixing somehow... 
+[bp/r70378][ENH] maps: Add Stamen map layers, e.g. stamen_watercolor,stamen_terrain-labels (full list here http://maps.stamen.com) 
+[bp/r70380][ENH] maps: Add basic support for Nextzen vector maps (API key from https://developers.nextzen.org required) [thanks Xavi] 
+[bp/r70393][FIX] maps: Tooltips weren't hiding properly 
+[bp/r70418][ENH] maps: Move the nextzen vector map style function into one place and simplify it a bit so you can override it in window.nextzenStyle() (and a couple of fixes for events on vector layers)
+----------------------------------------------
+r70423 | jonnybradley | 2019-07-16 14:59:00 +0100 (Tue, 16 Jul 2019) | 2 lines
+[bp/r70422][bp/r70413][ENG] images: Expose access to GD and Imagick image compression settings. Only working on JPEGs and PNGs (loss-less) so far
+Manual backport due to refactoring of the Image classes in 19.x
+----------------------------------------------
+r70408 | jonnybradley | 2019-07-10 17:06:37 +0100 (Wed, 10 Jul 2019) | 1 line
+[bp/r70407][bp/r70405][FIX] trackers: When importing changes to linked Wiki pages get the itemId from the requestData
+----------------------------------------------
+r70404 | jonnybradley | 2019-07-10 17:00:11 +0100 (Wed, 10 Jul 2019) | 1 line
+[bp/r68568][FIX] wiki: Escape square brackets when importing html
+----------------------------------------------
+r70396 | jonnybradley | 2019-07-09 15:46:45 +0100 (Tue, 09 Jul 2019) | 1 line
+[bp/r70395][bp/r70334][FIX] validators: Observe fixed-top layout offset (i.e. "Classic Bootstrap (fixed top navbar)") for scrolling when not in a modal. Also focus select elements properly if using jquery chosen.
+----------------------------------------------
+r70363 | jonnybradley | 2019-07-04 17:03:07 +0100 (Thu, 04 Jul 2019) | 1 line
+[FIX] maps: Changes for bootstrap 3 following backport from 19.x
+----------------------------------------------
+r70362 | jonnybradley | 2019-07-04 17:00:54 +0100 (Thu, 04 Jul 2019) | 26 lines
+[bp/r70360] Combined backport for OpenLayers v3+ fixes
+Also ran composer update manually
+[bp/r69884][FIX] maps: Some fixes for newer versions of OpenLayers, currently still ol3
+Added support for Bing map layers and API key (Google is deprecated)
+Some fixes for converting lon/lat degree arrays to fractional coordinates needed now
+Partial fix for icons, tracker item markers still not working for me
+More to come... 
+[bp/r69885][FIX] maps: Markers now appearing (needed parseFloat on the strings coming from the ajax service - projection still not quite right, but closer now 
+[bp/r69886][FIX] maps: Use the same view and just re-centre it and only have on resetPosition function (didn't fix projection issues though) 
+[bp/r69982][UPD] maps: Replace openlayers 3.x with 5.x - some improvements, like zoom buttons returned but marker layer projection still wrong 
+[bp/r69989][UPD] openlayers: Fixed the marker location issue - wasn't the projection but the anchor offset needs to be plus on minus (also removed a duplicate delayedExecutor fn and some comments) 
+[bp/r70217][FIX] maps: Tooltips now working on ol3+ maps (still very experimental though) 
+[bp/r70218][FIX] maps: Popovers & dialogs now working on ol3+ maps (also quite experimental) 
+[bp/r70252][ENH] maps: Add basic clustering for marker features for ol3+ 
+[bp/r70254][FIX] maps: Fix tooltips and popups when features are clusters 
+[bp/r70292][ENH] js: New function to allow removal of previously included js files (usage to come next) 
+[bp/r70293][ENH] maps: New param for map plugin to allow testing of ol3+ maps when the main pref is set to ol2 
+[bp/r70295][FIX] maps: Use current library pref as default if not specified 
+[bp/r70296][ENH] maps: Improved cluster size calculation based on features' extents 
+[bp/r70339][ENH] maps: Expose cluster fill and text colours for ol3 maps 
+[bp/r70340][ENH] maps: Add a way to specify a layer for ol3 maps (only the last layer shows so far as we don't have a LayerSwitcher control yet) 
+[bp/r70342][FIX] maps: Cope with no tilesets param properly 
+[bp/r70344][FIX] maps: Cope with a single tilesets param 
+[bp/r70355][FIX] maps:Make it clear which tilesets can be used with which OpenLayers versions 
+[bp/r70356][FIX] maps: Clustering wasn't working for features added by the "scope" plugin parameter (only using searchlayer plugins inside the plugin body)
+----------------------------------------------
+r70361 | jonnybradley | 2019-07-04 16:53:40 +0100 (Thu, 04 Jul 2019) | 26 lines
+[UPD] Automatic composer updates
+blueimp/jquery-file-upload 9.28.0 >> 9.32.0
+ckeditor/ckeditor 4.11.3 >> 4.11.4
+components/bootstrap 3.4.0 >> 3.4.1
+cweagans/composer-patches 1.6.5 >> 1.6.6
+jasig/phpcas 1.3.6 >> 1.3.7
+phpseclib/phpseclib 2.0.15 >> 2.0.20
+plotly/plotly.js 1.46.1 >> 1.48.3
+rmm5t/jquery-timeago 1.6.5 >> 1.6.7
+studio-42/elfinder 2.1.48 >> 2.1.49
+symfony/config 3.4.24 >> 3.4.29
+symfony/console 3.4.24 >> 3.4.29
+symfony/css-selector 3.4.24 >> 3.4.29
+symfony/debug 3.4.24 >> 3.4.29
+symfony/dependency-injection 3.4.24 >> 3.4.29
+symfony/filesystemn 3.4.24 >> 3.4.29
+symfony/processn 3.4.24 >> 3.4.29
+symfony/yamln 3.4.24 >> 3.4.29
+zendframework/zend-captcha 2.8.0 >> 2.9.0
+zendframework/zend-config 3.2.0 >> 3.3.0
+zendframework/zend-crypt 3.3.0 >> 3.3.1
+zendframework/zend-tag 2.7.0 >> 2.7.1
+phpspec/prophecy 1.8.0 >> 1.8.1
+wimg/php-compatibility 9.1.1 >> 9.2.0
+and lots of "reference": null lines removed
+----------------------------------------------
+r70338 | jonnybradley | 2019-07-03 16:38:37 +0100 (Wed, 03 Jul 2019) | 1 line
+[bp/r70336][bp/r70335][FIX] datepickers: Fix the "Today" button on date picker dialogs showing the date without the time
+----------------------------------------------
+r70279 | jonnybradley | 2019-06-27 11:39:00 +0100 (Thu, 27 Jun 2019) | 1 line
+[bp/r70278][bp/r70276][ENH] slugs: A couple of improvements for better SEO - default to lower case and don't break words (optionally)
+----------------------------------------------
+r70220 | jyhem | 2019-06-17 19:15:49 +0100 (Mon, 17 Jun 2019) | 1 line
+[FIX][bp/r70219] Remove annoying 'table xxx already exists' warnings on database upgrades which were meant to be ignored anyway
+----------------------------------------------
+r70200 | jonnybradley | 2019-06-11 18:04:02 +0100 (Tue, 11 Jun 2019) | 1 line
+[bp/r70199][bp/r70198][FIX] trackers: If using a field as |output and the user only has canViewField perm on it we need the trackerId after the form has been posted to do renderOutput() on it.
+----------------------------------------------
+r70189 | jyhem | 2019-06-11 00:45:56 +0100 (Tue, 11 Jun 2019) | 1 line
+[UX][bp/r70186] Cosmetic changes for much improved usability. Less scrolling up and down.
+----------------------------------------------
+r70166 | xorti | 2019-06-06 23:45:10 +0100 (Thu, 06 Jun 2019) | 1 line
+[bp/r68358][ENH][UX] Add better context of missing tiki package
+----------------------------------------------
+r70160 | jonnybradley | 2019-06-06 16:37:40 +0100 (Thu, 06 Jun 2019) | 1 line
+[bp/r70159][bp/r70072][NEW] smarty: New modifier to "sluggify" strings for use in URLs in custom templates [from revision 70072]
+----------------------------------------------
+r70158 | jonnybradley | 2019-06-06 15:45:05 +0100 (Thu, 06 Jun 2019) | 1 line
+[bp/r69936][bp/r69934][FIX] objects: Fix conflict between pref jquery_ui_chosen_sortable and object_selector_multi when there are more results than the threshold tiki_object_selector_threshold (i.e. Relations fields not editable) [many thanks Nelson for feedback, testing and moral support!]
+----------------------------------------------
+r70098 | jyhem | 2019-05-29 09:41:34 +0100 (Wed, 29 May 2019) | 1 line
+[FIX][bp/r70096] Restore functionality from Tiki15. Allow editing plugins which include other plugins again (thanks Jonny)
+----------------------------------------------
+r70087 | xorti | 2019-05-27 15:20:02 +0100 (Mon, 27 May 2019) | 1 line
+[bp/r69867][FIX] Fix encoding issues when parsing content from rss external feeds
+----------------------------------------------
+r70060 | jonnybradley | 2019-05-23 16:53:50 +0100 (Thu, 23 May 2019) | 2 lines
+[FIX] popovers: Add data attributes to the bootstrap whitelist and remove redundant form tags from fgal_context_menu.tpl (unused since r62687)
+(not relevant for trunk or 19.x)
+----------------------------------------------
+r70059 | jonnybradley | 2019-05-23 13:46:24 +0100 (Thu, 23 May 2019) | 1 line
+[bp/r70058][FIX] trackers: Stray curly bracket after upload button (not in trunk it seems)
+----------------------------------------------
+r70050 | jonnybradley | 2019-05-22 18:56:17 +0100 (Wed, 22 May 2019) | 1 line
+[bp/r70049][bp/r70007][FIX] trackers: Make the output modifier work for fields the user cannot edit in pretty tracker templates if they can view them
+----------------------------------------------
+r70048 | jonnybradley | 2019-05-22 18:27:54 +0100 (Wed, 22 May 2019) | 1 line
+[bp/r70047][bp/r70046][FIX] php7: "Only variables should be passed by reference" (in plugin tracker notifications, possibly causing emails to not be sent)
+----------------------------------------------
+r70036 | montefuscolo | 2019-05-21 16:27:44 +0100 (Tue, 21 May 2019) | 1 line
+[FIX] Ignore VisualStudio files
+----------------------------------------------
+r70034 | xorti | 2019-05-21 15:28:59 +0100 (Tue, 21 May 2019) | 1 line
+[bp/r69555][NEW] Add new tab 'Packages Custom' in Tiki Packages section to list manually managed packages installed in vendor_custom
+----------------------------------------------
+r70025 | jonnybradley | 2019-05-16 20:34:13 +0100 (Thu, 16 May 2019) | 2 lines
+[bp/r70024][FIX] rss/articles: More cleanup from field `hash` being removed top prevent fatal errors (not sure why, but see r63365)
+Not a backport as it seems to be ok in trunk, i just don't understand how this can be as the commit was in 2017...
+----------------------------------------------
+r70023 | jonnybradley | 2019-05-16 20:08:37 +0100 (Thu, 16 May 2019) | 1 line
+[bp/r70022][bp/r70021][FIX] rss: Field `hash` was removed from tiki_submissions table a few years ago (not sure why), and this broke external rss feed refresh when using article generator and submissions together
+----------------------------------------------
+r69984 | robertokir | 2019-05-12 11:20:35 +0100 (Sun, 12 May 2019) | 1 line
+[bp/r69983][FIX] Tracker item popups: respect "Hide empty fields from item view" tracker display property
+----------------------------------------------
+r69980 | rjsmelo | 2019-05-11 16:33:29 +0100 (Sat, 11 May 2019) | 2 lines
+[bp/69832][ENH] Change the BOM checker in tiki-check to run only on request
+----------------------------------------------
+r69940 | jyhem | 2019-05-08 00:09:09 +0100 (Wed, 08 May 2019) | 1 line
+[FIX][bp/r69939] Wiki page attachments upload comments were lost using feature_use_fgal_for_wiki_attachments. Now we store them both in comments and description for backward compatibility and restoration of functionality.
+----------------------------------------------
+r69921 | jyhem | 2019-05-03 17:43:44 +0100 (Fri, 03 May 2019) | 1 line
+[FIX][bp/r69919] The All option did not display any freetag at all
+----------------------------------------------
+r69914 | robertokir | 2019-05-02 10:36:12 +0100 (Thu, 02 May 2019) | 1 line
+[bp/r69913][FIX] PluginTrackerList: Check permissions properly in pop-ups. Also, do not show blank pop-up when no fields should show (thanks Marc)
+----------------------------------------------
+r69865 | robertokir | 2019-04-24 16:31:35 +0100 (Wed, 24 Apr 2019) | 1 line
+[bp/r69863][FIX] PluginMemberList: shouldn't permit to remove a user from the Registered group + The Anonymous tab makes no sense (thanks Marc)
+----------------------------------------------
+r69857 | amnabilal | 2019-04-24 14:19:31 +0100 (Wed, 24 Apr 2019) | 1 line
+[bp/r69655][FIX]Fixed small issue, blank page was being created if pluginPDFPage is used to change settings of first page.
+----------------------------------------------
+r69829 | jonnybradley | 2019-04-23 12:55:15 +0100 (Tue, 23 Apr 2019) | 1 line
+[bp/r69828][bp/r69827][FIX] sefurl: In some setups this tries to redeclare smarty_modifier_sefurl as smarty_modifier_sefUrl which causes an error. Also the 'wiki' type parameter isn't required as that is the default (and should be a string any way).
+----------------------------------------------
+r69822 | jyhem | 2019-04-23 01:13:10 +0100 (Tue, 23 Apr 2019) | 1 line
+[UX][bp/r69820] Make error message actually helpful so people don't think it's a permission bug like I did
+----------------------------------------------
+r69807 | montefuscolo | 2019-04-19 02:20:54 +0100 (Fri, 19 Apr 2019) | 1 line
+[FIX] Shasum for zetacomponents/webdav
+----------------------------------------------
+r69798 | jonnybradley | 2019-04-17 18:26:02 +0100 (Wed, 17 Apr 2019) | 2 lines
+[FIX] popovers: Whitelist tables etc in popovers due to new sanitizing in bootstrap 3.4.1 - fixes tracker item popups
+Not a backport as not relevant yet to trunk or 19.x
+----------------------------------------------
+r69781 | nelsonko | 2019-04-15 20:05:28 +0100 (Mon, 15 Apr 2019) | 4 lines
+[bp/r69779][FIX] When there are spaces in user names, the wrong user's information can be shown. For example, if there is "John Ace" and "John Doe" then it is possible John Ace's information will show when trying to view John Doe's. This is because $unifiedsearchlib->buildQuery uses filterContent which is a plaintext search for either of the terms, rather than filterIdentifier which searches for an exact match.
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/98)
+(cherry picked from commit a2c15c96c5d419e961e1c0246cac17f70096f7b5)
+----------------------------------------------
+r69776 | jonnybradley | 2019-04-15 14:53:21 +0100 (Mon, 15 Apr 2019) | 2 lines
+[MOD] comments: Increase the hard-coded maximum number of comments shown from 100 to 300
+Not a backport as proper pagination and sorting have been added to 19.x, and deemed to large a change to backport [thanks marclaporte]
+----------------------------------------------
+r69772 | jonnybradley | 2019-04-14 15:17:15 +0100 (Sun, 14 Apr 2019) | 34 lines
+[UPD] Automatic composer updates, mainly for jquery-timepicker-addon to fix the js error when clicking "today" but various other minor updates, which look safe enough (i hope!)
+  - Updating ckeditor/ckeditor (4.11.1 => 4.11.3)
+  - Updating jquery/jquery-timepicker-addon (1.6.1 => 1.6.3)
+  - Updating pear/console_getopt (v1.4.1 => v1.4.2)
+  - Updating pear/pear (v1.10.7 => v1.10.9)
+  - Updating pear/archive_tar (1.4.6 => 1.4.7)
+  - Updating pear/xml_parser (v1.3.7 => v1.4.2)
+  - Updating phpseclib/phpseclib (2.0.14 => 2.0.15)
+  - Updating plotly/plotly.js (v1.44.1 => v1.46.1)
+  - Updating rmm5t/jquery-timeago (v1.6.4 => v1.6.5)
+  - Updating studio-42/elfinder (2.1.46 => 2.1.48)
+  - Updating symfony/polyfill-ctype (v1.10.0 => v1.11.0)
+  - Updating symfony/filesystem (v3.4.22 => v3.4.24)
+  - Updating symfony/config (v3.4.22 => v3.4.24)
+  - Updating symfony/polyfill-mbstring (v1.10.0 => v1.11.0)
+  - Updating symfony/debug (v3.4.22 => v3.4.24)
+  - Updating symfony/console (v3.4.22 => v3.4.24)
+  - Updating symfony/dependency-injection (v3.4.22 => v3.4.24)
+  - Updating symfony/process (v3.4.22 => v3.4.24)
+  - Updating twitter/bootstrap (v3.4.0 => v3.4.1)
+  - Updating zendframework/zend-feed (2.11.0 => 2.12.0)
+  - Updating zendframework/zend-uri (2.6.1 => 2.7.0)
+  - Updating zendframework/zend-http (2.9.1 => 2.10.0)
+  - Updating zendframework/zendservice-recaptcha (3.1.0 => 3.2.0)
+  - Updating mikey179/vfsstream (v1.6.5 => v1.6.6)
+  - Updating symfony/yaml (v3.4.22 => v3.4.24)
+  - Updating sebastian/recursion-context (1.0.5 => 2.0.0)
+  - Updating sebastian/object-enumerator (1.0.0 => 2.0.1)
+  - Updating sebastian/exporter (1.2.2 => 2.0.0)
+  - Updating phpunit/phpunit (5.5.4 => 5.7.27)
+  - Updating squizlabs/php_codesniffer (3.4.0 => 3.4.2)
+  - Updating symfony/css-selector (v3.4.22 => v3.4.24)
+  - Updating zendframework/zend-math (2.7.1 => 3.2.0)
+  - Updating zendframework/zend-crypt (2.6.0 => 3.3.0)
+----------------------------------------------
+r69771 | jonnybradley | 2019-04-14 15:15:18 +0100 (Sun, 14 Apr 2019) | 1 line
+[FIX] calendars: Fix odd js error preventing creating new events in full calendar, fixed in 19+ in r66298 as part of more major work (thanks xorti)
+----------------------------------------------
+r69769 | montefuscolo | 2019-04-13 14:46:08 +0100 (Sat, 13 Apr 2019) | 4 lines
+[rb/r69748] Revert "[bp/r69747][FIX] Remove ENGINE=MyISAM so that it won't error when using on a system with no support for MyISAM"
+This reverts commit 9fd484ead0678f57cad825e46a7aeec669072111.
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/83)
+----------------------------------------------
+r69766 | nelsonko | 2019-04-12 19:34:49 +0100 (Fri, 12 Apr 2019) | 4 lines
+[bp/r69764][FIX] More reliable browser cache busting for when static avatars or the default avatar image changes (to avoid avatar that has changed looking like not changed)
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/95)
+(cherry picked from commit 220a9df7dffa2e78066576a4dc88a4fbe6753f7b)
+----------------------------------------------
+r69762 | nelsonko | 2019-04-12 17:33:49 +0100 (Fri, 12 Apr 2019) | 4 lines
+[bp/r69761][FIX] If a user has export tracker permission but does not have permission to view certain fields, then he should not be able to export data that are in those fields.
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/94)
+(cherry picked from commit e725ff44984949aabcd65743bc545b8e07d27622)
+----------------------------------------------
+r69759 | nelsonko | 2019-04-12 17:26:01 +0100 (Fri, 12 Apr 2019) | 4 lines
+[bp/r69758][FIX] Object selector filtering should only filter the title field, not the entire contents field, otherwise you will get many objects that don't seem to match
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/93)
+(cherry picked from commit 3dc1ac7bfbc0eb920925fb1409abf3d86966cc1a)
+----------------------------------------------
+r69756 | holmann.ling | 2019-04-12 17:08:24 +0100 (Fri, 12 Apr 2019) | 4 lines
+[bp/r69755][FIX] accept headers was not being respected because of errorneous strpos needle/haystack parameters
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/90)
+(cherry picked from commit e3e2e094c263609c7c71f613ce189961844fc65e)
+----------------------------------------------
+r69754 | nelsonko | 2019-04-12 16:39:17 +0100 (Fri, 12 Apr 2019) | 3 lines
+[FIX] The previous attempted caching of field mappings to save connections to ES server completely broke all my LIST plugins as it can't find the field info through that series of resets. Here is a simpler caching which gives pretty good results too, which does not change the lookup behavior from before.
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/86)
+----------------------------------------------
+r69748 | nelsonko | 2019-04-12 16:15:59 +0100 (Fri, 12 Apr 2019) | 3 lines
+[bp/r69747][FIX] Remove ENGINE=MyISAM so that it won't error when using on a system with no support for MyISAM
+(close https://gitlab.com/tikiwiki/tiki/merge_requests/83)
+----------------------------------------------
+r69743 | kroky6 | 2019-04-12 14:05:14 +0100 (Fri, 12 Apr 2019) | 1 line
+[bp/r69741] [FIX] regression after r68720 that prevented tracker_item_modify list-execute action to work with string supplied value in the step action itself
+----------------------------------------------
+r69731 | nelsonko | 2019-04-11 22:48:40 +0100 (Thu, 11 Apr 2019) | 4 lines
+[FIX][DOC] Provide more explanatory error message. TODO: when uploading in tracker edit dialog, entire dialog closes. Ideally, there should be a way to show the error without aborting the whole edit dialog.
+(closes https://gitlab.com/tikiwiki/tiki/merge_requests/76)
+(cherry picked from commit bdf9081e7cdc397c6bc7c687153ad53b05e3686f)
+----------------------------------------------
+r69698 | jonnybradley | 2019-04-10 17:20:37 +0100 (Wed, 10 Apr 2019) | 1 line
+[bp/r69414][ENH] search: Extend the list plugin "wikiplugin" formatter to allow value replacements in the body of the plugin, e.g. to allow nested list plugins within a list or listexecute {format} sub-plugin
+----------------------------------------------
+r69686 | holmann.ling | 2019-04-09 23:10:09 +0100 (Tue, 09 Apr 2019) | 4 lines
+[bp/r69684][FIX] when installing .yml profiles from tiki/installer/schema folder patch was considered fail even when successful
+(close https://gitlab.com/tikiwiki/tiki/merge_requests/73)
+(cherry picked from commit 09cbec5af850dc5be0d049506594f45855760cb4)
+----------------------------------------------
+r69685 | holmann.ling | 2019-04-09 23:09:10 +0100 (Tue, 09 Apr 2019) | 4 lines
+[bp/r69683][FIX] when updating existing tracker field with name change, was failing because code was looking for permname with the name rather than the permname
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/73)
+(cherry picked from commit 5767144a7edea0f35a2ece1a7bd288d3707a8263)
+----------------------------------------------
+r69674 | nelsonko | 2019-04-09 18:52:44 +0100 (Tue, 09 Apr 2019) | 4 lines
+[bp/r69673][FIX] In Tiki 18 the tokens feature needs to use the SEFURL if feature_sefurl is on, otherwise it does not work, so fixing this to match otherwise Google preview isn't working when sefurl is on. Also increase number of hits and timeout as Google can sometimes cause multiple requests due to retries for better robustness.
+(cherry picked from commit 789e0508ba27c6026d60bf67b470a8fffaf52522)
+(close https://gitlab.com/tikiwiki/tiki/merge_requests/59)
+----------------------------------------------
+r69653 | xorti | 2019-04-07 17:13:39 +0100 (Sun, 07 Apr 2019) | 1 line
+[bp/r69651][FIX] Fix php requirements in tiki-check
+----------------------------------------------
+r69645 | montefuscolo | 2019-04-06 16:08:55 +0100 (Sat, 06 Apr 2019) | 3 lines
+[bp/r69634][FIX] Correct path for Vimeo uploader scripts
+(cherry picked from commit 1030bd93c800f5a6bedb785f6cdb032298410c2e)
+----------------------------------------------
+r69644 | nelsonko | 2019-04-06 16:08:40 +0100 (Sat, 06 Apr 2019) | 3 lines
+[bp/r69633][FIX] For some reason, the Title input field in the old Jquery dialog to upload Vimeo video cannot be edited if it's over a Bootstrap tracker edit dialog. So to solve this, replace with use of Bootstrap dialog for the Vimeo upload (which should have been done all along anyway). Also, fixed problem with the Vimeo wikiplugin not updating to show the uploaded video due to missing handling for the ticket.
+(cherry picked from commit 3bb6419f8edb545fe296819fe601dbab0d4e9ba9)
+----------------------------------------------
+r69643 | nelsonko | 2019-04-06 16:08:30 +0100 (Sat, 06 Apr 2019) | 3 lines
+[bp/r69632][FIX] Javascript errors when trying to upload Vimeo video through files field
+(cherry picked from commit 2f257f74ec9f15e1d65497a9f10c56170bcc5273)
+----------------------------------------------
+r69642 | nelsonko | 2019-04-06 16:08:19 +0100 (Sat, 06 Apr 2019) | 3 lines
+[bp/r69631][FIX] For some reason, the Vimeo uploading progress bar updating ajax was causing the tracker edit bootstrap modal to close on the second ajax request. It could be something to do with the fact that these requests send back 308 status codes. Setting global to false for the ajax call fixes it.
+(cherry picked from commit c15dbf86bc7811550bd8939a657b628e4c72c52d)
+----------------------------------------------
+r69641 | nelsonko | 2019-04-06 16:08:00 +0100 (Sat, 06 Apr 2019) | 3 lines
+[bp/r69630][FIX] Vimeo uploading not working anymore after move of 3rd party libs to vendor_bundled
+(cherry picked from commit f2793e225965e148b03b4bfe5fa71980008f0ae5)
+----------------------------------------------
+r69624 | robertokir | 2019-04-05 17:36:00 +0100 (Fri, 05 Apr 2019) | 2 lines
+[bp/69623][FIX] trackers: A few fixes for Files fields - check the value of pref fgal_tracker_existing_search properly, and use deepGallerySearch option for deepGallerySearch (although this only works in elFinder, and probably does nothing). Also only create the elFinder openElFinderDialog code when the feature is enabled.
+The vars image_x and image_y still seem to do nothing...
+----------------------------------------------
+r69620 | luciash | 2019-04-05 14:50:01 +0100 (Fri, 05 Apr 2019) | 3 lines
+[bp/r69324][FIX] Fix link in Browser Display
+[bp/r69590][FIX] Files: simplify the raw browser display / download action and clarify what it does in the alt title (thanks John Morris)
+----------------------------------------------
+r69606 | jonnybradley | 2019-04-03 17:02:54 +0100 (Wed, 03 Apr 2019) | 1 line
+[bp/r69605][bp/r69604][FIX] trackers: Fixes for ItemLink fields when using addItems - target the field's select element properly on success, and trigger update chosen afterwards, also use the correct field for the label if the fieldId option is set (multiple fields still not supported properly yet)
+----------------------------------------------
+r69600 | robertokir | 2019-04-02 08:55:55 +0100 (Tue, 02 Apr 2019) | 1 line
+[bp/69599][ENH] Autocomplete: make autocomplete search case insensitive
+----------------------------------------------
+r69565 | xorti | 2019-03-27 18:27:07 +0000 (Wed, 27 Mar 2019) | 1 line
+[bp/r69529][ENH] Add preview link to files in Files Tracker Field
+----------------------------------------------
+r69564 | jyhem | 2019-03-27 18:20:27 +0000 (Wed, 27 Mar 2019) | 1 line
+[FIX][bp/r68797] wysiwyg: Fix for plugins with spaces in the name breaking ckeditor (not sure how this works but it seems to) (thanks Jonny)
+----------------------------------------------
+r69563 | xorti | 2019-03-27 17:55:15 +0000 (Wed, 27 Mar 2019) | 1 line
+[bp/r69561][ENH] Add CI scheduled pipeline to check for vulnerabilities in vendor and vendor_bundle packages
+----------------------------------------------
+r69523 | rjsmelo | 2019-03-23 20:54:26 +0000 (Sat, 23 Mar 2019) | 2 lines
+[REF] Fix DB upgrade from older versions of tiki, the result should be the same if you do a clean install and if you upgrade.
+----------------------------------------------
+r69522 | rjsmelo | 2019-03-23 20:36:56 +0000 (Sat, 23 Mar 2019) | 2 lines
+[REF] Use the new name of the rule
+----------------------------------------------
+r69520 | rjsmelo | 2019-03-23 18:38:04 +0000 (Sat, 23 Mar 2019) | 2 lines
+[REF] Update CI script check_schema_upgrade.php from trunk
+----------------------------------------------
+r69516 | rjsmelo | 2019-03-23 17:08:13 +0000 (Sat, 23 Mar 2019) | 2 lines
+[bp/r69515][REF] Fix coding standards
+----------------------------------------------
+r69514 | rjsmelo | 2019-03-23 16:57:06 +0000 (Sat, 23 Mar 2019) | 2 lines
+[bp/69513][FIX] In r69140 the file was added without "_tiki", this allows the script to be run also when the script without _tiki was run already
+----------------------------------------------
+r69507 | gta74 | 2019-03-22 14:17:26 +0000 (Fri, 22 Mar 2019) | 1 line
+[TRA] ongoing translation
+----------------------------------------------
+r69503 | gta74 | 2019-03-21 15:52:38 +0000 (Thu, 21 Mar 2019) | 1 line
+[TRA] ran get_strings and translated strings
+----------------------------------------------
+r69491 | xorti | 2019-03-20 02:05:20 +0000 (Wed, 20 Mar 2019) | 5 lines
+[bp/r67937][FIX] Allow user to install composer from Tiki Packages UI when file is not present
+- Also includes bp/r67940
+- Also includes bp/r67990
+----------------------------------------------
+r69487 | robertokir | 2019-03-19 09:19:51 +0000 (Tue, 19 Mar 2019) | 1 line
+[bp/r69486][FIX] Avoid PHP NOTICE: Undefined variable
+----------------------------------------------
+r69451 | amnabilal | 2019-03-14 13:34:04 +0000 (Thu, 14 Mar 2019) | 1 line
+[bp/r68428][FIX] PDF filename was hardcoded to be page name, giving control to user to change.
+----------------------------------------------
+r69397 | jonnybradley | 2019-03-09 05:19:21 +0000 (Sat, 09 Mar 2019) | 1 line
+[bp/r69396][bp/r69395][FIX] codemirror: Hasn't been updating the preview and auto save info since upgrade to version 2.x - so fix that and improve handling so it updates after 25 chars have been changed, or after 2 seconds
+----------------------------------------------
+r69392 | jonnybradley | 2019-03-08 03:26:35 +0000 (Fri, 08 Mar 2019) | 7 lines
+[bp/r69391] Combined tracker plugin transaction backport from 19.x:
+[bp/r69187][FIX] trackers: Improve tracker plugin transactions so field values are preserved on all transaction pages (no point saving each step separately as it's only one item we are creating) - also preserve itemId across tx steps so items can be edited the same way.
+[ENH] trackers: Add an optional "previous" button and url for transactions so you can navigate to previous pages
+TODO: Check behaviour for transactions with autofill fields 
+[bp/r69189][FIX] trackers: Fix tracker plugin transactions for fields that don't store the value in the field, such as Relations fields 
+[bp/r69190][FIX] trackers: Refix tracker plugin transactions for fields that don't store the value in the field - also when using pretty tracker templates
+----------------------------------------------
+r69390 | robertokir | 2019-03-07 19:22:06 +0000 (Thu, 07 Mar 2019) | 1 line
+[bp/r69389][FIX] Report all occurrences of a string in any table: if you search for something with a double quote in it, when you go to the second level of search per table it truncated at the quote char (thanks Jonny)
+----------------------------------------------
+r69386 | robertokir | 2019-03-07 11:23:31 +0000 (Thu, 07 Mar 2019) | 1 line
+[bp/r69385][FIX] Report all occurrences of a string in any table: Link now uses SEFURL and deals with spaces in page name; formatted some datetime columns (thanks Jonny)
+----------------------------------------------
+r69362 | marclaporte | 2019-03-05 08:57:28 +0000 (Tue, 05 Mar 2019) | 1 line
+[FIX] Revert some unexpected changes via r69140 which was supposed to only backport the chartjs replacement of the use of chart.googleapis.com
+----------------------------------------------
+r69293 | robertokir | 2019-02-25 19:29:26 +0000 (Mon, 25 Feb 2019) | 1 line
+[bp/69292]Escape a string in the template.
+----------------------------------------------
+r69283 | luciash | 2019-02-25 11:24:00 +0000 (Mon, 25 Feb 2019) | 2 lines
+[bp/r69279][FIX] Tracker tabular listings: added missing table-resposive wrapper (as per https://getbootstrap.com/docs/4.1/content/tables/#responsive-tables)
+----------------------------------------------
+r69277 | jonnybradley | 2019-02-25 08:21:23 +0000 (Mon, 25 Feb 2019) | 2 lines
+[bp/r69276][bp/r69275][FIX] http: Make usage of CURL instead of sockets depend on a pref as CURL does not work in all environments, even if installed (follows r69099).
+Also add feedback on elastic connection failures to save time next time...
+----------------------------------------------
+r69273 | lindonb | 2019-02-25 01:01:06 +0000 (Mon, 25 Feb 2019) | 1 line
+[bp/r69271][FIX] wiki: Categorize new pages before mail notifications are sent so that category permissions are observed. Should fix https://dev.tiki.org/item6696 (thanks Jonny for reporting)
+----------------------------------------------
+r69229 | jonnybradley | 2019-02-23 09:18:39 +0000 (Sat, 23 Feb 2019) | 1 line
+[bp/r69228][bp/r69227][FIX] memberlist: Perms::bulk fails fatally when given a string as the $data param when edited in ckeditor - no idea why, possibly a php7 thing
+----------------------------------------------
+r69226 | jonnybradley | 2019-02-23 08:17:40 +0000 (Sat, 23 Feb 2019) | 1 line
+[bp/r69225][bp/r69224][ENH] groups: Very lightweight addition to group transitions to allow setting the new group as the new default group for the user
+----------------------------------------------
+r69222 | robertokir | 2019-02-22 20:10:21 +0000 (Fri, 22 Feb 2019) | 2 lines
+[bp/r69221][ENH] Plugin List: "table" built-in template now accepts a new parameter: title. 
+Also, more future-proof with the use of the setIcon function instead of hard-coded classes.
+----------------------------------------------
+r69194 | nelsonko | 2019-02-20 13:20:26 +0000 (Wed, 20 Feb 2019) | 1 line
+[FIX] Avoid PHP warning
+----------------------------------------------
+r69193 | nelsonko | 2019-02-20 13:20:17 +0000 (Wed, 20 Feb 2019) | 1 line
+[FIX] get_user_details is not reliable to get groups as the results are cached. Why not use get_user_groups instead which also is more efficient anyway?
+----------------------------------------------
+r69181 | pom2ter | 2019-02-19 22:17:32 +0000 (Tue, 19 Feb 2019) | 1 line
+[FIX] on some pages, clicking the wrench icon brought you to the top of the page for no reason
+----------------------------------------------
+r69180 | robertokir | 2019-02-19 15:42:33 +0000 (Tue, 19 Feb 2019) | 1 line
+[FIX] fix button class (thanks Bernard and Gary)
+----------------------------------------------
+r69170 | jonnybradley | 2019-02-19 03:02:37 +0000 (Tue, 19 Feb 2019) | 4 lines
+[bp/r69169]:
+[bp/r69099]notices: go ahead and use curl if available to avoid notices when trying sockets in environments where they are not available 
+[bp/r69128][FIX] search: CURL doesn't work with GET requests with a body payload, so use POST instead so Elasticsearch works again (regression from r69099 - there may be more breakages, how about making it optional?) 
+[trying to open an ssl socket to example.com totally breaks elasticsearch and other http client services in some restricted environments]
+----------------------------------------------
+r69140 | montefuscolo | 2019-02-18 17:15:26 +0000 (Mon, 18 Feb 2019) | 1 line
+Merge branch 'polynamaude/tiki-18.x' into 18.x
+----------------------------------------------
+r69131 | jonnybradley | 2019-02-18 11:42:17 +0000 (Mon, 18 Feb 2019) | 3 lines
+[bp/r69130][bp/r69129][ENH] search: Add a class parameter to the column plugin within the list plugin table output template, example usage:
+    {column sort="tracker_field_aNumber" field="tracker_field_aNumber" label="A Number" class="text-right"}
+----------------------------------------------
+r69126 | jonnybradley | 2019-02-18 04:03:45 +0000 (Mon, 18 Feb 2019) | 1 line
+[bp/r68501][FIX] chartjs: Check for values properly but then ignore them being absent if using JSON encoded data in the body
+----------------------------------------------
+r69092 | jonnybradley | 2019-02-15 10:55:57 +0000 (Fri, 15 Feb 2019) | 2 lines
+[bp/r67620][REF] Upgrade tiki to utf8mb4
+[Partial manual backport of just the mysql search engine fixes without which it doesn't work at all in a utf8mb4 database]
+----------------------------------------------
+r69083 | jonnybradley | 2019-02-14 17:17:58 +0000 (Thu, 14 Feb 2019) | 1 line
+[bp/r68714][MOD] modals: Extend the href argument to $.fn.clickModal so you can override the href on the link it's being applied to in javascript
+----------------------------------------------
+r69073 | robertokir | 2019-02-13 18:51:57 +0000 (Wed, 13 Feb 2019) | 1 line
+[bp/r68748][ENH] plugin list: table template now accepts two new parameters: allowtableexpansion and shownbitems (as trackerlist did before)
+----------------------------------------------
+r69068 | robertokir | 2019-02-12 13:05:30 +0000 (Tue, 12 Feb 2019) | 2 lines
+[bp/r69040][bp/69041][FIX] H5P: Remove "fancy" translated error message from H5P storage update script (thanks Jyhem and robertokir);
+Also remove the test for writable so we expose the raw errors to the installer or console
+----------------------------------------------
+r69043 | luciash | 2019-02-11 14:47:39 +0000 (Mon, 11 Feb 2019) | 2 lines
+[TRA] Czech language: few more translated strings
+----------------------------------------------
+r69036 | rjsmelo | 2019-02-11 00:44:38 +0000 (Mon, 11 Feb 2019) | 2 lines
+[bp/69035][FIX] Add missing changes to tiki.sql regarding H5P introduced in r68754 and r68737
+----------------------------------------------
+r69023 | lindonb | 2019-02-10 19:37:29 +0000 (Sun, 10 Feb 2019) | 1 line
+[bp/r69020][FIX] Facebook feed: use Tikilib/Zend functions so that parsing of feed is not garbled and so that curl can be used as an alternative in environments where sockets aren't available or not allowed
+----------------------------------------------
+r69022 | lindonb | 2019-02-10 19:36:06 +0000 (Sun, 10 Feb 2019) | 1 line
+[bp/r69019][FIX] http client: connections were failing in environments where sockets aren't available or allowed, so add curl as an alternative
+----------------------------------------------
+r69017 | robertokir | 2019-02-10 11:34:03 +0000 (Sun, 10 Feb 2019) | 1 line
+[bp/r68995][FIX] h5p: Add missing Id keyword and correct a typo
+----------------------------------------------
+r69005 | jonnybradley | 2019-02-08 17:25:27 +0000 (Fri, 08 Feb 2019) | 1 line
+[bp/r69004][REL] Restore logging actual commits in changelog.txt, lost in r61384 during Tiki 16.x (oops)
+----------------------------------------------
+r68999 | pom2ter | 2019-02-08 00:51:07 +0000 (Fri, 08 Feb 2019) | 1 line
+[bp/r68966][FIX] autotoc now appears on mobile
+----------------------------------------------
+r68980 | pom2ter | 2019-02-06 23:57:47 +0000 (Wed, 06 Feb 2019) | 1 line
+[FIX] fix misalignment of fields in a couple of forms
+----------------------------------------------
+r68979 | pom2ter | 2019-02-06 22:52:45 +0000 (Wed, 06 Feb 2019) | 1 line
+[pbp/r68815][FIX] partial backport of changes not specific to 19x
+----------------------------------------------
+r68978 | jonnybradley | 2019-02-06 18:56:14 +0000 (Wed, 06 Feb 2019) | 2 lines
+[pbp/r67125][FIX] php warnings and notices in various plugins and libs polluting the index rebuild output
+* Partial backport only, fixes filter input not respecting groupIds option
+----------------------------------------------
+r68977 | jonnybradley | 2019-02-06 18:22:49 +0000 (Wed, 06 Feb 2019) | 1 line
+[bp/r68976][FIX] user_selector: Disambiguate users with the same real names in user selector lists
+----------------------------------------------
+r68975 | jonnybradley | 2019-02-06 17:20:46 +0000 (Wed, 06 Feb 2019) | 1 line
+[FIX] listexecute: Revert some automatic formatting that phpstorm did when committing this file in r68973 (which caused js errors)
+----------------------------------------------
+r68973 | jonnybradley | 2019-02-06 15:35:30 +0000 (Wed, 06 Feb 2019) | 6 lines
+Combined backport of listexecute improvements, mainly r68720 for using the correct field input for tracker fields but without the add/remove code from previous and subsequent commits. 
+[bp/r68727][FIX] trackers: Fix select all checkbox on list (used in listexecute) 
+[bp/r68941][bp/r68720][ENH] listexecute: Make the TrackerItemModify action use the correct input per field type instead of a plain text input. Tracker fetch_item_field action needed to be adapted to run without an existing Item - this possibly needs replicating in templates/wiki-plugins/wikiplugin_listexecute.tpl also.
+Seems to work ok with most field types but more testing required before backporting (seems ok?) 
+[bp/r68942][FIX] listexecute: No need to set the full url of the page for the filter form, especially as it wasn't observing sefurls
+----------------------------------------------
+r68972 | robertokir | 2019-02-06 11:12:55 +0000 (Wed, 06 Feb 2019) | 1 line
+[bp/r68971][FIX] Checks if H5P directory is writable and, if needed, creates some directories under it
+----------------------------------------------
+r68964 | robertokir | 2019-02-05 17:21:30 +0000 (Tue, 05 Feb 2019) | 1 line
+[FIX] H5P updated libraries and code, backported from these commits: 68750, 68753, 68754, 68777, 68810, 68811, 68838, 68869, 68868, 68872
+----------------------------------------------
+r68961 | robertokir | 2019-02-05 10:10:48 +0000 (Tue, 05 Feb 2019) | 1 line
+[UPD] composer.lock updated to enable H5P fixes that will come next; Various zend libraries were downgraded, probably due to using PHP 5.6 for updating composer.lock this time instead of php 7.x
+----------------------------------------------
+r68960 | jyhem | 2019-02-04 21:33:09 +0000 (Mon, 04 Feb 2019) | 1 line
+[FIX][bp/r68809] When filtering preferences, hide only options inside #col1, not from dialog box, thanks Fabio
+----------------------------------------------
+r68947 | kroky6 | 2019-02-01 09:16:55 +0000 (Fri, 01 Feb 2019) | 1 line
+[bp/r68945] [FIX] tracker notification user preferences sql query mixup - when user with chosen language of TW modifies a tracker item, the notifications sent out are not based on recipient language preference but the user making the notification which is wrong; fixed the sql query and/or precedence issue
+----------------------------------------------
+r68932 | jyhem | 2019-01-30 23:58:13 +0000 (Wed, 30 Jan 2019) | 1 line
+[FIX][bp/r68805] Add ticket for checkbox in remarks box when adding module with missing dependancy, thanks Fabio
+----------------------------------------------
+r68929 | jonnybradley | 2019-01-30 19:36:23 +0000 (Wed, 30 Jan 2019) | 1 line
+[FIX] Re-run get_strings.php without custom theme files (oops * 2)
+----------------------------------------------
+r68926 | jonnybradley | 2019-01-30 18:56:13 +0000 (Wed, 30 Jan 2019) | 1 line
+[FIX] ran get_strings.php
+----------------------------------------------
+r68925 | jonnybradley | 2019-01-30 18:51:34 +0000 (Wed, 30 Jan 2019) | 2 lines
+[bp/r68822][FIX] maps: Map tiles were all squished up when in the locator module
+Manual backport as we're on LESS in 18.x, not SCSS, regression from r68915
+----------------------------------------------
+r68924 | jonnybradley | 2019-01-30 18:35:06 +0000 (Wed, 30 Jan 2019) | 1 line
+[bp/r68923][FIX] categories: Some usability fixes for category admin - always show the edit form when editing, and it either edit or create as relevant, and allow copying and moving of objects to a category with the same name but different parent
+----------------------------------------------
+r68922 | jonnybradley | 2019-01-30 18:02:43 +0000 (Wed, 30 Jan 2019) | 2 lines
+[bp/r68893][FIX] login: If the user had tried to view a file (like the logo) set to be not visible for anonymous, the loginfrom session variable was getting set to the image url, not the referrer. Also don't overwrite $_SESSION['loginfrom']) in the error handler if it has already been set.
+Will need backporting to 18.x when tested
+----------------------------------------------
+r68918 | pom2ter | 2019-01-30 00:05:32 +0000 (Wed, 30 Jan 2019) | 1 line
+[FIX] fixed issue with misalignment of the find form on the blogs page
+----------------------------------------------
+r68917 | pom2ter | 2019-01-29 23:18:17 +0000 (Tue, 29 Jan 2019) | 1 line
+[bp/r68787][FIX] find button in tiki-listpages shouldnt appear if the form has no fields
+----------------------------------------------
+r68915 | pom2ter | 2019-01-29 22:06:23 +0000 (Tue, 29 Jan 2019) | 1 line
+[FIX] fixed banners that have images spilling over the main column
+----------------------------------------------
+r68881 | jyhem | 2019-01-28 21:02:48 +0000 (Mon, 28 Jan 2019) | 1 line
+[FIX] Prevent from returning itemIds from partially deleted items which don't exist in tiki_tracker_items any more
+----------------------------------------------
+r68842 | jonnybradley | 2019-01-26 17:07:24 +0000 (Sat, 26 Jan 2019) | 1 line
+[bp/r68840][FIX] Don't "protect" emails in print or PDF
+----------------------------------------------
+r68839 | lindonb | 2019-01-26 17:03:54 +0000 (Sat, 26 Jan 2019) | 1 line
+[bp/r68715 & r68788][FIX] facebook login: fsockopen doesn't work in some environments so add cURL as an alternative.
+----------------------------------------------
+r68817 | kroky6 | 2019-01-25 10:17:56 +0000 (Fri, 25 Jan 2019) | 1 line
+[FIX] partially backport r67125 to fix parsing UserSelector field content when it has already been parsed - like in EmailAction ListExecute job (thanks Xavi)
+----------------------------------------------
+r68793 | jonnybradley | 2019-01-24 13:17:17 +0000 (Thu, 24 Jan 2019) | 1 line
+[bp/r68792][ENH] search: Add a pref to change which date field gets indexed as the global "date" - created or last modified
+----------------------------------------------
+r68784 | jonnybradley | 2019-01-23 18:00:11 +0000 (Wed, 23 Jan 2019) | 1 line
+[bp/r68783][ENH] search: Add support for scripted sort modes on elasticsearch (only)
+----------------------------------------------
+r68742 | rjsmelo | 2019-01-21 22:58:04 +0000 (Mon, 21 Jan 2019) | 2 lines
+[REF] Update the location of the tiki dbs for CI
+----------------------------------------------
+r68740 | jonnybradley | 2019-01-21 18:55:54 +0000 (Mon, 21 Jan 2019) | 1 line
+[bp/r68737][FIX] h5p: New H5P files seem to not have the `filtered` field so this needs to be able to be NULL, and elFinder seems to detect h5p files as application/octet-stream now
+----------------------------------------------
+r68710 | jonnybradley | 2019-01-17 18:13:57 +0000 (Thu, 17 Jan 2019) | 1 line
+[bp/r68705][FIX] wiki: Reindex the page after modifying the keywords
+----------------------------------------------
+r68708 | jonnybradley | 2019-01-17 18:03:02 +0000 (Thu, 17 Jan 2019) | 1 line
+[bp/r68707][FIX] search: Use the unified_default_content fields (set in prefs) in custom search when searching "content"
+----------------------------------------------
+r68696 | xavidp | 2019-01-15 15:52:25 +0000 (Tue, 15 Jan 2019) | 1 line
+[bp/r68695][FIX]Allow to display the field to select groups in a new tracker item (group of users to assign this item to, for instance) in cases in which that group has granted the permission to get the group's name viewed (and not only to users in groups with granted permission to add members to this group in the dropdown field).
+----------------------------------------------
+r68673 | amnabilal | 2019-01-10 05:26:18 +0000 (Thu, 10 Jan 2019) | 2 lines
+[BP/68671][FIX] Fixed issue, complicated links values were printing blank in PDF if hyperlinks option is set to "Off" or "as footnote" in PDF settings. 
+Fixed issue found while adding link value as footnote. 
+----------------------------------------------
+r68658 | jonnybradley | 2019-01-05 12:49:38 +0000 (Sat, 05 Jan 2019) | 2 lines
+[bp/r68656][FIX] wysiwyg: Seems the exec method of CKEditor commands has changed - not sure when but this probably is needed in 18.x now too [fixes it for me].
+Should address wish6988 - thanks nickTidmarsh
+----------------------------------------------
+r68649 | yonixxx | 2018-12-29 14:38:27 +0000 (Sat, 29 Dec 2018) | 1 line
+[bp/68648][TRA] Missing translation in fr and he
+----------------------------------------------
+r68637 | yonixxx | 2018-12-26 09:53:03 +0000 (Wed, 26 Dec 2018) | 1 line
+[bp/68636][TRA] French translation
+----------------------------------------------
+r68631 | jonnybradley | 2018-12-20 20:00:24 +0000 (Thu, 20 Dec 2018) | 1 line
+[bp/r68628][FIX] search: Expose all feedback even if the rebuild command completes (for instance when elastic runs out of fields)
+----------------------------------------------
+r68630 | jonnybradley | 2018-12-20 19:56:35 +0000 (Thu, 20 Dec 2018) | 1 line
+[bp/r68627][FIX] webservices: Convert notices into feedback
+----------------------------------------------
+r68619 | jonnybradley | 2018-12-20 12:02:34 +0000 (Thu, 20 Dec 2018) | 1 line
+[bp/r68580][FIX] smarty: Web services need templates in temp/cache
+----------------------------------------------
 Version 18.3
 <http://doc.tiki.org/Tiki18>
 ------------------
