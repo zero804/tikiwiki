@@ -1,5 +1,5 @@
 <?php
-// (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
+// (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
@@ -28,6 +28,10 @@ define('README_FILENAME', 'README');
 define('README', ROOT . '/' . README_FILENAME);
 define('LICENSE_FILENAME', 'license.txt');
 
+define('PIPELINE_STATUS_PASSED', 'passed');
+define('PIPELINE_STATUS_FAILED', 'failed');
+define('PIPELINES_FETCH_AMOUNT', 25);
+
 // Display all errors and warnings, including strict level
 define('ERROR_REPORTING_LEVEL', E_ALL | E_STRICT);
 error_reporting(ERROR_REPORTING_LEVEL);
@@ -47,6 +51,11 @@ if (! ($options = get_options()) || $options['help']) {
 	display_usage();
 }
 
+if ($options['devmode']) {
+	$options['no-commit'] = true;
+	$options['no-check-svn'] = true;
+	$options['no-first-update'] = true;
+}
 if ($options['howto']) {
 	display_howto();
 }
@@ -86,7 +95,7 @@ $splitedversion = explode('.', $version);
 $mainversion = $splitedversion[0];
 
 $check_version = $version . $subrelease;
-if ($TWV->version != $check_version) {
+if ($TWV->version !== $check_version && ! $options['devmode']) {
 	error("The version in the code " . strtolower($TWV->version) . " differs from the version provided to the script $check_version.\nThe version should be modified in lib/setup/twversion.class.php to match the released version.");
 }
 
@@ -167,6 +176,12 @@ if (! $options['no-copyright-update'] && important_step("Update '" . COPYRIGHTS_
 	} else {
 		error('Copyrights update failed.');
 	}
+}
+
+if (! $options['no-check-db'] && important_step("Check Database related files and upgrade scripts")) {
+	$error_msg = '';
+	check_database_files_and_upgrade($mainversion, $error_msg) or error($error_msg . "If you want to disable this checks use --no-check-db\n");
+	info('>> Current database scripts successfully passed the check.');
 }
 
 if (! $options['no-check-php'] && important_step("Check syntax of all PHP files")) {
@@ -314,9 +329,12 @@ function build_secdb_queries($dir, $version, &$queries, $excludes = [])
 
 	while (false !== ($e = $d->read())) {
 		$entry = $dir . '/' . $e;
+		if (is_link($entry)) {
+			continue; // if is a symlink we should not run any hash
+		}
 		if (is_dir($entry)) {
 			// do not descend and no CVS/Subversion files
-			if ($e != '..' && $e != '.' && $e != 'CVS' && $e != '.svn' && $entry != ROOT . '/temp' && $entry != ROOT . '/vendor_custom') {
+			if ($e != '..' && $e != '.' && $e != 'CVS' && $e != '.svn' && $entry != ROOT . '/temp' && $entry != ROOT . '/vendor_custom' && $entry != ROOT . '/_custom') {
 				build_secdb_queries($entry, $version, $queries, $excludes);
 			}
 		} else {
@@ -328,7 +346,7 @@ function build_secdb_queries($dir, $version, &$queries, $excludes = [])
 				}
 
 				// Escape filename. Since this requires a connection to MySQL (due to the charset), do so conditionally to reduce the risk of connection failure.
-				if (! preg_match('/^[a-zA-Z0-9\/ _+.-]+$/', $file)) {
+				if (! preg_match('/^[a-zA-Z!-9\/ _+.-@]+$/', $file)) {
 					if (! $link) {
 						$link = mysqli_connect();
 
@@ -450,6 +468,9 @@ function setPermissions($src)
 				setPermissions($full);
 				chmod($full, 0755);
 			} else {
+				if (is_link($full)) {
+					continue;
+				}
 				chmod($full, 0664);
 			}
 		}
@@ -496,7 +517,7 @@ function build_packages($releaseVersion)
 	}
 
 	// create a export in tikipack to work with
-	echo "Creating SVN export from working copy\n";
+	echo "Creating SVN export from working copy into $sourceDir\n";
 	$shellout = shell_exec('svn export ' . escapeshellarg(ROOT) . ' ' . escapeshellarg($sourceDir . '/.') . ' 2>&1');
 	if ($options['debug-packaging']) {
 		echo $shellout . "\n";
@@ -586,7 +607,7 @@ function build_packages($releaseVersion)
 	}
 
 	echo "Creating $fileName.zip\n";
-	$shellout = shell_exec("cd $relDir; zip -r " . escapeshellarg($fileName . ".zip") . ' ' . escapeshellarg($fileName) . ' -x "*.DS_Store" -9 2>&1');
+	$shellout = shell_exec("cd $relDir; zip -ry " . escapeshellarg($fileName . ".zip") . ' ' . escapeshellarg($fileName) . ' -x "*.DS_Store" -9 2>&1');
 	if ($options['debug-packaging']) {
 		echo $shellout . "\n";
 	}
@@ -601,7 +622,7 @@ function build_packages($releaseVersion)
 	}
 
 	echo color("\nTo upload the 'tarballs', copy-paste and execute the following line (and change '\$SF_LOGIN' by your SF.net login):\n", 'yellow');
-	echo color("    cd $relDir; scp $fileName.* \$SF_LOGIN@frs.sourceforge.net:/home/pfs/project/t/ti/tikiwiki/$RELEASEFOLDER$\n", 'yellow');
+	echo color("    cd $relDir; scp $fileName.* \$SF_LOGIN@frs.sourceforge.net:/home/pfs/project/t/ti/tikiwiki/\$RELEASEFOLDER\$\n", 'yellow');
 
 	info(">> Packages files have been built in ~/tikipack/$releaseVersion\n");
 }
@@ -675,9 +696,9 @@ function check_smarty_syntax(&$error_msg)
 	$prefs['site_layout'] = 'basic';
 	require_once 'vendor_bundled/vendor/smarty/smarty/libs/Smarty.class.php';
 	require_once 'lib/init/smarty.php';
+	require_once 'lib/init/initlib.php';
 	// needed in Smarty_Tiki
 	define('TIKI_PATH', getcwd());
-	require_once 'lib/core/TikiAddons.php';
 	require_once 'lib/smarty_tiki/prefilter.tr.php';
 	require_once 'lib/smarty_tiki/prefilter.jq.php';
 	require_once 'lib/smarty_tiki/prefilter.log_tpl.php';
@@ -784,6 +805,149 @@ function check_php_syntax(&$dir, &$error_msg, $hide_php_warnings)
 }
 
 /**
+ * Check the CI Pipeline for the result of the specific checks regarding the DB structure
+ *
+ * @param string $mainversion
+ * @param string $error_msg
+ * @return bool
+ */
+function check_database_files_and_upgrade($mainversion, &$error_msg)
+{
+	$gitlabUrl = 'https://gitlab.com';
+	$gitlabRepo = $gitlabUrl . '/tikiwiki/tiki';
+
+	$branchToCheck = $mainversion . '.x';
+
+	$pipeline = gitlabGetLastFinishedPipelineByBranch($gitlabRepo, $branchToCheck);
+
+	if (empty($pipeline)) {
+		echo color('Could not retrieve pipeline information for branch ' . $branchToCheck . "\n", 'red');
+		echo color(
+			'You can check manually using ' . $gitlabRepo . '/pipelines/?scope=branches&format=json' . "\n",
+			'yellow'
+		);
+		$error_msg .= 'Information about the CI pipeline could not be retrieved' . "\n";
+		return false;
+	}
+
+	echo color(
+		'Checking jobs for branch ' . $branchToCheck . ', pipeline: ' . $gitlabUrl . $pipeline['url'] . "\n",
+		'yellow'
+	);
+
+	$jobs = gitlabGetJobStatusByPipeline($gitlabRepo, $pipeline['id']);
+
+	if (empty($pipeline)) {
+		echo color('Could not retrieve jobs information for pipeline ' . $pipeline['id'] . "\n", 'red');
+		echo color('You can check manually using ' . $gitlabUrl . $pipeline['url'] . "\n", 'yellow');
+		$error_msg .= 'Information about jobs in the CI pipeline could not be retrieved' . "\n";
+		return false;
+	}
+
+	$checkList = [
+		'schema-naming-convention' => '1.1.2.1. Check _tiki.sql suffixes',
+		'db-upgrade-' => '1.1.2.2. Structure',
+		'schema-sql-drop' => '1.1.2.3. Drop Table',
+		'sql-engine' => '1.1.2.4. MyISAM',
+		'sql-engine-conversion' => '1.1.2.5. InnoDB',
+	];
+
+	$allOk = true;
+
+	foreach ($checkList as $checkPrefix => $checkName) {
+		foreach ($jobs['tiki-check'] as $jobName => $job) {
+			if (strpos($jobName, $checkPrefix) === 0) {
+				echo color(
+					$checkName . ': ' . $job['status'] . ', job: ' . $jobName . ', url: ' . $gitlabUrl . $job['url'] . "\n",
+					$job['status'] == PIPELINE_STATUS_PASSED ? 'green' : 'red'
+				);
+				if ($job['status'] != PIPELINE_STATUS_PASSED) {
+					$error_msg .= 'Issues with job ' . $jobName . ' in the CI Pipeline' . "\n";
+					$allOk = false;
+				}
+			}
+		}
+	}
+
+	return $allOk;
+}
+
+/**
+ * Lookup the ID of the last finished pipeline run for
+ * a given branch with status 'passed' or 'failed'.
+ *
+ * @param string $repoUrl Url of the repo in gitlab
+ * @param string $branch Branch to use for filtering
+ * @param integer $page Page associated with the cycle (recursive lookup)
+ * @return array|bool The result or false if error
+ */
+function gitlabGetLastFinishedPipelineByBranch($repoUrl, $branch, $page = 1)
+{
+	$lastPipelineByBranch = $repoUrl . '/pipelines/?scope=finished&format=json&per_page=' . PIPELINES_FETCH_AMOUNT . '&page=' . $page;
+
+	if (getenv('TEST_GITLAB_PIPELINE')) {
+		$lastPipelineByBranch = getenv('TEST_GITLAB_PIPELINE'); // to allow fake the answer while testing
+	}
+
+	$content = file_get_contents($lastPipelineByBranch);
+	$jsonContent = json_decode($content, true);
+	if (empty($jsonContent)) {
+		return false;
+	}
+
+	$pipeline = array_filter(
+		$jsonContent['pipelines'],
+		function ($pipeline) use ($branch) {
+			return $pipeline['ref']['name'] === $branch &&
+				($pipeline['details']['status']['text'] === PIPELINE_STATUS_PASSED ||
+					$pipeline['details']['status']['text'] === PIPELINE_STATUS_FAILED);
+		}
+	);
+
+	if (empty($pipeline)) {
+		return gitlabGetLastFinishedPipelineByBranch($repoUrl, $branch, ++$page);
+	}
+
+	$pipeline = reset($pipeline);
+	return ['id' => $pipeline['id'], 'url' => $pipeline['path']];
+}
+
+/**
+ * Returns the list of stages and the jobs for each of the stages
+ *
+ * @param string $repoUrl Url of the repo in gitlab
+ * @param string $pipelineId Pipeline ID from where to retrieve the list of jobs
+ * @return array|bool The result or false if error
+ */
+function gitlabGetJobStatusByPipeline($repoUrl, $pipelineId)
+{
+	$pipelineJobsUrl = $repoUrl . '/pipelines/' . $pipelineId . '?format=json';
+
+	if (getenv('TEST_GITLAB_JOBS')) {
+		$pipelineJobsUrl = getenv('TEST_GITLAB_JOBS'); // to allow fake the answer while testing
+	}
+
+	$content = file_get_contents($pipelineJobsUrl);
+	$jsonContent = json_decode($content, true);
+	if (empty($jsonContent)) {
+		return false;
+	}
+
+	$stages = [];
+	foreach ($jsonContent['details']['stages'] as $stage) {
+		$jobs = [];
+		foreach ($stage['groups'] as $group) {
+			foreach ($group['jobs'] as $job) {
+				$jobs[$job['name']] = ['status' => $job['status']['text'], 'url' => $job['status']['details_path']];
+			}
+		}
+		$stages[$stage['name']] = $jobs;
+	}
+
+	return $stages;
+}
+
+/**
  * @return array|bool
  */
 function get_options()
@@ -800,6 +964,7 @@ function get_options()
 		'svn-mirror-uri' => false,
 		'no-commit' => false,
 		'no-check-svn' => false,
+		'no-check-db' => false,
 		'no-check-php' => false,
 		'no-check-php-warnings' => false,
 		'no-check-smarty' => false,
@@ -814,6 +979,7 @@ function get_options()
 		'force-yes' => false,
 		'debug-packaging' => false,
 		'only-secdb' => false,
+		'devmode' => false,
 	];
 
 	// Environment variables provide default values for parameter options. e.g. export TIKI_NO_SECDB=true
@@ -1357,26 +1523,28 @@ Examples:
 	php doc/devtools/release.php 2.0
 
 Options:
-	--howto			: display the Tiki release HOWTO
-	--help			: display this help
+	--howto			    : display the Tiki release HOWTO
+	--help			    : display this help
 	--http-proxy=HOST:PORT	: use an http proxy to get copyright data on sourceforge
 	--svn-mirror-uri=URI	: use another repository URI to update the copyrights file (to avoid retrieving data from sourceforge, which is usually slow)
-	--no-commit		: do not commit any changes back to SVN
-	--no-check-svn		: do not check if there is uncommited changes on the checkout used for the release
-	--no-check-php		: do not check syntax of all PHP files
+	--no-commit		        : do not commit any changes back to SVN
+	--no-check-svn		    : do not check if there is uncommited changes on the checkout used for the release
+	--no-check-db		    : do not check database scripts and database upgrades
+	--no-check-php		    : do not check syntax of all PHP files
 	--no-check-php-warnings	: do not display PHP warnings and notices during the PHP syntax check
-	--no-check-smarty	: do not check syntax of all Smarty templates
-	--no-first-update	: do not svn update the checkout used for the release as the first step
-	--no-readme-update	: do not update the '" . README_FILENAME . "' file
-	--no-lang-update	: do not update lang/*/language.php files
+	--no-check-smarty	    : do not check syntax of all Smarty templates
+	--no-first-update	    : do not svn update the checkout used for the release as the first step
+	--no-readme-update	    : do not update the '" . README_FILENAME . "' file
+	--no-lang-update	    : do not update lang/*/language.php files
 	--no-changelog-update	: do not update the '" . CHANGELOG_FILENAME . "' file
 	--no-copyright-update	: do not update the '" . COPYRIGHTS_FILENAME . "' file
-	--no-secdb		: do not update SecDB footprints
-	--only-secdb		: only generate a secdb database
-	--no-packaging		: do not build packages files
-	--no-tagging		: do not tag the release on the remote svn repository
-	--force-yes		: disable the interactive mode (same as replying 'y' to all steps)
-	--debug-packaging	: display debug output while in packaging step
+	--no-secdb		        : do not update SecDB footprints
+	--only-secdb		    : only generate a secdb database
+	--no-packaging		    : do not build packages files
+	--no-tagging		    : do not tag the release on the remote svn repository
+	--force-yes		        : disable the interactive mode (same as replying 'y' to all steps)
+	--debug-packaging	    : display debug output while in packaging step
+	--devmode               : equivalent to no-commit + no-check-svn + no-first-update
 Notes:
 	Subreleases begining with 'pre' will not be tagged.
 ";
