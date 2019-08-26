@@ -79,7 +79,7 @@ $needed_prefs = [
 	'cookie_consent_feature' => 'n',
 	'cookie_consent_disable' => 'n',
 	'cookie_consent_name' => 'tiki_cookies_accepted',
-
+	'https_port' => (isset($_SERVER['SERVER_PORT'])) ? strval($_SERVER['SERVER_PORT']) : '443',
 ];
 
 /// check that tiki_preferences is there
@@ -99,6 +99,17 @@ if (! $tikilib->getOne("SELECT COUNT(*) FROM `information_schema`.`character_set
 $tikilib->get_preferences($needed_prefs, true, true);
 global $systemConfiguration;
 $prefs = $systemConfiguration->preference->toArray() + $prefs;
+
+// Handle load balancers or reverse proxy (most reliable to do it early on as much code depends on these 2 server vars)
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || isset($_SERVER['REQUEST_SCHEME']) && $_SERVER['REQUEST_SCHEME'] == 'https') {
+	$_SERVER['HTTPS'] = 'on';
+	if (! isset($_SERVER['SERVER_PORT'])) {
+		$_SERVER['SERVER_PORT'] = $prefs['https_port'];
+	}
+}
+if (! empty($_SERVER['HTTP_X_FORWARDED_PORT'])) {
+	$_SERVER['SERVER_PORT'] = $_SERVER['HTTP_X_FORWARDED_PORT'];
+}
 
 // mose : simulate strong var type checking for http vars
 $patterns['int'] = "/^[0-9]*$/"; // *Id
