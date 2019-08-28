@@ -233,6 +233,23 @@
 	</table>
 </div>
 
+{remarksbox type="note" id="php_conf_info" title="{tr}Change PHP configuration values{/tr}"}
+	{if $php_sapi_info}
+		<p>
+		{if $php_sapi_info.message}
+			{tr}{$php_sapi_info.message}{/tr}
+		{/if}
+		{if $php_sapi_info.link}
+			{tr}<a href="{$php_sapi_info.link}">{$php_sapi_info.link}</a>{/tr}
+		{/if}
+		</p>
+	{/if}
+
+	<p>
+		{tr}You can check the full documentation on how to change the configurations values in <a href="http://www.php.net/manual/en/configuration.php">http://www.php.net/manual/en/configuration.php</a>{/tr}
+	</p>
+{/remarksbox}
+
 <h2>{tr}PHP Security properties{/tr}</h2>
 {tr}To check the file integrity of your Tiki installation, go to <a href="tiki-admin_security.php">Admin->Security</a>{/tr}.
 <div class="table-responsive">
@@ -263,6 +280,32 @@
 	</table>
 </div>
 </form>
+
+<h2>{tr}Tiki Security{/tr}</h2>
+{assign var=sensitive_data_box_title value="{tr}Sensitive Data Exposure{/tr}"}
+{if $sensitive_data_detected_files}
+{remarksbox type='error' title="{$sensitive_data_box_title}" close='n'}
+	<p>{tr}Tiki detected that there are temporary files in the db folder which may expose credentials or other sensitive information.{/tr}</p>
+	<ul>
+		{foreach from=$sensitive_data_detected_files item=file}
+			<li>
+				{$file}
+			</li>
+		{/foreach}
+	</ul>
+{/remarksbox}
+{else}
+{remarksbox type='info' title="{$sensitive_data_box_title}" close='n'}
+	<p>{tr}Tiki did not detect temporary files in the db folder which may expose credentials or other sensitive information.{/tr}</p>
+{/remarksbox}
+{/if}
+
+{if $prefs.print_pdf_from_url === "mpdf" && !empty($mPDFClassMissing)}
+	<h2>{tr}Print configurations{/tr}</h2>
+	{remarksbox type='error' title="{tr}mPDF Information{/tr}" close='n'}
+		<p>{tr}mPDF is selected as Print option, however the class can't be loaded, please check "Print Settings" in /tiki-admin.php?page=print{/tr}</p>
+	{/remarksbox}
+{/if}
 
 <h2>{tr}File Gallery Search Indexing{/tr}</h2>
 {icon name='help' href='https://doc.tiki.org/Search+within+files'} <em>{tr _0='<a href="https://doc.tiki.org/Search+within+files">' _1='</a>'}More information %0 here %1{/tr}</em>
@@ -322,3 +365,108 @@
 
 <h2>{tr}PHP Info{/tr}</h2>
 {tr}For more detailed information about your PHP installation see <a href="tiki-phpinfo.php">Admin->phpinfo</a>{/tr}.
+
+<a name="benchmark"></a>
+<h2>{tr}Benchmark PHP/MySQL{/tr}</h2>
+<a href="tiki-check.php?benchmark=run&ts={$smarty.now}#benchmark" class="btn btn-primary btn-sm" style="margin-bottom: 10px;">{tr}Check{/tr}</a>
+{if !empty($benchmark)}
+	<br />
+	<div class="table-responsive">
+		<table class="table table-striped table-hover">
+			<tr>
+				<th>{tr}Property{/tr}</th>
+				<th>{tr}Value{/tr}</th>
+			</tr>
+
+			{foreach from=$benchmark key=key item=item}
+				<tr>
+					<td class="text">{$key}</td>
+					<td class="text">{$item.value}</td>
+				</tr>
+			{/foreach}
+		</table>
+	</div>
+{/if}
+
+<a name="bomscanner"></a>
+<h2>{tr}BOM Detected Files{/tr}</h2>
+<a href="tiki-check.php?bomscanner=run&ts={$smarty.now}#bomscanner" class="btn btn-primary btn-sm" style="margin-bottom: 10px;">{tr}Check{/tr}</a>
+{if $bomscanner}
+	<p>{tr}Scanned files:{/tr} {$bom_total_files_scanned}</p>
+	{if ! empty($bom_detected_files)}
+		<p>{tr}BOM files detected:{/tr}</p>
+		<ul>
+			{foreach from=$bom_detected_files item=file}
+				<li>
+					{$file}
+				</li>
+			{/foreach}
+		</ul>
+	{else}
+		<p><span class="icon icon-information fas fa-info-circle fa-fw"></span>&nbsp;{tr}No BOM files detected{/tr}</p>
+	{/if}
+{/if}
+
+<h2>{tr}TRIM{/tr}</h2>
+{tr}For more detailed information about Tiki Remote Instance Manager please check <a href="https://doc.tiki.org/TRIM">doc.tiki.org</a>{/tr}.
+
+{if trim_capable}
+	<h3>Server Instance</h3>
+	<div class="table-responsive">
+		<table class="table">
+			<tr>
+				<th>{tr}Requirements{/tr}</th>
+				<th>{tr}Status{/tr}</th>
+				<th>{tr}Message{/tr}</th>
+			</tr>
+			{foreach from=$trim_server_requirements key=key item=item}
+				<tr>
+					<td class="text">{$key}</td>
+					<td class="text">
+					<span class="text-{$fmap[$item.fitness]['class']}">
+						{icon name="{$fmap[$item.fitness]['icon']}"} {$item.fitness}
+					</span>
+					</td>
+					<td class="text">{$item.message}</td>
+				</tr>
+			{/foreach}
+		</table>
+	</div>
+
+	<h3>Client Instance</h3>
+	<div class="table-responsive">
+		<table class="table">
+			<tr>
+				<th>{tr}Requirements{/tr}</th>
+				<th>{tr}Status{/tr}</th>
+				<th>{tr}Message{/tr}</th>
+			</tr>
+			{foreach from=$trim_client_requirements key=key item=item}
+				<tr>
+					<td class="text">{$key}</td>
+					<td class="text">
+					<span class="text-{$fmap[$item.fitness]['class']}">
+						{icon name="{$fmap[$item.fitness]['icon']}"} {$item.fitness}
+					</span>
+					</td>
+					<td class="text">{$item.message}</td>
+				</tr>
+			{/foreach}
+		</table>
+	</div>
+{else}
+	{remarksbox type='error' title='{tr}OS not supported{/tr}' close='n'}
+		<p>{tr}Apparently tiki is running on a Windows based server. This feature is not supported natively.{/tr}</p>
+	{/remarksbox}
+{/if}
+
+<h2>{tr}User Data Encryption{/tr}</h2>
+{if users_with_mcrypt_data > 0}
+	{remarksbox type='error' title='{tr}MCrypt encryption found in users data preferences{/tr}' close='n'}
+		<p>{tr _0=$users_with_mcrypt_data}Found %0 user(s) with data preferences encrypted with MCrypt.{/tr}</p>
+		<p>If MCrypt library gets removed, non-converted user encrypted data can no longer be decrypted. The data is
+			thus lost and must be re-entered.</p>
+	{/remarksbox}
+{else}
+	<p>{tr}No user preferences were found with data encrypted with MCrypt.{/tr}</p>
+{/if}
