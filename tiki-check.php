@@ -15,6 +15,8 @@ tiki-check.php is designed to run in 2 modes
 tiki-check.php should not crash but rather avoid running tests which lead to tiki-check crashes.
 */
 
+use Tiki\Package\ComposerManager;
+
 // TODO : Create sane 3rd mode for Monitoring Software like Nagios, Icinga, Shinken
 // * needs authentication, if not standalone
 isset($_REQUEST['nagios']) ? $nagios = true : $nagios = false;
@@ -37,11 +39,24 @@ if (isset($_REQUEST['tiki-check-ping'])) {
 	die('pong:' . (int)$_REQUEST['tiki-check-ping']);
 }
 
+
+function checkOPCacheCompatibility()
+{
+	return ! ((version_compare(PHP_VERSION, '7.1.0', '>=') && version_compare(PHP_VERSION, '7.2.0', '<')) //7.1.x
+		|| (version_compare(PHP_VERSION, '7.2.0', '>=') && version_compare(PHP_VERSION, '7.2.19', '<')) // >= 7.2.0 < 7.2.19
+		|| (version_compare(PHP_VERSION, '7.3.0', '>=') && version_compare(PHP_VERSION, '7.3.6', '<'))); // >= 7.3.0 < 7.3.6
+}
+
 if (file_exists('./db/local.php') && file_exists('./templates/tiki-check.tpl')) {
 	$standalone = false;
 	require_once('tiki-setup.php');
 	// TODO : Proper authentication
 	$access->check_permission('tiki_p_admin');
+
+	// This page is an admin tool usually used in the early stages of setting up Tiki, before layout considerations.
+	// Restricting the width is contrary to its purpose.
+	$prefs['feature_fixed_width'] = 'n';
+
 } else {
 	$standalone = true;
 	$render = "";
@@ -54,6 +69,12 @@ if (file_exists('./db/local.php') && file_exists('./templates/tiki-check.tpl')) 
 	{
 		return $string;
 	}
+
+	function tr($string)
+	{
+		return tra($string);
+	}
+
 
 	/**
 	  * @param $var
@@ -527,11 +548,18 @@ if (function_exists('apc_sma_info') && ini_get('apc.enabled')) {
 		'setting' => 'xCache',
 		'message' => tra('xCache is being used as the ByteCode Cache, which increases performance if correctly configured. See Admin->Performance in the Tiki for more details.')
 	);
-} elseif (function_exists('opcache_get_configuration') && ( ini_get('opcache.enable') == 1 || ini_get('opcache.enable') == '1')) {
+} elseif (function_exists('opcache_get_configuration') && (ini_get('opcache.enable') == 1 || ini_get('opcache.enable') == '1')) {
+	$message = tra('OPcache is being used as the ByteCode Cache, which increases performance if correctly configured. See Admin->Performance in the Tiki for more details.');
+	$fitness = tra('good');
+	if (! checkOPCacheCompatibility()) {
+		$message = tra('Some PHP versions may exhibit randomly issues with the OpCache leading to the server starting to fail to serve all PHP requests, your PHP version seems to
+		 be affected, despite the performance penalty, we would recommend disabling the OpCache if you experience random crashes.');
+		$fitness = tra('unsure');
+	}
 	$php_properties['ByteCode Cache'] = array(
-		'fitness' => tra('good'),
+		'fitness' => $fitness,
 		'setting' => 'OPcache',
-		'message' => tra('OPcache is being used as the ByteCode Cache, which increases performance if correctly configured. See Admin->Performance in the Tiki for more details.')
+		'message' => $message
 	);
 } elseif (function_exists('wincache_fcache_fileinfo')) {
 	// Determine if version 1 or 2 is used. Version 2 does not support ocache
@@ -670,6 +698,27 @@ if ($php_properties['session.save_handler']['setting'] == 'files') {
 		);
 	}
 }
+
+$s = ini_get('session.gc_probability');
+$php_properties['session.gc_probability'] = array(
+	'fitness' => tra('info'),
+	'setting' => $s,
+	'message' => tra('In conjunction with gc_divisor is used to manage probability that the gc (garbage collection) routine is started.')
+);
+
+$s = ini_get('session.gc_divisor');
+$php_properties['session.gc_divisor'] = array(
+	'fitness' => tra('info'),
+	'setting' => $s,
+	'message' => tra('Coupled with session.gc_probability defines the probability that the gc (garbage collection) process is started on every session initialization. The probability is calculated by using gc_probability/gc_divisor, e.g. 1/100 means there is a 1% chance that the GC process starts on each request.')
+);
+
+$s = ini_get('session.gc_maxlifetime');
+$php_properties['session.gc_maxlifetime'] = array(
+	'fitness' => tra('info'),
+	'setting' => $s . 's',
+	'message' => tra('Specifies the number of seconds after which data will be seen as \'garbage\' and potentially cleaned up. Garbage collection may occur during session start.')
+);
 
 // test session work
 @session_start();
@@ -856,7 +905,21 @@ if ($s >= 30 && $s <= 90) {
 		'message' => tra('The max_input_time is at') . ' ' . $s . '. ' . tra('It is likely that some scripts, such as admin functions, will not finish in this time! The max_input_time should be increased to at least 30 seconds.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
 	);
 }
-
+// max_file_uploads
+$max_file_uploads = ini_get('max_file_uploads');
+if ($max_file_uploads) {
+	$php_properties['max_file_uploads'] = array(
+		'fitness' => tra('info'),
+		'setting' => $max_file_uploads,
+		'message' => tra('The max_file_uploads is at') . ' ' . $max_file_uploads . '. ' . tra('This is the maximum number of files allowed to be uploaded simultaneously.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
+	);
+}else {
+	$php_properties['max_file_uploads'] = array(
+		'fitness' => tra('info'),
+		'setting' => 'Not Available',
+		'message' => tra('The maximum number of files allowed to be uploaded is not available')
+	);
+}
 // upload_max_filesize
 $upload_max_filesize = ini_get('upload_max_filesize');
 $s = trim($upload_max_filesize);
@@ -1231,7 +1294,13 @@ if ($s) {
 
 
 $s = extension_loaded('mcrypt');
-$msg = tra('MCrypt is abandonware and is being phased out. Starting in version 18, Tiki uses OpenSSL where it previously used MCrypt, except perhaps via third-party libraries.') . ' ' . tra('Tiki still uses MCrypt to decrypt user data encrypted with MCrypt, when converting that data to OpenSSL.');
+$msg = tra('MCrypt is abandonware and is being phased out. Starting in version 18, Tiki uses OpenSSL where it previously used MCrypt, except perhaps via third-party libraries.');
+if (!$standalone) {
+	$msg .= ' ' . tra('Tiki still uses MCrypt to decrypt user data encrypted with MCrypt, when converting that data to OpenSSL.') . ' ' . tra('Please check the \'User Data Encryption\' section to see if there is user data encrypted with MCrypt.');
+
+	//User Data Encryption MCrypt
+	$usersWithMCrypt = check_userPreferencesMCrypt();
+}
 if ($s) {
 	$php_properties['mcrypt'] = array(
 		'fitness' => tra('info'),
@@ -1390,24 +1459,44 @@ if ($connection || ! $standalone) {
 	}
 
 	// UTF-8 Charset
+	// Tiki communication is done using UTF-8 MB4 (required for Tiki19+)
 	$charset_types = "client connection database results server system";
 	foreach (explode(' ', $charset_types) as $type) {
 		$query = "SHOW VARIABLES LIKE 'character_set_" . $type . "';";
 		$result = query($query, $connection);
 		foreach ($result as $value) {
-			if ($value['Value'] == 'utf8') {
+			if ($value['Value'] == 'utf8mb4') {
 				$mysql_properties[$value['Variable_name']] = array(
 					'fitness' => tra('good'),
 					'setting' => $value['Value'],
-					'message' => tra('Tiki is fully UTF-8 and so should be every part of the stack.')
+					'message' => tra('Tiki is fully utf8mb4 and so should be every part of the stack.')
 				);
 			} else {
 				$mysql_properties[$value['Variable_name']] = array(
 					'fitness' => tra('unsure'),
 					'setting' => $value['Value'],
-					'message' => tra('On a fresh install everything should be set to UTF-8 to avoid unexpected results. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
+					'message' => tra('On a fresh install everything should be set to utf8mb4 to avoid unexpected results. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
 				);
 			}
+		}
+	}
+	// UTF-8 is correct for character_set_system
+	// Because mysql does not allow any config to change this value, and character_set_system is overwritten by the other character_set_* variables anyway. They may change this default in later versions.
+	$query = "SHOW VARIABLES LIKE 'character_set_system';";
+	$result = query($query, $connection);
+	foreach ($result as $value) {
+		if (substr($value['Value'], 0, 4) == 'utf8') {
+			$mysql_properties[$value['Variable_name']] = array(
+				'fitness' => tra('good'),
+				'setting' => $value['Value'],
+				'message' => tra('Tiki is fully utf8mb4 but some database underlying variables are set to utf8 by the database engine and cannot be modified.')
+			);
+		} else {
+			$mysql_properties[$value['Variable_name']] = array(
+				'fitness' => tra('unsure'),
+				'setting' => $value['Value'],
+				'message' => tra('On a fresh install everything should be set to utf8mb4 or utf8 to avoid unexpected results. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
+			);
 		}
 	}
 	// UTF-8 Collation
@@ -1416,17 +1505,17 @@ if ($connection || ! $standalone) {
 		$query = "SHOW VARIABLES LIKE 'collation_" . $type . "';";
 		$result = query($query, $connection);
 		foreach ($result as $value) {
-			if (substr($value['Value'], 0, 4) == 'utf8') {
+			if (substr($value['Value'], 0, 7) == 'utf8mb4') {
 				$mysql_properties[$value['Variable_name']] = array(
 					'fitness' => tra('good'),
 					'setting' => $value['Value'],
-					'message' => tra('Tiki is fully UTF-8 and so should be every part of the stack. utf8_unicode_ci is the default collation for Tiki.')
+					'message' => tra('Tiki is fully utf8mb4 and so should be every part of the stack. utf8mb4_unicode_ci is the default collation for Tiki.')
 				);
 			} else {
 				$mysql_properties[$value['Variable_name']] = array(
 					'fitness' => tra('unsure'),
 					'setting' => $value['Value'],
-					'message' => tra('On a fresh install everything should be set to UTF-8 to avoid unexpected results. utf8_unicode_ci is the default collation for Tiki. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
+					'message' => tra('On a fresh install everything should be set to utf8mb4 to avoid unexpected results. utf8mb4_unicode_ci is the default collation for Tiki. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
 				);
 			}
 		}
@@ -1752,8 +1841,145 @@ if (check_isIIS()) {
 	}
 }
 
+// Check Tiki Packages
+if (! $standalone) {
+	global $tikipath;
 
+	$composerManager = new ComposerManager($tikipath);
+	$installedLibs = $composerManager->getInstalled();
 
+	$packagesToCheck = array(
+		array(
+			'name' => 'media-alchemyst/media-alchemyst',
+			'preferences' => array(
+				'alchemy_ffmpeg_path' => array(
+					'name' => tra('ffmpeg path'),
+					'type' => 'path'
+				),
+				'alchemy_ffprobe_path' => array(
+					'name' => tra('ffprobe path'),
+					'type' => 'path'
+				),
+				'alchemy_unoconv_path' => array(
+					'name' => tra('unoconv path'),
+					'type' => 'path'
+				),
+				'alchemy_gs_path' => array(
+					'name' => tra('ghostscript path'),
+					'type' => 'path'
+				),
+				'alchemy_imagine_driver' => array(
+					'name' => tra('Alchemy Image library'),
+					'type' => 'classOptions',
+					'options' => array(
+						'imagick' => array(
+							'name' => tra('Imagemagick'),
+							'classLib' => 'Imagine\Imagick\Imagine',
+							'className' => 'Imagick',
+							'extension' => false
+						),
+						'gd' => array(
+							'name' => tra('GD'),
+							'classLib' => 'Imagine\Gd\Imagine',
+							'className' => false,
+							'extension' => 'gd'
+						)
+					),
+				),
+			)
+		),
+		array(
+			'name' => 'php-unoconv/php-unoconv',
+			'preferences' => array(
+				'alchemy_unoconv_path' => array(
+					'name' => tra('unoconv path'),
+					'type' => 'path'
+				)
+			)
+		)
+	);
+
+	$packagesToDisplay = array();
+	foreach ($installedLibs as $installedPackage) {
+		$key = array_search($installedPackage['name'], array_column($packagesToCheck, 'name'));
+		if ($key !== false) {
+			$warnings = checkPreferences($packagesToCheck[$key]['preferences']);
+			$packageInfo = array(
+				'name' => $installedPackage['name'],
+				'version' => $installedPackage['installed'],
+				'status' => count($warnings) > 0 ? tra('unsure') : tra('good'),
+				'message' => $warnings
+			);
+		} else {
+			$packageInfo = array(
+				'name' => $installedPackage['name'],
+				'version' => $installedPackage['installed'],
+				'status' => tra('good'),
+				'message' => array()
+			);
+		}
+		$packagesToDisplay[] = $packageInfo;
+	}
+
+	/**
+	 * Tesseract PHP Package Check
+	 */
+
+	/** @var string The version of Tesseract required */
+	$TesseractVersion = '2.7.0';
+	/** @var string Current Tesseract installed version */
+	$ocrVersion = false;
+	foreach ($packagesToDisplay as $arrayValue) {
+		if ($arrayValue['name'] === 'thiagoalessio/tesseract_ocr') {
+			$ocrVersion = $arrayValue['version'];
+			break;
+		}
+	}
+
+	if (! $ocrVersion) {
+		$ocrVersion = tra('Not Installed');
+		$ocrMessage = tra(
+			'Tesseract PHP package could not be found. Try installing through Packages.'
+		);
+		$ocrStatus = 'bad';
+	} elseif (version_compare($ocrVersion, $TesseractVersion, '>=')) {
+		$ocrMessage = tra('Tesseract PHP dependency installed.');
+		$ocrStatus = 'good';
+	} else {
+		$ocrMessage = tra(
+			'The installed Tesseract version is lower than the required version.'
+		);
+		$ocrStatus = 'bad';
+	}
+
+	$ocrToDisplay = [[
+						 'name'    => tra('Tesseract package'),
+						 'version' => $ocrVersion,
+						 'status'  => $ocrStatus,
+						 'message' => $ocrMessage,
+					 ]];
+
+	// check if scheduler is set up properly.
+
+	$query = 'SELECT 1 FROM tiki_scheduler WHERE `status`="active" and params like "%ocr:all%"';
+	$result = $tikilib->fetchAll($query);
+
+	if ( !empty($result[0][1])) {
+		$ocrToDisplay[] = [
+			'name'    => tra('Scheduler'),
+			'status'  => 'good',
+			'message' => tra('Scheduler has been successfully setup.'),
+		];
+	} else {
+		$ocrToDisplay[] = [
+			'name'    => tra('Scheduler'),
+			'status'  => 'bad',
+			'message' => tra('Scheduler needs to have a console command of "ocr:all" set.'),
+		];
+	}
+
+	$smarty->assign('ocr', $ocrToDisplay);
+}
 // Security Checks
 // get all dangerous php settings and check them
 $security = false;
@@ -1765,7 +1991,7 @@ if ($s != "" && strpos($sn, $s) !== false) {
 	$security['upload_tmp_dir'] = array(
 		'fitness' => tra('unsafe') ,
 		'setting' => $s,
-		'message' => tra('upload_tmp_dir is probably inside the Tiki directory. There is a risk that someone can upload any file to this directory and access it via web browser')
+		'message' => tra('upload_tmp_dir is probably inside the Tiki directory. There is a risk that someone can upload any file to this directory and access it via web browser.')
 	);
 } else {
 	$security['upload_tmp_dir'] = array(
@@ -1824,8 +2050,8 @@ $fcts = array(
 		 ),
 		 array(
 			'function' => 'proc_open',
-			'risky' => tra('Proc_open is similar to exec.') . ' ' . tra('Tiki does not need it; perhaps it should be disabled. However, the Composer package manager used for installations in Subversion checkouts may need it.'),
-			'safe' => tra('Proc_open is similar to exec.') . ' ' . tra('Tiki does not need it; it is good that it is disabled. However, the Composer package manager used for installations in Subversion checkouts may need it.')
+			'risky' => tra('Proc_open is similar to exec.') . ' ' . tra('Tiki does not need it; perhaps it should be disabled. However, the Composer package manager used for installations in Subversion checkouts or when using the package manager from the <a href="https://doc.tiki.org/Packages" target="_blank">admin interface</a> may need it.'),
+			'safe' => tra('Proc_open is similar to exec.') . ' ' . tra('Tiki does not need it; it is good that it is disabled. However, the Composer package manager used for installations in Subversion checkouts or when using the package manager from the <a href="https://doc.tiki.org/Packages" target="_blank">admin interface</a> may need it.')
 		 ),
 		 array(
 			'function' => 'popen',
@@ -2089,7 +2315,7 @@ if (! $standalone) {
 		$engineType = '';
 		$query = 'SELECT ENGINE FROM information_schema.TABLES WHERE TABLE_NAME = "tiki_schema" AND TABLE_SCHEMA = "' . $dbs_tiki . '";';
 		$result = query($query, $connection);
-		if (!empty($result[0]['ENGINE'])) {
+		if (! empty($result[0]['ENGINE'])) {
 			$engineType = $result[0]['ENGINE'];
 		}
 	}
@@ -2098,6 +2324,9 @@ if (! $standalone) {
 	} else {
 		$smarty->assign('engineTypeNote', false);
 	}
+
+	$smarty->assign('composer_available', $composerManager->composerIsAvailable());
+	$smarty->assign('packages', $packagesToDisplay);
 }
 
 $sensitiveDataDetectedFiles = array();
@@ -2356,7 +2585,6 @@ if ($standalone && ! $nagios) {
 		$render .= '<p>Apparently Tiki is running on a Windows based server. This feature is not supported natively.</p>';
 	}
 
-
 	createPage('Tiki Server Compatibility', $render);
 } elseif ($nagios) {
 //  0	OK
@@ -2510,9 +2738,50 @@ if ($standalone && ! $nagios) {
 	$smarty->assign('sensitive_data_detected_files', $sensitiveDataDetectedFiles);
 
 	$smarty->assign('benchmark', $benchmark);
+	$smarty->assign('users_with_mcrypt_data', $usersWithMCrypt);
 	$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 	$smarty->assign('mid', 'tiki-check.tpl');
 	$smarty->display('tiki.tpl');
+}
+
+/**
+ * Check if paths set in preferences exist in the system, or if classes exist in project/system
+ *
+ * @param array $preferences An array with preference key and preference info
+ *
+ * @return array An array with warning messages.
+ */
+function checkPreferences(array $preferences)
+{
+	global $prefs;
+
+	$warnings = array();
+
+	foreach ($preferences as $prefKey => $pref) {
+		if ($pref['type'] == 'path') {
+			if (isset($prefs[$prefKey]) && ! file_exists($prefs[$prefKey])) {
+				$warnings[] = tra("The path '%0' on preference '%1' does not exist", $prefs[$prefKey], $pref['name']);
+			}
+		} elseif($pref['type'] == 'classOptions') {
+			if (isset($prefs[$prefKey])) {
+				$options = $pref['options'][$prefs[$prefKey]];
+
+				if (! empty($options['classLib']) && ! class_exists($options['classLib'])) {
+					$warnings[] = tra("The lib '%0' on preference '%1', option '%2' does not exist", $options['classLib'], $pref['name'], $options['name']);
+				}
+
+				if (! empty($options['className']) && ! class_exists($options['className'])) {
+					$warnings[] = tra("The class '%0' needed for preference '%1', with option '%2' selected, does not exist", $options['className'], $pref['name'], $options['name']);
+				}
+
+				if (! empty($options['extension']) && ! extension_loaded($options['extension'])) {
+					$warnings[] = tra("The extension '%0' on preference '%1', with option '%2' selected, is not loaded", $options['extension'], $pref['name'], $options['name']);
+				}
+			}
+		}
+	}
+
+	return $warnings;
 }
 
 /**
@@ -2824,6 +3093,18 @@ function check_isIIS()
 function check_hasIIS_UrlRewriteModule()
 {
 	return isset($_SERVER['IIS_UrlRewriteModule']) == true;
+}
+
+/**
+ * Returns the number of users with data preferences encrypted with mcrypt
+ * @return bool|int|mixed
+ */
+function check_userPreferencesMCrypt()
+{
+	global $tikilib;
+
+	$query = 'SELECT count(DISTINCT user) FROM `tiki_user_preferences` WHERE `prefName` like \'dp.%\'';
+	return $tikilib->getOne($query);
 }
 
 function get_content_from_url($url)

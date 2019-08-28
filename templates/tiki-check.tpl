@@ -463,3 +463,76 @@
 		<p>{tr}Apparently tiki is running on a Windows based server. This feature is not supported natively.{/tr}</p>
 	{/remarksbox}
 {/if}
+
+<h2>{tr}User Data Encryption{/tr}</h2>
+{if users_with_mcrypt_data > 0}
+	{remarksbox type='error' title='{tr}MCrypt encryption found in users data preferences{/tr}' close='n'}
+		<p>{tr _0=$users_with_mcrypt_data}Found %0 user(s) with data preferences encrypted with MCrypt.{/tr}</p>
+		<p>If MCrypt library gets removed, non-converted user encrypted data can no longer be decrypted. The data is
+			thus lost and must be re-entered.</p>
+	{/remarksbox}
+{else}
+	<p>{tr}No user preferences were found with data encrypted with MCrypt.{/tr}</p>
+{/if}
+
+<h2>{tr}Tiki Packages{/tr}</h2>
+{if ! $composer_available}
+	{remarksbox type="warning" title="{tr}Composer not found{/tr}"}
+		{tr}Composer could not be executed, so the automated check on the packages cannot be performed.{/tr}
+	{/remarksbox}
+{/if}
+<div class="table-responsive">
+	<table class="table">
+		<tr>
+			<th>{tr}Package Name{/tr}</th>
+			<th>{tr}Version{/tr}</th>
+			<th>{tr}Status{/tr}</th>
+			<th>{tr}Message{/tr}</th>
+		</tr>
+
+		{foreach from=$packages key=key item=item}
+			<tr>
+				<td class="text">{$item.name}</td>
+				<td class="text">{$item.version}</td>
+				<td class="text">
+					<span class="text-{$fmap[$item.status]['class']}">
+						{icon name="{$fmap[$item.status]['icon']}"} {$item.status}
+					</span>
+				</td>
+				<td class="text">
+                    {foreach from=$item.message key=message_key item=message}
+						{$message}<br/>
+                    {/foreach}
+				</td>
+			</tr>
+		{foreachelse}
+			{norecords _colspan=4}
+		{/foreach}
+	</table>
+</div>
+
+
+<h2>{tr}OCR Status{/tr}</h2>
+<div class="table-responsive">
+	<table class="table">
+		<tr>
+			<th>{tr}Requirements{/tr}</th>
+			<th>{tr}Version{/tr}</th>
+			<th>{tr}Status{/tr}</th>
+			<th>{tr}Message{/tr}</th>
+		</tr>
+
+		{foreach from=$ocr key=key item=item}
+			<tr>
+				<td class="text">{$item.name}</td>
+				<td class="text">{$item.version}</td>
+				<td class="text">
+					<span class="text-{$fmap[$item.status]['class']}">
+						{icon name="{$fmap[$item.status]['icon']}"} {$item.status}
+					</span>
+				</td>
+				<td class="text">{$item.message}</td>
+			</tr>
+		{/foreach}
+	</table>
+</div>
