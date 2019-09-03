@@ -34,17 +34,9 @@ class Search_Elastic_FacetBuilder
 
 	private function buildFacet(Search_Query_Facet_Interface $facet)
 	{
-		$out = [
+		return ['terms' => [
 			'field' => $facet->getField(),
-			'size' => $facet->getCount() !== null ? $facet->getCount(): $this->count,
-			'order' => $facet->getOrder() ?: $facet->getOrder()
-		];
-
-		$minDocCount = $facet->getMinDocCount();
-		if ($minDocCount !== null) {
-			$out['min_doc_count'] = $minDocCount;
-		}
-
-		return ['terms' => $out];
+			'size' => $facet->getCount() ?: $this->count,
+		]];
 	}
 }
