@@ -226,6 +226,7 @@ sensiolabs-vendor-security-check:
     - composer require npm-asset/lozad ^1.6.0 --no-progress
     - composer require mpdf/mpdf ^7.1 --no-progress
     - composer require xorti/mxgraph-editor ^3.9 --no-progress
+    - composer require tikiwiki/diagram ^10 --no-progress
     - composer require onelogin/php-saml ^2.10 --no-progress
     - composer require media-alchemyst/media-alchemyst ^0.5.1 --no-progress
     - composer require npm-asset/pdfjs-dist ~2.0.487 --no-progress

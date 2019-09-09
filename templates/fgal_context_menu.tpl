@@ -70,12 +70,23 @@
 					</a>
 				{/if}
 			{/if}
+		{elseif $tiki_p_upload_files eq 'y' and $prefs.wikiplugin_diagram eq 'y'
+			and $file.id|file_diagram}
+			<a href="tiki-display.php?fileId={$file.id}">
+				{icon name='view' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Display{/tr}"}
+			</a>
+			<form id="edit-diagram-1" target="_blank" action="tiki-editdiagram.php" method="post">
+				<input type="hidden" value="{$file.id}" name="fileId">
+				<a href="javascript:void(0)" onclick="$('#edit-diagram-1').submit()">
+					{icon name='edit' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Edit{/tr}"}
+				</a>
+			</form>
 		{elseif $file.type eq 'text/csv' and $prefs.feature_sheet eq 'y'}
 			<a href="tiki-view_sheets.php?fileId={$file.id}">
 				{icon name='view' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Display{/tr}"}
 			</a>
 		{elseif $prefs.fgal_pdfjs_feature eq 'y' and $file.type eq 'application/pdf'}
-			<a href="tiki-display_pdf.php?fileId={$file.id}">
+			<a href="tiki-display.php?fileId={$file.id}">
 				{icon name='view' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Display{/tr}"}
 			</a>
 		{elseif $prefs.fgal_viewerjs_feature eq 'y' and ($file.type eq 'application/pdf' or $file.type|strpos:'application/vnd.oasis.opendocument.' !== false)}
@@ -98,7 +109,7 @@
 			</a>
 		{/if}
 		{if $prefs.fgal_pdfjs_feature eq 'y' and $prefs.fgal_convert_documents_pdf eq 'y' and ($file.type|file_can_convert_to_pdf)}
-			<a href="tiki-display_pdf.php?fileId={$file.id}">
+			<a href="tiki-display.php?fileId={$file.id}">
 				{icon name='view' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Display as PDF{/tr}"}
 			</a>
 		{/if}
