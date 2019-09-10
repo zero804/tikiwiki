@@ -24,6 +24,8 @@ class Search_Query_FacetWikiBuilder
 						'name' => $arguments['name'],
 						'operator' => $operator,
 						'count' => $count,
+						'order' => isset($arguments['order']) ? $arguments['order'] : null,
+						'min' => isset($arguments['min']) ? $arguments['min'] : null,
 					];
 				}
 			}
@@ -38,6 +40,14 @@ class Search_Query_FacetWikiBuilder
 
 				if ($facet['count']) {
 					$real->setCount($facet['count']);
+				}
+
+				if ($facet['order']) {
+					$real->setOrder($facet['order']);
+				}
+
+				if ($facet['min'] !== null) {
+					$real->setMinDocCount($facet['min']);
 				}
 
 				$query->requestFacet($real);
