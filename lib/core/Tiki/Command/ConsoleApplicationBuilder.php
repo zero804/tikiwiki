@@ -114,6 +114,7 @@ class ConsoleApplicationBuilder
 					new ThemeRemoveCommand,
 					new ThemeUpdateCommand,
 					new SchedulerHealCommand,
+					new TrackerExportCommand,
 					new TrackerImportCommand,
 					new SitemapGenerateCommand,
 					new TikiInfoCommand,
