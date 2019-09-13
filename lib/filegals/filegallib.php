@@ -2736,7 +2736,7 @@ class FileGalLib extends TikiLib
 			if (! empty($prefs['fgal_delete_after_email'])) {
 				$wrapper = $definition->getFileWrapper($fileInfo['data'], $fileInfo['path']);
 
-				$fileInfo['data'] = $wrapper->getContent();
+				$fileInfo['data'] = $wrapper->getContents();
 
 				$smarty->assign('fileInfo', $fileInfo);
 				$smarty->assign('galInfo', $galInfo);
