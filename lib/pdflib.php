@@ -270,8 +270,13 @@ class PdfGenerator
 			'margin_header' => $pdfSettings['margin_header'],
 			'margin_footer' => $pdfSettings['margin_footer'],
 			'orientation' => $pdfSettings['orientation'],
-			'tempDir'=> TIKI_PATH . '/temp'
+			'tempDir'=> TIKI_PATH . '/temp/mpdf'
 		];
+
+		if (! file_exists($mpdfConfig['tempDir'])) {
+			mkdir($mpdfConfig['tempDir'], 0770, true);
+		}
+
 		$mpdf = new \Mpdf\Mpdf($mpdfConfig);
 
 		//custom fonts add, currently fontawesome support is added, more fonts can be added in future
