@@ -96,6 +96,13 @@ function wikiplugin_list($data, $params)
 
 	PluginsLibUtil::handleDownload($query, $index, $matches);
 
+	/* set up facets/aggregations */
+	$facetsBuilder = new Search_Query_FacetWikiBuilder();
+	$facetsBuilder->apply($matches);
+	if ($facetsBuilder->getFacets()) {
+		$facetsBuilder->build($query, $unifiedsearchlib->getFacetProvider());
+	}
+
 	$result = $query->search($index);
 
 	$result->setId('wplist-' . $i);
