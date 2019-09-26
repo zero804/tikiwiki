@@ -58,7 +58,7 @@ class Search_Query_FacetWikiBuilder
 	/**
 	 * @return array
 	 */
-	public function getFacets(): array
+	public function getFacets()
 	{
 		return $this->facets;
 	}
