@@ -194,7 +194,7 @@ class CheckSqlEngineConversion
 		$this->oldDb = $result;
 
 		if ($result === null) {
-			$this->printMessageError('Wrong value for db1, check the the right format bellow');
+			$this->printMessageError('Wrong value for db1, check the the right format below');
 			$this->usage();
 			throw new Exception('Wrong db1');
 		}
@@ -204,7 +204,7 @@ class CheckSqlEngineConversion
 		$this->newDb = $result;
 
 		if ($result === null) {
-			$this->printMessageError('Wrong value for db2, check the right format bellow');
+			$this->printMessageError('Wrong value for db2, check the right format below');
 			$this->usage();
 			throw new Exception('Wrong db2');
 		}
@@ -397,6 +397,7 @@ class CheckSqlEngineConversion
 			]
 		);
 		$process->setWorkingDirectory($this->tikiRoot);
+		$process->setTimeout($this->getProcessTimeout());
 
 		$process->run();
 
@@ -484,7 +485,7 @@ class CheckSqlEngineConversion
 			return;
 		}
 
-		$this->printMessageError("\n*** Issues found while validating database engine change, see bellow ***\n");
+		$this->printMessageError("\n*** Issues found while validating database engine change, see below ***\n");
 		$this->printMessageError('== Result of the db Analysis =======================' . "\n");
 		echo $result . "\n";
 		$this->printMessageError('====================================================' . "\n");
@@ -555,6 +556,23 @@ class CheckSqlEngineConversion
 		}
 
 		return null;
+	}
+
+	/**
+	 * Return the Timeout Value for Symfony Process
+	 * Either get the value from a ENV (set as part of the CI process) or assume the default value
+	 *
+	 * @return float
+	 */
+	protected function getProcessTimeout()
+	{
+		$defaultTimeoutForProcess = 120; // 2 minutes
+
+		if (isset($_SERVER['TIKI_CI_PROCESS_TIMEOUT'])) {
+			return (float)$_SERVER['TIKI_CI_PROCESS_TIMEOUT'];
+		}
+
+		return (float)$defaultTimeoutForProcess;
 	}
 }
 
