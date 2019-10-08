@@ -6146,6 +6146,7 @@ class TrackerLib extends TikiLib
 			return;
 		}
 		$table = $this->table('users_groups');
+		$fields = array_filter($fields, 'is_numeric');
 		$field = $table->fetchOne(
 			'usersFieldId',
 			[
