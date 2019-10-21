@@ -163,7 +163,7 @@ invalidHandler: function(event, validator) {
 		}
 		var containerScrollTop = $scroller.scrollTop(),
 			$firstError = $(validator.errorList[0].element),
-			$scrollElement = $firstError.parents(".form-group");
+			$scrollElement = $firstError.parents(".form-group, tr:first");
 
 		if (! $scrollElement.length) {
 			$scrollElement = $firstError;
