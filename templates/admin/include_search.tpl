@@ -45,7 +45,6 @@
 					{preference name=feature_search_stats}
 					{preference name=user_in_search_result}
 					{preference name="unified_incremental_update"}
-					{preference name="unified_incremental_update_count"}
 
 					{preference name="allocate_memory_unified_rebuild"}
 					{preference name="allocate_time_unified_rebuild"}
