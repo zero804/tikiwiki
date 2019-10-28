@@ -49,9 +49,11 @@ class UnifiedSearchLib
 	}
 
 	/**
-	 * @param int $count
+	 * Index items in the process queue
+	 *
+	 * @param int $count number to process, default is pref
 	 */
-	function processUpdateQueue($count = 10)
+	function processUpdateQueue($count = null)
 	{
 		global $prefs;
 		if (! isset($prefs['unified_engine'])) {
@@ -64,6 +66,10 @@ class UnifiedSearchLib
 
 		if ($this->rebuildInProgress()) {
 			return;
+		}
+
+		if ($count === null) {
+			$count = $prefs['unified_incremental_update_count'];
 		}
 
 		$queuelib = TikiLib::lib('queue');

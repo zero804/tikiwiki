@@ -110,6 +110,13 @@ function prefs_unified_list()
 			'warning' => tra('This may lead to lower performance and accuracy than processing the index on a periodic basis.'),
 			'default' => 'y',
 		],
+		'unified_incremental_update_count' => [
+			'name' => tra('Update Queue Size'),
+			'description' => tra('Number of items to index on each incremental event.'),
+			'type' => 'int',
+			'default' => 10,
+			'tags' => ['advanced'],
+		],
 		'unified_field_weight' => [
 			'name' => tra('Field weights'),
 			'description' => tra('Allow the field weights to be set that apply when ranking pages in the search results. The weight is applied only when the field is in the query. To nullify the value of a field, use an insignificant amount, but not 0, which may lead to unexpected behaviors such as stripping of results.') .
