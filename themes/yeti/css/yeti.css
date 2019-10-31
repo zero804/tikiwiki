@@ -9,8 +9,8 @@
  * Adapted by the Tiki Community for Tiki Wiki CMS Groupware
 */
 /*!
- * Bootstrap v3.4.0 (https://getbootstrap.com/)
- * Copyright 2011-2018 Twitter, Inc.
+ * Bootstrap v3.4.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -6189,8 +6189,8 @@ button.close {
   padding: 8px 14px;
   margin: 0;
   font-size: 15px;
-  background-color: #333333;
-  border-bottom: 1px solid #262626;
+  background-color: #2b2b2b;
+  border-bottom: 1px solid #1f1f1f;
   border-radius: -1 -1 0 0;
 }
 .popover-content {
@@ -7090,6 +7090,12 @@ input[type="checkbox"] {
   color: #ffffff;
   font-size: 12px;
   font-weight: 300;
+}
+.popover table {
+  background: #fff;
+}
+.popover a {
+  color: #75d7f7;
 }
 .panel-heading,
 .panel-footer {
