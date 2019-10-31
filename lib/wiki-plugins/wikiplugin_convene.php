@@ -624,7 +624,7 @@ FORM;
 						var parent = updateButton.parent().parent().parent().parent();
 						parent.find('.vote').hide();
 						parent.find('input').each(function() {
-							$('<select>' +
+							$('<select class="form-control">' +
 								'<option value="">-</option>' +
 								'<option value="-1">' + tr('Not ok') + '</option>' +
 								'<option value="1">' + tr('Ok') + '</option>' +
