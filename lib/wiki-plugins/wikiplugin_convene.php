@@ -205,18 +205,18 @@ function wikiplugin_convene($data, $params)
 	}
 
 	foreach ($votes as $stamp => $totals) {
-		$dateHeader .= '<td class="conveneHeader"><span class="tips" title="' . tr('UTC date time: %0', gmdate($gmformat, $stamp)) . '">';
+		$dateHeader .= '<td class="align-bottom conveneHeader"><span class="tips" title="' . tr('UTC date time: %0', gmdate($gmformat, $stamp)) . '">';
 		if (! empty($dateformat) && $dateformat == "long") {
 			$dateHeader .= $tikilib->get_long_datetime($stamp);
 		} else {
 			$dateHeader .= $tikilib->get_short_datetime($stamp);
 		}
 		$dateHeader .= '</span>';
-		$dateHeader .= ($canAdmin ? " <button class='conveneDeleteDate$i icon btn btn-primary btn-sm' data-date='$stamp'>$deleteicon</button>" : "") . "</td>";
+		$dateHeader .= ($canAdmin ? " <button class='conveneDeleteDate$i icon btn btn-danger btn-sm' data-date='$stamp'>$deleteicon</button>" : "") . "</td>";
 	}
 	$result .= "<tr class='conveneHeaderRow'>";
 
-	$result .= "<td style='vertical-align: middle'>" . (
+	$result .= "<td class='align-middle'>" . (
 		$canEdit
 			?
 				"<input type='button' class='conveneAddDate$i btn btn-primary btn-sm' value='" . tr('Add Date') . "'/>"
@@ -236,20 +236,20 @@ function wikiplugin_convene($data, $params)
 
 		if ($params['avatars'] === 'y') {
 			$avatar = " <div class='float-right'>" . smarty_modifier_avatarize($user) . '</div>';
-			$rightPadding = 'padding-right: 45px; max-width: 10em; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;';
+			$rightPadding = 'max-width: 10em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;';
 		} else {
 			$avatar = '';
 			$rightPadding = '';
 		}
 
-		$userList .= "<td style='white-space: nowrap'>" . $avatar . ($editThisUser ? "<div class='btn-group'><button class='conveneUpdateUser$i icon btn btn-primary btn-sm'>"
+		$userList .= "<td class='align-middle' style='white-space: nowrap'><div class='align-items-center d-flex justify-content-between'>" . ($editThisUser ? "<div class='btn-group'><button class='conveneUpdateUser$i icon btn btn-primary btn-sm'>"
 				. smarty_function_icon(['name' => 'pencil', 'iclass' => 'tips', 'ititle' => ':'
 					. tr("Edit User/Save changes")], $smarty->getEmptyInternalTemplate())
 				. "</button><button data-user='$user' class='conveneDeleteUser$i icon btn btn-danger btn-sm'>"
 				. smarty_function_icon(['name' => 'delete', 'iclass' => 'tips', 'ititle' => ':'
 					. tr("Delete User")], $smarty->getEmptyInternalTemplate())
 				. "</button></div> " : "")
-				. "<div style='display:inline-block;$rightPadding'>" . smarty_modifier_userlink($user) . "</div></td>";
+				. "<div class='flex-fill'><div class='mx-2' style='$rightPadding'>" . smarty_modifier_userlink($user) . "</div></div>$avatar</div></td>";
 
 		foreach ($row as $stamp => $vote) {
 			if ($vote == 1) {
@@ -259,11 +259,11 @@ function wikiplugin_convene($data, $params)
 				$class = "convene-no text-center alert-danger";
 				$text = smarty_function_icon(['name' => 'remove', 'iclass' => 'tips', 'ititle' => ':' . tr('Not OK'), 'size' => 2], $smarty->getEmptyInternalTemplate());
 			} else {
-				$class = "convene-unconfirmed text-center text-muted";
+				$class = "convene-unconfirmed text-center alert-light";
 				$text = smarty_function_icon(['name' => 'help', 'iclass' => 'tips', 'ititle' => ':' . tr('Unconfirmed'), 'size' => 2], $smarty->getEmptyInternalTemplate());
 			}
 
-			$userList .= "<td class='$class'>" . $text
+			$userList .= "<td class='align-middle $class'>" . $text
 				. "<input type='hidden' name='dates_" . $stamp . "_" . $user . "' value='$vote' class='conveneUserVote$i form-control' />"
 				. "</td>";
 		}
@@ -299,17 +299,18 @@ function wikiplugin_convene($data, $params)
 	$lastRow = "";
 	foreach ($votes as $stamp => $total) {
 		$pic = "";
+		$selectedDateClass = "";
 		if ($total == $votes[$topVoteStamp]) {
-			$pic .= ($canEdit ? smarty_function_icon(['name' => 'ok', 'iclass' => 'tips alert-success', 'ititle' => ':' . tr("Selected Date"), 'size' => 2], $smarty->getEmptyInternalTemplate()) : "");
+			$pic .= ($canEdit ? smarty_function_icon(['name' => 'ok', 'iclass' => 'alert-success tips', 'ititle' => ':' . tr("Selected Date")], $smarty->getEmptyInternalTemplate()) : "");
 			if ($canEdit && $votes[$topVoteStamp] >= $minvotes) {
-				$pic .= "<a class='btn btn-primary btn-sm' href='tiki-calendar_edit_item.php?todate=$stamp&calendarId=$calendarid' title='"
-					. tr("Add as Calendar Event") . "'>"
-					. smarty_function_icon(['name' => 'calendar'], $smarty->getEmptyInternalTemplate())
+				$pic .= "<a class='btn btn-success btn-sm mx-1 text-white' href='tiki-calendar_edit_item.php?todate=$stamp&calendarId=$calendarid'>"
+					. smarty_function_icon(['name' => 'calendar', 'iclass' => 'tips', 'ititle' => ':' . tr("Add as Calendar Event")], $smarty->getEmptyInternalTemplate())
 					. "</a>";
 			}
+			$selectedDateClass = " alert-success";
 		}
 
-		$lastRow .= "<td class='conveneFooter'>" . $total . "&nbsp;$pic</td>";
+		$lastRow .= "<td class='align-middle conveneFooter$selectedDateClass'><div class='align-items-center d-flex justify-content-center'>" . $total . "&nbsp;$pic</div></td>";
 	}
 	$result .= $lastRow;
 
@@ -613,14 +614,14 @@ FORM;
 						
 						$('.conveneDeleteDate$i').hide();
 						$('.conveneMain$i').hide();
-						updateButton.parent().parent()
+						updateButton.parent().parent().parent().parent()
 							.addClass('convene-highlight')
 							.find('td').not(':first')
 							.addClass('conveneTd$i')
 							.addClass('convene-highlight');
 		
 						updateButton.find('.icon').setIcon("save");
-						var parent = updateButton.parent().parent();
+						var parent = updateButton.parent().parent().parent().parent();
 						parent.find('.vote').hide();
 						parent.find('input').each(function() {
 							$('<select>' +
@@ -643,13 +644,13 @@ FORM;
 											icon = 'remove';
 											break;
 										default:
-											cl = 'convene-unconfirmed alert-muted';
+											cl = 'convene-unconfirmed alert-light';
 											icon = 'help';
 									}
 		
 									$(this)
 										.parent()
-										.removeClass('convene-no convene-ok convene-unconfirmed alert-success alert-danger alert-muted')
+										.removeClass('convene-no convene-ok convene-unconfirmed alert-success alert-danger alert-light')
 										.addClass(cl)
 										.find (".icon")
 											.setIcon(icon);
@@ -668,14 +669,14 @@ FORM;
 					$('.conveneUpdateUser$i').show();
 					$('.conveneDeleteUser$i').show();
 					$('.conveneDeleteDate$i').show();
-					$(this).parent().parent()
+					$(this).parent().parent().parent().parent()
 						.removeClass('convene-highlight')
 						.find('.conveneTd$i')
 						.removeClass('convene-highlight');
 	
 					$('.conveneMain$i').show();
 					$(this).find('span.icon-pencil');
-					parent = $(this).parent().parent();
+					parent = $(this).parent().parent().parent().parent();
 					parent.find('select').each(function(i) {
 						parent.find('input.conveneUserVote$i').eq(i).val( $(this).val() );
 	
