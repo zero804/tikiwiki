@@ -242,12 +242,12 @@ function wikiplugin_convene($data, $params)
 			$rightPadding = '';
 		}
 
-		$userList .= "<td style='white-space: nowrap'>" . $avatar . ($editThisUser ? "<button class='conveneUpdateUser$i icon btn btn-primary btn-sm'>"
+		$userList .= "<td style='white-space: nowrap'>" . $avatar . ($editThisUser ? "<div class='btn-group'><button class='conveneUpdateUser$i icon btn btn-primary btn-sm'>"
 				. smarty_function_icon(['name' => 'pencil', 'iclass' => 'tips', 'ititle' => ':'
 					. tr("Edit User/Save changes")], $smarty->getEmptyInternalTemplate())
 				. "</button><button data-user='$user' title='" . tr("Delete User")
 				. "' class='conveneDeleteUser$i icon btn btn-danger btn-sm'>"
-				. smarty_function_icon(['name' => 'delete'], $smarty->getEmptyInternalTemplate()) . "</button> " : "")
+				. smarty_function_icon(['name' => 'delete'], $smarty->getEmptyInternalTemplate()) . "</button></div> " : "")
 				. "<div style='display:inline-block;$rightPadding'>" . smarty_modifier_userlink($user) . "</div></td>";
 
 		foreach ($row as $stamp => $vote) {
