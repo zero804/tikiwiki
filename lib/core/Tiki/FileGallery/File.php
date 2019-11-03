@@ -198,7 +198,8 @@ class File
 			$this->setParam('filename', $filename);
 		}
 
-		if (!$this->replaceContents($data)) {
+		if ($data && !$this->replaceContents($data)) {
+			// Do not replace with empty file as could be updating properties only
 			return false;
 		}
 
