@@ -6954,6 +6954,7 @@ themes/fivealive-lite/options/akebi/images/middletopbg.png -text
 themes/fivealive-lite/options/akebi/images/siteheader.png -text
 themes/fivealive-lite/options/akebi/images/siteheadertile.jpg -text
 themes/fivealive-lite/options/akebi/index.php -text
+themes/fivealive-lite/options/akebi/scss/_button_color_variables.scss -text
 themes/fivealive-lite/options/akebi/scss/_variables.scss -text
 themes/fivealive-lite/options/akebi/scss/akebi.scss -text
 themes/fivealive-lite/options/blueberry/images/arrows-1174a5.png -text
@@ -6970,6 +6971,7 @@ themes/fivealive-lite/options/grape/images/index.php -text
 themes/fivealive-lite/options/grape/images/middletopbg.png -text
 themes/fivealive-lite/options/grape/images/siteheader.png -text
 themes/fivealive-lite/options/grape/images/siteheadertile.png -text
+themes/fivealive-lite/options/grape/scss/_button_color_variables.scss -text
 themes/fivealive-lite/options/grape/scss/_variables.scss -text
 themes/fivealive-lite/options/grape/scss/grape.scss -text
 themes/fivealive-lite/options/kiwi/css/kiwi.css -text
@@ -6979,6 +6981,7 @@ themes/fivealive-lite/options/kiwi/images/kiwi.png -text
 themes/fivealive-lite/options/kiwi/images/middletopbg.png -text
 themes/fivealive-lite/options/kiwi/images/siteheader.png -text
 themes/fivealive-lite/options/kiwi/images/siteheadertile.png -text
+themes/fivealive-lite/options/kiwi/scss/_button_color_variables.scss -text
 themes/fivealive-lite/options/kiwi/scss/_variables.scss -text
 themes/fivealive-lite/options/kiwi/scss/kiwi.scss -text
 themes/fivealive-lite/options/lemon/css/lemon.css -text
@@ -6988,6 +6991,7 @@ themes/fivealive-lite/options/lemon/images/lemon.png -text
 themes/fivealive-lite/options/lemon/images/middletopbg.png -text
 themes/fivealive-lite/options/lemon/images/siteheader.png -text
 themes/fivealive-lite/options/lemon/images/siteheadertile.png -text
+themes/fivealive-lite/options/lemon/scss/_button_color_variables.scss -text
 themes/fivealive-lite/options/lemon/scss/_variables.scss -text
 themes/fivealive-lite/options/lemon/scss/lemon.scss -text
 themes/fivealive-lite/options/orange/css/orange.css -text
@@ -6999,6 +7003,7 @@ themes/fivealive-lite/options/orange/images/middletopbg.png -text
 themes/fivealive-lite/options/orange/images/orange.png -text
 themes/fivealive-lite/options/orange/images/siteheader.png -text
 themes/fivealive-lite/options/orange/images/siteheadertile.png -text
+themes/fivealive-lite/options/orange/scss/_button_color_variables.scss -text
 themes/fivealive-lite/options/orange/scss/_variables.scss -text
 themes/fivealive-lite/options/orange/scss/orange.scss -text
 themes/fivealive-lite/options/plum/images/arrows-8e01d4.png -text
@@ -7006,6 +7011,7 @@ themes/fivealive-lite/options/plum/images/index.php -text
 themes/fivealive-lite/options/plum/images/middletopbg.png -text
 themes/fivealive-lite/options/plum/images/siteheader.jpg -text
 themes/fivealive-lite/options/plum/images/siteheadertile.png -text
+themes/fivealive-lite/options/plum/scss/_button_color_variables.scss -text
 themes/fivealive-lite/options/plum/scss/_variables.scss -text
 themes/fivealive-lite/options/plum/scss/plum.scss -text
 themes/fivealive-lite/options/raspberry/css/raspberry.css -text
@@ -7015,6 +7021,7 @@ themes/fivealive-lite/options/raspberry/images/middletopbg.png -text
 themes/fivealive-lite/options/raspberry/images/raspberry.png -text
 themes/fivealive-lite/options/raspberry/images/siteheader.png -text
 themes/fivealive-lite/options/raspberry/images/siteheadertile.png -text
+themes/fivealive-lite/options/raspberry/scss/_button_color_variables.scss -text
 themes/fivealive-lite/options/raspberry/scss/_tiki-selector-variables.scss -text
 themes/fivealive-lite/options/raspberry/scss/_variables.scss -text
 themes/fivealive-lite/options/raspberry/scss/raspberry.scss -text
@@ -7025,6 +7032,7 @@ themes/fivealive-lite/options/watermelon/images/middletopbg.png -text
 themes/fivealive-lite/options/watermelon/images/siteheader.png -text
 themes/fivealive-lite/options/watermelon/images/siteheadertile.png -text
 themes/fivealive-lite/options/watermelon/images/watermelon.png -text
+themes/fivealive-lite/options/watermelon/scss/_button_color_variables.scss -text
 themes/fivealive-lite/options/watermelon/scss/_variables.scss -text
 themes/fivealive-lite/options/watermelon/scss/watermelon.scss -text
 themes/fivealive-lite/scss/_selectors-for-options.scss -text
