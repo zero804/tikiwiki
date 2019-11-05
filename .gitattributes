@@ -7240,6 +7240,7 @@ themes/fivealive/options/grape/icons/orightcol.png -text
 themes/fivealive/options/grape/images/grape.png -text
 themes/fivealive/options/grape/images/index.php -text
 themes/fivealive/options/grape/index.php -text
+themes/fivealive/options/grape/scss/_button_color_variables.scss -text
 themes/fivealive/options/grape/scss/_variables.scss -text
 themes/fivealive/options/grape/scss/grape.scss -text
 themes/fivealive/options/grape/scss/index.php -text
@@ -7261,6 +7262,7 @@ themes/fivealive/options/kiwi/icons/orightcol.png -text
 themes/fivealive/options/kiwi/images/index.php -text
 themes/fivealive/options/kiwi/images/kiwi.png -text
 themes/fivealive/options/kiwi/index.php -text
+themes/fivealive/options/kiwi/scss/_button_color_variables.scss -text
 themes/fivealive/options/kiwi/scss/_variables.scss -text
 themes/fivealive/options/kiwi/scss/index.php -text
 themes/fivealive/options/kiwi/scss/kiwi.scss -text
@@ -7281,6 +7283,7 @@ themes/fivealive/options/lemon/icons/orightcol.png -text
 themes/fivealive/options/lemon/images/index.php -text
 themes/fivealive/options/lemon/images/lemon.png -text
 themes/fivealive/options/lemon/index.php -text
+themes/fivealive/options/lemon/scss/_button_color_variables.scss -text
 themes/fivealive/options/lemon/scss/_variables.scss -text
 themes/fivealive/options/lemon/scss/index.php -text
 themes/fivealive/options/lemon/scss/lemon.scss -text
@@ -7301,6 +7304,7 @@ themes/fivealive/options/orange/icons/orightcol.png -text
 themes/fivealive/options/orange/images/index.php -text
 themes/fivealive/options/orange/images/orange.png -text
 themes/fivealive/options/orange/index.php -text
+themes/fivealive/options/orange/scss/_button_color_variables.scss -text
 themes/fivealive/options/orange/scss/_variables.scss -text
 themes/fivealive/options/orange/scss/index.php -text
 themes/fivealive/options/orange/scss/orange.scss -text
@@ -7320,6 +7324,7 @@ themes/fivealive/options/plum/icons/orightcol.png -text
 themes/fivealive/options/plum/images/index.php -text
 themes/fivealive/options/plum/images/plum.png -text
 themes/fivealive/options/plum/index.php -text
+themes/fivealive/options/plum/scss/_button_color_variables.scss -text
 themes/fivealive/options/plum/scss/_variables.scss -text
 themes/fivealive/options/plum/scss/index.php -text
 themes/fivealive/options/plum/scss/plum.scss -text
@@ -7340,6 +7345,7 @@ themes/fivealive/options/raspberry/icons/orightcol.png -text
 themes/fivealive/options/raspberry/images/index.php -text
 themes/fivealive/options/raspberry/images/raspberry.png -text
 themes/fivealive/options/raspberry/index.php -text
+themes/fivealive/options/raspberry/scss/_button_color_variables.scss -text
 themes/fivealive/options/raspberry/scss/_variables.scss -text
 themes/fivealive/options/raspberry/scss/index.php -text
 themes/fivealive/options/raspberry/scss/raspberry.scss -text
@@ -7360,6 +7366,7 @@ themes/fivealive/options/watermelon/icons/orightcol.png -text
 themes/fivealive/options/watermelon/images/index.php -text
 themes/fivealive/options/watermelon/images/watermelon.png -text
 themes/fivealive/options/watermelon/index.php -text
+themes/fivealive/options/watermelon/scss/_button_color_variables.scss -text
 themes/fivealive/options/watermelon/scss/_variables.scss -text
 themes/fivealive/options/watermelon/scss/index.php -text
 themes/fivealive/options/watermelon/scss/watermelon.scss -text
