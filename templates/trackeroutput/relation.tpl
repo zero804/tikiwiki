@@ -2,9 +2,9 @@
 	{if $data.display eq 'count'}
 		{tr _0=$data.relations|count}%0 element(s){/tr}
 	{else}
-		<div id="display_f{$field.fieldId|escape}">
+		<div class="display_f{$field.fieldId|escape}">
 			{if $data.display eq 'toggle'}
-				<a class="toggle" href="#display_f{$field.fieldId|escape}">{tr _0=$data.relations|count}%0 element(s){/tr}</a>
+				<a class="toggle" href=".display_f{$field.fieldId|escape}">{tr _0=$data.relations|count}%0 element(s){/tr}</a>
 			{/if}
 			<ul>
 				{foreach from=$data.relations item=identifier}
@@ -13,7 +13,7 @@
 			</ul>
 		</div>
 		{jq}
-			$('#display_f{{$field.fieldId|escape}} ul').each(function () {
+			$('.display_f{{$field.fieldId|escape}} ul').each(function () {
 				var list = this;
 				$(this).sortList();
 
