@@ -1,16 +1,17 @@
 {title}{tr}Contacts{/tr}{/title}
 
-<div class="t_navbar btn-group form-group row">
-	<div style="float:right;margin:5px;">
+<div class="t_navbar mb-4">
+	<div style="btn-group">
 		{if $view eq 'list'}
 			{button href="?view=group" _class="btn btn-primary" _text="{tr}Group View{/tr}"}
 		{else}
 			{button href="?view=list" _class="btn btn-info" _text="{tr}List View{/tr}"}
 		{/if}
-	</div>
-	<div style="float:left;margin:5px;">
 		{button href="#" _onclick="flip('editform');return false;" _class="btn btn-primary" _text="{tr}Create/edit contacts{/tr}"}
 		{button href="tiki-user_contacts_prefs.php" _class="btn btn-primary" _text="{tr}Preferences{/tr}"}
+		{if $prefs.feature_webmail eq 'y' and $tiki_p_use_webmail eq 'y'}
+			{button href="tiki-webmail.php" _class="btn btn-primary" _text="{tr}Webmail{/tr}"}
+		{/if}
 	</div>
 </div>
 
@@ -68,12 +69,12 @@
 	</div>
 
 	<div id="extra-fields-placeholder">
-		<div class="form-group hidden">
-			<label class="col-sm-3 col-form-label"></label>
+		<div class="form-group d-none">
+			<label class="offset-sm-1 col-sm-3 col-form-label"></label>
 			<div class="col-sm-7">
 				<input value="" name="" size="20" maxlength="80" class="form-control">
 			</div>
-			<div class="col-sm-1 hidden">
+			<div class="col-sm-1 d-none">
 
 			</div>
 		</div>
@@ -253,11 +254,12 @@
 	}
 
 	function ext_add(extid, text, defaultvalue, pub) {
-		var newElement = document.querySelector("#extra-fields-placeholder .form-group.hidden").cloneNode(true); //clones nodes too
+		var newElement = document.querySelector("#extra-fields-placeholder .form-group.d-none").cloneNode(true); //clones nodes too
 		newElement = createElementOrFill(newElement, { id : 'tr_ext_'+extid });
 		var label = newElement.querySelector('.col-form-label').innerHTML = text;
 		var input = createElementOrFill(newElement.querySelector('input'), { maxlength : 80, name : 'ext_'+extid, value : defaultvalue});
-		newElement.classList.remove('hidden');
+		newElement.classList.remove('d-none');
+		newElement.classList.add('row');
 		document.querySelector('#extra-fields-placeholder').appendChild(newElement);
 
 		if (pub != 'y' || {/literal}{if $tiki_p_admin_group_webmail eq 'y'}1{else}0{/if}{literal}) {	// add button only if not public
@@ -266,7 +268,7 @@
 			var removeButton = createElementOrFill('input', {type:'button', name:'ext_'+extid, value:'-', 'onclick':'ext_remove(\''+extid+'\');' });
 			inputDiv.classList.remove('col-sm-7');
 			inputDiv.classList.add('col-sm-6');
-			buttonDiv.classList.remove('hidden');
+			buttonDiv.classList.remove('d-none');
 			removeButton.classList.add('btn');
 			removeButton.classList.add('btn-primary');
 			buttonDiv.appendChild(removeButton);
