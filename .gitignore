@@ -75,3 +75,5 @@ vendor_custom/*
 img/trackers/*
 img/wiki_up/*
 /whelp
+/doc/devtools/etc/update/.htaccess
+permissioncheck/.htaccess
