@@ -2890,7 +2890,11 @@ class UsersLib extends TikiLib
 		}
 		$home = $this->best_multilingual_page($home);
 
-		if (! TikiLib::lib('tiki')->page_exists($home)) {
+		$validHome = substr($home, 0, 1) === '/'
+			|| preg_match(',^http?s://,', $home)
+			|| TikiLib::lib('tiki')->page_exists($home);
+
+		if (! $validHome) {
 			$home = $prefs['wikiHomePage'];
 		}
 
