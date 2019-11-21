@@ -119,6 +119,7 @@
 					<option value="basic">{tr}HTTP Basic{/tr}</option>
 					<option value="post">{tr}HTTP Session / Login{/tr}</option>
 					<option value="get">{tr}HTTP Session / Visit{/tr}</option>
+					<option value="header">{tr}Authorization Header{/tr}</option>
 				</select>
 			</div>
 		</div>
@@ -159,6 +160,15 @@
 	<fieldset class="method get">
 		<legend>{tr}HTTP Session / Visit{/tr}</legend>
 		<label>{tr}URL{/tr} <input type="url" name="get_url"></label>
+	</fieldset>
+	<fieldset class="method header">
+		<legend>{tr}Authorization Header{/tr}</legend>
+		<div class="form-group row">
+			<label class="col-sm-3 col-form-label" for="header">{tr}Authorization Header Value{/tr}</label>
+			<div class="col-sm-9">
+				<input type="text" name="header" id="header" class="form-control">
+			</div>
+		</div>
 	</fieldset>
 	<fieldset>
 		<div class="form-group text-center">
@@ -204,7 +214,10 @@ $('#source-form').each(function () {
 			$.getJSON($.service('auth_source', 'fetch'), {
 				identifier: $(form.existing).val()
 			}, function (data) {
-				$(form.method).val(data.method).change();
+				var id = data.identifier;
+				$(form.existing).val(id);
+				$(form.identifier).val(id);
+				$(form.method).val(data.method).change().trigger("chosen:updated");
 				$(form.url).val(data.url);
 
 				switch (data.method) {
@@ -222,6 +235,9 @@ $('#source-form').each(function () {
 							addPostRow(key, value);
 						}
 					});
+					break;
+				case 'header':
+					$(form.header).val(data.arguments.header);
 					break;
 				}
 			});
@@ -262,9 +278,11 @@ $('#source-form').each(function () {
 				var name = this.childNodes[0], value = this.childNodes[1];
 				data['arguments~' + $(name).text()] = $(value).text();
 			});
+			break;
+		case 'header':
+			data['arguments~header'] = $(form.header).val();
+			break;
 		}
-
-		$(form.existing).val('').change();
 
 		$.post($(form).attr('action'), data, function () {
 			if (isNew) {
