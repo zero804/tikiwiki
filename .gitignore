@@ -35,6 +35,7 @@ lang/.htaccess
 lib/.htaccess
 lib/core/Tracker/Filter/Control/DateRange[!!-~](1).php
 lib/test/clover.xml
+lib/test/junit.xml
 lib/test/core/Search/Index/test_index
 lib/test/core/Search/test_index
 lib/test/local.php
@@ -50,7 +51,8 @@ modules/cache/*
 /node_modules
 /phpmyadmin
 /project.index
-storage/public/*
+/storage/public/*
+/storage/fgal/*
 /svn-commit.tmp
 temp/*
 temp/cache/*
@@ -69,4 +71,9 @@ vendor/*
 vendor_bundled/vendor
 /vendor_custom
 vendor_custom/*
+/.vscode
+doc/devtools/etc/update/.htaccess
+img/trackers/*
+img/wiki_up/*
+permissioncheck/.htaccess
 /whelp
