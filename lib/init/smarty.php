@@ -48,7 +48,7 @@ class Tiki_Security_Policy extends Smarty_Security
 	 * needs a proper description
 	 * @param Smarty $smarty
 	 */
-	function __construct($smarty)
+	public function __construct($smarty)
 	{
 		if (class_exists("TikiLib")) {
 			$tikilib = TikiLib::lib('tiki');
@@ -113,7 +113,7 @@ class Smarty_Tiki extends Smarty
 	/**
 	 * needs a proper description
 	 */
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 		global $prefs;
@@ -180,7 +180,7 @@ class Smarty_Tiki extends Smarty
 	 *
 	 * @return string
 	 */
-	function plugin_fetch($_smarty_tpl_file, &$override_vars = null)
+	public function plugin_fetch($_smarty_tpl_file, &$override_vars = null)
 	{
 		$smarty_orig_values = [];
 		if (is_array($override_vars)) {
@@ -285,7 +285,7 @@ class Smarty_Tiki extends Smarty
 	 * @param $var
 	 * @return Smarty_Internal_Data
 	 */
-	function clear_assign($var)
+	public function clear_assign($var)
 	{
 		return parent::clearAssign($var);
 	}
@@ -296,7 +296,7 @@ class Smarty_Tiki extends Smarty
 	 * @param $value
 	 * @return Smarty_Internal_Data
 	 */
-	function assign_by_ref($var, &$value)
+	public function assign_by_ref($var, &$value)
 	{
 		return parent::assignByRef($var, $value);
 	}
@@ -310,7 +310,7 @@ class Smarty_Tiki extends Smarty
 	 * @param bool $_smarty_display
 	 * @return mixed
 	 */
-	function fetchLang($lg, $_smarty_tpl_file, $_smarty_cache_id = null, $_smarty_compile_id = null, $_smarty_display = false)
+	public function fetchLang($lg, $_smarty_tpl_file, $_smarty_cache_id = null, $_smarty_compile_id = null, $_smarty_display = false)
 	{
 		global $prefs;
 
@@ -335,7 +335,7 @@ class Smarty_Tiki extends Smarty
 	 * @param string $content_type
 	 * @return Purified|void
 	 */
-	function display($resource_name = null, $cache_id = null, $compile_id = null, $parent = null, $content_type = 'text/html; charset=utf-8')
+	public function display($resource_name = null, $cache_id = null, $compile_id = null, $parent = null, $content_type = 'text/html; charset=utf-8')
 	{
 
 		global $prefs;
@@ -451,7 +451,7 @@ class Smarty_Tiki extends Smarty
 	 * @param $template
 	 * @return string
 	 */
-	function get_filename($template)
+	public function get_filename($template)
 	{
 		if (substr($template, 0, 5) === 'file:') {
 			$template = substr($template, 5);
@@ -473,7 +473,12 @@ class Smarty_Tiki extends Smarty
 		if (file_exists($template)) {
 			$valid_path = false;
 			foreach ($dirs as $dir) {
-				if (strpos(realpath($template), realpath($dir)) === 0) {
+				$dirPath = realpath($dir);
+				if ($dirPath === false) {
+					continue;
+				}
+
+				if (strpos(realpath($template), $dirPath) === 0) {
 					$valid_path = true;
 					break;
 				}
@@ -499,7 +504,7 @@ class Smarty_Tiki extends Smarty
 	 * @param $url_arguments_prefix
 	 * @param $arguments_list
 	 */
-	function set_request_overriders($url_arguments_prefix, $arguments_list)
+	public function set_request_overriders($url_arguments_prefix, $arguments_list)
 	{
 		$this->url_overriding_prefix_stack[] = [ $url_arguments_prefix . '-', $arguments_list ];
 		$this->url_overriding_prefix =& $this->url_overriding_prefix_stack[ count($this->url_overriding_prefix_stack) - 1 ];
@@ -510,7 +515,7 @@ class Smarty_Tiki extends Smarty
 	 * @param $url_arguments_prefix
 	 * @param $arguments_list
 	 */
-	function remove_request_overriders($url_arguments_prefix, $arguments_list)
+	public function remove_request_overriders($url_arguments_prefix, $arguments_list)
 	{
 		$last_override_prefix = empty($this->url_overriding_prefix_stack) ? false : array_pop($this->url_overriding_prefix_stack);
 		if (! is_array($last_override_prefix) || $url_arguments_prefix . '-' != $last_override_prefix[0]) {
@@ -520,7 +525,7 @@ class Smarty_Tiki extends Smarty
 		;
 	}
 
-	function refreshLanguage()
+	public function refreshLanguage()
 	{
 		global $tikidomain, $prefs;
 
@@ -542,7 +547,7 @@ class Smarty_Tiki extends Smarty
 	/*
 	Add smarty template paths from where tpl files should be loaded. This function also gets called from lib/setup/theme.php to initialize theme specific paths
 	*/
-	function initializePaths()
+	public function initializePaths()
 	{
 		global $prefs, $tikidomainslash, $section;
 
