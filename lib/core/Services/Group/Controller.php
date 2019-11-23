@@ -287,7 +287,7 @@ class Services_Group_Controller
 				];
 				Feedback::error($feedback2);
 			}
-			//return to page - use redirect since we're replacing the url query
+			//return to page - strip query and anchor so that we return to the group listing
 			return Services_Utilities::refresh($util->extra['referer'], 'queryAndAnchor');
 		} else {
 			//post CSRF error through js. can't just throw a services exception since the form started as a non-modal
