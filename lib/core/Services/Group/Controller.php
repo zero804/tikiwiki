@@ -288,13 +288,7 @@ class Services_Group_Controller
 				Feedback::error($feedback2);
 			}
 			//return to page - use redirect since we're replacing the url query
-			global $base_url;
-			return Services_Utilities::redirect($base_url
-				. parse_url(pathinfo($_SERVER['HTTP_REFERER'], PATHINFO_BASENAME), PHP_URL_PATH)
-				// replace query to redirect to newly created group in case the group name was modified
-				. '?group=' . urlencode($params['name'])
-				. $util->extra['anchor']
-			);
+			return Services_Utilities::refresh($util->extra['referer'], 'queryAndAnchor');
 		} else {
 			//post CSRF error through js. can't just throw a services exception since the form started as a non-modal
 			//but confirmation is modal and js takes over after the confirmation is submitted
