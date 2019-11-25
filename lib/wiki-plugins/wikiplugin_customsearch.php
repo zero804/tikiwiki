@@ -872,11 +872,12 @@ $('#$fieldid').change(function() {
 ";
 
 	foreach ($options as $k => $opt) {
-		if (! empty($labels[$k])) {
-			$body = $labels[$k];
-		} else {
+		if (empty($labels[$k]) && is_numeric($labels[$k]) === false) {
 			$body = $opt;
+		} else {
+			$body = $labels[$k];
 		}
+
 		$option = $document->createElement('option', $body);
 		if (strpos($opt, ' ') !== false) {
 			// quote values with spaces in
@@ -1024,7 +1025,7 @@ function cs_design_distance($id, $fieldname, $fieldid, $arguments, $default, &$s
 		};
 		customsearch.add($(this).attr('name'), filter);
 	}).change();
-	
+
 })('$fieldid', " . json_encode($arguments) . ", " . json_encode($fieldname) . ");
 ";
 
