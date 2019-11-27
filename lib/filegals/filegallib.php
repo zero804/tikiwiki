@@ -3921,6 +3921,21 @@ class FileGalLib extends TikiLib
 			file_put_contents($directory . 'index.php', '');
 		}
 	}
+
+    // Return HTML code to display the hierarchy of sub-galleries when the PluginDiagram {diagram} is used in a wiki page
+    function getNodes($nodes, $id, $sub=''){
+        $htmlnodes="";
+        foreach ($nodes as $node){
+            if($node['parentId'] == $id){
+                // If the current user has permission to access the gallery, then add gallery to the hierarchy.
+                if($node['perms']['tiki_p_view_file_gallery'] == 'y'){
+                    $htmlnodes .= "<option value='" . $node['id'] . "'>" . $sub . '&nbsp;' . $node['name'];
+                    $htmlnodes .= $this->getNodes($nodes,$node['id'],$sub . '&mdash;');
+                }
+            }
+        }
+        return $htmlnodes;
+    }
 }
 
 /**
