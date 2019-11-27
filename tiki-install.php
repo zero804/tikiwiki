@@ -153,7 +153,7 @@ function createPage($title, $content)
 			</div>
 			<div class="row mb-2">
 				<div class="col" id="col1">
-					<h1>
+					<h1 class="text-center">
 						$title
 					</h1>
 					<div class="text-center">
@@ -161,7 +161,7 @@ function createPage($title, $content)
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div style="position:fixed;bottom:1.5em;right:1.5em;z-index:1;">
 				<a href="http://tiki.org" target="_blank" title="Powered by Tiki Wiki CMS Groupware"><img src="img/tiki/tikibutton.png" alt="Powered by Tiki Wiki CMS Groupware" /></a>
 			</div>
 		</div>
