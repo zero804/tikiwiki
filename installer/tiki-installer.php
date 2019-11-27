@@ -1296,6 +1296,7 @@ $headerlib->add_cssfile('vendor_bundled/vendor/fortawesome/font-awesome/css/font
 $headerlib->add_cssfile('themes/base_files/css/tiki_base.css');
 $headerlib->add_jsfile('lib/tiki-js.js');
 $headerlib->add_jsfile_dependancy("vendor_bundled/vendor/components/jquery/jquery.min.js");
+$headerlib->add_jsfile_dependancy("vendor_bundled/vendor/components/jqueryui/jquery-ui.js");
 $headerlib->add_jsfile('lib/jquery_tiki/tiki-jquery.js');
 	$js = '
 // JS Object to hold prefs for jq
