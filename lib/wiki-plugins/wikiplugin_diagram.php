@@ -151,19 +151,18 @@ function wikiplugin_diagram($data, $params)
 				return strcmp(strtolower($a['name']), strtolower($b['name']));
 			});
 
-            foreach ($gals['data'] as $gal){
-                if ($gal['name'] != "Wiki Attachments" && $gal['name'] != "Users File Galleries") {
-                    if($gal['parentId'] == -1){
-                        // If the current user has permission to access the gallery, then add gallery to the hierarchy.
-                        if($gal['perms']['tiki_p_view_file_gallery']=='y'){
-                            $galHtml .= "<option value='" . $gal['id'] . "'>" . $gal['name'];
-                        }
-                        $galHtml .= $filegallib->getNodes($gals['data'],$gal['id'],"");
-                        $galHtml .= "</option>";
-
-                    }
-                }
-            }
+			foreach ($gals['data'] as $gal){
+				if ($gal['name'] != "Wiki Attachments" && $gal['name'] != "Users File Galleries") {
+					if($gal['parentId'] == -1){
+						// If the current user has permission to access the gallery, then add gallery to the hierarchy.
+						if($gal['perms']['tiki_p_view_file_gallery']=='y'){
+							$galHtml .= "<option value='" . $gal['id'] . "'>" . $gal['name'];
+						}
+						$galHtml .= $filegallib->getNodes($gals['data'],$gal['id'],"");
+						$galHtml .= "</option>";
+					}
+				}
+			}
 
 			if ($annotate && $infoImg = loadImageAnnotate($annotate)) {
 				$data = <<<XML
