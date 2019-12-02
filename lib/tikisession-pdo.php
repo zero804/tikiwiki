@@ -56,7 +56,7 @@ class Session
 			$qry = 'select data from sessions where sesskey = ?';
 		}
 
-		return TikiDb::get()->getOne($qry, $bindvars);
+		return TikiDb::get()->getOne($qry, $bindvars) ?: '';
 	}
 
 	/**
@@ -68,12 +68,13 @@ class Session
 	{
 		global $prefs;
 
-		$expiry = time() + ( $prefs['session_lifetime'] * 60 );
-
-		TikiDb::get()->query('delete from sessions where sesskey = ?', [ $sesskey ]);
-		TikiDb::get()->query('insert into sessions (sesskey, data, expiry) values( ?, ?, ? )', [ $sesskey, $data, $expiry ]);
-
-		return true;
+		if (TikiDb::get()->getLock($sesskey)) {
+			$expiry = time() + ($prefs['session_lifetime'] * 60);
+			TikiDb::get()->query('insert into sessions (sesskey, data, expiry) values( ?, ?, ? ) on duplicate key update data=values(data), expiry=values(expiry)', [$sesskey, $data, $expiry]);
+			TikiDb::get()->releaseLock('sessions');
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -105,7 +106,9 @@ class Session
 }
 
 $session = new Session;
-ini_set('session.save_handler', 'user');
+if (version_compare(phpversion(), '7.2', '<')) {
+	ini_set('session.save_handler', 'user');
+}
 session_set_save_handler(
 	[$session, 'open'],
 	[$session, 'close'],
