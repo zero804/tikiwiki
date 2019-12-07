@@ -1310,4 +1310,25 @@ class PreferencesLib
 
 		return $preferences;
 	}
+
+	/**
+	 * Filter hidden preferences using an array of preference names
+	 * @return array
+	 */
+	public function filterHiddenPreferences($preferences)
+	{
+		$hiddenPreferences = [];
+
+		if(! empty($preferences)) {
+			foreach ($preferences as $preference) {
+				$preferenceDetails = $this->getPreference($preference['name']);
+
+				if (! empty($preferenceDetails['hide']) && $preferenceDetails['hide'] === true) {
+					$hiddenPreferences[] = $preference['name'];
+				}
+			}
+		}
+
+		return $hiddenPreferences;
+	}
 }
