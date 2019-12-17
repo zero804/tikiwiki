@@ -88,17 +88,17 @@ function smarty_block_self_link($params, $content, $smarty, &$repeat = false)
 				if ($params['_script'] == $_SERVER['PHP_SELF']) {
 					$params['_script'] = '';
 				}
-            }
+			}
 
-            $dataAttributes = '';
-            if (!empty($params['data'])) {
-                parse_str($params['data'], $attrs);
+			$dataAttributes = '';
+			if (!empty($params['data'])) {
+				parse_str($params['data'], $attrs);
 
-                foreach ($attrs as $attr => $value) {
-                    $dataAttributes .= " data-$attr=\"$value\"";
-                }
-            }
-            unset($params['data']);
+				foreach ($attrs as $attr => $value) {
+					$dataAttributes .= " data-$attr=\"$value\"";
+				}
+			}
+			unset($params['data']);
 
 			$params['_type'] = $default_type;
 
@@ -188,7 +188,7 @@ function smarty_block_self_link($params, $content, $smarty, &$repeat = false)
 				if (isset($params['_text'])) {
 					$content .= ' ' . $params['_text'];
 				}
-            }
+			}
 
 			$link = ( ! empty($params['_class']) ? 'class="' . $params['_class'] . '" ' : '' )
 				. ( ! empty($params['_style']) ? 'style="' . $params['_style'] . '" ' : '' )
