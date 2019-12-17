@@ -88,9 +88,20 @@ function smarty_block_self_link($params, $content, $smarty, &$repeat = false)
 				if ($params['_script'] == $_SERVER['PHP_SELF']) {
 					$params['_script'] = '';
 				}
-			}
+            }
+
+            $dataAttributes = '';
+            if (!empty($params['data'])) {
+                parse_str($params['data'], $attrs);
+
+                foreach ($attrs as $attr => $value) {
+                    $dataAttributes .= " data-$attr=\"$value\"";
+                }
+            }
+            unset($params['data']);
 
 			$params['_type'] = $default_type;
+
 			$ret = smarty_function_query($params, $smarty);
 		}
 
@@ -177,11 +188,13 @@ function smarty_block_self_link($params, $content, $smarty, &$repeat = false)
 				if (isset($params['_text'])) {
 					$content .= ' ' . $params['_text'];
 				}
-			}
+            }
 
 			$link = ( ! empty($params['_class']) ? 'class="' . $params['_class'] . '" ' : '' )
 				. ( ! empty($params['_style']) ? 'style="' . $params['_style'] . '" ' : '' )
-				. ( ! empty($params['_title']) ? 'title="' . str_replace('"', '\"', $params['_title']) . '" ' : '' );
+				. ( ! empty($params['_title']) ? 'title="' . str_replace('"', '\"', $params['_title']) . '" ' : '' )
+				. $dataAttributes;
+
 			if (! empty($params['_rel'])) {
 				if (strpos($params['_rel'], 'box') !== false) {
 					$rel = 'data-box="box" ';
