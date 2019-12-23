@@ -1,4 +1,5 @@
 {* $Id$ *}
+<div id="fb-root"></div>
 {jq notonready=true}
 function capLock(e, el){
 	kc = e.keyCode ? e.keyCode : e.which;
@@ -28,6 +29,13 @@ if (jqueryTiki.no_cookie) {
 		});
 	});
 }
+	(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=364850164130218&autoLogAppEvents=1';
+	fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
 {/jq}
 {if !isset($tpl_module_title)}{* Left for performance, since tiki-login_scr.php includes this template directly. *}
 	{assign var=tpl_module_title value="{tr}Log in{/tr}"}
@@ -273,10 +281,10 @@ if (jqueryTiki.no_cookie) {
 			</select>
 		{/if}
 		{if $prefs.socialnetworks_facebook_login eq 'y' and $mode neq "header" and empty($user)}
-			<div style="text-align: center"><a href="tiki-socialnetworks.php?request_facebook=true"><img src="https://developers.facebook.com/docs/facebook-login/web/login-button"></a></div>
+			<div><a href="tiki-socialnetworks.php?request_facebook=true">{icon name=facebook} Log in via Facebook</a></div>
 		{/if}
 		{if $prefs.socialnetworks_linkedin_login eq 'y' and $mode neq "header" and empty($user)}
-			<div style="text-align: center; margin-top:8px"><a href="tiki-socialnetworks_linkedin.php?connect=y"><img width="154px" src="https://content.linkedin.com/content/dam/developer/global/en_US/site/img/signin-button.png"></a></div>
+			<div style="margin-top:8px"><a href="tiki-socialnetworks_linkedin.php?connect=y"><img width="154px" src="https://content.linkedin.com/content/dam/developer/global/en_US/site/img/signin-button.png"></a></div>
 		{/if}
 		{$close_tags}
 		{if $prefs.auth_method eq 'openid' and !$user and (!isset($registration) || $registration neq 'y')}

@@ -312,7 +312,7 @@ $smarty->assign('tiki_uses_svn', $TWV->svn);
 $smarty->assign('symbols', TikiLib::symbols());
 
 if ( isset( $_GET['msg'] ) ) {
-	$smarty->assign('display_msg', $_GET['msg']);
+	$smarty->assign('display_msg', htmlspecialchars($_GET['msg']));
 } elseif ( isset( $_SESSION['msg'] ) ) {
 	$smarty->assign('display_msg', $_SESSION['msg']);
 	unset($_SESSION['msg']);
