@@ -1,6 +1,6 @@
 <?php
 // (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
-// 
+//
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
@@ -26,7 +26,7 @@ if (empty($_REQUEST['url']) && !empty($_SERVER['HTTP_REFERER'])) {
 		$smarty->display('error.tpl');
 		die;
 	}
-	$_REQUEST['url'] = $_REQUEST['HTTP_REFERER'];
+	$_REQUEST['url'] = $_SERVER['HTTP_REFERER'];
 }
 if (empty($_REQUEST['url'])) {
 	$smarty->assign('msg', tra('missing parameters'));
@@ -42,19 +42,19 @@ $url_for_friend = $tikilib->httpPrefix(true) . $_REQUEST['url'];
 $smarty->assign('url', $_REQUEST['url']);
 $smarty->assign('prefix', $tikilib->httpPrefix(true));
 $errors = array();
-if (isset($_REQUEST['send'])) {
+if (isset($_POST['send'])) {
 	check_ticket('tell-a-friend');
 	if (empty($user) && $prefs['feature_antibot'] == 'y' && !$captchalib->validate()) {
 		$errors[] = $captchalib->getErrors();
 	}
 	if (empty($_REQUEST['report']) || $_REQUEST['report'] != 'y') {
-		$emails = explode(',', str_replace(' ', '', $_REQUEST['addresses']));
+		$emails = explode(',', str_replace(' ', '', $_POST['addresses']));
 	} else {
 		$email = !empty($prefs['feature_site_report_email']) ? $prefs['feature_site_report_email'] : (!empty($prefs['sender_email']) ? $prefs['sender_email'] : '');
 		if (empty($email)) {
 			$errors[] = tra("The mail can't be sent. Contact the administrator");
 		}
-		$_REQUEST['addresses'] = $email;
+		$_POST['addresses'] = $email;
 		$emails[] = $email;
 	}
 	foreach ($emails as $email) {
@@ -70,19 +70,19 @@ if (isset($_REQUEST['send'])) {
 			else $errors[] = tra('One of the email addresses that was input is invalid') . ': ' . $email;
 		}
 	}
-	if (empty($_REQUEST['email'])) {
+	if (empty($_POST['email'])) {
 		$errors[] = tra('Your email is mandatory');
 	} else {
-		$smarty->assign_by_ref('email', $_REQUEST['email']);
-		if (validate_email($_REQUEST['email'])) {
-			$from = str_replace(array("\r", "\n"), '', $_REQUEST['email']);
+		$smarty->assign_by_ref('email', $_POST['email']);
+		if (validate_email($_POST['email'])) {
+			$from = str_replace(array("\r", "\n"), '', $_POST['email']);
 		} else {
-			$errors[] = tra('Invalid email') . ': ' . $_REQUEST['email'];
+			$errors[] = tra('Invalid email') . ': ' . $_POST['email'];
 		}
 	}
-	if (!empty($_REQUEST['addresses'])) $smarty->assign('addresses', $_REQUEST['addresses']);
-	if (!empty($_REQUEST['name'])) $smarty->assign('name', $_REQUEST['name']);
-	if (!empty($_REQUEST['comment'])) $smarty->assign('comment', $_REQUEST['comment']);
+	if (!empty($_POST['addresses'])) $smarty->assign('addresses', $_POST['addresses']);
+	if (!empty($_POST['name'])) $smarty->assign('name', $_POST['name']);
+	if (!empty($_POST['comment'])) $smarty->assign('comment', $_POST['comment']);
 	if (empty($errors)) {
 		include_once ('lib/webmail/tikimaillib.php');
 		$smarty->assign_by_ref('mail_site', $_SERVER['SERVER_NAME']);
