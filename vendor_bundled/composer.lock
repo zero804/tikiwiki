@@ -3236,11 +3236,10 @@
         },
         {
             "name": "npm-asset/converse.js",
-            "version": "5.0.1",
+            "version": "5.0.5",
             "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/converse-js/npm-asset-converse-js-5.0.1.zip",
-                "shasum": "aae39024562d51d816e66946e8cfc9f096af70ea"
+                "type": "tar",
+                "url": "https://registry.npmjs.org/converse.js/-/converse.js-5.0.5.tgz"
             },
             "type": "npm-asset",
             "extra": {

@@ -15,6 +15,7 @@ class ConverseJS
 				'show_occupants_by_default' => true,
 				'use_emojione' => false,
 				'view_mode'	=> 'overlayed',
+				'assets_path'	=> 'vendor_bundled/vendor/npm-asset/converse.js/dist/',
 				'whitelisted_plugins' => ['tiki', 'tiki-oauth'],
 			],
 			$options
