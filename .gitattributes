@@ -122,6 +122,7 @@ doc/devtools/fixsvnkeyids.php -text
 doc/devtools/generate_release_changelog.py -text
 doc/devtools/get_translation_percentage.php -text
 doc/devtools/ggg-trace.php -text
+doc/devtools/gitlab/auto_merge_request.sh -text
 doc/devtools/h5p_reset_all_data.sql -text
 doc/devtools/index.php -text
 doc/devtools/invert_relations.php -text
@@ -189,6 +190,7 @@ doc/devtools/tim/tim.conf -text
 doc/devtools/translate.php -text
 doc/devtools/update.dogfoodserver.sh -text
 doc/devtools/update_english_strings.php -text
+doc/devtools/update_vendor_bundled.php -text
 doc/devtools/upto_18_drop_unused_tables.sql -text
 doc/devtools/upto_4.1_delete_all_cetgory_perms.sql -text
 doc/devtools/upto_4.1_drop_unused_4.0_tables.sql -text
