@@ -142,6 +142,7 @@ class ConverseJS
 	{
 		$deps = [
 			'vendor_bundled/vendor/npm-asset/converse.js/dist/converse.min.css',
+			'lib/xmpp/css/conversejs.css',
 		];
 
 		return $deps;
