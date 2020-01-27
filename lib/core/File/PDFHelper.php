@@ -63,7 +63,7 @@ class PDFHelper
 			$unoconv->convertFile($sourceFile, $targetFile);
 		} catch (\Exception $e) {
 			$convertFail = true;
-			$message = sprintf("Failed to convert document %s (id: %s) to pdf. Error: %s", $file['filename'], $file['filename'], $e->getMessage());
+			$message = sprintf("Failed to convert document %s (id: %s) to pdf. Error: %s", $file->filename, $fileId, $e->getMessage());
 			$logsLib = \TikiLib::lib('logs');
 			$logsLib->add_log('Unoconv', $message);
 		}
