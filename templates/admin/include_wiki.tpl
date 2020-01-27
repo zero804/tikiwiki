@@ -18,7 +18,7 @@
 		{tab name="{tr}General Preferences{/tr}"}
 			<br>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Activate the feature{/tr}</legend>
 					{preference name=feature_wiki visible="always"}
 					{preference name=wikiHomePage}
@@ -26,7 +26,7 @@
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-			<fieldset class="table">
+			<fieldset class="mb-3 w-100">
 				<legend>{tr}Page name{/tr}</legend>
 				{preference name=wiki_badchar_prevent}
 				{preference name=wiki_page_regex}
@@ -34,7 +34,7 @@
 			</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Page display{/tr}</legend>
 					{preference name=feature_page_title}
 					{preference name=wiki_page_name_above}
@@ -55,7 +55,7 @@
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Editing{/tr}</legend>
 					{preference name=feature_wiki_undo}
 					{preference name=wiki_edit_minor}
@@ -85,7 +85,7 @@
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Automatic table of contents{/tr}</legend>
 					{preference name=wiki_auto_toc}
 					<div class="adminoptionbox clearfix" id="wiki_auto_toc_childcontainer">
@@ -97,7 +97,7 @@
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Plugins{/tr}</legend>
 					{preference name=wikiplugin_attach}
 					{preference name=wikiplugin_author}
@@ -119,7 +119,7 @@
 		{tab name="{tr}Features{/tr}"}
 			<br>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}General features{/tr}</legend>
 					{preference name=wiki_uses_slides}
 					{preference name=feature_backlinks}
@@ -190,7 +190,7 @@
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Redirect and Similar{/tr}</legend>
 						{preference name=feature_wiki_1like_redirection}
 						{preference name=wiki_prefixalias_tokens}
@@ -204,7 +204,7 @@
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Wikiwords Features{/tr}</legend>
 					{preference name=feature_wikiwords}
 					{preference name=feature_wikiwords_usedash}
@@ -212,7 +212,7 @@
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Attachments{/tr}</legend>
 					{preference name=feature_wiki_attachments}
 					<div class="adminoptionboxchild" id="feature_wiki_attachments_childcontainer">
@@ -241,7 +241,7 @@
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Comments{/tr}</legend>
 					{preference name=feature_wiki_comments}
 					<div class="adminoptionboxchild" id="feature_wiki_comments_childcontainer">
@@ -255,7 +255,7 @@
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Structures{/tr}{help url="Structures"}</legend>
 					{preference name=feature_wiki_structure}
 					<div class="adminoptionboxchild" id="feature_wiki_structure_childcontainer">
@@ -274,7 +274,7 @@
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Wiki watch{/tr}{help url="Watch"}</legend>
 					{preference name=wiki_watch_author}
 					{preference name=wiki_watch_editor}
@@ -283,7 +283,7 @@
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Namespaces{/tr}{help url="Namespaces"}</legend>
 					{preference name=namespace_enabled}
 					<div class="adminoptionboxchild" id="namespace_enabled_childcontainer">
@@ -315,7 +315,7 @@
 		{tab name="{tr}Flagged Revision{/tr}"}
 			<br>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					{preference name=flaggedrev_approval}
 					<div id="flaggedrev_approval_childcontainer">
 						{preference name=flaggedrev_approval_categories}
@@ -326,7 +326,7 @@
 		{tab name="{tr}Page Listings{/tr}"}
 			<br>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 				<legend>{tr}Options{/tr}</legend>
 					{preference name=feature_lastChanges}
 					{preference name=feature_listPages}
@@ -336,7 +336,7 @@
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 				<legend>{tr}Configuration{/tr}</legend>
 					{preference name=wiki_list_backlinks}
 					{preference name=wiki_list_categories}
@@ -378,7 +378,7 @@
 		{tab name="{tr}Tools{/tr}"}
 			<br>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Database dumps and restores{/tr}</legend>
 					Create database archives of wiki pages for restoring at a later date.
 					<div class="form-group row">
@@ -409,7 +409,7 @@
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Dump files{/tr}</legend>
 					{tr}Dump files archive wiki pages for various usages such as off-line browsing or distribution on optical disks.{/tr}
 					{remarksbox type="warning" title="{tr}Warning{/tr}"}
@@ -422,7 +422,7 @@
 			</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Mass replace and page permissions report{/tr}</legend>
 					<div class="adminoptionbox clearfix">
 						{button href="tiki-search_replace.php" _text="{tr}Mass search and replace{/tr}" _icon_name="exchange-alt" _type="primary"}
@@ -431,7 +431,7 @@
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Redirect and Similar{/tr}</legend>
 					{preference name=feature_wiki_1like_redirection}
 					{preference name=wiki_prefixalias_tokens}
