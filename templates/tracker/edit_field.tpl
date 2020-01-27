@@ -161,7 +161,7 @@
 		{accordion_group title="{tr}Advanced{/tr}"}
 			<div class="form-group">
 				<label for="permName" class="control-label">{tr}Permanent name{/tr}</label>
-				<input type="text" name="permName" value="{$field.permName|escape}" pattern="[a-zA-Z0-9_]+" class="form-control">
+				<input type="text" name="permName" value="{$field.permName|escape}" pattern="[a-zA-Z0-9_]+" maxlength="{$permNameMaxAllowedSize}" class="form-control">
 				<div class="help-block">
 					{tr}Changing the permanent name may have consequences in integrated systems.{/tr}
 				</div>
