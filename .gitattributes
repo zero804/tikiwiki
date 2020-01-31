@@ -4299,9 +4299,7 @@ lib/test/AcceptanceTests/MultilinguallibTest.php -text
 lib/test/AcceptanceTests/SearchTest.php -text
 lib/test/AcceptanceTests/TikiLibrariesAccessTest.php -text
 lib/test/AcceptanceTests/index.php -text
-lib/test/AcceptanceTests/utils/create_dump_db_file.php -text
 lib/test/AcceptanceTests/utils/index.php -text
-lib/test/AcceptanceTests/utils/restore_db_dump.php -text
 lib/test/AcceptanceTests/utils/upgrade_test_database_dump_file.php -text
 lib/test/AllTestsAcceptance.php -text
 lib/test/Calendar/DateTest.php -text
