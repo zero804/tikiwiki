@@ -4668,6 +4668,8 @@ lib/test/language/fixtures/language_writestringstofile_second_call.php -text
 lib/test/language/fixtures/test_collecting_strings.php -text
 lib/test/language/fixtures/test_collecting_strings.tpl -text
 lib/test/language/index.php -text
+lib/test/lib/Perspective/fixtures/testAreasMultiDomainBasic.yml -text
+lib/test/lib/Perspective/fixtures/testPerspectivesProfile.yml -text
 lib/test/local.php.dist -text
 lib/test/notifications/NotificationEmailLibTest.php -text
 lib/test/payment/CartTest.php -text
