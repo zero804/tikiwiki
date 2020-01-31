@@ -68,7 +68,7 @@ class PDFHelper
 			$previous = $e->getPrevious();
 			while ($previous) {
 				$logsLib->add_log('Unoconv', $previous->getMessage());
-				$previous = $previous->getMessage();
+				$previous = $previous->getPrevious();
 			}
 			$logsLib->add_log('Unoconv', $message);
 		}
