@@ -132,7 +132,7 @@
 						{$channels[user].user|escape}
 					</td>
 					<td class="action">
-						{icon name="delete" class="tips" href="{$smarty.server.PHP_SELF}?{query removeevent=$channels[user].watchId removetype=$channels[user].watchtype}" title=":{tr}Delete{/tr}"}
+						{icon name="delete" class="tips" href="{$smarty.server.SCRIPT_NAME}?{query removeevent=$channels[user].watchId removetype=$channels[user].watchtype}" title=":{tr}Delete{/tr}"}
 					</td>
 				</tr>
 			{sectionelse}

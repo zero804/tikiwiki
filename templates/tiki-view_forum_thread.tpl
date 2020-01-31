@@ -68,29 +68,29 @@
 				<li class="divider"></li>
 				<li>
 					{if $pdf_export eq 'y'}
-						<a href="{$smarty.server.PHP_SELF}?{query display='pdf'}">
+						<a href="{$smarty.server.SCRIPT_NAME}?{query display='pdf'}">
 							{icon name="pdf"} {tr}PDF{/tr}
 						</a>
 					{/if}
 				</li>
 				<li>
-					<a href="{$smarty.server.PHP_SELF}?{query display='print'}">
+					<a href="{$smarty.server.SCRIPT_NAME}?{query display='print'}">
 						{icon name="print"} {tr}Print this page{/tr}
 					</a>
 				</li>
 				<li>
-					<a href="{$smarty.server.PHP_SELF}?{query display='print_all'}">
+					<a href="{$smarty.server.SCRIPT_NAME}?{query display='print_all'}">
 						{icon name="print"} {tr}Print all pages{/tr}
 					</a>
 				</li>
 				{if $prefs.feature_forum_topics_archiving eq 'y' && $tiki_p_admin_forum eq 'y'}
 					<li>
 						{if $thread_info.archived eq 'y'}
-							<a href="{$smarty.server.PHP_SELF}?{query archive="n"}">
+							<a href="{$smarty.server.SCRIPT_NAME}?{query archive="n"}">
 								{icon name="file-archive-open"} {tr}Unarchive{/tr}
 							</a>
 						{else}
-							<a href="{$smarty.server.PHP_SELF}?{query archive='y'}">
+							<a href="{$smarty.server.SCRIPT_NAME}?{query archive='y'}">
 								{icon name="file-archive"} {tr}Archive{/tr}
 							</a>
 						{/if}
