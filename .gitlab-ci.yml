@@ -1,0 +1,27 @@
+image: rjsmelo/ubuntu-php:5.6-qa
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .composercache/files
+    - vendor
+
+variables:
+  COMPOSER_CACHE_DIR: "$CI_PROJECT_DIR/.composercache"
+
+stages:
+  - lint
+
+#
+# Lint
+#
+
+phplint:
+  stage: lint
+  script:
+    - composer --ansi install --no-progress --prefer-dist -n
+    - git log -m --first-parent -1 --name-only --diff-filter=d --pretty="format:" | grep -v "^$" | sort -u | grep '\.php$' - 2>&1 > /dev/null || { git log -m -1 --name-only && echo && echo 'No files to be processed. Skipping...' && echo && exit 0; }
+    - git log -m -1 --name-only
+    # Because we just lint changed files we need to filter by php extension before call php linter
+    - git log -m --first-parent -1 --name-only --diff-filter=d --pretty="format:" | grep -v "^$" | sort -u | grep '\.php$' | xargs -P8 -n 1 php -l
+  allow_failure: false
