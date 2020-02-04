@@ -1497,7 +1497,7 @@ class ToolbarFileGallery extends Toolbar
 	function getSyntax($areaId)
 	{
 		global $prefs;
-		if ($prefs['fgal_elfinder_feature'] !== 'y') {
+		if ($prefs['fgal_elfinder_feature'] !== 'y' || $prefs['fgal_elfinder_on_toolbar'] !== 'y') {
 			$smarty = TikiLib::lib('smarty');
 			$smarty->loadPlugin('smarty_function_filegal_manager_url');
 			return 'openFgalsWindow(\'' . htmlentities(smarty_function_filegal_manager_url(['area_id' => $areaId], $smarty)) . '\', true);';

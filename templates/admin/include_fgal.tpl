@@ -296,6 +296,9 @@
 				<legend>{tr}Access{/tr}</legend>
 				{preference name='feature_webdav'}
 				{preference name='fgal_elfinder_feature'}
+				<div class="adminoptionboxchild" id="fgal_elfinder_feature_childcontainer">
+					{preference name='fgal_elfinder_on_toolbar'}
+				</div>
 				{preference name='feature_docs'}
 				{preference name='fgal_viewerjs_feature'}
 				<div class="adminoptionboxchild" id="fgal_viewerjs_feature_childcontainer">
