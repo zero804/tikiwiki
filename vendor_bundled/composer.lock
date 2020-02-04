@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cf535ff9f76d0087298f53356fef161e",
+    "content-hash": "22f985e915c206d52940fdfd91a652a5",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -207,9 +207,7 @@
             },
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "server/php/UploadHandler.php"
-                ]
+                "classmap": []
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -5807,6 +5805,59 @@
             "time": "2017-10-19T19:58:43+00:00"
         },
         {
+            "name": "overtrue/phplint",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/phplint.git",
+                "reference": "deaee8c3459087ea5d17031206b8722a96dd330b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/overtrue/phplint/overtrue-phplint-deaee8c3459087ea5d17031206b8722a96dd330b-zip-b0b281.zip",
+                "reference": "deaee8c3459087ea5d17031206b8722a96dd330b",
+                "shasum": "962ef7c578be59cb5fab43051dd8b8097d90f625"
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.5.9",
+                "symfony/console": "^3.2|^4.0|^5.0",
+                "symfony/finder": "^3.0|^4.0|^5.0",
+                "symfony/process": "^3.0|^4.0|^5.0",
+                "symfony/yaml": "^3.0|^4.0|^5.0"
+            },
+            "require-dev": {
+                "jakub-onderka/php-console-highlighter": "^0.3.2 || ^0.4"
+            },
+            "bin": [
+                "bin/phplint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\PHPLint\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "anzhengchao@gmail.com"
+                }
+            ],
+            "description": "a php syntax check tool.",
+            "keywords": [
+                "check",
+                "lint",
+                "phplint",
+                "syntax"
+            ],
+            "time": "2019-12-07T13:46:15+00:00"
+        },
+        {
             "name": "phpdocumentor/reflection-common",
             "version": "1.0.1",
             "source": {
@@ -7139,6 +7190,55 @@
                 "standards"
             ],
             "time": "2019-04-10T23:49:02+00:00"
+        },
+        {
+            "name": "symfony/finder",
+            "version": "v3.4.37",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/finder.git",
+                "reference": "a90a9d3b9f458a5cdeabfa4090b20c000ca3962f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/symfony/finder/symfony-finder-a90a9d3b9f458a5cdeabfa4090b20c000ca3962f-zip-db7c01.zip",
+                "reference": "a90a9d3b9f458a5cdeabfa4090b20c000ca3962f",
+                "shasum": "8eeb28dc009ac9c6ff24a1eb78664f09408d82ec"
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Finder\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Finder Component",
+            "homepage": "https://symfony.com",
+            "time": "2020-01-01T11:03:25+00:00"
         },
         {
             "name": "webmozart/assert",
