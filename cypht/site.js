@@ -4800,16 +4800,6 @@ var tiki_mobilecheck = function () {
 
 /* executes on onload, has access to other module code */
 $(function() {
-    Hm_Utils.clear_local_storage = function() {
-        var prefix = window.location.pathname;
-        for(var i =0; i < sessionStorage.length; i++){
-            var key = sessionStorage.key(i);
-            if (key.indexOf(prefix) > -1) {
-                sessionStorage.removeItem(key);
-            }
-        }
-    }
-
     if (hm_page_name() == 'groupmail') {
         Hm_Message_List.select_combined_view();
         $('.content_cell').swipeDown(function(e) { e.preventDefault(); Hm_Message_List.load_sources(); });
