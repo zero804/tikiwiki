@@ -85,6 +85,7 @@ class Services_File_FinderController
 				'deepGallerySearch' => $input->deepGallerySearch->int(),
 				'parentIds' => $this->parentIds,
 			),
+			'alias' => tr('Default Root Gallery'),	// just in case
 		);
 
 		// gallery to start in
@@ -105,6 +106,7 @@ class Services_File_FinderController
 			// normal file gals
 			array(
 				'path' => $prefs['fgal_root_id'],		// should be a function?
+				'alias' => tr('File Galleries'),
 			),
 			$rootDefaults
 		);
@@ -129,6 +131,7 @@ class Services_File_FinderController
 			$opts['roots'][] = array_merge(
 				array(
 					'path' => $userRootId,		// should be $prefs['fgal_root_id']?
+					'alias' => tr('Users File Galleries'),
 				),
 				$rootDefaults
 			);
@@ -142,6 +145,7 @@ class Services_File_FinderController
 			$opts['roots'][] = array_merge(
 				array(
 					'path' => $prefs['fgal_root_wiki_attachments_id'],		// should be $prefs['fgal_root_id']?
+					'alias' => tr('Wiki Attachments'),
 				),
 				$rootDefaults
 			);
