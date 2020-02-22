@@ -1136,4 +1136,8 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 		return false;
 	}
 
+	protected function _chmod($path, $mode)
+	{
+		// TODO: Implement _chmod() method.
+	}
 } // END class
