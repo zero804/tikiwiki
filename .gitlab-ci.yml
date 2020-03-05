@@ -48,7 +48,7 @@ phpcs:
   allow_failure: true
 
 phplint:
-  image: rjsmelo/ubuntu-php:5.6-qa
+  image: rjsmelo/ubuntu-php:7.1-qa
   stage: lint
   script:
     - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
