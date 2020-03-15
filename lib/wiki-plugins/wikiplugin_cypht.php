@@ -27,7 +27,7 @@ function wikiplugin_cypht_info()
 			],
 			'imap_server' => [
 				'name' => tr('IMAP server'),
-				'description' => tr("E.g. imap.your-domain.com"),
+				'description' => tr("E.g. imap.example.com"),
 				'required' => false,
 				'default' => '',
 				'filter' => 'text',
@@ -79,7 +79,7 @@ function wikiplugin_cypht_info()
 			],
 			'smtp_server' => [
 				'name' => tr('SMTP server'),
-				'description' => tr("E.g. smtp.your-domain.com"),
+				'description' => tr("E.g. smtp.example.com"),
 				'required' => false,
 				'default' => '',
 				'filter' => 'text',
