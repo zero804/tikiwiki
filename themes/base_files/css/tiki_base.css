@@ -3547,6 +3547,22 @@ div.form-group label.error {
 }
 .tiki .elfinder .elfinder-button-search {
   padding-top: 2px;
+  margin-right: 50px;
+}
+.tiki .elfinder-button-search input[type=text] {
+  width: 70px;
+}
+.tiki .elfinder-button-search.ui-state-active input[type=text] {
+  width: 100%;
+}
+.tiki .elfinder-ltr .elfinder-button-search .ui-icon-close {
+  right: -40px;
+}
+.tiki .elfinder .elfinder-cwd-filename.ui-state-active {
+  font-weight: normal;
+}
+.tiki .elfinder .elfinder-cwd-file.ui-state-hover {
+  border: none;
 }
 .tiki .elfinder .elfinder-button-search input {
   -webkit-box-sizing: content-box;
