@@ -106,7 +106,7 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 				$runner = $this->getFormulaRunner();
 				$runner->setVariables($data);
 
-				$value = $runner->evaluate();
+				$value = (string)$runner->evaluate();
 			} catch (Math_Formula_Exception $e) {
 				$value = $e->getMessage();
 			}
@@ -151,7 +151,7 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 			$runner = $this->getFormulaRunner();
 			$runner->setVariables($data);
 
-			return $runner->evaluate();
+			return (string)$runner->evaluate();
 		} catch (Math_Formula_Exception $e) {
 			return $e->getMessage();
 		}
