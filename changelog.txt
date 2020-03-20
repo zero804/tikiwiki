@@ -32,6 +32,321 @@ The tags info is also online: https://dev.tiki.org/Commit+Tags
 Before 2.0, there was only [MOD] for both [ENH] and [MOD]:
 
 ----------------------------------------------------------------------
+Version 18.5
+<http://doc.tiki.org/Tiki18>
+------------------
+
+----------------------------------------------
+r75924 | jonnybradley | 2020-03-16 11:46:53 +0000 (Mon, 16 Mar 2020) | 2 lines
+[FIX] elfinder: Some cosmetic fixes for the search box and hover state
+(manually "cherry picked" from dac01c24 but redone in less)
+----------------------------------------------
+r75923 | jonnybradley | 2020-03-16 10:48:12 +0000 (Mon, 16 Mar 2020) | 3 lines
+[FIX] elfinder: Seems root volumes now require a name or "alias" to function now
+(cherry picked from commit 38a394672c0cc52365a18cb6aa94eeefc8a8189b)
+----------------------------------------------
+r75922 | jonnybradley | 2020-03-16 10:48:08 +0000 (Mon, 16 Mar 2020) | 3 lines
+[FIX] elfinder: Update overriden (but unused) resize function signature
+(cherry picked from commit f82a9cf6ac72dc3720bb868758d0f366d95e347e)
+----------------------------------------------
+r75921 | jonnybradley | 2020-03-16 10:48:02 +0000 (Mon, 16 Mar 2020) | 3 lines
+[FIX] elFinder: Now elFinderSession::start tries to change the session settings but ours is already running so close it before we launch elFinder
+(cherry picked from commit 38832bf8d8613b40d893c7180d65fc18f28da01a)
+----------------------------------------------
+r75920 | jonnybradley | 2020-03-16 10:47:57 +0000 (Mon, 16 Mar 2020) | 3 lines
+[FIX] elfinder: Fix some notices which seem to get displayed now (there is one session warning remaining, hard to fix...)
+(cherry picked from commit ae72a85a57868694daa212cfb80dfcdb3a2827ba)
+----------------------------------------------
+r75919 | jonnybradley | 2020-03-16 10:47:29 +0000 (Mon, 16 Mar 2020) | 18 lines
+[UPD] automatic "updates" using php 5.6 (note some packages got downgraded as presumably the last composer update was run with a newer version of php - probably TikiBot in b3ce98e6)
+  - Updating ckeditor/ckeditor (4.13.1 => 4.14.0)
+  - Updating mottie/tablesorter (v2.31.2 => v2.31.3)
+  - Updating plotly/plotly.js (v1.52.2 => v1.52.3)
+  - Updating studio-42/elfinder (2.1.53 => 2.1.54)
+  - Downgrading zendframework/zend-validator (2.13.0 => 2.12.2)
+  - Downgrading symfony/finder (v4.4.5 => v3.4.38)
+  - Downgrading symfony/debug (v4.4.5 => v3.4.38)
+  - Downgrading myclabs/deep-copy (1.9.5 => 1.7.0)
+  - Downgrading phpdocumentor/reflection-common (2.0.0 => 1.0.1)
+  - Downgrading phpdocumentor/type-resolver (1.0.1 => 0.4.0)
+  - Downgrading phpdocumentor/reflection-docblock (4.3.4 => 3.3.2)
+  - Downgrading doctrine/instantiator (1.3.0 => 1.0.5)
+  - Updating phpspec/prophecy (v1.10.2 => v1.10.3)
+  - Downgrading phpunit/php-token-stream (2.0.2 => 1.4.12)
+  - Downgrading symfony/filesystem (v4.4.5 => v3.4.38)
+  - Downgrading symfony/css-selector (v4.4.5 => v3.4.38)
+  - Downgrading zendframework/zend-code (3.4.1 => 3.1.0)
+----------------------------------------------
+r75900 | jonnybradley | 2020-03-12 12:32:01 +0000 (Thu, 12 Mar 2020) | 1 line
+[FIX] trackers: Get the field data from the handler if other strategies fail - for instance in the tiki-object-infobox service for category fields
+----------------------------------------------
+r75864 | jonnybradley | 2020-03-10 19:28:48 +0000 (Tue, 10 Mar 2020) | 1 line
+[FIX] trackers: Fix Wiki field history button (and add missing quotes)
+----------------------------------------------
+r75863 | jonnybradley | 2020-03-10 19:28:46 +0000 (Tue, 10 Mar 2020) | 3 lines
+[FIX] trackers: Make the action buttons link to view a linked wiki page not redirect to the item, add button to edit, improve the appearance and make them all open in a new tab
+(cherry picked from commit ab536c7947288fcb12ea5595a7d91c941f4e2527)
+----------------------------------------------
+r75849 | robertokir | 2020-03-10 09:54:36 +0000 (Tue, 10 Mar 2020) | 2 lines
+[bp/r75282][DOC] Tell a Friend - Now Deprecated
+Actually in 18.x just added a warning message in favor of feature_share
+----------------------------------------------
+r75848 | drsassafras | 2020-03-10 09:40:19 +0000 (Tue, 10 Mar 2020) | 3 lines
+[bp/r75846][REF] Tell a friend - Use $inputConfiguration to keep vars well filtered
+(cherry picked from commit 7095eb004858474bf46b05c269168d368e2349e5)
+----------------------------------------------
+r75847 | drsassafras | 2020-03-10 09:40:00 +0000 (Tue, 10 Mar 2020) | 3 lines
+[bp/r75845][REF] Tell A Friend - Only allow POST where GET will never occur
+(cherry picked from commit 5a89788ee05c1eb9d5aa6ab9d48fa3ff36fc1a57)
+----------------------------------------------
+r75790 | montefuscolo | 2020-03-06 20:38:31 +0000 (Fri, 06 Mar 2020) | 3 lines
+[FIX] Avoid the error  fastcgi_finish_request() expects exactly 0 parameters, 3 given
+(cherry picked from commit b32c7402223417948830be7cdcb2529679208c1e)
+----------------------------------------------
+r75781 | montefuscolo | 2020-03-05 21:30:46 +0000 (Thu, 05 Mar 2020) | 5 lines
+Merge branch '18.x_vendor_bundled_update_20200301' into '18.x'
+[UPD] Update 18.x vendor_bundled dependencies (20200301)
+See merge request tikiwiki/tiki!277
+----------------------------------------------
+r75780 | tikibot | 2020-03-05 21:20:17 +0000 (Thu, 05 Mar 2020) | 1 line
+[UPD] Update 18.x vendor_bundled dependencies
+----------------------------------------------
+r75779 | montefuscolo | 2020-03-05 21:19:09 +0000 (Thu, 05 Mar 2020) | 1 line
+[FIX] Trying to make 18.x CI work again
+----------------------------------------------
+r75753 | Jyhem | 2020-03-04 18:05:57 +0000 (Wed, 04 Mar 2020) | 3 lines
+[bp/r75750][FIX] SCRIPT_NAME is cleaner and has less side effects than PHP_SELF
+(cherry picked from commit 4ca304c9b66f5566b5c913a814ec1d05195a4171)
+----------------------------------------------
+r75748 | jonnybradley | 2020-03-04 16:16:06 +0000 (Wed, 04 Mar 2020) | 3 lines
+[bp/r75747][FIX] contact: Escape subject etc in contact form
+(cherry picked from commit 694102ffdff1f94fbdf4c7f17e5a53079e8bc3c1)
+----------------------------------------------
+r75594 | jonnybradley | 2020-02-18 13:12:15 +0000 (Tue, 18 Feb 2020) | 3 lines
+[FIX] trackers: Don't create "orphan" relations for Files fields on items that haven't been saved yet (for cartograf)
+(cherry picked from commit 59aa4c806b4ddddf6ec55f8cec58020689253c52)
+----------------------------------------------
+r75593 | jonnybradley | 2020-02-18 13:12:15 +0000 (Tue, 18 Feb 2020) | 1 line
+[FIX] trackers: Fix "top level" of clone item regarding executing handleClone handlers. Was working for child items but not for the parents (for cartograf)
+----------------------------------------------
+r75592 | jonnybradley | 2020-02-18 13:12:15 +0000 (Tue, 18 Feb 2020) | 3 lines
+[FIX] appframe: No need for "anchors" to be in front of tooltips etc (for cartograf)
+(cherry picked from commit e52c0aecfde4de7dcbd23b9512f67bb811fd7261)
+----------------------------------------------
+r75573 | xorti | 2020-02-14 19:36:09 +0000 (Fri, 14 Feb 2020) | 4 lines
+[bp/r71375][ENH] Remove previous index mismatch errors from feedback after index rebuild
+- Includes bp/r71436
+----------------------------------------------
+r75549 | xorti | 2020-02-11 01:34:42 +0000 (Tue, 11 Feb 2020) | 1 line
+[bp/r70156][FIX] Fix command escaping to execute casperjs scripts in wikiplugin_casperjs
+----------------------------------------------
+r75487 | xorti | 2020-02-04 18:56:34 +0000 (Tue, 04 Feb 2020) | 1 line
+[bp/r71654][ENH] Add phplint to GitLab CI pipeline
+----------------------------------------------
+r75475 | Jyhem | 2020-02-03 15:39:48 +0000 (Mon, 03 Feb 2020) | 3 lines
+[FIX] Don't initialize an array with an empty string
+(cherry picked from commit b498c884af7b8bea9fa1d66123323b18d65fc9b9)
+----------------------------------------------
+r75357 | rjsmelo | 2020-01-27 22:25:05 +0000 (Mon, 27 Jan 2020) | 5 lines
+[bp/r71440][ENH] Prevent long tracker field permName
+- Prenvents long permName so all engines can index without issues
+- If long pernName are found while indexing an error is displayed to user
+----------------------------------------------
+r75314 | jonnybradley | 2020-01-23 11:17:21 +0000 (Thu, 23 Jan 2020) | 1 line
+[FIX] filegals: Show the parent gallery when searching by file identifier, hopefully without upsetting anything else (this all so needs refactoring/rewriting)
+----------------------------------------------
+r75306 | xorti | 2020-01-21 23:40:52 +0000 (Tue, 21 Jan 2020) | 2 lines
+[bp/r70743][bp/r73846][ENH] Add scripts and gitlab scheduled pipeline to update vendor_bundled dependencies
+----------------------------------------------
+r75209 | lindonb | 2019-12-24 04:00:47 +0000 (Tue, 24 Dec 2019) | 1 line
+[bp/r75207][FIX] page history: make sure history_pagesize and history_offset parameters are numeric and that show_all_versions is y or n
+----------------------------------------------
+r75201 | lindonb | 2019-12-23 02:14:32 +0000 (Mon, 23 Dec 2019) | 1 line
+[bp/r75199][FIX] Escape html special characters in the msg parameter.
+----------------------------------------------
+r75191 | xorti | 2019-12-16 17:24:51 +0000 (Mon, 16 Dec 2019) | 1 line
+[bp/r71311][FIX] Fix issue with SEFURL and Tokens when sharing pages and temporary users
+----------------------------------------------
+r75171 | jonnybradley | 2019-12-11 14:33:46 +0000 (Wed, 11 Dec 2019) | 1 line
+[FIX] updates: Process objects in batches in 20171123_create_object_links to avoid fatal out of memory WSoD on large sites (even 900 articles breaks this) and reduce the batch size to 100 in 20171121_create_plugin_include_relations for similar reasons
+----------------------------------------------
+r75156 | jonnybradley | 2019-12-10 15:24:57 +0000 (Tue, 10 Dec 2019) | 2 lines
+[FIX] trackers: Remove class confirm-action from the update_item form as when used in a jquery-ui dialog (and probably anywhere else) the newer confirm code loses the response and automatically reloads the page. Don't see why saving a tracker item would need and extra confirmation step anyway, so i think it was always faulty code (r56306).
+Not like this at all in 20.x so not a backport [thanks cartograf]
+----------------------------------------------
+r75147 | jonnybradley | 2019-12-09 11:36:02 +0000 (Mon, 09 Dec 2019) | 2 lines
+[FIX] trackers: Remove duplicated div.form-group opening tag (without a closing tag), Possibly dating back to a merge mix-up in d3d339ff
+Although i think this DANGER "warning" notice shouldn't be there at all if using a custom template, should it?
+----------------------------------------------
+r73854 | xorti | 2019-12-02 15:53:11 +0000 (Mon, 02 Dec 2019) | 1 line
+[FIX] Prevent unit tests to fail due to deprecation errors on PHP7.2+ 
+----------------------------------------------
+r73853 | xorti | 2019-12-02 15:36:11 +0000 (Mon, 02 Dec 2019) | 4 lines
+[bp/r71475][ENH] Improvements in sessions when using mysql/memcached as storage locations
+- Also includes bp/r69802 - [FIX] Database handler for php session was not working on PHP 7.2
+----------------------------------------------
+r73847 | xorti | 2019-12-01 01:34:01 +0000 (Sun, 01 Dec 2019) | 5 lines
+[bp/r69843][FIX] Update Memcached integration to use the "memcached" extension, instead "memcache", because "memcache" seems to be abandoned since 2013
+https://pecl.php.net/package/memcache
+https://pecl.php.net/package/memcached
+----------------------------------------------
+r71634 | pom2ter | 2019-11-27 03:44:50 +0000 (Wed, 27 Nov 2019) | 1 line
+[bp/r71632][FIX] switching language in installer did nothing because of a missing dependancy
+----------------------------------------------
+r71610 | robertokir | 2019-11-25 13:42:31 +0000 (Mon, 25 Nov 2019) | 5 lines
+[BP/MR208] fix custom search dropdown option label 0 issue
+backport of MR208 that fixes a dropdown option label issue for customsearch
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/209)
+----------------------------------------------
+r71609 | guill.bout | 2019-11-25 13:32:15 +0000 (Mon, 25 Nov 2019) | 1 line
+[BP/MR207] fix custom search dropdown option label 0 issue
+----------------------------------------------
+r71579 | xorti | 2019-11-22 01:52:17 +0000 (Fri, 22 Nov 2019) | 7 lines
+[bp/r70935][ENH] Add PHP7.3 support to gitlab-ci and fix unit tests in PHP7.3
+- Added missing public methods visibility
+- Added composer build phase in .gitlab-ci.yml
+- Increase the timout while running check_schema_upgrade.php
+
+----------------------------------------------
+r71567 | jonnybradley | 2019-11-21 18:06:21 +0000 (Thu, 21 Nov 2019) | 3 lines
+[bp/r71565][ENH] webservices: Add Authorization Header method to Content Authentication (managed on tiki-admin_dsn.php) to allow web services to more providers, for example Yelp
+Actually cherry picked from 84cbe60b193c811cf3e1673d5391aeeb7ea77d1a
+----------------------------------------------
+r71550 | montefuscolo | 2019-11-20 22:21:28 +0000 (Wed, 20 Nov 2019) | 1 line
+[FIX] Regex for url scheme when detecting home page
+----------------------------------------------
+r71545 | montefuscolo | 2019-11-20 16:47:10 +0000 (Wed, 20 Nov 2019) | 1 line
+[FIX] Group home was not being respected after login
+----------------------------------------------
+r71539 | jonnybradley | 2019-11-19 16:07:08 +0000 (Tue, 19 Nov 2019) | 1 line
+[FIX] trackers: Translate field names in info boxes and gallery names in the icon picker, also clean up the sub-galleries list and restore the default green jigsaw icon for new items (could be something better?) - thanks Cartograf
+----------------------------------------------
+r71486 | jonnybradley | 2019-11-13 17:03:37 +0000 (Wed, 13 Nov 2019) | 3 lines
+[FIX] plugintracker: Don't send the same email to the same address more than once (and fix a notice on emailformat param)
+(cherry picked from commit 9e204eab14b93b3f46d38bfe4b0db1e4140642a9)
+----------------------------------------------
+r71454 | nkoth | 2019-11-09 05:19:50 +0000 (Sat, 09 Nov 2019) | 2 lines
+[bp/r71452] login_allow_email pref was not being obeyed (was always possible)
+----------------------------------------------
+r71451 | nkoth | 2019-11-09 04:40:21 +0000 (Sat, 09 Nov 2019) | 2 lines
+[bp/r71449][FIX] Users with @ in their user name cannot log in to Intertiki master
+----------------------------------------------
+r71426 | nkoth | 2019-11-06 21:27:47 +0000 (Wed, 06 Nov 2019) | 2 lines
+[bp/r71424][FIX] Prevent error when AND or OR blank value. Also, prevent stopword failure with AND on uppercase search terms.
+----------------------------------------------
+r71373 | chibaguy | 2019-10-31 15:08:39 +0000 (Thu, 31 Oct 2019) | 1 line
+[UI][FIX] Bad color contrast in some popups. Thanks to Mike for reporting.
+----------------------------------------------
+r71334 | nkoth | 2019-10-26 04:44:21 +0100 (Sat, 26 Oct 2019) | 2 lines
+[bp/r71332][FIX] Custom error message was not showing for categories and multiselect field
+----------------------------------------------
+r71284 | nkoth | 2019-10-22 17:22:59 +0100 (Tue, 22 Oct 2019) | 2 lines
+[bp/r71282][FIX] If you set wysiwyg:n in profile it creates it as wysiwyg=y (which is wrong)
+----------------------------------------------
+r71255 | nkoth | 2019-10-18 17:28:08 +0100 (Fri, 18 Oct 2019) | 2 lines
+[bp/r71253][FIX] In Elasticsearch, when performing a wildcard search on a text field you need to use lowercase, otherwise it won't match, see https://discuss.elastic.co/t/wildcard-search-case-insensitive/122337
+----------------------------------------------
+r71204 | nkoth | 2019-10-11 15:33:00 +0100 (Fri, 11 Oct 2019) | 2 lines
+[bp/r71202][FIX] If you try and edit/reply comment and then click another edit/reply, the form closes ok but the replacement edit/reply link doesn't trigger js anymore as it's missing the right class.
+----------------------------------------------
+r71195 | jonnybradley | 2019-10-10 17:21:14 +0100 (Thu, 10 Oct 2019) | 1 line
+[bp/r71194][FIX] lang: Make custom.js lang files work again (following r63968 but caused by r54754, so not totally my fault ;)
+----------------------------------------------
+r71182 | nkoth | 2019-10-08 21:58:12 +0100 (Tue, 08 Oct 2019) | 2 lines
+[bp/r71180][FIX] user item update after tracker item update not being triggered due to string value i.e. status in list of fields
+----------------------------------------------
+r71166 | nkoth | 2019-10-05 19:16:10 +0100 (Sat, 05 Oct 2019) | 2 lines
+[bp/r71164][FIX] (1) File gallery was not being updated when mode: update was set. (2) init_files was not adding any new files on update. (3) file gallery was not being updated if a new name was provided.
+----------------------------------------------
+r71106 | rjsmelo | 2019-09-29 22:29:17 +0100 (Sun, 29 Sep 2019) | 2 lines
+[FIX] Add missing ENGINE=MyISAM declarations
+----------------------------------------------
+r71104 | rjsmelo | 2019-09-29 21:57:42 +0100 (Sun, 29 Sep 2019) | 4 lines
+[bp/r71100][REF] Extend the timeout waiting for the external command to avoid false positives in the CI pipeline
+[bp/r71101][REF] Fix the check for the SQL engine declaration in tiki.sql and the schema update files, was not catching some cases.
+[bp/r71102][FIX] Add missing SQL engine declarations and remove places where the charset was being forced in the script itself.
+----------------------------------------------
+r71095 | rjsmelo | 2019-09-29 15:37:08 +0100 (Sun, 29 Sep 2019) | 2 lines
+[bp/r71093][FIX] Wrong usage of the fallback base url (that is already handled as part of the request setup process) leading to broken urls in notifications.
+----------------------------------------------
+r71075 | jonnybradley | 2019-09-26 01:11:08 +0100 (Thu, 26 Sep 2019) | 1 line
+[FIX] php5: Correct php7 syntax backported in r71051 (apologies and thanks marclaporte)
+----------------------------------------------
+r71074 | jonnybradley | 2019-09-25 18:05:50 +0100 (Wed, 25 Sep 2019) | 1 line
+[bp/r71073][bp/r71071][FIX] maths: When checking for a possibly empty value with IsEmpty include missing values as "empty" instead of throwing an error
+----------------------------------------------
+r71070 | jonnybradley | 2019-09-25 17:04:25 +0100 (Wed, 25 Sep 2019) | 1 line
+[bp/r71069][bp/r70781][ENH] list: Add {calc} plugin (control block) support to plugin list wiki templates which allows https://doc.tiki.org/Calculations to be combined with {display} for conditional content display etc without using Smarty templates
+----------------------------------------------
+r71051 | jonnybradley | 2019-09-24 17:15:37 +0100 (Tue, 24 Sep 2019) | 1 line
+[bp/r71050][bp/r71048][ENH] search: Add facets to plugin list (and add \Search_Query_FacetWikiBuilder::getFacets and check to avoid running getFacetProvider if there are none in use)
+----------------------------------------------
+r71035 | montefuscolo | 2019-09-21 16:18:15 +0100 (Sat, 21 Sep 2019) | 5 lines
+[FIX] Avoid mpdf removing unexpected cache files by creating specific temp folder to it
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/168)
+(cherry picked from commit c77ecb0d6e1aa6b58f1d83747d45c978ba54693c)
+----------------------------------------------
+r70957 | montefuscolo | 2019-09-13 20:53:00 +0100 (Fri, 13 Sep 2019) | 1 line
+[FIX] Make console.php files:deleteold works again
+----------------------------------------------
+r70956 | montefuscolo | 2019-09-13 20:07:51 +0100 (Fri, 13 Sep 2019) | 1 line
+[FIX] Avoid multiple slashs at the end of path breaking command files:batchupload
+----------------------------------------------
+r70951 | jyhem | 2019-09-12 23:06:54 +0100 (Thu, 12 Sep 2019) | 1 line
+[bp/r70947] typo fxed in french
+----------------------------------------------
+r70928 | jonnybradley | 2019-09-10 17:37:01 +0100 (Tue, 10 Sep 2019) | 2 lines
+[bp/r70927][bp/r69335][NEW] Console: added tracker:export command to export tracker items to a CSV file using the tabular tracker format
+(modified manually because Feedback::printToConsole was introduced in 19.x)
+----------------------------------------------
+r70917 | jonnybradley | 2019-09-10 12:17:15 +0100 (Tue, 10 Sep 2019) | 3 lines
+[bp/r70916][bp/r70877][ENH] search: Take #2 at exposing 'order' and 'min_doc_count' elastic search parameters on aggregations (facets)
+Note order only seems to work as _count_asc, _count_desc (default), _term_asc or _term_desc (alpha sort es5) or _key_asc or _key_desc (es 6+)
+[more info here https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-aggregations-bucket-terms-aggregation.html]
+----------------------------------------------
+r70905 | nkoth | 2019-09-09 19:35:28 +0100 (Mon, 09 Sep 2019) | 2 lines
+[bp/r70903][FIX] Character count was not consistent with count on save (which does truncation) and on loading
+----------------------------------------------
+r70902 | nkoth | 2019-09-09 18:50:11 +0100 (Mon, 09 Sep 2019) | 2 lines
+[bp/r70900] Count of characters should include spaces
+----------------------------------------------
+r70840 | montefuscolo | 2019-09-04 17:57:28 +0100 (Wed, 04 Sep 2019) | 3 lines
+[FIX] Make 443 the default value for https_port
+(cherry picked from commit be3c1c9c4123122954d4af24b9ad234ca20b5606)
+----------------------------------------------
+r70839 | montefuscolo | 2019-09-04 17:56:10 +0100 (Wed, 04 Sep 2019) | 3 lines
+[FIX] HTTPS port behind proxy, but respecting https_port preference
+(cherry picked from commit 17554d05bb2ef9ed680568467fdaa6f94c6f8067)
+----------------------------------------------
+r70838 | medvedvvs | 2019-09-04 17:55:43 +0100 (Wed, 04 Sep 2019) | 5 lines
+[FIX] Update tiki-setup_base.php: changing the SSL port definition scheme. Config is taken from the database and then SSL port is set to the value obtained (or 443, or from _SERVER var).
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/159)
+(cherry picked from commit 9383e1f117fbc3b80807a8ae743d61f57df9ec52)
+----------------------------------------------
+r70803 | jonnybradley | 2019-09-03 18:20:20 +0100 (Tue, 03 Sep 2019) | 2 lines
+[Revert r70802] All shards fail in some case, reverting while investigating...
+[br/r70801][bp/r70800][ENH] search: Expose 'order' and 'min_doc_count' elastic search parameters on aggregations...
+----------------------------------------------
+r70802 | jonnybradley | 2019-09-03 17:18:08 +0100 (Tue, 03 Sep 2019) | 3 lines
+[bp/r70801][bp/r70800][ENH] search: Expose 'order' and 'min_doc_count' elastic search parameters on aggregations (facets)
+Note order only seems to work as _count_asc, _count_desc (default), _term_asc or _term_desc (alpha sort)
+[Note 2: Manually adapted as date facets/aggs were added in 20.x following some refactoring]
+----------------------------------------------
+r70766 | xorti | 2019-08-29 00:50:42 +0100 (Thu, 29 Aug 2019) | 1 line
+[ENH] Update tiki-check.php
+----------------------------------------------
+r70679 | nkoth | 2019-08-17 05:32:28 +0100 (Sat, 17 Aug 2019) | 2 lines
+[bp/r70677][FIX] Ajax tracker update: wait for indexing to complete before loading of next request to ensure updated info shown (was already there for new inserts)
+----------------------------------------------
+r70649 | drsassafras | 2019-08-13 22:48:31 +0100 (Tue, 13 Aug 2019) | 1 line
+[UPD] saml - update package requirements
+----------------------------------------------
+r70642 | rjsmelo | 2019-08-13 00:13:00 +0100 (Tue, 13 Aug 2019) | 2 lines
+[REF] Backport release script from trunk to 18.x
+----------------------------------------------
+r70638 | rjsmelo | 2019-08-12 22:47:19 +0100 (Mon, 12 Aug 2019) | 2 lines
+[bp/r68514][FIX] Sitemap was only checking global permissions, so was not displaying items that had category or object permissions. Also some small improvements.
+----------------------------------------------
 Version 18.4
 <http://doc.tiki.org/Tiki18>
 ------------------
