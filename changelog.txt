@@ -31,6 +31,223 @@ When possible, it's also nice to indicate what feature is concerned by the chang
 Before 2.0, there was only [MOD] for both [ENH] and [MOD]:
 
 ----------------------------------------------------------------------
+Version 15.8
+<http://doc.tiki.org/Tiki15>
+------------------
+
+----------------------------------------------
+r75854 | robertokir | 2020-03-10 13:10:16 +0000 (Tue, 10 Mar 2020) | 2 lines
+
+[bp/r75849][DOC] Tell a Friend - Now Deprecated
+Actually in 15.x just added a warning message in favor of feature_share
+----------------------------------------------
+r75853 | drsassafras | 2020-03-10 13:10:16 +0000 (Tue, 10 Mar 2020) | 3 lines
+
+[bp/r75848][REF] Tell a friend - Use $inputConfiguration to keep vars well filtered
+
+(cherry picked from commit 7095eb004858474bf46b05c269168d368e2349e5)
+----------------------------------------------
+r75852 | drsassafras | 2020-03-10 13:10:16 +0000 (Tue, 10 Mar 2020) | 3 lines
+
+[bp/r75847][REF] Tell A Friend - Only allow POST where GET will never occur
+
+(cherry picked from commit 5a89788ee05c1eb9d5aa6ab9d48fa3ff36fc1a57)
+----------------------------------------------
+r75816 | robertokir | 2020-03-09 13:15:07 +0000 (Mon, 09 Mar 2020) | 3 lines
+
+[bp/r75753][FIX] SCRIPT_NAME is cleaner and has less side effects than PHP_SELF (additional files that were missing in the previous commit)
+
+(cherry picked from commit 4ca304c9b66f5566b5c913a814ec1d05195a4171)
+----------------------------------------------
+r75815 | Jyhem | 2020-03-09 13:15:07 +0000 (Mon, 09 Mar 2020) | 3 lines
+
+[bp/r75753][FIX] SCRIPT_NAME is cleaner and has less side effects than PHP_SELF
+
+(cherry picked from commit 4ca304c9b66f5566b5c913a814ec1d05195a4171)
+----------------------------------------------
+r75749 | robertokir | 2020-03-04 16:25:48 +0000 (Wed, 04 Mar 2020) | 1 line
+
+[bp/r75748][FIX] contact: Escape subject etc in contact form
+----------------------------------------------
+r75636 | jonnybradley | 2020-02-22 16:51:28 +0000 (Sat, 22 Feb 2020) | 1 line
+
+[UPD] elfinder: Remove previous forked package
+----------------------------------------------
+r75635 | jonnybradley | 2020-02-22 16:44:18 +0000 (Sat, 22 Feb 2020) | 3 lines
+
+[FIX] elfinder: Seems root volumes now require a name or "alias" to function now
+
+(cherry picked from commit 38a394672c0cc52365a18cb6aa94eeefc8a8189b - conflicts resolved manually for php 5.x array syntax)
+----------------------------------------------
+r75634 | jonnybradley | 2020-02-22 16:37:13 +0000 (Sat, 22 Feb 2020) | 1 line
+
+[UPD] elfinder: Switch to official package
+----------------------------------------------
+r75633 | jonnybradley | 2020-02-22 16:18:29 +0000 (Sat, 22 Feb 2020) | 38 lines
+
+[UPD] Automatic updates
+  - Updating psr/log (1.0.2 => 1.1.2)
+  - Updating zendframework/zend-stdlib (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-config (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-filter (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-i18n (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-math (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-captcha (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-eventmanager (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-session (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-validator (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-escaper (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-uri (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-loader (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-http (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-feed (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-tag (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-code (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-server (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-soap (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-servicemanager (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-log (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-mime (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-crypt (2.4.11 => 2.4.13)
+  - Updating zendframework/zend-mail (2.4.11 => 2.4.13)
+  - Updating symfony/yaml (v3.2.3 => v3.3.18)
+  - Updating sebastian/recursion-context (1.0.2 => 1.0.5)
+  - Updating sebastian/diff (1.4.1 => 1.4.3)
+  - Updating phpunit/php-timer (1.0.8 => 1.0.9)
+  - Updating phpunit/php-file-iterator (1.4.2 => 1.4.5)
+  - Updating phpunit/php-token-stream (1.4.9 => 1.4.12)
+  - Updating webmozart/assert (1.2.0 => 1.7.0)
+  - Updating phpdocumentor/reflection-common (1.0 => 1.0.1)
+  - Updating phpdocumentor/type-resolver (0.2.1 => 0.4.0)
+  - Updating phpdocumentor/reflection-docblock (3.1.1 => 3.3.2)
+  - Updating phpspec/prophecy (v1.6.2 => v1.10.2)
+  - Updating phpunit/phpunit (4.8.35 => 4.8.36)
+  - Updating symfony/filesystem (v2.8.17 => v2.8.52)
+----------------------------------------------
+r75488 | xorti | 2020-02-04 19:01:19 +0000 (Tue, 04 Feb 2020) | 1 line
+
+[bp/r71654][ENH] Add phplint to GitLab CI pipeline
+----------------------------------------------
+r75210 | lindonb | 2019-12-24 04:02:14 +0000 (Tue, 24 Dec 2019) | 1 line
+
+[bp/r75207][FIX] page history: make sure history_pagesize and history_offset parameters are numeric and that show_all_versions is y or n
+----------------------------------------------
+r75202 | lindonb | 2019-12-23 02:15:12 +0000 (Mon, 23 Dec 2019) | 1 line
+
+[bp/r75199][FIX] Escape html special characters in the msg parameter.
+----------------------------------------------
+r70767 | xorti | 2019-08-29 00:59:53 +0100 (Thu, 29 Aug 2019) | 1 line
+
+[ENH] Update tiki-check.php
+----------------------------------------------
+r69915 | robertokir | 2019-05-02 10:51:27 +0100 (Thu, 02 May 2019) | 1 line
+
+[bp/r69914][FIX] PluginTrackerList: Check permissions properly in pop-ups. Also, do not show blank pop-up when no fields should show (thanks Marc)
+----------------------------------------------
+r69866 | robertokir | 2019-04-24 16:42:43 +0100 (Wed, 24 Apr 2019) | 1 line
+
+[bp/r69865][FIX] PluginMemberList: shouldn't permit to remove a user from the Registered group + The Anonymous tab makes no sense (thanks Marc)
+----------------------------------------------
+r69654 | xorti | 2019-04-07 17:37:03 +0100 (Sun, 07 Apr 2019) | 1 line
+
+[bp/r69651][FIX] Fix php requirements in tiki-check
+----------------------------------------------
+r69274 | lindonb | 2019-02-25 01:13:39 +0000 (Mon, 25 Feb 2019) | 1 line
+
+[bp/r69271][FIX] wiki: Categorize new pages before mail notifications are sent so that category permissions are observed. Should fix https://dev.tiki.org/item6696 (thanks Jonny for reporting)
+----------------------------------------------
+r69025 | lindonb | 2019-02-10 19:40:34 +0000 (Sun, 10 Feb 2019) | 1 line
+
+[bp/r69020][FIX] Facebook feed: use Tikilib/Zend functions so that parsing of feed is not garbled and so that curl can be used as an alternative in environments where sockets aren't available or not allowed
+----------------------------------------------
+r69024 | lindonb | 2019-02-10 19:39:22 +0000 (Sun, 10 Feb 2019) | 1 line
+
+[bp/r69019][FIX] http client: connections were failing in environments where sockets aren't available or allowed, so add curl as an alternative
+----------------------------------------------
+r68884 | jyhem | 2019-01-28 21:32:22 +0000 (Mon, 28 Jan 2019) | 1 line
+
+[FIX][bp/r68881] Prevent from returning itemIds from partially deleted items which don't exist in tiki_tracker_items any more
+----------------------------------------------
+r68848 | lindonb | 2019-01-27 00:17:12 +0000 (Sun, 27 Jan 2019) | 1 line
+
+[bp/r68715 & r68788][FIX] facebook login: fsockopen doesn't work in some environments so add cURL as an alternative.
+----------------------------------------------
+r68545 | olinuxx | 2018-12-13 14:38:20 +0000 (Thu, 13 Dec 2018) | 1 line
+
+[bp/r68543] [FIX] add urlencode to the RSS parser - credits for this patch goes to gradator at tuxfamily.org
+----------------------------------------------
+r68487 | robertokir | 2018-12-05 15:13:57 +0000 (Wed, 05 Dec 2018) | 1 line
+
+[FIX] Required after r68481
+----------------------------------------------
+r68481 | robertokir | 2018-12-03 18:46:38 +0000 (Mon, 03 Dec 2018) | 2 lines
+
+[bp/r68416][FIX][SEC] arbitrary file exposure through custom smarty templates
+[bp/r68461][FIX] smarty: Include pref.smarty_security_dirs in template existence check (required after r67906)
+----------------------------------------------
+r68435 | robertokir | 2018-11-28 15:58:39 +0000 (Wed, 28 Nov 2018) | 1 line
+
+Reverting r68417
+----------------------------------------------
+r68417 | robertokir | 2018-11-27 12:45:26 +0000 (Tue, 27 Nov 2018) | 1 line
+
+[bp/r68416][FIX][SEC] arbitrary file exposure through custom smarty templates
+----------------------------------------------
+r68414 | robertokir | 2018-11-27 10:33:30 +0000 (Tue, 27 Nov 2018) | 1 line
+
+[bp/r68412][FIX] install: Escape html
+----------------------------------------------
+r68397 | jyhem | 2018-11-23 17:32:33 +0000 (Fri, 23 Nov 2018) | 1 line
+
+[FIX] Param showNameOnly did not display anything
+----------------------------------------------
+r67894 | rjsmelo | 2018-10-07 22:35:07 +0100 (Sun, 07 Oct 2018) | 2 lines
+
+[REF] Backport of svnup.php to 15.x
+
+----------------------------------------------
+r67893 | rjsmelo | 2018-10-07 22:34:24 +0100 (Sun, 07 Oct 2018) | 2 lines
+
+[REF] Ensure PSR/Log is included in the list of packages (constants used in symfony console)
+
+----------------------------------------------
+r67751 | lindonb | 2018-09-30 22:25:50 +0100 (Sun, 30 Sep 2018) | 1 line
+
+[bp/r67748][FIX] Remove clearfix class from module.tpl added in r67483, to avoid changing placement in horizontal zones (thanks chealer!).
+----------------------------------------------
+r67741 | luciash | 2018-09-30 19:57:13 +0100 (Sun, 30 Sep 2018) | 2 lines
+
+[bp/r66932][FIX] wiki: If $lang is not provided, such as when editing a plugin, then use the page's lang from before (alternative fix to r66891, thanks samymwamba, hope that's ok :)
+
+----------------------------------------------
+r67490 | lindonb | 2018-09-15 19:40:47 +0100 (Sat, 15 Sep 2018) | 1 line
+
+[bp/r67488][UX] user assigned modules: fix seriously broken UI on tiki-user_assigned_modules page - not bootstrappified presumably because feature didn't work before. Worth backporting I think.
+----------------------------------------------
+r67486 | lindonb | 2018-09-15 19:34:46 +0100 (Sat, 15 Sep 2018) | 1 line
+
+[bp/r67483][FIX] module controls: use correct parameter (id instead of name) so that the controls work; also show controls when no box is used; add clearfix in certain places to avoid module formatting spilling onto following modules in some cases when module controls are used; restrict showing of controls to left and right columns; convert to forms using post method; only show controls on hover and take less space by putting in a single row
+----------------------------------------------
+r67480 | lindonb | 2018-09-15 18:57:21 +0100 (Sat, 15 Sep 2018) | 1 line
+
+[bp/r67478][FIX] user assigned modules: use correct position values ('left' and 'right' instead of 'l' and 'r') when assigning modules to columns so that assigned modules don't disappear. Also, feature_modulecontrols should not be required to access tiki-user_assigned_modules.php
+----------------------------------------------
+r67477 | lindonb | 2018-09-15 18:46:55 +0100 (Sat, 15 Sep 2018) | 1 line
+
+[bp/r67475][FIX] user assigned modules: Use Perms class instead of global permission variable, which is null at this point for some reason when feature_modulecontrols is not set, causing a false negative that results in user assignments being ignored in that case
+----------------------------------------------
+r67464 | jonnybradley | 2018-09-14 22:53:40 +0100 (Fri, 14 Sep 2018) | 1 line
+
+[bp/r67453][FIX] maps: Add Google Maps API key to the url for Streetmap images (javascript.php manually adjusted for 15.x)
+----------------------------------------------
+r67455 | luciash | 2018-09-14 20:53:51 +0100 (Fri, 14 Sep 2018) | 1 line
+
+[FIX] Notice: A non well formed numeric value encountered (not in 18.x and trunk, thanks Brendan for help)
+----------------------------------------------
+r67284 | lindonb | 2018-08-27 02:48:28 +0100 (Mon, 27 Aug 2018) | 1 line
+
+[bp/r67282][FIX] Correct part of r25670 that prevented file galleries from being deleted when using "select action to perform with checked" dropdown
+----------------------------------------------
 Version 15.7
 <http://doc.tiki.org/Tiki15>
 ------------------
