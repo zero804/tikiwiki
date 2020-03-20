@@ -232,7 +232,7 @@ function write_secdb($file, $root, $version)
 	$file_exists = @file_exists($file);
 	$fp = @fopen($file, 'w+') or error('The SecDB file "' . $file . '" is not writable or can\'t be created.');
 	$queries = array();
-	md5_check_dir($root, $root, $version, $queries);
+	md5_check_dir(ROOT, $version, $queries, array());
 
 	if (! empty($queries)) {
 		sort($queries);
@@ -256,43 +256,59 @@ function write_secdb($file, $root, $version)
 }
 
 /**
- * @param $root
- * @param $dir
- * @param $version
- * @param $queries
+ * Similar to md5_check_dir in tiki-admin_security.php but creates the sql queries for /db/tiki-secdb_{$version}_mysql.sql
+ *
+ * @param string $dir
+ * @param string $version
+ * @param array $queries queries returned
+ * @param array $excludes files to exclude when doing secdb on an svn checkout
  */
-function md5_check_dir($root, $dir, $version, &$queries)
+function md5_check_dir($dir, $version, &$queries, $excludes = [])
 {
 	$d = dir($dir);
+	$link = null;
+
+	while (false !== ($e = $d->read())) {
+		$entry = $dir . '/' . $e;
+		if (is_link($entry)) {
+			continue; // if is a symlink we should not run any hash
+		}
+		if (is_dir($entry)) {
+			// do not descend and no CVS/Subversion files
+			if ($e != '..' && $e != '.' && $e != 'CVS' && $e != '.svn' && $entry != ROOT . '/temp' && $entry != ROOT . '/vendor_custom' && $entry != ROOT . '/_custom') {
+				md5_check_dir($entry, $version, $queries, $excludes);
+			}
+		} else {
+			if (preg_match('/\.(sql|css|tpl|js|php)$/', $e) && realpath($entry) != __FILE__ && $entry != './db/local.php') {
+				$file = '.' . substr($entry, strlen(ROOT));
+
+				if (in_array($entry, $excludes)) {
+					continue;
+				}
+
+				// Escape filename. Since this requires a connection to MySQL (due to the charset), do so conditionally to reduce the risk of connection failure.
+				if (! preg_match('/^[a-zA-Z!-9\/ _+.-@]+$/', $file)) {
+					if (! $link) {
 	$link = mysqli_connect();
 
 	if (mysqli_connect_errno()) {
 		global $phpCommand, $phpCommandArguments;
 		error(
-			"SecDB step failed because some filenames need escaping but no MySQL connection has been found (" . mysqli_connect_error() . ")."
+								"SecDB step failed because some filenames (e.g. {$file}) need escaping but no MySQL connection has been found (" . mysqli_connect_error() . ")."
 			. "\nTry this command line instead (replace HOST, USER and PASS by a valid MySQL host, user and password) :"
 			. "\n\n\t" . $phpCommand
 			. " -d mysqli.default_host=HOST -d mysqli.default_user=USER -d mysqli.default_pw=PASS "
 			. $phpCommandArguments . "\n"
 		);
 	}
-	while (false !== ($e = $d->read())) {
-		$entry = $dir . '/' . $e;
-		if (is_dir($entry)) {
-			// do not descend and no CVS/Subversion files
-			if ($e != '..' && $e != '.' && $e != 'CVS' && $e != '.svn' && $entry!='./templates_c') {
-				md5_check_dir($root, $entry, $version, $queries);
 			}
-		} else {
-			if (preg_match('/\.(sql|css|tpl|js|php)$/', $e) && realpath($entry) != __FILE__ && $entry != './db/local.php') {
-				$file = '.' . substr($entry, strlen($root));
-
-				if (! preg_match('/^[a-zA-Z0-9\/ _+.-]+$/', $file) ) {
-					$file = @mysqli_real_escape_string($link,$file);
+					$file = @mysqli_real_escape_string($link, $file);
 				}
 
+				if (is_readable($entry)) {
 				$hash = md5_file($entry);
-				$queries[] = "INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`, `severity`) VALUES('$file', '$hash', '$version', 0);";
+					$queries[] = "INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('$file', '$hash', '$version');";
+				}
 			}
 		}
 	}
