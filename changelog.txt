@@ -32,6 +32,1134 @@ The tags info is also online: https://dev.tiki.org/Commit+Tags
 Before 2.0, there was only [MOD] for both [ENH] and [MOD]:
 
 ----------------------------------------------------------------------
+Version 20.2
+<http://doc.tiki.org/Tiki20>
+------------------
+
+----------------------------------------------
+r75927 | lyabs243 | 2020-03-16 19:20:57 +0000 (Mon, 16 Mar 2020) | 5 lines
+[ENH] Align advanced parameters in PluginCode
+(refs https://gitlab.com/tikiwiki/tiki/-/merge_requests/292)
+(cherry picked from commit 8c04e474652584602ddf3d4b07dbac2b9aaad56d)
+----------------------------------------------
+r75918 | jonnybradley | 2020-03-16 10:40:44 +0000 (Mon, 16 Mar 2020) | 3 lines
+[FIX] elfinder: Some cosmetic fixes for the search box and hover state
+(cherry picked from commit c6356c0d2acd30115123bbda05135b4f9cb536fa)
+----------------------------------------------
+r75917 | jonnybradley | 2020-03-16 10:40:39 +0000 (Mon, 16 Mar 2020) | 3 lines
+[FIX] elfinder: Seems root volumes now require a name or "alias" to function now
+(cherry picked from commit 38a394672c0cc52365a18cb6aa94eeefc8a8189b)
+----------------------------------------------
+r75916 | jonnybradley | 2020-03-16 10:40:33 +0000 (Mon, 16 Mar 2020) | 3 lines
+[FIX] elfinder: Update overriden (but unused) resize function signature
+(cherry picked from commit f82a9cf6ac72dc3720bb868758d0f366d95e347e)
+----------------------------------------------
+r75915 | jonnybradley | 2020-03-16 10:40:15 +0000 (Mon, 16 Mar 2020) | 3 lines
+[FIX] elFinder: Now elFinderSession::start tries to change the session settings but ours is already running so close it before we launch elFinder
+(cherry picked from commit 38832bf8d8613b40d893c7180d65fc18f28da01a)
+----------------------------------------------
+r75914 | jonnybradley | 2020-03-16 10:40:02 +0000 (Mon, 16 Mar 2020) | 3 lines
+[FIX] elfinder: Fix some notices which seem to get displayed now (there is one session warning remaining, hard to fix...)
+(cherry picked from commit ae72a85a57868694daa212cfb80dfcdb3a2827ba)
+----------------------------------------------
+r75913 | jonnybradley | 2020-03-16 10:38:56 +0000 (Mon, 16 Mar 2020) | 42 lines
+[UPD] automatic composer updates (needed due to TikiBot doing the same in 18.x in b3ce98e6 so that branch now needs fixes backporting for elFinder, backported via this one)
+  - Updating adodb/adodb-php (v5.20.15 => v5.20.16)
+  - Updating ckeditor/ckeditor (4.13.0 => 4.14.0)
+  - Updating composer/semver (1.5.0 => 1.5.1)
+  - Updating bower-asset/fontawesome (5.11.2 => 5.12.1)
+  - Updating league/commonmark (1.1.1 => 1.3.1)
+  - Updating mottie/tablesorter (v2.31.1 => v2.31.3)
+  - Updating npm-asset/popper.js (1.16.0 => 1.16.1)
+  - Updating phpseclib/phpseclib (2.0.23 => 2.0.25)
+  - Updating plotly/plotly.js (v1.51.2 => v1.52.3)
+  - Updating studio-42/elfinder (2.1.50 => 2.1.54)
+  - Updating symfony/polyfill-ctype (v1.13.1 => v1.14.0)
+  - Updating symfony/filesystem (v4.4.1 => v4.4.5)
+  - Updating symfony/config (v3.4.36 => v3.4.38)
+  - Updating symfony/polyfill-mbstring (v1.13.1 => v1.14.0)
+  - Updating symfony/debug (v4.4.1 => v4.4.5)
+  - Updating symfony/console (v3.4.36 => v3.4.38)
+  - Updating symfony/dependency-injection (v3.4.36 => v3.4.38)
+  - Updating symfony/finder (v4.4.1 => v4.4.5)
+  - Updating symfony/process (v3.4.36 => v3.4.38)
+  - Updating symfony/yaml (v3.4.36 => v3.4.38)
+  - Updating zendframework/zend-validator (2.12.2 => 2.13.0)
+  - Updating zendframework/zend-http (2.11.1 => 2.11.2)
+  - Updating zendframework/zend-i18n (2.9.2 => 2.10.1)
+  - Updating zendframework/zend-log (2.11.0 => 2.12.0)
+  - Updating squizlabs/php_codesniffer (3.5.3 => 3.5.4)
+  - Updating wimg/php-compatibility (9.3.4 => 9.3.5)
+  - Updating guzzlehttp/guzzle (6.4.1 => 6.5.2)
+  - Updating symfony/dom-crawler (v5.0.3 => v5.0.5)
+  - Updating symfony/browser-kit (v5.0.3 => v5.0.5)
+  - Updating symfony/css-selector (v4.4.1 => v5.0.5)
+  - Updating matthiasmullie/path-converter (1.1.2 => 1.1.3)
+  - Updating pear/pear_exception (v1.0.0 => v1.0.1)
+  - Updating pear/xml_util (v1.4.3 => v1.4.4)
+  - Updating myclabs/deep-copy (1.9.3 => 1.9.5)
+  - Updating webmozart/assert (1.6.0 => 1.7.0)
+  - Updating phpdocumentor/type-resolver (1.0.1 => 1.1.0)
+  - Updating phpdocumentor/reflection-docblock (4.3.2 => 5.1.0)
+  - Updating phpspec/prophecy (1.9.0 => v1.10.3)
+  - Updating sabre/vobject (4.2.0 => 4.2.1)
+  - Updating composer/ca-bundle (1.2.4 => 1.2.6)
+  - Updating zendframework/zend-code (3.4.0 => 3.4.1)
+----------------------------------------------
+r75905 | lindonb | 2020-03-14 22:37:07 +0000 (Sat, 14 Mar 2020) | 3 lines
+[FIX] banning: Feedback incorrectly indicated no changes were made when only the banning sections were changed
+(cherry picked from commit 21e5f8e18ba1a992370cd1480e80de8bf0f6e1b9)
+----------------------------------------------
+r75899 | jonnybradley | 2020-03-12 12:31:09 +0000 (Thu, 12 Mar 2020) | 1 line
+[FIX] trackers: Get the field data from the handler if other strategies fail - for instance in the tiki-object-infobox service for category fields
+----------------------------------------------
+r75862 | jonnybradley | 2020-03-10 19:25:26 +0000 (Tue, 10 Mar 2020) | 1 line
+[FIX] trackers: Fix Wiki field history button (and add missing quotes)
+----------------------------------------------
+r75861 | jonnybradley | 2020-03-10 19:25:25 +0000 (Tue, 10 Mar 2020) | 3 lines
+[FIX] trackers: Make the action buttons link to view a linked wiki page not redirect to the item, add button to edit, improve the appearance and make them all open in a new tab
+(cherry picked from commit ab536c7947288fcb12ea5595a7d91c941f4e2527)
+----------------------------------------------
+r75846 | drsassafras | 2020-03-10 09:34:16 +0000 (Tue, 10 Mar 2020) | 3 lines
+[bp/r75235][REF] Tell a friend - Use $inputConfiguration to keep vars well filtered
+(cherry picked from commit 7095eb004858474bf46b05c269168d368e2349e5)
+----------------------------------------------
+r75845 | drsassafras | 2020-03-10 09:34:16 +0000 (Tue, 10 Mar 2020) | 3 lines
+[bp/r75234][REF] Tell A Friend - Only allow POST where GET will never occur
+(cherry picked from commit 5a89788ee05c1eb9d5aa6ab9d48fa3ff36fc1a57)
+----------------------------------------------
+r75789 | montefuscolo | 2020-03-06 20:34:30 +0000 (Fri, 06 Mar 2020) | 3 lines
+[FIX] Avoid the error  fastcgi_finish_request() expects exactly 0 parameters, 3 given
+(cherry picked from commit b32c7402223417948830be7cdcb2529679208c1e)
+----------------------------------------------
+r75783 | pom2ter | 2020-03-06 02:20:07 +0000 (Fri, 06 Mar 2020) | 1 line
+[bp/r75755][bp/r75782][FIX] fixed incorrect buttons and tabs colors in cypht
+----------------------------------------------
+r75778 | montefuscolo | 2020-03-05 20:41:15 +0000 (Thu, 05 Mar 2020) | 1 line
+[FIX] Trying to make 20.x CI work again
+----------------------------------------------
+r75777 | montefuscolo | 2020-03-05 20:28:03 +0000 (Thu, 05 Mar 2020) | 3 lines
+[FIX] Tell git cypht files use CRLF
+(cherry picked from commit a8fe8093720209603bfd64c5c1671f5f74de61b7)
+----------------------------------------------
+r75775 | lucaantonelli | 2020-03-05 19:23:44 +0000 (Thu, 05 Mar 2020) | 5 lines
+[ENH] Update italian translations
+(refs https://gitlab.com/tikiwiki/tiki/-/merge_requests/243)
+(cherry picked from commit ab4f3d7672770d4aa639e794ea9d9201ddb810be)
+----------------------------------------------
+r75750 | Jyhem | 2020-03-04 17:16:11 +0000 (Wed, 04 Mar 2020) | 3 lines
+[bp/r75456][FIX] SCRIPT_NAME is cleaner and has less side effects than PHP_SELF
+(cherry picked from commit 4ca304c9b66f5566b5c913a814ec1d05195a4171)
+----------------------------------------------
+r75747 | jonnybradley | 2020-03-04 16:12:13 +0000 (Wed, 04 Mar 2020) | 3 lines
+[bp/r75455][FIX] contact: Escape subject etc in contact form
+(cherry picked from commit 694102ffdff1f94fbdf4c7f17e5a53079e8bc3c1)
+----------------------------------------------
+r75715 | guill.bout | 2020-03-02 11:02:34 +0000 (Mon, 02 Mar 2020) | 5 lines
+Merge branch '20.x' into '20.x'
+[BP/MR272][FIX] fix saving edited diagram when an include happens before it
+See merge request tikiwiki/tiki!273
+----------------------------------------------
+r75714 | guill.bout | 2020-03-02 09:16:38 +0000 (Mon, 02 Mar 2020) | 1 line
+[BP/MR272] fix saving edited diagram when an include happens before it
+----------------------------------------------
+r75688 | pom2ter | 2020-02-27 04:13:02 +0000 (Thu, 27 Feb 2020) | 1 line
+[bp/r75687][FIX] cypht: fixing more incorrect colors with cypht other themes
+----------------------------------------------
+r75672 | pom2ter | 2020-02-26 01:59:50 +0000 (Wed, 26 Feb 2020) | 1 line
+[FIX] added missing file in commit r75671
+----------------------------------------------
+r75671 | pom2ter | 2020-02-26 01:57:49 +0000 (Wed, 26 Feb 2020) | 1 line
+[bp/r75670][FIX] cypht: fixed some color issues when using child themes (like fivealive/watermelon)
+----------------------------------------------
+r75666 | pom2ter | 2020-02-25 02:49:52 +0000 (Tue, 25 Feb 2020) | 1 line
+[bp/r75665][FIX] cypht: fixed transparent background for some dropdowns and buttons
+----------------------------------------------
+r75626 | pom2ter | 2020-02-20 22:51:35 +0000 (Thu, 20 Feb 2020) | 1 line
+[bp/r75624][FIX] cypht: fixed new issues on mobile
+----------------------------------------------
+r75605 | pom2ter | 2020-02-19 03:56:32 +0000 (Wed, 19 Feb 2020) | 1 line
+[bp/r75603][FIX] cypht: fixed specific issues with tiki themes colors
+----------------------------------------------
+r75591 | jonnybradley | 2020-02-18 13:09:40 +0000 (Tue, 18 Feb 2020) | 3 lines
+[FIX] trackers: Don't create "orphan" relations for Files fields on items that haven't been saved yet (for cartograf)
+(cherry picked from commit 59aa4c806b4ddddf6ec55f8cec58020689253c52)
+----------------------------------------------
+r75590 | jonnybradley | 2020-02-18 13:09:25 +0000 (Tue, 18 Feb 2020) | 1 line
+[FIX] trackers: Fix "top level" of clone item regarding executing handleClone handlers. Was working for child items but not for the parents (for cartograf)
+----------------------------------------------
+r75589 | jonnybradley | 2020-02-18 13:08:50 +0000 (Tue, 18 Feb 2020) | 3 lines
+[FIX] appframe: No need for "anchors" to be in front of tooltips etc (for cartograf)
+(cherry picked from commit e52c0aecfde4de7dcbd23b9512f67bb811fd7261)
+----------------------------------------------
+r75577 | pom2ter | 2020-02-15 02:19:33 +0000 (Sat, 15 Feb 2020) | 1 line
+[bp/r75571][bp/r75574][bp/r75576] cypht: fixed some conflicts between tiki ui, jquery ui chosen and cypht themes
+----------------------------------------------
+r75538 | montefuscolo | 2020-02-09 22:38:46 +0000 (Sun, 09 Feb 2020) | 1 line
+[FIX] Reset conversejs environment after user login/logout
+----------------------------------------------
+r75515 | xorti | 2020-02-05 18:40:13 +0000 (Wed, 05 Feb 2020) | 1 line
+[bp/r71654][ENH] Add phplint to GitLab CI pipeline
+----------------------------------------------
+r75500 | jonnybradley | 2020-02-05 12:01:37 +0000 (Wed, 05 Feb 2020) | 1 line
+[FIX] slugs: Url encode sluggified smarty strings when not using only ascii chars
+----------------------------------------------
+r75499 | jonnybradley | 2020-02-05 11:59:49 +0000 (Wed, 05 Feb 2020) | 3 lines
+[ENH] elfinder: Add a new pref to allow elFinder to be enabled but not used on textarea toolbar buttons (sort of a [FIX] really)
+(cherry picked from commit 1dc2ff0da229ac7d8afaed986e2291f633e9135b)
+----------------------------------------------
+r75498 | jonnybradley | 2020-02-05 11:56:38 +0000 (Wed, 05 Feb 2020) | 3 lines
+[FIX] cookies: Convert (broken) jquery-ui dialog mode to bootstrap modal
+(cherry picked from commit 6f6485633c438178d31476361d91f36ec899ee4f)
+----------------------------------------------
+r75493 | kroky6 | 2020-02-05 07:49:41 +0000 (Wed, 05 Feb 2020) | 1 line
+[bp/r75492] [FIX] further cypht login/swtich user cleanup
+----------------------------------------------
+r75491 | pom2ter | 2020-02-05 00:49:32 +0000 (Wed, 05 Feb 2020) | 1 line
+[bp/r75489][FIX] mobile: autotoc no longer worked in landscape mode
+----------------------------------------------
+r75479 | kroky6 | 2020-02-04 13:43:47 +0000 (Tue, 04 Feb 2020) | 1 line
+[bp/r75477] [FIX] cypht: clear browser session storage and PHP session related to cypht caches and config when switching users, upon logout and login with a different user
+----------------------------------------------
+r75474 | Jyhem | 2020-02-03 15:37:29 +0000 (Mon, 03 Feb 2020) | 3 lines
+[FIX] Don't initialize an array with an empty string
+(cherry picked from commit b498c884af7b8bea9fa1d66123323b18d65fc9b9)
+----------------------------------------------
+r75470 | b.sfez | 2020-02-02 14:23:49 +0000 (Sun, 02 Feb 2020) | 1 line
+[TRA]Fixing translation issue with numerical values translated.
+----------------------------------------------
+r75460 | kroky6 | 2020-01-31 14:04:52 +0000 (Fri, 31 Jan 2020) | 1 line
+[bp/r75459] [FIX] further cypht session lost issue fixes
+----------------------------------------------
+r75458 | kroky6 | 2020-01-31 13:18:30 +0000 (Fri, 31 Jan 2020) | 1 line
+[bp/r75457] [FIX] load cypht config when session is not set up correctly - should prevent occasional config loss upon relogin, account switch or various other use-cases
+----------------------------------------------
+r75427 | rjsmelo | 2020-01-31 01:53:36 +0000 (Fri, 31 Jan 2020) | 2 lines
+[FIX] Calling the wrong method in PDFHelper
+----------------------------------------------
+r75425 | rjsmelo | 2020-01-31 01:39:08 +0000 (Fri, 31 Jan 2020) | 2 lines
+[REF] Add unit tests for perspectives
+----------------------------------------------
+r75424 | rjsmelo | 2020-01-31 01:31:46 +0000 (Fri, 31 Jan 2020) | 2 lines
+[REF] Add new dependecy for the unit tests
+----------------------------------------------
+r75423 | rjsmelo | 2020-01-31 01:30:33 +0000 (Fri, 31 Jan 2020) | 2 lines
+[REF] Fix the scripts to create database snapshot and restore as part of the unit tests
+----------------------------------------------
+r75421 | rjsmelo | 2020-01-31 01:27:17 +0000 (Fri, 31 Jan 2020) | 2 lines
+[REF] Fix warning when executing from command line or from the unit tests
+----------------------------------------------
+r75420 | rjsmelo | 2020-01-31 01:26:18 +0000 (Fri, 31 Jan 2020) | 4 lines
+[FIX] Fix multiple issues with perspectives
+- Introduce a default domain when accessing contantents not categorized using a domain linked to a exclusive area to redirect the user
+- Fix redirect loops when perspectives are not correctly configured (and contents are not correctly categorised)
+----------------------------------------------
+r75419 | rjsmelo | 2020-01-31 00:59:01 +0000 (Fri, 31 Jan 2020) | 2 lines
+[FIX] Fix the profile installer when the preferences is and array, also fixing the profiles install handler for Forums and Areas
+----------------------------------------------
+r75415 | rjsmelo | 2020-01-30 23:13:25 +0000 (Thu, 30 Jan 2020) | 2 lines
+[REF] Log extra information, in case of failure to convert the file
+----------------------------------------------
+r75405 | kroky6 | 2020-01-29 13:13:18 +0000 (Wed, 29 Jan 2020) | 1 line
+[bp/75400] [FIX] cypht settings removal upon relogin when existing webmail page is being browsed
+----------------------------------------------
+r75402 | kroky6 | 2020-01-29 07:33:24 +0000 (Wed, 29 Jan 2020) | 1 line
+[bp/r75401] [FIX] use correct php CLI binary that is used to run composer for Cypht config generation
+----------------------------------------------
+r75356 | rjsmelo | 2020-01-27 22:24:33 +0000 (Mon, 27 Jan 2020) | 5 lines
+[bp/r71440][ENH] Prevent long tracker field permName
+- Prenvents long permName so all engines can index without issues
+- If long pernName are found while indexing an error is displayed to user
+----------------------------------------------
+r75355 | montefuscolo | 2020-01-27 21:16:07 +0000 (Mon, 27 Jan 2020) | 1 line
+[FIX] Override Converse.JS fonts path defitions to correctly load fonts
+----------------------------------------------
+r75349 | b.sfez | 2020-01-27 14:13:34 +0000 (Mon, 27 Jan 2020) | 1 line
+[FIX][DOC]Adding information about using the asterisk as ending wildcard tested with MySQL search and Elastic search on Tiki20x
+----------------------------------------------
+r75348 | b.sfez | 2020-01-27 14:13:34 +0000 (Mon, 27 Jan 2020) | 1 line
+[FIX][UX]Make admin setting links to point to the right section on admin page (https://gitlab.com/tikiwiki/tiki/merge_requests/178), Fixed uppercase, removed a link not related to the page it pointed to.
+----------------------------------------------
+r75347 | xorti | 2020-01-27 11:52:36 +0000 (Mon, 27 Jan 2020) | 2 lines
+[bp/r71361][bp/r75197][NEW] Add support to wikipluin_diagram to parse wiki syntax inside diagrams
+----------------------------------------------
+r75342 | chibaguy | 2020-01-27 06:43:47 +0000 (Mon, 27 Jan 2020) | 1 line
+[FIX][UI] Replace table class on fieldset instances with the specific margin and width classes to get the same layout but without the table background color that was misapplied in some themes.
+----------------------------------------------
+r75339 | rjsmelo | 2020-01-27 02:11:27 +0000 (Mon, 27 Jan 2020) | 2 lines
+[bp/r70837] Partial backport of r70837 (fix for PHP fatal error)
+----------------------------------------------
+r75313 | b.sfez | 2020-01-23 11:17:21 +0000 (Thu, 23 Jan 2020) | 1 line
+[TRA]Fixing translation issue with numerical values translated as they shouldn't be and added some missing strings.
+----------------------------------------------
+r75311 | pom2ter | 2020-01-22 23:37:53 +0000 (Wed, 22 Jan 2020) | 1 line
+[bp/r75310][FIX] heading-link didnt break properly
+----------------------------------------------
+r75305 | xorti | 2020-01-21 23:26:26 +0000 (Tue, 21 Jan 2020) | 2 lines
+[bp/r70743][bp/r73846][ENH] Add scripts and gitlab scheduled pipeline to update vendor_bundled dependencies
+----------------------------------------------
+r75304 | montefuscolo | 2020-01-21 17:06:54 +0000 (Tue, 21 Jan 2020) | 1 line
+[UPD] Converse.JS to version 5.0.5
+----------------------------------------------
+r75303 | luci | 2020-01-18 19:21:16 +0000 (Sat, 18 Jan 2020) | 1 line
+[TRA] fixed some translation-standards occurences reported by https://gitlab.com/tikiwiki/tiki/-/jobs/407711064
+----------------------------------------------
+r75302 | luci | 2020-01-18 19:21:16 +0000 (Sat, 18 Jan 2020) | 1 line
+Simple error page: remove unnecessary white space
+----------------------------------------------
+r75301 | luci | 2020-01-18 19:21:16 +0000 (Sat, 18 Jan 2020) | 1 line
+[FIX] Simple error page: remove superfluous value from the login form
+----------------------------------------------
+r75295 | pom2ter | 2020-01-17 01:43:27 +0000 (Fri, 17 Jan 2020) | 1 line
+[bp/r75294][FIX] cypht: conflicts with webmail css and other modules css
+----------------------------------------------
+r75285 | robertokir | 2020-01-16 17:41:51 +0000 (Thu, 16 Jan 2020) | 1 line
+[FIX] List Plugin: When tracker field not editable (i.e., readonly) to a group: instead of showing message "Error: Read only field "f_99"", show field content, readonly.
+----------------------------------------------
+r75282 | drsassafras | 2020-01-16 14:45:29 +0000 (Thu, 16 Jan 2020) | 1 line
+[DOC] Tell a Friend - Now Deprecated
+----------------------------------------------
+r75251 | robertokir | 2020-01-15 13:38:56 +0000 (Wed, 15 Jan 2020) | 1 line
+[FIX][UI] Wiki page delete: add {TR} to the Create Redirect help popover
+----------------------------------------------
+r75250 | alexandre2908 | 2020-01-15 13:38:56 +0000 (Wed, 15 Jan 2020) | 3 lines
+[FIX][UI] Wiki Page rename: fix help popup on create redirect when renaming a wiki page
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/241)
+----------------------------------------------
+r75249 | adrienmaloba | 2020-01-15 13:38:56 +0000 (Wed, 15 Jan 2020) | 3 lines
+[ENH] Trackers: Files field type: picking file gallery: show hierarchy of galleries and sub-galleries
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/245)
+----------------------------------------------
+r75248 | jonnybradley | 2020-01-15 13:38:56 +0000 (Wed, 15 Jan 2020) | 1 line
+[FIX] filegals: Show the parent gallery when searching by file identifier, hopefully without upsetting anything else (this all so needs refactoring/rewriting)
+----------------------------------------------
+r75239 | pom2ter | 2020-01-14 22:58:20 +0000 (Tue, 14 Jan 2020) | 1 line
+[bp/r75238][FIX] added more width to the tracker popups
+----------------------------------------------
+r75232 | alexandre2908 | 2020-01-10 10:23:16 +0000 (Fri, 10 Jan 2020) | 3 lines
+[FIX] fixing the layout issue of the popup on create redirect when trying to delete a wiki page
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/240)
+----------------------------------------------
+r75229 | jonnybradley | 2020-01-07 11:56:11 +0000 (Tue, 07 Jan 2020) | 1 line
+[FIX] codemirror: No more mysql in codemirror (if there ever was), use sql instead
+----------------------------------------------
+r75227 | rjsmelo | 2020-01-04 22:46:45 +0000 (Sat, 04 Jan 2020) | 3 lines
+[ENH] Review all password inputs and all preferences of type password to present the correct autocomplete tag (avoiding undesired autocomplete)
+[FIX] Fix desactive_login_autocomplete preference implementation so that the browser do no auto-autocomplete the username and password in the login form
+----------------------------------------------
+r75225 | jonnybradley | 2020-01-02 21:33:58 +0000 (Thu, 02 Jan 2020) | 1 line
+[ENH] charts: Second version of a template to generate charts from elasticsearch aggregations (aka facets) - allows access to all chart.js properties
+----------------------------------------------
+r75221 | chibaguy | 2020-01-02 11:54:52 +0000 (Thu, 02 Jan 2020) | 1 line
+[FIX][UI] Update My Account "More" dropdown to Bootstrap 4 (resolves color contrast problem).
+----------------------------------------------
+r75219 | chibaguy | 2020-01-02 09:40:44 +0000 (Thu, 02 Jan 2020) | 1 line
+[FIX][UI] On site-closed page, use more standard natural language for button label - Log in (capitalized and two words) - which also matches normal login form.
+----------------------------------------------
+r75214 | chibaguy | 2019-12-31 10:05:55 +0000 (Tue, 31 Dec 2019) | 1 line
+[FIX][UI] In top module zone, navbar color and background color should apply only to the navbar and not to the whole module zone. The zone still gets a class change depending on the color option that the theme can use for styling if desired. (luci advocated this earlier, and I finally came around to agree ;-).)
+----------------------------------------------
+r75207 | lindonb | 2019-12-24 03:57:40 +0000 (Tue, 24 Dec 2019) | 1 line
+[FIX] page history: make sure history_pagesize and history_offset parameters are numeric and that show_all_versions is y or n
+----------------------------------------------
+r75205 | chibaguy | 2019-12-23 11:51:24 +0000 (Mon, 23 Dec 2019) | 1 line
+[FIX] Nested bg-dark elements had inconsistent background opacity, so inner one given transparent background.
+----------------------------------------------
+r75203 | chibaguy | 2019-12-23 10:56:43 +0000 (Mon, 23 Dec 2019) | 1 line
+[UI][FIX] Fix inconsistency in view blog and view blog post layout so same CSS can apply (contrast was bad in fivealive-lite).
+----------------------------------------------
+r75199 | lindonb | 2019-12-23 02:11:32 +0000 (Mon, 23 Dec 2019) | 1 line
+[FIX] Escape html special characters in the msg parameter.
+----------------------------------------------
+r75194 | guill.bout | 2019-12-18 11:12:50 +0000 (Wed, 18 Dec 2019) | 1 line
+[REF] convert spaces to tabs for a file
+----------------------------------------------
+r75193 | guill.bout | 2019-12-17 18:59:41 +0000 (Tue, 17 Dec 2019) | 1 line
+[ENH] add possibility to redirect to custom url when using modal with plugin button
+----------------------------------------------
+r75192 | guill.bout | 2019-12-17 18:59:41 +0000 (Tue, 17 Dec 2019) | 1 line
+[ENH] add possibility for custom data attributes in pluginbutton
+----------------------------------------------
+r75190 | xorti | 2019-12-16 17:21:52 +0000 (Mon, 16 Dec 2019) | 1 line
+[bp/r71311][FIX] Fix issue with SEFURL and Tokens when sharing pages and temporary users
+----------------------------------------------
+r75188 | jonnybradley | 2019-12-16 16:50:07 +0000 (Mon, 16 Dec 2019) | 1 line
+[FIX] modals: Only use the default three modals at the top level of the DOM body, because if there is another one in the wiki page or module the backdrop gets displayed over the plugin modal form
+----------------------------------------------
+r75186 | chibaguy | 2019-12-16 13:25:41 +0000 (Mon, 16 Dec 2019) | 1 line
+[UI][ENH] Update with Bootstrap classes, use font icons, improve table header text, etc.
+----------------------------------------------
+r75183 | pom2ter | 2019-12-12 03:12:57 +0000 (Thu, 12 Dec 2019) | 1 line
+[bp/r75182][FIX] mobile: layout of the banner nav buttons
+----------------------------------------------
+r75180 | pom2ter | 2019-12-12 00:28:12 +0000 (Thu, 12 Dec 2019) | 1 line
+[bp/r75179][FIX] mobile: add new child page popup was too short on mobile
+----------------------------------------------
+r75178 | pom2ter | 2019-12-11 22:58:58 +0000 (Wed, 11 Dec 2019) | 1 line
+[bp/r75177][FIX] mobile: manage translation popup was too big on mobile
+----------------------------------------------
+r75175 | jonnybradley | 2019-12-11 20:22:43 +0000 (Wed, 11 Dec 2019) | 2 lines
+[FIX] images: GD lib resize wasn't working on transparent gifs any more (not sure how it ever did, but 18.x seems ok)
+Tested on gifs, 8 and 32 bit pngs and jpegs
+----------------------------------------------
+r75174 | robertokir | 2019-12-11 18:44:32 +0000 (Wed, 11 Dec 2019) | 2 lines
+[FIX] Avoid NOTICE (E_NOTICE): Undefined index
+(A better fix now, thanks jonnyb)
+----------------------------------------------
+r75173 | robertokir | 2019-12-11 17:43:13 +0000 (Wed, 11 Dec 2019) | 1 line
+[FIX] Avoid NOTICE (E_NOTICE): Undefined index
+----------------------------------------------
+r75170 | jonnybradley | 2019-12-11 14:32:01 +0000 (Wed, 11 Dec 2019) | 1 line
+[FIX] updates: Process objects in batches in 20171123_create_object_links to avoid fatal out of memory WSoD on large sites (even 900 articles breaks this) and reduce the batch size to 100 in 20171121_create_plugin_include_relations for similar reasons
+----------------------------------------------
+r75169 | jonnybradley | 2019-12-11 14:22:22 +0000 (Wed, 11 Dec 2019) | 1 line
+[FIX] git: Add local multitiki dirs to gitignore
+----------------------------------------------
+r75168 | pom2ter | 2019-12-11 00:25:21 +0000 (Wed, 11 Dec 2019) | 1 line
+[bp/r75167][FIX] mobile: layout fix for calendar events
+----------------------------------------------
+r75166 | pom2ter | 2019-12-10 22:54:59 +0000 (Tue, 10 Dec 2019) | 1 line
+[bp/r75165][FIX] mobile: layout fix for calendar events
+----------------------------------------------
+r75164 | kroky6 | 2019-12-10 16:36:30 +0000 (Tue, 10 Dec 2019) | 1 line
+[bp/r75163] [FIX] pdfjs embedded viewer no longer allowed wiki attachments and other absolute url sources of pdfs which used to allow in the old iframe implementaiton
+----------------------------------------------
+r75161 | b.sfez | 2019-12-10 16:13:05 +0000 (Tue, 10 Dec 2019) | 1 line
+[TRA]Missing translation in hebrew
+----------------------------------------------
+r75154 | pom2ter | 2019-12-10 01:08:39 +0000 (Tue, 10 Dec 2019) | 1 line
+[bp/r75153][FIX] mobile: layout of tabular tracker nav buttons
+----------------------------------------------
+r75152 | pom2ter | 2019-12-09 23:34:05 +0000 (Mon, 09 Dec 2019) | 1 line
+[bp/r75151][FIX] mobile: checkbox field on top of submit button
+----------------------------------------------
+r75150 | pom2ter | 2019-12-09 21:36:03 +0000 (Mon, 09 Dec 2019) | 1 line
+[UPD] cypht: update cypht main css
+----------------------------------------------
+r75146 | jonnybradley | 2019-12-09 11:22:24 +0000 (Mon, 09 Dec 2019) | 2 lines
+[FIX] trackers: Remove duplicated div.form-group opening tag (without a closing tag), Possibly dating back to a merge mix-up in d3d339ff
+Although i think this DANGER "warning" notice shouldn't be there at all if using a custom template, should it?
+----------------------------------------------
+r75118 | rjsmelo | 2019-12-07 08:01:54 +0000 (Sat, 07 Dec 2019) | 2 lines
+[ENH] Make Report String in DB respecting the system configuration and do not display hidden preferences
+----------------------------------------------
+r75117 | kroky6 | 2019-12-06 11:37:29 +0000 (Fri, 06 Dec 2019) | 1 line
+[bp/r75116] [FIX] search formatter unit tests does not have _SERVER variables defined
+----------------------------------------------
+r75114 | pom2ter | 2019-12-06 02:06:19 +0000 (Fri, 06 Dec 2019) | 1 line
+[bp/r75113][FIX] mobile: missing form-group class to the socialnetworks form
+----------------------------------------------
+r75112 | pom2ter | 2019-12-06 00:15:10 +0000 (Fri, 06 Dec 2019) | 1 line
+[FIX] mobile: layout fix for the user contacts preference page
+----------------------------------------------
+r75111 | jonnybradley | 2019-12-05 23:45:08 +0000 (Thu, 05 Dec 2019) | 20 lines
+[UPD] automatic composer updates (hopefully fixes ongoing symfony/polyfill-mbstring weirdness):
+  - Updating symfony/polyfill-ctype (v1.13.0 => v1.13.1)
+  - Updating symfony/filesystem (v4.4.0 => v4.4.1)
+  - Updating symfony/config (v3.4.35 => v3.4.36)
+  - Updating symfony/polyfill-mbstring (v1.13.0 => v1.13.1):
+The package has modified files:
+    D README.md
+    D composer.json
+    Discard changes [y,n,v,d,s,?]? y
+ Checking out 7b4aab9743
+  - Updating symfony/debug (v4.4.0 => v4.4.1)
+  - Updating symfony/console (v3.4.35 => v3.4.36)
+  - Updating symfony/dependency-injection (v3.4.35 => v3.4.36)
+  - Updating symfony/finder (v4.4.0 => v4.4.1)
+  - Updating symfony/process (v3.4.35 => v3.4.36)
+  - Updating symfony/yaml (v3.4.35 => v3.4.36)
+  - Updating zendframework/zend-http (2.10.0 => 2.11.1)
+  - Updating squizlabs/php_codesniffer (3.5.2 => 3.5.3)
+  - Updating pear/archive_tar (1.4.8 => 1.4.9)
+  - Updating symfony/css-selector (v4.4.0 => v4.4.1)
+----------------------------------------------
+r75104 | pom2ter | 2019-12-05 23:02:46 +0000 (Thu, 05 Dec 2019) | 1 line
+[bp/r75103][FIX] cypht: adjustments to the mobile homepage
+----------------------------------------------
+r75098 | pom2ter | 2019-12-05 02:39:50 +0000 (Thu, 05 Dec 2019) | 1 line
+[bp/r75096][bp/r75097][FIX] mobile: improve layout of the user messages pages
+----------------------------------------------
+r75087 | pom2ter | 2019-12-04 02:09:36 +0000 (Wed, 04 Dec 2019) | 1 line
+[bp/r75086][FIX] mobile: layout fix on the send a message form
+----------------------------------------------
+r75085 | pom2ter | 2019-12-04 00:40:59 +0000 (Wed, 04 Dec 2019) | 1 line
+[bp/r75084][FIX] mobile: file galleries syntax tips outside of container
+----------------------------------------------
+r74876 | pom2ter | 2019-12-03 23:20:04 +0000 (Tue, 03 Dec 2019) | 1 line
+[bp/r74870][FIX] mobile: layout fix for file galleries display settings
+----------------------------------------------
+r74417 | pom2ter | 2019-12-03 22:11:27 +0000 (Tue, 03 Dec 2019) | 1 line
+[UPD] cypht: updated cypht js
+----------------------------------------------
+r73861 | jonnybradley | 2019-12-03 17:35:18 +0000 (Tue, 03 Dec 2019) | 1 line
+[FIX] contact: Add recaptcha's response back into the filters on contact form
+----------------------------------------------
+r73860 | kroky6 | 2019-12-03 09:13:39 +0000 (Tue, 03 Dec 2019) | 1 line
+[bp/r73859] [FIX] Webmail Handler profile updated to work with Cypht - necessary module handlers added in Tiki-Cypht integration to be able to upload a Tiki file in compose screen and redirect to a specific page after email is sent
+----------------------------------------------
+r73851 | chibaguy | 2019-12-02 13:31:54 +0000 (Mon, 02 Dec 2019) | 1 line
+[UI][ENH] More organized way to specify FiveAlive-lite top and topbar module zone colors, and more robust for cases where custom code might change the layout. Also improve blog post heading colors.
+----------------------------------------------
+r73850 | chibaguy | 2019-12-02 11:09:49 +0000 (Mon, 02 Dec 2019) | 1 line
+[UI][FIX] Basic Bootstrap (social) layout's topbar module zone was missing the w-100 class to force 100% width of parent div.
+----------------------------------------------
+r73848 | rjsmelo | 2019-12-01 19:56:58 +0000 (Sun, 01 Dec 2019) | 2 lines
+[FIX] Current object was not properly detected for tracker items. Replace the current object detection by the more robust implementation in Tiki\Sections.
+----------------------------------------------
+r73282 | pom2ter | 2019-11-29 22:26:04 +0000 (Fri, 29 Nov 2019) | 1 line
+[bp/r73277][FIX] mobile: more layout fix to file properties and metadata page
+----------------------------------------------
+r72647 | pom2ter | 2019-11-29 20:57:00 +0000 (Fri, 29 Nov 2019) | 1 line
+[bp/r72641][FIX] mobile: better layout for file galleries page view
+----------------------------------------------
+r71670 | jonnybradley | 2019-11-29 11:58:59 +0000 (Fri, 29 Nov 2019) | 1 line
+[FIX] cypht modules seem to get replaced with CRLF linefeed versions when running composer update (not sure why), so committing them this time
+----------------------------------------------
+r71668 | jonnybradley | 2019-11-29 11:52:55 +0000 (Fri, 29 Nov 2019) | 20 lines
+[UPD] automatic composer updates (some weirdness with symfony/polyfill-mbstring but seems to have worked):
+  - Updating adodb/adodb-php (v5.20.14 => v5.20.15)
+  - Updating pear/console_getopt (v1.4.2 => v1.4.3)
+  - Updating pear/pear (v1.10.9 => v1.10.10): Loading from cache
+  - Updating plotly/plotly.js (v1.51.1 => v1.51.2)
+  - Updating symfony/finder (v4.3.8 => v4.4.0)
+  - Updating symfony/debug (v4.3.8 => v4.4.0)
+  - Updating symfony/polyfill-mbstring (v1.12.0 => v1.13.0): Downloading (0%)    Authentication required (composer.tiki.org):
+      Username:
+      Password:
+Downloading (0%)    Update failed (Invalid credentials for 'https://composer.tiki.org/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-7b4aab9743c30be783b73de055d24a39cf4b954f-zip-ea1380.zip', aborting.)
+    Would you like to try reinstalling the package instead [yes]?
+  - Removing symfony/polyfill-mbstring (v1.12.0)
+  - Installing symfony/polyfill-mbstring (v1.13.0): Downloading (0%)    Failed to download symfony/polyfill-mbstring from dist: Invalid credentials for 'https://composer.tiki.org/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-7b4aab9743c30be783b73de055d24a39cf4b954f-zip-ea1380.zip', aborting.
+    Now trying to download from source
+  - Installing symfony/polyfill-mbstring (v1.13.0): Cloning 7b4aab9743 from cache
+  - Updating symfony/polyfill-ctype (v1.12.0 => v1.13.0)
+  - Updating symfony/filesystem (v4.3.8 => v4.4.0)
+  - Updating symfony/css-selector (v4.3.8 => v4.4.0)
+  - Updating webmozart/assert (1.5.0 => 1.6.0): Downloading (100%)
+----------------------------------------------
+r71667 | robertokir | 2019-11-29 11:37:20 +0000 (Fri, 29 Nov 2019) | 1 line
+[REF] A few adjustments as per https://dev.tiki.org/DevTips#PHP_coding_habits
+----------------------------------------------
+r71666 | adrienmaloba | 2019-11-29 11:37:20 +0000 (Fri, 29 Nov 2019) | 1 line
+[REF] Use TABs instead of SPACEs
+----------------------------------------------
+r71665 | adrienmaloba | 2019-11-29 11:35:04 +0000 (Fri, 29 Nov 2019) | 1 line
+[ENH] PluginDiagram: Show galleries, sub-galleries hierarchically
+----------------------------------------------
+r71664 | pom2ter | 2019-11-29 00:55:19 +0000 (Fri, 29 Nov 2019) | 1 line
+[bp/r71663][FIX] mobile: child page option for structures was outside of container
+----------------------------------------------
+r71662 | pom2ter | 2019-11-28 23:36:50 +0000 (Thu, 28 Nov 2019) | 1 line
+[bp/r71661][FIX] mobile: breadcrumbs overlap with add page form
+----------------------------------------------
+r71660 | kroky6 | 2019-11-28 10:42:02 +0000 (Thu, 28 Nov 2019) | 1 line
+[bp/r71659] [FIX] math subtotal: trim group value to prevent duplicates
+----------------------------------------------
+r71658 | kroky6 | 2019-11-28 10:22:44 +0000 (Thu, 28 Nov 2019) | 1 line
+[bp/r71657] [FIX] list execute duplicate of editable filters when action is executed
+----------------------------------------------
+r71656 | kroky6 | 2019-11-28 08:00:38 +0000 (Thu, 28 Nov 2019) | 1 line
+[bp/r71655] [FIX] list plugin editable filters did not preserve values during pagination when tablesorter was off
+----------------------------------------------
+r71646 | jonnybradley | 2019-11-27 18:03:21 +0000 (Wed, 27 Nov 2019) | 1 line
+[FIX] popovers: Try again to prevent large popups from obscuring the link you need to click on - consider the scrollTop (oops) and set the "boundary" for the popover to be the whole window (as since responsive tables that has been the table as the default is scrollParent)
+----------------------------------------------
+r71643 | jonnybradley | 2019-11-27 17:22:49 +0000 (Wed, 27 Nov 2019) | 1 line
+[FIX] popovers: Try and prevent large popups (on tracker items for instance) from obscuring the link you need to click on
+----------------------------------------------
+r71640 | chibaguy | 2019-11-27 15:37:54 +0000 (Wed, 27 Nov 2019) | 1 line
+[UI][FIX] Make FiveAlive-lite top and topbar module zone and menu background colors the same. Also fix forum post heading color. Thanks, luci.
+----------------------------------------------
+r71638 | b.sfez | 2019-11-27 13:54:21 +0000 (Wed, 27 Nov 2019) | 1 line
+[TRA] More missing hebrew translations
+----------------------------------------------
+r71637 | b.sfez | 2019-11-27 12:06:11 +0000 (Wed, 27 Nov 2019) | 1 line
+[FIX][TRA] Added missing tr tags, removed the target parameter to the link to the page that control the user avatar. There is no reason to open several pages while staying in Tiki.
+----------------------------------------------
+r71636 | b.sfez | 2019-11-27 12:03:51 +0000 (Wed, 27 Nov 2019) | 1 line
+[TRA]Missing hebrew translations
+----------------------------------------------
+r71635 | b.sfez | 2019-11-27 11:49:41 +0000 (Wed, 27 Nov 2019) | 1 line
+[FIX][TRA] Added missing tr tag around tracker so they can be translatable
+----------------------------------------------
+r71633 | pom2ter | 2019-11-27 03:44:05 +0000 (Wed, 27 Nov 2019) | 1 line
+[bp/r71632][FIX] switching language in installer did nothing because of a missing dependancy
+----------------------------------------------
+r71629 | pom2ter | 2019-11-27 02:15:13 +0000 (Wed, 27 Nov 2019) | 1 line
+[FIX] mobile: layout fix for first step of the installer
+----------------------------------------------
+r71624 | jonnybradley | 2019-11-26 10:35:33 +0000 (Tue, 26 Nov 2019) | 1 line
+[FIX] modules: Pick up modId properly when clicking on the module in the assigned modules tables following action menu changes
+----------------------------------------------
+r71619 | pom2ter | 2019-11-26 03:31:42 +0000 (Tue, 26 Nov 2019) | 1 line
+[bp/r71618][FIX] mobile: layout fix for the tiki installer
+----------------------------------------------
+r71615 | pom2ter | 2019-11-25 23:47:41 +0000 (Mon, 25 Nov 2019) | 1 line
+[bp/r71614][FIX] tiki-installer: buttons overlapping on the last step of the installer
+----------------------------------------------
+r71612 | lyabs243 | 2019-11-25 19:14:04 +0000 (Mon, 25 Nov 2019) | 3 lines
+[FIX] Trackers: Prevent Fatal Error on calling a member from a null object; Handle an error message when a tracker item is not found
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/186)
+----------------------------------------------
+r71611 | lyabs243 | 2019-11-25 19:07:17 +0000 (Mon, 25 Nov 2019) | 1 line
+Preventing Fatal Error on calling a member from a null object
+----------------------------------------------
+r71608 | guill.bout | 2019-11-25 13:32:15 +0000 (Mon, 25 Nov 2019) | 3 lines
+[BP/MR207] fix customsearch dropdown where label of zero would become option value
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/208)
+----------------------------------------------
+r71603 | chibaguy | 2019-11-25 11:09:52 +0000 (Mon, 25 Nov 2019) | 1 line
+[UI][FIX] Compile FiveAlive and FiveAlive-lite child theme dropdown colors from variables for better palette consistency.
+----------------------------------------------
+r71596 | lindonb | 2019-11-23 23:02:47 +0000 (Sat, 23 Nov 2019) | 1 line
+[bp/r71216][FIX] When there are more then one feedback sent via ajax, the text was being all made the same.
+----------------------------------------------
+r71594 | lindonb | 2019-11-23 22:34:25 +0000 (Sat, 23 Nov 2019) | 1 line
+[FIX] feedback: remove (hopefully) unnecessary trim logic to avoid multiple feedback messages getting mashed together (thanks Jonny!)
+----------------------------------------------
+r71592 | lindonb | 2019-11-23 14:58:56 +0000 (Sat, 23 Nov 2019) | 1 line
+[DOC] admin groups: update documentation to reflect last commit
+----------------------------------------------
+r71591 | lindonb | 2019-11-23 14:55:50 +0000 (Sat, 23 Nov 2019) | 1 line
+[FIX] admin groups: return to group listing after modifying a group
+----------------------------------------------
+r71589 | rjsmelo | 2019-11-23 09:29:36 +0000 (Sat, 23 Nov 2019) | 2 lines
+[NEW] Enable scheduler items to be run only once, they will self disable after the run starts
+----------------------------------------------
+r71581 | pom2ter | 2019-11-22 03:07:33 +0000 (Fri, 22 Nov 2019) | 1 line
+[bp/r71580][FIX] mobile: layout fix for menu quicklinks
+----------------------------------------------
+r71578 | pom2ter | 2019-11-22 01:35:32 +0000 (Fri, 22 Nov 2019) | 1 line
+[bp/r71576][FIX] clicking on the default menu options brought you to the top of the page
+----------------------------------------------
+r71574 | montefuscolo | 2019-11-21 19:31:20 +0000 (Thu, 21 Nov 2019) | 7 lines
+[bp/r71545][FIX] Group home was not being respected after login
+(cherry picked from commit d7599d073aacb9057df2c593f9472cb5c004c2f8)
+[bp/r71550][FIX] Regex for url scheme when detecting home page
+(cherry picked from commit 9f5164e51788bcee671a69db67e9fb3f67a78e83)
+----------------------------------------------
+r71568 | lyabs243 | 2019-11-21 18:37:43 +0000 (Thu, 21 Nov 2019) | 3 lines
+[FIX] Comment anchor bring to the right comment
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/194)
+----------------------------------------------
+r71565 | jonnybradley | 2019-11-21 17:49:56 +0000 (Thu, 21 Nov 2019) | 1 line
+[ENH] webservices: Add Authorization Header method to Content Authentication (managed on tiki-admin_dsn.php) to allow web services to more providers, for example Yelp
+----------------------------------------------
+r71564 | jonnybradley | 2019-11-21 15:36:36 +0000 (Thu, 21 Nov 2019) | 1 line
+[FIX] money: Warn about missing intl extension in money_format (which is used by the Currency Tracker field type) - should address wish7125 (thanks Xavi)
+----------------------------------------------
+r71563 | b.sfez | 2019-11-21 14:00:45 +0000 (Thu, 21 Nov 2019) | 1 line
+[FIX]Unnecessary translation breaking in some case the value displayed in the tracker field type dropdown. (thanks Marc)
+----------------------------------------------
+r71561 | chibaguy | 2019-11-21 12:59:31 +0000 (Thu, 21 Nov 2019) | 1 line
+[UI][FIX] Make FiveAlive background colors (.bg-info, etc.) more similar to the theme color palettes using SCSS to generate color variants. Variable added to control color of post titles.
+----------------------------------------------
+r71559 | chibaguy | 2019-11-21 11:01:02 +0000 (Thu, 21 Nov 2019) | 1 line
+[UI][FIX] Make Fivealive-lite background colors (.bg-info, etc.) more similar to the theme color palettes using SCSS to generate color variants.
+----------------------------------------------
+r71557 | chibaguy | 2019-11-21 07:41:28 +0000 (Thu, 21 Nov 2019) | 1 line
+[UI][FIX] Correct button class to fix color contrast problem. Thanks, Marc.
+----------------------------------------------
+r71555 | pom2ter | 2019-11-21 01:26:04 +0000 (Thu, 21 Nov 2019) | 1 line
+[bp/r71554][FIX] mobile: some admin modules text overlapped
+----------------------------------------------
+r71552 | pom2ter | 2019-11-20 23:29:29 +0000 (Wed, 20 Nov 2019) | 1 line
+[bp/r71551][FIX] mobile: missing padding in some sections of the admin panel
+----------------------------------------------
+r71547 | jonnybradley | 2019-11-20 19:18:10 +0000 (Wed, 20 Nov 2019) | 1 line
+[ENH] convene: Add locked and autolock params to plugin convene, as discussed (for ages) - probably needs polish but basically works (for me)
+----------------------------------------------
+r71546 | jonnybradley | 2019-11-20 18:13:09 +0000 (Wed, 20 Nov 2019) | 1 line
+[FIX] Use the right picker on datetime filtered plugin parameters
+----------------------------------------------
+r71543 | amnabilal | 2019-11-20 05:19:42 +0000 (Wed, 20 Nov 2019) | 1 line
+[FIX] "rem" font-size support added in mPDF, removed check to replace "rem" to "em" size unit. mPDF do not support font-weight in units or bolder, added enforcement for b/strong tag, in case its redefined in theme CSS.
+----------------------------------------------
+r71542 | jonnybradley | 2019-11-19 17:44:13 +0000 (Tue, 19 Nov 2019) | 1 line
+[FIX] Allow Let's Encrypt validation when .htaccess is being used
+----------------------------------------------
+r71541 | jonnybradley | 2019-11-19 17:44:13 +0000 (Tue, 19 Nov 2019) | 26 lines
+[UPD] auto-updates
+  - Updating league/commonmark (1.0.0 => 1.1.1)
+  - Updating nolimits4web/swiper (v4.5.1 => v4.5.3)
+  - Updating npm-asset/chartjs-color (2.4.0 => 2.4.1)
+  - Updating npm-asset/chart.js (2.8.0 => 2.9.3)
+  - Updating npm-asset/popper.js (1.15.0 => 1.16.0)
+  - Updating plotly/plotly.js (v1.49.5 => v1.51.1)
+  - Updating symfony/filesystem (v4.3.5 => v4.3.8)
+  - Updating symfony/config (v3.4.32 => v3.4.35)
+  - Updating symfony/dependency-injection (v3.4.32 => v3.4.35)
+  - Updating symfony/finder (v4.3.5 => v4.3.8)
+  - Updating symfony/process (v3.4.32 => v3.4.35)
+  - Updating symfony/css-selector (v4.3.5 => v4.3.8)
+  - Updating tijsverkoyen/css-to-inline-styles (2.2.1 => 2.2.2)
+  - Updating zendframework/zend-ldap (2.10.0 => 2.10.1)
+  - Updating zendframework/zend-mime (2.7.1 => 2.7.2)
+  - Updating zendframework/zend-session (2.9.0 => 2.9.1)
+  - Updating zendframework/zend-validator (2.12.1 => 2.12.2)
+  - Updating guzzlehttp/guzzle (6.3.3 => 6.4.1)
+  - Updating pear/archive_tar (1.4.7 => 1.4.8)
+  - Updating zendframework/zend-server (2.8.0 => 2.8.1)
+  - Updating psr/log (1.1.0 => 1.1.2)
+  - Updating symfony/debug (v4.3.5 => v4.3.8)
+  - Updating symfony/yaml (v3.4.32 => v3.4.35)
+  - Updating symfony/console (v3.4.32 => v3.4.35)
+  - Updating components/jquery (3.3.1 => 3.4.1)
+----------------------------------------------
+r71537 | jonnybradley | 2019-11-19 15:57:24 +0000 (Tue, 19 Nov 2019) | 1 line
+[FIX] trackers: Translate field names in info boxes and gallery names in the icon picker, also clean up the sub-galleries list and restore the default green jigsaw icon for new items (could be something better?) - thanks Cartograf
+----------------------------------------------
+r71532 | chibaguy | 2019-11-19 09:33:51 +0000 (Tue, 19 Nov 2019) | 1 line
+[UI][FIX] Strengthen rule to force center column to full width in mobile view, when its contents are narrow.
+----------------------------------------------
+r71530 | b.sfez | 2019-11-19 09:21:20 +0000 (Tue, 19 Nov 2019) | 1 line
+[FIX]In certain conditions (several multilingual setting) those wrongly smarty tr tags into php while prevent the admin pages to load (blank page).
+----------------------------------------------
+r71520 | lyabs243 | 2019-11-18 12:02:00 +0000 (Mon, 18 Nov 2019) | 5 lines
+[bp/r71041][ENH] Change order of operations in unified search
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/165)
+(cherry picked from commit a73892ba3b514fcac88b1c78311718b5c21c2229)
+----------------------------------------------
+r71518 | lindonb | 2019-11-18 01:27:46 +0000 (Mon, 18 Nov 2019) | 1 line
+[FIX] Use refresh method with new $strip parameter to improve page refreshes after actions for forums and groups; fix bug that kept last user in a csv file from being imported into a group; provide feedback after importing users into a group; make changes to services utilities to make use of new strip parameter for the refresh method to correspond to changes in tiki-confirm.js
+----------------------------------------------
+r71517 | lindonb | 2019-11-18 01:25:17 +0000 (Mon, 18 Nov 2019) | 1 line
+[ENH] Allow for ability to strip the url anchor or query and anchor when refreshing a page after an ajax service action confirmation so that, for example, the correct tab is shown upon refresh.
+----------------------------------------------
+r71516 | amnabilal | 2019-11-17 13:00:35 +0000 (Sun, 17 Nov 2019) | 1 line
+[bp/r71515][FIX]CSS attribute "bolder" is not supported by mPDF, replaced with "bold" while including theme CSS file.
+----------------------------------------------
+r71513 | lindonb | 2019-11-17 04:21:36 +0000 (Sun, 17 Nov 2019) | 1 line
+[REF] Remove unnecessary anchor parameters
+----------------------------------------------
+r71511 | lindonb | 2019-11-17 03:06:57 +0000 (Sun, 17 Nov 2019) | 1 line
+[REF] Remove unnecessary anchor
+----------------------------------------------
+r71510 | lindonb | 2019-11-17 03:06:13 +0000 (Sun, 17 Nov 2019) | 1 line
+[FIX] Faulty compare of window location to redirect url was causing page to not reload properly in some cases when using Services_Utilities::redirect (thanks Jonny for reporting!)
+----------------------------------------------
+r71508 | jonnybradley | 2019-11-16 13:33:45 +0000 (Sat, 16 Nov 2019) | 1 line
+[FIX] federation: $foreignQuery needs to be a clone of the original $query so the UrlPrefixTransform doesn't get applied to the local results as well
+----------------------------------------------
+r71507 | nkoth | 2019-11-16 12:48:15 +0000 (Sat, 16 Nov 2019) | 3 lines
+[ENH] Allow searching by _index as a field (useful in federated search situations)
+(cherry picked from commit 9b30ea5613e016cab973c73f7669d4993c74b53f)
+----------------------------------------------
+r71506 | nkoth | 2019-11-16 12:43:46 +0000 (Sat, 16 Nov 2019) | 3 lines
+[ENH] Make it possible for LIST plugin to use federated search
+(cherry picked from commit f1ce47eb7628c12cc12fee91da49179484de72ee)
+----------------------------------------------
+r71505 | jonnybradley | 2019-11-16 12:43:00 +0000 (Sat, 16 Nov 2019) | 1 line
+Merge remote-tracking branch 'origin/20.x' into 20.x
+----------------------------------------------
+r71499 | pom2ter | 2019-11-16 00:01:41 +0000 (Sat, 16 Nov 2019) | 1 line
+[FIX] mobile: better calendar template layout for mobile
+----------------------------------------------
+r71493 | luci | 2019-11-14 14:27:41 +0000 (Thu, 14 Nov 2019) | 5 lines
+Merge branch 'cherry-pick-3bc2c51c' into '20.x'
+[bp/r71490][FIX] Trackers: currency field is not usable in inline edit mode (edited the parent class of currency field to take more space and changed border to be visible)
+See merge request tikiwiki/tiki!200
+----------------------------------------------
+r71482 | kroky6 | 2019-11-13 10:48:56 +0000 (Wed, 13 Nov 2019) | 1 line
+[bp/r71481] [FIX] wikiplugin archivebuilder fix to work with underlying file subsystem, so it can properly access file contents no matter where they are stored
+----------------------------------------------
+r71479 | pom2ter | 2019-11-13 03:11:34 +0000 (Wed, 13 Nov 2019) | 1 line
+[bp/r71478][FIX] mobile: narrow column when adding/editing calendar events
+----------------------------------------------
+r71477 | pom2ter | 2019-11-13 00:10:40 +0000 (Wed, 13 Nov 2019) | 1 line
+[bp/r71476][FIX] mobile: disabling large table data wrap from calendars
+----------------------------------------------
+r71472 | pom2ter | 2019-11-12 01:48:26 +0000 (Tue, 12 Nov 2019) | 1 line
+[bp/r71471][FIX] mobile: change threshold for activating the large table data wrap
+----------------------------------------------
+r71470 | pom2ter | 2019-11-12 00:23:47 +0000 (Tue, 12 Nov 2019) | 1 line
+[bp/r71469][FIX] layout fix when creating/editing contacts
+----------------------------------------------
+r71468 | pom2ter | 2019-11-11 22:09:57 +0000 (Mon, 11 Nov 2019) | 1 line
+[bp/r71467][ENH] added webmail link to tiki contacts, if webmail is enabled
+----------------------------------------------
+r71463 | chibaguy | 2019-11-11 10:42:12 +0000 (Mon, 11 Nov 2019) | 1 line
+[UI][FIX] Second try, with correct CSS selector - Remove -15px margins on div.row when a direct child of div.wikitext, to prevent a horizontal scrollbar; this enables page sections with full-width backgrounds (no 15px side margins), containing a full-width normal Bootstrap grid.
+----------------------------------------------
+r71461 | chibaguy | 2019-11-10 16:03:13 +0000 (Sun, 10 Nov 2019) | 1 line
+[UI][FIX] Remove -15px margins on div.row when a direct child of div.wikitext, to prevent a horizontal scrollbar; this enables page sections with full-width backgrounds (no 15px side margins), containing a full-width normal Bootstrap grid.
+----------------------------------------------
+r71459 | lindonb | 2019-11-10 01:42:29 +0000 (Sun, 10 Nov 2019) | 1 line
+[FIX] Don't throw errors through ajax here since the page will not refresh and the new account won't be shown. Should also fix any garbled feedback (although I wasn't able to recreate this issue)
+----------------------------------------------
+r71453 | nkoth | 2019-11-09 05:19:27 +0000 (Sat, 09 Nov 2019) | 2 lines
+[bp/r71452] login_allow_email pref was not being obeyed (was always possible)
+----------------------------------------------
+r71450 | nkoth | 2019-11-09 04:39:50 +0000 (Sat, 09 Nov 2019) | 2 lines
+[bp/r71449][FIX] Users with @ in their user name cannot log in to Intertiki master
+----------------------------------------------
+r71448 | pom2ter | 2019-11-09 03:03:09 +0000 (Sat, 09 Nov 2019) | 1 line
+[bp/r71447][FIX] mobile: layout fix for tiki logs
+----------------------------------------------
+r71445 | pom2ter | 2019-11-08 03:16:46 +0000 (Fri, 08 Nov 2019) | 1 line
+[bp/r71444][FIX] some article topic images were bigger than the container
+----------------------------------------------
+r71442 | pom2ter | 2019-11-08 00:24:46 +0000 (Fri, 08 Nov 2019) | 1 line
+[bp/r71441][FIX] wrong menu displayed when clicking the article actions button
+----------------------------------------------
+r71437 | chibaguy | 2019-11-07 17:18:02 +0000 (Thu, 07 Nov 2019) | 1 line
+[UI][FIX] Make labels and descriptions closer to Tiki standard terminology; also, add a parameter to remove side margins on full-width containers, so background images or colors can go the full width of the page.
+----------------------------------------------
+r71434 | kroky6 | 2019-11-07 05:35:49 +0000 (Thu, 07 Nov 2019) | 1 line
+[bp/r71433] [FIX] cypht integration: imap pagination, sorting and possibly other missing pieces due to incomplete ajax url
+----------------------------------------------
+r71432 | pom2ter | 2019-11-07 03:05:55 +0000 (Thu, 07 Nov 2019) | 1 line
+[bp/r71431][FIX] mobile: layout fix for user bookmarks template
+----------------------------------------------
+r71430 | pom2ter | 2019-11-07 00:36:04 +0000 (Thu, 07 Nov 2019) | 1 line
+[bp/r71429][FIX] mobile: page contribution layout didnt fit screen width
+----------------------------------------------
+r71428 | pom2ter | 2019-11-06 23:44:24 +0000 (Wed, 06 Nov 2019) | 1 line
+[bp/r71427][FIX] scss compiler error because of missing file
+----------------------------------------------
+r71425 | nkoth | 2019-11-06 21:27:03 +0000 (Wed, 06 Nov 2019) | 2 lines
+[bp/r71424][FIX] Prevent error when AND or OR blank value. Also, prevent stopword failure with AND on uppercase search terms.
+----------------------------------------------
+r71420 | jonnybradley | 2019-11-06 09:06:00 +0000 (Wed, 06 Nov 2019) | 1 line
+[FIX] search: A basic fix for new ManifoldCF federated search connections - it got us past some fatal errors but not 100% certain the whole feature is working
+----------------------------------------------
+r71419 | pom2ter | 2019-11-06 02:26:39 +0000 (Wed, 06 Nov 2019) | 1 line
+[bp/r71418][FIX] mobile: layout fix for the edit translation template
+----------------------------------------------
+r71417 | pom2ter | 2019-11-05 23:44:24 +0000 (Tue, 05 Nov 2019) | 1 line
+[bp/r71416][FIX] mobile: layout fix when looking at a wikipage source/history
+----------------------------------------------
+r71415 | pom2ter | 2019-11-05 22:48:03 +0000 (Tue, 05 Nov 2019) | 1 line
+[bp/r71414][FIX] incorrect alert box when successfully sharing a page
+----------------------------------------------
+r71412 | rjsmelo | 2019-11-05 22:06:07 +0000 (Tue, 05 Nov 2019) | 2 lines
+[ENH] Check that the profile was loaded without errors before trying to apply.
+----------------------------------------------
+r71410 | drsassafras | 2019-11-05 20:42:02 +0000 (Tue, 05 Nov 2019) | 1 line
+automerge test
+----------------------------------------------
+r71405 | chibaguy | 2019-11-05 11:03:14 +0000 (Tue, 05 Nov 2019) | 1 line
+[UI][FIX][NEW] Make FiveAlive buttons more similar to the theme color palettes. SCSS files added to generate button color variants easily in child themes. Extended to enable gradient button backgrounds.
+----------------------------------------------
+r71403 | chibaguy | 2019-11-04 16:01:33 +0000 (Mon, 04 Nov 2019) | 1 line
+[UI][FIX][NEW] Make Fivealive-lite buttons more similar to the theme color palettes. SCSS files added to generate button color variants easily in child themes. (Previous commit missed these files.)
+----------------------------------------------
+r71400 | chibaguy | 2019-11-04 04:18:56 +0000 (Mon, 04 Nov 2019) | 1 line
+[UI][FIX] The content of a div.card, especially one that has a div.card-header, should be in a div.card-body (fixes problem of no padding in content outside of the div.alert). Also, the alert class for "Information" should be alert-info.
+----------------------------------------------
+r71399 | nkoth | 2019-11-03 16:59:23 +0000 (Sun, 03 Nov 2019) | 2 lines
+[bp/r71398][FIX] Regression sometime after Tiki 18, when you try and change the properties of a file in the file gallery without adding a new file, the old file will be replaced with an empty file.
+----------------------------------------------
+r71396 | jonnybradley | 2019-11-03 10:02:20 +0000 (Sun, 03 Nov 2019) | 1 line
+[ENH] trackers: Use colorbox to view previews of image files in Files fields if enabled (thanks michaelfinko)
+----------------------------------------------
+r71395 | jonnybradley | 2019-11-03 09:10:51 +0000 (Sun, 03 Nov 2019) | 5 lines
+[FIX] mailin: Various
+* Don't clear out the password if it's not being set
+* Test the account after making the changes (so non-functioning accounts can be saved if necessary)
+* Add a note that the account name needs to be the account "from" email address
+* Catch various errors rather than leaving a WSoD
+----------------------------------------------
+r71393 | chibaguy | 2019-11-02 15:45:24 +0000 (Sat, 02 Nov 2019) | 1 line
+[UI][FIX][NEW] Make Fivealive-lite buttons more similar to the theme color palettes. SCSS files added to generate button color variants easily in child themes.
+----------------------------------------------
+r71391 | jonnybradley | 2019-11-02 07:27:14 +0000 (Sat, 02 Nov 2019) | 1 line
+[FIX] mailin: Observe anonymous allowed on wiki put action attachments
+----------------------------------------------
+r71387 | jonnybradley | 2019-11-01 02:24:33 +0000 (Fri, 01 Nov 2019) | 1 line
+[FIX] login: Lightweight workaround for the issue where a new user's change password fails and they don't know the original password set by the admin. This just displays a link so they can request a reset.
+----------------------------------------------
+r71385 | pom2ter | 2019-11-01 00:59:38 +0000 (Fri, 01 Nov 2019) | 1 line
+[bp/r71384][FIX] mobile: fix positioning of checkbox column on tables
+----------------------------------------------
+r71382 | pom2ter | 2019-10-31 23:16:51 +0000 (Thu, 31 Oct 2019) | 1 line
+[bp/r71381][FIX] mobile: remove extra non-braking space from table
+----------------------------------------------
+r71380 | pom2ter | 2019-10-31 21:48:53 +0000 (Thu, 31 Oct 2019) | 1 line
+[bp/r71379][FIX] mobile: tables with footers were overflowing
+----------------------------------------------
+r71378 | luciash | 2019-10-31 18:28:22 +0000 (Thu, 31 Oct 2019) | 1 line
+[ENH][UI][UX] Bootstrapify ...page... syntax navigation a bit
+----------------------------------------------
+r71377 | luciash | 2019-10-31 18:05:47 +0000 (Thu, 31 Oct 2019) | 1 line
+[ENH][UI][UX] PluginConvene: add missing Bootstrap class
+----------------------------------------------
+r71376 | luciash | 2019-10-31 17:34:48 +0000 (Thu, 31 Oct 2019) | 1 line
+[ENH][UI][UX] PluginConvene: more consistency and better alignment of the elements for better looks + fix the parent() references because it is wrapped in two more divs now
+----------------------------------------------
+r71374 | luciash | 2019-10-31 15:18:28 +0000 (Thu, 31 Oct 2019) | 1 line
+[ENH] PluginConvene: consistency on the button tooltips
+----------------------------------------------
+r71372 | luciash | 2019-10-31 15:00:22 +0000 (Thu, 31 Oct 2019) | 1 line
+[ENH] PluginConvene: UI/UX enhancements
+----------------------------------------------
+r71371 | luciash | 2019-10-31 14:31:09 +0000 (Thu, 31 Oct 2019) | 1 line
+ran php get_strings.php
+----------------------------------------------
+r71370 | luciash | 2019-10-31 13:37:10 +0000 (Thu, 31 Oct 2019) | 1 line
+just a little typo fix
+----------------------------------------------
+r71369 | xorti | 2019-10-31 13:14:12 +0000 (Thu, 31 Oct 2019) | 5 lines
+[bp/r71368][ENH] Log media-alchemyst exceptions to actionlog
+- Include exception message in error if user is admin.
+- Fix issue in error display that was not being stored in session
+----------------------------------------------
+r71367 | xorti | 2019-10-31 12:39:21 +0000 (Thu, 31 Oct 2019) | 1 line
+[bp/r71366][ENH] Remove trackers preview button when using legacy mode
+----------------------------------------------
+r71365 | pom2ter | 2019-10-31 02:06:56 +0000 (Thu, 31 Oct 2019) | 1 line
+[bp/r71364][FIX] mobile: some checkbox fields were partially hidden
+----------------------------------------------
+r71363 | pom2ter | 2019-10-30 23:51:43 +0000 (Wed, 30 Oct 2019) | 1 line
+[bp/r71362][FIX] mobile: compare page history layout fix
+----------------------------------------------
+r71358 | jonnybradley | 2019-10-30 10:48:23 +0000 (Wed, 30 Oct 2019) | 1 line
+[FIX] trackers: Fix prefill feature on create new tabular format by skipping fields that cannot be exported and issuing a warning (also fix bs4 checkbox class)
+----------------------------------------------
+r71356 | jonnybradley | 2019-10-30 08:12:49 +0000 (Wed, 30 Oct 2019) | 1 line
+[FIX] profiles: Convert PHP warnings on missing Tracker Item Field values into Feedback notes or warnings, depending on the Field type (possibly more types to add)
+----------------------------------------------
+r71355 | jonnybradley | 2019-10-30 08:01:05 +0000 (Wed, 30 Oct 2019) | 1 line
+[FIX] console: Display all the feedback items, not just the first one (not sure why this is nested in an array called "default" anyway?)
+----------------------------------------------
+r71353 | jonnybradley | 2019-10-30 06:47:14 +0000 (Wed, 30 Oct 2019) | 1 line
+[ENH] search: Extend date facets to DateTime Tracker Fields, and add a format param for date_histogram labels (using strftime formatting)
+----------------------------------------------
+r71352 | jonnybradley | 2019-10-30 04:05:59 +0000 (Wed, 30 Oct 2019) | 1 line
+[FIX] search: Only get category facet list once
+----------------------------------------------
+r71351 | jonnybradley | 2019-10-30 04:04:02 +0000 (Wed, 30 Oct 2019) | 1 line
+[FIX] profiles: Get the file contents from the filesystem (or where ever) if no database content found
+----------------------------------------------
+r71350 | chibaguy | 2019-10-30 02:38:31 +0000 (Wed, 30 Oct 2019) | 1 line
+[UI][FIX] Strasa theme and options - Fix color contrast problems, remove obsolete rules and update rules in options, move Cool image files into images directory, etc.
+----------------------------------------------
+r71349 | pom2ter | 2019-10-30 00:18:07 +0000 (Wed, 30 Oct 2019) | 1 line
+[bp/r71348][FIX] mobile: better layout for large tables for wiki page history
+----------------------------------------------
+r71347 | pom2ter | 2019-10-29 22:27:39 +0000 (Tue, 29 Oct 2019) | 1 line
+[bp/r71346][FIX] mobile: large table wrap improvements
+----------------------------------------------
+r71345 | pom2ter | 2019-10-29 21:15:21 +0000 (Tue, 29 Oct 2019) | 1 line
+[bp/r71344][FIX] tracker filter dropdown was hidden under next section
+----------------------------------------------
+r71343 | jyhem | 2019-10-29 14:43:24 +0000 (Tue, 29 Oct 2019) | 1 line
+Typo
+----------------------------------------------
+r71341 | chibaguy | 2019-10-29 07:26:09 +0000 (Tue, 29 Oct 2019) | 1 line
+[KIL] Delete copies of Strasa Cool theme option images that were misplaced outside of images directory.
+----------------------------------------------
+r71337 | chibaguy | 2019-10-28 11:59:21 +0000 (Mon, 28 Oct 2019) | 1 line
+[UI][FIX] Button class wasn't updated to Bootstrap 4.
+----------------------------------------------
+r71336 | jonnybradley | 2019-10-28 07:14:54 +0000 (Mon, 28 Oct 2019) | 1 line
+[FIX] revert r71335 committed accidentally (apologies)
+----------------------------------------------
+r71335 | jonnybradley | 2019-10-28 01:47:56 +0000 (Mon, 28 Oct 2019) | 1 line
+101028 unified_incremental_update_count not needed it seems
+----------------------------------------------
+r71333 | nkoth | 2019-10-26 04:43:55 +0100 (Sat, 26 Oct 2019) | 2 lines
+[bp/r71332][FIX] Custom error message was not showing for categories and multiselect field
+----------------------------------------------
+r71328 | nkoth | 2019-10-25 05:59:03 +0100 (Fri, 25 Oct 2019) | 2 lines
+[bp/r71327][FIX] When you are editing using wysiwyg plugin and refresh the page without pressing cancel or save, to allow back in and not show "Another member is editing"
+----------------------------------------------
+r71326 | pom2ter | 2019-10-25 03:57:50 +0100 (Fri, 25 Oct 2019) | 1 line
+[bp/r71325][FIX] mobile: improvements in layout of large table data
+----------------------------------------------
+r71318 | pom2ter | 2019-10-24 03:32:59 +0100 (Thu, 24 Oct 2019) | 1 line
+[bp/r71317][FIX] tracker status dropdown field had 2 sets of icons on top of each other
+----------------------------------------------
+r71316 | pom2ter | 2019-10-23 23:53:27 +0100 (Wed, 23 Oct 2019) | 1 line
+[bp/r71315][FIX] mobile: delete icon for tracker files wasnt aligned properly
+----------------------------------------------
+r71314 | Bsfez | 2019-10-23 20:54:08 +0100 (Wed, 23 Oct 2019) | 1 line
+[TRA] Hebrew translation
+----------------------------------------------
+r71313 | robertokir | 2019-10-23 20:50:18 +0100 (Wed, 23 Oct 2019) | 3 lines
+[bp/r71312][UX] A more useful error message
+(cherry picked from commit 82ee8bd33e4136f44865f39b490adbb6809c3c5c)
+----------------------------------------------
+r71309 | chibaguy | 2019-10-23 15:09:42 +0100 (Wed, 23 Oct 2019) | 1 line
+[UI][FIX] Improve btn-info and btn-info disabled colors, and btn-secondary color.
+----------------------------------------------
+r71307 | kroky6 | 2019-10-23 14:31:16 +0100 (Wed, 23 Oct 2019) | 1 line
+[bp/r71306] [FIX] add missing 'dropdown with Other' values in the filter
+----------------------------------------------
+r71304 | drsassafras | 2019-10-23 14:15:38 +0100 (Wed, 23 Oct 2019) | 1 line
+[FIX] - favicons - Missing files and permissions (thanks luci)
+----------------------------------------------
+r71303 | kroky6 | 2019-10-23 13:18:59 +0100 (Wed, 23 Oct 2019) | 1 line
+[bp/r71301] [FIX] relation field formatting fix when same items participates in different relations
+----------------------------------------------
+r71297 | montefuscolo | 2019-10-23 09:30:26 +0100 (Wed, 23 Oct 2019) | 1 line
+Merge remote-tracking branch 'gitlab/20.x' into 20.x
+----------------------------------------------
+r71290 | pom2ter | 2019-10-23 04:18:36 +0100 (Wed, 23 Oct 2019) | 1 line
+[bp/r71289][FIX] tracker datetime field selectors were too much spread out
+----------------------------------------------
+r71288 | jonnybradley | 2019-10-23 04:01:46 +0100 (Wed, 23 Oct 2019) | 1 line
+[FIX] plugins: Regression from r70992 made the textarea control panel not save-able, apologies, my bad - temporary fix for now, better to come...
+----------------------------------------------
+r71287 | pom2ter | 2019-10-23 01:49:25 +0100 (Wed, 23 Oct 2019) | 1 line
+[bp/r71285][bp/r71286][FIX] mobile: fixed table wrap toggle with multiple tables on same page
+----------------------------------------------
+r71283 | nkoth | 2019-10-22 17:22:21 +0100 (Tue, 22 Oct 2019) | 2 lines
+[bp/r71282][FIX] If you set wysiwyg:n in profile it creates it as wysiwyg=y (which is wrong)
+----------------------------------------------
+r71280 | chibaguy | 2019-10-22 09:19:03 +0100 (Tue, 22 Oct 2019) | 1 line
+[UI][FIX] Reduce the width of the search form to a more-standard size, to improve the UI design. (No need for the form to be the full width of the page, to input a short search term.)
+----------------------------------------------
+r71277 | guill.bout | 2019-10-22 05:26:09 +0100 (Tue, 22 Oct 2019) | 6 lines
+[bp/r71276][ENH] Add autopopulation of select in customsearch for tracker field dropdown
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/177)
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/184)
+(cherry picked from commit 7c4095a95e60c9bba0bcd8691d80314d57276130)
+----------------------------------------------
+r71274 | drsassafras | 2019-10-21 17:45:54 +0100 (Mon, 21 Oct 2019) | 1 line
+[FIX] favicons - Also work with default Tiki icons
+----------------------------------------------
+r71272 | drsassafras | 2019-10-21 17:19:46 +0100 (Mon, 21 Oct 2019) | 3 lines
+[FIX][ENH] favicons - * add support for the new manifest file name
+* Add support for new microsoft views
+* Update favicons looks to be slightly enlarged for better viewing
+----------------------------------------------
+r71270 | chibaguy | 2019-10-21 17:00:33 +0100 (Mon, 21 Oct 2019) | 1 line
+[UI][FIX] Blog post "Read more" link should be inside div.card-body rather than between .card-body and .card-footer.
+----------------------------------------------
+r71266 | chibaguy | 2019-10-21 12:08:37 +0100 (Mon, 21 Oct 2019) | 1 line
+[UI][FIX] The log-in submit button should be btn-primary, not btn-secondary, because it makes a significant change (in user state).
+----------------------------------------------
+r71264 | jonnybradley | 2019-10-21 11:57:45 +0100 (Mon, 21 Oct 2019) | 1 line
+[FIX] validation: If the firstError element is not in a form-group then use a table row to scroll to if there is one (for pretty tracker forms, for instance)
+----------------------------------------------
+r71260 | rjsmelo | 2019-10-19 22:12:09 +0100 (Sat, 19 Oct 2019) | 2 lines
+[bp/r71220][bp/r71221][bp/r71258][FIX] Under certain conditions (perspectives and areas active, no session) tiki goes into a redirect loop
+----------------------------------------------
+r71254 | nkoth | 2019-10-18 17:27:36 +0100 (Fri, 18 Oct 2019) | 2 lines
+[bp/r71253][FIX] In Elasticsearch, when performing a wildcard search on a text field you need to use lowercase, otherwise it won't match, see https://discuss.elastic.co/t/wildcard-search-case-insensitive/122337
+----------------------------------------------
+r71251 | pom2ter | 2019-10-18 03:09:15 +0100 (Fri, 18 Oct 2019) | 1 line
+[bp/r71249][bp/r71250][FIX] mobile: improvments for large table data wrap
+----------------------------------------------
+r71247 | pom2ter | 2019-10-17 22:27:32 +0100 (Thu, 17 Oct 2019) | 1 line
+[bp/r71246][FIX] trackers: tracker header field wasnt working properly when use as a plugin
+----------------------------------------------
+r71241 | chibaguy | 2019-10-17 17:34:07 +0100 (Thu, 17 Oct 2019) | 1 line
+[FIX] The Look & Feel admin fixed-width pixel setting wasn't working because div.container's "max-width" needs to be specified rather than "width".
+----------------------------------------------
+r71240 | pom2ter | 2019-10-17 03:30:03 +0100 (Thu, 17 Oct 2019) | 1 line
+[bp/r71239][FIX] mobile: fixed some issues with long tables wrapping
+----------------------------------------------
+r71234 | chibaguy | 2019-10-16 12:50:35 +0100 (Wed, 16 Oct 2019) | 1 line
+[UI][FIX] Move div.blogactions out of h1.pagetitle so styles applied to .pagetitle aren't inherited by .blogactions.
+----------------------------------------------
+r71232 | jonnybradley | 2019-10-16 09:20:32 +0100 (Wed, 16 Oct 2019) | 1 line
+[FIX] menus: Change "added" class to "option-added" to avoid cosmetic conflict with "added" diff class
+----------------------------------------------
+r71229 | pom2ter | 2019-10-16 02:18:14 +0100 (Wed, 16 Oct 2019) | 1 line
+[bp/r71228][FIX] mobile: separation of the icon and image for tracker item files
+----------------------------------------------
+r71227 | pom2ter | 2019-10-16 01:32:02 +0100 (Wed, 16 Oct 2019) | 1 line
+[bp/r71226][FIX] mobile: icon and text were too close to each other for tracker item files
+----------------------------------------------
+r71218 | kroky6 | 2019-10-15 14:09:17 +0100 (Tue, 15 Oct 2019) | 1 line
+[bp/r71217] [FIX] listexecute editable filters not preserved after an action has been executed and another one is executed due to a mixup of the counters
+----------------------------------------------
+r71214 | jonnybradley | 2019-10-13 11:47:23 +0100 (Sun, 13 Oct 2019) | 1 line
+[UPD] Ran php71 temp/composer.phar update -d vendor_bundled --prefer-dist as the lock file was out of date - lots of libs updated (sorry, lost the list)
+----------------------------------------------
+r71213 | jonnybradley | 2019-10-13 07:32:43 +0100 (Sun, 13 Oct 2019) | 1 line
+[UI] recompile all themes to include flags highlight border colour
+----------------------------------------------
+r71212 | jonnybradley | 2019-10-13 07:31:14 +0100 (Sun, 13 Oct 2019) | 1 line
+[FIX] files: Disabling pointer events also prevents clicking on buttons such as the file browse button - need to find plan c (thanks marclaporte)
+----------------------------------------------
+r71203 | nkoth | 2019-10-11 15:30:25 +0100 (Fri, 11 Oct 2019) | 2 lines
+[bp/r71202][FIX] If you try and edit/reply comment and then click another edit/reply, the form closes ok but the replacement edit/reply link doesn't trigger js anymore as it's missing the right class.
+----------------------------------------------
+r71201 | pom2ter | 2019-10-11 02:08:25 +0100 (Fri, 11 Oct 2019) | 1 line
+[bp/r71200][FIX] cypht: fixing mobile, groupmail and jquery chosen
+----------------------------------------------
+r71196 | jonnybradley | 2019-10-10 18:04:37 +0100 (Thu, 10 Oct 2019) | 1 line
+[FIX][UI] lang: Improve flags appearance on module_switch_lang, modernise some smarty and fix missing global
+----------------------------------------------
+r71194 | jonnybradley | 2019-10-10 17:17:04 +0100 (Thu, 10 Oct 2019) | 1 line
+[FIX] lang: Make custom.js lang files work again (following r63968 but caused by r54754, so not totally my fault ;)
+----------------------------------------------
+r71193 | pom2ter | 2019-10-10 03:59:58 +0100 (Thu, 10 Oct 2019) | 1 line
+[bp/r71192][FIX] cypht: fixing some conflicts with jquery chosen
+----------------------------------------------
+r71191 | luciash | 2019-10-09 20:03:31 +0100 (Wed, 09 Oct 2019) | 2 lines
+fix a little regression (add back an empty line for better readability) caused by my previous commit
+----------------------------------------------
+r71190 | jonnybradley | 2019-10-09 19:44:45 +0100 (Wed, 09 Oct 2019) | 1 line
+[FIX][UI] files: Show feedback properly when dragging files over file-uploader divs
+----------------------------------------------
+r71189 | jonnybradley | 2019-10-09 15:56:00 +0100 (Wed, 09 Oct 2019) | 1 line
+[FIX][ENH] files: Fix and enhance Files field when not in "upload in modal" mode, mainly by making the dropzone visible without having to click a button (by using service_inline) and refactor unnecessarily duplicated code
+----------------------------------------------
+r71186 | pom2ter | 2019-10-09 01:35:08 +0100 (Wed, 09 Oct 2019) | 1 line
+[bp/r71185][FIX] mobile: transitions template layout corrections
+----------------------------------------------
+r71184 | pom2ter | 2019-10-08 23:07:55 +0100 (Tue, 08 Oct 2019) | 1 line
+[bp/r71183][FIX] mobile: action log large table wraps correctly
+----------------------------------------------
+r71181 | nkoth | 2019-10-08 21:57:28 +0100 (Tue, 08 Oct 2019) | 2 lines
+[bp/r71180][FIX] user item update after tracker item update not being triggered due to string value i.e. status in list of fields
+----------------------------------------------
+r71179 | luciash | 2019-10-08 19:42:57 +0100 (Tue, 08 Oct 2019) | 2 lines
+[FIX] Mail notifications: PHP Notice: Undefined index: mail_contributions in ...
+----------------------------------------------
+r71178 | luciash | 2019-10-08 19:28:40 +0100 (Tue, 08 Oct 2019) | 1 line
+[FIX][UX] PluginImg: remove duplicate thumb param zoombox option which depends on the jQuery Zoom feature enabled and is added to the dropdown select options later in the code
+----------------------------------------------
+r71174 | pom2ter | 2019-10-08 01:04:15 +0100 (Tue, 08 Oct 2019) | 1 line
+[FIX] cypht css update
+----------------------------------------------
+r71173 | pom2ter | 2019-10-08 01:01:10 +0100 (Tue, 08 Oct 2019) | 1 line
+[bp/r71172][ENH] mobile: large table data wrap now uses a toggle
+----------------------------------------------
+r71171 | jonnybradley | 2019-10-07 16:23:28 +0100 (Mon, 07 Oct 2019) | 1 line
+[FIX] plugintracker: Don't send the same email to the same address more than once (and fix a notice on emailformat param)
+----------------------------------------------
+r71170 | jonnybradley | 2019-10-07 16:12:40 +0100 (Mon, 07 Oct 2019) | 1 line
+[FIX] i18n: Make empty lang dropdown the same class as other page action dropdowns
+----------------------------------------------
+r71169 | kroky6 | 2019-10-07 14:14:50 +0100 (Mon, 07 Oct 2019) | 1 line
+[bp/r71168] [ENH] slight update of UserGroups tracker field - add search/filter capabilities
+----------------------------------------------
+r71165 | nkoth | 2019-10-05 19:15:19 +0100 (Sat, 05 Oct 2019) | 2 lines
+[bp/r71164][FIX] (1) File gallery was not being updated when mode: update was set. (2) init_files was not adding any new files on update. (3) file gallery was not being updated if a new name was provided.
+----------------------------------------------
+r71163 | kroky6 | 2019-10-04 16:17:39 +0100 (Fri, 04 Oct 2019) | 1 line
+[bp/r71162] [ENH] pivottable add wiki parameter 'split' to allow slicing multi-valued fields into individual values
+----------------------------------------------
+r71161 | kroky6 | 2019-10-04 15:11:54 +0100 (Fri, 04 Oct 2019) | 1 line
+[bp/r71160] [FIX] math subtotal reports: allow aggregate fields to be formulas as well
+----------------------------------------------
+r71157 | kroky6 | 2019-10-04 12:33:07 +0100 (Fri, 04 Oct 2019) | 1 line
+[bp/r71156] [FIX] allow subtotal aggregator to use the same fields with different aggregation functions
+----------------------------------------------
+r71154 | pom2ter | 2019-10-04 03:13:29 +0100 (Fri, 04 Oct 2019) | 1 line
+[FIX] anchor link is wrap with the heading text to prevent the anchor to line break
+----------------------------------------------
+r71153 | pom2ter | 2019-10-04 01:44:47 +0100 (Fri, 04 Oct 2019) | 1 line
+[FIX] mobile: make comments a little more readable
+----------------------------------------------
+r71151 | pom2ter | 2019-10-03 23:17:31 +0100 (Thu, 03 Oct 2019) | 1 line
+[FIX] tracker header field wasnt working properly while in edit mode
+----------------------------------------------
+r71149 | kroky6 | 2019-10-03 12:37:23 +0100 (Thu, 03 Oct 2019) | 1 line
+[bp/r71148] [FIX] missing relation field text format from search index when item was related to multiple objects and circular reference prevention code skipped the item label
+----------------------------------------------
+r71145 | pom2ter | 2019-10-03 01:22:44 +0100 (Thu, 03 Oct 2019) | 1 line
+[FIX] mobile: layout correction when tracker_legacy_insert is enabled
+----------------------------------------------
+r71141 | pom2ter | 2019-10-02 23:31:34 +0100 (Wed, 02 Oct 2019) | 1 line
+[FIX] tracker header field wasnt working properly
+----------------------------------------------
 Version 20.1
 <http://doc.tiki.org/Tiki20>
 ------------------
