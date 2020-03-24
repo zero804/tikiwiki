@@ -591,16 +591,21 @@ array_unshift(
 		'staticKeyFilters' => [
 			'menu' => 'striptags',
 			'cat_categorize' => 'alpha',
-			'tabs' => 'striptags',
-			'javascript_enabled' => 'alpha',
-			$prefs['cookie_consent_name'] => 'alpha',
 			'mobile_mode' => 'alpha',
 			'categ' => 'striptags',
-			'local_tz' => 'text',
 			'preview' => 'text',
 			'rbox' => 'text',
 			'ticket' => 'alnumdash',
-			'daconfirm' => 'alpha'
+			'confirmForm' => 'alpha',
+			//cookie
+			$prefs['cookie_consent_name'] => 'alnum',
+			'javascript_enabled' => 'alnum',
+			'local_tz' => 'text',
+			'local_tzoffset' => 'int',
+			'PHPSESSID' => 'alnum',
+			'PHPSESSIDCV' => 'striptags',
+			'tabs' => 'striptags',
+			'XDEBUG_SESSION' => 'digits'
 		],
 		'staticKeyFiltersForArrays' => [
 			'cat_managed' => 'digits',

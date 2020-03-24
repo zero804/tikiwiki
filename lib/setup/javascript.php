@@ -53,8 +53,8 @@ if (empty($javascript_enabled_detect) && $feature_no_cookie) {
 } elseif ($prefs['javascript_enabled'] === '' && $prefs['disableJavascript'] != 'y' && $javascript_enabled_detect < 3) {
 	// Set the cookie to 'y', through javascript - expires: approx. 1 year
 	$prefs['javascript_enabled'] = 'y';											// temporarily enable to we output the test js
-	$plus_one_year = $tikilib->now + 365 * 24 * 3600;
-	$headerlib->add_js("setCookieBrowser('javascript_enabled', 'y', '', new Date({$plus_one_year}000));", 0);		// setCookieBrowser does not use the tiki_cookie_jar
+	$plus_one_year = ($tikilib->now + 365 * 24 * 3600) * 1000;		// ms
+	$headerlib->add_js("setCookieBrowser('javascript_enabled', '{$plus_one_year}', '', new Date({$plus_one_year}));", 0);		// setCookieBrowser does not use the tiki_cookie_jar
 
 	if (strpos($_SERVER['PHP_SELF'], 'tiki-download') === false &&
 			strpos($_SERVER['PHP_SELF'], 'tiki-ajax_services.php') === false &&
