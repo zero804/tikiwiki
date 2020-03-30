@@ -413,7 +413,7 @@ class TikiLib extends TikiDb_Bridge
 			$parts = explode('?', $relative, 2);
 			$relative = $parts[0];
 
-			if ($relative{0} === '/') {
+			if ($relative[0] === '/') {
 				$uri->setPath($relative);
 			} else {
 				$path = dirname($uri->getPath());
@@ -1922,7 +1922,7 @@ class TikiLib extends TikiDb_Bridge
 		$r = '';
 		for ($i = 0; $i < $length; $i++) {
 			$ch = $list[$i % count($list)];
-			$r .= $ch{rand(0, strlen($ch) - 1)};
+			$r .= $ch[rand(0, strlen($ch) - 1)];
 		}
 		return $r;
 	}
@@ -5144,7 +5144,7 @@ class TikiLib extends TikiDb_Bridge
 	{
 		$cant = 0;
 		$i = 0;
-		while (($i < strlen($str)) && (isset($str{$i})) && ($str{$i} == $car)) {
+		while (($i < strlen($str)) && (isset($str[$i])) && ($str[$i] == $car)) {
 			$i++;
 			$cant++;
 		}
@@ -6445,7 +6445,7 @@ class TikiLib extends TikiDb_Bridge
 	{
 		$val = trim($val);
 		$bytes = (int) $val;
-		$lastCharacter = strtolower($val{strlen($val) - 1});
+		$lastCharacter = strtolower($val[strlen($val) - 1]);
 		$units = ['k' => 1, 'm' => 2, 'g' => 3];
 		if (array_key_exists($lastCharacter, $units)) {
 			$bytes = $bytes * (1024 ** $units[$lastCharacter]);
