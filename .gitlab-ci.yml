@@ -180,6 +180,7 @@ sensiolabs-vendor-bundled-security-check:
       - $SCHEDULER == "vendor_check"
 
 update_vendor_bundled_dependencies:
+  image: rjsmelo/ubuntu-php:5.6-qa
   stage: vendors_update
   dependencies:
     - composer
