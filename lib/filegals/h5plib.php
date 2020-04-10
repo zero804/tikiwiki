@@ -463,7 +463,7 @@ class H5PLib
 			'controller' => 'h5p',
 			'action' => 'embed',
 			'fileId' => $content['file_id'],
-		], $smarty);
+		], $smarty->getEmptyInternalTemplate());
 
 		// Getting author's user id
 		$userId = TikiLib::lib('tiki')->get_user_id($user);

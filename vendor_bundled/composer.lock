@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "22f985e915c206d52940fdfd91a652a5",
+    "content-hash": "fbf588e4e521289200f9d54dffdca39b",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -2878,20 +2878,23 @@
         },
         {
             "name": "smarty/smarty",
-            "version": "v3.1.21",
+            "version": "v3.1.34",
             "source": {
                 "type": "git",
                 "url": "https://github.com/smarty-php/smarty.git",
-                "reference": "1f878e6d746ecc8ec8d00d9c75044cf7d23ad94a"
+                "reference": "c9f0de05f41b9e52798b268ab1e625fac3b8578c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/smarty/smarty/smarty-smarty-1f878e6d746ecc8ec8d00d9c75044cf7d23ad94a-zip-13a9f0.zip",
-                "reference": "1f878e6d746ecc8ec8d00d9c75044cf7d23ad94a",
-                "shasum": "faa114f47ad5a30ef6b68e10bc3a59a2b1238d03"
+                "url": "https://composer.tiki.org/dist/smarty/smarty/smarty-smarty-c9f0de05f41b9e52798b268ab1e625fac3b8578c-zip-f29c63.zip",
+                "reference": "c9f0de05f41b9e52798b268ab1e625fac3b8578c",
+                "shasum": "6beb75c1ff2fef41aef8bcb58ae8017aa1d2603f"
             },
             "require": {
                 "php": ">=5.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "6.4.1"
             },
             "type": "library",
             "extra": {
@@ -2901,9 +2904,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "libs/Smarty.class.php",
-                    "libs/SmartyBC.class.php",
-                    "libs/sysplugins/smarty_security.php"
+                    "libs/"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2929,7 +2930,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-10-31T04:22:20+00:00"
+            "time": "2019-02-28T06:42:20+00:00"
         },
         {
             "name": "sorich87/bootstrap-tour",

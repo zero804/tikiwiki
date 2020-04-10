@@ -67,8 +67,8 @@ JQ
 			if ($trackerPerms->edit == true) {
 				$smarty = TikiLib::lib('smarty');
 				$smarty->loadPlugin('smarty_function_icon');
-				$pencilicon = smarty_function_icon(['name' => 'pencil'], $smarty);
-				$deleteicon = smarty_function_icon(['name' => 'delete'], $smarty);
+				$pencilicon = smarty_function_icon(['name' => 'pencil'], $smarty->getEmptyInternalTemplate());
+				$deleteicon = smarty_function_icon(['name' => 'delete'], $smarty->getEmptyInternalTemplate());
 				TikiLib::lib('header')
 					->add_jsfile('lib/jquery_tiki/tiki-trackers.js')
 					->add_jq_onready(
@@ -235,8 +235,8 @@ JQ
 		$questions = json_encode($questions);
 		$smarty = TikiLib::lib('smarty');
 		$smarty->loadPlugin('smarty_function_icon');
-		$pencilicon = smarty_function_icon(['name' => 'pencil'], $smarty);
-		$deleteicon = smarty_function_icon(['name' => 'delete'], $smarty);
+		$pencilicon = smarty_function_icon(['name' => 'pencil'], $smarty->getEmptyInternalTemplate());
+		$deleteicon = smarty_function_icon(['name' => 'delete'], $smarty->getEmptyInternalTemplate());
 
 		TikiLib::lib('header')
 			->add_jq_onready(

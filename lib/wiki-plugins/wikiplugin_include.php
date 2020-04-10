@@ -255,7 +255,7 @@ function wikiplugin_include($dataIn, $params)
         $wikilib = TikiLib::lib('wiki');
 	    $text .= '<p><a href="'.$wikilib->sefurl($page).'" class="btn btn-default"';
         $text .= 'title="'.sprintf(tr('The text above comes from page "%s". Click to go to that page'), $page).'">';
-        $text .= smarty_function_icon(['name' => 'align-left'], $smarty).' ';
+        $text .= smarty_function_icon(['name' => 'align-left'], $smarty->getEmptyInternalTemplate()).' ';
         $text .= tr($linkoriginal_text);
         $text .= '</a><p>';
 	}
@@ -271,7 +271,7 @@ function wikiplugin_include($dataIn, $params)
 			if (empty($_REQUEST['display']) || $_REQUEST['display'] != 'pdf') {
 				$text .= '<a class="editplugin tips" ' . // ironically smarty_block_self_link doesn't work for this! ;)
 				smarty_block_ajax_href(['template' => 'tiki-editpage.tpl'], 'tiki-editpage.php?page=' . urlencode($page) . '&returnto=' . urlencode($returnto), $smarty, $tmp = false) . '>' .
-				smarty_function_icon([ '_id' => 'page_edit', 'title' => $tip, 'class' => 'icon tips'], $smarty) . '</a>';
+				smarty_function_icon([ '_id' => 'page_edit', 'title' => $tip, 'class' => 'icon tips'], $smarty->getEmptyInternalTemplate()) . '</a>';
 			}
 		}
 	}

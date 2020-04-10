@@ -81,7 +81,7 @@ class WikiParser_PluginOutput
 			$smarty->loadPlugin('smarty_modifier_escape');
 			$content .= '<form method="post" action="tiki-admin.php">';
 			foreach ($preferences as $pref) {
-				$content .= smarty_function_preference(['name' => $pref], $smarty);
+				$content .= smarty_function_preference(['name' => $pref], $smarty->getEmptyInternalTemplate());
 			}
 			$access = Tikilib::lib('access');
 			$check = $access->check_authenticity(null, false);

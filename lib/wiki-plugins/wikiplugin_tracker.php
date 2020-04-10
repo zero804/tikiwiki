@@ -1721,7 +1721,7 @@ function wikiplugin_tracker($data, $params)
 			}
 			if (isset($field_errors['err_outputwiki'])) {
 				$smarty->loadPlugin('smarty_function_icon');
-				$icon = smarty_function_icon(['name' => 'warning'], $smarty);
+				$icon = smarty_function_icon(['name' => 'warning'], $smarty->getEmptyInternalTemplate());
 				$back .= '<div class="alert alert-warning">' . $icon . ' ';
 				$back .= $field_errors['err_outputwiki'];
 				$back .= '</div><br />';
@@ -2107,7 +2107,7 @@ function wikiplugin_tracker($data, $params)
 
 		if ($datepicker) {
 			$smarty->loadPlugin('smarty_function_js_insert_icon');
-			$back .= smarty_function_js_insert_icon(['type' => "jscalendar"], $smarty);
+			$back .= smarty_function_js_insert_icon(['type' => "jscalendar"], $smarty->getEmptyInternalTemplate());
 		}
 
 		if (! empty($tpl)) {

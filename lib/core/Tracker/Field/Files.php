@@ -465,12 +465,12 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 				foreach ($this->getConfiguration('files') as $fileId => $file) {
 					$ret .= '<li>';
 					if ($prefs['vimeo_upload'] == 'y' && $this->getOption('displayMode') == 'vimeo') {
-						$ret .= smarty_function_icon(['name' => 'vimeo'], $smarty);
+						$ret .= smarty_function_icon(['name' => 'vimeo'], $smarty->getEmptyInternalTemplate());
 					} else {
 						$ret .= smarty_modifier_iconify('tiki-download_file.php?fileId=' . $fileId, $file['filetype'], $fileId, 2);
 					}
 
-					$ret .= smarty_function_object_link(['type' => 'file', 'id' => $fileId, 'title' => $file['name']], $smarty);
+					$ret .= smarty_function_object_link(['type' => 'file', 'id' => $fileId, 'title' => $file['name']], $smarty->getEmptyInternalTemplate());
 
 					$globalperms = Perms::get([ 'type' => 'file gallery', 'object' => $galleryId ]);
 
@@ -483,7 +483,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 						$file['filetype'] == $mimetypes["tiff"])
 					) {
 						$smarty->loadPlugin('smarty_function_icon');
-						$editicon = smarty_function_icon(['name' => 'edit'], $smarty);
+						$editicon = smarty_function_icon(['name' => 'edit'], $smarty->getEmptyInternalTemplate());
 						$ret .= " <a href='tiki-edit_draw.php?fileId=" . $file['fileId']
 							. "' onclick='return $(this).ajaxEditDraw();' class='tips' title='Edit: " . $file['name']
 							. "' data-fileid='" . $file['fileId'] . "' data-galleryid='" . $galleryId . "'>
@@ -492,7 +492,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 					}
 
 					$smarty->loadPlugin('smarty_function_icon');
-					$viewicon = smarty_function_icon(['name' => 'view'], $smarty);
+					$viewicon = smarty_function_icon(['name' => 'view'], $smarty->getEmptyInternalTemplate());
 
 					$src = smarty_modifier_sefurl($file['fileId'], 'display');
 					$ret .= " <a href='" . $src . "' target='_blank' class='tips' title='Preview: " . $file['filename'] . "'>

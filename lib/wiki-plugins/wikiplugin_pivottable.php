@@ -580,7 +580,7 @@ function wikiplugin_pivottable($data, $params)
 					'id' => $row['object_id'],
 					'title' => $title,
 				],
-				$smarty
+				$smarty->getEmptyInternalTemplate()
 			);
 		}
 	} else {

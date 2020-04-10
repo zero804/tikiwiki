@@ -270,7 +270,7 @@ EOF;
 			$button_params = ['_text' => tra("Edit Sheet"), '_script' => "tiki-view_sheets.php?sheetId=$id&parse=edit$urlHeight&page=$page", '_class' => "tiki_sheeteditbtn"];
 		}
 
-		$ret .= smarty_function_button($button_params, $smarty);
+		$ret .= smarty_function_button($button_params, $smarty->getEmptyInternalTemplate());
 	}
 	return '~np~' . $ret . '~/np~';
 }

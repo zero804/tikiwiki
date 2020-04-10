@@ -139,6 +139,6 @@ ini_set('display_errors', 'on');
 error_reporting(CUSTOM_ERROR_LEVEL);
 
 // This code avoids unit tests to fail on deprecated errors
-if (version_compare(phpversion(), '7.1', '>')) {
+if (version_compare(phpversion(), '7.2', '>')) {
 	PHPUnit_Framework_Error_Deprecated::$enabled = false;
 }

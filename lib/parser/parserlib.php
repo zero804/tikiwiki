@@ -510,7 +510,7 @@ if ( \$('#$id') ) {
 
 				$ret .= '~np~' .
 						'<a id="' . $id . '" href="javascript:void(1)" class="editplugin"' . ($displayIcon ? '' : ' style="display:none;"') . '>' .
-						smarty_function_icon(['name' => 'plugin', 'iclass' => 'tips', 'ititle' => tra('Edit plugin') . ':' . ucfirst($plugin_name)], $smarty) .
+						smarty_function_icon(['name' => 'plugin', 'iclass' => 'tips', 'ititle' => tra('Edit plugin') . ':' . ucfirst($plugin_name)], $smarty->getEmptyInternalTemplate()) .
 						'</a>' .
 						'~/np~';
 			}
@@ -1460,7 +1460,7 @@ if ( \$('#$id') ) {
 			if ($prefs['feature_wiki_ext_icon'] == 'y') {
 				$attrib .= 'class="wiki external" ';
 				include_once('lib/smarty_tiki/function.icon.php');
-				$ext_icon = smarty_function_icon(['name' => 'link-external'], TikiLib::lib('smarty'));
+				$ext_icon = smarty_function_icon(['name' => 'link-external'], TikiLib::lib('smarty')->getEmptyInternalTemplate());
 			} else {
 				$attrib .= 'class="wiki" ';
 				$ext_icon = "";
@@ -2008,7 +2008,7 @@ if ( \$('#$id') ) {
 				if ($prefs['feature_wiki_ext_icon'] == 'y' && ! ($this->option['suppress_icons'] || $suppress_icons)) {
 					$smarty = TikiLib::lib('smarty');
 					include_once('lib/smarty_tiki/function.icon.php');
-					$ext_icon = smarty_function_icon(['name' => 'link-external'], $smarty);
+					$ext_icon = smarty_function_icon(['name' => 'link-external'], $smarty->getEmptyInternalTemplate());
 				}
 				$rel = 'external';
 				if ($prefs['feature_wiki_ext_rel_nofollow'] == 'y') {
@@ -3123,7 +3123,7 @@ if ( \$('#$id') ) {
 							if (! empty($this->option['page'])) {
 								$button .= 'page=' . urlencode($this->option['page']) . '&amp;';
 							}
-							$button .= 'hdr=' . $nb_hdrs . '">' . smarty_function_icon(['name' => 'edit'], $smarty) . '</a></div>';
+							$button .= 'hdr=' . $nb_hdrs . '">' . smarty_function_icon(['name' => 'edit'], $smarty->getEmptyInternalTemplate()) . '</a></div>';
 						} else {
 							$button = '';
 						}
@@ -3140,7 +3140,7 @@ if ( \$('#$id') ) {
 						if ($prefs['wiki_heading_links'] === 'y') {
 							$smarty = TikiLib::lib('smarty');
 							$smarty->loadPlugin('smarty_function_icon');
-							$headingLink = '<a href="#' . $thisid . '" class="heading-link">' . smarty_function_icon(['name' => 'link'], $smarty) . '</a>';
+							$headingLink = '<a href="#' . $thisid . '" class="heading-link">' . smarty_function_icon(['name' => 'link'], $smarty->getEmptyInternalTemplate()) . '</a>';
 						} else {
 							$headingLink = '';
 						}
@@ -3445,7 +3445,7 @@ if ( \$('#$id') ) {
 			if (! empty($this->option['page'])) {
 				$button .= 'page=' . urlencode($this->option['page']) . '&amp;';
 			}
-			$button .= 'hdr=0">' . smarty_function_icon(['name' => 'edit'], $smarty) . '</a></div>';
+			$button .= 'hdr=0">' . smarty_function_icon(['name' => 'edit'], $smarty->getEmptyInternalTemplate()) . '</a></div>';
 			$data = $button . $data;
 		}
 	}

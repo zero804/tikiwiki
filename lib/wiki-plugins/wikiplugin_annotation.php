@@ -182,8 +182,8 @@ FORM;
 
 	$smarty = TikiLib::lib('smarty');
 	$smarty->loadPlugin('smarty_function_icon');
-	$close = smarty_function_icon(['name' => 'close'], $smarty);
-	$delete = smarty_function_icon(['name' => 'trash'], $smarty);
+	$close = smarty_function_icon(['name' => 'close'], $smarty->getEmptyInternalTemplate());
+	$delete = smarty_function_icon(['name' => 'trash'], $smarty->getEmptyInternalTemplate());
 
 	$labelStr = tra('Label');
 	$linkStr = tra('Link');
