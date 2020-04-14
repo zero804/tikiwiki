@@ -684,7 +684,7 @@ class ModLib extends TikiLib
 			return false;
 		}
 
-		$allcats = TikiLib::lib('categ')->getCategories();	// gets all categories (cached)
+		$allcats = null;	// only needed if category names are used
 
 		foreach ($desiredList as $category) {
 			if (is_numeric($category)) {
@@ -692,6 +692,10 @@ class ModLib extends TikiLib
 					return true;
 				}
 			} else {
+				if (! $allcats) {
+					// gets all categories (cached but perms are checked so only load all if necessary)
+					$allcats = TikiLib::lib('categ')->getCategories();
+				}
 				foreach ($categoryList as $id) {
 					if (isset($allcats[$id]) && $allcats[$id]['name'] == $category) {
 						return true;
