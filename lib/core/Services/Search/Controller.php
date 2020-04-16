@@ -39,7 +39,6 @@ class Services_Search_Controller
 				$memory_limiter = new Tiki_MemoryLimit($prefs['allocate_memory_unified_rebuild']);
 			}
 
-			set_time_limit(600);
 			$stat = $unifiedsearchlib->rebuild($input->loggit->int());
 
 			TikiLib::lib('cache')->empty_type_cache('search_valueformatter');

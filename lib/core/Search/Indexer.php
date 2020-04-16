@@ -217,7 +217,7 @@ class Search_Indexer
 					$data = [$data];
 				}
 
-				eoreach ($data as $entry) {
+				foreach ($data as $entry) {
 					$out[] = $this->augmentDocument($objectType, $objectId, $entry, $typeFactory, $globalFields);
 				}
 			}

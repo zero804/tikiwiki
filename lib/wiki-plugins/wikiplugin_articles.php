@@ -77,19 +77,6 @@ function wikiplugin_articles_info()
 				'since' => '1',
 				'separator' => '|',
 			],
-			'toc' => [
-				'required' => false,
-				'name' => tra('Table of contents'),
-				'description' => tra('Create table of contents'),
-				'filter' => 'alpha',
-				'default' => 'n',
-				'since' => '20.0',
-				'options' => [
-					['text' => '', 'value' => ''],
-					['text' => tra('Yes'), 'value' => 'y'],
-					['text' => tra('No'), 'value' => 'n'],
-				],
-			],
 			'lang' => [
 				'required' => false,
 				'name' => tra('Language'),
@@ -320,12 +307,12 @@ function wikiplugin_articles($data, $params)
 	$smarty = TikiLib::lib('smarty');
 	$tikilib = TikiLib::lib('tiki');
 	$artlib = TikiLib::lib('art');
-	$default = ['max' => $prefs['maxRecords'], 'start' => 0, 'usePagination' => 'n', 'topicId' => '', 'topic' => '', 'sort' => 'publishDate_desc', 'type' => '', 'toc' => '', 'lang' => '', 'quiet' => 'n', 'categId' => '', 'largefirstimage' => 'n', 'urlparam' => '', 'actions' => 'n', 'translationOrphan' => '', 'headerLinks' => 'n', 'showtable' => 'n', 'useLinktoURL' => 'n'];
+	$default = ['max' => $prefs['maxRecords'], 'start' => 0, 'usePagination' => 'n', 'topicId' => '', 'topic' => '', 'sort' => 'publishDate_desc', 'type' => '', 'lang' => '', 'quiet' => 'n', 'categId' => '', 'largefirstimage' => 'n', 'urlparam' => '', 'actions' => 'n', 'translationOrphan' => '', 'headerLinks' => 'n', 'showtable' => 'n', 'useLinktoURL' => 'n'];
 	$auto_args = ['lang', 'topicId', 'topic', 'sort', 'type', 'lang', 'categId'];
 	$params = array_merge($default, $params);
 
 	extract($params, EXTR_SKIP);
-	$filter = [];
+	$filter = '';
 	if ($prefs['feature_articles'] != 'y') {
 		//	the feature is disabled or the user can't read articles, not even article headings
 		return("");
@@ -350,7 +337,6 @@ function wikiplugin_articles($data, $params)
 		$urlnext = smarty_function_query($paramsnext, $smarty);
 	}
 
-	$smarty->assign_by_ref('toc', $toc);
 	$smarty->assign_by_ref('quiet', $quiet);
 	$smarty->assign_by_ref('urlparam', $urlparam);
 	$smarty->assign_by_ref('urlnext', $urlnext);
