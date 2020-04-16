@@ -62,6 +62,23 @@
 	{/if}
 {/if}
 
+{if $toc eq 'y'}
+	<div id="toctitle"><h3>{tr}Table of contents{/tr}</h3></div>
+	<div id="toc">
+	{section name=ix loop=$listpages}
+			{if $listpages[ix].topicName ne $prevTopic}
+					<b>{$listpages[ix].topicName}</b>
+			{/if}
+			{assign var='prevTopic' value=$listpages[ix].topicName}
+			<ul class="toc">
+					<li><a href="#article{$listpages[ix].articleId}" class="link">{$listpages[ix].title}</a></li>
+				</ul>
+	{/section}
+		<!--toc--></div>
+{/if}
+
+{assign var='prevTopic' value=''}
+
 {section name=ix loop=$listpages}
 	{capture name=href}{strip}
 		{if empty($urlparam)}
@@ -98,11 +115,17 @@
 					{$listpages[ix].topline|escape}
 				</div>
 			{/if}
+            {if $listpages[ix].topicName ne $prevTopic}
+            <div>
+				<h2>{$listpages[ix].topicName}</h2>
+			<hr/>
+			</div>
+			{/if}
+			{assign var='prevTopic' value=$listpages[ix].topicName}
+			{assign var='htmlId' value="article{$listpages[ix].articleId}"}
 
 			<header class="articletitle clearfix">
-				<h2>
-					{object_link type=article id=$listpages[ix].articleId url=$smarty.capture.href title=$listpages[ix].title}
-				</h2>
+				<h3 > {object_link type=article id=$listpages[ix].articleId htmlId=$htmlId url=$smarty.capture.href title=$listpages[ix].title} </h3>
 				{if $listpages[ix].show_subtitle eq 'y' and $listpages[ix].subtitle}<div class="articlesubtitle">{$listpages[ix].subtitle|escape}</div>{/if}
 				{if ($listpages[ix].show_author eq 'y')
 					or ($listpages[ix].show_pubdate eq 'y')
@@ -151,7 +174,7 @@
 								{tr}Users rating: {/tr}
 							</span>{rating_result_avg id=$listpages[ix].articleId type=article}
 						{/if}
-					</span><br>
+					</span>
 				{/if}
 				{if $author ne $user and $listpages[ix].comment_can_rate_article eq 'y' and empty({$listpages[ix].body})
 					and !isset($preview) and $prefs.article_user_rating eq 'y' and ($tiki_p_rate_article eq 'y'

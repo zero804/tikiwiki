@@ -145,6 +145,10 @@ function smarty_function_object_link_default($smarty, $object, $title = null, $t
 
 	$class = ' class="' . implode(' ', $classList) . '"';
 
+	if ($params[htmlId]) {
+		$htmlId = ' name="' . $params[htmlId] . '"';
+	}
+
 	if (strpos($escapedHref, '://') === false) {
 		//$html = '<a href="' . $base_url . $escapedHref . '"' . $class . $titleAttribute . $metadata . '>' . $escapedText . '</a>';
 		// When the link is created for a tiki page, then we do NOT want the baseurl included,
@@ -152,9 +156,9 @@ function smarty_function_object_link_default($smarty, $object, $title = null, $t
 		// configured for teh ip adress we run our webserver.
 		// Eaxmple: Fqdn = tiki.mydomain.com -> port forwarding/nat to: 192.168.1.110.
 		// In this case links should NOT be generated as absolut urls pointing to  192.168.1.110 which would be the part of the baseUrl.
-		$html = '<a href="' . $escapedHref . '"' . $class . $titleAttribute . $metadata . '>' . $escapedText . '</a>';
+		$html = '<a href="' . $escapedHref . '"' . $class . $titleAttribute . $htmlId . $metadata . '>' . $escapedText . '</a>';
 	} else {
-		$html = '<a rel="external" href="' . $escapedHref . '"' . $class . $titleAttribute . $metadata . '>' . $escapedText . '</a>';
+		$html = '<a rel="external" href="' . $escapedHref . '"' . $class . $titleAttribute . $htmlId . $metadata . '>' . $escapedText . '</a>';
 	}
 
 	$attributelib = TikiLib::lib('attribute');
