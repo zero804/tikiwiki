@@ -170,7 +170,7 @@
 									<td class="action">
 										{capture name=webmail_group_actions}
 											{strip}
-												{if $tiki_p_admin_group_webmail eq 'y'or $tiki_p_admin eq 'y'}
+												{if $tiki_p_admin_group_webmail eq 'y' or $tiki_p_admin eq 'y'}
 													{$libeg}{self_link _icon_name='edit' accountId=$pubAccounts[ixp].accountId _menu_text='y' _menu_icon='y'}
 												{tr}Edit{/tr}
 												{/self_link}{$liend}

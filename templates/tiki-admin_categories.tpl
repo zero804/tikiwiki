@@ -364,7 +364,7 @@ $("#add_object_type").change(function () {
 							</div>
 						{/if}
 
-						{if $prefs.feature_directory eq 'y'and $directories}
+						{if $prefs.feature_directory eq 'y' and $directories}
 							<div class="form-group">
 								<label class="col-sm-3 control-label" for="directoryId">
 									{tr}Directory{/tr}
