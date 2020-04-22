@@ -11,12 +11,14 @@ class Search_MySql_Index implements Search_Index_Interface
 	private $table;
 	private $builder;
 	private $tfTranslator;
+	private $index_name;
 
 	private $providedMappings = [];
 
 	function __construct(TikiDb $db, $index)
 	{
 		$this->db = $db;
+		$this->index_name = $index;
 		$this->table = new Search_MySql_Table($db, $index);
 		$this->builder = new Search_MySql_QueryBuilder($db);
 		$this->tfTranslator = new Search_MySql_TrackerFieldTranslator;
@@ -217,5 +219,9 @@ class Search_MySql_Index implements Search_Index_Interface
 	function getTypeFactory()
 	{
 		return new Search_MySql_TypeFactory;
+	}
+
+	function getFieldsCount() {
+		return count($this->db->fetchAll("show columns from `{$this->index_name}`"));
 	}
 }
