@@ -16,6 +16,7 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 			'value' => false,
 			'calc' => false,
 			'aggregate_fields' => false,
+			'ignore_errors' => false,	// ignore replaceItem errors such as isMandatory and validation
 		];
 	}
 
@@ -107,6 +108,7 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 		$field = $data->field->word();
 		$value = $data->value->text();
 		$calc = $data->calc->text();
+		$ignore_errors = $data->ignore_errors->text() === 'y';	// y/n
 
 		$trklib = TikiLib::lib('trk');
 
@@ -153,6 +155,7 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 				'fields' => [
 					$field => $value,
 				],
+				'validate' => ! $ignore_errors,
 			]
 		);
 	}
