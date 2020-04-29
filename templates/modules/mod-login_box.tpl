@@ -109,6 +109,14 @@ if (jqueryTiki.no_cookie) {
 					</ul>
 				{else}
 					{menu id=$module_params.menu_id bootstrap='y' bs_menu_class='dropdown-menu'}
+					{jq}
+// prevent clicks on menu items with child options from closing the "parent" dropdown
+$(".collapse-toggle", ".siteloginbar_popup .dropdown-menu").click(function () {
+	$(this).parents(".dropdown").one("hide.bs.dropdown", function () {
+		return false;
+	});
+});
+					{/jq}
 				{/if}
 			</div>
 		{/if}
