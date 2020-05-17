@@ -176,7 +176,7 @@
             "version": "5.13.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:FortAwesome/Font-Awesome.git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
                 "reference": "4e6402443679e0a9d12c7401ac8783ef4646657f"
             },
             "dist": {
@@ -2764,17 +2764,17 @@
         },
         {
             "name": "moment/moment",
-            "version": "2.25.0",
+            "version": "2.25.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moment/moment.git",
-                "reference": "36a817d94eab0f070bbcc7d8431631ee71400b89"
+                "reference": "1872bb22ff6cd19c56e7dc30c5765489d48e65f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/moment/moment/moment-moment-36a817d94eab0f070bbcc7d8431631ee71400b89-zip-3e7d29.zip",
-                "reference": "36a817d94eab0f070bbcc7d8431631ee71400b89",
-                "shasum": "ea338391eed3195be33d5307a09330e7083c1148"
+                "url": "https://composer.tiki.org/dist/moment/moment/moment-moment-1872bb22ff6cd19c56e7dc30c5765489d48e65f1-zip-77d9bf.zip",
+                "reference": "1872bb22ff6cd19c56e7dc30c5765489d48e65f1",
+                "shasum": "0abbccbfe79f005a47f75c40a4f287aea389682e"
             },
             "require": {
                 "robloach/component-installer": "*"
@@ -2814,7 +2814,7 @@
                 "time",
                 "validate"
             ],
-            "time": "2020-05-01T01:06:33+00:00"
+            "time": "2020-05-04T15:09:59+00:00"
         },
         {
             "name": "montefuscolo/xmpp",
@@ -4012,17 +4012,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.53.0",
+            "version": "v1.54.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "d37895bd64227433229f2b3f91c9e14fd6ec7b89"
+                "reference": "36b478d1a39e77d77ad10219d58f1b223884d167"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-d37895bd64227433229f2b3f91c9e14fd6ec7b89-zip-7f3bbe.zip",
-                "reference": "d37895bd64227433229f2b3f91c9e14fd6ec7b89",
-                "shasum": "a02a2d457dff978b77808d0a891ff05cfd826272"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-36b478d1a39e77d77ad10219d58f1b223884d167-zip-abd713.zip",
+                "reference": "36b478d1a39e77d77ad10219d58f1b223884d167",
+                "shasum": "5e86dba36e997098145d7c5388150d321c556504"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -4044,7 +4044,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2020-03-31T14:26:28+00:00"
+            "time": "2020-05-04T23:23:47+00:00"
         },
         {
             "name": "psr/container",
@@ -5345,17 +5345,17 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.16.0",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "1aab00e39cebaef4d8652497f46c15c1b7e45294"
+                "reference": "e94c8b1bbe2bc77507a1056cdb06451c75b427f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-ctype/symfony-polyfill-ctype-1aab00e39cebaef4d8652497f46c15c1b7e45294-zip-6c8916.zip",
-                "reference": "1aab00e39cebaef4d8652497f46c15c1b7e45294",
-                "shasum": "4ec475c9737930deca04668cb264b8dbd336f0e0"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-ctype/symfony-polyfill-ctype-e94c8b1bbe2bc77507a1056cdb06451c75b427f9-zip-67a655.zip",
+                "reference": "e94c8b1bbe2bc77507a1056cdb06451c75b427f9",
+                "shasum": "cc93944f2e35814932ee96a82d30eb47c778162b"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -5366,7 +5366,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.16-dev"
+                    "dev-master": "1.17-dev"
                 }
             },
             "autoload": {
@@ -5399,21 +5399,21 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2020-05-08T16:50:20+00:00"
+            "time": "2020-05-12T16:14:59+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
-            "version": "v1.16.0",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
-                "reference": "ab0af41deab94ec8dceb3d1fb408bdd038eba4dc"
+                "reference": "3bff59ea7047e925be6b7f2059d60af31bb46d6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-intl-idn/symfony-polyfill-intl-idn-ab0af41deab94ec8dceb3d1fb408bdd038eba4dc-zip-a15216.zip",
-                "reference": "ab0af41deab94ec8dceb3d1fb408bdd038eba4dc",
-                "shasum": "b45d81baf8884b5f1811fbdc62c10b47508d3ffc"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-intl-idn/symfony-polyfill-intl-idn-3bff59ea7047e925be6b7f2059d60af31bb46d6a-zip-e0add8.zip",
+                "reference": "3bff59ea7047e925be6b7f2059d60af31bb46d6a",
+                "shasum": "5cc595360b7fbb5ef0f1311bbb3fda483deac644"
             },
             "require": {
                 "php": ">=5.3.3",
@@ -5426,7 +5426,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.16-dev"
+                    "dev-master": "1.17-dev"
                 }
             },
             "autoload": {
@@ -5461,21 +5461,21 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-05-08T16:50:20+00:00"
+            "time": "2020-05-12T16:47:27+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.16.0",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "a54881ec0ab3b2005c406aed0023c062879031e7"
+                "reference": "fa79b11539418b02fc5e1897267673ba2c19419c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-a54881ec0ab3b2005c406aed0023c062879031e7-zip-cc1df5.zip",
-                "reference": "a54881ec0ab3b2005c406aed0023c062879031e7",
-                "shasum": "514e24a2f2775d6a5fc8851d8d40cfcba52ba178"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-fa79b11539418b02fc5e1897267673ba2c19419c-zip-6896b6.zip",
+                "reference": "fa79b11539418b02fc5e1897267673ba2c19419c",
+                "shasum": "a9a51a08908eb011bc8956a4007dc9de59b87f33"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -5486,7 +5486,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.16-dev"
+                    "dev-master": "1.17-dev"
                 }
             },
             "autoload": {
@@ -5520,21 +5520,21 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-05-08T16:50:20+00:00"
+            "time": "2020-05-12T16:47:27+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
-            "version": "v1.16.0",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php72.git",
-                "reference": "42fda6d7380e5c940d7f68341ccae89d5ab9963b"
+                "reference": "f048e612a3905f34931127360bdd2def19a5e582"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-php72/symfony-polyfill-php72-42fda6d7380e5c940d7f68341ccae89d5ab9963b-zip-4b641e.zip",
-                "reference": "42fda6d7380e5c940d7f68341ccae89d5ab9963b",
-                "shasum": "6817238e82bcff61ad48a667923cd861feb12aea"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-php72/symfony-polyfill-php72-f048e612a3905f34931127360bdd2def19a5e582-zip-315def.zip",
+                "reference": "f048e612a3905f34931127360bdd2def19a5e582",
+                "shasum": "c2c1a4713a7415445a4d23d9d2388a319f6cd09a"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -5542,7 +5542,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.16-dev"
+                    "dev-master": "1.17-dev"
                 }
             },
             "autoload": {
@@ -5575,7 +5575,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-05-08T17:28:34+00:00"
+            "time": "2020-05-12T16:47:27+00:00"
         },
         {
             "name": "symfony/process",
