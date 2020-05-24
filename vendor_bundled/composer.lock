@@ -2257,17 +2257,17 @@
         },
         {
             "name": "lcobucci/jwt",
-            "version": "3.3.1",
+            "version": "3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lcobucci/jwt.git",
-                "reference": "a11ec5f4b4d75d1fcd04e133dede4c317aac9e18"
+                "reference": "56f10808089e38623345e28af2f2d5e4eb579455"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/lcobucci/jwt/lcobucci-jwt-a11ec5f4b4d75d1fcd04e133dede4c317aac9e18-zip-e4293b.zip",
-                "reference": "a11ec5f4b4d75d1fcd04e133dede4c317aac9e18",
-                "shasum": "97b6f4ea54503406fd76a85a66987e70bef741a8"
+                "url": "https://composer.tiki.org/dist/lcobucci/jwt/lcobucci-jwt-56f10808089e38623345e28af2f2d5e4eb579455-zip-6d16b5.zip",
+                "reference": "56f10808089e38623345e28af2f2d5e4eb579455",
+                "shasum": "963a6c9af6d4040ab7836ce9b720fb8abcc47d85"
             },
             "require": {
                 "ext-mbstring": "*",
@@ -2308,7 +2308,7 @@
                 "JWS",
                 "jwt"
             ],
-            "time": "2019-05-24T18:30:49+00:00"
+            "time": "2020-05-22T08:21:12+00:00"
         },
         {
             "name": "leafo/scssphp",
@@ -3222,11 +3222,11 @@
         },
         {
             "name": "npm-asset/moment",
-            "version": "2.25.3",
+            "version": "2.26.0",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/moment/npm-asset-moment-2.25.3.zip",
-                "shasum": "fe8e0298cd81d8e285a0d3c47f9a8a0f7c86c386"
+                "url": "https://composer.tiki.org/dist/npm-asset/moment/npm-asset-moment-2.26.0.zip",
+                "shasum": "278038ab080c3d4e595aa776939e93b85b87bf15"
             },
             "type": "npm-asset",
             "license": [
