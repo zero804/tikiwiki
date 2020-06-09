@@ -3,10 +3,23 @@
  * @package tikiwiki
  */
 // (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
-// 
+//
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
+
+$inputConfiguration = [
+	['staticKeyFilters' => [
+		'faqId' => 'int',
+		'sort_mode' => 'alpha',
+		'find' => 'text',
+		'sugg' => 'word',
+		'suggested_question' => 'text',
+		'suggested_answer' => 'purifier',
+		'print' => 'word']
+	],
+	[ 'catchAllUnset' => null ],
+];
 
 $section = 'faqs';
 require_once ('tiki-setup.php');
