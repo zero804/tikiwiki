@@ -32,6 +32,133 @@ The tags info is also online: https://dev.tiki.org/Commit+Tags
 Before 2.0, there was only [MOD] for both [ENH] and [MOD]:
 
 ----------------------------------------------------------------------
+Version 20.3
+<http://doc.tiki.org/Tiki20>
+------------------
+
+----------------------------------------------
+r76578 | jonnybradley | 2020-06-12 17:35:01 +0100 (Fri, 12 Jun 2020) | 1 line
+[FIX] cypht: Some files that change when running setup.sh
+----------------------------------------------
+r76547 | drsassfras | 2020-06-09 17:25:38 +0100 (Tue, 09 Jun 2020) | 3 lines
+[FIX] filer vars in tracker history
+(cherry picked from commit 13ad952f47753b8a71b58f84f3c4b202f2343e8b)
+----------------------------------------------
+r76546 | drsassafras | 2020-06-09 17:25:36 +0100 (Tue, 09 Jun 2020) | 3 lines
+[FIX] Filter faq vars
+(cherry picked from commit 5ffc439bb39a3714bd4e6451d4acc988f5a37fff)
+----------------------------------------------
+r76541 | jonnybradley | 2020-06-09 12:22:38 +0100 (Tue, 09 Jun 2020) | 3 lines
+[FIX] slideshow: New version of reveal.js doesn't seem to work properly without the hash parameter (so it adds the slide number to the url hash)
+(cherry picked from commit 9ce1adac450d569d1826f7b1fa586285ed1bd6a2)
+----------------------------------------------
+r76540 | jonnybradley | 2020-06-09 12:22:29 +0100 (Tue, 09 Jun 2020) | 1 line
+[UPD] composer update following reveal.js update
+----------------------------------------------
+r76539 | jonnybradley | 2020-06-09 12:20:51 +0100 (Tue, 09 Jun 2020) | 5 lines
+Revert "Revert "[UPD] Update Reveal.js  to 3.9.2""
+This reverts commit 77cb4b5b
+(cherry picked from commit 7cb9b8d8cac3496ba3b1c91a243335cb77e52449)
+----------------------------------------------
+r76538 | jonnybradley | 2020-06-09 12:13:01 +0100 (Tue, 09 Jun 2020) | 15 lines
+[UPD] automatic updates (with php 7.1.33)
+  - Updating studio-42/elfinder (2.1.56 => 2.1.57)
+  - Updating symfony/filesystem (v4.4.8 => v4.4.9)
+  - Updating symfony/config (v3.4.40 => v3.4.41)
+  - Updating symfony/debug (v4.4.8 => v4.4.9)
+  - Updating symfony/console (v3.4.40 => v3.4.41)
+  - Updating symfony/dependency-injection (v3.4.40 => v3.4.41)
+  - Updating symfony/finder (v4.4.8 => v4.4.9)
+  - Updating symfony/process (v3.4.40 => v3.4.41)
+  - Updating symfony/yaml (v3.4.40 => v3.4.41)
+  - Downgrading zendframework/zend-i18n (2.10.1 => 2.9.2)
+  - Updating symfony/dom-crawler (v4.4.8 => v4.4.9)
+  - Updating symfony/browser-kit (v4.4.8 => v4.4.9)
+  - Updating symfony/css-selector (v4.4.8 => v4.4.9)
+----------------------------------------------
+r76513 | jonnybradley | 2020-06-02 18:44:43 +0100 (Tue, 02 Jun 2020) | 1 line
+[FIX] trackers: Use the $permNeeded for each item rather than tiki_p_view_trackers always so the index obeys perms for pending and closed (many thanks $kroky)
+----------------------------------------------
+r76497 | tikibot | 2020-05-31 05:27:38 +0100 (Sun, 31 May 2020) | 1 line
+[UPD] Update 20.x vendor_bundled dependencies
+----------------------------------------------
+r76381 | xorti | 2020-05-20 17:21:08 +0100 (Wed, 20 May 2020) | 3 lines
+[FIX] Fix div math formula to set 0 on empty string values
+(cherry picked from cabbddaf1d353e756ba7c67859ab6c2da1830630)
+----------------------------------------------
+r76373 | jonnybradley | 2020-05-19 16:54:34 +0100 (Tue, 19 May 2020) | 1 line
+[FIX] php7: Fix tracker legacy export - arrays initialised as strings (thanks Geoff)
+----------------------------------------------
+r76290 | jonnybradley | 2020-05-01 17:44:24 +0100 (Fri, 01 May 2020) | 1 line
+[FIX] search: Add page_id to the index for wiki pages (sometimes easier to use than the title/object_id)
+----------------------------------------------
+r76274 | jonnybradley | 2020-04-29 13:51:22 +0100 (Wed, 29 Apr 2020) | 1 line
+[FIX] menus: Prevent clicks on menu items with child options on the login module menu from closing the dropdown containing it
+----------------------------------------------
+r76268 | jonnybradley | 2020-04-28 15:38:49 +0100 (Tue, 28 Apr 2020) | 1 line
+[FIX] search: Add facet data to the serialised output from tiki-searchindex.php if enabled
+----------------------------------------------
+r76267 | jonnybradley | 2020-04-28 15:38:33 +0100 (Tue, 28 Apr 2020) | 1 line
+[FIX] click-modal: Replace the nullish operator with a simple OR one, as that's not supported yet by enough browsers. Also look for the modal-submit-redirect-url data attribute on the link parent for wiki syntax cases where a simple link is inside a div plugin.
+----------------------------------------------
+r76257 | jonnybradley | 2020-04-27 12:17:06 +0100 (Mon, 27 Apr 2020) | 3 lines
+[ENH] listexecute: Allow TrackerItemModify to update tracker items ignoring mandatory and validation errors
+(cherry picked from commit 5b0bc0389ce0a1fbd156f63555238ad13cc2f6b9)
+----------------------------------------------
+r76250 | jonnybradley | 2020-04-26 16:36:12 +0100 (Sun, 26 Apr 2020) | 1 line
+[FIX] trackers: Set the correct option for timezones in user pref fields, also the "Other" value for country.
+----------------------------------------------
+r76249 | jonnybradley | 2020-04-26 16:36:07 +0100 (Sun, 26 Apr 2020) | 2 lines
+[FIX] trackers: Use the field handler to get the value for UserPreference fields as they are not stored in the database.
+The tracker values and the prefs were getting wiped out whenever an item was being related to another and the refresh option was enabled.
+----------------------------------------------
+r76233 | kroky6 | 2020-04-22 13:42:37 +0100 (Wed, 22 Apr 2020) | 1 line
+[FIX] tracker item history observe field permissions - if you are not allowed to see a field, why can you see item history of changes for that field
+----------------------------------------------
+r76212 | guill.bout | 2020-04-19 16:59:12 +0100 (Sun, 19 Apr 2020) | 1 line
+[FIX] fix redirect to undefined page in pluginbutton if data-attribute empty
+----------------------------------------------
+r76197 | amette | 2020-04-16 13:57:23 +0100 (Thu, 16 Apr 2020) | 1 line
+[bp/76196][FIX] Send newsletter even if recipient address has leading or trailing whitespace
+----------------------------------------------
+r76181 | jonnybradley | 2020-04-14 14:15:07 +0100 (Tue, 14 Apr 2020) | 2 lines
+[FIX] modules: Speed up module category visibility checks by only loading the whole category tree if needed by modules with category (or nocategory) names specified rather than id's
+Reduces page load times from over 20s to under 2s on one large site with over 1000 categories
+----------------------------------------------
+r76163 | jonnybradley | 2020-04-09 18:40:02 +0100 (Thu, 09 Apr 2020) | 1 line
+[FIX] auth: Allow "HTTP Session/Login" content authentication to use a Bearer authorisation token to be returned from an oauth2 login post
+----------------------------------------------
+r76141 | xorti | 2020-04-08 16:34:15 +0100 (Wed, 08 Apr 2020) | 3 lines
+[ENH] Improve gitlab mr script to allow create in target project id
+- Also update_vendor_bundled_dependencies pipeline was updated
+----------------------------------------------
+r76130 | xorti | 2020-04-07 17:50:48 +0100 (Tue, 07 Apr 2020) | 1 line
+[ENH] Allow composer to update vendor_bundled dependencies and if changed, check for external package sources
+----------------------------------------------
+r76125 | montefuscolo | 2020-04-07 15:19:16 +0100 (Tue, 07 Apr 2020) | 3 lines
+[rb/r76124] Revert "[UPD] Update 20.x vendor_bundled dependencies"
+This reverts commit 6643fca58f60d285e15fc4e5ad4a37bf3cb576b4.
+----------------------------------------------
+r76119 | jonnybradley | 2020-04-07 12:27:03 +0100 (Tue, 07 Apr 2020) | 1 line
+[FIX] elfinder: Fix notices where some permissions are missing, e.g. for non-admin users in user file galleries
+----------------------------------------------
+r76118 | jonnybradley | 2020-04-07 12:27:00 +0100 (Tue, 07 Apr 2020) | 1 line
+[FIX] elfinder: Add a pref to disable debug mode as now php warnings are displayed over the gallery listings when enabled
+----------------------------------------------
+r76020 | jonnybradley | 2020-03-26 15:34:33 +0000 (Thu, 26 Mar 2020) | 13 lines
+[UPD] adding minimum php version (seems to be 7.1.3 as that's the requirement of a lot of libs we have) and running composer update, with php 7.2 again, but now we have 7.1 in the platform requirement it has downgraded several packages as required (e.g. symfony/css-selector back to 4.x)
+Thanks @guill for the tip, and apologies to @luciash for the breakage in 2ee20788, hope this fixes it!
+  - Updating bower-asset/fontawesome (5.12.1 => 5.13.0)
+  - Updating league/commonmark (1.3.1 => 1.3.2)
+  - Updating phpseclib/phpseclib (2.0.25 => 2.0.26)
+  - Updating studio-42/elfinder (2.1.54 => 2.1.55)
+  - Downgrading symfony/dom-crawler (v5.0.5 => v4.4.5)
+  - Downgrading symfony/browser-kit (v5.0.5 => v4.4.5)
+  - Downgrading symfony/css-selector (v5.0.5 => v4.4.5)
+  - Updating psr/log (1.1.2 => 1.1.3)
+  - Downgrading phpdocumentor/type-resolver (1.1.0 => 1.0.1)
+  - Downgrading phpdocumentor/reflection-docblock (5.1.0 => 4.3.4)
+----------------------------------------------
 Version 20.2
 <http://doc.tiki.org/Tiki20>
 ------------------
