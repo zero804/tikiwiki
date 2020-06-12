@@ -32,6 +32,117 @@ The tags info is also online: https://dev.tiki.org/Commit+Tags
 Before 2.0, there was only [MOD] for both [ENH] and [MOD]:
 
 ----------------------------------------------------------------------
+Version 18.6
+<http://doc.tiki.org/Tiki18>
+------------------
+
+----------------------------------------------
+r76549 | drsassfras | 2020-06-09 17:26:50 +0100 (Tue, 09 Jun 2020) | 3 lines
+[FIX] filer vars in tracker history
+(cherry picked from commit 13ad952f47753b8a71b58f84f3c4b202f2343e8b)
+----------------------------------------------
+r76548 | drsassafras | 2020-06-09 17:26:47 +0100 (Tue, 09 Jun 2020) | 3 lines
+[FIX] Filter faq vars
+(cherry picked from commit 5ffc439bb39a3714bd4e6451d4acc988f5a37fff)
+----------------------------------------------
+r76382 | xorti | 2020-05-20 17:23:16 +0100 (Wed, 20 May 2020) | 3 lines
+[FIX] Fix div math formula to set 0 on empty string values
+(cherry picked from cabbddaf1d353e756ba7c67859ab6c2da1830630)
+----------------------------------------------
+r76374 | jonnybradley | 2020-05-19 16:58:06 +0100 (Tue, 19 May 2020) | 1 line
+[FIX] php7: Fix tracker legacy export - arrays initialised as strings (thanks Geoff)
+----------------------------------------------
+r76370 | jonnybradley | 2020-05-19 13:12:03 +0100 (Tue, 19 May 2020) | 1 line
+[FIX] admin: Fix js error on admin/search and other control panels - this line (10) somehow mysteriously vanished somewhere around Feb 2018, possibly a merge mixup somewhere around r65496. So not a backport but this re-syncs tiki-admin.js with 19.x and fixes the bug (and show/hide child prefs still seems to work)
+----------------------------------------------
+r76330 | xorti | 2020-05-12 19:51:12 +0100 (Tue, 12 May 2020) | 6 lines
+[FIX] Prevent tasks to be saved without title
+- Fix issue that allowed to save tasks without title
+- Fix errors saving tasks without title on a strict database
+(cherry picked from commit 7b43a57d9b8542a9da535637284b6917ec591e20)
+----------------------------------------------
+r76329 | xorti | 2020-05-12 19:51:12 +0100 (Tue, 12 May 2020) | 3 lines
+[FIX] Fix issues in schedulers and user notes to support database strict mode on
+(cherry picked from commit f11887f07e8dd219f7eceac04be9c6af9a744164)
+----------------------------------------------
+r76291 | jonnybradley | 2020-05-01 17:44:24 +0100 (Fri, 01 May 2020) | 1 line
+[FIX] search: Add page_id to the index for wiki pages (sometimes easier to use than the title/object_id)
+----------------------------------------------
+r76275 | jonnybradley | 2020-04-29 13:52:02 +0100 (Wed, 29 Apr 2020) | 1 line
+[FIX] menus: Prevent clicks on menu items with child options on the login module menu from closing the dropdown containing it
+----------------------------------------------
+r76270 | jonnybradley | 2020-04-28 15:41:07 +0100 (Tue, 28 Apr 2020) | 1 line
+[FIX] search: Add facet data to the serialised output from tiki-searchindex.php if enabled
+----------------------------------------------
+r76256 | jonnybradley | 2020-04-27 12:13:15 +0100 (Mon, 27 Apr 2020) | 3 lines
+[ENH] listexecute: Allow TrackerItemModify to update tracker items ignoring mandatory and validation errors
+(cherry picked from commit 5b0bc0389ce0a1fbd156f63555238ad13cc2f6b9 - conflicts fixed manually)
+----------------------------------------------
+r76255 | kroky6 | 2020-04-27 11:41:09 +0100 (Mon, 27 Apr 2020) | 3 lines
+[FIX] variable pass by reference issue with smarty internal template change
+(cherry picked from commit 8ca9f921f0679f4fc7e3dd3fb5a3121a4f0ee6fc)
+----------------------------------------------
+r76254 | kroky6 | 2020-04-27 11:40:57 +0100 (Mon, 27 Apr 2020) | 3 lines
+[FIX] smarty internal templates used for smarty function outputs did not have the basic variables assigned as prefs which caused issues using these variables in templates (e.g. ObjectSelector of ItemLink filter)
+(cherry picked from commit 0e3d366571c1ce90e193a642403fd8de13eda559)
+----------------------------------------------
+r76253 | jonnybradley | 2020-04-27 11:28:10 +0100 (Mon, 27 Apr 2020) | 1 line
+[FIX] smarty: Smarty functions now need a template, not Smarty_Tiki
+----------------------------------------------
+r76251 | jonnybradley | 2020-04-26 16:37:21 +0100 (Sun, 26 Apr 2020) | 2 lines
+[FIX] trackers: Use the field handler to get the value for UserPreference fields as they are not stored in the database.
+The tracker values and the prefs were getting wiped out whenever an item was being related to another and the refresh option was enabled.
+----------------------------------------------
+r76231 | kroky6 | 2020-04-22 13:34:02 +0100 (Wed, 22 Apr 2020) | 1 line
+[br/r76070] [FIX] tracker item history observe field permissions - if you are not allowed to see a field, why can you see item history of changes for that field
+----------------------------------------------
+r76219 | jonnybradley | 2020-04-21 11:26:56 +0100 (Tue, 21 Apr 2020) | 1 line
+[FIX] smarty: Recent versions of smarty regard missing spaces in {if} statements as a syntax error (found using the release script smarty check)
+----------------------------------------------
+r76204 | xorti | 2020-04-17 16:01:48 +0100 (Fri, 17 Apr 2020) | 3 lines
+[UPD] Update smarty version to 3.1.34
+- Includes bp/r66866
+----------------------------------------------
+r76200 | amette | 2020-04-16 14:05:12 +0100 (Thu, 16 Apr 2020) | 1 line
+[bp/76196][FIX] Send newsletter even if recipient address has leading or trailing whitespace
+----------------------------------------------
+r76199 | amette | 2020-04-16 14:04:42 +0100 (Thu, 16 Apr 2020) | 1 line
+[rb/r76198] Roll back unrelated things
+----------------------------------------------
+r76182 | jonnybradley | 2020-04-14 14:15:48 +0100 (Tue, 14 Apr 2020) | 2 lines
+[FIX] modules: Speed up module category visibility checks by only loading the whole category tree if needed by modules with category (or nocategory) names specified rather than id's
+Reduces page load times from over 20s to under 2s on one large site with over 1000 categories
+----------------------------------------------
+r76178 | luciash | 2020-04-14 12:34:45 +0100 (Tue, 14 Apr 2020) | 3 lines
+[FIX] devtools: make the tikilite.sh script work with the latest Tiki version
+(cherry picked from commit ad99180b791d139168101766c5dafe4318a4de1b)
+----------------------------------------------
+r76164 | jonnybradley | 2020-04-09 18:42:17 +0100 (Thu, 09 Apr 2020) | 1 line
+[FIX] auth: Allow "HTTP Session/Login" content authentication to use a Bearer authorisation token to be returned from an oauth2 login post
+----------------------------------------------
+r76142 | xorti | 2020-04-08 16:37:20 +0100 (Wed, 08 Apr 2020) | 3 lines
+[ENH] Improve gitlab mr script to allow create in target project id
+- Also update_vendor_bundled_dependencies pipeline was updated
+----------------------------------------------
+r76129 | xorti | 2020-04-07 17:50:48 +0100 (Tue, 07 Apr 2020) | 1 line
+[ENH] Allow composer to update vendor_bundled dependencies and if changed, check for external package sources
+----------------------------------------------
+r76122 | jonnybradley | 2020-04-07 13:21:06 +0100 (Tue, 07 Apr 2020) | 1 line
+[FIX] elfinder: Fix notices where some permissions are missing, e.g. for non-admin users in user file galleries
+----------------------------------------------
+r76121 | jonnybradley | 2020-04-07 13:21:03 +0100 (Tue, 07 Apr 2020) | 1 line
+[FIX] elfinder: Add a pref to disable debug mode as now php warnings are displayed over the gallery listings when enabled
+----------------------------------------------
+r76120 | jonnybradley | 2020-04-07 13:18:01 +0100 (Tue, 07 Apr 2020) | 3 lines
+[ENH] elfinder: Add a new pref to allow elFinder to be enabled but not used on textarea toolbar buttons (sort of a [FIX] really)
+(cherry picked from commit 1dc2ff0da229ac7d8afaed986e2291f633e9135b)
+----------------------------------------------
+r76085 | xorti | 2020-04-04 23:33:19 +0100 (Sat, 04 Apr 2020) | 1 line
+[ENH] Update update_vendor_bundled_dependencies pipeline image to run with PHP 5.6
+----------------------------------------------
+r76018 | jonnybradley | 2020-03-26 10:45:15 +0000 (Thu, 26 Mar 2020) | 1 line
+[FIX] trackers: Missing .php on wiki field edit page button
+----------------------------------------------
 Version 18.5
 <http://doc.tiki.org/Tiki18>
 ------------------
