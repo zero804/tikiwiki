@@ -31,6 +31,38 @@ When possible, it's also nice to indicate what feature is concerned by the chang
 Before 2.0, there was only [MOD] for both [ENH] and [MOD]:
 
 ----------------------------------------------------------------------
+Version 15.9
+<http://doc.tiki.org/Tiki15>
+------------------
+
+----------------------------------------------
+r76551 | drsassfras | 2020-06-09 17:48:09 +0100 (Tue, 09 Jun 2020) | 3 lines
+
+[FIX] filer vars in tracker history
+
+(cherry picked from commit 13ad952f47753b8a71b58f84f3c4b202f2343e8b)
+----------------------------------------------
+r76550 | robertokir | 2020-06-09 17:45:21 +0100 (Tue, 09 Jun 2020) | 6 lines
+
+[FIX] Filter faq vars
+
+(cherry picked from commit 5ffc439bb39a3714bd4e6451d4acc988f5a37fff)
+
+# Conflicts:
+#	tiki-view_faq.php
+----------------------------------------------
+r76232 | kroky6 | 2020-04-22 13:41:41 +0100 (Wed, 22 Apr 2020) | 1 line
+
+[br/r76070] [FIX] tracker item history observe field permissions - if you are not allowed to see a field, why can you see item history of changes for that field
+----------------------------------------------
+r76179 | luciash | 2020-04-14 13:21:51 +0100 (Tue, 14 Apr 2020) | 5 lines
+
+[FIX] devtools: make the tikilite.sh script work with the latest Tiki version
+
+(cherry picked from commit ad99180b791d139168101766c5dafe4318a4de1b)
+
+(cherry picked from commit b2ef71cdb6f7dd39e70e03e38bb83ca365fd3189)
+----------------------------------------------
 Version 15.8
 <http://doc.tiki.org/Tiki15>
 ------------------
