@@ -55,8 +55,22 @@ echo "Exporting $SVNROOT/$RELTAG $MODULE-$VER"
 svn export $SVNROOT/$RELTAG $MODULE-$VER
 
 if [ -f $MODULE-$VER/composer.json ]; then
-  #temporary fix due to composer 2.0 alpha, use composer.phar from somewhere else
-	#wget -N http://getcomposer.org/composer.phar
+	# https://getcomposer.org/doc/faqs/how-to-install-composer-programmatically.md
+	EXPECTED_CHECKSUM="$(wget -q -O - https://composer.github.io/installer.sig)"
+	php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+	ACTUAL_CHECKSUM="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
+
+	if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]
+	then
+	    >&2 echo 'ERROR: Invalid installer checksum'
+	    rm composer-setup.php
+	    exit 1
+	fi
+
+	php composer-setup.php --quiet
+	RESULT=$?
+	rm composer-setup.php
+
 	cd $MODULE-$VER
 	php ../composer.phar install --prefer-dist --no-dev 2>&1 | sed '/Warning: Ambiguous class resolution/d'
 	cd ..
