@@ -305,7 +305,7 @@
 					</div>
 				</div>
 				<div align="center" style="padding:1em;">
-					<input type="submit" class="btn btn-primary" name="test" value="{tr}Test{/tr}">
+					<input type="submit" class="btn btn-primary" name="test" value="{tr}Run{/tr}">
 				</div>
 			</form>
 		</fieldset>
