@@ -175,7 +175,7 @@
 					</div>
 				</div>
 				<div class="submit text-center">
-					<input type="submit" class="btn btn-primary" name="new_prefs" value="{tr}Save changes{/tr}">
+					<input type="submit" class="btn btn-primary" name="new_info" value="{tr}Save changes{/tr}">
 				</div>
 			</form>
 		{/tab}

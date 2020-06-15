@@ -60,6 +60,43 @@ $foo2 = str_replace("tiki-user_preferences", "tiki-index", $foo["path"]);
 $smarty->assign('url_edit', $tikilib->httpPrefix() . $foo1);
 $smarty->assign('url_visit', $tikilib->httpPrefix() . $foo2);
 $smarty->assign('show_mouseover_user_info', isset($prefs['show_mouseover_user_info']) ? $prefs['show_mouseover_user_info'] : $prefs['feature_community_mouseover']);
+
+// form in first tab "Personal Information"
+if ($prefs['feature_userPreferences'] == 'y' && isset($_POST["new_info"]) && $access->checkOrigin()) {
+	if (isset($_POST["realName"]) && ($prefs['auth_ldap_nameattr'] == '' || $prefs['auth_method'] != 'ldap')) {
+		$tikilib->set_user_preference($userwatch, 'realName', $_POST["realName"]);
+		if ($prefs['user_show_realnames'] == 'y') {
+			$cachelib = TikiLib::lib('cache');
+			$cachelib->invalidate('userlink.' . $user . '0');
+		}
+	}
+
+	if ($prefs['feature_community_gender'] == 'y') {
+		if (isset($_POST["gender"])) {
+			$tikilib->set_user_preference($userwatch, 'gender', $_POST["gender"]);
+		}
+	}
+
+	$tikilib->set_user_preference($userwatch, 'country', $_POST["country"]);
+
+	if (isset($_POST['location'])) {
+		if ($coords = TikiLib::lib('geo')->parse_coordinates($_POST['location'])) {
+			$tikilib->set_user_preference($userwatch, 'lat', $coords['lat']);
+			$tikilib->set_user_preference($userwatch, 'lon', $coords['lon']);
+			if (isset($coords['zoom'])) {
+				$tikilib->set_user_preference($userwatch, 'zoom', $coords['zoom']);
+			}
+		}
+	}
+
+	if (isset($_POST["homePage"])) {
+		$tikilib->set_user_preference($userwatch, 'homePage', $_POST["homePage"]);
+	}
+
+	$tikilib->set_user_preference($userwatch, 'user_information', $_POST['user_information']);
+
+}
+
 if ($prefs['feature_userPreferences'] == 'y' && isset($_REQUEST["new_prefs"]) && $access->checkOrigin()) {
 	check_ticket('user-prefs');
 	// setting preferences
@@ -113,7 +150,7 @@ if ($prefs['feature_userPreferences'] == 'y' && isset($_REQUEST["new_prefs"]) &&
 	if (isset($_REQUEST['display_timezone'])) {
 		$tikilib->set_user_preference($userwatch, 'display_timezone', $_REQUEST['display_timezone']);
 	}
-	$tikilib->set_user_preference($userwatch, 'user_information', $_REQUEST['user_information']);
+
 	if (isset($_REQUEST['display_12hr_clock']) && $_REQUEST['display_12hr_clock'] == 'on') {
 		$tikilib->set_user_preference($userwatch, 'display_12hr_clock', 'y');
 		$smarty->assign('display_12hr_clock', 'y');
@@ -149,39 +186,13 @@ if ($prefs['feature_userPreferences'] == 'y' && isset($_REQUEST["new_prefs"]) &&
 			$tikilib->set_user_preference($userwatch, $customfields[$custpref]['prefName'], $_REQUEST[$customfields[$custpref]['prefName']]);
 		}
 	}
-	if (isset($_REQUEST["realName"]) && ($prefs['auth_ldap_nameattr'] == '' || $prefs['auth_method'] != 'ldap')) {
-		$tikilib->set_user_preference($userwatch, 'realName', $_REQUEST["realName"]);
-		if ($prefs['user_show_realnames'] == 'y') {
-			$cachelib = TikiLib::lib('cache');
-			$cachelib->invalidate('userlink.' . $user . '0');
-		}
-	}
-	if ($prefs['feature_community_gender'] == 'y') {
-		if (isset($_REQUEST["gender"])) {
-			$tikilib->set_user_preference($userwatch, 'gender', $_REQUEST["gender"]);
-		}
-	}
-	if (isset($_REQUEST["homePage"])) {
-		$tikilib->set_user_preference($userwatch, 'homePage', $_REQUEST["homePage"]);
-	}
-
-	if (isset($_REQUEST['location'])) {
-		if ($coords = TikiLib::lib('geo')->parse_coordinates($_REQUEST['location'])) {
-			$tikilib->set_user_preference($userwatch, 'lat', $coords['lat']);
-			$tikilib->set_user_preference($userwatch, 'lon', $coords['lon']);
-			if (isset($coords['zoom'])) {
-				$tikilib->set_user_preference($userwatch, 'zoom', $coords['zoom']);
-			}
-		}
-	}
-
 	// Custom fields
 	foreach ($customfields as $custpref => $prefvalue) {
 		// print $customfields[$custpref]['prefName'];
 		// print $_REQUEST[$customfields[$custpref]['prefName']];
 		$tikilib->set_user_preference($userwatch, $customfields[$custpref]['prefName'], $_REQUEST[$customfields[$custpref]['prefName']]);
 	}
-	$tikilib->set_user_preference($userwatch, 'country', $_REQUEST["country"]);
+
 	if (isset($_REQUEST['mess_maxRecords'])) {
 		$tikilib->set_user_preference($userwatch, 'mess_maxRecords', $_REQUEST['mess_maxRecords']);
 	}
