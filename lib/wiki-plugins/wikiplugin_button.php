@@ -250,6 +250,7 @@ function wikiplugin_button($data, $params)
 	// Translate the button label
 	$params['_text'] = tra($params['_text']);
 
+
 	//Adding width and height to HTML style label (if defined)
 	if(!empty($params['width'])){
 		$params['_style'] = "width : " . $params['width'] . " !important ;" . $params['_style'] ;
