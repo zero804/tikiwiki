@@ -247,6 +247,9 @@ function wikiplugin_button($data, $params)
 		$params['_text'] = TikiLib::lib('parser')->parse_data($data,['preview_mode' => true]);
 	}
 
+	// Translate the button label
+	$params['_text'] = tra($params['_text']);
+
 	//Adding width and height to HTML style label (if defined)
 	if(!empty($params['width'])){
 		$params['_style'] = "width : " . $params['width'] . " !important ;" . $params['_style'] ;
