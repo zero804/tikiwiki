@@ -252,10 +252,10 @@ function wikiplugin_button($data, $params)
 
 
 	//Adding width and height to HTML style label (if defined)
-	if (!empty ($params['width']) ){
+	if (! empty($params['width'])) {
 		$params['_style'] = "width : " . $params['width'] . " !important ;" . $params['_style'] ;
 	}
-	if (!empty ($params['height']) ){
+	if (! empty($params['height'])) {
 		$params['_style'] = "height : " . $params['height'] . " !important ;" . $params['_style'] ;
 	}
 
