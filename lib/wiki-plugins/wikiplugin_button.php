@@ -12,7 +12,7 @@ function wikiplugin_button_info()
 		'documentation' => 'PluginButton',
 		'description' => tra('Add a link formatted as a button'),
 		'prefs' => ['wikiplugin_button'],
-		'body' =>  tra('Label for the button (ignored if the text is defined)'),
+		'body' => tra('Label for the button (ignored if the text is defined)'),
 		'validate' => 'arguments',
 		'extraparams' => false,
 		'iconname' => 'play',
@@ -244,7 +244,7 @@ function wikiplugin_button($data, $params)
 		$params['_text'] = $params['text'];
 		unset($params['text']);
 	} elseif (empty($params['_text'])) {
-		$params['_text'] = TikiLib::lib('parser')->parse_data($data,['preview_mode' => true]);
+		$params['_text'] = TikiLib::lib('parser')->parse_data($data, ['preview_mode' => true]);
 	}
 
 	// Translate the button label
@@ -252,10 +252,10 @@ function wikiplugin_button($data, $params)
 
 
 	//Adding width and height to HTML style label (if defined)
-	if(!empty($params['width'])){
+	if (!empty ($params['width']) ){
 		$params['_style'] = "width : " . $params['width'] . " !important ;" . $params['_style'] ;
 	}
-	if(!empty($params['height'])){
+	if (!empty ($params['height']) ){
 		$params['_style'] = "height : " . $params['height'] . " !important ;" . $params['_style'] ;
 	}
 
