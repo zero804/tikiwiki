@@ -1042,6 +1042,7 @@ class Services_Tracker_Controller
 		}
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			TikiLib::lib('access')->preventRedirect(true);
 			//fetch the processed fields and the changes made in the form. Put them in the 'fields' variable
 			$processedFields = $itemObject->prepareInput($input);
 			$fields = [];
@@ -1076,6 +1077,8 @@ class Services_Tracker_Controller
 					'fields' => $fields,
 				]
 			);
+
+			TikiLib::lib('access')->preventRedirect(false);
 
 			if ($result !== false) {
 				TikiLib::lib('unifiedsearch')->processUpdateQueue();
