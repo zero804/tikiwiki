@@ -515,7 +515,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 						}
 
 						$src = smarty_modifier_sefurl($file['fileId'], 'display');
-						$ret .= " <a href='" . $src . "' target='_blank' class='tips' title='Preview: " . $file['filename'] . "' data-box='box-" . $this->getConfiguration('fieldId') . "' " . implode($dataAttributes, ' ') . ">
+						$ret .= " <a href='" . $src . "' target='_blank' class='tips' title='Preview: " . $file['filename'] . "' data-box='box-" . $this->getConfiguration('fieldId') . "' " . implode(' ', $dataAttributes) . ">
 							$viewicon
 						</a>";
 					}
