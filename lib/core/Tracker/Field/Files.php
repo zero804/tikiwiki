@@ -501,6 +501,12 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 							. "' target='_blank' class='tips' title='Preview: " . $file['filename'] . "'>
 							$viewicon
 						</a>";
+					} elseif (strpos($file['filetype'], 'video/') === 0) {
+						$src = smarty_modifier_sefurl($file['fileId'], 'display');
+
+						$ret .= " <a href='$src' target='_blank' class='tips' title='Preview: " . $file['filename'] . "' data-box='box-type=video'>
+							$viewicon
+						</a>";
 					} else {
 						$dataAttributes = [];
 

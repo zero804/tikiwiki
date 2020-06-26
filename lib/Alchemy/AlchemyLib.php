@@ -130,7 +130,7 @@ class AlchemyLib
 				$targetType->setDimensions($width, $height);
 			}
 
-			if ($targetType instanceof Image && $page != 1) {
+			if ($guessedType == MediaInterface::TYPE_DOCUMENT && $targetType instanceof Image && $page != 1) {
 				$targetType->fromPage($page);
 			}
 
