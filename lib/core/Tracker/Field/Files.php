@@ -244,7 +244,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 		}
 
 		$galinfo = $filegallib->get_file_gallery($galleryId);
-		if (!$galinfo) {
+		if (! $galinfo) {
 			Feedback::error(tr('Files field: Gallery #%0 not found', $galleryId));
 			return [];
 		}
@@ -653,7 +653,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 		foreach ($removedFileInfos as $file) {
 			$url = smarty_modifier_sefurl($file['fileId'], 'file');
 			$result .= smarty_modifier_iconify($url, $file['filetype'], $file['fileId'], 1);
-			$result .= ' <a href="' . $url . '">' . smarty_modifier_escape($file['name']) .'</a><br>';
+			$result .= ' <a href="' . $url . '">' . smarty_modifier_escape($file['name']) . '</a><br>';
 		}
 
 		$result .= '</del></td><td class="diffadded">+</td><td class="diffadded"><ins class="diffchar inserted">';
@@ -661,7 +661,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 		foreach ($addedFileInfos as $file) {
 			$url = smarty_modifier_sefurl($file['fileId'], 'file');
 			$result .= smarty_modifier_iconify($url, $file['filetype'], $file['fileId'], 1);
-			$result .= ' <a href="' . $url . '">' . smarty_modifier_escape($file['name']) .'</a><br>';
+			$result .= ' <a href="' . $url . '">' . smarty_modifier_escape($file['name']) . '</a><br>';
 		}
 
 		$result .= '</ins></td></tr></table>';
@@ -669,7 +669,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 		return $result;
 	}
 
-function filterFile($info)
+	function filterFile($info)
 	{
 		$filter = $this->getOption('filter');
 
@@ -748,8 +748,8 @@ function filterFile($info)
 		} elseif (strstr($sortOrder, 'name')) {
 			$sep = strrpos($sortOrder, '_');
 			$field = substr($sortOrder, 0, $sep);
-			$dir = substr($sortOrder, $sep+1);
-			$sortArray = array_map(function($file) use ($field) {
+			$dir = substr($sortOrder, $sep + 1);
+			$sortArray = array_map(function ($file) use ($field) {
 				return isset($file[$field]) ? $file[$field] : '';
 			}, $out);
 			natsort($sortArray);
@@ -850,7 +850,7 @@ function filterFile($info)
 			->setRenderTransform(function ($value) {
 				return $value;
 			})
-			->setParseIntoTransform(function (& $info, $value) use ($permName) {
+			->setParseIntoTransform(function (&$info, $value) use ($permName) {
 				$info['fields'][$permName] = $value;
 			});
 
