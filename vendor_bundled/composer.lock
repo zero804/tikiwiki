@@ -222,17 +222,17 @@
         },
         {
             "name": "bower-asset/fontawesome",
-            "version": "5.13.0",
+            "version": "5.13.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:FortAwesome/Font-Awesome.git",
-                "reference": "4e6402443679e0a9d12c7401ac8783ef4646657f"
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "reference": "1147d199a35293b391152ee85e2d30988439157f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-4e6402443679e0a9d12c7401ac8783ef4646657f-zip-66f7c7.zip",
-                "reference": "4e6402443679e0a9d12c7401ac8783ef4646657f",
-                "shasum": "92b662a9ca7a6e427a9708d9fa36445df7b72b77"
+                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-1147d199a35293b391152ee85e2d30988439157f-zip-5ca2c4.zip",
+                "reference": "1147d199a35293b391152ee85e2d30988439157f",
+                "shasum": "fa1d138d5c6230525d4a29756d76fe9f81147bfc"
             },
             "type": "bower-asset"
         },
@@ -369,17 +369,17 @@
         },
         {
             "name": "ckeditor/ckeditor",
-            "version": "4.14.0",
+            "version": "4.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ckeditor/ckeditor4-releases.git",
-                "reference": "998e43cd6305bca24304b9538a682da123ac5b73"
+                "reference": "8eccaf31ad9832a113757d379758996ed2150f60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-998e43cd6305bca24304b9538a682da123ac5b73-zip-7b534d.zip",
-                "reference": "998e43cd6305bca24304b9538a682da123ac5b73",
-                "shasum": "412b986800f35c316c809cc116c6510a14654a53"
+                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-8eccaf31ad9832a113757d379758996ed2150f60-zip-6a9bed.zip",
+                "reference": "8eccaf31ad9832a113757d379758996ed2150f60",
+                "shasum": "bacf7935fcc524631c85cf4efababa5a45314165"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -407,7 +407,7 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2020-03-04T13:19:40+00:00"
+            "time": "2020-06-17T12:33:25+00:00"
         },
         {
             "name": "codeitnowin/barcode",
@@ -701,6 +701,133 @@
             ],
             "description": "jQuery UI is a curated set of user interface interactions, effects, widgets, and themes built on top of the jQuery JavaScript Library. Whether you're building highly interactive web applications or you just need to add a date picker to a form control, jQuery UI is the perfect choice.",
             "time": "2016-09-16T05:47:55+00:00"
+        },
+        {
+            "name": "composer/installers",
+            "version": "v1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/installers.git",
+                "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/composer/installers/composer-installers-b93bcf0fa1fccb0b7d176b0967d969691cd74cca-zip-52424b.zip",
+                "reference": "b93bcf0fa1fccb0b7d176b0967d969691cd74cca",
+                "shasum": "ebde81f96ea0276b5e8b1cdb60572813a9fedd9c"
+            },
+            "require": {
+                "composer-plugin-api": "^1.0 || ^2.0"
+            },
+            "replace": {
+                "roundcube/plugin-installer": "*",
+                "shama/baton": "*"
+            },
+            "require-dev": {
+                "composer/composer": "1.6.* || 2.0.*@dev",
+                "composer/semver": "1.0.* || 2.0.*@dev",
+                "phpunit/phpunit": "^4.8.36",
+                "sebastian/comparator": "^1.2.4",
+                "symfony/process": "^2.3"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Composer\\Installers\\Plugin",
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\Installers\\": "src/Composer/Installers"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Robinson Young",
+                    "email": "kyle@dontkry.com",
+                    "homepage": "https://github.com/shama"
+                }
+            ],
+            "description": "A multi-framework Composer library installer",
+            "homepage": "https://composer.github.io/installers/",
+            "keywords": [
+                "Craft",
+                "Dolibarr",
+                "Eliasis",
+                "Hurad",
+                "ImageCMS",
+                "Kanboard",
+                "Lan Management System",
+                "MODX Evo",
+                "MantisBT",
+                "Mautic",
+                "Maya",
+                "OXID",
+                "Plentymarkets",
+                "Porto",
+                "RadPHP",
+                "SMF",
+                "Thelia",
+                "Whmcs",
+                "WolfCMS",
+                "agl",
+                "aimeos",
+                "annotatecms",
+                "attogram",
+                "bitrix",
+                "cakephp",
+                "chef",
+                "cockpit",
+                "codeigniter",
+                "concrete5",
+                "croogo",
+                "dokuwiki",
+                "drupal",
+                "eZ Platform",
+                "elgg",
+                "expressionengine",
+                "fuelphp",
+                "grav",
+                "installer",
+                "itop",
+                "joomla",
+                "known",
+                "kohana",
+                "laravel",
+                "lavalite",
+                "lithium",
+                "magento",
+                "majima",
+                "mako",
+                "mediawiki",
+                "modulework",
+                "modx",
+                "moodle",
+                "osclass",
+                "phpbb",
+                "piwik",
+                "ppi",
+                "puppet",
+                "pxcms",
+                "reindex",
+                "roundcube",
+                "shopware",
+                "silverstripe",
+                "sydes",
+                "sylius",
+                "symfony",
+                "typo3",
+                "wordpress",
+                "yawik",
+                "zend",
+                "zikula"
+            ],
+            "time": "2020-04-07T06:57:05+00:00"
         },
         {
             "name": "composer/semver",
@@ -1857,13 +1984,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jasonmunro/cypht.git",
-                "reference": "706574f960352f9dbeaf7f622724ddc7c0716f45"
+                "reference": "2d1d220524d8f91b96d0168db652ffaef8b3ceed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jason-munro/cypht/jason-munro-cypht-706574f960352f9dbeaf7f622724ddc7c0716f45-zip-8bc9fe.zip",
-                "reference": "706574f960352f9dbeaf7f622724ddc7c0716f45",
-                "shasum": "fd3b7fd11f8c18a06d00ed3d73648e18e795b546"
+                "url": "https://composer.tiki.org/dist/jason-munro/cypht/jason-munro-cypht-2d1d220524d8f91b96d0168db652ffaef8b3ceed-zip-36eb8f.zip",
+                "reference": "2d1d220524d8f91b96d0168db652ffaef8b3ceed",
+                "shasum": "a7272dd95650b0e1ae6cd7e19e72c09421bfe362"
             },
             "require": {
                 "christian-riesen/base32": "1.3.2",
@@ -1913,7 +2040,7 @@
                 "webmail",
                 "webmail-client"
             ],
-            "time": "2020-06-19T18:43:38+00:00"
+            "time": "2020-06-25T19:05:02+00:00"
         },
         {
             "name": "jquery-form/form",
@@ -2794,17 +2921,17 @@
         },
         {
             "name": "laminas/laminas-http",
-            "version": "2.11.2",
+            "version": "2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-http.git",
-                "reference": "8c66963b933c80da59433da56a44dfa979f3ec88"
+                "reference": "48bd06ffa3a6875e2b77d6852405eb7b1589d575"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/laminas/laminas-http/laminas-laminas-http-8c66963b933c80da59433da56a44dfa979f3ec88-zip-ad0fca.zip",
-                "reference": "8c66963b933c80da59433da56a44dfa979f3ec88",
-                "shasum": "bc017c760504818224a952c2c26bb6fe080710e0"
+                "url": "https://composer.tiki.org/dist/laminas/laminas-http/laminas-laminas-http-48bd06ffa3a6875e2b77d6852405eb7b1589d575-zip-c8da59.zip",
+                "reference": "48bd06ffa3a6875e2b77d6852405eb7b1589d575",
+                "shasum": "ae6e00593273db5eb50f6cfb661fc836d1aa7109"
             },
             "require": {
                 "laminas/laminas-loader": "^2.5.1",
@@ -2815,7 +2942,7 @@
                 "php": "^5.6 || ^7.0"
             },
             "replace": {
-                "zendframework/zend-http": "self.version"
+                "zendframework/zend-http": "^2.11.2"
             },
             "require-dev": {
                 "laminas/laminas-coding-standard": "~1.0.0",
@@ -2828,8 +2955,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.11.x-dev",
-                    "dev-develop": "2.12.x-dev"
+                    "dev-master": "2.12.x-dev",
+                    "dev-develop": "2.13.x-dev"
                 }
             },
             "autoload": {
@@ -2848,7 +2975,7 @@
                 "http client",
                 "laminas"
             ],
-            "time": "2019-12-31T17:02:36+00:00"
+            "time": "2020-06-23T15:14:37+00:00"
         },
         {
             "name": "laminas/laminas-i18n",
@@ -4096,21 +4223,21 @@
         },
         {
             "name": "league/commonmark",
-            "version": "1.4.3",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "412639f7cfbc0b31ad2455b2fe965095f66ae505"
+                "reference": "6d74caf6abeed5fd85d6ec20da23d7269cd0b46f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/league/commonmark/league-commonmark-412639f7cfbc0b31ad2455b2fe965095f66ae505-zip-4ea4db.zip",
-                "reference": "412639f7cfbc0b31ad2455b2fe965095f66ae505",
-                "shasum": "b4f3eb970730364af93870470de5904c324cf264"
+                "url": "https://composer.tiki.org/dist/league/commonmark/league-commonmark-6d74caf6abeed5fd85d6ec20da23d7269cd0b46f-zip-905e6d.zip",
+                "reference": "6d74caf6abeed5fd85d6ec20da23d7269cd0b46f",
+                "shasum": "17c95a9f2a85e84b920843546700c205a60285a4"
             },
             "require": {
                 "ext-mbstring": "*",
-                "php": "^7.1"
+                "php": "^7.1 || ^8.0"
             },
             "conflict": {
                 "scrutinizer/ocular": "1.7.*"
@@ -4132,11 +4259,6 @@
                 "bin/commonmark"
             ],
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.4-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "League\\CommonMark\\": "src"
@@ -4166,7 +4288,7 @@
                 "md",
                 "parser"
             ],
-            "time": "2020-05-04T22:15:21+00:00"
+            "time": "2020-06-27T12:50:08+00:00"
         },
         {
             "name": "league/commonmark-extras",
@@ -4551,20 +4673,20 @@
         },
         {
             "name": "moment/moment",
-            "version": "2.26.0",
+            "version": "2.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moment/moment.git",
-                "reference": "a0f3c74374b638b769d9ab1ae54ba5266ef0976f"
+                "reference": "3e1a95b5ef0a505fec567c5b2290fd80e1da18f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/moment/moment/moment-moment-a0f3c74374b638b769d9ab1ae54ba5266ef0976f-zip-2ac964.zip",
-                "reference": "a0f3c74374b638b769d9ab1ae54ba5266ef0976f",
-                "shasum": "07e3e888e58231b8e9a3ca5c1f8342b39233c032"
+                "url": "https://composer.tiki.org/dist/moment/moment/moment-moment-3e1a95b5ef0a505fec567c5b2290fd80e1da18f9-zip-cc957d.zip",
+                "reference": "3e1a95b5ef0a505fec567c5b2290fd80e1da18f9",
+                "shasum": "e9e7289e4ee07a8b99f59ea359bad79b0a9ec773"
             },
             "require": {
-                "robloach/component-installer": "*"
+                "oomphinc/composer-installers-extender": "*"
             },
             "type": "component",
             "extra": {
@@ -4601,7 +4723,7 @@
                 "time",
                 "validate"
             ],
-            "time": "2020-05-20T06:42:01+00:00"
+            "time": "2020-06-18T21:54:03+00:00"
         },
         {
             "name": "montefuscolo/xmpp",
@@ -5061,11 +5183,11 @@
         },
         {
             "name": "npm-asset/moment",
-            "version": "2.26.0",
+            "version": "2.27.0",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/moment/npm-asset-moment-2.26.0.zip",
-                "shasum": "278038ab080c3d4e595aa776939e93b85b87bf15"
+                "url": "https://composer.tiki.org/dist/npm-asset/moment/npm-asset-moment-2.27.0.zip",
+                "shasum": "6d31ad73ae46a9ccc624ebc9c96fa2acd541cebd"
             },
             "type": "npm-asset",
             "license": [
@@ -5139,6 +5261,48 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "oomphinc/composer-installers-extender",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oomphinc/composer-installers-extender.git",
+                "reference": "ca1c4b16b0905c81d1e77e608f36a2eff1a56f56"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/oomphinc/composer-installers-extender/oomphinc-composer-installers-extender-ca1c4b16b0905c81d1e77e608f36a2eff1a56f56-zip-82438b.zip",
+                "reference": "ca1c4b16b0905c81d1e77e608f36a2eff1a56f56",
+                "shasum": "01fd2a848660dbf46704c532f6fa24c325d824e3"
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "composer/installers": "^1.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "OomphInc\\ComposerInstallersExtender\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "OomphInc\\ComposerInstallersExtender\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Beemsterboer",
+                    "email": "stephen@oomphinc.com",
+                    "homepage": "https://github.com/balbuf"
+                }
+            ],
+            "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
+            "homepage": "http://www.oomphinc.com/",
+            "time": "2017-03-31T16:57:39+00:00"
         },
         {
             "name": "openannotation/annotator",
@@ -5939,17 +6103,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.54.2",
+            "version": "v1.54.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "fbb5742241dcc46b84f508bad812c975d7f06b16"
+                "reference": "34510563ae01cfc1c75604285a357d7a4e4f56ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-fbb5742241dcc46b84f508bad812c975d7f06b16-zip-1f7c2a.zip",
-                "reference": "fbb5742241dcc46b84f508bad812c975d7f06b16",
-                "shasum": "35218b919b084244de046e2261b3158493b0ab87"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-34510563ae01cfc1c75604285a357d7a4e4f56ff-zip-2476b3.zip",
+                "reference": "34510563ae01cfc1c75604285a357d7a4e4f56ff",
+                "shasum": "77acf995c0c88aaef5d120251fe1967456783a8f"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -5971,7 +6135,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2020-06-10T13:41:51+00:00"
+            "time": "2020-06-23T14:30:08+00:00"
         },
         {
             "name": "pragmarx/google2fa",
@@ -7398,17 +7562,17 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.17.0",
+            "version": "v1.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "e94c8b1bbe2bc77507a1056cdb06451c75b427f9"
+                "reference": "2edd75b8b35d62fd3eeabba73b26b8f1f60ce13d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-ctype/symfony-polyfill-ctype-e94c8b1bbe2bc77507a1056cdb06451c75b427f9-zip-67a655.zip",
-                "reference": "e94c8b1bbe2bc77507a1056cdb06451c75b427f9",
-                "shasum": "cc93944f2e35814932ee96a82d30eb47c778162b"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-ctype/symfony-polyfill-ctype-2edd75b8b35d62fd3eeabba73b26b8f1f60ce13d-zip-f8772d.zip",
+                "reference": "2edd75b8b35d62fd3eeabba73b26b8f1f60ce13d",
+                "shasum": "f7d02e1ec729fabae3d3fef6bff923d3f4b065b3"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -7420,6 +7584,10 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.17-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
                 }
             },
             "autoload": {
@@ -7452,21 +7620,21 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2020-05-12T16:14:59+00:00"
+            "time": "2020-06-06T08:46:27+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
-            "version": "v1.17.0",
+            "version": "v1.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
-                "reference": "3bff59ea7047e925be6b7f2059d60af31bb46d6a"
+                "reference": "a57f8161502549a742a63c09f0a604997bf47027"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-intl-idn/symfony-polyfill-intl-idn-3bff59ea7047e925be6b7f2059d60af31bb46d6a-zip-e0add8.zip",
-                "reference": "3bff59ea7047e925be6b7f2059d60af31bb46d6a",
-                "shasum": "5cc595360b7fbb5ef0f1311bbb3fda483deac644"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-intl-idn/symfony-polyfill-intl-idn-a57f8161502549a742a63c09f0a604997bf47027-zip-8e4568.zip",
+                "reference": "a57f8161502549a742a63c09f0a604997bf47027",
+                "shasum": "952f548d711f241af37a2e9a280a9aacf6a3bff0"
             },
             "require": {
                 "php": ">=5.3.3",
@@ -7480,6 +7648,10 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.17-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
                 }
             },
             "autoload": {
@@ -7514,21 +7686,21 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-05-12T16:47:27+00:00"
+            "time": "2020-06-06T08:46:27+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.17.0",
+            "version": "v1.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "fa79b11539418b02fc5e1897267673ba2c19419c"
+                "reference": "7110338d81ce1cbc3e273136e4574663627037a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-fa79b11539418b02fc5e1897267673ba2c19419c-zip-6896b6.zip",
-                "reference": "fa79b11539418b02fc5e1897267673ba2c19419c",
-                "shasum": "a9a51a08908eb011bc8956a4007dc9de59b87f33"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-7110338d81ce1cbc3e273136e4574663627037a7-zip-60b157.zip",
+                "reference": "7110338d81ce1cbc3e273136e4574663627037a7",
+                "shasum": "2d3aea17f8fbd7d5b9bfb03b82cca59f0ff8bfdb"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -7540,6 +7712,10 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.17-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
                 }
             },
             "autoload": {
@@ -7573,21 +7749,21 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-05-12T16:47:27+00:00"
+            "time": "2020-06-06T08:46:27+00:00"
         },
         {
             "name": "symfony/polyfill-php56",
-            "version": "v1.17.0",
+            "version": "v1.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php56.git",
-                "reference": "e3c8c138280cdfe4b81488441555583aa1984e23"
+                "reference": "a25861bb3c79b0ec2da9ede51de2ea573818b943"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-php56/symfony-polyfill-php56-e3c8c138280cdfe4b81488441555583aa1984e23-zip-94c53c.zip",
-                "reference": "e3c8c138280cdfe4b81488441555583aa1984e23",
-                "shasum": "a85444102cdde961ff587b9a8c21aec0ef6b414f"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-php56/symfony-polyfill-php56-a25861bb3c79b0ec2da9ede51de2ea573818b943-zip-a434e9.zip",
+                "reference": "a25861bb3c79b0ec2da9ede51de2ea573818b943",
+                "shasum": "59d65aa1ea916988daba5914aaf445fc0864a224"
             },
             "require": {
                 "php": ">=5.3.3",
@@ -7597,6 +7773,10 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.17-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
                 }
             },
             "autoload": {
@@ -7629,7 +7809,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-05-12T16:47:27+00:00"
+            "time": "2020-06-06T08:46:27+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
@@ -7688,17 +7868,17 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.17.0",
+            "version": "v1.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "5e30b2799bc1ad68f7feb62b60a73743589438dd"
+                "reference": "4a5b6bba3259902e386eb80dd1956181ee90b5b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-php80/symfony-polyfill-php80-5e30b2799bc1ad68f7feb62b60a73743589438dd-zip-312018.zip",
-                "reference": "5e30b2799bc1ad68f7feb62b60a73743589438dd",
-                "shasum": "7e03c72f18bd1d8d197037575b46f59aec514bfe"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-php80/symfony-polyfill-php80-4a5b6bba3259902e386eb80dd1956181ee90b5b2-zip-e5385e.zip",
+                "reference": "4a5b6bba3259902e386eb80dd1956181ee90b5b2",
+                "shasum": "53393a70fafbc077a1599ae7d52fd95018a65c53"
             },
             "require": {
                 "php": ">=7.0.8"
@@ -7707,6 +7887,10 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.17-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
                 }
             },
             "autoload": {
@@ -7746,21 +7930,21 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-05-12T16:47:27+00:00"
+            "time": "2020-06-06T08:46:27+00:00"
         },
         {
             "name": "symfony/polyfill-util",
-            "version": "v1.17.0",
+            "version": "v1.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-util.git",
-                "reference": "4afb4110fc037752cf0ce9869f9ab8162c4e20d7"
+                "reference": "6dd644eda43cd2f3daa883d728d8ab4120a05af6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-util/symfony-polyfill-util-4afb4110fc037752cf0ce9869f9ab8162c4e20d7-zip-ffed9f.zip",
-                "reference": "4afb4110fc037752cf0ce9869f9ab8162c4e20d7",
-                "shasum": "68a20345a5eb0b3cdde905facfc38b3680e2f80f"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-util/symfony-polyfill-util-6dd644eda43cd2f3daa883d728d8ab4120a05af6-zip-7c7cf5.zip",
+                "reference": "6dd644eda43cd2f3daa883d728d8ab4120a05af6",
+                "shasum": "2c4b4c2d75b661b6c3de22975e56c0adbaf56750"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -7769,6 +7953,10 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.17-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
                 }
             },
             "autoload": {
@@ -7798,7 +7986,7 @@
                 "polyfill",
                 "shim"
             ],
-            "time": "2020-05-12T16:14:59+00:00"
+            "time": "2020-06-06T08:46:27+00:00"
         },
         {
             "name": "symfony/process",
@@ -8142,6 +8330,7 @@
                 "commonmark",
                 "markdown"
             ],
+            "abandoned": "league/commonmark",
             "time": "2019-09-11T21:27:00+00:00"
         },
         {
@@ -8708,25 +8897,25 @@
         },
         {
             "name": "phpdocumentor/reflection-common",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionCommon.git",
-                "reference": "6568f4687e5b41b054365f9ae03fcb1ed5f2069b"
+                "reference": "1d01c49d4ed62f25aa84a747ad35d5a16924662b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpdocumentor/reflection-common/phpdocumentor-reflection-common-6568f4687e5b41b054365f9ae03fcb1ed5f2069b-zip-2c60a0.zip",
-                "reference": "6568f4687e5b41b054365f9ae03fcb1ed5f2069b",
-                "shasum": "96888a410dd6d746ff8bf513ba303c44caa99a92"
+                "url": "https://composer.tiki.org/dist/phpdocumentor/reflection-common/phpdocumentor-reflection-common-1d01c49d4ed62f25aa84a747ad35d5a16924662b-zip-401c0c.zip",
+                "reference": "1d01c49d4ed62f25aa84a747ad35d5a16924662b",
+                "shasum": "a8274748c4fdbb24fade14b8ebaf226a79565002"
             },
             "require": {
-                "php": ">=7.1"
+                "php": "^7.2 || ^8.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev"
+                    "dev-2.x": "2.x-dev"
                 }
             },
             "autoload": {
@@ -8753,7 +8942,7 @@
                 "reflection",
                 "static analysis"
             ],
-            "time": "2020-04-27T09:25:28+00:00"
+            "time": "2020-06-27T09:03:43+00:00"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -8810,25 +8999,24 @@
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "30441f2752e493c639526b215ed81d54f369d693"
+                "reference": "e878a14a65245fbe78f8080eba03b47c3b705651"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpdocumentor/type-resolver/phpdocumentor-type-resolver-30441f2752e493c639526b215ed81d54f369d693-zip-54f895.zip",
-                "reference": "30441f2752e493c639526b215ed81d54f369d693",
-                "shasum": "87d59a3bf2f0f9bea9a926c807d2377dd6669123"
+                "url": "https://composer.tiki.org/dist/phpdocumentor/type-resolver/phpdocumentor-type-resolver-e878a14a65245fbe78f8080eba03b47c3b705651-zip-86e821.zip",
+                "reference": "e878a14a65245fbe78f8080eba03b47c3b705651",
+                "shasum": "29af20bb4ba4dc8d5e73d9cc357eee13e3d028be"
             },
             "require": {
-                "php": "^7.2",
+                "php": "^7.2 || ^8.0",
                 "phpdocumentor/reflection-common": "^2.0"
             },
             "require-dev": {
-                "ext-tokenizer": "^7.2",
-                "mockery/mockery": "~1"
+                "ext-tokenizer": "*"
             },
             "type": "library",
             "extra": {
@@ -8852,7 +9040,7 @@
                 }
             ],
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
-            "time": "2020-06-19T20:22:09+00:00"
+            "time": "2020-06-27T10:12:23+00:00"
         },
         {
             "name": "phpspec/prophecy",
