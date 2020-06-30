@@ -21,12 +21,10 @@ $inputConfiguration = [[
 	'staticKeyFilters' => [
 		'action' => 'word',
 		'controller' => 'text',
-		'sort_mode' => 'word',
-		'watch' => 'alpha',
 	],
 ]];
 
-if (isset($_REQUEST['controller'], $_REQUEST['action']) || isset($_GET['controller'], $_GET['action'])) {
+if (isset($_REQUEST['controller'], $_REQUEST['action'])) {
 	$inputConfiguration[] = ['catchAllUnset' => null];
 }
 
