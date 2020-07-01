@@ -98,7 +98,7 @@
 				</div>
 			</form>
 			<a id="step2"></a>
-			{if isset($result) && $result|@count != '0'}
+			{if isset($result)}
 				<h4>{tr}Select and apply profile <small>Click on a configuration profile name below to review it and apply it on your site</small>{/tr}</h4>
 				<div class="table-responsive">
 					<table class="table table-condensed table-hover table-striped">
@@ -113,9 +113,11 @@
 									{assign var="show_details_for_profile_num" value="$k"}
 									{assign var="show_details_for_fullname" value=$profile.name|escape}
 									{assign var="show_details_for_domain" value=$profile.domain|escape}
+									{assign var="show_details_for_ticket" value={ticket}}
+									{$show=true}
 									<td>{$profile.name|escape}: {tr}See profile info below (may take a few seconds to load){/tr}.</td>
 								{else}
-									<td><a href="javascript:$.profilesShowDetails( '{$baseURI}', 'profile-{$k}', '{$profile.domain|escape}', '{$profile.name|escape}' )">{$profile.name|escape}</a>{if $profile.installed} <em>{tr}applied{/tr}</em>{/if}</td>
+									<td><a href="javascript:$.profilesShowDetails( '{$baseURI}', 'profile-{$k}', '{$profile.domain|escape}', '{$profile.name|escape}', '', '{$show}' )">{$profile.name|escape}</a>{if $profile.installed} <em>{tr}applied{/tr}</em>{/if}</td>
 								{/if}
 
 								<td>{$profile.domain}</td>
@@ -127,7 +129,7 @@
 						{/if}
 					</table>
 					{if isset($show_details_for_profile_num) && $show_details_for_profile_num != ""}
-						{jq}$.profilesShowDetails('profile-{{$show_details_for_profile_num}}', '{{$show_details_for_domain}}', '{{$show_details_for_fullname}}');{/jq}
+						{jq}$.profilesShowDetails('{{$baseURI}}', 'profile-{{$show_details_for_profile_num}}', '{{$show_details_for_domain}}', '{{$show_details_for_fullname}}', '{{$show_details_for_ticket}}', '{{$show}}');{/jq}
 					{/if}
 				</div>
 			{/if}
