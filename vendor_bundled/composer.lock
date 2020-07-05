@@ -18,17 +18,17 @@
         },
         {
             "name": "adodb/adodb-php",
-            "version": "v5.20.17",
+            "version": "5.20.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ADOdb/ADOdb.git",
-                "reference": "c47e5c272e98a06e1c92248b5d9d1ae0afe71c97"
+                "reference": "0363eca78eed8bd02d1456072c729da302655241"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/adodb/adodb-php/adodb-adodb-php-c47e5c272e98a06e1c92248b5d9d1ae0afe71c97-zip-da01b6.zip",
-                "reference": "c47e5c272e98a06e1c92248b5d9d1ae0afe71c97",
-                "shasum": "c6dd61d74252aa13737bfb45bef2f4fef39a85b0"
+                "url": "https://composer.tiki.org/dist/adodb/adodb-php/adodb-adodb-php-0363eca78eed8bd02d1456072c729da302655241-zip-43a404.zip",
+                "reference": "0363eca78eed8bd02d1456072c729da302655241",
+                "shasum": "5078dcabe7c6a8d2d7f50fb3f9ca76f66fcf4b76"
             },
             "require": {
                 "php": ">=5.3.2"
@@ -74,7 +74,7 @@
                 "library",
                 "php"
             ],
-            "time": "2020-03-31T17:32:58+00:00"
+            "time": "2020-06-28T17:52:20+00:00"
         },
         {
             "name": "afarkas/html5shiv",
@@ -176,7 +176,7 @@
             "version": "5.13.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "url": "git@github.com:FortAwesome/Font-Awesome.git",
                 "reference": "1147d199a35293b391152ee85e2d30988439157f"
             },
             "dist": {
@@ -8068,20 +8068,20 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.9.5",
+            "version": "1.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "b2c28789e80a97badd14145fda39b545d83ca3ef"
+                "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/myclabs/deep-copy/myclabs-deep-copy-b2c28789e80a97badd14145fda39b545d83ca3ef-zip-d9415c.zip",
-                "reference": "b2c28789e80a97badd14145fda39b545d83ca3ef",
-                "shasum": "7106cf0209be09d38201cd4c117c7481c2e0544f"
+                "url": "https://composer.tiki.org/dist/myclabs/deep-copy/myclabs-deep-copy-969b211f9a51aa1f6c01d1d2aef56d3bd91598e5-zip-1bc29d.zip",
+                "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
+                "shasum": "5aeb39ff9d29ed62c3daac5403c948c0c86b382a"
             },
             "require": {
-                "php": "^7.1"
+                "php": "^7.1 || ^8.0"
             },
             "replace": {
                 "myclabs/deep-copy": "self.version"
@@ -8112,7 +8112,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2020-01-17T21:11:47+00:00"
+            "time": "2020-06-29T13:22:24+00:00"
         },
         {
             "name": "n98/junit-xml",
