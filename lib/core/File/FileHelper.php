@@ -173,4 +173,38 @@ class FileHelper
 			$mimeType == 'application/msword' ||
 			strpos($mimeType, 'application/vnd.oasis.opendocument.') !== false;
 	}
+
+	/**
+	 * Create or append CSV content into a file.
+	 * File is created if does not exist.
+	 * @param $path
+	 * @param array $headers
+	 * @param array $content
+	 * @return bool
+	 */
+	public static function appendCSV($path, array $headers, array $content)
+	{
+		$fileExists = is_file($path);
+		$fileHandler = fopen($path, 'a');
+
+		if (! $fileHandler) {
+			return false;
+		}
+
+		if (! $fileExists) {
+			fputcsv($fileHandler, $headers);
+		}
+
+		foreach ($content as $row) {
+			$row = array_map(function ($col) {
+				return is_array($col) ? json_encode($col) : $col;
+			}, $row);
+
+			fputcsv($fileHandler, $row);
+		}
+
+		fclose($fileHandler);
+
+		return true;
+	}
 }

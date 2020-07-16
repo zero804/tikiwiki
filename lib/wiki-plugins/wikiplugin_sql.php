@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\File\FileHelper;
+
 function wikiplugin_sql_info()
 {
 	return [
@@ -57,7 +59,22 @@ function wikiplugin_sql_info()
 					['text' => tra('Off'), 'value' => '0'],
 					['text' => tra('On'), 'value' => '1']
 				]
-			]
+			],
+			'audit' => [
+				'required' => false,
+				'name' => tra('Audit'),
+				'description' => tr('Create a log entry containing information about the SQL call.'),
+				'since' => '21.2',
+				'default' => '0',
+			],
+			'audit_csv' => [
+				'required' => false,
+				'name' => tra('Audit CSV path'),
+				'description' => tr('If set, a CSV file will be created or appended with information about the SQL call performed.'),
+				'since' => '21.2',
+				'filter' => 'text',
+				'default' => '',
+			],
 		]
 	];
 }
@@ -65,7 +82,7 @@ function wikiplugin_sql_info()
 function wikiplugin_sql($data, $params)
 {
 
-	global $tikilib;
+	global $tikilib, $prefs, $user;
 	extract($params, EXTR_SKIP);
 
 	if (! isset($db)) {
@@ -114,7 +131,7 @@ function wikiplugin_sql($data, $params)
 
 	$ret = '';
 	$sql_oke = true;
-	 $dbmsg = '';
+	$dbmsg = '';
 
 	if ($db = $tikilib->get_db_by_name($db)) {
 		$result = $db->query($data, $bindvars);
@@ -174,6 +191,24 @@ function wikiplugin_sql($data, $params)
 	}
 	if ($dbmsg) {
 		$ret .= $dbmsg;
+	}
+
+	if (! empty($params['audit'])) {
+		TikiLib::lib('logs')->add_log('wikiplugin_sql', "Page - " . $_GET['page'] . "\nParameters - " . print_r($bindvars, true));
+	}
+
+	if (! empty($params['audit_csv'])) {
+		$headers = ['date', 'user', 'page', 'vars'];
+		$contentRow[] = [
+			$tikilib->date_format($prefs['short_date_format'] . ' ' . $prefs['long_time_format'], $tikilib->now),
+			$user,
+			isset($_GET['page']) ? $_GET['page'] : '',
+			$bindvars
+		];
+
+		if (! FileHelper::appendCSV($params['audit_csv'], $headers, $contentRow)) {
+			Feedback::error(tr('Unable to create or open the file "%0" to log the SQL operation,', $params['audit_csv']));
+		}
 	}
 
 	if ($wikiparse) {
