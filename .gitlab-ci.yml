@@ -20,7 +20,6 @@ stages:
   - vendors-security
   - tiki-check
   - unit-tests
-  - vendors_update
 
 composer:
   stage: build
