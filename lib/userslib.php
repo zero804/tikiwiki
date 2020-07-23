@@ -350,10 +350,10 @@ class UsersLib extends TikiLib
 	function validate_user($user, $pass, $validate_phase=false)
 	{
 		global $prefs;
-		
+
 		$user=str_replace(chr(0),'',$user);
 		$pass=str_replace(chr(0),'',$pass);
-		
+
 		if ($user != 'admin' && $prefs['feature_intertiki'] == 'y' && !empty($prefs['feature_intertiki_mymaster'])) {
 			// slave intertiki sites should never check passwords locally, just for admin
 			return false;
@@ -978,7 +978,7 @@ class UsersLib extends TikiLib
 	/**
 	 * Initiates the Tiki LDAP library.
 	 *
-	 * Passes it a set of options according to Tiki's preferences. 
+	 * Passes it a set of options according to Tiki's preferences.
 	 * FIXME: a similar piece of code can be found at two other places in this file.
 	 */
 	function init_ldap($user, $pass) {
@@ -1033,7 +1033,7 @@ class UsersLib extends TikiLib
 
 		global $prefs;
 		$logslib = TikiLib::lib('logs');
- 
+
 		if ($prefs['auth_ldap_debug'] == 'y') {
 			$logslib->add_log('ldap', 'UserLib::validate_user_ldap()');
 		}
@@ -1112,7 +1112,7 @@ class UsersLib extends TikiLib
 		die('Assertion failed '.__FILE__.':'.__LINE__);
 	}
 
-	/** 
+	/**
 	 * Help function to disable a user's password.
 	 *
 	 * Used, whenever the user password shall not be
@@ -1131,7 +1131,7 @@ class UsersLib extends TikiLib
 
 	/**
 	 * Synchronizes all existing Tiki users to what is in the LDAP directory.
-	 * 
+	 *
 	 * Retrieves all users info from LDAP.
 	 * Creates the corresponding Tiki users from this data.
 	 */
@@ -1539,8 +1539,8 @@ class UsersLib extends TikiLib
 		$query = 'select `userId`,`login`,`waiting`, `hash`, `email`,`valid` from `users_users` where upper(`login`) = ?';
 		$result = $this->query($query, array($userUpper));
 
-		
-		switch ($result->numRows()) {													
+
+		switch ($result->numRows()) {
 			case 0:
 				if ($prefs['login_allow_email']) {								//if no users found, check check if email is being used to login
 					$query = 'select `userId`,`login`,`waiting`, `hash`, `email`,`valid` from `users_users` where upper(`email`) = ?';
@@ -1559,34 +1559,36 @@ class UsersLib extends TikiLib
 			default:
 				return array(USER_AMBIGOUS, $user);
 		}
-	
+
 
 
 		$res = $result->fetchRow();
 		$user = $res['login'];
 
 		// check for account flags
-			if ($res['waiting'] == 'u'){				// if account is in validation mode.
+		if ($res['waiting'] === 'u') {				// if account is in validation mode.
+			if (!empty($pass) && $pass === $res['valid']) { 			// if user successfully provides code from email
+				return [USER_VALID, $user];
+			} else {
+				return [ACCOUNT_WAITING_USER, $user];  // if code validation fails, (or user tries to log in before verifying)
+			}
+		} elseif ($res['waiting'] === 'a') {         // if account needs administrator validation
+			if (!empty($res['valid']) && $pass === $res['valid']) { 			// if admin successfully validates account
+				return [USER_VALID, $user];
+			} else {
+				return [ACCOUNT_DISABLED, $user];
+			}
+		}
 
-				if ($pass == $res['valid']) 			// if user successfully provides code from email
-					return array(USER_VALID, $user);
-				else
-					return array(ACCOUNT_WAITING_USER, $user);  // if code validation fails, (or user tries to log in before verifying)
-			}else if ($res['waiting'] == 'a') {         // if account needs administrator validation
-                if ($pass == $res['valid']) 			// if admin successfully validates account
-                    return array(USER_VALID, $user);
-                else return array(ACCOUNT_DISABLED, $user);
-            }
-
-			if ($validate_phase)									 
+			if ($validate_phase)
 				return array(USER_PREVIOUSLY_VALIDATED, $user);		// if email verification code is used an a validated account, deny.
 
 
 		// next verify the password with every hashes methods
 
-			
+
 			if ($res['hash'][0] == '$'){				// if password was created by crypt (old tiki hash) or password_hash (current tiki hash)
-				
+
 				if (password_verify($pass,$res['hash'])){
 					if (password_needs_rehash($res['hash'], PASSWORD_DEFAULT))
 						$this->set_user_password($res['userId'],$pass);			//if its a old hash style, rehash it in a more secure way
@@ -1608,7 +1610,7 @@ class UsersLib extends TikiLib
 			}
 
 			return array(PASSWORD_INCORRECT, $user);
-	
+
 	}
 
 
@@ -1626,7 +1628,7 @@ class UsersLib extends TikiLib
 
 	//todo: a little error checking woul be nice.
 	}
- 
+
 
 	/**
 	 * Synchronizes Tiki user and group info from LDAP.
@@ -1660,7 +1662,7 @@ class UsersLib extends TikiLib
 
 	/**
 	 * Updates date and time of current and last (previous) login.
-	 * 
+	 *
 	 * Called when the user logs in.
 	 * The updated fields are: currentLogin and lastLogin.
 	 * Resets unsuccessful_logins field.
@@ -2228,9 +2230,9 @@ class UsersLib extends TikiLib
 		$groups = array_map( function($g) {
 			return array('groupName' => $g);
 		}, $this->list_all_groups() );
-		
+
 		$filtered = Perms::filter(
-			array( 'type' => 'group' ), 
+			array( 'type' => 'group' ),
 			'object',
 			$groups,
 			array( 'object' => 'groupName' ),
@@ -2722,7 +2724,7 @@ class UsersLib extends TikiLib
 		if (!$body) {
 			$body = $realn;
 		}
-		
+
 		$isSelf = ($auser == $user) ? true : false;
 		// Only process if feature_friends enabled, user_information public or we query ourselfs
 		if ( ($this->get_user_preference($auser, 'user_information', 'public') != 'public') && ($prefs['feature_friends'] != 'y') && !$isSelf) {
@@ -2734,8 +2736,8 @@ class UsersLib extends TikiLib
 		if ($id == -1 ) {
 			return $body;
 		}
-		
-		
+
+
 		include_once('tiki-sefurl.php');
 		$url = "tiki-user_information.php?userId=$id";
 		$url = filter_out_sefurl($url);
@@ -6408,7 +6410,7 @@ class UsersLib extends TikiLib
 			$smarty->assign('errortype', 'login');
 			$smarty->assign('msg', tra('Email cannot be set because this email is already in use by another user.'));
 			$smarty->display('error.tpl');
-			die;    
+			die;
 		}
 
 		// Need to change the email-address for notifications, too
@@ -6534,8 +6536,8 @@ class UsersLib extends TikiLib
 		$query = 'select `login` from `users_users` where upper(`email`)=? and `login`!=?';
 		$pass = $this->getOne($query, array(TikiLib::strtoupper($email), $user));
 
-		return $pass;	
-	}	
+		return $pass;
+	}
 
 	function is_due($user, $method=null)
 	{
@@ -6957,7 +6959,7 @@ class UsersLib extends TikiLib
 
 		return $rv[$group];
 	}
-	
+
 	function count_users_consolidated($groups)
 	{
 		$groupset = implode("','",$groups);
@@ -6965,7 +6967,7 @@ class UsersLib extends TikiLib
 		$result = $this->fetchAll($query, array());
 		$resultcons = array_unique(array_column($result, 'userId'));
 		return count($resultcons);
-	}	
+	}
 
 	function related_users($user, $max = 10, $type = 'wiki')
 	{
