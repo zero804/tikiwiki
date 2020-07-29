@@ -32,6 +32,171 @@ The tags info is also online: https://dev.tiki.org/Commit+Tags
 Before 2.0, there was only [MOD] for both [ENH] and [MOD]:
 
 ----------------------------------------------------------------------
+Version 19.3
+<http://doc.tiki.org/Tiki19>
+------------------
+
+----------------------------------------------
+r76861 | jonnybradley | 2020-07-29 14:42:23 +0100 (Wed, 29 Jul 2020) | 3 lines
+[FIX] user checks
+(cherry picked from commit 4bd1e609d7507828d25e2a311466be947cd29e3f)
+----------------------------------------------
+r76860 | jonnybradley | 2020-07-29 14:42:23 +0100 (Wed, 29 Jul 2020) | 3 lines
+[FIX] search: Filter search params
+(cherry picked from commit 6bd418b1afaf72aa48592e39b8324cbbe0e8fe6b)
+----------------------------------------------
+r76859 | drsassfras | 2020-07-29 14:42:23 +0100 (Wed, 29 Jul 2020) | 3 lines
+[FIX] user bug
+(cherry picked from commit cdb8d55ba0924bc9c4720303853f6293394855bb)
+----------------------------------------------
+r76858 | jonnybradley | 2020-07-29 14:42:23 +0100 (Wed, 29 Jul 2020) | 3 lines
+[FIX] Improve filter pattern
+(cherry picked from commit d12d6ea7b025d3b3f81c8a71063fe9f89e0c4bf1)
+----------------------------------------------
+r71573 | montefuscolo | 2019-11-21 19:31:20 +0000 (Thu, 21 Nov 2019) | 7 lines
+[bp/r71545][FIX] Group home was not being respected after login
+(cherry picked from commit d7599d073aacb9057df2c593f9472cb5c004c2f8)
+[bp/r71550][FIX] Regex for url scheme when detecting home page
+(cherry picked from commit 9f5164e51788bcee671a69db67e9fb3f67a78e83)
+----------------------------------------------
+r71572 | montefuscolo | 2019-11-21 19:31:20 +0000 (Thu, 21 Nov 2019) | 1 line
+[FIX] Update git ignore to be like other branches
+----------------------------------------------
+r71150 | kroky6 | 2019-10-03 12:37:49 +0100 (Thu, 03 Oct 2019) | 1 line
+[bp/r71148] [FIX] missing relation field text format from search index when item was related to multiple objects and circular reference prevention code skipped the item label
+----------------------------------------------
+r71109 | kroky6 | 2019-09-30 11:42:56 +0100 (Mon, 30 Sep 2019) | 1 line
+[bp/r71107] [FIX] currency field decimal point parsing issue
+----------------------------------------------
+r71103 | rjsmelo | 2019-09-29 21:57:32 +0100 (Sun, 29 Sep 2019) | 4 lines
+[bp/r71100][REF] Extend the timeout waiting for the external command to avoid false positives in the CI pipeline
+[bp/r71101][REF] Fix the check for the SQL engine declaration in tiki.sql and the schema update files, was not catching some cases.
+[bp/r71102][FIX] Add missing SQL engine declarations and remove places where the charset was being forced in the script itself.
+----------------------------------------------
+r71094 | rjsmelo | 2019-09-29 15:36:20 +0100 (Sun, 29 Sep 2019) | 2 lines
+[bp/r71093][FIX] Wrong usage of the fallback base url (that is already handled as part of the request setup process) leading to broken urls in notifications.
+----------------------------------------------
+r71090 | nkoth | 2019-09-27 19:42:06 +0100 (Fri, 27 Sep 2019) | 3 lines
+[bp/r70900][FIX] count of characters should include spaces
+(cherry picked from commit a9424d9b0f111dac17fbc18abe7d5287c51d57a6)
+----------------------------------------------
+r71089 | nkoth | 2019-09-27 19:25:59 +0100 (Fri, 27 Sep 2019) | 3 lines
+[bp/r70903][FIX] Character count was not consistent with count on save (which does truncation) and on loading
+(cherry picked from commit 6c7325c235a167a862fb70f9e45d5b18320293cd)
+----------------------------------------------
+r71086 | Jyhem | 2019-09-27 19:17:43 +0100 (Fri, 27 Sep 2019) | 3 lines
+[bp/r70947][FIX] typo fxed in french
+(cherry picked from commit 5172c1c8758b4372b07b2bd3aa959856bd22129d)
+----------------------------------------------
+r71085 | montefuscolo | 2019-09-27 18:09:04 +0100 (Fri, 27 Sep 2019) | 3 lines
+[bp/r70956][FIX] Avoid multiple slashs at the end of path breaking command files:batchupload
+(cherry picked from commit 9e8855476530a581e31df1bdf50cca7e1b6be9a7)
+----------------------------------------------
+r71084 | montefuscolo | 2019-09-27 18:02:05 +0100 (Fri, 27 Sep 2019) | 3 lines
+[bp/r70957][FIX] Make console.php files:deleteold works again
+(cherry picked from commit 1b275feb4301fd5bec8671098d8401cf68bd0527)
+----------------------------------------------
+r71073 | jonnybradley | 2019-09-25 18:04:29 +0100 (Wed, 25 Sep 2019) | 1 line
+[bp/r71071][FIX] maths: When checking for a possibly empty value with IsEmpty include missing values as "empty" instead of throwing an error
+----------------------------------------------
+r71069 | jonnybradley | 2019-09-25 17:02:52 +0100 (Wed, 25 Sep 2019) | 1 line
+[bp/r70781][ENH] list: Add {calc} plugin (control block) support to plugin list wiki templates which allows https://doc.tiki.org/Calculations to be combined with {display} for conditional content display etc without using Smarty templates
+----------------------------------------------
+r71050 | jonnybradley | 2019-09-24 17:13:41 +0100 (Tue, 24 Sep 2019) | 1 line
+[bp/r71048][ENH] search: Add facets to plugin list (and add \Search_Query_FacetWikiBuilder::getFacets and check to avoid running getFacetProvider if there are none in use)
+----------------------------------------------
+r71028 | montefuscolo | 2019-09-20 18:51:17 +0100 (Fri, 20 Sep 2019) | 5 lines
+[bp/r71023][FIX] Avoid mpdf removing unexpected cache files by creating specific temp folder to it
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/168)
+(cherry picked from commit c77ecb0d6e1aa6b58f1d83747d45c978ba54693c)
+----------------------------------------------
+r70949 | jonnybradley | 2019-09-12 19:00:15 +0100 (Thu, 12 Sep 2019) | 1 line
+[bp/r70948][FIX] menus: Export shouldn't open in a modal dialog, just download the file (thanks mikeua)
+----------------------------------------------
+r70927 | jonnybradley | 2019-09-10 17:28:25 +0100 (Tue, 10 Sep 2019) | 1 line
+[bp/r69335][NEW] Console: added tracker:export command to export tracker items to a CSV file using the tabular tracker format
+----------------------------------------------
+r70916 | jonnybradley | 2019-09-10 12:06:23 +0100 (Tue, 10 Sep 2019) | 3 lines
+[bp/r70877][ENH] search: Take #2 at exposing 'order' and 'min_doc_count' elastic search parameters on aggregations (facets)
+Note order only seems to work as _count_asc, _count_desc (default), _term_asc or _term_desc (alpha sort es5) or _key_asc or _key_desc (es 6+)
+[more info here https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-aggregations-bucket-terms-aggregation.html]
+----------------------------------------------
+r70909 | lindonb | 2019-09-10 01:27:43 +0100 (Tue, 10 Sep 2019) | 1 line
+[bp/r70908][FIX] Avoid false anti-CSRF error when uploading a file into a tracker item file field when elfinder is activated.
+----------------------------------------------
+r70898 | xorti | 2019-09-09 16:24:27 +0100 (Mon, 09 Sep 2019) | 3 lines
+[ENH] Sync wikiplugin_diagram latest changes
+- Include changes in tiki-display for pdf files
+----------------------------------------------
+r70896 | lindonb | 2019-09-08 23:00:58 +0100 (Sun, 08 Sep 2019) | 1 line
+[bp/r70893][FIX] Avoid false anti-CSRF error when uploading a new image through the toolbar on the wiki page editor when elfinder is activated.
+----------------------------------------------
+r70895 | lindonb | 2019-09-08 22:54:36 +0100 (Sun, 08 Sep 2019) | 1 line
+[bp/r69165][FIX] tickets: add ability to reuse tickets in special cases. Labeled a fix as it is needed for a following backport fix r70893
+----------------------------------------------
+r70833 | montefuscolo | 2019-09-04 13:02:34 +0100 (Wed, 04 Sep 2019) | 3 lines
+[FIX] Make 443 the default value for https_port
+(cherry picked from commit be3c1c9c4123122954d4af24b9ad234ca20b5606)
+----------------------------------------------
+r70830 | montefuscolo | 2019-09-04 12:41:43 +0100 (Wed, 04 Sep 2019) | 3 lines
+[FIX] HTTPS port behind proxy, but respecting https_port preference
+(cherry picked from commit 17554d05bb2ef9ed680568467fdaa6f94c6f8067)
+----------------------------------------------
+r70829 | medvedvvs | 2019-09-04 11:33:18 +0100 (Wed, 04 Sep 2019) | 5 lines
+[FIX] Update tiki-setup_base.php: changing the SSL port definition scheme. Config is taken from the database and then SSL port is set to the value obtained (or 443, or from _SERVER var).
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/159)
+(cherry picked from commit 9383e1f117fbc3b80807a8ae743d61f57df9ec52)
+----------------------------------------------
+r70804 | jonnybradley | 2019-09-03 18:25:48 +0100 (Tue, 03 Sep 2019) | 2 lines
+Revert r70801
+ bp/r70800][ENH] search: Expose 'order' and 'min_doc_count' elastic search parameters on aggregations...
+----------------------------------------------
+r70801 | jonnybradley | 2019-09-03 17:05:41 +0100 (Tue, 03 Sep 2019) | 3 lines
+[bp/r70800][ENH] search: Expose 'order' and 'min_doc_count' elastic search parameters on aggregations (facets)
+Note order only seems to work as _count_asc, _count_desc (default), _term_asc or _term_desc (alpha sort)
+[Note 2: Manually adapted as date facets/aggs were added in 20.x following some refactoring]
+----------------------------------------------
+r70785 | jonnybradley | 2019-08-31 13:09:08 +0100 (Sat, 31 Aug 2019) | 3 lines
+[FIX] list: Add better handling for showstatus param when converting pluginlist to list (and some typos)
+(cherry picked from commit af4c0b1a337d191bcd6695e366f76dacaf2ddd44)
+----------------------------------------------
+r70776 | jonnybradley | 2019-08-29 18:42:51 +0100 (Thu, 29 Aug 2019) | 1 line
+[bp/r70775][FIX] list: Fix pasto on converting sort_mode param if created_* (and add a description at the top)
+----------------------------------------------
+r70774 | xavidp | 2019-08-29 15:59:29 +0100 (Thu, 29 Aug 2019) | 1 line
+[bp/r70773][ENH]PluginTrackerCalendar supports the eventOverlap param in fullcalendar views (resources and agenda), so that events using the same resoruce will not be able to overlap when the moving or extending dates-ranges are edited through the fullcalendar UI (useful for booking management systems to prevent overbooking the same physical resource; set by default to true to be consistent with former behavior of this same plugin). However, Tiki trackers don't have a system yet (afaik) to prevent this type of overlapping, so that users can still cheat if they edit the tracker items through the other tracker item edit interfaces (coding beyond my current knowledge-set). HTH
+----------------------------------------------
+r70771 | xavidp | 2019-08-29 14:39:33 +0100 (Thu, 29 Aug 2019) | 1 line
+[bp/r70770][ENH]Expose the list views from fullcalendar lib through PluginTrackerCalendar (how come we hadn't added these nice views yet ;-). Profile Tracker_as_Calendar_19 in profiles.t.o to be updated next to showcase these goodies easily
+----------------------------------------------
+r70747 | xavidp | 2019-08-27 18:59:40 +0100 (Tue, 27 Aug 2019) | 1 line
+[bp/r70746][ENH]Expose the updated profile to showcase a more adapted setup for the fullcalendar-scheduler package powering the PluginTrackerCalendar
+----------------------------------------------
+r70745 | xavidp | 2019-08-27 18:36:06 +0100 (Tue, 27 Aug 2019) | 1 line
+[bp/r70744][ENH]Expose option to display resources by months along a year (seeing events across month borders). Kept the naming as Resources by Years for consitency with similar params of shorter time-windows. More views can be exposed, apparently (TODO: list-related views of resources)
+----------------------------------------------
+r70732 | xavidp | 2019-08-26 16:48:16 +0100 (Mon, 26 Aug 2019) | 1 line
+[bp/r70731][ENH]Show (in the searchindex results) the parent tracker name and link where the tracker item belongs to, in a similar manner to what tiki does with wiki pages in structures, forums posts in forums, articles in article types, etc.
+----------------------------------------------
+r70706 | jonnybradley | 2019-08-22 11:13:12 +0100 (Thu, 22 Aug 2019) | 1 line
+[bp/r70703][FIX] maps: Fix both ajax and direct api address lookup for ol3 maps - viewport setting returned is not correctly used still (FIXME)
+----------------------------------------------
+r70705 | jonnybradley | 2019-08-22 11:11:05 +0100 (Thu, 22 Aug 2019) | 2 lines
+[bp/r70702][FIX] maps: Fix ajax address lookup for ol2 maps when not using google map layers as the API key is required now (and use https, also required)
+Also return and display the error message if something fails (e.g. the api key is missing)
+----------------------------------------------
+r70687 | guill.bout | 2019-08-19 12:16:27 +0100 (Mon, 19 Aug 2019) | 5 lines
+Make mandatory missing fields scroll to mid of screen (max)
+Currently it's scrolling with the missing field at the top of
+the browser window: 1. it's ugly 2. fields are hidden behind top menus.
+This solves both problems beautifully.
+----------------------------------------------
+r70672 | xavidp | 2019-08-16 12:25:56 +0100 (Fri, 16 Aug 2019) | 1 line
+[bp/r70671][FIX]Expose missing prefs added in Tiki19 related to H5P (and for consistency, re-show the basic prefs , introduced in Tiki18 already, but also needed for H5P to work, just in case the novel h5p user and tiki site admin just discovers them through the what's new wizard). Not a direct merged-backport but manual, since naming of tpl's changed between 19.x and 20.x
+----------------------------------------------
+r70640 | rjsmelo | 2019-08-13 00:00:25 +0100 (Tue, 13 Aug 2019) | 2 lines
+[REF] Backport release script from trunk to 19.x
+----------------------------------------------
 Version 19.2
 <http://doc.tiki.org/Tiki19>
 ------------------
