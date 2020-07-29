@@ -31,6 +31,44 @@ When possible, it's also nice to indicate what feature is concerned by the chang
 Before 2.0, there was only [MOD] for both [ENH] and [MOD]:
 
 ----------------------------------------------------------------------
+Version 16.4
+<http://doc.tiki.org/Tiki16>
+------------------
+
+----------------------------------------------
+r76887 | jonnybradley | 2020-07-29 15:49:47 +0100 (Wed, 29 Jul 2020) | 3 lines
+
+[FIX] user checks
+
+(cherry picked from commit 4bd1e609d7507828d25e2a311466be947cd29e3f)
+----------------------------------------------
+r76886 | jonnybradley | 2020-07-29 15:49:43 +0100 (Wed, 29 Jul 2020) | 3 lines
+
+[FIX] search: Filter search params
+
+(cherry picked from commit 6bd418b1afaf72aa48592e39b8324cbbe0e8fe6b)
+----------------------------------------------
+r76885 | drsassfras | 2020-07-29 15:49:38 +0100 (Wed, 29 Jul 2020) | 3 lines
+
+[FIX] user bug
+
+(cherry picked from commit cdb8d55ba0924bc9c4720303853f6293394855bb)
+----------------------------------------------
+r76884 | jonnybradley | 2020-07-29 15:48:06 +0100 (Wed, 29 Jul 2020) | 3 lines
+
+[FIX] Improve filter pattern
+
+(cherry picked from commit d12d6ea7b025d3b3f81c8a71063fe9f89e0c4bf1)
+----------------------------------------------
+r64588 | jyhem | 2017-11-16 18:48:56 +0000 (Thu, 16 Nov 2017) | 1 line
+
+[FIX][bp/r64586] Handle correctly radio fields with = sign
+----------------------------------------------
+r63979 | chealer | 2017-09-22 16:36:59 +0100 (Fri, 22 Sep 2017) | 2 lines
+
+[bp/r63978][FIX] "ReferenceError: lang is not defined" when switching language in the installer
+r63509 regression
+----------------------------------------------
 Version 16.3
 <http://doc.tiki.org/Tiki16>
 ------------------
