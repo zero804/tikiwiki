@@ -32,6 +32,42 @@ The tags info is also online: https://dev.tiki.org/Commit+Tags
 Before 2.0, there was only [MOD] for both [ENH] and [MOD]:
 
 ----------------------------------------------------------------------
+Version 20.4
+<http://doc.tiki.org/Tiki20>
+------------------
+
+----------------------------------------------
+r76851 | jonnybradley | 2020-07-29 14:23:38 +0100 (Wed, 29 Jul 2020) | 3 lines
+[FIX] user checks
+(cherry picked from commit 4bd1e609d7507828d25e2a311466be947cd29e3f)
+----------------------------------------------
+r76850 | jonnybradley | 2020-07-29 14:22:48 +0100 (Wed, 29 Jul 2020) | 3 lines
+[FIX] search: Filter search params
+(cherry picked from commit 6bd418b1afaf72aa48592e39b8324cbbe0e8fe6b)
+----------------------------------------------
+r76849 | drsassfras | 2020-07-29 14:22:16 +0100 (Wed, 29 Jul 2020) | 3 lines
+[FIX] user bug
+(cherry picked from commit cdb8d55ba0924bc9c4720303853f6293394855bb)
+----------------------------------------------
+r76848 | jonnybradley | 2020-07-29 14:18:55 +0100 (Wed, 29 Jul 2020) | 3 lines
+[FIX] Improve filter pattern
+(cherry picked from commit d12d6ea7b025d3b3f81c8a71063fe9f89e0c4bf1)
+----------------------------------------------
+r76781 | jonnybradley | 2020-07-27 03:18:21 +0100 (Mon, 27 Jul 2020) | 1 line
+[UPD] revert more of vendors_update CI stage in the hope it stops the automatic vendors updates - (last attempt broke the pipeline, sorry))
+----------------------------------------------
+r76780 | jonnybradley | 2020-07-27 03:18:21 +0100 (Mon, 27 Jul 2020) | 1 line
+[UPD] revert part of 64383f35 in the hope it stops the automatic vendors updates - 20.x is EOL
+----------------------------------------------
+r76772 | tikibot | 2020-07-20 19:37:14 +0100 (Mon, 20 Jul 2020) | 1 line
+[UPD] Update 20.x vendor_bundled dependencies
+----------------------------------------------
+r76726 | rjsmelo | 2020-07-14 01:09:54 +0100 (Tue, 14 Jul 2020) | 5 lines
+[bp/r76725][FIX] Fix wikiplugin_sql and wikiplugin_dbreport
+* wikiplugin_dbreport column names could not be retrieved using pdo_oci
+* wikiplugin_dbreport variable parsing not working
+* wikiplugin_sql variable arguments / variable parsing not working
+----------------------------------------------
 Version 20.3
 <http://doc.tiki.org/Tiki20>
 ------------------
