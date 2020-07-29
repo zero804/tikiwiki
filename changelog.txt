@@ -32,6 +32,56 @@ The tags info is also online: https://dev.tiki.org/Commit+Tags
 Before 2.0, there was only [MOD] for both [ENH] and [MOD]:
 
 ----------------------------------------------------------------------
+Version 18.7
+<http://doc.tiki.org/Tiki18>
+------------------
+
+----------------------------------------------
+r76830 | jonnybradley | 2020-07-29 12:15:53 +0100 (Wed, 29 Jul 2020) | 3 lines
+[FIX] user checks
+(cherry picked from commit 4bd1e609d7507828d25e2a311466be947cd29e3f)
+----------------------------------------------
+r76829 | jonnybradley | 2020-07-29 12:15:53 +0100 (Wed, 29 Jul 2020) | 3 lines
+[FIX] search: Filter search params
+(cherry picked from commit 6bd418b1afaf72aa48592e39b8324cbbe0e8fe6b)
+----------------------------------------------
+r76828 | drsassfras | 2020-07-29 12:15:53 +0100 (Wed, 29 Jul 2020) | 3 lines
+[FIX] user bug
+(cherry picked from commit cdb8d55ba0924bc9c4720303853f6293394855bb)
+----------------------------------------------
+r76827 | jonnybradley | 2020-07-29 12:15:53 +0100 (Wed, 29 Jul 2020) | 3 lines
+[FIX] Improve filter pattern
+(cherry picked from commit d12d6ea7b025d3b3f81c8a71063fe9f89e0c4bf1)
+----------------------------------------------
+r76750 | xorti | 2020-07-17 13:46:03 +0100 (Fri, 17 Jul 2020) | 7 lines
+[FIX] Fix scheduler stalled/healed messages
+- Update the description
+- Remove HTML code
+
+(cherry picked from commit b016a471c938e12de799d0c9c396a6c67836ecd5)
+----------------------------------------------
+r76749 | Jyhem | 2020-07-17 13:46:03 +0100 (Fri, 17 Jul 2020) | 3 lines
+[bp/ce081d59a7][FIX] Make strings translatable. Plus missing helper classes
+(cherry picked from commit ce081d59a79948c6d713fc575b8a6101918b3908)
+----------------------------------------------
+r76713 | adrienmaloba | 2020-07-08 13:38:24 +0100 (Wed, 08 Jul 2020) | 1 line
+[FIX] Profiles: Allow the application of profiles via 'Profiles Wizard'
+----------------------------------------------
+r76711 | luci | 2020-07-08 10:33:14 +0100 (Wed, 08 Jul 2020) | 1 line
+[FIX] Calendars admin: missing TR tags (thanks hman! -- bug not present in master/trunk nor 21x; see https://dev.tiki.org/item7409)
+----------------------------------------------
+r76696 | jonnybradley | 2020-07-02 14:52:39 +0100 (Thu, 02 Jul 2020) | 3 lines
+[FIX] wysiwyg: Fix 'parse to wiki' on external links with encoded pipe chars in the href (fixes test added in previous commit)
+(cherry picked from commit 4ed6c28834b34ad48434caf59964ba079ede1468)
+----------------------------------------------
+r76687 | jonnybradley | 2020-07-01 18:06:44 +0100 (Wed, 01 Jul 2020) | 3 lines
+[FIX] userprefs: Untangle mess of having two forms with the same submit action, which meant saving the info tab reset the prefs, and saving prefs tab reset the info. No idea how it got so bad but it was a while ago... at least before in 18.x (hopefully will address wishes 7249 and 6758, thanks hman)
+(cherry picked from commit 431eb781d817c4610aa548a48f9fa55eba10a204 with some manual fixes)
+----------------------------------------------
+r76665 | xorti | 2020-06-23 16:35:45 +0100 (Tue, 23 Jun 2020) | 3 lines
+[FIX] Increase the message column in tiki_mail_queue to LONGTEXT
+(cherry picked from 9befc48059ea4e9914dc13f41a7df3e53184d086)
+----------------------------------------------
 Version 18.6
 <http://doc.tiki.org/Tiki18>
 ------------------
