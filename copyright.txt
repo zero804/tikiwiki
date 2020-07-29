@@ -14,7 +14,7 @@ http://tiki.org/Social+Contract
 List of members of the Community
 As of 2020-07-29, the community has:
   * 658 members on SourceForge.net,
-  * Array of those people who made at least one code commit
+  * 153 of those people who made at least one code commit
 
 This list is automatically generated and alphabetically sorted
 from subversion repository by the following script:
@@ -1730,7 +1730,7 @@ Nickname: lindonb
 Name: lindon
 First Commit: 2009-05-10
 Last Commit: Mon Jul 20 12:30:14 2020 +0000
-Number of Commits: 1758
+Number of Commits: 1757
 SF Role: Admin, Developer
 
 Nickname: llunax
@@ -2586,8 +2586,8 @@ SF Role: Developer
 Nickname: robertokir
 Name: Roberto Kirschbaum
 First Commit: 2017-06-27
-Last Commit: Wed Jul 29 12:20:23 2020 +0100
-Number of Commits: 303
+Last Commit: Wed Jul 29 12:27:32 2020 +0100
+Number of Commits: 304
 SF Role: Admin, Developer, Release Technicians
 
 Nickname: robertplummer
