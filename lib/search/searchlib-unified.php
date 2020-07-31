@@ -947,6 +947,9 @@ class UnifiedSearchLib
 						return array_filter(
 							$fields,
 							function ($field) use ($entry) {
+								if ($field == 'ignored_fields') {
+									return false;
+								}
 								if (! empty($entry[$field])) {
 									return preg_match('/token[a-z]{20,}/', $entry[$field]);
 								}

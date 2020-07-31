@@ -94,7 +94,7 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 				'parent_object_id' => $typeFactory->identifier($item['trackerId']),
 				'parent_object_type' => $typeFactory->identifier('tracker'),
 
-				'field_permissions' => $typeFactory->json(json_encode($fieldPermissions)),
+				'field_permissions' => $typeFactory->plaintext(json_encode($fieldPermissions)),
 
 				// Fake attributes, removed before indexing
 				'_extra_users' => $specialUsers,
