@@ -160,6 +160,7 @@ function wikiplugin_include($dataIn, $params)
 
 	// This variable is for accessing included page name within plugins in that page
 	global $wikiplugin_included_page;
+	$previousIncludedPage = $wikiplugin_included_page;
 	$wikiplugin_included_page = $page;
 
 	/** @var string $fragmentIdentifier Identifier of included fragment */
@@ -318,6 +319,9 @@ function wikiplugin_include($dataIn, $params)
 			}
 		}
 	}
+
+	$wikiplugin_included_page = $previousIncludedPage;
+
 	if ($params['parse_included_page'] === 'y') {
 		return "~np~$text~/np~";
 	} else {
