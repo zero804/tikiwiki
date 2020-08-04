@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-namespace Tiki\Object;
+namespace Tiki\ObjectSelector;
 
 class Selector
 {

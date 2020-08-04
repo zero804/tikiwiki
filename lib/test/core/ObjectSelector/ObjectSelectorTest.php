@@ -1,6 +1,9 @@
 <?php
 namespace Test\ObjectSelector;
 
+use Tiki\ObjectSelector\Selector;
+use Tiki\ObjectSelector\SelectorItem;
+
 class ObjectSelectorTest extends \PHPUnit_Framework_TestCase
 {
 	private $selector;
@@ -10,7 +13,7 @@ class ObjectSelectorTest extends \PHPUnit_Framework_TestCase
 
 	function setUp()
 	{
-		$this->selector = new \Tiki\Object\Selector($this);
+		$this->selector = new Selector($this);
 	}
 
 	function testReadEmpty()
@@ -20,7 +23,7 @@ class ObjectSelectorTest extends \PHPUnit_Framework_TestCase
 
 	function testReadObjectFromString()
 	{
-		$expect = new \Tiki\Object\SelectorItem($this->selector, 'wiki page', 'HomePage');
+		$expect = new SelectorItem($this->selector, 'wiki page', 'HomePage');
 		$this->assertEquals($expect, $this->selector->read('wiki page:HomePage'));
 	}
 
