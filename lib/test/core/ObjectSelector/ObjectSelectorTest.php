@@ -2,8 +2,8 @@
 namespace Test\ObjectSelector;
 
 use PHPUnit\Framework\TestCase;
-use Tiki\Object\Selector;
-use Tiki\Object\SelectorItem;
+use Tiki\ObjectSelector\Selector;
+use Tiki\ObjectSelector\SelectorItem;
 
 class ObjectSelectorTest extends TestCase
 {

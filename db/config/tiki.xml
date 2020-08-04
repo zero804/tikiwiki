@@ -214,7 +214,7 @@
 		<service id="tiki.lib.object" class="ObjectLib">
 			<file>%kernel.root_dir%/lib/objectlib.php</file>
 		</service>
-		<service id="tiki.lib.objectselector" class="Tiki\Object\Selector">
+		<service id="tiki.lib.objectselector" class="Tiki\ObjectSelector\Selector">
 			<argument type="service" id="tiki.lib.object"/>
 		</service>
 		<service id="tiki.lib.pagecontent" class="PageContentLib">
