@@ -248,7 +248,7 @@ dpStore.setInputName('.json_encode($this->getInsertId()).');
 		foreach ($factors as $unit => $multiplier) {
 			$parts[] = 'COALESCE(sttif.`value`->>"$.'.$unit.'", 0) * '.$multiplier;
 		}
-		return 'IF(JSON_VALID(sttif.`value`), '.implode($parts, '+').', 0)';
+		return 'IF(JSON_VALID(sttif.`value`), '.implode('+', $parts).', 0)';
 	}
 
 	public static function getFactors() {

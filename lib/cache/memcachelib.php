@@ -177,7 +177,7 @@ class Memcachelib
 		$expiration = ($expiration) ?
 			$expiration : $this->getOption('expiration', 0);
 
-		if (isset($this->memcache) && method_exists($this->memcache, "set")) {
+		if (!empty($this->memcache) && method_exists($this->memcache, "set")) {
 			return $this->memcache->set($key, $value, $expiration);
 		}
 	}

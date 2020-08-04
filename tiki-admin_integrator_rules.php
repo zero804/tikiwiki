@@ -88,8 +88,8 @@ if (isset($_REQUEST["preview"])) {
 		}
 		// Get file content to string
 		$data = @file_get_contents($f);
-		if (isset($php_errormsg)) {
-			$data .= "ERROR: " . $php_errormsg;
+		if ($lastError = error_get_last()) {
+			$data .= "ERROR: " . $lastError['message'];
 		} else {
 			// Should we apply all configured rules or only current one?
 			if ($all == 'y') {

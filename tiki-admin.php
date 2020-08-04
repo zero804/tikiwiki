@@ -240,7 +240,7 @@ if (isset($_POST['lm_preference']) && $access->checkCsrf()) {
 				$logslib->add_action('feature', $pref, 'system', 'disabled');
 			} else {
 				add_feedback($pref, tr('%0 set', $pref), 1, 1);
-				$logslib->add_action('feature', $pref, 'system', (is_array($val['old']) ? implode($val['old'], ',') : $val['old']) . '=>' . (is_array($value) ? implode($value, ',') : $value));
+				$logslib->add_action('feature', $pref, 'system', (is_array($val['old']) ? implode(',', $val['old']) : $val['old']) . '=>' . (is_array($value) ? implode(',', $value) : $value));
 			}
 			/*
 				Enable/disable addreference/showreference plugins alognwith references feature.

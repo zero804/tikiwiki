@@ -30,7 +30,7 @@ abstract class Feed_Abstract
 			$name = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
 			$name = explode('/', $name);
 			array_pop($name);
-			$name = implode($name, '/');
+			$name = implode('/', $name);
 		} else {
 			$name = str_replace("http://", "", $name);
 			$name = str_replace("https://", "", $name);

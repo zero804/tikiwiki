@@ -296,7 +296,7 @@ class RatingLib extends TikiDb_Bridge
 				}
 
 				if ($maintainArray == false) {
-					$value = implode($value, ',');
+					$value = implode(',', $value);
 				}
 
 				$array[] = $value;

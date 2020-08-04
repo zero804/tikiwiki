@@ -215,7 +215,7 @@ function regex_match($path, $regex_possibles)
 		//    print "Matching $path against $possible\n";
 		if (preg_match('%' . $possible . '%', $path)) {
 			//print "Matches $possible\n\n";
-			print "<!-- Found $path in " . join($regex_possibles, ",") . "-->\n";
+			print "<!-- Found $path in " . join(",", $regex_possibles) . "-->\n";
 			return true;
 		}
 	}

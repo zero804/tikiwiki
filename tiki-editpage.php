@@ -611,7 +611,7 @@ if (isset($_REQUEST['do_suck']) && strlen($suck_url) > 0) {
 	//   flags 'strip HTML tags' and 'try to convert HTML to wiki' :)
 	//   At least one export filter for wiki already coded :) -- PDF exporter...
 	$sdta = $tikilib->httprequest($suck_url);
-	if (isset($php_errormsg) && strlen($php_errormsg)) {
+	if (error_get_last()) {
 		$smarty->assign('msg', tra("Can't import remote HTML page"));
 		$smarty->display("error.tpl");
 		die;

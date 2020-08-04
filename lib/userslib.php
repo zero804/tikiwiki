@@ -8329,7 +8329,7 @@ class UsersLib extends TikiLib
 				//first extension is always to next anniversary
 				$next_ann = $startlocal->setDate($startyear, $ann_month, $ann_day);
 				//extend past next anniversary if more than one period
-				$extendto = $next_ann->modify('+' . $periods - 1 . ' years');
+				$extendto = $next_ann->modify('+' . ($periods - 1) . ' years');
 				//previous anniversary for proration
 				$prev_ann = $next_ann->modify('-1 years');
 				// monthly anniversaries

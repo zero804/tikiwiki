@@ -51,7 +51,7 @@ function smarty_modifier_numStyle($num, $type)
 			$range = ['Α', 'Β', 'Γ', 'Δ', 'Ε', 'Ζ', 'Η', 'Θ', 'Ι', 'Κ', 'Λ', 'Μ', 'Ν', 'Ξ', 'Ο', 'Π', 'Ρ', 'Σ', 'Τ', 'Υ', 'Φ', 'Χ', 'Ψ', 'Ω'];
 			return $style->toAlpha($num, $range);
 		case 'lower-roman':
-			return strtolower($this->numerals($num));
+			return strtolower($style->numerals($num));
 		case 'upper-roman':
 			return $style->numerals($num);
 		case 'hebrew':

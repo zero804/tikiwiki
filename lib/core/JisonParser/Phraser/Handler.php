@@ -148,8 +148,8 @@ class JisonParser_Phraser_Handler extends JisonParser_Phraser
 	function addIndexes($parentWords, $phraseWords)
 	{
 		$phraseLength = count($phraseWords) - 1;
-		$phraseConcat = implode($phraseWords, '|');
-		$parentConcat = implode($parentWords, '|');
+		$phraseConcat = implode('|', $phraseWords);
+		$parentConcat = implode('|', $parentWords);
 
 		$boundaries = explode($phraseConcat, $parentConcat);
 

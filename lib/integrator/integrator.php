@@ -337,8 +337,8 @@ class TikiIntegrator
 		} else {
 			$data = @file_get_contents($file);
 		}
-		if (isset($php_errormsg)) {
-			$data .= "ERROR: " . $php_errormsg;
+		if ($lastError = error_get_last()) {
+			$data .= "ERROR: " . $lastError['message'];
 		} else {
 			// Now we need to hack this file by applying all configured rules...
 			$data = $this->apply_all_rules($repID, $data);

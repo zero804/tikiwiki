@@ -3311,7 +3311,7 @@ class FileGalLib extends TikiLib
 
 		if (! empty($params['returnUrl'])) {
 			if (! empty($errors)) {
-				$smarty->assign('msg', implode($errors, '<br />'));
+				$smarty->assign('msg', implode('<br />', $errors));
 				$smarty->display('error.tpl');
 				die;
 			}
