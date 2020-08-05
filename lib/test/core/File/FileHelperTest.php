@@ -2,14 +2,15 @@
 
 namespace Tiki\Test\File;
 
-use org\bovigo\vfs\vfsStream;
-use org\bovigo\vfs\vfsStreamWrapper;
 use Tiki\File\FileHelper;
+use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\TestCase;
+use org\bovigo\vfs\vfsStreamWrapper;
 
-class FileHelperTest extends \PHPUnit_Framework_TestCase
+class FileHelperTest extends TestCase
 {
 
-	public static function setUpBeforeClass()
+	public static function setUpBeforeClass() : void
 	{
 		vfsStreamWrapper::register();
 	}
