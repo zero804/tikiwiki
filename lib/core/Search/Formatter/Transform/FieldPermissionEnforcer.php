@@ -36,7 +36,7 @@ class Search_Formatter_Transform_FieldPermissionEnforcer
 		}
 
 		if (! empty($entry['tracker_id'])) {
-			$perms = Perms::get(['type' => 'tracker', 'object' => $entry['trackerId']]);
+			$perms = Perms::get(['type' => 'tracker', 'object' => $entry['tracker_id']]);
 			if ($perms->admin_trackers) {
 				return $entry;
 			}

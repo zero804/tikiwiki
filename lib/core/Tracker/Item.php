@@ -324,16 +324,16 @@ class Tracker_Item
 		if ($isHidden == 'c') {
 			// Creator or creator group check when field can be modified by creator only
 			if ($this->definition->getConfiguration('writerCanModify', 'n') == 'y' && $this->owners) {
-				$allowed['users'] = $this->owners;
+				$allowed['allowed_users'] = $this->owners;
 			}
 			if ($this->definition->getConfiguration('writerGroupCanModify', 'n') == 'y' && $this->ownerGroup) {
-				$allowed['groups'] = [$this->ownerGroup];
+				$allowed['allowed_groups'] = [$this->ownerGroup];
 			}
 		} elseif ($isHidden == 'y') {
 			// Visible by administrator only
 		} else {
 			// Permission based on visibleBy apply
-			$allowed['groups'] = $visibleBy;
+			$allowed['allowed_groups'] = $visibleBy;
 		}
 		return $allowed;
 	}

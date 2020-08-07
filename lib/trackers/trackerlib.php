@@ -2828,7 +2828,7 @@ class TrackerLib extends TikiLib
 		if (! $bulk_mode) {
 			$watchers = $this->get_notification_emails($trackerId, $itemId, $this->get_tracker_options($trackerId));
 
-			if (count($watchers > 0)) {
+			if (count($watchers) > 0) {
 				$smarty = TikiLib::lib('smarty');
 				$trackerName = $this->trackers()->fetchOne('name', ['trackerId' => (int) $trackerId]);
 				$smarty->assign('mail_date', $this->now);

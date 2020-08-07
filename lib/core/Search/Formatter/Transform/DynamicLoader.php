@@ -24,6 +24,12 @@ class Search_Formatter_Transform_DynamicLoaderWrapper extends ArrayObject
 	{
 		parent::__construct($entry);
 		$this->source = $source;
+		$this->loaded['ignored_fields'] = true;
+		if (! empty($entry['ignored_fields'])) {
+			foreach ($entry['ignored_fields'] as $field) {
+				$this->loaded[$field] = true;
+			}
+		}
 	}
 
 	function offsetGet($name)
@@ -36,9 +42,6 @@ class Search_Formatter_Transform_DynamicLoaderWrapper extends ArrayObject
 
 	function offsetExists($name)
 	{
-		if ($name !== 'ignored_fields') {
-			$this->load($name);
-		}
 		return parent::offsetExists($name);
 	}
 
