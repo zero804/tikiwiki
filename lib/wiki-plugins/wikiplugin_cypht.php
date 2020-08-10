@@ -135,14 +135,15 @@ function wikiplugin_cypht_info()
 			],
 			'use_global_settings' => [
 				'name' => tra('Use global settings'),
-				'description' => tr('Use global Cypht settings available at Tiki Webmail page. Choosing "No" will make this instance of Cypht use its own settings. Useful if this is a Groupmail box or you don\'t want to mix mailbox server and/or site settings from other pages.'),
+				'description' => tr('Use global Cypht settings available at Tiki Webmail page. Choosing "No" will make this instance of Cypht use its own settings. Useful if this is a Groupmail box or you don\'t want to mix mailbox server and/or site settings from other pages. There are two modes of non-global settings - default one stores settings per user where each individual Tiki user will have their own copy of the settings whereas the second one stores settings per wiki page. Use per-wiki-page option if you want the plugin Cypht settings shared between users using the plugin on the same wiki page.'),
 				'required' => false,
 				'filter' => 'alpha',
 				'default' => 'n',
 				'since' => '20.0',
 				'options' => [
-					['text' => tra('No'), 'value' => 'n'],
-					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No - keep settings per-user'), 'value' => 'n'],
+					['text' => tra('No - keep settings per-wiki-page'), 'value' => 'nw'],
+					['text' => tra('Yes - keep settings global per-user'), 'value' => 'y'],
 				],
 			],
 			'groupmail' => [
@@ -279,9 +280,13 @@ function wikiplugin_cypht($data, $params)
 		return tra("You do not have the permission that is needed to use this feature:") . " " . $perm;
 	}
 
-	if( $params['use_global_settings'] === 'n' ) {
+	$user_override = null;
+	if( $params['use_global_settings'] !== 'y' ) {
 		$preference_name = substr('cypht_user_config_'.$page, 0, 40);
 		$session_prefix = substr('cypht_'.$page, 0, 20);
+		if ($params['use_global_settings'] === 'nw') {
+			$user_override = '%';
+		}
 	} else {
 		$preference_name = 'cypht_user_config';
 		$session_prefix = 'cypht';
@@ -294,6 +299,7 @@ function wikiplugin_cypht($data, $params)
 	}
 
 	$_SESSION[$session_prefix]['preference_name'] = $preference_name;
+	$_SESSION[$session_prefix]['user_override'] = $user_override;
 
 	$_SESSION[$session_prefix]['groupmail'] = $params['groupmail'];
 	$_SESSION[$session_prefix]['group'] = $params['group'];
