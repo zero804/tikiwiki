@@ -122,10 +122,20 @@ class Search_Formatter
 	public function renderFilters()
 	{
 		$filters = [];
-		foreach ($this->customFilters as $filter) {
-			$fieldName = str_replace('tracker_field_', '', $filter['field']);
-			$mode = $filter['mode'];
-			$filters[] = Tracker\Filter\Collection::getFilter($fieldName, $mode);
+		foreach ($this->customFilters as $custom_filter) {
+			$fields = explode(',', $custom_filter['field']);
+			$filter = null;
+			foreach ($fields as $key => $field) {
+				$fieldName = str_replace('tracker_field_', '', trim($field));
+				$mode = $custom_filter['mode'];
+				$filter = Tracker\Filter\Collection::getFilter($fieldName, $mode);
+				if ($key == 0) {
+					$filters[] = $filter;
+				} else {
+					$last = &$filters[count($filters)-1];
+					$last->setLabel($last->getLabel().', '.$filter->getLabel());
+				}
+			}
 		}
 		$input = new JitFilter(@$_REQUEST);
 		$fields = [];

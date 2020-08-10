@@ -22,9 +22,13 @@ class Search_Query implements Search_Query_Interface
 	private $transformations = [];
 	private $returnOnlyResultList = [];
 
-	function __construct($query = null)
+	function __construct($query = null, $expr = 'and')
 	{
-		$this->expr = new Search_Expr_And([]);
+		if ($expr === 'or') {
+			$this->expr = new Search_Expr_Or([]);
+		} else {
+			$this->expr = new Search_Expr_And([]);
+		}
 
 		if ($query) {
 			$this->filterContent($query);

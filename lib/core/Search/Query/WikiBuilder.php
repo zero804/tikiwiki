@@ -89,12 +89,26 @@ class Search_Query_WikiBuilder
 	function wpquery_filter_editable($query, $editableType, array $arguments)
 	{
 		$fields = $this->get_fields_from_arguments($arguments);
-		foreach ($fields as $fieldName) {
+		$masterField = null;
+		$subquery = new Search_Query(null, 'or');
+		foreach ($fields as $fieldNum => $fieldName) {
 			$fieldName = str_replace('tracker_field_', '', $fieldName);
+			if ($fieldNum == 0) {
+				$input = $this->input;
+				$masterField = $fieldName;
+			} else {
+				$input = [];
+				foreach ($this->input->asArray() as $key => $val) {
+					$key = str_replace($masterField, $fieldName, $key);
+					$input[$key] = $val;
+				}
+				$input = new JitFilter($input);
+			}
 			$filter = Tracker\Filter\Collection::getFilter($fieldName, $editableType);
-			$filter->applyInput($this->input);
-			$filter->applyCondition($query);
+			$filter->applyInput($input);
+			$filter->applyCondition($subquery);
 		}
+		$query->getExpr()->addPart($subquery->getExpr());
 	}
 
 	/**
