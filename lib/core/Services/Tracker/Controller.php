@@ -2334,7 +2334,7 @@ class Services_Tracker_Controller
 			$raw = $input->raw->none();
 			$preserve = $input->preserve->int();
 
-			$data = TikiLib::lib('tiki')->read_raw($raw);
+			$data = TikiLib::lib('tiki')->read_raw($raw, $preserve);
 
 			if (! $data || ! isset($data['tracker'])) {
 				throw new Services_Exception(tr('Invalid data provided'), 400);
