@@ -157,7 +157,7 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 		$this->set('auth_type', 'custom');
 		$this->set('output_class', 'Tiki_Hm_Output_HTTP');
 		$this->set('cookie_path', ini_get('session.cookie_path'));
-		if ($user && (empty($_SESSION[$session_prefix]['user_data']) || count($_SESSION[$session_prefix]['user_data']) == 2)) {
+		if ($user && (empty($_SESSION[$session_prefix]['user_data']) || count($_SESSION[$session_prefix]['user_data']) == 2 || !empty($_SESSION[$session_prefix]['user_override']))) {
 			$user_config = new Tiki_Hm_User_Config($this);
 			$user_config->load($user);
 			$_SESSION[$session_prefix]['user_data'] = $user_config->dump();
@@ -230,7 +230,8 @@ class Tiki_Hm_User_Config extends Hm_Config {
 	 */
 	public function load($username, $key = null) {
 		$this->username = $username;
-		$data = TikiLib::lib('tiki')->get_user_preference($username, $_SESSION[$this->site_config->get('session_prefix')]['preference_name']);
+		$actual_user = $_SESSION[$this->site_config->get('session_prefix')]['user_override'] ?? $username;
+		$data = TikiLib::lib('tiki')->get_user_preference($actual_user, $_SESSION[$this->site_config->get('session_prefix')]['preference_name']);
 		if ($data) {
 			$data = $this->decode($data);
 			$this->config = array_merge($this->config, $data);
@@ -260,7 +261,8 @@ class Tiki_Hm_User_Config extends Hm_Config {
 		$this->shuffle();
 		$removed = $this->filter_servers();
 		$data = json_encode($this->config);
-		TikiLib::lib('tiki')->set_user_preference($username, $_SESSION[$this->site_config->get('session_prefix')]['preference_name'], $data);
+		$actual_user = $_SESSION[$this->site_config->get('session_prefix')]['user_override'] ?? $username;
+		TikiLib::lib('tiki')->set_user_preference($actual_user, $_SESSION[$this->site_config->get('session_prefix')]['preference_name'], $data);
 		$this->restore_servers($removed);
 	}
 
