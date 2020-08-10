@@ -17,7 +17,7 @@ function smarty_function_modulelist($params, $smarty)
 	$zone = $params['zone'];
 
 	$tag = "div";
-	$class = 'content clearfix modules';
+	$class = 'modules';
 	if (! empty($params['class'])) {
 		$class .= ' ' . $params['class'];
 		if (strpos($class, 'navbar') !== false) {
