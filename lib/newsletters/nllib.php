@@ -1707,7 +1707,10 @@ class NlLib extends TikiLib
 					$sendfromData = ' data-sendfrom="' . $info['sendfrom'] . '"';
 				}
 
-				print '<div class="throttle" data-edition="' . $info['editionId'] . '"' . $replytoData . $sendfromData
+				TikiLib::lib('access')->setTicket();
+				$ticketData = ' data-ticket="' . $smarty->getTemplateVars('ticket') . '"';
+
+				print '<div class="throttle" data-edition="' . $info['editionId'] . '"' . $replytoData . $sendfromData . $ticketData
 					. ' data-rate="' . $rate . '">' . tr('Limiting the email send rate. Resuming in %0 seconds.', $rate)
 					. '</div>';
 				exit;

@@ -151,7 +151,7 @@
 				var root = this.contentDocument.documentElement, iframe = this;
 				$('#confirmed').append($('.confirmation', root));
 				$('.throttle', root).each(function () {
-					var url = 'tiki-send_newsletters.php?resume=' + $(this).data('edition') + '&replyto=' + $(this).data('replyto') + '&sendfrom=' + $(this).data('sendfrom');
+					var url = 'tiki-send_newsletters.php?resume=' + $(this).data('edition') + '&replyto=' + $(this).data('replyto') + '&sendfrom=' + $(this).data('sendfrom') + '&ticket=' + $(this).data('ticket');
 					setTimeout(function () {
 						$(iframe).attr('src', url);
 					}, parseInt($(this).data('rate'), 10) * 1000);

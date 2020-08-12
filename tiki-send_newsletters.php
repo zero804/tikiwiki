@@ -463,9 +463,11 @@ if (isset($_REQUEST['resume'])) {
 	// so accept get requests, track remaining iterations and only unset ticket after iterations are complete
 	$unsetTicket = ! empty($_SESSION['tickets']['newsletter']['iterations'])
 		&& $_SESSION['tickets']['newsletter']['iterations'] == 1;
+
 	$csrfCheck = ! empty($_SESSION['tickets']['newsletter']['iterations'])
 		&& $_SESSION['tickets']['newsletter']['iterations'] > 0
-		&& $access->checkCsrf(null, true, null, $unsetTicket, $_SESSION['tickets']['newsletter']['ticket']);
+		&& $access->checkCsrf(null, true, null, $unsetTicket, $_REQUEST['ticket']);
+
 	$nllib->send($nl_info, $edition_info, true, $sent, $errors, $logFileName, $csrfCheck);
 	// use lib function to close the frame with the completion info
 	$nllib->closesendframe($sent, $errors, $logFileName);
