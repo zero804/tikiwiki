@@ -273,7 +273,7 @@ LIMIT 1;';
 			$query = "INSERT INTO tiki_password_blacklist (password) VALUES $passwords";
 			$tikiDb->query($query);
 		} else {
-			Feedback::error(tr('Unable to Populate Blacklist: File dose not exist or is not readable.'));
+			Feedback::error(tr('Unable to Populate Blacklist: File "%0" does not exist or is not readable.', $filename));
 		}
 	}
 

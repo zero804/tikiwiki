@@ -197,7 +197,7 @@ if (isset($_REQUEST['pref_filters']) && $access->checkCsrf()) {
 
 $blackL = TikiLib::lib('blacklist');
 
-if (isset($_POST['pass_blacklist'])) {    // if preferences were updated and blacklist feature is enabled (or is being enabled)
+if (isset($_POST['pass_blacklist']) && $jitPost->offsetExists('pass_blacklist_file')) {    // if preferences were updated and blacklist feature is enabled (or is being enabled)
 	$pass_blacklist_file = $jitPost->pass_blacklist_file->striptags();
 	$userfile = explode('-', $pass_blacklist_file);
 	$userfile = $userfile[3];
