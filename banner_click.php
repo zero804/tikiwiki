@@ -8,12 +8,23 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+$inputConfiguration = [
+	[
+		'staticKeyFilters' => [
+			'id' => 'int',
+		]
+	]
+];
+
 require_once('tiki-setup.php');
 
 $access->check_feature('feature_banners');
 
 $bannerlib = TikiLib::lib('banner');
 
-$bannerlib->add_click($_REQUEST["id"]);
-$url = urldecode($_REQUEST["url"]);
-header("location: $url");
+$info = $bannerlib->get_banner($_REQUEST['id']);
+if ($info) {
+	$bannerlib->add_click($info['bannerId']);
+	$url = urldecode($info['url']);
+	header("location: $url");
+}
