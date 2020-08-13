@@ -38,6 +38,10 @@ class Search_Elastic_QueryBuilder
 			return [];
 		}
 
+		if (empty($query)) {
+			return [];
+		}
+
 		$query = ["query" => $query];
 
 		return $query;
@@ -88,13 +92,17 @@ class Search_Elastic_QueryBuilder
 					if (isset($part['bool']['must_not']) && count($part['bool']) == 1) {
 						$not = array_merge($not, $part['bool']['must_not']);
 						return false;
+					} elseif (empty($part)) {
+						return false;
 					} else {
 						return true;
 					}
 				}
 			);
 			$inner = $this->flatten($inner, 'must');
-			if (count($inner) == 1 && isset($inner[0]['bool'])) {
+			if (count($inner) == 0) {
+				return [];
+			} elseif (count($inner) == 1 && isset($inner[0]['bool'])) {
 				$base = $inner[0]['bool'];
 				if (! isset($base['must_not'])) {
 					$base['must_not'] = [];
