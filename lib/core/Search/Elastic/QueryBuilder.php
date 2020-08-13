@@ -100,7 +100,7 @@ class Search_Elastic_QueryBuilder
 				}
 			);
 			$inner = $this->flatten($inner, 'must');
-			if (count($inner) == 0) {
+			if (count($inner) == 0 && count($not) == 0) {
 				return [];
 			} elseif (count($inner) == 1 && isset($inner[0]['bool'])) {
 				$base = $inner[0]['bool'];
