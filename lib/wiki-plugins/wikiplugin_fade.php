@@ -142,13 +142,13 @@ function wikiplugin_fade($body, $params)
 	  // and the working example here
 	  // http://jsfiddle.net/zessx/R6EAW/12/
 	  //
-	  // It might not be necessary to go back to the 'panel-heading' before
+	  // It might not be necessary to go back to the 'card-header' before
 	  // going forward to the icon.
 
 		$jq = "function toggleChevron(e) 
              {
                $(e.target)
-                  .prev('.panel-heading')
+                  .prev('.card-header')
                   .find('span.icon')
                   .toggleClass('fa-chevron-down fa-chevron-up');
              }
@@ -157,12 +157,12 @@ function wikiplugin_fade($body, $params)
 
 		$headerlib->add_jq_onready($jq);
 
-		return "<div id='" . $unique_outer . "' class='panel" . ( isset($params['class']) ? ' ' . $params['class'] : '' ) . "'>"
-				. "<div class='panel-heading'>"
+		return "<div id='" . $unique_outer . "' class='card" . ( isset($params['class']) ? ' ' . $params['class'] : '' ) . "'>"
+				. "<div class='card-header'>"
 				  . "<a data-toggle='collapse' href='#" . $unique_inner . "'>" . htmlspecialchars($params['label']) . "<span class='icon icon-menu-extra fas fa-chevron-down fa-fw' style='float:right'></span>" . "</a>"
 				. "</div>"
 				. "<div id='" . $unique_inner . "' class='panel-collapse collapse'>"
-				  . "<div class='panel-body'>" . $body . "</div>"
+				  . "<div class='card-body'>" . $body . "</div>"
 				. "</div>"
 			  . "</div>" ;
 	} else {

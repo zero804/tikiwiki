@@ -143,15 +143,15 @@ function wikiplugin_box($data, $params)
 	$c = (isset($clear)) ? " clear:both;" : "";
 	$style = (isset($style)) ? "$style;" : "";
 	if (empty($float)) {
-		$begin = "<div class='panel$class' $id style='$bg margin:0; $w $c $style $align'>";
+		$begin = "<div class='card$class' $id style='$bg margin:0; $w $c $style $align'>";
 	} else {
-		$begin = "<div class='panel$class' $id style='$bg $f; margin:1em; margin-$float:0; $w $c $style $align'>";
+		$begin = "<div class='card$class' $id style='$bg $f; margin:1em; margin-$float:0; $w $c $style $align'>";
 	}
 
 	if (isset($title)) {
-		$begin .= "<div class='panel-heading'>$title</div>";
+		$begin .= "<div class='card-header'>$title</div>";
 	}
-	$begin .= "<div class='panel-body'" . (strlen($bg) > 0 ? " style=\"$bg\"" : "") . ">";
+	$begin .= "<div class='card-body'" . (strlen($bg) > 0 ? " style=\"$bg\"" : "") . ">";
 	$end = "</div></div>";
 	// Prepend any newline char with br
 	//$data = preg_replace("/\\n/", "<br />", $data);
