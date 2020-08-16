@@ -90,6 +90,11 @@ if (! isset($_SESSION['thedate'])) {
 $perspectivelib = TikiLib::lib('perspective');
 $activeWS = $perspectivelib->get_current_perspective(null);
 
+$originalPageRequested = $page = $_REQUEST['page'];
+if ($prefs['wiki_url_scheme'] !== 'urlencode') {
+	$page = $_REQUEST['page'] = TikiLib::lib('wiki')->get_page_by_slug($page);
+}
+
 // If there's a WS active and the WS has a homepage, then load the WS homepage
 if ((! empty($activeWS)) and $isHomePage) {
 	$preferences = $perspectivelib->get_preferences($activeWS);
@@ -178,10 +183,6 @@ if (! empty($page_ref_id)) {
 	$smarty->assign('page_ref_id', $page_ref_id);
 }
 
-$originalPageRequested = $page = $_REQUEST['page'];
-if ($prefs['wiki_url_scheme'] !== 'urlencode') {
-	$page = $_REQUEST['page'] = TikiLib::lib('wiki')->get_page_by_slug($page);
-}
 $smarty->assign_by_ref('page', $page);
 
 $cat_type = 'wiki page';
