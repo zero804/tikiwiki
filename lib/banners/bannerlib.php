@@ -84,6 +84,9 @@ class BannerLib extends TikiLib
 		if (! empty($zone)) {
 			$id = $this->select_banner_id($zone);
 		}
+		if (! $id) {
+			return '';
+		}
 		$res = $this->get_banner($id);
 		$class = 'banner' . str_replace(' ', '_', $zone);
 

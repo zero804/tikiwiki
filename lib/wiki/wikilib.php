@@ -114,7 +114,7 @@ class WikiLib extends TikiLib
 	public function get_contributors($page, $last = '')
 	{
 		static $cache_page_contributors;
-		if ($cache_page_contributors['page'] == $page) {
+		if (! empty($cache_page_contributors['page']) && $cache_page_contributors['page'] == $page) {
 			if (empty($last)) {
 				return $cache_page_contributors['contributors'];
 			}
