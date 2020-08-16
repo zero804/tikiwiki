@@ -444,7 +444,7 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="prorateInterval" class="col-form-label col-md-3">{tr}Pro-Rate Membership{/tr}</label>
+					<label for="prorateInterval" class="col-form-label col-md-3">{tr}Pro-rata Membership{/tr}</label>
 					<div class="col-md-9">
 						<select name="prorateInterval" class="form-control">
 							<option value="day" {if $group_info.prorateInterval eq 'day'}selected="selected"{/if}>{tr}Day{/tr}</option>
@@ -458,7 +458,7 @@
 				</div>
 			{/if}
 			<div class="form-group row">
-				<label class="col-form-label col-md-3">{tr}Group{/tr}</label>
+				<label class="col-form-label col-md-3">{tr}Email Pattern{/tr}</label>
 				<div class="col-md-9">
 					<input class="form-control" type="text" size="40" name="emailPattern" value="{$group_info.emailPattern|escape}">
 					<div class="form-text">
