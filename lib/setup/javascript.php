@@ -27,8 +27,10 @@ if ($prefs['disableJavascript'] == 'y') {
 	$prefs['javascript_enabled'] = 'y';
 	if ($js_cookie !== 'y') {		// if it's not 'y' then it's the expiry in ms
 		setcookie('javascript_enabled', 'y', $js_cookie / 1000);
+		$js_cookie = 'y';
 	}
 	setCookieSection('javascript_enabled_detect', '', '', time() - 3600);	// remove the test cookie
+	$_COOKIE['javascript_enabled_detect'] = '';
 } else {
 	if (isset($_COOKIE['runs_before_js_detect'])) {	// pre-tiki 14 method detected, delete both test cookies (reloading here caused redirect a loop in some case)
 		setcookie('runs_before_js_detect', '', time() - 3600);
