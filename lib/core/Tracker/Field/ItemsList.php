@@ -11,7 +11,7 @@
  * Letter key: ~l~
  *
  */
-class Tracker_Field_ItemsList extends Tracker_Field_Abstract implements Tracker_Field_Exportable
+class Tracker_Field_ItemsList extends Tracker_Field_Abstract implements Tracker_Field_Exportable, Tracker_Field_Filterable
 {
 	public static function getTypes()
 	{
@@ -583,7 +583,56 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 		return $schema;
 	}
 
+	function getFilterCollection()
+	{
+		$collection = new Tracker\Filter\Collection($this->getTrackerDefinition());
+		$permName = $this->getConfiguration('permName');
+		$name = $this->getConfiguration('name');
+		$baseKey = $this->getBaseKey();
 
+		$collection->addNew($permName, 'selector')
+			->setLabel($name)
+			->setControl(new Tracker\Filter\Control\ObjectSelector("tf_{$permName}_os", [
+				'type' => 'trackeritem',
+				'tracker_status' => implode(' OR ', str_split($this->getOption('status', 'opc'), 1)),
+				'tracker_id' => $this->getOption('trackerId'),
+				'_placeholder' => tr(TikiLib::lib('object')->get_title('tracker', $this->getOption('trackerId'))),
+			]))
+			->setApplyCondition(function ($control, Search_Query $query) use ($baseKey) {
+				$value = $control->getValue();
+
+				if ($value) {
+					$query->filterMultivalue((string) $value, $baseKey);
+				}
+			})
+			;
+
+		$collection->addNew($permName, 'multiselect')
+			->setLabel($name)
+			->setControl(new Tracker\Filter\Control\ObjectSelector(
+				"tf_{$permName}_ms",
+				[
+				'type' => 'trackeritem',
+				'tracker_status' => implode(' OR ', str_split($this->getOption('status', 'opc'), 1)),
+				'tracker_id' => $this->getOption('trackerId'),
+				'_placeholder' => tr(TikiLib::lib('object')->get_title('tracker', $this->getOption('trackerId'))),
+				],
+				true
+			))	// for multi
+			->setApplyCondition(function ($control, Search_Query $query) use ($baseKey) {
+				$value = $control->getValue();
+
+				if ($value) {
+					$value = array_map(function ($v) {
+						return str_replace('trackeritem:', '', $v);
+					}, $value);
+					$query->filterMultivalue(implode(' OR ', $value), $baseKey);
+				}
+			})
+		;
+
+		return $collection;
+	}
 
 	private function getItemIds()
 	{
