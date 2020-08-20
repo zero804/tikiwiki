@@ -192,7 +192,12 @@ class TikiMail
 			$this->mail->setBody($text);
 			if ($this->charset) {
 				$headers = $this->mail->getHeaders();
-				$headers->removeHeader($headers->get('Content-type'));
+				$contentType = $headers->get('Content-type');
+
+				if (! empty($contentType)) {
+					$headers->removeHeader($contentType);
+				}
+
 				$headers->addHeaderLine(
 					'Content-type: text/plain; charset=' . $this->charset
 				);
