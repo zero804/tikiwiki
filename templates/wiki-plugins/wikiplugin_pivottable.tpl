@@ -29,6 +29,8 @@
 			aggregatorName: pivotLocale && pivotLocale.aggregators[{{$pivottable.aggregatorName|json_encode}}] ? {{$pivottable.aggregatorName|json_encode}} : null,
 			vals: {{$pivottable.vals|json_encode}},
 			inclusions: {{$pivottable.inclusions}},
+			colOrder: {{$pivottable.colOrder|json_encode}},
+			rowOrder: {{$pivottable.rowOrder|json_encode}},
 
 			sorters: function(attr) {
 				if($.inArray(attr, {{$pivottable.dateFields|json_encode}}) > -1) {
