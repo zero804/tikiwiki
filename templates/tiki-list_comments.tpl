@@ -47,7 +47,7 @@
 				{actions}
 					{strip}
 						<action>
-							<a href="{$comments[ix].href}">
+							<a href="{$comments[ix].object|sefurl:$comments[ix].objectType}#?comzone=show#threadId{$comments[ix].threadId}">
 								{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
 							</a>
 						</action>
@@ -102,7 +102,7 @@
 				<td {if $headerKey eq 'data'}{popup caption=$comments[ix].title|escape:"javascript"|escape:"html" text=$comments[ix].parsed}{/if}>
 					<span> {* span is used for some themes CSS opacity on some cells content *}
 						{if $headerKey eq 'title'}
-							<a href="{$comments[ix].href}" title="{$val|escape}">
+							<a href="{$comments[ix].object|sefurl:$comments[ix].objectType}#?comzone=show#threadId{$comments[ix].threadId}" title="{$val|escape}">
 								{if !empty($val)}
 									{$val|truncate:50:"...":true|escape}
 								{else}
