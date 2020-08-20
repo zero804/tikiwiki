@@ -285,6 +285,7 @@ class Services_Edit_PluginController
 		$content = $input->content->wikicontent();
 		$index = $input->index->int();
 		$params = $input->asArray('params');
+		$appendParams = $input->appendParams->int();
 
 		$referer = $_SERVER['HTTP_REFERER'];
 
@@ -328,6 +329,10 @@ class Services_Edit_PluginController
 
 				if (! $params) {
 					$params = $match->getArguments();
+				} elseif ($appendParams) {
+					$parser = new WikiParser_PluginArgumentParser;
+					$arguments = $parser->parse($match->getArguments());
+					$params = array_merge($arguments, $params);
 				}
 
 				$match->replaceWithPlugin($plugin, $params, $content);
