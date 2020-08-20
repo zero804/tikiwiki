@@ -14,6 +14,7 @@ use Sabre\DAVACL;
 use Sabre\Uri;
 
 use TikiLib;
+use Perms;
 
 /**
  * Tiki principal backend
@@ -60,24 +61,33 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
      * @return array
      */
     function getPrincipalsByPrefix($prefixPath) {
-        global $prefs;
+        global $prefs, $user;
 
         $principals = [];
 
-        $users = TikiLib::lib('tiki')->list_users(0, -1, 'login_asc');
-        foreach ($users['data'] as $user) {
-            $uri = self::mapUserToUri($user['login']);
+        $perms = Perms::get();
+        if ($perms->list_users) {
+            $users = TikiLib::lib('tiki')->list_users(0, -1, 'login_asc');
+            foreach ($users['data'] as $user) {
+                $uri = self::mapUserToUri($user['login']);
 
-            // Checking if the principal is in the prefix
-            list($rowPrefix) = Uri\split($uri);
-            if ($rowPrefix !== $prefixPath) {
-                continue;
+                // Checking if the principal is in the prefix
+                list($rowPrefix) = Uri\split($uri);
+                if ($rowPrefix !== $prefixPath) {
+                    continue;
+                }
+
+                $principals[] = [
+                    'uri' => $uri,
+                    $this->fieldMap['name'] => TikiLib::lib('tiki')->get_user_preference($user['login'], 'realName'),
+                    $this->fieldMap['email'] => $prefs['login_is_email'] == 'y' && $user['login'] != 'admin' ? $user['login'] : $user['email'],
+                ];
             }
-
+        } else {
             $principals[] = [
-                'uri' => $uri,
-                $this->fieldMap['name'] => TikiLib::lib('tiki')->get_user_preference($user['login'], 'realName'),
-                $this->fieldMap['email'] => $prefs['login_is_email'] == 'y' && $user['login'] != 'admin' ? $user['login'] : $user['email'],
+                'uri' => self::mapUserToUri($user),
+                $this->fieldMap['name'] => TikiLib::lib('tiki')->get_user_preference($user, 'realName'),
+                $this->fieldMap['email'] => TikiLib::lib('user')->get_user_email($user),
             ];
         }
 
