@@ -238,7 +238,8 @@ class TikiMail
 		}
 	}
 
-	function addPart($content, $type) {
+	function addPart($content, $type)
+	{
 		$body = $this->mail->getBody();
 		if (! ($body instanceof \Zend\Mime\Message)) {
 			$this->convertBodyToMime($body);
@@ -251,7 +252,7 @@ class TikiMail
 		$headers = $this->mail->getHeaders();
 		$headers->removeHeader('Content-type');
 		$headers->addHeaderLine(
-			'Content-type: multipart/mixed; boundary="'.$body->getMime()->boundary().'"'
+			'Content-type: multipart/mixed; boundary="' . $body->getMime()->boundary() . '"'
 		);
 	}
 
@@ -260,7 +261,8 @@ class TikiMail
 	 *
 	 * @return \Zend\Mail\Message
 	 */
-	function getMessage() {
+	function getMessage()
+	{
 		return $this->mail;
 	}
 
@@ -471,4 +473,3 @@ function closetags($html)
 	}
 	return $html;
 }
-
