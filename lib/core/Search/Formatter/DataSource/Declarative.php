@@ -49,7 +49,7 @@ class Search_Formatter_DataSource_Declarative implements Search_Formatter_DataSo
 		return [];
 	}
 
-	private function obtainFromContentSource($type, $object, $hash, & $missingFields)
+	private function obtainFromContentSource($type, $object, $hash, &$missingFields)
 	{
 		if (isset($this->contentSources[$type])) {
 			$contentSource = $this->contentSources[$type];
@@ -82,7 +82,7 @@ class Search_Formatter_DataSource_Declarative implements Search_Formatter_DataSo
 		return [];
 	}
 
-	private function obtainFromGlobalSource($globalSource, $type, $object, & $missingFields, $data)
+	private function obtainFromGlobalSource($globalSource, $type, $object, &$missingFields, $data)
 	{
 		if (is_array($missingFields)) {
 			if (in_array('highlight', $missingFields)) {
@@ -109,7 +109,7 @@ class Search_Formatter_DataSource_Declarative implements Search_Formatter_DataSo
 		return ! empty($missingFields) && count(array_intersect($missingFields, $contentSource->getProvidedFields())) > 0;
 	}
 
-	private function getRaw($data, & $missingFields)
+	private function getRaw($data, &$missingFields)
 	{
 		$data = array_intersect_key($data, array_combine($missingFields, $missingFields));
 
@@ -127,6 +127,15 @@ class Search_Formatter_DataSource_Declarative implements Search_Formatter_DataSo
 	}
 
 	/**
+	 * Check if the prefilter has been set
+	 * @return bool
+	 */
+	public function isPrefilterSet()
+	{
+		return ! empty($this->prefilter);
+	}
+
+	/**
 	 * Set a filter function to determine the fields to select.
 	 * First parameter, field list
 	 * Second parameter, the entry
@@ -134,6 +143,15 @@ class Search_Formatter_DataSource_Declarative implements Search_Formatter_DataSo
 	function setPrefilter($callback)
 	{
 		$this->prefilter = $callback;
+	}
+
+	/**
+	 * Get prefilter closure
+	 * @return mixed
+	 */
+	public function getPrefilter()
+	{
+		return $this->prefilter;
 	}
 
 	private function handlePrefilter(array $fields, $entry)

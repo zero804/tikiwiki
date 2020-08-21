@@ -944,31 +944,30 @@ class UnifiedSearchLib
 			if ($prefs['unified_engine'] === 'mysql') {
 				$dataSource->setPrefilter(
 					function ($fields, $entry) {
-						return array_filter(
-							$fields,
-							function ($field) use ($entry) {
-								if ($field == 'ignored_fields') {
-									return false;
-								}
-								if (! empty($entry[$field])) {
-									return preg_match('/token[a-z]{20,}/', $entry[$field]);
-								}
-								return true;
-							}
-						);
+						return (new Search_MySql_Prefilter())->get($fields, $entry);
 					}
 				);
 			} elseif ($prefs['unified_engine'] === 'elastic') {
-				$dataSource->setPrefilter(
-					function ($fields, $entry) {
-						return array_filter(
-							$fields,
-							function ($field) use ($entry) {
-								return ! isset($entry[$field]);
-							}
-						);
-					}
-				);
+				$connection = $this->getElasticConnection(false);
+
+				if ($connection->getStatus() === 200) {
+					$dataSource->setPrefilter(function ($fields, $entry) {
+						return (new Search_Elastic_Prefilter())->get($fields, $entry);
+					});
+				}
+			}
+
+			// If prefilter was not loaded, the main search engine might not be working properly, lets use the fallback one if possible
+			if (! $dataSource->isPrefilterSet()) {
+				if ($prefs['unified_elastic_mysql_search_fallback'] === 'y') {
+					$dataSource->setPrefilter(
+						function ($fields, $entry) {
+							return (new Search_MySql_Prefilter())->get($fields, $entry);
+						}
+					);
+				} else {
+					Feedback::warning(tr("The main search engine is not working properly and the fallback is also not set.<br>Search engine results might not be properly displayed."));
+				}
 			}
 		}
 
