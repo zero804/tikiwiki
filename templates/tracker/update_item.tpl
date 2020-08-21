@@ -29,13 +29,14 @@
 				<input type="button" class="btn btn-primary previewItemBtn" title="{tr}Preview your changes.{/tr}" name="preview" value="{tr}Preview{/tr}">
 				<input type="hidden" name="redirect" value="{$redirect|escape}">
 				<input type="hidden" name="conflictoverride" value="{$conflictoverride|escape}">
-				<input type="submit" class="btn btn-secondary" value="{$button_label}" onclick="needToConfirm=false;">
+				<input type="submit" class="btn btn-primary" value="{$button_label}" onclick="needToConfirm=false;">
 			</div>
 		</form>
 	{else}
 		<form method="post" action="{service controller=tracker action=update_item format=$format editItemPretty=$editItemPretty suppressFeedback=$suppressFeedback}" id="updateItemForm{$trackerId|escape}">
 			{trackerfields trackerId=$trackerId fields=$fields status=$status itemId=$itemId format=$format editItemPretty=$editItemPretty}
 			<div class="submit">
+				<input type="button" class="btn btn-info previewItemBtn" title="{tr}Preview your changes.{/tr}" name="preview" value="{tr}Preview{/tr}">
 				{if not empty($saveAndComment) and $saveAndComment neq 'n'}
 					<input type="hidden" name="saveAndComment" id="saveAndComment" value="">
 					<input type="submit" class="btn btn-primary" onclick="$('#saveAndComment').val(1);" value="{tr}Save and Comment{/tr}">
@@ -45,10 +46,9 @@
 				{foreach from=$forced key=permName item=value}
 					<input type="hidden" name="forced~{$permName|escape}" value="{$value|escape}">
 				{/foreach}
-				<input type="button" class="btn btn-primary previewItemBtn" title="{tr}Preview your changes.{/tr}" name="preview" value="{tr}Preview{/tr}">
 				<input type="hidden" name="redirect" value="{$redirect|escape}">
 				<input type="hidden" name="conflictoverride" value="{$conflictoverride|escape}">
-				<input type="submit" class="btn btn-secondary" value="{$button_label}" onclick="needToConfirm=false;">
+				<input type="submit" class="btn btn-primary" value="{$button_label}" onclick="needToConfirm=false;">
 			</div>
 		</form>
 		{* Don't warn on leaving page if the modal is closed without saving *}
