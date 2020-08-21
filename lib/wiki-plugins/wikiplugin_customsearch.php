@@ -593,11 +593,15 @@ function cs_design_input($id, $fieldname, $fieldid, $arguments, $default, &$scri
 	$script .= "
 (function (id, config, fieldname) {
 	var field = $('#' + id);
+	var partial = '';
+	if (config['_partial'] == 'y') {
+		partial = '*';
+	}
 	field.change(function() {
 		var filter = {
 			config: config,
 			name: 'input',
-			value: $(this).val()
+			value: $(this).val() + partial
 		};
 
 		if ($(this).is(':checkbox, :radio')) {
