@@ -46,7 +46,7 @@ class Services_Search_CustomSearchController
 		$query = $definition['query'];
 		/** @var Search_Formatter_Builder $builder */
 		$builder = $definition['builder'];
-		/** @var Search_Elastic_FacetBuilder $facetsBuilder */
+		/** @var Search_Query_FacetWikiBuilder $facetsBuilder */
 		$facetsBuilder = $definition['facets'];
 
 		$tsettings = $definition['tsettings'];
