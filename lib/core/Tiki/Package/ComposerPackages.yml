@@ -26,10 +26,19 @@ Expose:
   requiredBy:
     - ids_enabled
   requiredVersion: ^3.0
-FullCalendarScheduler:
+FullCalendarSchedulerDeprecated:
+  actions:
+    - remove
   licence: GPLv3
   licenceUrl: "https://fullcalendar.io/scheduler/license/"
   name: fullcalendar/fullcalendar-scheduler
+  requiredBy:
+    - "wikiplugin_trackercalendar"
+  requiredVersion: ^1.9
+FullCalendarScheduler:
+  licence: GPLv3
+  licenceUrl: "https://fullcalendar.io/scheduler/license/"
+  name: npm-asset/fullcalendar-scheduler
   requiredBy:
     - "wikiplugin_trackercalendar"
   requiredVersion: ^1.9

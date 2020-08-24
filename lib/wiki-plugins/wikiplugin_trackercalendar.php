@@ -15,7 +15,7 @@ function wikiplugin_trackercalendar_info()
 		'name' => tr('Tracker Calendar'),
 		'description' => tr('Create and display a calendar using tracker data'),
 		'prefs' => ['wikiplugin_trackercalendar', 'calendar_fullcalendar'],
-		'packages_required' => ['fullcalendar/fullcalendar-scheduler' => VendorHelper::getAvailableVendorPath('fullcalendarscheduler', 'fullcalendar/fullcalendar-scheduler/dist/scheduler.min.js')],
+		'packages_required' => ['npm-asset/fullcalendar-scheduler' => VendorHelper::getAvailableVendorPath('fullcalendarscheduler', 'npm-asset/fullcalendar-scheduler/dist/scheduler.min.js')],
 		'format' => 'html',
 		'iconname' => 'calendar',
 		'introduced' => 10,
@@ -400,19 +400,26 @@ function wikiplugin_trackercalendar($data, $params)
 
 	static $id = 0;
 	$headerlib = TikiLib::lib('header');
-	$vendorPath = VendorHelper::getAvailableVendorPath('fullcalendarscheduler', 'fullcalendar/fullcalendar-scheduler/dist/scheduler.min.js', false);
+	$vendorPath = VendorHelper::getAvailableVendorPath('fullcalendarscheduler', 'npm-asset/fullcalendar-scheduler/dist/scheduler.min.js', false);
+	$oldVendorPath = VendorHelper::getAvailableVendorPath('fullcalendarscheduler', 'fullcalendar/fullcalendar-scheduler/dist/scheduler.min.js', false);
 
-	if (! $vendorPath) {
-		return WikiParser_PluginOutput::userError(tr('To view Tracker Calendar Tiki needs the fullcalendar/fullcalendar-scheduler package. If you do not have permission to install this package, ask the site administrator.'));
+	if (! $vendorPath && ! $oldVendorPath) {
+		return WikiParser_PluginOutput::userError(tr('To view Tracker Calendar Tiki needs the npm-asset/fullcalendar-scheduler package. If you do not have permission to install this package, ask the site administrator.'));
 	}
 
-	$headerlib->add_cssfile($vendorPath . '/fullcalendar/fullcalendar/dist/fullcalendar.min.css');
+	if ($oldVendorPath) {
+		Feedback::warning(tr('The package fullcalendar/fullcalendar-scheduler is deprecated, and replaced by npm-asset/fullcalendar-scheduler. If you do not have permission to install this package, ask the site administrator.'));
+	}
+
+	$vendorPath = $vendorPath ? $vendorPath . '/npm-asset/' : $oldVendorPath . '/fullcalendar/';
+
+	$headerlib->add_cssfile($vendorPath . 'fullcalendar/dist/fullcalendar.min.css');
 	// Disable fullcalendar's force events to be one-line tall
 	$headerlib->add_css('.fc-day-grid-event > .fc-content, .fc-timeline-event > .fc-content { white-space: normal; }');
-	$headerlib->add_cssfile($vendorPath . '/fullcalendar/fullcalendar-scheduler/dist/scheduler.min.css');
-	$headerlib->add_jsfile($vendorPath . '/moment/moment/min/moment.min.js', true);
-	$headerlib->add_jsfile($vendorPath . '/fullcalendar/fullcalendar/dist/fullcalendar.min.js', true);
-	$headerlib->add_jsfile($vendorPath . '/fullcalendar/fullcalendar-scheduler/dist/scheduler.min.js', true);
+	$headerlib->add_cssfile($vendorPath . 'fullcalendar-scheduler/dist/scheduler.min.css');
+	$headerlib->add_jsfile('vendor_bundled/vendor/moment/moment/min/moment.min.js', true);
+	$headerlib->add_jsfile($vendorPath . 'fullcalendar/dist/fullcalendar.min.js', true);
+	$headerlib->add_jsfile($vendorPath . 'fullcalendar-scheduler/dist/scheduler.min.js', true);
 
 	$jit = new JitFilter($params);
 	$definition = Tracker_Definition::get($jit->trackerId->int());

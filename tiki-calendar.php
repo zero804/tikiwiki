@@ -834,11 +834,11 @@ include_once('tiki-section_options.php');
 ask_ticket('calendar');
 
 if (! empty($prefs['calendar_fullcalendar']) && $prefs['calendar_fullcalendar'] === 'y') {
-	$headerlib->add_cssfile('vendor_bundled/vendor/fullcalendar/fullcalendar/dist/fullcalendar.min.css');
+	$headerlib->add_cssfile('vendor_bundled/vendor/npm-asset/fullcalendar/dist/fullcalendar.min.css');
 	// Disable fullcalendar's force events to be one-line tall
 	$headerlib->add_css('.fc-day-grid-event > .fc-content { white-space: normal; }');
 	$headerlib->add_jsfile('vendor_bundled/vendor/moment/moment/min/moment.min.js', true);
-	$headerlib->add_jsfile('vendor_bundled/vendor/fullcalendar/fullcalendar/dist/fullcalendar.min.js', true);
+	$headerlib->add_jsfile('vendor_bundled/vendor/npm-asset/fullcalendar/dist/fullcalendar.min.js', true);
 
 	$smarty->assign('minHourOfDay', $minHourOfDay . ':00:00');
 	$smarty->assign('maxHourOfDay', $maxHourOfDay . ':00:00');

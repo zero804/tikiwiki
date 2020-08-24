@@ -475,14 +475,6 @@ class CleanVendors
 			]
 		);
 		self::remove(
-			$vendors . 'kriswallsmith/assetic',
-			[
-				'CHANGELOG-1.0.md',
-				'CHANGELOG-1.1.md',
-				'CHANGELOG-1.2.md',
-			]
-		);
-		self::remove(
 			$vendors . 'openid/php-openid',
 			[
 				'CHANGES-2.1.0',
@@ -502,8 +494,6 @@ class CleanVendors
 		$fs->remove($vendors . 'components/jquery-timeago');
 		// duplicate with afarkas/html5shiv
 		$fs->remove($vendors . 'components/html5shiv');
-		// duplicate with fullcalendar/fullcalendar
-		$fs->remove($vendors . 'components/fullcalendar');
 		// duplicate with cwspear/bootstrap-hover-dropdown
 		$fs->remove($vendors . 'components/bootstrap-hover-dropdown');
 		// duplicate with moment/moment
