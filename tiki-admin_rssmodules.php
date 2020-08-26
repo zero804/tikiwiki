@@ -98,7 +98,12 @@ if (isset($_REQUEST["refresh"])) {
 	}
 }
 if (isset($_REQUEST['clear'])) {
-	$rsslib->clear_rss_cache($_REQUEST['clear']);
+	$result = $rsslib->clear_rss_cache($_REQUEST['clear']);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Cache cleared'));
+	} else {
+		Feedback::error(tr('Cache not cleared'));
+	}
 }
 if (isset($_REQUEST["remove"])) {
 	$access->check_authenticity();

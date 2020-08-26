@@ -433,8 +433,10 @@ class RSSLib extends TikiDb_Bridge
 	}
 
 	/**
-	 * @param int $rssId       feed id
-	 * @param int $olderThan   publication date more than than this number of seconds ago
+	 * @param int $rssId     feed id
+	 * @param int $olderThan publication date more than than this number of seconds ago
+	 *
+	 * @return TikiDb_Adodb_Result|TikiDb_Pdo_Result
 	 */
 	function clear_rss_cache($rssId, $olderThan = 0)
 	{
@@ -444,7 +446,7 @@ class RSSLib extends TikiDb_Bridge
 			$conditions['publication_date'] = $this->items->lesserThan(time() - $olderThan);
 		}
 
-		$this->items->deleteMultiple($conditions);
+		return $this->items->deleteMultiple($conditions);
 	}
 
 	/* check if an rss feed name already exists */
