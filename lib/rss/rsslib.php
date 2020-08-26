@@ -413,6 +413,10 @@ class RSSLib extends TikiDb_Bridge
 		$this->update_feeds([ $rssId ], true);
 	}
 
+	/**
+	 * @return array
+	 * @throws Exception
+	 */
 	function refresh_all_rss_modules()
 	{
 		$mods = $this->list_rss_modules(0, -1);
@@ -420,7 +424,7 @@ class RSSLib extends TikiDb_Bridge
 		foreach ($mods['data'] as $mod) {
 			$feeds[] = $mod['rssId'];
 		}
-		$this->update_feeds($feeds, true);
+		return $this->update_feeds($feeds, true);
 	}
 
 	/**
