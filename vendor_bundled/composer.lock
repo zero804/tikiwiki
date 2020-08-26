@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba77c399c1199d273b6e2a2d7af73610",
+    "content-hash": "af23f1efd618b2278f89ace5b12f7842",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -5122,6 +5122,19 @@
             ]
         },
         {
+            "name": "npm-asset/ts-custom-error",
+            "version": "3.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/ts-custom-error/npm-asset-ts-custom-error-3.1.1.zip",
+                "shasum": "063a1fa91cf82af5bdbd28f4bd485b62ff1d4afe"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
             "name": "npm-asset/vue",
             "version": "2.6.11",
             "dist": {
@@ -5132,6 +5145,36 @@
             "type": "npm-asset",
             "license": [
                 "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/zxing--library",
+            "version": "0.17.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/zxing--library/npm-asset-zxing--library-0.17.1.zip",
+                "shasum": "44798bf6314383fc1d17ee37273cabe6a6fef35c"
+            },
+            "require": {
+                "npm-asset/ts-custom-error": ">=3.0.0,<4.0.0",
+                "npm-asset/zxing--text-encoding": "~0.9.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/zxing--text-encoding",
+            "version": "0.9.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/zxing--text-encoding/npm-asset-zxing--text-encoding-0.9.0.zip",
+                "shasum": "f477f05b400d05cb77d729b4cf47c37aef3a019c"
+            },
+            "type": "npm-asset",
+            "license": [
+                "(Unlicense OR Apache-2.0)"
             ]
         },
         {

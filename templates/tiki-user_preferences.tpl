@@ -708,7 +708,7 @@
 														<li>{tr}Install Google Authenticator® app on your device and open it{/tr}.</li>
 														<li>{tr}Tap “Scan a barcode”{/tr}.</li>
 														<li>{tr}Scan the QR code that is open in your browser{/tr}.</li>
-														<li>{tr}Done, Google Authenticator® is now generation codes{/tr}.</li>
+														<li>{tr}Done, Google Authenticator® is now generating codes{/tr}.</li>
 													</ol>
 												</div>
 
