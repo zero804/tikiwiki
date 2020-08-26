@@ -60,6 +60,28 @@ $smarty->assign('url', $info["url"]);
 $smarty->assign('refresh', $info["refresh"]);
 $smarty->assign('showTitle', $info["showTitle"]);
 $smarty->assign('showPubDate', $info["showPubDate"]);
+
+// Refresh all feeds button
+if (isset($_REQUEST["refresh_all"])) {
+	$result = $rsslib->refresh_all_rss_modules();
+	if ($result['feeds'] > 0) {
+		if ($result['feeds'] === 1) {
+			if ($result['entries'] === 1) {
+				Feedback::success(tr('Refreshed %0 feed with %1 entry', $result['feeds'], $result['entries']));
+			} else {
+				Feedback::success(tr('Refreshed %0 feed with %1 entries', $result['feeds'], $result['entries']));
+			}
+		} else{
+			if ($result['entries'] === 1) {
+				Feedback::success(tr('Refreshed %0 feeds with %1 entry', $result['feeds'], $result['entries']));
+			} else {
+				Feedback::success(tr('Refreshed %0 feeds with %1 entries', $result['feeds'], $result['entries']));
+			}
+		}
+	} else {
+		Feedback::error(tr('No feeds refreshed'));
+	}
+}
 if (isset($_REQUEST["refresh"])) {
 	$rsslib->refresh_rss_module($_REQUEST["refresh"]);
 }
