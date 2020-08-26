@@ -82,8 +82,20 @@ if (isset($_REQUEST["refresh_all"])) {
 		Feedback::error(tr('No feeds refreshed'));
 	}
 }
+// Refreshing a single feed
 if (isset($_REQUEST["refresh"])) {
-	$rsslib->refresh_rss_module($_REQUEST["refresh"]);
+	$result = $rsslib->refresh_rss_module($_REQUEST["refresh"]);
+	if (is_array($result)) {
+		if ($result['feeds'] > 0) {
+			if ($result['entries'] === 1) {
+				Feedback::success(tr('Refreshed feed with %0 entry', $result['entries']));
+			} else {
+				Feedback::success(tr('Refreshed feed with %0 entries', $result['entries']));
+			}
+		} else {
+			Feedback::error(tr('Feed not refreshed'));
+		}
+	}
 }
 if (isset($_REQUEST['clear'])) {
 	$rsslib->clear_rss_cache($_REQUEST['clear']);

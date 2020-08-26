@@ -408,9 +408,14 @@ class RSSLib extends TikiDb_Bridge
 		return $this->modules->fetchFullRow(['rssId' => $rssId]);
 	}
 
+	/**
+	 * @param $rssId
+	 *
+	 * @return mixed
+	 */
 	function refresh_rss_module($rssId)
 	{
-		$this->update_feeds([ $rssId ], true);
+		return $this->update_feeds([ $rssId ], true);
 	}
 
 	/**
