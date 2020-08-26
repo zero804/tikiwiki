@@ -477,6 +477,13 @@ class RSSLib extends TikiDb_Bridge
 		);
 	}
 
+	/**
+	 * @param      $feeds
+	 * @param bool $force
+	 *
+	 * @return array
+	 * @throws Exception
+	 */
 	private function update_feeds($feeds, $force = false)
 	{
 		global $tikilib;
@@ -488,12 +495,23 @@ class RSSLib extends TikiDb_Bridge
 		}
 
 		$result = $this->modules->fetchAll(['rssId', 'url', 'actions'], $conditions);
-
+		$feedResult['feeds'] = count($result);
+		$entries = 0;
 		foreach ($result as $row) {
-			$this->update_feed($row['rssId'], $row['url'], $row['actions']);
+			$entries += $this->update_feed($row['rssId'], $row['url'], $row['actions']);
 		}
+		$feedResult['entries'] = $entries;
+		return $feedResult;
 	}
 
+	/**
+	 * @param $rssId
+	 * @param $url
+	 * @param $actions
+	 *
+	 * @return int
+	 * @throws Exception
+	 */
 	private function update_feed($rssId, $url, $actions)
 	{
 		global $tikilib;
@@ -523,7 +541,7 @@ class RSSLib extends TikiDb_Bridge
 					],
 				['rssId' => $rssId,]
 			);
-			return;
+			return 0;
 		}
 		$siteTitle = TikiFilter::get('striptags')->filter($feed->getTitle());
 		$siteUrl = TikiFilter::get('url')->filter($feed->getLink());
@@ -536,7 +554,7 @@ class RSSLib extends TikiDb_Bridge
 				],
 			['rssId' => $rssId,]
 		);
-
+		$success = 0;
 		foreach ($feed as $entry) { // TODO: optimize. Atom entries have an 'updated' element which can be used to only update updated entries
 			$guid = $guidFilter->filter($entry->getId());
 
@@ -573,11 +591,15 @@ class RSSLib extends TikiDb_Bridge
 
 			$count = $this->items->fetchCount(['rssId' => $rssId, 'guid' => $guid]);
 			if (0 == $count) {
-				$this->insert_item($rssId, $data, $actions);
+				$result = $this->insert_item($rssId, $data, $actions);
 			} else {
-				$this->update_item($rssId, $data['guid'], $data);
+				$result = $this->update_item($rssId, $data['guid'], $data);
+			}
+			if ($result) {
+				$success++;
 			}
 		}
+		return $success;
 	}
 
 	function get_feed_source_categories($rssId)
@@ -627,9 +649,17 @@ class RSSLib extends TikiDb_Bridge
 		return $categories;
 	}
 
+	/**
+	 * @param $rssId
+	 * @param $data
+	 * @param $actions
+	 *
+	 * @return array|bool|mixed
+	 * @throws Exception
+	 */
 	private function insert_item($rssId, $data, $actions)
 	{
-		$this->items->insert(
+		$result = $this->items->insert(
 			[
 				'rssId' => $rssId,
 				'guid' => $data['guid'],
@@ -658,12 +688,13 @@ class RSSLib extends TikiDb_Bridge
 				}
 			}
 		}
+		return $result;
 	}
 
 	private function update_item($rssId, $guid, $data)
 	{
 		// A feed may contain several entries with the same GUID... see http://framework.zend.com/issues/browse/ZF-10954. Assuming a single record would actually cause issues, see r37318.
-		$this->items->updateMultiple(
+		return $this->items->updateMultiple(
 			['rssId' => $rssId, 'guid' => $guid,],
 			[
 				'url' => $data['url'],
