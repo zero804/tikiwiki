@@ -9,6 +9,7 @@
 // $Id$
 
 require_once('tiki-setup.php');
+/** @var RSSLib $rsslib */
 $rsslib = TikiLib::lib('rss');
 //get_strings tra('External Feeds')
 $auto_query_args = [
