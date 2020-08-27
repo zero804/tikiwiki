@@ -107,7 +107,20 @@ if (isset($_REQUEST['clear'])) {
 }
 if (isset($_REQUEST["remove"])) {
 	$access->check_authenticity();
-	$rsslib->remove_rss_module($_REQUEST["remove"]);
+	$result = $rsslib->remove_rss_module($_REQUEST["remove"]);
+	if ($result['feed'] && $result['feed']->numRows()) {
+		if ($result['items'] && $result['items']->numRows()) {
+			if ($result['items']->numRows() === 1) {
+				Feedback::success(tr('RSS feed with 1 item deleted'));
+			} else {
+				Feedback::success(tr('RSS feed with %0 items deleted', $result['items']->numRows()));
+			}
+		} else {
+			Feedback::success(tr('RSS feed with no items deleted'));
+		}
+	} else {
+		Feedback::error(tr('No RSS feeds were deleted'));
+	}
 }
 
 if (isset($_REQUEST['article']) && $prefs['feature_articles'] == 'y') {

@@ -396,10 +396,9 @@ class RSSLib extends TikiDb_Bridge
 	/* remove rss feed from db */
 	function remove_rss_module($rssId)
 	{
-		$this->modules->delete(['rssId' => $rssId,]);
-		$this->items->deleteMultiple(['rssId' => $rssId,]);
-
-		return true;
+		$resultModule = $this->modules->delete(['rssId' => $rssId,]);
+		$resultItems = $this->items->deleteMultiple(['rssId' => $rssId,]);
+		return ['feed' => $resultModule, 'items' => $resultItems];
 	}
 
 	/* read rss feed data from db */
