@@ -26,7 +26,7 @@ if (is_null($file)) {
 	$accesslib->display_error('tiki-display.php', tr(sprintf('File ID %s not found.', $fileId)));
 }
 
-if (! $tikilib->user_has_perm_on_object($user, $fileId, 'file', 'tiki_p_view_file_gallery')) {
+if (! $tikilib->user_has_perm_on_object($user, $fileId, 'file', 'tiki_p_download_files')) {
 	$accesslib->display_error('tiki-display.php', tr('You do not have permission to view this file'), 403);
 }
 
