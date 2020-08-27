@@ -5,7 +5,7 @@
 	<a class="alert-link" href="tiki-admin.php?page=rss">{tr}Click Here{/tr}</a>.
 	<hr/>
 	{tr}To use feeds in a text area (Wiki page, etc), a <a class="alert-link" href="tiki-admin_modules.php">module</a> or a template, use {literal}{rss id=x}{/literal}, where x is the ID of the feed.{/tr}
-	{tr}To use them to generate articles, use the <a class="alert-link" href="https://doc.tiki.org/Article+generator" target="_blank">Article generator <img src="img/icons/newspaper_go.png"></a> for that specific feed{/tr}.
+	{tr}To use them to generate articles, use the <a class="alert-link" href="https://doc.tiki.org/Article+generator" target="_blank">Article generator</a> for that specific feed{/tr}.
 {/remarksbox}
 
 {if $preview eq 'y'}
