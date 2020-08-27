@@ -57,7 +57,7 @@ if (isset($_REQUEST["rssId"])) {
 $smarty->assign('name', $info["name"]);
 $smarty->assign('description', $info["description"]);
 $smarty->assign('url', $info["url"]);
-$smarty->assign('refresh', $info["refresh"]);
+$smarty->assign('refreshSeconds', $info["refresh"]);
 $smarty->assign('showTitle', $info["showTitle"]);
 $smarty->assign('showPubDate', $info["showPubDate"]);
 
@@ -184,12 +184,12 @@ if (isset($_REQUEST["save"])) {
 		$smarty->assign('showPubDate', 'n');
 		$info["showPubDate"] = 'n';
 	}
-	$rsslib->replace_rss_module($_REQUEST["rssId"], $_REQUEST["name"], $_REQUEST["description"], $_REQUEST["url"], $_REQUEST["refresh"], $info["showTitle"], $info["showPubDate"]);
+	$rsslib->replace_rss_module($_REQUEST["rssId"], $_REQUEST["name"], $_REQUEST["description"], $_REQUEST["url"], $_REQUEST["refreshMinutes"], $info["showTitle"], $info["showPubDate"]);
 	$smarty->assign('rssId', 0);
 	$smarty->assign('name', '');
 	$smarty->assign('description', '');
 	$smarty->assign('url', '');
-	$smarty->assign('refresh', 900);
+	$smarty->assign('refreshSeconds', 900);
 	$smarty->assign('showTitle', 'n');
 	$smarty->assign('showPubDate', 'n');
 	$cookietab = 1;

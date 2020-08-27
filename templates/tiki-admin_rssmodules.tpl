@@ -142,11 +142,11 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="refresh" class="col-form-label col-sm-3">{tr}Refresh rate{/tr}</label>
+				<label for="refreshMinutes" class="col-form-label col-sm-3">{tr}Refresh rate{/tr}</label>
 				<div class="col-sm-9">
-					<select class="form-control" name="refresh">
+					<select class="form-control" name="refreshMinutes">
 						{foreach [1, 5, 10, 15, 20, 30, 45, 60, 90, 120, 360, 720, 1440] as $min}
-							<option value="{$min|escape}" {if $refresh eq ($min*60)}selected="selected"{/if}>{($min*60)|duration}</option>
+							<option value="{$min|escape}" {if $refreshSeconds eq ($min*60)}selected="selected"{/if}>{($min*60)|duration}</option>
 						{/foreach}
 					</select>
 				</div>
