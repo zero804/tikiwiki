@@ -117,6 +117,8 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 				}
 
 				$this->prepareFieldValues($data);
+				// get it again as runner is a static property and could have overridden formula by preparing other field values
+				$runner = $this->getFormulaRunner();
 				$runner->setVariables($data);
 
 				$value = (string)$runner->evaluate();
