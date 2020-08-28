@@ -7326,18 +7326,6 @@ class UsersLib extends TikiLib
 		return empty($errors) ? '' : implode(' ', $errors);
 	}
 
-	function remove_2_factor_secret($user)
-	{
-		return $this->update_2_factor_secret($user, '');
-	}
-
-	function generate_2_factor_secret($user)
-	{
-		$google2fa = new Google2FA();
-		$tfaSecret = $google2fa->generateSecretKey();
-		return $this->update_2_factor_secret($user, $tfaSecret);
-	}
-
 	function update_2_factor_secret($user, $twoFASecret)
 	{
 		$query = 'update `users_users` set `twoFactorSecret`=? where binary `login`=?';

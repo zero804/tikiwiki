@@ -107,7 +107,6 @@ if ($prefs['feature_userPreferences'] == 'y' && isset($_POST["new_info"]) && $ac
 	}
 
 	$tikilib->set_user_preference($userwatch, 'user_information', $_POST['user_information']);
-
 }
 
 if ($prefs['feature_userPreferences'] == 'y' && isset($_POST["new_prefs"]) && $access->checkCsrf()) {
@@ -365,19 +364,46 @@ if (isset($_POST['chgadmin']) && $access->checkCsrf()) {
 		}
 		Feedback::success(sprintf(tra('Password has been changed')));
 	}
+}
 
-	if (! empty($_POST["tfaEnable"]) && empty($tfaSecret)) {
-		$tfaSecret = $userlib->generate_2_factor_secret($userwatch);
-	} elseif (empty($_POST["tfaEnable"])) {
-		$tfaSecret = $userlib->remove_2_factor_secret($userwatch);
+if (isset($_POST['twofactor'])
+	&& isset($_POST['tfaSecret'])
+	&& isset($_POST['tfaPin'])
+	&& $access->checkCsrf()
+) {
+	if ($userlib->validate_two_factor($_POST['tfaSecret'], $_POST['tfaPin'])) {
+		$tfaSecret = $userlib->update_2_factor_secret(
+			$user,
+			$_POST['tfaSecret']
+		);
+	} else {
+		if (empty($_POST['tfaPin'])) {
+			Feedback::error(tr('Field Pin Code is required.'));
+		} else {
+			Feedback::error(tr('Invalid Pin Code.'));
+		}
+		header('Location: ' . basename(__FILE__) . '?tfagenerate=true');
+		die;
 	}
 }
 
-$userinfo = $userlib->get_user_info($userwatch);
+if (isset($_POST['removetwofactor'])
+	&& $access->checkCsrf()
+) {
+	$tfaSecret = $userlib->update_2_factor_secret($user, '');
+	unset($_REQUEST['generate']);
+	unset($_SESSION['tfaSecret']);
+}
 
-if ($prefs['twoFactorAuth'] == 'y' && ! empty($tfaSecret)) {
+$userinfo = $userlib->get_user_info($userwatch);
+$generate = isset($_REQUEST['tfagenerate']) || empty($tfaSecret);
+if ($prefs['twoFactorAuth'] == 'y' && $generate) {
 	$google2fa = new Google2FA();
-	$smarty->assign('tfaSecretQR', $tfaSecret);
+	if (empty($_SESSION['tfaSecret']) || $_SESSION['tfaSecret'] == $tfaSecret) {
+		$_SESSION['tfaSecret'] = $google2fa->generateSecretKey();
+	}
+	$tfaSecret = $_SESSION['tfaSecret'];
+	$smarty->assign('tfaSecret', $tfaSecret);
 	$g2faUrl = $google2fa->getQRCodeUrl(
 		$tikilib->get_preference('browsertitle', "Tiki Wiki"),
 		$userinfo['email'],
@@ -399,8 +425,8 @@ if ($prefs['twoFactorAuth'] == 'y' && ! empty($tfaSecret)) {
 		)
 	);
 	$tfaSecretQR = base64_encode($writer->writeString($g2faUrl));
-	$tfaSecretQR = '<img src="data:image/' . $imageType . ';base64,' . $tfaSecretQR . '"/>';
 	$smarty->assign('tfaSecretQR', $tfaSecretQR);
+	$smarty->assign('imageType', $imageType);
 }
 
 if (isset($_POST['deleteaccount']) && $tiki_p_delete_account == 'y' && $access->checkCsrf(true)) {

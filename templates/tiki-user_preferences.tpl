@@ -659,71 +659,53 @@
 								</div>
 							</div>
 						{/if}
-						{if $prefs.twoFactorAuth eq 'y' and ($tiki_p_admin ne 'y' or $userwatch eq $user)}
-							{jq}
-								var showQRCode = false;
-								function checkIfTwoFactorEnabled(){
-									if($("#twoFactorAuth").is(':checked')){
-										$("#twoFactorAuthShow").show();
-									}else{
-										$("#twoFactorAuthShow").hide();
-									}
-								}
-								$("#twoFactorAuth").click(function(){
-									checkIfTwoFactorEnabled();
-								})
-								$("#twoFactorAuthShow").click(function(){
-									showQRCode = !showQRCode;
-									if(showQRCode){
-										$("#twoFactorAuthShow").text("Hide QRCode");
-									}else{
-										$("#twoFactorAuthShow").text("Show QRCode");
-									}
-									$("#twoFactorAuthCard").slideToggle(400);
-									return false;
-								})
-							{/jq}
-							<div class="form-group row">
-								<label class="col-md-4 col-form-label" for="pass">
-									{tr}Enable two-factor authentication:{/tr}
-								</label>
-								<div class="col-md-4">
-									<input type="checkbox" value="y" {if !empty($tfaSecretQR) } checked {/if} id="twoFactorAuth" class="check" name="tfaEnable">
-									<a href="#" target="_blank" data-toggle="popover" data-trigger="hover" title="{tr}Enable Two-Factor Authentication{/tr}"
-									   data-content="{tr}Two-factor authentication is a security measure that requires an extra code when you log in. When enabled,
-									   Tiki will require a code from your mobile phone during login. This code is created by the Google Authenticator®.{/tr}">
-										<span class="icon icon-help fas fa-question-circle fa-fw "></span>
-									</a>
-								</div>
-								<div class="col-md-4 ">
-									{if !empty($tfaSecretQR) }<p class="text-right align-content-center"> <a id="twoFactorAuthShow" href="#">{tr}Show QRCode{/tr}</a></p>	{/if}
-								</div>
-								<div class="col-md-12 card" id="twoFactorAuthCard" style="display: none">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-md-6">{$tfaSecretQR}</div>
-											<div class="col-md-6 align-content-center">
-												<div class="d-flex align-items-center" style="height: 100%">
-													<ol>
-														<li>{tr}Install Google Authenticator® app on your device and open it{/tr}.</li>
-														<li>{tr}Tap “Scan a barcode”{/tr}.</li>
-														<li>{tr}Scan the QR code that is open in your browser{/tr}.</li>
-														<li>{tr}Done, Google Authenticator® is now generating codes{/tr}.</li>
-													</ol>
-												</div>
-
-											</div>
-										</div>
-
-									</div>
-								</div>
-							</div>
-						{/if}
 					{/if}
 					<div class="submit text-center">
 						<input type="submit" class="btn btn-secondary btn-sm" name="chgadmin" value="{tr}Save changes{/tr}">
 					</div>
 			</form>
+		{/tab}
+	{/if}
+	{if $prefs.twoFactorAuth eq 'y' and ($tiki_p_admin ne 'y' or $userwatch eq $user)}
+		{tab name="{tr}Security{/tr}"}
+			<h2>{tr}Two-Factor Authentication{/tr}</h2>
+		{remarksbox type="tip"}
+		{tr}Two-factor authentication is a security measure that requires an extra code when you log in. When enabled,
+			Tiki will require a code from your mobile phone during login. This code is created by the Google Authenticator®.{/tr}
+		{/remarksbox}
+		{if $tfaSecret }
+			<form action="tiki-user_preferences.php" method="post" class="form-horizontal">
+				{ticket}
+				<div class="form-group row">
+					<div class="col-md-5">
+						<img class="responsive" src="data:image/{$imageType};base64,{$tfaSecretQR}"/>
+					</div>
+					<div class="col-md-7 align-content-center">
+						<div class="d-flex align-items-center" style="height: 100%">
+							<div class="well">
+								{tr}Install a soft token authenticator like FreeOTP or Google Authenticator from your application repository and use that app to scan this QR code. More information is available in the documentation.{/tr}
+								<div style="margin-top: 20px" class="form-group">
+									<label for="exampleInputEmail1">Pin Code</label>
+									<input type="text" class="form-control" name="tfaPin">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<input type="text" value="{$tfaSecret}" hidden name="tfaSecret">
+				<div class="submit text-center">
+					<input type="submit" class="btn btn-secondary btn-sm" name="twofactor" value="{tr}Enable Two-Factor Auth{/tr}">
+				</div>
+			</form>
+		{else}
+			<form action="tiki-user_preferences.php" method="post" class="form-horizontal">
+				{ticket}
+				<div class="submit text-center">
+					<input type="submit" class="btn btn-danger btn-sm" name="removetwofactor" value="{tr}Disable Two-Factor Auth{/tr}">
+					<a href="tiki-user_preferences.php?tfagenerate=true" class="btn btn-secondary btn-sm">{tr}Regenerate Two-Factor Auth{/tr}</a>
+				</div>
+			</form>
+		{/if}
 		{/tab}
 	{/if}
 	{if $tiki_p_delete_account eq 'y' and $userinfo.login neq 'admin'}
