@@ -121,7 +121,7 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 					return [
 						"type" => $this->connection->getVersion() >= 5 ? "keyword" : "string",
 						"index" => $this->connection->getVersion() >= 5 ? true : "not_analyzed",
-						"ignore_above" => 32765,
+						"ignore_above" => 30000, // UTF-8 non-ASCII characters take more than 1 byte, thus leave some space for special chars
 						"fields" => [
 							"sort" => $this->connection->getVersion() >= 5 ?
 							[
