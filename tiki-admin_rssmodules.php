@@ -99,11 +99,19 @@ if (isset($_REQUEST["refresh"])) {
 	}
 }
 if (isset($_REQUEST['clear'])) {
-	$result = $rsslib->clear_rss_cache($_REQUEST['clear']);
-	if ($result && $result->numRows()) {
-		Feedback::success(tr('Cache cleared'));
+	$count = $rsslib->table('tiki_rss_items')->fetchCount(
+		['rssId' => $_REQUEST['clear']]
+	);
+	if ($count == 0) {
+		Feedback::note(tr('No cached items to clear for external feed ID %0.',
+			htmlspecialchars($_REQUEST['clear'])));
 	} else {
-		Feedback::error(tr('Cache not cleared'));
+		$result = $rsslib->clear_rss_cache($_REQUEST['clear']);
+		if ($result && $result->numRows()) {
+			Feedback::success(tr('Cache cleared'));
+		} else {
+			Feedback::error(tr('Cache not cleared'));
+		}
 	}
 }
 if (isset($_REQUEST["remove"])) {
@@ -112,15 +120,15 @@ if (isset($_REQUEST["remove"])) {
 	if ($result['feed'] && $result['feed']->numRows()) {
 		if ($result['items'] && $result['items']->numRows()) {
 			if ($result['items']->numRows() === 1) {
-				Feedback::success(tr('RSS feed with 1 item deleted'));
+				Feedback::success(tr('External feed with 1 item deleted'));
 			} else {
-				Feedback::success(tr('RSS feed with %0 items deleted', $result['items']->numRows()));
+				Feedback::success(tr('External feed with %0 items deleted', $result['items']->numRows()));
 			}
 		} else {
-			Feedback::success(tr('RSS feed with no items deleted'));
+			Feedback::success(tr('External feed with no items deleted'));
 		}
 	} else {
-		Feedback::error(tr('No RSS feeds were deleted'));
+		Feedback::error(tr('No external feeds were deleted'));
 	}
 }
 
