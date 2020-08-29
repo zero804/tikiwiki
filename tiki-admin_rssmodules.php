@@ -62,7 +62,7 @@ $smarty->assign('refreshSeconds', $info["refresh"]);
 $smarty->assign('showTitle', $info["showTitle"]);
 $smarty->assign('showPubDate', $info["showPubDate"]);
 
-if (isset($_REQUEST["refresh_all"]) || ! empty($_REQUEST["refresh"])) {
+if ((isset($_REQUEST["refresh_all"]) || ! empty($_REQUEST["refresh"])) && $access->checkCsrf()) {
 	if (isset($_REQUEST["refresh_all"])) {
 		// Refresh all feeds button
 		$result = $rsslib->refresh_all_rss_modules();
@@ -88,7 +88,7 @@ if (isset($_REQUEST["refresh_all"]) || ! empty($_REQUEST["refresh"])) {
 		Feedback::error(tr('Feeds not refreshed'));
 	}
 }
-if (isset($_REQUEST['clear'])) {
+if (isset($_REQUEST['clear']) && $access->checkCsrf()) {
 	$count = $rsslib->table('tiki_rss_items')->fetchCount(
 		['rssId' => $_REQUEST['clear']]
 	);
@@ -104,8 +104,7 @@ if (isset($_REQUEST['clear'])) {
 		}
 	}
 }
-if (isset($_REQUEST["remove"])) {
-	$access->check_authenticity();
+if (isset($_REQUEST["remove"]) && $access->checkCsrf(true)) {
 	$result = $rsslib->remove_rss_module($_REQUEST["remove"]);
 	if ($result['feed'] && $result['feed']->numRows()) {
 		if ($result['items'] && $result['items']->numRows()) {
@@ -123,7 +122,7 @@ if (isset($_REQUEST["remove"])) {
 }
 
 if (isset($_REQUEST['article']) && $prefs['feature_articles'] == 'y') {
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	if ($_SERVER['REQUEST_METHOD'] == 'POST' && $access->checkCsrf()) {
 		$result = $rsslib->set_article_generator(
 			$_REQUEST['article'],
 			[
@@ -172,8 +171,7 @@ if (isset($_REQUEST['article']) && $prefs['feature_articles'] == 'y') {
 	include 'categorize_list.php';
 }
 
-if (isset($_REQUEST["save"])) {
-	check_ticket('admin-rssmodules');
+if (isset($_REQUEST["save"]) && $access->checkCsrf()) {
 	if (isset($_REQUEST['showTitle']) == 'on') {
 		$smarty->assign('showTitle', 'y');
 		$info["showTitle"] = 'y';
@@ -245,7 +243,6 @@ $cant = $channels['cant'];
 $smarty->assign_by_ref('cant', $cant);
 $temp_max = count($channels["data"]);
 $smarty->assign_by_ref('channels', $channels["data"]);
-ask_ticket('admin-rssmodules');
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 // Display the template

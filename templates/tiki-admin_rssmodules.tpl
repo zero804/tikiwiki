@@ -25,10 +25,20 @@
 
 	{tab name="{tr}External Feeds{/tr}"}
 		{if isset($channels) && $channels|count > 0}
-			<a class="btn btn-secondary float-sm-right" href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;refresh_all=y"
-			   data-toggle="tooltip" data-placement="top" title="Please be patient, this may take a while.">
-				{icon name="refresh" _menu_text='y' _menu_icon='y' alt="{tr}Refresh All feeds{/tr}"}
-			</a>
+			<form action="tiki-admin_rssmodules.php" method="post">
+				<input type="hidden" name="offset" value="{$offset|escape}">
+				<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
+				{ticket}
+				<button
+						type="submit"
+						name="refresh_all"
+						value="y"
+						class="btn btn-secondary float-sm-right tips"
+						title=":{tr}Please be patient, this may take a while{/tr}"
+				>
+					{icon name="refresh" _menu_text='y' _menu_icon='y' alt="{tr}Refresh all feeds{/tr}"}
+				</button>
+			</form>
 		{/if}
 		<h2>{tr}External Feeds{/tr}</h2>
 		<div align="center">
@@ -70,9 +80,19 @@
 										</a>
 									</action>
 									<action>
-										<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;refresh={$channels[chan].rssId|escape}">
-											{icon name="refresh" _menu_text='y' _menu_icon='y' alt="{tr}Refresh{/tr}"}
-										</a>
+										<form action="tiki-admin_rssmodules.php" method="post">
+											<input type="hidden" name="offset" value="{$offset|escape}">
+											<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
+											{ticket}
+											<button
+												type="submit"
+												name="refresh"
+												value="{$channels[chan].rssId|escape}"
+												class="btn btn-link link-list"
+											>
+												{icon name="refresh"} {tr}Refresh{/tr}
+											</button>
+										</form>
 									</action>
 									<action>
 										<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;rssId={$channels[chan].rssId|escape}">
@@ -87,12 +107,24 @@
 										</action>
 									{/if}
 									<action>
-										<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;clear={$channels[chan].rssId|escape}">
-											{icon name='trash' _menu_text='y' _menu_icon='y' alt="{tr}Clear Cache{/tr}"}
-										</a>
+										<form action="tiki-admin_rssmodules.php" method="post">
+											<input type="hidden" name="offset" value="{$offset|escape}">
+											<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
+											{ticket}
+											<button
+													type="submit"
+													name="clear"
+													value="{$channels[chan].rssId|escape}"
+													class="btn btn-link link-list"
+											>
+												{icon name="trash"} {tr}Clear cache{/tr}
+											</button>
+										</form>
 									</action>
 									<action>
-										<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;remove={$channels[chan].rssId|escape}">
+										<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;remove={$channels[chan].rssId|escape}"
+										   onclick="confirmPopup('{tr}Remove external feed?{/tr}', '{ticket mode="get"}')"
+										>
 											{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 										</a>
 									</action>
@@ -124,6 +156,7 @@
 			</h2>
 		{/if}
 		<form action="tiki-admin_rssmodules.php" method="post">
+			{ticket}
 			<input type="hidden" name="rssId" value="{$rssId|escape}">
 			<div class="form-group row">
 				<label for="name" class="col-form-label col-sm-3">{tr}Name{/tr}</label>
@@ -195,6 +228,7 @@
 			{/remarksbox}
 
 			<form method="post" action="">
+				{ticket}
 				<p>
 					<input id="article_active" type="checkbox" class="form-check-input" name="enable" value="1"{if $articleConfig.active} checked="checked"{/if}>
 					<label for="article_active">{tr}Enable{/tr}</label>
