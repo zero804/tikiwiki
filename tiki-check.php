@@ -2817,7 +2817,7 @@ class BenchmarkPhp
 	{
 		set_time_limit(120); // 2 minutes
 
-		global $host_tiki, $dbs_tiki, $user_tiki, $pass_tiki;
+		require 'db/local.php';
 
 		$options = array();
 
@@ -2880,7 +2880,7 @@ class BenchmarkPhp
 	 * @param $result Benchmark results
 	 * @param int $count Number of iterations
 	 */
-	protected static function test_math(&$result, $count = 99999)
+	protected static function test_math(&$result, $count = 400000)
 	{
 		$timeStart = microtime(true);
 
@@ -2912,7 +2912,7 @@ class BenchmarkPhp
 	 * @param $result Benchmark results
 	 * @param int $count Number of iterations
 	 */
-	protected static function test_string(&$result, $count = 99999)
+	protected static function test_string(&$result, $count = 400000)
 	{
 		$timeStart = microtime(true);
 		$stringFunctions = array(
@@ -2944,7 +2944,7 @@ class BenchmarkPhp
 	 * @param $result Benchmark results
 	 * @param int $count Number of iterations
 	 */
-	protected static function test_loops(&$result, $count = 999999)
+	protected static function test_loops(&$result, $count = 4000000)
 	{
 		$timeStart = microtime(true);
 		for ($i = 0; $i < $count; ++$i) {
@@ -2961,7 +2961,7 @@ class BenchmarkPhp
 	 * @param $result Benchmark results
 	 * @param int $count Number of iterations
 	 */
-	protected static function test_ifelse(&$result, $count = 999999)
+	protected static function test_ifelse(&$result, $count = 4000000)
 	{
 		$timeStart = microtime(true);
 		for ($i = 0; $i < $count; $i++) {
