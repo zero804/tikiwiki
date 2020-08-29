@@ -188,7 +188,15 @@ if (isset($_REQUEST["save"])) {
 		$smarty->assign('showPubDate', 'n');
 		$info["showPubDate"] = 'n';
 	}
-	$rsslib->replace_rss_module($_REQUEST["rssId"], $_REQUEST["name"], $_REQUEST["description"], $_REQUEST["url"], $_REQUEST["refreshMinutes"], $info["showTitle"], $info["showPubDate"]);
+	$result = $rsslib->replace_rss_module(
+		$_REQUEST["rssId"],
+		$_REQUEST["name"],
+		$_REQUEST["description"],
+		$_REQUEST["url"],
+		$_REQUEST["refreshMinutes"],
+		$info["showTitle"],
+		$info["showPubDate"]
+	);
 	$smarty->assign('rssId', 0);
 	$smarty->assign('name', '');
 	$smarty->assign('description', '');
@@ -197,6 +205,16 @@ if (isset($_REQUEST["save"])) {
 	$smarty->assign('showTitle', 'n');
 	$smarty->assign('showPubDate', 'n');
 	$cookietab = 1;
+	if (is_numeric($result)) {
+		if (! empty($_REQUEST["rssId"])) {
+			$msg = tr('External feed updated');
+		} else {
+			$msg = tr('External feed saved');
+		}
+		Feedback::success($msg);
+	} else {
+		Feedback::note(tr('No changes made to external feed'));
+	}
 }
 if (! isset($_REQUEST["sort_mode"])) {
 	$sort_mode = 'name_desc';
