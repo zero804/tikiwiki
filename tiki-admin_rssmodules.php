@@ -62,48 +62,30 @@ $smarty->assign('refreshSeconds', $info["refresh"]);
 $smarty->assign('showTitle', $info["showTitle"]);
 $smarty->assign('showPubDate', $info["showPubDate"]);
 
-// Refresh all feeds button
-if (isset($_REQUEST["refresh_all"])) {
-	$result = $rsslib->refresh_all_rss_modules();
-	if ($result['feeds'] > 0) {
-		if ($result['feeds'] === 1) {
-			if ($result['entries'] === 1) {
-				Feedback::success(tr('Refreshed %0 feed with %1 entry', $result['feeds'], $result['entries']));
-			} else {
-				Feedback::success(tr('Refreshed %0 feed with %1 entries', $result['feeds'], $result['entries']));
-			}
-		} else{
-			if ($result['entries'] === 1) {
-				Feedback::success(tr('Refreshed %0 feeds with %1 entry', $result['feeds'], $result['entries']));
-			} else {
-				Feedback::success(tr('Refreshed %0 feeds with %1 entries', $result['feeds'], $result['entries']));
-			}
-		}
+if (isset($_REQUEST["refresh_all"]) || ! empty($_REQUEST["refresh"])) {
+	if (isset($_REQUEST["refresh_all"])) {
+		// Refresh all feeds button
+		$result = $rsslib->refresh_all_rss_modules();
 	} else {
-		Feedback::error(tr('No feeds refreshed'));
+		// Refreshing a single feed
+		$result = $rsslib->refresh_rss_module($_REQUEST["refresh"]);
 	}
-}
-// Refreshing a single feed
-if (isset($_REQUEST["refresh"])) {
-	$result = $rsslib->refresh_rss_module($_REQUEST["refresh"]);
 	if (is_array($result)) {
-		if ($result['feeds'] > 0) {
-			if ($result['entries']['feed'] === 1) {
-				$msg = tr('Refresh resulted in %0 updated feed entry', $result['entries']['feed']);
-			} elseif ($result['entries']['feed'] > 1) {
-				$msg = tr('Refresh resulted in %0 updated feed entries', $result['entries']['feed']);
-			} else {
-				$msg = tr('Feed entries already up to date, no changes made');
-			}
-			if (isset($result['entries']['articles']) && $result['entries']['articles'] === 1) {
-				$msg .= '. ' . tr('In addition, %0 article was created from the feed items.', $result['entries']['articles']);
-			} elseif (! empty($result['entries']['articles'])) {
-				$msg .= '. ' . tr('In addition, %0 articles were created from the feed items.', $result['entries']['articles']);
-			}
-			Feedback::success($msg);
+		if ($result['entries']['feed'] === 1) {
+			$msg = tr('Refresh resulted in %0 updated feed entry', $result['entries']['feed']);
+		} elseif ($result['entries']['feed'] > 1) {
+			$msg = tr('Refresh resulted in %0 updated feed entries', $result['entries']['feed']);
 		} else {
-			Feedback::error(tr('Feed not refreshed'));
+			$msg = tr('Feed entries already up to date, no changes made');
 		}
+		if (isset($result['entries']['articles']) && $result['entries']['articles'] === 1) {
+			$msg .= '. ' . tr('In addition, %0 article was created from the feed items.', $result['entries']['articles']);
+		} elseif (! empty($result['entries']['articles'])) {
+			$msg .= '. ' . tr('In addition, %0 articles were created from the feed items.', $result['entries']['articles']);
+		}
+		Feedback::success($msg);
+	} else {
+		Feedback::error(tr('Feeds not refreshed'));
 	}
 }
 if (isset($_REQUEST['clear'])) {
