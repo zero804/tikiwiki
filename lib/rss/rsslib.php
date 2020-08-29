@@ -891,6 +891,12 @@ class RSSLib extends TikiDb_Bridge
 		}
 	}
 
+	/**
+	 * @param $rssId
+	 * @param $configuration
+	 *
+	 * @return TikiDb_Adodb_Result|TikiDb_Pdo_Result
+	 */
 	function set_article_generator($rssId, $configuration)
 	{
 		$configuration['type'] = 'article';
@@ -912,7 +918,7 @@ class RSSLib extends TikiDb_Bridge
 
 		$out[] = $configuration;
 
-		$this->modules->update(
+		return $this->modules->update(
 			['actions' => json_encode($out),],
 			['rssId' => $rssId,]
 		);

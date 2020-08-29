@@ -124,7 +124,7 @@ if (isset($_REQUEST["remove"])) {
 
 if (isset($_REQUEST['article']) && $prefs['feature_articles'] == 'y') {
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		$rsslib->set_article_generator(
+		$result = $rsslib->set_article_generator(
 			$_REQUEST['article'],
 			[
 				'active' => isset($_POST['enable']),
@@ -143,6 +143,11 @@ if (isset($_REQUEST['article']) && $prefs['feature_articles'] == 'y') {
 			]
 		);
 		$cookietab = 1;
+		if ($result && $result->numRows()) {
+			Feedback::success(tr('Article generator settings updated'));
+		} else {
+			Feedback::note(tr('No changes made to article generator settings'));
+		}
 	} else {
 		$cookietab = 3;
 	}
