@@ -494,7 +494,7 @@
 		<table class="table table-striped table-hover">
 			<tr>
 				<th>{tr}Property{/tr}</th>
-				<th>{tr}Value{/tr}</th>
+				<th>{tr}Seconds{/tr}</th>
 			</tr>
 
 			{foreach from=$benchmark key=key item=item}
