@@ -506,11 +506,17 @@ class RSSLib extends TikiDb_Bridge
 
 		$result = $this->modules->fetchAll(['rssId', 'url', 'actions'], $conditions);
 		$feedResult['feeds'] = count($result);
-		$entries = 0;
+		$entryReturn = ['feed' => 0, 'articles' => 0];
 		foreach ($result as $row) {
-			$entries += $this->update_feed($row['rssId'], $row['url'], $row['actions']);
+			$entryResult = $this->update_feed($row['rssId'], $row['url'], $row['actions']);
+			if (! empty($entryResult['feed'])) {
+				$entryReturn['feed'] += $entryResult['feed'];
+			}
+			if (! empty($entryResult['articles'])) {
+				$entryReturn['articles'] += $entryResult['articles'];
+			}
 		}
-		$feedResult['entries'] = $entries;
+		$feedResult['entries'] = $entryReturn;
 		return $feedResult;
 	}
 
@@ -519,7 +525,7 @@ class RSSLib extends TikiDb_Bridge
 	 * @param $url
 	 * @param $actions
 	 *
-	 * @return int
+	 * @return int[]
 	 * @throws Exception
 	 */
 	private function update_feed($rssId, $url, $actions)
@@ -538,7 +544,7 @@ class RSSLib extends TikiDb_Bridge
 		);
 
 		$guidFilter = TikiFilter::get('url');
-
+		$success = ['feed' => 0, 'articles' => 0];
 		try {
 			$content = $tikilib->httprequest($url);
 			$feed = Laminas\Feed\Reader\Reader::importString($content);
@@ -551,7 +557,7 @@ class RSSLib extends TikiDb_Bridge
 					],
 				['rssId' => $rssId,]
 			);
-			return 0;
+			return $success;
 		}
 		$siteTitle = TikiFilter::get('striptags')->filter($feed->getTitle());
 		$siteUrl = TikiFilter::get('url')->filter($feed->getLink());
@@ -564,7 +570,6 @@ class RSSLib extends TikiDb_Bridge
 				],
 			['rssId' => $rssId,]
 		);
-		$success = 0;
 		foreach ($feed as $entry) { // TODO: optimize. Atom entries have an 'updated' element which can be used to only update updated entries
 			$guid = $guidFilter->filter($entry->getId());
 
@@ -598,15 +603,20 @@ class RSSLib extends TikiDb_Bridge
 				global $tikilib;
 				$data['publication_date'] = $tikilib->now;
 			}
-
 			$count = $this->items->fetchCount(['rssId' => $rssId, 'guid' => $guid]);
 			if (0 == $count) {
 				$result = $this->insert_item($rssId, $data, $actions);
+				if (! empty($result['feed'])) {
+					$success['feed']++;
+				}
+				if (! empty($result['articles'])) {
+					$success['articles']++;
+				}
 			} else {
 				$result = $this->update_item($rssId, $data['guid'], $data);
-			}
-			if ($result) {
-				$success++;
+				if ($result && $result->numrows()) {
+					$success['feed']++;
+				}
 			}
 		}
 		return $success;
@@ -685,20 +695,24 @@ class RSSLib extends TikiDb_Bridge
 
 		$actions = json_decode($actions, true);
 
+		//currently handles creation of articles through process_action_article()
 		if (! empty($actions)) {
 			$pagecontentlib = TikiLib::lib('pagecontent');
 			$data = $pagecontentlib->augmentInformation($data);
-
+			$actionCount = 0;
 			foreach ($actions as $action) {
 				$method = 'process_action_' . $action['type'];
 				unset($action['type']);
 
 				if ($action['active']) {
-					$this->$method($action, $data, $rssId);
+					$actionId = $this->$method($action, $data, $rssId);
+					if (! empty($actionId) && is_numeric($actionId)) {
+						$actionCount++;
+					}
 				}
 			}
 		}
-		return $result;
+		return ['feed' => $result, 'articles' => $actionCount];
 	}
 
 	private function update_item($rssId, $guid, $data)
@@ -822,6 +836,7 @@ class RSSLib extends TikiDb_Bridge
 					$categlib->categorize($objectId, $categId);
 				}
 			}
+			return $subid;
 		} else {
 			$id = $this->table('tiki_articles')->fetchOne('articleId', [
 				'linkto' => $data['url'],
@@ -872,6 +887,7 @@ class RSSLib extends TikiDb_Bridge
 			foreach ($related_items as $item) {
 				refresh_index($item['type'], $item['itemId']);
 			}
+			return $id;
 		}
 	}
 

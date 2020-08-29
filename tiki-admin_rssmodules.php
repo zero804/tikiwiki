@@ -88,11 +88,19 @@ if (isset($_REQUEST["refresh"])) {
 	$result = $rsslib->refresh_rss_module($_REQUEST["refresh"]);
 	if (is_array($result)) {
 		if ($result['feeds'] > 0) {
-			if ($result['entries'] === 1) {
-				Feedback::success(tr('Refreshed feed with %0 entry', $result['entries']));
+			if ($result['entries']['feed'] === 1) {
+				$msg = tr('Refresh resulted in %0 updated feed entry', $result['entries']['feed']);
+			} elseif ($result['entries']['feed'] > 1) {
+				$msg = tr('Refresh resulted in %0 updated feed entries', $result['entries']['feed']);
 			} else {
-				Feedback::success(tr('Refreshed feed with %0 entries', $result['entries']));
+				$msg = tr('Feed entries already up to date, no changes made');
 			}
+			if (isset($result['entries']['articles']) && $result['entries']['articles'] === 1) {
+				$msg .= '. ' . tr('In addition, %0 article was created from the feed items.', $result['entries']['articles']);
+			} elseif (! empty($result['entries']['articles'])) {
+				$msg .= '. ' . tr('In addition, %0 articles were created from the feed items.', $result['entries']['articles']);
+			}
+			Feedback::success($msg);
 		} else {
 			Feedback::error(tr('Feed not refreshed'));
 		}
