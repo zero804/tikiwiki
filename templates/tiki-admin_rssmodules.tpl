@@ -220,8 +220,8 @@
 			{remarksbox type="tip" title="{tr}Tips{/tr}"}
 					{tr}Once you have defined the settings below, each new item in this rss feed will generate a new article{/tr}.
 					<a target="tikihelp" href="https://doc.tiki.org/Article+generator" class="tikihelp alert-link" style="float:none" title="{tr}Article Generator:{/tr}
-						{tr}From the point when you defined the settings onwards, new items in the feed become articles each time the feed is refreshed. But only new ones.{/tr}">
-						<img src="img/icons/help.png" width="16" height="16" class="icon" />
+						{tr}Documentation{/tr}">
+                        {icon name="help"}
 					</a>
 					<hr>
 					{tr}You can enable <strong>Show source</strong> for the <a href="tiki-article_types.php" class="alert-link" target="_blank">article type</a> (hidden by default), to allow users to read the full content{/tr}.
@@ -229,121 +229,192 @@
 
 			<form method="post" action="">
 				{ticket}
-				<p>
-					<input id="article_active" type="checkbox" class="form-check-input" name="enable" value="1"{if $articleConfig.active} checked="checked"{/if}>
-					<label for="article_active">{tr}Enable{/tr}</label>
-				</p>
+				<div class="form-group row">
+					<label for="article_active" class="col-form-label col-sm-3">{tr}Enable{/tr}</label>
+					<div class="col-sm-9">
+						<div class="form-check">
+							<input
+								id="article_active"
+								type="checkbox"
+								name="enable"
+								class="form-check-input"
+								value="1"
+								{if $articleConfig.active} checked="checked"{/if}
+							>
+						</div>
+					</div>
+				</div>
 				{if $prefs.feature_submissions eq 'y'}
-					<p>
-						<input id="article_submission" type="checkbox" class="form-check-input" name="submission" value="1"{if $articleConfig.submission} checked="checked"{/if}>
-						<label for="article_submission">{tr}Use Article Submission System{/tr}</label>
-					</p>
+					<div class="form-group row">
+						<label for="article_submission" class="col-form-label col-sm-3">{tr}Use article submission system{/tr}</label>
+						<div class="col-sm-9">
+							<div class="form-check">
+								<input
+									id="article_submission"
+									type="checkbox"
+									name="submission"
+									class="form-check-input"
+									value="1"
+									{if $articleConfig.active} checked="checked"{/if}
+								>
+							</div>
+						</div>
+					</div>
 				{/if}
-				<p>
-					<label for="article_expiry">{tr}Expiration{/tr}</label>
-					<input type="text" name="expiry" id="article_expiry" value="{$articleConfig.expiry|escape}" size="3"> {tr}days{/tr}
-				</p>
-				<p>
-					<label for="article_future_publish">{tr}Publish in the future{/tr}</label>
-					<input type="text" name="future_publish" id="article_future_publish" value="{$articleConfig.future_publish|escape}" size="4"> {tr}minutes{/tr} ({tr}-1 to use original publishing date from the feed{/tr})
-				</p>
-				<h3>{tr}Default Settings{/tr}</h3>
-				<p>
-					<label for="article_type">{tr}Type{/tr}</label>
-					<select name="type" id="article_type">
-						{foreach from=$types item=t}
-							<option value="{$t.type|escape}"{if $t.type eq $articleConfig.atype} selected="selected"{/if}>{$t.type|escape}</option>
-						{/foreach}
-					</select>
-				</p>
-				<p>
-					<label for="article_topic">{tr}Topic{/tr}</label>
-					<select name="topic" id="article_topic">
-						<option value="0">{tr}None{/tr}
-						{foreach from=$topics item=t}
-							<option value="{$t.topicId|escape}"{if $t.topicId eq $articleConfig.topic} selected="selected"{/if}>{$t.name|escape}</option>
-						{/foreach}
-					</select>
-				</p>
-				<p>
-					<label for="article_rating">{tr}Rating{/tr}</label>
-					<select name="rating" id="article_rating">
-						{foreach from=$ratingOptions item=v}
-							<option{if $v eq $articleConfig.rating} selected="selected"{/if}>{$v|escape}</option>
-						{/foreach}
-					</select>
-				</p>
-				{if $prefs.feature_multilingual eq 'y'}
-				<p>
-					<label for="article_language">{tr}Language{/tr}</label>
-					<select name="a_lang" id="article_language">
-							<option value="">{tr}Not set{/tr}</option>
-							{section name=ix loop=$languages}
-								<option value="{$languages[ix].value|escape}"{if $articleConfig.a_lang|escape eq $languages[ix].value} selected="selected"{/if}>{$languages[ix].name}</option>
-							{/section}
-						</select>
-				</p>
-				{/if}
-				<h3>{tr}Custom Settings for Source Categories{/tr}</h3>
-				{if !$sourcecats}
-					<p>{tr}No source categories detected for this feed{/tr}</p>
-				{/if}
-				<table>
-					<tr>
-						<th>{tr}Source Category{/tr}
-						<th>{tr}Type{/tr}</th>
-						<th>{tr}Topic{/tr}</th>
-						<th>{tr}Rating{/tr}</th>
-						<th>{tr}Priority (10 is highest){/tr}</th>
-					</tr>
-					{foreach $sourcecats as $sourcecat => $settings}
-						<tr>
-							<td>
-								{$sourcecat|escape}
-							</td>
-							<td>
-								<select name="custom_atype[{$sourcecat|escape}]">
-									<option value="">{tr}Default{/tr}</option>
-									{foreach from=$types item=t}
-										<option value="{$t.type|escape}"{if $t.type eq $article_custom_info[$sourcecat].atype} selected="selected"{/if}>{$t.type|escape}</option>
-									{/foreach}
+				<div class="form-group row">
+					<label for="article_expiry" class="col-form-label col-sm-3">{tr}Expiration{/tr}</label>
+					<div class="col-sm-9">
+						<div class="input-group">
+							<input
+								id="article_expiry"
+								type="text"
+								name="expiry"
+								class="form-control"
+								value="{$articleConfig.expiry|escape}"
+							>
+							<div class="input-group-append">
+								<span class="input-group-text">{tr}days{/tr}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="article_future_publish" class="col-form-label col-sm-3">{tr}Publish in the future{/tr}</label>
+					<div class="col-sm-9">
+						<div class="input-group">
+							<input
+								id="article_future_publish"
+								type="text"
+								name="future_publish"
+								class="form-control"
+								value="{$articleConfig.future_publish|escape}"
+							>
+							<div class="input-group-append">
+								<span class="input-group-text">{tr}minutes{/tr}</span>
+							</div>
+						</div>
+						<div class="form-text">
+							{tr}Enter -1 to use original publishing date from the feed{/tr}
+						</div>
+					</div>
+				</div>
+				<fieldset>
+					<legend>{tr}Default Settings{/tr}</legend>
+					<div class="form-group row">
+						<label for="article_type" class="col-form-label col-sm-3">{tr}Type{/tr}</label>
+						<div class="col-sm-9">
+							<select id="article_type" name="type" class="form-control">
+								{foreach from=$types item=t}
+									<option value="{$t.type|escape}"{if $t.type eq $articleConfig.atype} selected="selected"{/if}>{$t.type|escape}</option>
+								{/foreach}
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="article_topic" class="col-form-label col-sm-3">{tr}Topic{/tr}</label>
+						<div class="col-sm-9">
+							<select id="article_topic" name="topic" class="form-control">
+								<option value="0">{tr}None{/tr}</option>
+								{foreach from=$topics item=t}
+									<option value="{$t.topicId|escape}"{if $t.topicId eq $articleConfig.topic} selected="selected"{/if}>{$t.name|escape}</option>
+								{/foreach}
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="article_rating" class="col-form-label col-sm-3">{tr}Rating{/tr}</label>
+						<div class="col-sm-9">
+							<select id="article_rating" name="rating" class="form-control">
+								{foreach from=$ratingOptions item=v}
+									<option{if $v eq $articleConfig.rating} selected="selected"{/if}>{$v|escape}</option>
+								{/foreach}
+							</select>
+						</div>
+					</div>
+					{if $prefs.feature_multilingual eq 'y'}
+						<div class="form-group row">
+							<label for="article_language" class="col-form-label col-sm-3">{tr}Language{/tr}</label>
+							<div class="col-sm-9">
+								<select id="article_language" name="a_lang" class="form-control">
+									<option value="">{tr}Not set{/tr}</option>
+									{section name=ix loop=$languages}
+										<option value="{$languages[ix].value|escape}"{if $articleConfig.a_lang|escape eq $languages[ix].value} selected="selected"{/if}>{$languages[ix].name}</option>
+									{/section}
 								</select>
-							</td>
-							<td>
-								<select name="custom_topic[{$sourcecat|escape}]">
-									<option value="">{tr}Default{/tr}</option>
-									<option value="0" {if $article_custom_info[$sourcecat].topic === "0"} selected="selected"{/if}>{tr}None{/tr}</option>
-									{foreach from=$topics item=t}
-										<option value="{$t.topicId|escape}"{if $t.topicId eq $article_custom_info[$sourcecat].topic} selected="selected"{/if}>{$t.name|escape}</option>
-									{/foreach}
-								</select>
-							</td>
-							<td>
-								<select name="custom_rating[{$sourcecat|escape}]">
-									<option value="">{tr}Default{/tr}</option>
-									{foreach from=$ratingOptions item=v}
-										<option value="{$v|escape}"{if $v === $article_custom_info[$sourcecat].rating} selected="selected"{/if}>{$v|escape}</option>
-									{/foreach}
-								</select>
-							</td>
-							<td>
-								<select name="custom_priority[{$sourcecat|escape}]">
-									{foreach from=$ratingOptions item=v}
-										<option value="{$v|escape}"{if $v === $article_custom_info[$sourcecat].priority} selected="selected"{/if}>{$v|escape}</option>
-									{/foreach}
-								</select>
-							</td>
-						</tr>
-					{/foreach}
-				</table>
-
-				<h3>{tr}Categorize Created Articles{/tr}</h3>
-				<p>
-					{include file='categorize.tpl'}
-				</p>
-				<p>
-					<input type="submit" class="btn btn-primary btn-sm" value="{tr}Configure{/tr}">
-				</p>
+							</div>
+						</div>
+					{/if}
+				</fieldset>
+				<fieldset>
+					<legend>
+						{tr}Custom Settings for Source Categories{/tr}
+					</legend>
+					{if !$sourcecats}
+						<p class="font-italic">{tr}No source categories detected for this feed{/tr}</p>
+					{else}
+						<table>
+							<tr>
+								<th>{tr}Source Category{/tr}
+								<th>{tr}Type{/tr}</th>
+								<th>{tr}Topic{/tr}</th>
+								<th>{tr}Rating{/tr}</th>
+								<th>{tr}Priority (10 is highest){/tr}</th>
+							</tr>
+							{foreach $sourcecats as $sourcecat => $settings}
+								<tr>
+									<td>
+										{$sourcecat|escape}
+									</td>
+									<td>
+										<select name="custom_atype[{$sourcecat|escape}]">
+											<option value="">{tr}Default{/tr}</option>
+											{foreach from=$types item=t}
+												<option value="{$t.type|escape}"{if $t.type eq $article_custom_info[$sourcecat].atype} selected="selected"{/if}>{$t.type|escape}</option>
+											{/foreach}
+										</select>
+									</td>
+									<td>
+										<select name="custom_topic[{$sourcecat|escape}]">
+											<option value="">{tr}Default{/tr}</option>
+											<option value="0" {if $article_custom_info[$sourcecat].topic === "0"} selected="selected"{/if}>{tr}None{/tr}</option>
+											{foreach from=$topics item=t}
+												<option value="{$t.topicId|escape}"{if $t.topicId eq $article_custom_info[$sourcecat].topic} selected="selected"{/if}>{$t.name|escape}</option>
+											{/foreach}
+										</select>
+									</td>
+									<td>
+										<select name="custom_rating[{$sourcecat|escape}]">
+											<option value="">{tr}Default{/tr}</option>
+											{foreach from=$ratingOptions item=v}
+												<option value="{$v|escape}"{if $v === $article_custom_info[$sourcecat].rating} selected="selected"{/if}>{$v|escape}</option>
+											{/foreach}
+										</select>
+									</td>
+									<td>
+										<select name="custom_priority[{$sourcecat|escape}]">
+											{foreach from=$ratingOptions item=v}
+												<option value="{$v|escape}"{if $v === $article_custom_info[$sourcecat].priority} selected="selected"{/if}>{$v|escape}</option>
+											{/foreach}
+										</select>
+									</td>
+								</tr>
+							{/foreach}
+						</table>
+					{/if}
+				</fieldset>
+				<fieldset>
+					<legend>{tr}Categorize Created Articles{/tr}</legend>
+					<div class="form-group row">
+						<div class="col-sm-9 offset-sm-3">
+							{include file='categorize.tpl'}
+						</div>
+					</div>
+				</fieldset>
+				<fieldset>
+					<div class="form-group row">
+						<input type="submit" class="btn btn-primary" value="{tr}Save{/tr}">
+					</div>
+				</fieldset>
 			</form>
 		{/tab}
 	{/if}
