@@ -330,9 +330,26 @@ if ($prefs['feature_user_watches'] == 'y' and $tiki_p_watch_trackers == 'y') {
 	if ($user and isset($_REQUEST['watch'])) {
 		check_ticket('view-trackers');
 		if ($_REQUEST['watch'] == 'add') {
-			$tikilib->add_user_watch($user, 'tracker_modified', $_REQUEST["trackerId"], 'tracker', $tracker_info['name'], "tiki-view_tracker.php?trackerId=" . $_REQUEST["trackerId"]);
+			$result = $tikilib->add_user_watch(
+				$user,
+				'tracker_modified',
+				$_REQUEST["trackerId"],
+				'tracker',
+				$tracker_info['name'],
+				"tiki-view_tracker.php?trackerId=" . $_REQUEST["trackerId"]
+			);
+			if (! empty($result)) {
+				Feedback::success(tr('Tracker now being monitored'));
+			} else {
+				Feedback::error(tr('Tracker monitoring not added'));
+			}
 		} else {
-			$tikilib->remove_user_watch($user, 'tracker_modified', $_REQUEST["trackerId"], 'tracker');
+			$result = $tikilib->remove_user_watch($user, 'tracker_modified', $_REQUEST["trackerId"], 'tracker');
+			if ($result && $result->numRows()) {
+				Feedback::success(tr('Tracker no longer being monitored'));
+			} else {
+				Feedback::error(tr('Tracker monitoring not removed'));
+			}
 		}
 	}
 	$smarty->assign('user_watching_tracker', 'n');
