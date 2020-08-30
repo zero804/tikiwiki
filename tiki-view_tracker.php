@@ -327,8 +327,7 @@ if (! empty($_REQUEST['remove'])) {
 $smarty->assign('mail_msg', '');
 $smarty->assign('email_mon', '');
 if ($prefs['feature_user_watches'] == 'y' and $tiki_p_watch_trackers == 'y') {
-	if ($user and isset($_REQUEST['watch'])) {
-		check_ticket('view-trackers');
+	if ($user and isset($_REQUEST['watch']) and $access->checkCsrf()) {
 		if ($_REQUEST['watch'] == 'add') {
 			$result = $tikilib->add_user_watch(
 				$user,
@@ -344,7 +343,12 @@ if ($prefs['feature_user_watches'] == 'y' and $tiki_p_watch_trackers == 'y') {
 				Feedback::error(tr('Tracker monitoring not added'));
 			}
 		} else {
-			$result = $tikilib->remove_user_watch($user, 'tracker_modified', $_REQUEST["trackerId"], 'tracker');
+			$result = $tikilib->remove_user_watch(
+				$user,
+				'tracker_modified',
+				$_REQUEST["trackerId"],
+				'tracker'
+			);
 			if ($result && $result->numRows()) {
 				Feedback::success(tr('Tracker no longer being monitored'));
 			} else {
