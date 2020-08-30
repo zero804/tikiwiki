@@ -5245,11 +5245,11 @@
         },
         {
             "name": "npm-asset/vue",
-            "version": "2.6.11",
+            "version": "2.6.12",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/vue/npm-asset-vue-2.6.11.zip",
-                "shasum": "89ee66d3a0ec6de2704d7c98caa165db45cd7af4"
+                "url": "https://composer.tiki.org/dist/npm-asset/vue/npm-asset-vue-2.6.12.zip",
+                "shasum": "97474c2c8c46af259b5f7ecbf3f4e61cacd89561"
             },
             "type": "npm-asset",
             "license": [
@@ -6929,17 +6929,17 @@
         },
         {
             "name": "scssphp/scssphp",
-            "version": "1.1.1",
+            "version": "1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scssphp/scssphp.git",
-                "reference": "824e4cec10b2bfa88eec5dac23991cb9106622c1"
+                "reference": "ce970268a912dabbfaa0eff65dbc5e4a2a6cb757"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/scssphp/scssphp/scssphp-scssphp-824e4cec10b2bfa88eec5dac23991cb9106622c1-zip-4e9d34.zip",
-                "reference": "824e4cec10b2bfa88eec5dac23991cb9106622c1",
-                "shasum": "cd36f18f0cd502393e7e61b6bcd271f956cafb81"
+                "url": "https://composer.tiki.org/dist/scssphp/scssphp/scssphp-scssphp-ce970268a912dabbfaa0eff65dbc5e4a2a6cb757-zip-339885.zip",
+                "reference": "ce970268a912dabbfaa0eff65dbc5e4a2a6cb757",
+                "shasum": "c3741f385bf69d6b56b20d3864509b4c3e9df201"
             },
             "require": {
                 "ext-ctype": "*",
@@ -6948,6 +6948,7 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5 || ^8.3",
+                "sass/sass-spec": "2020.08.10",
                 "squizlabs/php_codesniffer": "~3.5",
                 "twbs/bootstrap": "~4.3",
                 "zurb/foundation": "~6.5"
@@ -6986,7 +6987,7 @@
                 "scss",
                 "stylesheet"
             ],
-            "time": "2020-06-04T17:30:40+00:00"
+            "time": "2020-08-26T20:47:29+00:00"
         },
         {
             "name": "simile_timeline/simile_timeline",
@@ -8622,17 +8623,17 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.2.7",
+            "version": "1.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "95c63ab2117a72f48f5a55da9740a3273d45b7fd"
+                "reference": "8a7ecad675253e4654ea05505233285377405215"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/composer/ca-bundle/composer-ca-bundle-95c63ab2117a72f48f5a55da9740a3273d45b7fd-zip-9ba602.zip",
-                "reference": "95c63ab2117a72f48f5a55da9740a3273d45b7fd",
-                "shasum": "017fa16cd889a864b6303123a6a2e730923f4aa1"
+                "url": "https://composer.tiki.org/dist/composer/ca-bundle/composer-ca-bundle-8a7ecad675253e4654ea05505233285377405215-zip-06f5dc.zip",
+                "reference": "8a7ecad675253e4654ea05505233285377405215",
+                "shasum": "2e0beddcbe1709a46b57daf315da015fe997481a"
             },
             "require": {
                 "ext-openssl": "*",
@@ -8674,7 +8675,7 @@
                 "ssl",
                 "tls"
             ],
-            "time": "2020-04-08T08:27:21+00:00"
+            "time": "2020-08-23T12:54:47+00:00"
         },
         {
             "name": "doctrine/instantiator",
