@@ -684,7 +684,7 @@ class ModLib extends TikiLib
 			return false;
 		}
 
-		$allcats = null;	// only needed if category names are used
+		$allcats = null;	// only needed if category names are used or $deep is set
 
 		foreach ($desiredList as $category) {
 			if (is_numeric($category)) {
@@ -706,6 +706,10 @@ class ModLib extends TikiLib
 
 		if ($deep) {
 			$nextList = [];
+			if (! $allcats) {
+				// gets all categories (cached but perms are checked so only load all if necessary)
+				$allcats = TikiLib::lib('categ')->getCategories();
+			}
 			foreach ($categoryList as $id) {
 				if (isset($allcats[$id]) && $allcats[$id]['parentId']) {
 					$nextList[] = $allcats[$id]['parentId'];
