@@ -2891,7 +2891,8 @@ class TrackerLib extends TikiLib
 		$this->attachments()->deleteMultiple(['itemId' => (int) $itemId]);
 		$this->groupWatches()->deleteMultiple(['object' => (int) $itemId, 'event' => 'tracker_item_modified']);
 		$this->userWatches()->deleteMultiple(['object' => (int) $itemId, 'event' => 'tracker_item_modified']);
-		$this->items()->delete(['itemId' => (int) $itemId]);
+		// Now delete the actual tracker item
+		$result = $this->items()->delete(['itemId' => (int) $itemId]);
 
 		$this->remove_stale_comment_watches();
 
@@ -2957,7 +2958,7 @@ class TrackerLib extends TikiLib
 			]
 		);
 
-		return true;
+		return $result;
 	}
 
 	public function findUncascadedDeletes($itemId, $trackerId)

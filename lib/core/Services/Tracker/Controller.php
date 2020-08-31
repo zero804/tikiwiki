@@ -1864,8 +1864,6 @@ class Services_Tracker_Controller
 			'tracker_clear_items',
 			function () use ($input) {
 				$trackerId = $input->trackerId->int();
-				$confirm = $input->confirm->int();
-
 				$perms = Perms::get('tracker', $trackerId);
 				if (! $perms->admin_trackers) {
 					throw new Services_Exception_Denied(tr('Reserved for tracker administrators'));
@@ -1876,9 +1874,18 @@ class Services_Tracker_Controller
 				if (! $definition) {
 					throw new Services_Exception_NotFound;
 				}
-
-				if ($_SERVER['REQUEST_METHOD'] === 'POST' && $confirm) {
-					$this->utilities->clearTracker($trackerId);
+				$util = new Services_Utilities();
+				if ($util->isConfirmPost()) {
+					$result = $this->utilities->clearTracker($trackerId);
+					if (! empty($result)) {
+						if ($result === 1) {
+							Feedback::success(tr('One tracker item deleted'));
+						} else {
+							Feedback::success(tr('%0 tracker items deleted', $result));
+						}
+					} else {
+						Feedback::error(tr('No tracker items deleted'));
+					}
 
 					return [
 						'trackerId' => 0,
