@@ -14,6 +14,14 @@ variables:
   ELASTICSEARCH_HOST: elasticsearch
   COMPOSER_CACHE_DIR: "$CI_PROJECT_DIR/.composercache"
 
+workflow:
+  rules:
+    # IGNORE PUSHES ON NON VERSION BRANCHES
+    - if: '$CI_PIPELINE_SOURCE == "push" && ($CI_COMMIT_BRANCH != "master" && $CI_COMMIT_BRANCH != /^\d*\.x$/)'
+      when: never
+    # THIS WILL TRIGGER PIPELINES FOR MERGE REQUESTS AND SCHEDULES, AND PUSHES ON VERSION BRANCHES LIKE 21.x. 18.x
+    - when: always
+
 stages:
   - build
   - lint
@@ -227,6 +235,25 @@ sql-engine-conversion:
   - echo "GRANT ALL ON tikinew.* TO '${MYSQL_USER}';" | mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql
   - php -d display_errors=On doc/devtools/check_sql_engine_conversion.php --db1=$MYSQL_USER:$MYSQL_PASSWORD@mysql:tikiold --db2=$MYSQL_USER:$MYSQL_PASSWORD@mysql:tikinew
   allow_failure: false
+
+tiki-sniffs:
+  stage: tiki-check
+  cache:
+    paths:
+    - .composercache/files
+  before_script:
+    - |
+      if [ -z $CI_MERGE_REQUEST_TARGET_BRANCH_NAME ]; then
+        TARGET="HEAD^"
+      else
+        TARGET=$CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+      fi
+  script:
+    - echo $TARGET
+    - git diff --name-status $TARGET | grep -v "^D" | cut -c 3- | sort -u | grep '\.php$' - 2>&1 > /dev/null || { git log -m -1 --name-only && echo && echo 'No files to be processed. Skipping...' && echo && exit 0; }
+    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
+    - git diff --name-status $TARGET
+    - git diff --name-status $TARGET | grep -v "^D" | cut -c 3- | sort -u | xargs php vendor_bundled/vendor/squizlabs/php_codesniffer/bin/phpcs --standard=./doc/devtools/codesniffer/standards/Tiki -s --runtime-set ignore_warnings_on_exit true
 
 #
 # Unit Tests

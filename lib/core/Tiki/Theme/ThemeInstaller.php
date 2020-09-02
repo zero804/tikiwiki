@@ -8,13 +8,10 @@ namespace Tiki\Theme;
 
 use Exception;
 use Installer;
-use Symfony\Component\Yaml\Yaml;
-use Tiki\Theme\Menu as ThemeMenu;
-use Tiki\Theme\Module as ThemeModule;
-use Symfony\Component\Process\PhpExecutableFinder;
-use Symfony\Component\Process\Process;
-use Tiki\Theme\Handler as ThemeHandler;
 use Symfony\Component\Filesystem\Filesystem as Filesystem;
+use Symfony\Component\Process\PhpExecutableFinder;
+use Symfony\Component\Yaml\Yaml;
+use Tiki\Process\Process;
 use ZipArchive;
 
 /**
@@ -112,7 +109,6 @@ class ThemeInstaller
 			$phpPath = $phpFinder->find();
 
 			$updateProcess = new Process([$phpPath, 'console.php', 'database:update']);
-			$updateProcess->setEnv(['HTTP_ACCEPT_ENCODING', '']);
 			$updateProcess->setWorkingDirectory($this->tikiFolder);
 			$updateProcess->run();
 			$updateProcess->wait();

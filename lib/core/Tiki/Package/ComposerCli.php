@@ -8,7 +8,7 @@
 namespace Tiki\Package;
 
 use Symfony\Component\Process\Exception\ExceptionInterface as ProcessExceptionInterface;
-use Symfony\Component\Process\Process;
+use Tiki\Process\Process;
 
 /**
  * Wrapper to composer.phar to allow installation of packages from the admin interface
@@ -175,7 +175,7 @@ class ComposerCli
 	 */
 	protected function getPhpVersion($php)
 	{
-		$process = new Process([$php, '--version'], null, ['HTTP_ACCEPT_ENCODING' => '']);
+		$process = new Process([$php, '--version']);
 		$process->inheritEnvironmentVariables();
 		$process->run();
 		foreach (explode("\n", $process->getOutput()) as $line) {
@@ -209,7 +209,7 @@ class ComposerCli
 				$possibleCli .= '.exe';
 				$prefix = 'where';
 			}
-			$process = new Process([$prefix, $possibleCli], null, ['HTTP_ACCEPT_ENCODING' => '']);
+			$process = new Process([$prefix, $possibleCli]);
 			$process->inheritEnvironmentVariables();
 			$process->setTimeout($this->timeout);
 			$process->run();
@@ -302,8 +302,6 @@ class ComposerCli
 			if (! getenv('COMPOSER_HOME')) {
 				$env['COMPOSER_HOME'] = $this->basePath . self::COMPOSER_HOME;
 			}
-			// HTTP_ACCEPT_ENCODING interfere with the composer output, so set it to know value
-			$env['HTTP_ACCEPT_ENCODING'] = '';
 
 			$process = new Process($args, null, $env);
 			$process->inheritEnvironmentVariables();
@@ -724,7 +722,6 @@ class ComposerCli
 		if (! getenv('COMPOSER_HOME')) {
 			$env['COMPOSER_HOME'] = $this->basePath . self::COMPOSER_HOME;
 		}
-		$env['HTTP_ACCEPT_ENCODING'] = '';
 
 		$command = [$this->getPhpPath(), self::COMPOSER_SETUP, '--quiet', '--install-dir=temp'];
 		$process = new Process($command, null, $env);
@@ -758,7 +755,6 @@ class ComposerCli
 		if (! getenv('COMPOSER_HOME')) {
 			$env['COMPOSER_HOME'] = $this->basePath . self::COMPOSER_HOME;
 		}
-		$env['HTTP_ACCEPT_ENCODING'] = '';
 
 		$command = [$this->getComposerPharPath(), 'self-update', '--no-progress'];
 		$process = new Process($command, null, $env);
