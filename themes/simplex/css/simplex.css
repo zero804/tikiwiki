@@ -7074,18 +7074,20 @@ blockquote {
 .to-translate {
   color: #D9831F; }
 
-table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
-  background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
-table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {
-  background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
-  background-color: rgba(13, 13, 13, 0); }
-table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerDesc {
-  background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
-  background-color: rgba(13, 13, 13, 0); }
+table.tablesorter thead tr.tablesorter-headerRow {
+  background-color: #FCFCFC; }
+  table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
+    background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
+  table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {
+    background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
+    background-color: #f4f4f4; }
+  table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerDesc {
+    background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
+    background-color: #f4f4f4; }
 table.tablesorter thead tr.tablesorter-filter-row {
-  background: #ddd; }
+  background-color: #FCFCFC; }
   table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, table.tablesorter thead tr.tablesorter-filter-row td input.dateFrom, table.tablesorter thead tr.tablesorter-filter-row td input.dateTo {
-    background-color: rgba(13, 13, 13, 0);
+    background-color: #f4f4f4;
     color: #212529; }
 
 div.tablesorter-resizable-container {
@@ -7235,11 +7237,6 @@ div.ts-wrapperdiv div.ts-pager {
   div.ts-wrapperdiv div.ts-pager .right-margin {
     vertical-align: bottom;
     margin-right: 4px; }
-
-table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, table.tablesorter thead tr.tablesorter-filter-row td input.dateFrom, table.tablesorter thead tr.tablesorter-filter-row td input.dateTo {
-  color: #444;
-  background: #fff;
-  border: #bbb; }
 
 .tiki .pvtUi {
   color: #212529; }
