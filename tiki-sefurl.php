@@ -105,23 +105,7 @@ function filter_out_sefurl($tpl_output, $type = null, $title = '', $with_next = 
 			$trklib = TikiLib::lib('trk');
 
 			if ($prefs['feature_sefurl_title_trackeritem'] == 'y') {
-				$trackerId = $trklib->get_tracker_for_item($matches[1]);
-				if (empty($title)) {
-					$title = $trklib->get_isMain_value($trackerId, $matches[1]);
-				}
-				$title = preg_replace(PATTERN_TO_CLEAN_TEXT, CLEAN_CHAR, $tikilib->take_away_accent($title));
-				$title = preg_replace('/' . CLEAN_CHAR . CLEAN_CHAR . '+/', '-', $title);
-				$title = preg_replace('/' . CLEAN_CHAR . '+$/', '', $title);
-
-				if (! empty($prefs['feature_sefurl_title_max_size'])) {
-					if (strlen($title) > $prefs['feature_sefurl_title_max_size']) {
-						$title = substr($title, 0, ($prefs['feature_sefurl_title_max_size'] + 1));
-						$titleMaxLength = strrpos($title, CLEAN_CHAR);
-						if ($titleMaxLength > 0) {
-							$title = substr($title, 0, $titleMaxLength);
-						}
-					}
-				}
+				$title = $trklib->get_title_sefurl($matches[1]);
 			}
 
 			if ($prefs['feature_sefurl_tracker_prefixalias'] == 'y' && $prefs['tracker_prefixalias_on_links'] == 'y' &&

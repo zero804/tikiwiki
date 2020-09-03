@@ -3840,6 +3840,35 @@ class TrackerLib extends TikiLib
 		return $this->fields()->fetchOne('fieldId', ['isMain' => 'y', 'trackerId' => $trackerId], ['position' => 'ASC']);
 	}
 
+	/**
+	 * @param int $itemId
+	 *
+	 * @return string title to append to the end of a sefurl
+	 */
+	public function get_title_sefurl($itemId) {
+		global $prefs;
+
+		$trackerId = $this->get_tracker_for_item($itemId);
+		if (empty($title)) {
+			$title = $this->get_isMain_value($trackerId, $itemId);
+		}
+		include_once('tiki-sefurl.php');	// make sure we have these constants
+		$title = preg_replace(PATTERN_TO_CLEAN_TEXT, CLEAN_CHAR, $this->take_away_accent($title));
+		$title = preg_replace('/' . CLEAN_CHAR . CLEAN_CHAR . '+/', '-', $title);
+		$title = preg_replace('/' . CLEAN_CHAR . '+$/', '', $title);
+
+		if (! empty($prefs['feature_sefurl_title_max_size'])) {
+			if (strlen($title) > $prefs['feature_sefurl_title_max_size']) {
+				$title = substr($title, 0, ($prefs['feature_sefurl_title_max_size'] + 1));
+				$titleMaxLength = strrpos($title, CLEAN_CHAR);
+				if ($titleMaxLength > 0) {
+					$title = substr($title, 0, $titleMaxLength);
+				}
+			}
+		}
+		return $title;
+	}
+
 	public function categorized_item($trackerId, $itemId, $mainfield, $ins_categs, $parent_categs_only = [], $override_perms = false, $managed_fields = null)
 	{
 		global $prefs;
