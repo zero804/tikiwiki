@@ -199,7 +199,7 @@ class SemanticLib
 		if (! $this->isValid($oldName)) {
 			return tra('Invalid semantic token name') . ": $oldName";
 		}
-		if (! is_null($newName) && ! $this->isValid($newName) && $valid) {
+		if (! is_null($newName) && ! $this->isValid($newName)) {
 			return tra('Invalid semantic token name') . ": $newName";
 		}
 
