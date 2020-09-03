@@ -615,7 +615,7 @@
 					{$cntcol = 0}
 					{if $tiki_p_admin_forum eq 'y'}
 						<th id="checkbox">
-							{select_all checkbox_names='forumtopic[]'}
+							{select_all checkbox_names='forumtopic[]' tablesorter="{$ts.enabled}"}
 						</th>
 						{$cntcol = $cntcol + 1}
 					{/if}
