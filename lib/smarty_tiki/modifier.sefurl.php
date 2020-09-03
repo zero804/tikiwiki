@@ -118,7 +118,10 @@ function smarty_modifier_sefurl($source, $type = 'wiki', $with_next = '', $all_l
 				$replacementpage = $trklib->get_trackeritem_pagealias($source);
 			}
 			if ($replacementpage) {
-				return TikiLib::tikiUrlOpt($wikilib->sefurl($replacementpage, $with_next, $all_langs));
+				$href = TikiLib::tikiUrlOpt($wikilib->sefurl($replacementpage, $with_next, $all_langs));
+				if ($prefs['feature_sefurl_title_trackeritem'] == 'y') {
+					$title = $trklib->get_title_sefurl($source);
+				}
 			} else {
 				if ($prefs['pwa_feature'] == 'y') {
 					$trklib = TikiLib::lib('trk');
