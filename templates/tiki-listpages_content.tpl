@@ -41,7 +41,7 @@
 			<tr>
 				{if isset($checkboxes_on) and $checkboxes_on eq 'y'}
 					<th id="checkbox">
-						{select_all checkbox_names='checked[]'}
+						{select_all checkbox_names='checked[]' tablesorter="{$ts.enabled}"}
 					</th>
 					{assign var='cntcol' value='1'}
 				{else}

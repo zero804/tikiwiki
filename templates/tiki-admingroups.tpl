@@ -46,7 +46,7 @@
 				<table id="{$ts.tableid}" class="table normal table-striped table-hover" data-count="{$cant_pages|escape}">
 						<thead>
 							<tr>
-								<th id="checkbox" style="width: 20px;">{select_all checkbox_names='checked[]'}</th>
+								<th id="checkbox" style="width: 20px;">{select_all checkbox_names='checked[]' tablesorter="{$ts.enabled}"}</th>
 								<th id="id">{self_link _sort_arg='sort_mode' _sort_field='id'}{tr}ID{/tr}{/self_link}</th>
 								<th id="group">{self_link _sort_arg='sort_mode' _sort_field='groupName'}{tr}Name{/tr}{/self_link}</th>
 								<th id="inherits">{tr}Inherits Permissions from{/tr}</th>
@@ -529,7 +529,7 @@
 								<table id="groupsMembers" class="table normal table-striped table-hover" data-count="{$membersCount}">
 									<thead>
 										<tr>
-											<th id="checkbox" class="auto">{if $memberslist}{select_all checkbox_names='checked[]'}{/if}</th>
+											<th id="checkbox" class="auto">{if $memberslist}{select_all checkbox_names='checked[]' tablesorter="{$ts.enabled}"}{/if}</th>
 											<th id="user">{self_link _sort_arg='sort_mode_member' _sort_field='login'}{tr}User{/tr}{/self_link}</th>
 											<th id="assigned">{self_link _sort_arg='sort_mode_member' _sort_field='created'}{tr}Assigned{/tr}{/self_link}</th>
 											<th id="expires">{self_link _sort_arg='sort_mode_member' _sort_field='expire'}{tr}Expires{/tr}{/self_link}</th>
@@ -632,7 +632,7 @@
 						<table id="bannedMembers" class="table normal table-striped table-hover" data-count="{$bannedCount}">
 							<thead>
 								<tr>
-									<th id="checkbox" class="auto">{select_all checkbox_names='user[]'}</th>
+									<th id="checkbox" class="auto">{select_all checkbox_names='user[]' tablesorter="{$ts.enabled}"}</th>
 									<th id="user">{tr}User{/tr}</th>
 									<th id="unban">{tr}Unban user{/tr}</th>
 								</tr>

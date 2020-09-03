@@ -128,7 +128,7 @@
 									<tr>
 										<th id="checkbox">
 											{if $users}
-												{select_all checkbox_names='checked[]'}
+												{select_all checkbox_names='checked[]' tablesorter="{$ts.enabled}"}
 											{/if}
 										</th>
 										<th id="user">{self_link _sort_arg='sort_mode' _sort_field='login'}{tr}User{/tr}{/self_link}</th>
