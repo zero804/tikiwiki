@@ -2293,6 +2293,7 @@ class UsersLib extends TikiLib
 		$ret = $this->fetchAll($query, $bindvars, $maxRecords, $offset);
 		$cant = $this->getOne($query_cant, $mbindvars);
 
+		$perms = Perms::get(['type' => 'group', 'object' => $group]);
 		foreach ($ret as &$res) {
 			if (! $perms->admin_users) {
 				// Filter out sensitive data
