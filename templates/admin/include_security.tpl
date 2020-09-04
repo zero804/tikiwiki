@@ -276,6 +276,174 @@
 			</fieldset>
 		{/tab}
 
+		{tab name='{tr}Encryption{/tr}' key='encryption'}
+			<br>
+			{remarksbox type="note" title="{tr}About encryption{/tr}"}
+				{tr}Encryption page allows you to create different encryption keys and share them securely with team members.{/tr}<br>
+				{tr}Find out more here:{/tr}{help url="Encryption"}
+			{/remarksbox}
+			{if $encryption_enabled neq 'y'}
+				{remarksbox type="error" title="{tr}Error{/tr}"}
+					{tr}Openssl extension is required to use this module.{/tr}
+				{/remarksbox}
+			{/if}
+			{if $encryption_shares}
+				{remarksbox type="warning" title="{tr}Encryption keys{/tr}"}
+					{tr}Encryption key has been generated. Accessing content encrypted with the key would only be possible if you use one of the following requested keys. Make sure you copy and send them to the right team members as these won't be saved on the server. Each of the following keys can be used to encrypt and decrypt data.{/tr}<br>
+					<ol>
+						{foreach $encryption_shares as $key}
+							<li>{$key}</li>
+						{/foreach}
+					</ol>
+				{/remarksbox}
+			{/if}
+			{tabset name='encryption'}
+				{tab name='{tr}Available keys{/tr}'}
+				 	<input type="hidden" name="keyId" value="{$encryption_key.keyId}">
+					<fieldset id="encryption_keys">
+						<div class="input_submit_container">
+							<table class="table table-striped">
+								<tr>
+									<th>{tr}Name{/tr}</th>
+									<th>{tr}Description{/tr}</th>
+									<th>{tr}Algorithm{/tr}</th>
+									<th>{tr}Number of shares{/tr}</th>
+									<th>{tr}Encrypted items{/tr}</th>
+									<th>{tr}Edit{/tr}</th>
+									<th>{tr}Delete{/tr}</th>
+								</tr>
+								{foreach $encryption_keys as $key}
+									<tr>
+										<td>
+											{$key.name|escape}
+										</td>
+										<td>
+											{$key.description|escape}
+										</td>
+										<td>
+											{$key.algo}
+										</td>
+										<td>
+											{$key.shares}
+										</td>
+										<td>
+											TODO
+										</td>
+										<td>
+											{icon name='pencil' href='tiki-admin.php?page=security&encryption_key='|cat:$key.keyId}
+										</td>
+										<td>
+											{* TODO add confirmation *}
+											<button type="submit" name="key_delete" value="{$key.keyId}" class="btn btn-link text-danger" style="cursor: pointer">
+												{icon name='delete'}
+											</button>
+										</td>
+									</tr>
+								{foreachelse}
+									{norecords _colspan=7}
+								{/foreach}
+							</table>
+							<div class="submit">
+								{if  not empty($smarty.request.encryption_key)}
+									{button name='add' id='key_add' _text='Create' _class='btn btn-info' _script='tiki-admin.php?page=security&new_key'}
+								{/if}
+								{if isset($smarty.request.new_key)}
+									{jq}$("a[href='#contentencryption-2']").tab("show");{/jq}
+								{/if}
+							</div>
+						</div>
+					</fieldset>
+				{/tab}
+				{if not empty($smarty.request.encryption_key)}
+					{$tabname='Edit Key'}
+					{jq}$("a[href='#contentencryption-2']").tab("show");{/jq}
+				{else}
+					{$tabname='Create Key'}
+					{if not isset($smarty.request.new_key)}
+						{jq}$("a[href='#contentencryption-1']").tab("show");{/jq}
+					{/if}
+				{/if}
+				{tab name=$tabname}
+					{if $encryption_error}
+						{remarksbox type="error" title="{tr}Error{/tr}"}
+							{$encryption_error}
+						{/remarksbox}
+					{/if}
+					<fieldset id="encryption_general">
+						<legend>
+							{tr}General information{/tr} 
+						</legend>
+						<div class="form-group row">
+							<label class="col-form-label col-sm-4" for="name">
+								{tr}Key name or domain{/tr}
+							</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="name" value="{$encryption_key.name|escape}">
+							</div>
+						</div><br>
+						<div class="form-group row">
+							<label class="col-form-label col-sm-4" for="description">
+								{tr}Description{/tr}
+							</label>
+							<div class="col-sm-8">
+								<textarea class="form-control" cols="60" rows="12" name="description">{$encryption_key.description|default:''|escape}</textarea>
+							</div>
+						</div><br>
+						{if $encryption_key.keyId}
+						<div class="form-group row">
+							<label class="col-form-label col-sm-4" for="regenerate">
+								{tr}Regenerate shares{/tr}
+							</label>
+							<div class="col-sm-8">
+								<input type="checkbox" name="regenerate" id="regenerate" value="1">
+								<a class="tikihelp text-info" title="{tr}Regenerate shares:{/tr} {tr}Enabling this option will create new secret shares with the defined number of shares. Old shares will no longer be valid, so you will need to distribute the new shares to team members again. Data encrypted with existing key will stay intact and new shares will be able to decrypt it. No data loss occurs as long as you keep the shared keys known. Use this option to increase or decrease the number of people with shared keys for this domain.{/tr}">
+									{icon name=information}
+								</a>
+							</div>
+						</div><br>
+						<div class="form-group row" id="old_share_container" style="display:none">
+							<label class="col-form-label col-sm-4" for="old_share">
+								{tr}Old shared key{/tr}
+							</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="old_share" value="">
+								<a class="tikihelp text-info" title="{tr}Old shared key:{/tr} {tr}You need to input one of the existing shared keys in order to regenerate the secret shares.{/tr}">
+									{icon name=information}
+								</a>
+								<a class="tikihelp text-warning" title="{tr}Warning:{/tr} Be absolutely sure that the key you use is the right key from previous generation. Otherwise, the stored security key will be invalidated and all encrypted data using this key lost!">
+									{icon name="warning"}
+								</a>
+							</div>
+							<br>
+						</div>
+						{/if}
+						<div class="form-group row">
+							<label class="col-form-label col-sm-4" for="algo">
+								{tr}Encryption algorithm{/tr}
+							</label>
+							<div class="col-sm-8">
+								<select class="form-control" name="algo" id="algo" {if $encryption_key.keyId}disabled{/if}>
+									<option></option>
+									{foreach $encryption_algos as $algo}
+										<option value="{$algo|escape}" {if $encryption_key.algo eq $algo}selected="selected"{/if}>
+											{$algo|escape}
+										</option>
+									{/foreach}
+								</select>
+							</div>
+						</div><br>
+						<div class="form-group row">
+							<label class="col-form-label col-sm-4" for="shares">
+								{tr}No. of people to share{/tr}
+							</label>
+							<div class="col-sm-8">
+								<input type="number" min="1" class="form-control" name="shares" id="shares" value="{$encryption_key.shares|escape}" {if $encryption_key.keyId}disabled{/if}>
+							</div>
+						</div><br>
+					</fieldset>
+					{/tab}
+			{/tabset}
+		{/tab}
 	{/tabset}
 	{include file='admin/include_apply_bottom.tpl'}
 </form>

@@ -326,6 +326,8 @@ class Services_Tracker_Controller
 			}
 		}
 
+		$encryption_keys = TikiLib::lib('encryption')->get_keys();
+
 		$permName = $input->permName->word();
 		if ($field['permName'] != $permName) {
 			if ($definition->getFieldFromPermName($permName)) {
@@ -481,6 +483,7 @@ class Services_Tracker_Controller
 			'types' => $types,
 			'permNameMaxAllowedSize' => Tracker_Item::PERM_NAME_MAX_ALLOWED_SIZE,
 			'fields' => $definition->getFields(),
+			'encryption_keys' => $encryption_keys,
 		];
 	}
 

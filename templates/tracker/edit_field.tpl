@@ -224,6 +224,25 @@ $('select[name=type]').change(function () {
 					</div>
 				</div>
 			{/if}
+			<div class="form-group row mx-0">
+				<label for="encryptionKey" class="col-form-label">{tr}Encryption key{/tr}</label>
+				{help url="Encryption"}
+				<select name="encryptionKey" data-original="{$field.encryptionKey}" class="confirm-prompt form-control">
+					<option value=""></option>
+					{foreach from=$encryption_keys item=key}
+						<option value="{$key.keyId|escape}"
+							{if $field.encryptionKey eq $key.keyId}selected="selected"{/if}>
+							{$key.name|escape}
+						</option>
+					{/foreach}
+				</select>
+				<div class="form-text">
+					{tr}Allow using shared encryption keys to store data entered in this field in encrypted format and decrypt upon request.{/tr}
+				</div>
+				<div class="alert alert-danger">
+					{icon name="warning"} {tr}Changing the encryption key will invalidate existing data.{/tr}
+				</div>
+			</div>
 		{/accordion_group}
 	{/accordion}
 

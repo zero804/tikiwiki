@@ -93,6 +93,9 @@
 		<service id="tiki.lib.edit" class="EditLib">
 			<file>%kernel.root_dir%/lib/wiki/editlib.php</file>
 		</service>
+		<service id="tiki.lib.encryption" class="EncryptionLib">
+			<file>%kernel.root_dir%/lib/crypt/encryptionlib.php</file>
+		</service>
 		<service id="tiki.lib.events" class="Tiki_Event_Manager" />
 		<service id="tiki.lib.faq" class="FaqLib">
 			<file>%kernel.root_dir%/lib/faqs/faqlib.php</file>

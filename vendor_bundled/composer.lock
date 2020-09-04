@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af23f1efd618b2278f89ace5b12f7842",
+    "content-hash": "eea01042d6f9dbc53db12b70206304dc",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -18,7 +18,7 @@
         },
         {
             "name": "adodb/adodb-php",
-            "version": "v5.20.18",
+            "version": "5.20.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ADOdb/ADOdb.git",
@@ -312,9 +312,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/christian-riesen/base32/christian-riesen-base32-80ff0e3b2124e61b4b39e2535709452f70bff367-zip-e5a0fa.zip",
+                "url": "https://api.github.com/repos/ChristianRiesen/base32/zipball/80ff0e3b2124e61b4b39e2535709452f70bff367",
                 "reference": "80ff0e3b2124e61b4b39e2535709452f70bff367",
-                "shasum": "8de7dd26000d192b69df16d372dff128233a2d2e"
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3"
@@ -342,9 +342,9 @@
             "authors": [
                 {
                     "name": "Christian Riesen",
-                    "role": "Developer",
                     "email": "chris.riesen@gmail.com",
-                    "homepage": "http://christianriesen.com"
+                    "homepage": "http://christianriesen.com",
+                    "role": "Developer"
                 }
             ],
             "description": "Base32 encoder/decoder according to RFC 4648",
@@ -419,9 +419,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/codeitnowin/barcode/codeitnowin-barcode-6325a15ae904ec401b947e1a3e868de1c2cc80b0-zip-e0db04.zip",
+                "url": "https://api.github.com/repos/codeitnowin/barcode-generator/zipball/6325a15ae904ec401b947e1a3e868de1c2cc80b0",
                 "reference": "6325a15ae904ec401b947e1a3e868de1c2cc80b0",
-                "shasum": "16a1122e60a2f296c6cdb66113fa1ba9e1953095"
+                "shasum": ""
             },
             "require": {
                 "ext-gd": "*",
@@ -1010,9 +1010,9 @@
             "authors": [
                 {
                     "name": "Cameron Spear",
-                    "role": "Developer",
                     "email": "cam@cameronspear.com",
-                    "homepage": "http://cameronspear.com"
+                    "homepage": "http://cameronspear.com",
+                    "role": "Developer"
                 }
             ],
             "description": "An unofficial Bootstrap plugin to enable Bootstrap dropdowns to activate on hover and provide a nice user experience.",
@@ -1077,9 +1077,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/defuse/php-encryption/defuse-php-encryption-0f407c43b953d571421e0020ba92082ed5fb7620-zip-2377aa.zip",
+                "url": "https://api.github.com/repos/defuse/php-encryption/zipball/0f407c43b953d571421e0020ba92082ed5fb7620",
                 "reference": "0f407c43b953d571421e0020ba92082ed5fb7620",
-                "shasum": "208c96315d3634e11972dc18fd15451bf3fbf47a"
+                "shasum": ""
             },
             "require": {
                 "ext-openssl": "*",
@@ -1305,7 +1305,7 @@
             ],
             "authors": [
                 {
-                    "name": "Osman Üngür",
+                    "name": "Osman Ungur",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -1728,9 +1728,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
+                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
+                "shasum": ""
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -4202,9 +4202,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/league/event/league-event-d2cc124cf9a3fab2bb4ff963307f60361ce4d119-zip-f1c2c3.zip",
+                "url": "https://api.github.com/repos/thephpleague/event/zipball/d2cc124cf9a3fab2bb4ff963307f60361ce4d119",
                 "reference": "d2cc124cf9a3fab2bb4ff963307f60361ce4d119",
-                "shasum": "29f004e2bd0b2dc7fbe91fc7615a5d11ba360fa8"
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0"
@@ -4497,9 +4497,9 @@
             "authors": [
                 {
                     "name": "Michel Fortin",
-                    "role": "Developer",
                     "email": "michel.fortin@michelf.ca",
-                    "homepage": "https://michelf.ca/"
+                    "homepage": "https://michelf.ca/",
+                    "role": "Developer"
                 },
                 {
                     "name": "John Gruber",
@@ -4619,9 +4619,9 @@
             "authors": [
                 {
                     "name": "Fabian Grutschus",
-                    "role": "developer",
                     "email": "f.grutschus@lubyte.de",
-                    "homepage": "http://www.lubyte.de/"
+                    "homepage": "http://www.lubyte.de/",
+                    "role": "developer"
                 }
             ],
             "description": "Library for XMPP protocol (Jabber) connections",
@@ -5112,9 +5112,8 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
-                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
+                "type": "tar",
+                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -5123,11 +5122,11 @@
         },
         {
             "name": "npm-asset/ts-custom-error",
-            "version": "3.1.1",
+            "version": "3.2.0",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/ts-custom-error/npm-asset-ts-custom-error-3.1.1.zip",
-                "shasum": "063a1fa91cf82af5bdbd28f4bd485b62ff1d4afe"
+                "url": "https://composer.tiki.org/dist/npm-asset/ts-custom-error/npm-asset-ts-custom-error-3.2.0.zip",
+                "shasum": "d77afb497238ca3909e216d0c221b2f264b14ed8"
             },
             "type": "npm-asset",
             "license": [
@@ -5136,11 +5135,11 @@
         },
         {
             "name": "npm-asset/vue",
-            "version": "2.6.11",
+            "version": "2.6.12",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/vue/npm-asset-vue-2.6.11.zip",
-                "shasum": "89ee66d3a0ec6de2704d7c98caa165db45cd7af4"
+                "url": "https://composer.tiki.org/dist/npm-asset/vue/npm-asset-vue-2.6.12.zip",
+                "shasum": "97474c2c8c46af259b5f7ecbf3f4e61cacd89561"
             },
             "type": "npm-asset",
             "license": [
@@ -6029,17 +6028,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.54.7",
+            "version": "v1.55.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "2ddfa84660dc174a166014cead33a97d0eea81de"
+                "reference": "a816d3ca242d33aeec1bfdd3548881c98fd5ecba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-2ddfa84660dc174a166014cead33a97d0eea81de-zip-7ca36c.zip",
-                "reference": "2ddfa84660dc174a166014cead33a97d0eea81de",
-                "shasum": "de19b1e9b5dda376358cb8ee7793cfd02681373d"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-a816d3ca242d33aeec1bfdd3548881c98fd5ecba-zip-915f1a.zip",
+                "reference": "a816d3ca242d33aeec1bfdd3548881c98fd5ecba",
+                "shasum": "8712b7ca1c0e677554b6f48d2aeb4a4930decbda"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -6061,7 +6060,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2020-07-23T17:00:23+00:00"
+            "time": "2020-09-02T22:45:01+00:00"
         },
         {
             "name": "pragmarx/google2fa",
@@ -6801,17 +6800,17 @@
         },
         {
             "name": "scssphp/scssphp",
-            "version": "1.1.1",
+            "version": "1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scssphp/scssphp.git",
-                "reference": "824e4cec10b2bfa88eec5dac23991cb9106622c1"
+                "reference": "ce970268a912dabbfaa0eff65dbc5e4a2a6cb757"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/scssphp/scssphp/scssphp-scssphp-824e4cec10b2bfa88eec5dac23991cb9106622c1-zip-4e9d34.zip",
-                "reference": "824e4cec10b2bfa88eec5dac23991cb9106622c1",
-                "shasum": "cd36f18f0cd502393e7e61b6bcd271f956cafb81"
+                "url": "https://composer.tiki.org/dist/scssphp/scssphp/scssphp-scssphp-ce970268a912dabbfaa0eff65dbc5e4a2a6cb757-zip-339885.zip",
+                "reference": "ce970268a912dabbfaa0eff65dbc5e4a2a6cb757",
+                "shasum": "c3741f385bf69d6b56b20d3864509b4c3e9df201"
             },
             "require": {
                 "ext-ctype": "*",
@@ -6820,6 +6819,7 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5 || ^8.3",
+                "sass/sass-spec": "2020.08.10",
                 "squizlabs/php_codesniffer": "~3.5",
                 "twbs/bootstrap": "~4.3",
                 "zurb/foundation": "~6.5"
@@ -6858,7 +6858,7 @@
                 "scss",
                 "stylesheet"
             ],
-            "time": "2020-06-04T17:30:40+00:00"
+            "time": "2020-08-26T20:47:29+00:00"
         },
         {
             "name": "simile_timeline/simile_timeline",
@@ -7024,17 +7024,17 @@
         },
         {
             "name": "symfony/config",
-            "version": "v3.4.43",
+            "version": "v3.4.44",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "9e2aa97f0d51f114983666f5aa362426d53e004a"
+                "reference": "801a3bbc17fb1ba44b0d7d41a6db7a0b74953595"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/config/symfony-config-9e2aa97f0d51f114983666f5aa362426d53e004a-zip-d0ab94.zip",
-                "reference": "9e2aa97f0d51f114983666f5aa362426d53e004a",
-                "shasum": "c2818fb0ad3eaebb911d18bc7821d6513ed204a3"
+                "url": "https://composer.tiki.org/dist/symfony/config/symfony-config-801a3bbc17fb1ba44b0d7d41a6db7a0b74953595-zip-21cc82.zip",
+                "reference": "801a3bbc17fb1ba44b0d7d41a6db7a0b74953595",
+                "shasum": "3ebb209db39fdac75794e852bb52d392b404987e"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -7084,21 +7084,21 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2020-07-23T09:37:51+00:00"
+            "time": "2020-08-10T07:13:15+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.43",
+            "version": "v3.4.44",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "afc7189694d2c59546cf24ea606a236fa46a966e"
+                "reference": "71da881ad579f0cd66aef8677e4cf6217d8ecd0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/console/symfony-console-afc7189694d2c59546cf24ea606a236fa46a966e-zip-438663.zip",
-                "reference": "afc7189694d2c59546cf24ea606a236fa46a966e",
-                "shasum": "d6b7f57efbe50988525a273ddf3f827a9b6a64cc"
+                "url": "https://composer.tiki.org/dist/symfony/console/symfony-console-71da881ad579f0cd66aef8677e4cf6217d8ecd0c-zip-308e3c.zip",
+                "reference": "71da881ad579f0cd66aef8677e4cf6217d8ecd0c",
+                "shasum": "90fb5f1202156a291aa9a362bb29c3703f5ec49e"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -7156,11 +7156,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2020-07-06T08:57:31+00:00"
+            "time": "2020-08-09T08:16:57+00:00"
         },
         {
             "name": "symfony/css-selector",
-            "version": "v5.1.3",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -7213,17 +7213,17 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.4.11",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "47aa9064d75db36389692dd4d39895a0820f00f2"
+                "reference": "aeb73aca16a8f1fe958230fe44e6cf4c84cbb85e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-47aa9064d75db36389692dd4d39895a0820f00f2-zip-c636e9.zip",
-                "reference": "47aa9064d75db36389692dd4d39895a0820f00f2",
-                "shasum": "519d5935ba4ac660b54cce3ee60b386c8bf516a3"
+                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-aeb73aca16a8f1fe958230fe44e6cf4c84cbb85e-zip-1c96ae.zip",
+                "reference": "aeb73aca16a8f1fe958230fe44e6cf4c84cbb85e",
+                "shasum": "7a0dcd28e1a101ce48ec01e3c8b8eedb74ba4aa6"
             },
             "require": {
                 "php": ">=7.1.3",
@@ -7266,21 +7266,21 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2020-07-23T08:31:43+00:00"
+            "time": "2020-08-10T07:47:39+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v3.4.43",
+            "version": "v3.4.44",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "3a14abc01c36e81fc1c4c48b42c103b9dd892ed3"
+                "reference": "7d15cf4294d4f3610bc741c8fdd54a6baac586d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-3a14abc01c36e81fc1c4c48b42c103b9dd892ed3-zip-12dfae.zip",
-                "reference": "3a14abc01c36e81fc1c4c48b42c103b9dd892ed3",
-                "shasum": "afeafe6d6be6e9d05c7836a1e216f3da7980b51b"
+                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-7d15cf4294d4f3610bc741c8fdd54a6baac586d4-zip-caea03.zip",
+                "reference": "7d15cf4294d4f3610bc741c8fdd54a6baac586d4",
+                "shasum": "32562c3f931ae61166c53eb9dbc30658623d4714"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -7337,21 +7337,21 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2020-07-23T09:37:51+00:00"
+            "time": "2020-08-10T07:13:15+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.4.11",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "b27f491309db5757816db672b256ea2e03677d30"
+                "reference": "27575bcbc68db1f6d06218891296572c9b845704"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-b27f491309db5757816db672b256ea2e03677d30-zip-1f7f2f.zip",
-                "reference": "b27f491309db5757816db672b256ea2e03677d30",
-                "shasum": "f40e64c55f35a377e2eed5d09c6f74dd4afe8ed6"
+                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-27575bcbc68db1f6d06218891296572c9b845704-zip-c3f713.zip",
+                "reference": "27575bcbc68db1f6d06218891296572c9b845704",
+                "shasum": "d5b76d976627043db889c4bc39ae4f3055d71a07"
             },
             "require": {
                 "php": ">=7.1.3",
@@ -7387,21 +7387,21 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2020-05-30T18:50:54+00:00"
+            "time": "2020-08-21T17:19:37+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v4.4.11",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "2727aa35fddfada1dd37599948528e9b152eb742"
+                "reference": "2a78590b2c7e3de5c429628457c47541c58db9c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/finder/symfony-finder-2727aa35fddfada1dd37599948528e9b152eb742-zip-12ef46.zip",
-                "reference": "2727aa35fddfada1dd37599948528e9b152eb742",
-                "shasum": "5e4de21aa5b645cf548cc181933722413df6449f"
+                "url": "https://composer.tiki.org/dist/symfony/finder/symfony-finder-2a78590b2c7e3de5c429628457c47541c58db9c7-zip-5fec42.zip",
+                "reference": "2a78590b2c7e3de5c429628457c47541c58db9c7",
+                "shasum": "58d44609f3a66161afc877edb75476df4119da55"
             },
             "require": {
                 "php": ">=7.1.3"
@@ -7436,7 +7436,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2020-07-05T09:39:30+00:00"
+            "time": "2020-08-17T09:56:45+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -8007,7 +8007,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.43",
+            "version": "v3.4.44",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -8056,17 +8056,17 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.43",
+            "version": "v3.4.44",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "e7fa05917ae931332a42d65b577ece4d497aad81"
+                "reference": "4152e36b0f305c2a57aa0233dee56ec27bca4f06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/yaml/symfony-yaml-e7fa05917ae931332a42d65b577ece4d497aad81-zip-36524f.zip",
-                "reference": "e7fa05917ae931332a42d65b577ece4d497aad81",
-                "shasum": "09654cb4ca0a31126684eea5ac8f2414e84b9325"
+                "url": "https://composer.tiki.org/dist/symfony/yaml/symfony-yaml-4152e36b0f305c2a57aa0233dee56ec27bca4f06-zip-24c75a.zip",
+                "reference": "4152e36b0f305c2a57aa0233dee56ec27bca4f06",
+                "shasum": "0e958c551785fd83859ab299f127ae8e2752cda7"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -8111,7 +8111,58 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2020-07-23T09:37:51+00:00"
+            "time": "2020-08-26T06:32:27+00:00"
+        },
+        {
+            "name": "teqneers/shamir",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/teqneers/shamir.git",
+                "reference": "d26e62a0e669653c8850992e4a40ff7db7249035"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/teqneers/shamir/zipball/d26e62a0e669653c8850992e4a40ff7db7249035",
+                "reference": "d26e62a0e669653c8850992e4a40ff7db7249035",
+                "shasum": ""
+            },
+            "require": {
+                "ext-bcmath": "*",
+                "php": ">=7.0.0",
+                "symfony/console": "^3.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.5 || ^7.5",
+                "roave/security-advisories": "dev-master"
+            },
+            "suggest": {
+                "ext-openssl": "For using its random generator instead of PHP one"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TQ\\Shamir\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stefan Gehrig",
+                    "email": "gehrig@teqneers.de",
+                    "homepage": "https://teqneers.de/"
+                },
+                {
+                    "name": "Oliver Müller",
+                    "email": "mueller@teqneers.de",
+                    "homepage": "https://teqneers.de/"
+                }
+            ],
+            "description": "This is Shamir's Shared Secret implementation in PHP. It allows you to create shared secrets using the PHP classes or the CLI interface.",
+            "time": "2020-05-10T16:02:01+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -8172,9 +8223,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/true/punycode/true-punycode-a4d0c11a36dd7f4e7cd7096076cab6d3378a071e-zip-4ceb35.zip",
+                "url": "https://api.github.com/repos/true/php-punycode/zipball/a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
                 "reference": "a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
-                "shasum": "0153b28196219934ea010de766dea03de32a7d89"
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0",
@@ -8614,9 +8665,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/fabpot/goutte/fabpot-goutte-4ab5199e3ec0ffde0ee0b5ecf568a4fb8398dbae-zip-208db9.zip",
+                "url": "https://api.github.com/repos/FriendsOfPHP/Goutte/zipball/4ab5199e3ec0ffde0ee0b5ecf568a4fb8398dbae",
                 "reference": "4ab5199e3ec0ffde0ee0b5ecf568a4fb8398dbae",
-                "shasum": "57622d134d0b5693c3de5d72d3f04b5600105eda"
+                "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^6.0",
@@ -10406,7 +10457,7 @@
         },
         {
             "name": "symfony/browser-kit",
-            "version": "v5.1.3",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/browser-kit.git",
@@ -10465,17 +10516,17 @@
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v5.1.3",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "a96aecb36aaf081f1b012e1e62d71f1069ab3dca"
+                "reference": "3ac31ffbc596e41ca081037b7d78fc7a853c0315"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/dom-crawler/symfony-dom-crawler-a96aecb36aaf081f1b012e1e62d71f1069ab3dca-zip-1e0929.zip",
-                "reference": "a96aecb36aaf081f1b012e1e62d71f1069ab3dca",
-                "shasum": "4ecb908d4d2320d6a80b83deca29a3cbf28ce2bd"
+                "url": "https://composer.tiki.org/dist/symfony/dom-crawler/symfony-dom-crawler-3ac31ffbc596e41ca081037b7d78fc7a853c0315-zip-a95b40.zip",
+                "reference": "3ac31ffbc596e41ca081037b7d78fc7a853c0315",
+                "shasum": "3f2de1167dbd7795a334dea5b3c05fcf6c484d08"
             },
             "require": {
                 "php": ">=7.2.5",
@@ -10523,7 +10574,7 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
-            "time": "2020-07-23T08:36:24+00:00"
+            "time": "2020-08-12T08:45:47+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -10635,6 +10686,7 @@
         "jason-munro/cypht": 20,
         "npm-asset/html2canvas": 5,
         "sorich87/bootstrap-tour": 20,
+        "teqneers/shamir": 20,
         "zendframework/zendsearch": 20,
         "gidkom/php-openfire-restapi": 20,
         "montefuscolo/xmpp": 20,
