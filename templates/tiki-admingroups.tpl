@@ -641,7 +641,7 @@
 					<table id="bannedMembers" class="table normal table-striped table-hover" data-count="{$bannedCount}">
 						<thead>
 						<tr>
-							<th id="checkbox" class="auto">{select_all checkbox_names='user[]'}</th>
+							<th id="checkbox" class="auto">{select_all checkbox_names='user[]' tablesorter="{$ts.enabled}"}</th>
 							<th id="user">{tr}User{/tr}</th>
 							<th id="unban">{tr}Unban user{/tr}</th>
 						</tr>
