@@ -800,6 +800,17 @@ CREATE TABLE `tiki_dynamic_variables` (
   `lang` VARCHAR(16) NULL
 ) ENGINE=MyISAM;
 
+DROP TABLE IF EXISTS `tiki_encryption_keys`;
+CREATE TABLE `tiki_encryption_keys` (
+  `keyId` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) NOT NULL,
+  `description` text NULL,
+  `algo` varchar(50) NOT NULL,
+  `shares` int(11) NOT NULL,
+  `secret` varchar(191) NOT NULL,
+  PRIMARY KEY  (`keyId`)
+) ENGINE=MyISAM;
+
 DROP TABLE IF EXISTS `tiki_extwiki`;
 CREATE TABLE `tiki_extwiki` (
   `extwikiId` int(12) NOT NULL auto_increment,

@@ -21,3 +21,33 @@ if ($prefs['feature_user_encryption'] == 'y') {
 	$smarty->assign('user_encryption_stat_openssl', $cryptlib->getUserCryptDataStats('openssl'));
 	$smarty->assign('user_encryption_stat_sodium', $cryptlib->getUserCryptDataStats('sodium'));
 }
+
+if (extension_loaded('openssl')) {
+  $servicelib = TikiLib::lib('service');
+  if (! empty($_REQUEST['encryption_key'])) {
+    $result = $servicelib->internal('encryption', 'get_key', ['keyId' => $_REQUEST['encryption_key']]);
+    $encryption_key = $result['key'];
+  } else {
+    $encryption_key = ['algo' => 'aes-256-ctr', 'shares' => 1];
+  }
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (! empty($_REQUEST['key_delete'])) {
+      $servicelib->internal('encryption', 'delete_key', ['keyId' => $_REQUEST['key_delete']]);
+    } elseif (! empty($_REQUEST['name'])) {
+      try {
+        $result = $servicelib->internal('encryption', 'save_key', new JitFilter($_REQUEST));
+        $smarty->assign('encryption_shares', $result['shares']);
+      } catch (Services_Exception $e) {
+        $smarty->assign('encryption_error', $e->getMessage());
+        $encryption_key = $_REQUEST;
+        $_REQUEST['encryption_key'] = $_REQUEST['keyId'];
+      }
+      $_POST['redirect'] = 0;
+    }
+  }
+  $encryption_keys = $servicelib->internal('encryption', 'get_keys');
+  $smarty->assign('encryption_enabled', 'y');
+  $smarty->assign('encryption_algos', openssl_get_cipher_methods());
+  $smarty->assign('encryption_key', $encryption_key);
+  $smarty->assign('encryption_keys', $encryption_keys);
+}
