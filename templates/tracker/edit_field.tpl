@@ -225,13 +225,13 @@ $('select[name=type]').change(function () {
 				</div>
 			{/if}
 			<div class="form-group row mx-0">
-				<label for="encryption_key_id" class="col-form-label">{tr}Encryption key{/tr}</label>
+				<label for="encryptionKey" class="col-form-label">{tr}Encryption key{/tr}</label>
 				{help url="Encryption"}
-				<select name="encryption_key_id" data-original="{$field.encryptionKeyId}" class="confirm-prompt form-control">
+				<select name="encryptionKey" data-original="{$field.encryptionKey}" class="confirm-prompt form-control">
 					<option value=""></option>
 					{foreach from=$encryption_keys item=key}
 						<option value="{$key.keyId|escape}"
-							{if $field.encryptionKeyId eq $key.keyId}selected="selected"{/if}>
+							{if $field.encryptionKey eq $key.keyId}selected="selected"{/if}>
 							{$key.name|escape}
 						</option>
 					{/foreach}
