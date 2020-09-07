@@ -86,7 +86,7 @@ class Services_Group_Controller
 			}
 			//after confirm submit - perform action and return success feedback
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			//filter out Admins group so it can't be deleted. Anonymous and Registered are protected from deletion in
 			//in the remove groups function
 			$fitems = array_diff($util->items, ['Admins']);
@@ -131,7 +131,7 @@ class Services_Group_Controller
 				Feedback::success($feedback2);
 			}
 			//return to page
-			return Services_Utilities::refresh($this->extra['referer']);
+			return Services_Utilities::refresh($util->extra['referer']);
 		}
 	}
 
@@ -173,7 +173,7 @@ class Services_Group_Controller
 			//after confirm submit - perform action and return feedback
 		} elseif ($util->checkCsrf()) {
 			//set parameters
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			$params = $this->prepareParameters($util->extra);
 			$userlib = TikiLib::lib('user');
 			//add group and inclusions
@@ -327,7 +327,7 @@ class Services_Group_Controller
 			//after confirm submit - perform action and return success feedback
 		} elseif ($util->checkCsrf()) {
 			//set parameters
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			$params = $this->prepareParameters($util->extra);
 			$success = $userlib->change_group(
 				$params['olgroup'],
@@ -435,7 +435,7 @@ class Services_Group_Controller
 				Services_Utilities::modalException(tra('Invalid password'));
 			}
 
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			$logslib = TikiLib::lib('logs');
 			foreach ($util->items as $user) {
 				$userlib->assign_user_to_group($user, $util->extra['group']);
@@ -512,7 +512,7 @@ class Services_Group_Controller
 				return Services_Utilities::closeModal();
 			}
 
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			$logslib = TikiLib::lib('logs');
 			foreach ($util->items as $user) {
 				$userlib->ban_user_from_group($user, $util->extra['group']);
@@ -565,7 +565,7 @@ class Services_Group_Controller
 			}
 			//after confirm submit - perform action and return success feedback
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			$userlib = TikiLib::lib('user');
 			$logslib = TikiLib::lib('logs');
 			foreach ($util->items as $user) {

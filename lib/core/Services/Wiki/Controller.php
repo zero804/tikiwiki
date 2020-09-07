@@ -108,7 +108,7 @@ class Services_Wiki_Controller
 
 
 	/**
-	 * Remvove pages action, either all versions (from tiki-listpages.php checkbox action) or last version
+	 * Remove pages action, either all versions (from tiki-listpages.php checkbox action) or last version
 	 * (page remove button or remove action for an individual page in page listing)
 	 *
 	 * @param $input
@@ -169,7 +169,7 @@ class Services_Wiki_Controller
 			}
 			//after confirm submit - perform action and return success feedback
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			$util->items = Perms::simpleFilter('wiki page', 'pageName', 'remove', $util->items);
 			//delete page
 			//checkbox in popup where user can change from all to last and vice versa
@@ -325,7 +325,7 @@ class Services_Wiki_Controller
 			}
 			//after confirm submit - perform action and return success feedback
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			Services_Exception_Denied::checkObject('remove', 'wiki page', $util->extra['page']);
 			//delete page
 			$histlib = TikiLib::lib('hist');
@@ -393,7 +393,7 @@ class Services_Wiki_Controller
 			}
 		//after confirm submit - perform action and return success feedback
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			$util->items = Perms::simpleFilter('wiki page', 'pageName', 'view', $util->items);
 			if (! empty($util->items)) {
 				return ['url' => 'tiki-print_multi_pages.php?print=y&printpages=' . urlencode(json_encode($util->items))];
@@ -430,7 +430,7 @@ class Services_Wiki_Controller
 			}
 		//after confirm submit - perform action
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			$util->items = Perms::simpleFilter('wiki page', 'pageName', 'view', $util->items);
 			if (! empty($util->items)) {
 				include_once 'lib/pdflib.php';
@@ -491,7 +491,7 @@ class Services_Wiki_Controller
 			}
 		//after confirm submit - perform action
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			$util->items = Perms::simpleFilter('wiki page', 'pageName', 'view', $util->items);
 			$errorpages = [];
 			foreach ($util->items as $page) {
@@ -581,7 +581,7 @@ class Services_Wiki_Controller
 			}
 			//after confirm submit - perform action
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			$admin = Perms::get()->admin_wiki;
 			global $user;
 			foreach ($util->items as $key => $page) {
@@ -661,7 +661,7 @@ class Services_Wiki_Controller
 			}
 		//after confirm submit - perform action
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			include_once('lib/wiki/xmllib.php');
 			$xmllib = new XmlLib;
 			$zipFile = 'dump/xml.zip';
@@ -707,7 +707,7 @@ class Services_Wiki_Controller
 			}
 		//after confirm submit - perform action
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			$errorpages = [];
 			foreach ($util->items as $page) {
 				$pageinfo = TikiLib::lib('tiki')->get_page_info($page);

@@ -222,49 +222,17 @@ class Services_Utilities
 		$this->extra = $input->asArray();
 		$this->action = $input->action->word();
 		$this->confirmController = $input->controller->alnumdash();
-		unset($this->extra['action'], $this->extra['controller'], $this->extra['modal']);
+		$this->toList = $input->asArray('toList');
+		unset(
+			$this->extra['action'],
+			$this->extra['controller'],
+			$this->extra['modal'],
+			$this->extra['toList']
+		);
 		if ($itemsOffset) {
 			$this->items = $input->asArray($itemsOffset);
 			$this->itemsCount = count($this->items);
 			unset($this->extra[$itemsOffset]);
-		}
-	}
-
-
-	function setDecodedVars(JitFilter &$input, array $filters = [])
-	{
-		//decode standard array values
-		//no filters until after json decoding
-		$offsets = ['items', 'extra', 'toList'];
-		$tempinput = [];
-		foreach ($offsets as $offset) {
-			if ($input->offsetExists($offset)) {
-				$tempinput[$offset] = json_decode($input->{$offset}->none(), true);
-				$input->offsetUnset($offset);
-			}
-		}
-		//convert into a JitFilter object
-		$tempinput = new JitFilter($tempinput);
-		$tempinput->setDefaultFilter('xss');
-		//apply standard filters
-		$tempinput->replaceFilters(['anchor' => 'striptags', 'referer' => 'striptags']);
-		$input->replaceFilters(['anchor' => 'striptags', 'referer' => 'striptags']);
-		//apply any filters specified in the method call
-		if (!empty($filters)) {
-			$tempinput->replaceFilters($filters);
-			$input->replaceFilters($filters);
-		}
-		foreach ($offsets as $offset) {
-			if ($tempinput->offsetExists($offset)) {
-				$this->{$offset} = $tempinput[$offset]->asArray();
-			}
-			if ($offset === 'items' && isset($tempinput[$offset])) {
-				$this->itemsCount = count($this->items);
-			}
-		}
-		if (! $input->offsetExists('anchor')) {
-			//so we can use anchor later without checking if it's empty
-			$input->offsetSet('anchor', '');
 		}
 	}
 

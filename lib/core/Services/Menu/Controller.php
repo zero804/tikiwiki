@@ -508,12 +508,7 @@ class Services_Menu_Controller
 		$input->replaceFilters(['menuId' => 'digits', 'referer' => 'url']);
 		$util = new Services_Utilities();
 		//get menu details
-		if ($input->offsetExists('menuId')) {
-			$menuId = $input['menuId'];
-		} else {
-			$util->setDecodedVars($input, ['menuId' => 'digits']);
-			$menuId = $util->extra['menuId'];
-		}
+		$menuId = $input['menuId'];
 		$menuDetails = $this->get_menu_details($menuId);
 
 		if (! $menuDetails['info']['menuId']) {

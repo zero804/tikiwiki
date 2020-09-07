@@ -14,7 +14,7 @@ class Services_User_Controller
 	private $lib;
 
 	/**
-	 * Filters for $input->replaceFilters() used in the Services_Utilities()->setVars and setDecodedVars methods
+	 * Filters for $input->replaceFilters() used in the Services_Utilities()->setVars method
 	 *
 	 * @var array
 	 */
@@ -25,6 +25,7 @@ class Services_User_Controller
 		'remove_items'		=> 'text',
 		'remove_files'		=> 'word',
 		'ban_users'			=> 'word',
+		'checked_groups'	=> 'groupname',
 		'groupremove'		=> 'groupname',
 		'defaultgroup'		=> 'text',
 		'add_remove'		=> 'word',
@@ -339,7 +340,7 @@ class Services_User_Controller
 			}
 		//after confirm submit - perform action and return success feedback
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			//delete user
 			// maybe delete page as well?
 			$remove_pages = ! empty($input['remove_pages']);
@@ -416,7 +417,7 @@ class Services_User_Controller
 			}
 		//after confirm submit - redirect to banning page with users preselected
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			$url = 'tiki-admin_banning.php?mass_ban_ip_users=' . implode('|', $util->items);
 			$feedback = ['mes' => tr('See highlighted section in the form below for users you have selected for banning.')];
 			Feedback::note($feedback);
@@ -504,7 +505,7 @@ class Services_User_Controller
 									'size' => '60'
 								]
 							]
-							],
+						],
 						'modal' => '1',
 						'userGroups' => str_replace(['\'','&'], ['%39;','%26'], json_encode($userGroups)),
 					];
@@ -522,7 +523,7 @@ class Services_User_Controller
 				Services_Utilities::modalException(tra('Invalid password'));
 			}
 
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 
 			// default group?
 			$defaultGroup = $input['default_group'];
@@ -655,7 +656,7 @@ class Services_User_Controller
 			}
 		//after confirm submit - perform action and return success feedback
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			$groups = isset($input['checked_groups']) ? $input->asArray('checked_groups')
 				: $input->asArray('toId');
 			if (! empty($util->items) && ! empty($groups)) {
@@ -731,7 +732,7 @@ class Services_User_Controller
 			}
 		//after confirm submit - perform action and return success feedback
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			$wikiTpl = $input['wikiTpl'];
 			$tikilib = TikiLib::lib('tiki');
 			$pageinfo = $tikilib->get_page_info($wikiTpl);
