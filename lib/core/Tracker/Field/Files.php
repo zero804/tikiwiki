@@ -816,7 +816,29 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 				'geo_file_format' => $typeFactory->identifier($this->getOption('indexGeometry')),
 			];
 		} else {
-			return parent::getDocumentPart($typeFactory);
+			$value = $this->getValue();
+			$baseKey = $this->getBaseKey();
+
+			$fileIds = array_filter(explode(',', $value));
+			$fileInfo = $this->getFileInfo($fileIds);
+
+			$names = [];
+			$fileNames = [];
+			$fileTypes = [];
+			foreach ($fileInfo as $info) {
+				$names[] = $info['name'];
+				$fileNames[] = $info['filename'];
+				$fileTypes[] = $info['filetype'];
+			}
+
+			$out = [
+				$baseKey => $typeFactory->identifier($value),
+				"{$baseKey}_names" => $typeFactory->multivalue($names),
+				"{$baseKey}_filenames" => $typeFactory->multivalue($fileNames),
+				"{$baseKey}_filetypes" => $typeFactory->multivalue($fileTypes),
+				"{$baseKey}_text" => $typeFactory->sortable(implode(" ", $names)),
+			];
+			return $out;
 		}
 	}
 
@@ -825,7 +847,15 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 		if ($this->getOption('indexGeometry') && $this->getValue()) {
 			return ['geo_located', 'geo_file', 'geo_file_format'];
 		} else {
-			return parent::getProvidedFields();
+			$baseKey = $this->getBaseKey();
+			$fields = [
+				$baseKey,
+				"{$baseKey}_text",
+				"{$baseKey}_names",
+				"{$baseKey}_filenames",
+				"{$baseKey}_filetypes",
+			];
+			return $fields;
 		}
 	}
 
@@ -834,7 +864,8 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 		if ($this->getOption('indexGeometry') && $this->getValue()) {
 			return [];
 		} else {
-			return parent::getGlobalFields();
+			$baseKey = $this->getBaseKey();
+			return ["{$baseKey}_text" => true];
 		}
 	}
 
