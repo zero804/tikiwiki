@@ -97,6 +97,7 @@ class CryptLib extends TikiLib
 		if (extension_loaded('sodium')) {
 			$this->hasSodium = true;
 			$this->prefprefix = 'du';
+			$this->key = $phraseMD5;
 		}
 
 		if (extension_loaded('openssl')) {
@@ -409,6 +410,7 @@ class CryptLib extends TikiLib
 
 		$this->convertMCryptDataToOpenSSL($user);
 		$this->convertOpenSSLDataToSodium($user);
+		$this->convertPendingEncryptionData($user);
 	}
 
 	// User has changed the password
@@ -483,9 +485,9 @@ class CryptLib extends TikiLib
 	private function encrypt($cleartext)
 	{
 		if ($this->hasSodiumCrypt()) {
-			$key = random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES);
+			$key = str_pad(substr($this->key, 0, SODIUM_CRYPTO_SECRETBOX_KEYBYTES), SODIUM_CRYPTO_SECRETBOX_KEYBYTES);
 			$nonce = random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
-			$crypttext = $key . sodium_crypto_secretbox($cleartext, $nonce, $key) . $nonce;
+			$crypttext = $nonce . sodium_crypto_secretbox($cleartext, $nonce, $key);
 		} elseif ($this->hasCrypt()) {
 			$ivSize = openssl_cipher_iv_length($this->cryptMethod);
 			$iv = openssl_random_pseudo_bytes($ivSize);
@@ -511,10 +513,10 @@ class CryptLib extends TikiLib
 	private function decrypt($crypttext)
 	{
 		if ($this->hasSodiumCrypt()) {
-			$key = trim(substr($crypttext, 0, SODIUM_CRYPTO_SECRETBOX_KEYBYTES));
-			$nonce = trim(substr($crypttext, -SODIUM_CRYPTO_SECRETBOX_NONCEBYTES));
-			$ciphertextLength = strlen($crypttext) - (SODIUM_CRYPTO_SECRETBOX_KEYBYTES + SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
-			$crypttext = trim(substr($crypttext, SODIUM_CRYPTO_SECRETBOX_KEYBYTES, $ciphertextLength));
+			$key = str_pad(substr($this->key, 0, SODIUM_CRYPTO_SECRETBOX_KEYBYTES), SODIUM_CRYPTO_SECRETBOX_KEYBYTES);
+			$nonce = trim(substr($crypttext, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES));
+			$ciphertextLength = strlen($crypttext) - SODIUM_CRYPTO_SECRETBOX_NONCEBYTES;
+			$crypttext = trim(substr($crypttext, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, $ciphertextLength));
 			$rawcleartext = sodium_crypto_secretbox_open($crypttext, $nonce, $key);
 		} elseif ($this->hasCrypt()) {
 			$ivSize = openssl_cipher_iv_length($this->cryptMethod);
@@ -664,6 +666,35 @@ class CryptLib extends TikiLib
 				$userPreferences = $this->table('tiki_user_preferences', false);
 				$userPreferences->delete(['user' => $login, 'prefName' => $orgPrefName]);
 			}
+		}
+	}
+
+	/**
+	 * Convert cleartext data scheduled for encryption
+	 *
+	 * @param $login
+	 * @return null
+	 */
+	private function convertPendingEncryptionData($login)
+	{
+		$this->init();
+
+		$query = 'SELECT `prefName` , `value` FROM `tiki_user_preferences` WHERE `prefName` like \'pe.%\' and  `user` = ?';
+		$result = $this->query($query, [$login]);
+
+		while ($row = $result->fetchRow()) {
+			$orgPrefName = $row['prefName'];
+			$cleartext = $row['value'];
+
+			// Strip ds. from prefName
+			$prefName = str_replace('pe.', '', $orgPrefName);
+
+			// Add new encrypted user data
+			$this->setUserData($prefName, $cleartext);
+
+			// Delete old cleartext user data
+			$userPreferences = $this->table('tiki_user_preferences', false);
+			$userPreferences->delete(['user' => $login, 'prefName' => $orgPrefName]);
 		}
 	}
 }
