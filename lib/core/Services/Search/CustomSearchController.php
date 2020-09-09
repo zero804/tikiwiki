@@ -120,6 +120,8 @@ class Services_Search_CustomSearchController
 						$filter = 'categories';
 					} elseif ($name == 'daterange') {
 						$filter = 'daterange';
+					} elseif ($config['_filter'] === 'multivalue') {
+						$filter = 'multivalue';
 					} elseif ($name == 'distance') {
 						$filter = 'distance';
 						if (! $input->sort_mode->text()) {
@@ -211,6 +213,16 @@ class Services_Search_CustomSearchController
 			} elseif ($value) {
 				$query->filterLanguage($value);
 			}
+		}
+	}
+
+	private function cs_dataappend_multivalue(Search_Query $query, $config, $value)
+	{
+		if (! empty($config['_value'])) {
+			$value = $config['_value'];
+			$query->filterMultivalue($value, $config['_field']);
+		} elseif ($value) {
+			$query->filterMultivalue($value, $config['_field']);
 		}
 	}
 
