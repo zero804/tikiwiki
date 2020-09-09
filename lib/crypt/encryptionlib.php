@@ -39,6 +39,11 @@ class EncryptionLib extends TikiDb_Bridge
 
 	function delete_key($keyId)
 	{
-		return $this->encryption_keys->delete(['keyId' => $keyId]);
+		$this->encryption_keys->delete(['keyId' => $keyId]);
+
+		$userPreferences = $this->table('tiki_user_preferences', false);
+		$userPreferences->deleteMultiple(['prefName' => $userPreferences->expr('$$ LIKE ?', ['%.sk.'.$keyId])]);
+
+		return true;
 	}
 }
