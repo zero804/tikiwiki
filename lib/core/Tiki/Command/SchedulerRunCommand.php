@@ -9,9 +9,11 @@ namespace Tiki\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Logger\ConsoleLogger;
 use Psr\Log\LogLevel;
+use TikiInit;
 
 class SchedulerRunCommand extends Command
 {
@@ -19,7 +21,13 @@ class SchedulerRunCommand extends Command
 	{
 		$this
 			->setName('scheduler:run')
-			->setDescription('Run scheduled tasks');
+			->setDescription('Run scheduled tasks')
+			->addOption(
+				'skip-check-user',
+				null,
+				InputOption::VALUE_NONE,
+				'Skip system user check that is running the scheduler'
+			);
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output)
@@ -39,8 +47,12 @@ class SchedulerRunCommand extends Command
 		];
 
 		$logger = new ConsoleLogger($output, $verbosityLevelMap);
-
 		$manager = new \Scheduler_Manager($logger);
+
+		if (! $input->getOption('skip-check-user') && ! TikiInit::isWindows() && function_exists('posix_getuid')) {
+			$manager->setHasTempFolderOwnership(posix_getuid() === fileowner(TIKI_PATH . '/temp/cache'));
+		}
+
 		$manager->run();
 	}
 }
