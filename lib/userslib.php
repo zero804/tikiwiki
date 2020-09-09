@@ -8722,6 +8722,39 @@ class UsersLib extends TikiLib
 			$this->remove_user($uname);
 		}
 	}
+
+	/**
+	 * Helper method to extract a list of Tiki users from string input like
+	 * the form submitted data from smarty_function_user_selector
+	 * @param string $list The list of users
+	 * @param boolean $realnames_check Should we perform a check on real names against usernames
+	 */
+	function extract_users($list, $realnames_check)
+	{
+		if (! is_array($list)) {
+			$list = TikiLib::lib('trk')->parse_user_field($list);
+		}
+		$users = [];
+		foreach ($list as $user) {
+			if ($this->user_exists($user)) {
+				$users[] = $user;
+			} elseif ($user) {
+				$finaluser = null;
+				if ($realnames_check) {
+					$finalusers = $this->find_best_user([$user], '', 'login');
+					if (! empty($finalusers[0])) {
+						$finaluser = $finalusers[0];
+					}
+				}
+				if (empty($finaluser) && $user !== '-Blank (no data)-') {
+					Feedback::error(tr('User "%0" not found', $user));
+				} else {
+					$users[] = $finaluser;
+				}
+			}
+		}
+		return array_values(array_unique($users));
+	}
 }
 
 

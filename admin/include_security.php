@@ -24,6 +24,8 @@ if ($prefs['feature_user_encryption'] == 'y') {
 
 if (extension_loaded('openssl')) {
   $servicelib = TikiLib::lib('service');
+  // TODO: decrypt this way
+  // $servicelib->internal('encryption', 'decrypt_key', new JitFilter(['keyId' => 18]));
   if (! empty($_REQUEST['encryption_key'])) {
     $result = $servicelib->internal('encryption', 'get_key', ['keyId' => $_REQUEST['encryption_key']]);
     $encryption_key = $result['key'];
@@ -46,6 +48,14 @@ if (extension_loaded('openssl')) {
     }
   }
   $encryption_keys = $servicelib->internal('encryption', 'get_keys');
+  if (! empty($encryption_key['keyId'])) {
+    $share = $servicelib->internal('encryption', 'get_share_for_key', ['keyId' => $encryption_key['keyId']]);
+    if ($share) {
+      $smarty->assign('encryption_setup', 'y');
+    } else {
+      $smarty->assign('encryption_setup', 'n');
+    }
+  }
   $smarty->assign('encryption_enabled', 'y');
   $smarty->assign('encryption_algos', openssl_get_cipher_methods());
   $smarty->assign('encryption_key', $encryption_key);

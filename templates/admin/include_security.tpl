@@ -289,7 +289,7 @@
 			{/if}
 			{if $encryption_shares}
 				{remarksbox type="warning" title="{tr}Encryption keys{/tr}"}
-					{tr}Encryption key has been generated. Accessing content encrypted with the key would only be possible if you use one of the following requested keys. Make sure you copy and send them to the right team members as these won't be saved on the server. Each of the following keys can be used to encrypt and decrypt data.{/tr}<br>
+					{tr}Encryption key has been generated. Accessing content encrypted with the key would only be possible if you use one of the following requested keys. If you chose existing users, the keys are stored securely in their accounts. Otherwise, make sure you copy and send them to the right team members as these won't be saved on the server. Each of the following keys can be used to encrypt and decrypt data.{/tr}<br>
 					<ol>
 						{foreach $encryption_shares as $key}
 							<li>{$key}</li>
@@ -308,6 +308,7 @@
 									<th>{tr}Description{/tr}</th>
 									<th>{tr}Algorithm{/tr}</th>
 									<th>{tr}Number of shares{/tr}</th>
+									<th>{tr}Users{/tr}</th>
 									<th>{tr}Encrypted items{/tr}</th>
 									<th>{tr}Edit{/tr}</th>
 									<th>{tr}Delete{/tr}</th>
@@ -325,6 +326,9 @@
 										</td>
 										<td>
 											{$key.shares}
+										</td>
+										<td>
+											{$key.users}
 										</td>
 										<td>
 											TODO
@@ -396,11 +400,12 @@
 							</label>
 							<div class="col-sm-8">
 								<input type="checkbox" name="regenerate" id="regenerate" value="1">
-								<a class="tikihelp text-info" title="{tr}Regenerate shares:{/tr} {tr}Enabling this option will create new secret shares with the defined number of shares. Old shares will no longer be valid, so you will need to distribute the new shares to team members again. Data encrypted with existing key will stay intact and new shares will be able to decrypt it. No data loss occurs as long as you keep the shared keys known. Use this option to increase or decrease the number of people with shared keys for this domain.{/tr}">
+								<a class="tikihelp text-info" title="{tr}Regenerate shares:{/tr} {tr}Enabling this option will create new secret shares with the defined number of shares. Old shares will no longer be valid, so you will need to distribute the new shares to team members again. Data encrypted with existing key will stay intact and new shares will be able to decrypt it. No data loss occurs as long as you keep the shared keys known. Use this option to increase or decrease the number of people with shared keys for this domain. If User Encryption is turned on, newly generated keys will be automatically saved to relevant user accounts.{/tr}">
 									{icon name=information}
 								</a>
 							</div>
 						</div><br>
+						{if $encryption_setup neq 'y'}
 						<div class="form-group row" id="old_share_container" style="display:none">
 							<label class="col-form-label col-sm-4" for="old_share">
 								{tr}Old shared key{/tr}
@@ -417,6 +422,20 @@
 							<br>
 						</div>
 						{/if}
+						{/if}
+						<div class="form-group row">
+							<label class="col-form-label col-sm-4" for="shares">
+								{tr}Users to share with{/tr}
+							</label>
+							<div class="col-sm-8">
+								{if $prefs.feature_user_encryption eq 'y'}
+									{capture assign="editable"}{if $encryption_key.keyId}{else}y{/if}{/capture}
+									{user_selector editable='y' multiple='true' name='users' class='form-control' user=$encryption_key.users editable=$editable}
+								{else}
+									Depends on "User encryption".
+								{/if}
+							</div>
+						</div><br>
 						<div class="form-group row">
 							<label class="col-form-label col-sm-4" for="algo">
 								{tr}Encryption algorithm{/tr}
@@ -432,6 +451,7 @@
 								</select>
 							</div>
 						</div><br>
+						{if $prefs.feature_user_encryption neq 'y'}
 						<div class="form-group row">
 							<label class="col-form-label col-sm-4" for="shares">
 								{tr}No. of people to share{/tr}
@@ -440,6 +460,7 @@
 								<input type="number" min="1" class="form-control" name="shares" id="shares" value="{$encryption_key.shares|escape}" {if $encryption_key.keyId}disabled{/if}>
 							</div>
 						</div><br>
+						{/if}
 					</fieldset>
 					{/tab}
 			{/tabset}

@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS `tiki_encryption_keys` (
   `description` text NULL,
   `algo` varchar(50) NOT NULL,
   `shares` int(11) NOT NULL,
+  `users` text NULL,
   `secret` varchar(191) NOT NULL,
   PRIMARY KEY  (`keyId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;

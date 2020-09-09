@@ -134,29 +134,8 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 		if (isset($requestData[$ins_id])) {
 			if ($autoassign == 0 || $this->canChangeValue()) {
 				$ausers = $requestData[$ins_id];
-				if (! is_array($ausers)) {
-					$ausers = TikiLib::lib('trk')->parse_user_field($ausers);
-				}
-				$userlib = TikiLib::lib('user');
-				$users = [];
-				foreach ($ausers as $auser) {
-					if ($userlib->user_exists($auser)) {
-						$users[] = $auser;
-					} elseif ($auser) {
-						$finaluser = null;
-						if ($prefs['user_selector_realnames_tracker'] == 'y' && $this->getOption('showRealname')) {
-							$finalusers = $userlib->find_best_user([$auser], '', 'login');
-							if (! empty($finalusers[0])) {
-								$finaluser = $finalusers[0];
-							}
-						}
-						if (empty($finaluser) && $auser !== '-Blank (no data)-') {
-							Feedback::error(tr('User "%0" not found', $auser));
-						} else {
-							$users[] = $finaluser;
-						}
-					}
-				}
+				$realnames_check = $prefs['user_selector_realnames_tracker'] == 'y' && $this->getOption('showRealname');
+				$users = TikiLib::lib('user')->extract_users($ausers, $realnames_check);
 				if ($this->getOption('multiple')) {
 					$data['value'] = TikiLib::lib('tiki')->str_putcsv($users);
 				} elseif (isset($users[0])) {
