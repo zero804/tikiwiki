@@ -2992,6 +2992,10 @@ class UsersLib extends TikiLib
 		}
 
 		$info = $this->get_page_info($page);
+		if (empty($info)) {
+			return $page;
+		}
+
 		$multilinguallib = TikiLib::lib('multilingual');
 		$bestLangPageId = $multilinguallib->selectLangObj('wiki page', $info['page_id'], $prefs['language']);
 

@@ -99,6 +99,10 @@ class UserPrefsLib extends TikiLib
 		global $tikidomainslash;
 
 		$info = $this->get_user_avatar_img($user);
+		if (empty($info)) {
+			return 'img/noavatar.png';
+		}
+
 		$type = $info["avatarFileType"];
 		$content = $info["avatarData"];
 
