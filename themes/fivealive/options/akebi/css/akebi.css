@@ -291,35 +291,35 @@ footer#footer .footer_liner {
   background-repeat: no-repeat; }
 .bg-primary {
   background-color: #1174a5 !important; }
-  a.bg-primary:hover, button.bg-primary:hover, a.bg-primary:focus, button.bg-primary:focus {
+  a.bg-primary:hover, a.bg-primary:focus, button.bg-primary:hover, button.bg-primary:focus {
     background-color: #0c5377 !important; }
 .bg-secondary {
   background-color: #6400a5 !important; }
-  a.bg-secondary:hover, button.bg-secondary:hover, a.bg-secondary:focus, button.bg-secondary:focus {
+  a.bg-secondary:hover, a.bg-secondary:focus, button.bg-secondary:hover, button.bg-secondary:focus {
     background-color: #450072 !important; }
 .bg-success {
   background-color: #3fa533 !important; }
-  a.bg-success:hover, button.bg-success:hover, a.bg-success:focus, button.bg-success:focus {
+  a.bg-success:hover, a.bg-success:focus, button.bg-success:hover, button.bg-success:focus {
     background-color: #307e27 !important; }
 .bg-info {
   background-color: #4d3a7d !important; }
-  a.bg-info:hover, button.bg-info:hover, a.bg-info:focus, button.bg-info:focus {
+  a.bg-info:hover, a.bg-info:focus, button.bg-info:hover, button.bg-info:focus {
     background-color: #382a5a !important; }
 .bg-warning {
   background-color: #c3a124 !important; }
-  a.bg-warning:hover, button.bg-warning:hover, a.bg-warning:focus, button.bg-warning:focus {
+  a.bg-warning:hover, a.bg-warning:focus, button.bg-warning:hover, button.bg-warning:focus {
     background-color: #987d1c !important; }
 .bg-danger {
   background-color: #c3631f !important; }
-  a.bg-danger:hover, button.bg-danger:hover, a.bg-danger:focus, button.bg-danger:focus {
+  a.bg-danger:hover, a.bg-danger:focus, button.bg-danger:hover, button.bg-danger:focus {
     background-color: #974d18 !important; }
 .bg-light {
   background-color: #dee2e6 !important; }
-  a.bg-light:hover, button.bg-light:hover, a.bg-light:focus, button.bg-light:focus {
+  a.bg-light:hover, a.bg-light:focus, button.bg-light:hover, button.bg-light:focus {
     background-color: #c1c9d0 !important; }
 .bg-dark {
   background-color: #18a3bb !important; }
-  a.bg-dark:hover, button.bg-dark:hover, a.bg-dark:focus, button.bg-dark:focus {
+  a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     background-color: #127c8e !important; }
 .bg-gradient-primary {
   background: #1174a5 linear-gradient(180deg, #3589b3, #1174a5) repeat-x !important; }
@@ -1281,26 +1281,26 @@ footer#footer .footer_liner {
     .btn-outline-dark:not(:disabled):not(.disabled):active:focus, .btn-outline-dark:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-dark.dropdown-toggle:focus {
       box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125), 0 0 0 0.2rem rgba(24, 163, 187, 0.5); }
 
-.tiki.tiki-webmail a:not(.btn), .tiki.tiki-cypht a:not(.btn), .tiki.mobile.tiki-cypht a:not(.btn), .tiki .inline-cypht a:not(.btn), .tiki.tiki-webmail a:not(.dropdown-item) .icon, .tiki.tiki-cypht a:not(.dropdown-item) .icon, .tiki.mobile.tiki-cypht a:not(.dropdown-item) .icon, .tiki .inline-cypht a:not(.dropdown-item) .icon, .tiki.tiki-webmail .btn-link, .tiki.tiki-cypht .btn-link, .tiki.mobile.tiki-cypht .btn-link, .tiki .inline-cypht .btn-link {
+.tiki.tiki-webmail a:not(.btn), .tiki.tiki-webmail a:not(.dropdown-item) .icon, .tiki.tiki-webmail .btn-link, .tiki.tiki-cypht a:not(.btn), .tiki.tiki-cypht a:not(.dropdown-item) .icon, .tiki.tiki-cypht .btn-link, .tiki.mobile.tiki-cypht a:not(.btn), .tiki.mobile.tiki-cypht a:not(.dropdown-item) .icon, .tiki.mobile.tiki-cypht .btn-link, .tiki .inline-cypht a:not(.btn), .tiki .inline-cypht a:not(.dropdown-item) .icon, .tiki .inline-cypht .btn-link {
   color: #0b8a98 !important; }
-  .tiki.tiki-webmail a:not(.btn):hover, .tiki.tiki-cypht a:not(.btn):hover, .tiki.mobile.tiki-cypht a:not(.btn):hover, .tiki .inline-cypht a:not(.btn):hover, .tiki.tiki-webmail a:not(.dropdown-item) .icon:hover, .tiki.tiki-cypht a:not(.dropdown-item) .icon:hover, .tiki.mobile.tiki-cypht a:not(.dropdown-item) .icon:hover, .tiki .inline-cypht a:not(.dropdown-item) .icon:hover, .tiki.tiki-webmail .btn-link:hover, .tiki.tiki-cypht .btn-link:hover, .tiki.mobile.tiki-cypht .btn-link:hover, .tiki .inline-cypht .btn-link:hover {
+  .tiki.tiki-webmail a:not(.btn):hover, .tiki.tiki-webmail a:not(.dropdown-item) .icon:hover, .tiki.tiki-webmail .btn-link:hover, .tiki.tiki-cypht a:not(.btn):hover, .tiki.tiki-cypht a:not(.dropdown-item) .icon:hover, .tiki.tiki-cypht .btn-link:hover, .tiki.mobile.tiki-cypht a:not(.btn):hover, .tiki.mobile.tiki-cypht a:not(.dropdown-item) .icon:hover, .tiki.mobile.tiki-cypht .btn-link:hover, .tiki .inline-cypht a:not(.btn):hover, .tiki .inline-cypht a:not(.dropdown-item) .icon:hover, .tiki .inline-cypht .btn-link:hover {
     color: #18a3bb !important; }
-.tiki.tiki-webmail .card-body .nav-link, .tiki.tiki-cypht .card-body .nav-link, .tiki.mobile.tiki-cypht .card-body .nav-link, .tiki .inline-cypht .card-body .nav-link, .tiki.tiki-webmail .card-body .nav-link small, .tiki.tiki-cypht .card-body .nav-link small, .tiki.mobile.tiki-cypht .card-body .nav-link small, .tiki .inline-cypht .card-body .nav-link small {
+.tiki.tiki-webmail .card-body .nav-link, .tiki.tiki-webmail .card-body .nav-link small, .tiki.tiki-cypht .card-body .nav-link, .tiki.tiki-cypht .card-body .nav-link small, .tiki.mobile.tiki-cypht .card-body .nav-link, .tiki.mobile.tiki-cypht .card-body .nav-link small, .tiki .inline-cypht .card-body .nav-link, .tiki .inline-cypht .card-body .nav-link small {
   color: #0b8a98 !important; }
 .tiki.tiki-webmail .dropdown-menu, .tiki.tiki-cypht .dropdown-menu, .tiki.mobile.tiki-cypht .dropdown-menu, .tiki .inline-cypht .dropdown-menu {
   background-color: #087f93 !important;
   border-color: rgba(0, 0, 0, 0.15) !important; }
-  .tiki.tiki-webmail .dropdown-menu .dropdown-item, .tiki.tiki-cypht .dropdown-menu .dropdown-item, .tiki.mobile.tiki-cypht .dropdown-menu .dropdown-item, .tiki .inline-cypht .dropdown-menu .dropdown-item, .tiki.tiki-webmail .dropdown-menu .dropdown-item .icon, .tiki.tiki-cypht .dropdown-menu .dropdown-item .icon, .tiki.mobile.tiki-cypht .dropdown-menu .dropdown-item .icon, .tiki .inline-cypht .dropdown-menu .dropdown-item .icon {
+  .tiki.tiki-webmail .dropdown-menu .dropdown-item, .tiki.tiki-webmail .dropdown-menu .dropdown-item .icon, .tiki.tiki-cypht .dropdown-menu .dropdown-item, .tiki.tiki-cypht .dropdown-menu .dropdown-item .icon, .tiki.mobile.tiki-cypht .dropdown-menu .dropdown-item, .tiki.mobile.tiki-cypht .dropdown-menu .dropdown-item .icon, .tiki .inline-cypht .dropdown-menu .dropdown-item, .tiki .inline-cypht .dropdown-menu .dropdown-item .icon {
     color: #ffffff !important; }
-    .tiki.tiki-webmail .dropdown-menu .dropdown-item:hover, .tiki.tiki-cypht .dropdown-menu .dropdown-item:hover, .tiki.mobile.tiki-cypht .dropdown-menu .dropdown-item:hover, .tiki .inline-cypht .dropdown-menu .dropdown-item:hover, .tiki.tiki-webmail .dropdown-menu .dropdown-item:focus, .tiki.tiki-cypht .dropdown-menu .dropdown-item:focus, .tiki.mobile.tiki-cypht .dropdown-menu .dropdown-item:focus, .tiki .inline-cypht .dropdown-menu .dropdown-item:focus, .tiki.tiki-webmail .dropdown-menu .dropdown-item:hover .icon, .tiki.tiki-cypht .dropdown-menu .dropdown-item:hover .icon, .tiki.mobile.tiki-cypht .dropdown-menu .dropdown-item:hover .icon, .tiki .inline-cypht .dropdown-menu .dropdown-item:hover .icon, .tiki.tiki-webmail .dropdown-menu .dropdown-item:focus .icon, .tiki.tiki-cypht .dropdown-menu .dropdown-item:focus .icon, .tiki.mobile.tiki-cypht .dropdown-menu .dropdown-item:focus .icon, .tiki .inline-cypht .dropdown-menu .dropdown-item:focus .icon {
+    .tiki.tiki-webmail .dropdown-menu .dropdown-item:hover, .tiki.tiki-webmail .dropdown-menu .dropdown-item:hover .icon, .tiki.tiki-webmail .dropdown-menu .dropdown-item:focus, .tiki.tiki-webmail .dropdown-menu .dropdown-item:focus .icon, .tiki.tiki-cypht .dropdown-menu .dropdown-item:hover, .tiki.tiki-cypht .dropdown-menu .dropdown-item:hover .icon, .tiki.tiki-cypht .dropdown-menu .dropdown-item:focus, .tiki.tiki-cypht .dropdown-menu .dropdown-item:focus .icon, .tiki.mobile.tiki-cypht .dropdown-menu .dropdown-item:hover, .tiki.mobile.tiki-cypht .dropdown-menu .dropdown-item:hover .icon, .tiki.mobile.tiki-cypht .dropdown-menu .dropdown-item:focus, .tiki.mobile.tiki-cypht .dropdown-menu .dropdown-item:focus .icon, .tiki .inline-cypht .dropdown-menu .dropdown-item:hover, .tiki .inline-cypht .dropdown-menu .dropdown-item:hover .icon, .tiki .inline-cypht .dropdown-menu .dropdown-item:focus, .tiki .inline-cypht .dropdown-menu .dropdown-item:focus .icon {
       color: #f2f2f2 !important; }
 .tiki.tiki-webmail .form-control, .tiki.tiki-cypht .form-control, .tiki.mobile.tiki-cypht .form-control, .tiki .inline-cypht .form-control {
   background-color: #ddf8f9 !important;
   border-color: #b4f3fb !important;
   color: #555555 !important; }
-  .tiki.tiki-webmail .nav-tabs .nav-link, .tiki.tiki-cypht .nav-tabs .nav-link, .tiki.mobile.tiki-cypht .nav-tabs .nav-link, .tiki .inline-cypht .nav-tabs .nav-link, .tiki.tiki-webmail .nav-tabs .nav-link .icon, .tiki.tiki-cypht .nav-tabs .nav-link .icon, .tiki.mobile.tiki-cypht .nav-tabs .nav-link .icon, .tiki .inline-cypht .nav-tabs .nav-link .icon, .tiki.tiki-webmail .nav-tabs .nav-link .icon:hover, .tiki.tiki-cypht .nav-tabs .nav-link .icon:hover, .tiki.mobile.tiki-cypht .nav-tabs .nav-link .icon:hover, .tiki .inline-cypht .nav-tabs .nav-link .icon:hover {
+  .tiki.tiki-webmail .nav-tabs .nav-link, .tiki.tiki-webmail .nav-tabs .nav-link .icon, .tiki.tiki-webmail .nav-tabs .nav-link .icon:hover, .tiki.tiki-cypht .nav-tabs .nav-link, .tiki.tiki-cypht .nav-tabs .nav-link .icon, .tiki.tiki-cypht .nav-tabs .nav-link .icon:hover, .tiki.mobile.tiki-cypht .nav-tabs .nav-link, .tiki.mobile.tiki-cypht .nav-tabs .nav-link .icon, .tiki.mobile.tiki-cypht .nav-tabs .nav-link .icon:hover, .tiki .inline-cypht .nav-tabs .nav-link, .tiki .inline-cypht .nav-tabs .nav-link .icon, .tiki .inline-cypht .nav-tabs .nav-link .icon:hover {
     color: #000 !important; }
-.tiki.tiki-webmail .nav-tabs .nav-link.active, .tiki.tiki-cypht .nav-tabs .nav-link.active, .tiki.mobile.tiki-cypht .nav-tabs .nav-link.active, .tiki .inline-cypht .nav-tabs .nav-link.active, .tiki.tiki-webmail .nav-tabs .nav-item.show .nav-link, .tiki.tiki-cypht .nav-tabs .nav-item.show .nav-link, .tiki.mobile.tiki-cypht .nav-tabs .nav-item.show .nav-link, .tiki .inline-cypht .nav-tabs .nav-item.show .nav-link, .tiki.tiki-webmail .nav-tabs .nav-link.active .icon, .tiki.tiki-cypht .nav-tabs .nav-link.active .icon, .tiki.mobile.tiki-cypht .nav-tabs .nav-link.active .icon, .tiki .inline-cypht .nav-tabs .nav-link.active .icon, .tiki.tiki-webmail .nav-tabs .nav-item.show .nav-link .icon, .tiki.tiki-cypht .nav-tabs .nav-item.show .nav-link .icon, .tiki.mobile.tiki-cypht .nav-tabs .nav-item.show .nav-link .icon, .tiki .inline-cypht .nav-tabs .nav-item.show .nav-link .icon {
+.tiki.tiki-webmail .nav-tabs .nav-link.active, .tiki.tiki-webmail .nav-tabs .nav-link.active .icon, .tiki.tiki-webmail .nav-tabs .nav-item.show .nav-link, .tiki.tiki-webmail .nav-tabs .nav-item.show .nav-link .icon, .tiki.tiki-cypht .nav-tabs .nav-link.active, .tiki.tiki-cypht .nav-tabs .nav-link.active .icon, .tiki.tiki-cypht .nav-tabs .nav-item.show .nav-link, .tiki.tiki-cypht .nav-tabs .nav-item.show .nav-link .icon, .tiki.mobile.tiki-cypht .nav-tabs .nav-link.active, .tiki.mobile.tiki-cypht .nav-tabs .nav-link.active .icon, .tiki.mobile.tiki-cypht .nav-tabs .nav-item.show .nav-link, .tiki.mobile.tiki-cypht .nav-tabs .nav-item.show .nav-link .icon, .tiki .inline-cypht .nav-tabs .nav-link.active, .tiki .inline-cypht .nav-tabs .nav-link.active .icon, .tiki .inline-cypht .nav-tabs .nav-item.show .nav-link, .tiki .inline-cypht .nav-tabs .nav-item.show .nav-link .icon {
   color: #fff !important; }
 .tiki.tiki-webmail .btn-primary, .tiki.tiki-cypht .btn-primary, .tiki.mobile.tiki-cypht .btn-primary, .tiki .inline-cypht .btn-primary {
   border-color: #148599 !important; }

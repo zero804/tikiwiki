@@ -293,11 +293,11 @@ footer#footer .footer_liner {
   background: url('../images/siteheader.png') calc(50% - 400px) 0 no-repeat; }
   .bg-light {
     background-color: #ffffff !important; }
-    a.bg-light:hover, button.bg-light:hover, a.bg-light:focus, button.bg-light:focus {
+    a.bg-light:hover, a.bg-light:focus, button.bg-light:hover, button.bg-light:focus {
       background-color: #e6e6e6 !important; }
   .bg-dark {
     background-color: #313109 !important; }
-    a.bg-dark:hover, button.bg-dark:hover, a.bg-dark:focus, button.bg-dark:focus {
+    a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
       background-color: #060601 !important; }
   .bg-gradient-light {
     background: #ffffff linear-gradient(180deg, white, #ffffff) repeat-x !important; }
