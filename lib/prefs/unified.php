@@ -55,6 +55,7 @@ function prefs_unified_list()
 				'browser' => tra('Use default behavior of the browser (browsers have different behaviors)'),
 			],
 			'default' => 'none',
+			'keywords' => 'wheel',
 		],
 		'unified_default_content' => [
 			'name' => tra('Default content fields'),
