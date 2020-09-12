@@ -421,7 +421,7 @@ abstract class Tracker_Field_Abstract implements Tracker_Field_Interface, Tracke
 	 * @param mixed $default the field value used if none is set
 	 * @return mixed field value
 	 */
-	protected function getValue($default = '')
+	public function getValue($default = '')
 	{
 		$key = $this->getConfiguration('fieldId');
 

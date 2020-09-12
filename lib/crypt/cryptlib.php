@@ -112,6 +112,7 @@ class CryptLib extends TikiLib
 			$this->mcrypt = mcrypt_module_open(MCRYPT_RIJNDAEL_256, '', 'cbc', '');
 		}
 	}
+
 	function makeCryptPhrase($username, $cleartextPwd)
 	{
 		return md5($username . $cleartextPwd);
@@ -129,6 +130,19 @@ class CryptLib extends TikiLib
 		}
 	}
 
+	function generateKey($algo)
+	{
+		if (extension_loaded('sodium')) {
+			return random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES);
+		}
+
+		if (extension_loaded('openssl')) {
+			$keylen = openssl_cipher_iv_length($algo);
+			return openssl_random_pseudo_bytes($keylen);
+		}
+
+		throw new Exception(tra('No encryption extension found.'));
+	}
 
 	//
 	// Test/Check utilities
@@ -349,7 +363,7 @@ class CryptLib extends TikiLib
 
 	// Encrypt data
 	// Return encrypted data, or false on error
-	private function encryptData($cleartextData)
+	public function encryptData($cleartextData)
 	{
 		if (empty($cleartextData)) {
 			return false;
@@ -379,7 +393,7 @@ class CryptLib extends TikiLib
 
 	// Decrypt data
 	// Return cleartext data, or false on error
-	private function decryptData($cryptData64)
+	public function decryptData($cryptData64)
 	{
 		if (empty($cryptData64)) {
 			return false;
@@ -514,7 +528,7 @@ class CryptLib extends TikiLib
 	{
 		if ($this->hasSodiumCrypt()) {
 			$key = str_pad(substr($this->key, 0, SODIUM_CRYPTO_SECRETBOX_KEYBYTES), SODIUM_CRYPTO_SECRETBOX_KEYBYTES);
-			$nonce = trim(substr($crypttext, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES));
+			$nonce = substr($crypttext, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
 			$ciphertextLength = strlen($crypttext) - SODIUM_CRYPTO_SECRETBOX_NONCEBYTES;
 			$crypttext = trim(substr($crypttext, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, $ciphertextLength));
 			$rawcleartext = sodium_crypto_secretbox_open($crypttext, $nonce, $key);

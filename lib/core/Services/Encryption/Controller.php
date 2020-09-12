@@ -43,8 +43,7 @@ class Services_Encryption_Controller
 			if ($users) {
 				$data['shares'] = count($users);
 			}
-			$keylen = openssl_cipher_iv_length($data['algo']);
-			$key = openssl_random_pseudo_bytes($keylen);
+			$key = TikiLib::lib('crypt')->generateKey($data['algo']);
 			$shares = $this->share($key, $data);
 		} else {
 			$data = [
@@ -126,6 +125,11 @@ class Services_Encryption_Controller
 			throw new Services_Exception_Denied($e->getMessage());
 		}
 		return $key;
+	}
+
+	function action_get_encrypted_fields()
+	{
+		return $this->encryptionlib->get_encrypted_fields();
 	}
 
 	private function share($key, &$data)

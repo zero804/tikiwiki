@@ -431,6 +431,7 @@ class Services_Tracker_Controller
 				'permName' => $permName,
 				'type' => $type,
 				'rules' => $rules,
+				'encryptionKeyId' => $input->encryption_key_id->int(),
 			];
 
 			$this->utilities->updateField(

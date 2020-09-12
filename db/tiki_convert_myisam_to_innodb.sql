@@ -98,6 +98,7 @@ ALTER TABLE `tiki_dsn` ENGINE=InnoDB;
 ALTER TABLE `tiki_dynamic_variables` ENGINE=InnoDB;
 -- ALTER TABLE `tiki_eph` ENGINE=InnoDB;
 -- ALTER TABLE `tiki_event_subscriptions` ENGINE=InnoDB;
+ALTER TABLE `tiki_encryption_keys` ENGINE=InnoDB;
 ALTER TABLE `tiki_extwiki` ENGINE=InnoDB;
 ALTER TABLE `tiki_faq_questions` ENGINE=InnoDB;
 ALTER TABLE `tiki_faqs` ENGINE=InnoDB;

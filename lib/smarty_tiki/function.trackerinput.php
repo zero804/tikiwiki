@@ -31,6 +31,24 @@ function smarty_function_trackerinput($params, $smarty)
 		unset($context['item']);
 		unset($context['field']);
 
+		$info = '';
+		if (! empty($field['encryptionKeyId'])) {
+			try {
+				$key = new Tiki\Encryption\Key($field['encryptionKeyId']);
+				$field['value'] = $key->decryptData($handler->getValue());
+				$info = tr('Field data is encrypted using key "%0".', $key->get('name'));
+			} catch (Tiki\Encryption\NotFoundException $e) {
+				return tr('Field is encrypted with a key that no longer exists!');
+			} catch (Tiki\Encryption\Exception $e) {
+				$field['value'] = '';
+				$info = tr('Field data is encrypted using key "%0" but where was an error decrypting the data: %1', $key->get('name'), $e->getMessage());
+			}
+			$handler = $trklib->get_field_handler($field, $item);
+			$field = array_merge($field, $handler->getFieldData());
+			$handler = $trklib->get_field_handler($field, $item);
+			$info = '<div class="description form-text">'.$info.'</div>';
+		}
+
 		$desc = '';
 		if (isset($params['showDescription']) && $params['showDescription'] == 'y' && $params['field']['type'] != 'S') {
 			$desc = $params['field']['description'];
@@ -44,6 +62,6 @@ function smarty_function_trackerinput($params, $smarty)
 			}
 		}
 
-		return $handler->renderInput($context) . $desc;
+		return $handler->renderInput($context) . $info . $desc;
 	}
 }

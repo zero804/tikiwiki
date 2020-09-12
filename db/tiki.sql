@@ -2536,9 +2536,11 @@ CREATE TABLE `tiki_tracker_fields` (
   `validationParam` varchar(255) default '',
   `validationMessage` varchar(255) default '',
   `rules` TEXT,
+  `encryptionKeyId` int(11) NULL,
   PRIMARY KEY (`fieldId`),
   INDEX `trackerId` (`trackerId`),
-  UNIQUE `permName` (`permName`, `trackerId`)
+  UNIQUE `permName` (`permName`, `trackerId`),
+  INDEX `encryptionKeyId` (`encryptionKeyId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `tiki_tracker_item_attachments`;
