@@ -309,7 +309,7 @@
 									<th>{tr}Algorithm{/tr}</th>
 									<th>{tr}Number of shares{/tr}</th>
 									<th>{tr}Users{/tr}</th>
-									<th>{tr}Encrypted items{/tr}</th>
+									<th>{tr}Encrypted fields{/tr}</th>
 									<th>{tr}Edit{/tr}</th>
 									<th>{tr}Delete{/tr}</th>
 								</tr>
@@ -331,7 +331,11 @@
 											{$key.users}
 										</td>
 										<td>
-											TODO
+											{foreach $encrypted_fields[$key.keyId] as $field}
+												<a href="tiki-admin_tracker_fields.php?trackerId={$field.trackerId|escape}">{$field.name|escape}</a><br/>
+											{foreachelse}
+												None
+											{/foreach}
 										</td>
 										<td>
 											{icon name='pencil' href='tiki-admin.php?page=security&encryption_key='|cat:$key.keyId}

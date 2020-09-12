@@ -2127,6 +2127,20 @@ class TrackerLib extends TikiLib
 
 	public function modify_field($itemId, $fieldId, $value)
 	{
+		// TODO: cache this
+		$field = $this->get_field_info($fieldId);
+		if (! empty($field['encryptionKeyId'])) {
+			try {
+				$key = new Tiki\Encryption\Key($field['encryptionKeyId']);
+				$value = $key->encryptData($value);
+			} catch (Tiki\Encryption\NotFoundException $e) {
+				Feedback::error(tr('Field "%0" is encrypted with a key that no longer exists!', $field['name']));
+			} catch (Tiki\Encryption\Exception $e) {
+				Feedback::error(tr('Field "%0" is encrypted using key "%1" but where was an error decrypting the data: %2', $field['name'], $key->get('name'), $e->getMessage()));
+			}
+			$info = '<div class="description form-text">'.$info.'</div>';
+		}
+
 		$conditions = [
 			'itemId' => (int) $itemId,
 			'fieldId' => (int) $fieldId,
@@ -3219,7 +3233,7 @@ class TrackerLib extends TikiLib
 	}
 
 
-	public function replace_tracker_field($trackerId, $fieldId, $name, $type, $isMain, $isSearchable, $isTblVisible, $isPublic, $isHidden, $isMandatory, $position, $options, $description = '', $isMultilingual = '', $itemChoices = null, $errorMsg = '', $visibleBy = null, $editableBy = null, $descriptionIsParsed = 'n', $validation = '', $validationParam = '', $validationMessage = '', $permName = null, $rules = null)
+	public function replace_tracker_field($trackerId, $fieldId, $name, $type, $isMain, $isSearchable, $isTblVisible, $isPublic, $isHidden, $isMandatory, $position, $options, $description = '', $isMultilingual = '', $itemChoices = null, $errorMsg = '', $visibleBy = null, $editableBy = null, $descriptionIsParsed = 'n', $validation = '', $validationParam = '', $validationMessage = '', $permName = null, $rules = null, $encryptionKeyId = null)
 	{
 		// Serialize choosed items array (items of the tracker field to be displayed in the list proposed to the user)
 		if (is_array($itemChoices) && count($itemChoices) > 0 && ! empty($itemChoices[0])) {
@@ -3273,6 +3287,7 @@ class TrackerLib extends TikiLib
 			'validationParam' => $validationParam,
 			'validationMessage' => $validationMessage,
 			'rules' => $rules,
+			'encryptionKeyId' => $encryptionKeyId,
 		];
 
 		$logOption = null;
@@ -4095,7 +4110,33 @@ class TrackerLib extends TikiLib
 		$newTrackerId = $this->replace_tracker(0, $name, $description, [], $descriptionIsParsed);
 		$fields = $this->list_tracker_fields($trackerId, 0, -1, 'position_asc', '');
 		foreach ($fields['data'] as $field) {
-			$newFieldId = $this->replace_tracker_field($newTrackerId, 0, $field['name'], $field['type'], $field['isMain'], $field['isSearchable'], $field['isTblVisible'], $field['isPublic'], $field['isHidden'], $field['isMandatory'], $field['position'], $field['options'], $field['description'], $field['isMultilingual'], $field['itemChoices']);
+			$newFieldId = $this->replace_tracker_field(
+				$newTrackerId,
+				0,
+				$field['name'],
+				$field['type'],
+				$field['isMain'],
+				$field['isSearchable'],
+				$field['isTblVisible'],
+				$field['isPublic'],
+				$field['isHidden'],
+				$field['isMandatory'],
+				$field['position'],
+				$field['options'],
+				$field['description'],
+				$field['isMultilingual'],
+				$field['itemChoices'],
+				$field['errorMsg'],
+				$field['visibleBy'],
+				$field['editableBy'],
+				$field['descriptionIsParsed'],
+				$field['validation'],
+				$field['validationParam'],
+				$field['validationMessage'],
+				null,
+				$field['rules'],
+				$field['encryptionKeyId']
+			);
 			if ($options['defaultOrderKey'] == $field['fieldId']) {
 				$options['defaultOrderKey'] = $newFieldId;
 			}
@@ -5989,6 +6030,23 @@ class TrackerLib extends TikiLib
 				$field['value'] = $data['value'];
 			}
 
+			$r = null;
+
+			if (! empty($field['encryptionKeyId'])) {
+				try {
+					$key = new Tiki\Encryption\Key($field['encryptionKeyId']);
+					$field['value'] = $item[$field['fieldId']] = $key->decryptData($field['value']);
+				} catch (Tiki\Encryption\NotFoundException $e) {
+					$r = tr('Field is encrypted with a key that no longer exists!');
+				} catch (Tiki\Encryption\Exception $e) {
+					$field['value'] = $item[$field['fieldId']] = '';
+					$r = tr('Field data is encrypted using key "%0" but where was an error decrypting the data: %1', $key->get('name'), $e->getMessage());
+				}
+				$handler = $this->get_field_handler($field, $item);
+				$field = array_merge($field, $handler->getFieldData());
+				$handler = $this->get_field_handler($field, $item);
+			}
+
 			if (isset($params['process']) && $params['process'] == 'y') {
 				if ($field['type'] === 'e') {	// category
 					if (! is_array($field['value'])) {
@@ -6014,7 +6072,9 @@ class TrackerLib extends TikiLib
 				$context['list_mode'] = 'n';
 			}
 
-			if (! empty($params['editable']) && $params['field']['type'] !== 'STARS') {
+			if (! is_null($r)) {
+				// already rendered (decryption error)
+			}	elseif (! empty($params['editable']) && $params['field']['type'] !== 'STARS') {
 				if ($params['editable'] === true) {
 					// Some callers pass true/false instead of an actual mode, default to block
 					$params['editable'] = 'block';
