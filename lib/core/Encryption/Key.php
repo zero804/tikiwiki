@@ -62,19 +62,11 @@ class Key
 		try {
 			$key = TikiLib::lib('service')->internal('encryption', 'decrypt_key', ['keyId' => $this->encryption_key['keyId']]);
 			if (! $key) {
-				throw new Services_Exception_Denied(tr('Could not decrypt key.'));
+				throw new Services_Exception_Denied("Could not decrypt key.");
 			}
 			return $key;
 		} catch (Services_Exception_Denied $e) {
 			throw new KeyException($e->getMessage());
 		}
-	}
-
-	public function manualEntry()
-	{
-		$smarty = TikiLib::lib('smarty');
-		$smarty->loadPlugin('smarty_function_bootstrap_modal');
-		$href = smarty_function_bootstrap_modal(['controller' => 'encryption', 'action' => 'enter_key', 'keyId' => $this->encryption_key['keyId']], $smarty);
-		return '<a href="'.$href.'" class="encryption-key-entry">'.tr('Try with a manually entered key.').'</a>';
 	}
 }

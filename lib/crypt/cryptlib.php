@@ -144,24 +144,6 @@ class CryptLib extends TikiLib
 		throw new Exception(tra('No encryption extension found.'));
 	}
 
-	function isSupported()
-	{
-		return extension_loaded('sodium') || extension_loaded('openssl');
-	}
-
-	function algorithms()
-	{
-		if (extension_loaded('sodium')) {
-			return [];
-		}
-
-		if (extension_loaded('openssl')) {
-			return openssl_get_cipher_methods();
-		}
-
-		return [];
-	}
-
 	//
 	// Test/Check utilities
 	////////////////////////////////
@@ -546,7 +528,7 @@ class CryptLib extends TikiLib
 	{
 		if ($this->hasSodiumCrypt()) {
 			$key = str_pad(substr($this->key, 0, SODIUM_CRYPTO_SECRETBOX_KEYBYTES), SODIUM_CRYPTO_SECRETBOX_KEYBYTES);
-			$nonce = trim(substr($crypttext, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES));
+			$nonce = substr($crypttext, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
 			$ciphertextLength = strlen($crypttext) - SODIUM_CRYPTO_SECRETBOX_NONCEBYTES;
 			$crypttext = trim(substr($crypttext, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, $ciphertextLength));
 			$rawcleartext = sodium_crypto_secretbox_open($crypttext, $nonce, $key);
