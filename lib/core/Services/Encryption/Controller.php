@@ -119,6 +119,12 @@ class Services_Encryption_Controller
 		if (! $existing) {
 			$existing = $this->action_get_share_for_key(new JitFilter(['keyId' => $encryption_key['keyId']]));
 		}
+		if (! $existing) {
+			$existing = @$_SESSION['encryption_shared_keys'][$encryption_key['keyId']];
+		}
+		if (empty($existing)) {
+			throw new Services_Exception_Denied(tr('Shared key not found for your user.'));
+		}
 		try {
 			$key = Secret::recover([$encryption_key['secret'], $existing]);
 		} catch (RuntimeException $e) {
@@ -130,6 +136,25 @@ class Services_Encryption_Controller
 	function action_get_encrypted_fields()
 	{
 		return $this->encryptionlib->get_encrypted_fields();
+	}
+
+	function action_enter_key($input)
+	{
+		$encryption_key = $this->encryptionlib->get_key($input->keyId->int());
+		if (empty($encryption_key)) {
+			throw new Services_Exception_NotFound(tr("Key not found."));
+		}
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$shared_key = $input->shared_key->text();
+			if (! empty($shared_key)) {
+				$_SESSION['encryption_shared_keys'][$encryption_key['keyId']] = $shared_key;
+			}
+		}
+		return [
+			'title' => tr('Enter key'),
+			'encryption_key' => $encryption_key,
+			'shared_key' => @$_SESSION['encryption_shared_keys'][$encryption_key['keyId']],
+		];
 	}
 
 	private function share($key, &$data)

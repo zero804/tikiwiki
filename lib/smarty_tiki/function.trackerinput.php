@@ -42,6 +42,7 @@ function smarty_function_trackerinput($params, $smarty)
 			} catch (Tiki\Encryption\Exception $e) {
 				$field['value'] = '';
 				$info = tr('Field data is encrypted using key "%0" but where was an error decrypting the data: %1', $key->get('name'), $e->getMessage());
+				$info .= ' '.$key->manualEntry();
 			}
 			$handler = $trklib->get_field_handler($field, $item);
 			$field = array_merge($field, $handler->getFieldData());
