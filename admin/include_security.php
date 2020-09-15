@@ -24,8 +24,6 @@ if ($prefs['feature_user_encryption'] == 'y') {
 
 if (TikiLib::lib('crypt')->isSupported()) {
   $servicelib = TikiLib::lib('service');
-  // TODO: decrypt this way
-  // $servicelib->internal('encryption', 'decrypt_key', new JitFilter(['keyId' => 18]));
   if (! empty($_REQUEST['encryption_key'])) {
     $result = $servicelib->internal('encryption', 'get_key', ['keyId' => $_REQUEST['encryption_key']]);
     $encryption_key = $result['key'];
