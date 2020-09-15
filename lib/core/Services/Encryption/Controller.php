@@ -69,8 +69,12 @@ class Services_Encryption_Controller
 
 		foreach ($users as $i => $auser) {
 			if ($auser == $user) {
-				TikiLib::lib('crypt')->init();
-				TikiLib::lib('crypt')->setUserData('sk', $shares[$i], $keyId);
+				try {
+					TikiLib::lib('crypt')->init();
+					TikiLib::lib('crypt')->setUserData('sk', $shares[$i], $keyId);
+				} catch (Exception $e) {
+					TikiLib::lib('tiki')->set_user_preference($auser, 'pe.sk.'.$keyId, $shares[$i]);
+				}
 			} else {
 				TikiLib::lib('tiki')->set_user_preference($auser, 'pe.sk.'.$keyId, $shares[$i]);
 			}
