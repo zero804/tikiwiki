@@ -2127,8 +2127,7 @@ class TrackerLib extends TikiLib
 
 	public function modify_field($itemId, $fieldId, $value)
 	{
-		// TODO: cache this
-		$field = $this->get_field_info($fieldId);
+		$field = $this->get_tracker_field($fieldId);
 		if (! empty($field['encryptionKeyId'])) {
 			try {
 				$key = new Tiki\Encryption\Key($field['encryptionKeyId']);
