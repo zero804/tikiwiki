@@ -22,7 +22,7 @@ if ($prefs['feature_user_encryption'] == 'y') {
 	$smarty->assign('user_encryption_stat_sodium', $cryptlib->getUserCryptDataStats('sodium'));
 }
 
-if (extension_loaded('openssl')) {
+if (TikiLib::lib('crypt')->isSupported()) {
   $servicelib = TikiLib::lib('service');
   // TODO: decrypt this way
   // $servicelib->internal('encryption', 'decrypt_key', new JitFilter(['keyId' => 18]));
@@ -58,7 +58,7 @@ if (extension_loaded('openssl')) {
     }
   }
   $smarty->assign('encryption_enabled', 'y');
-  $smarty->assign('encryption_algos', openssl_get_cipher_methods());
+  $smarty->assign('encryption_algos', TikiLib::lib('crypt')->algorithms());
   $smarty->assign('encryption_key', $encryption_key);
   $smarty->assign('encryption_keys', $encryption_keys);
   $smarty->assign('encrypted_fields', $encrypted_fields);
