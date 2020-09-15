@@ -299,14 +299,17 @@
 			{/if}
 			{tabset name='encryption'}
 				{tab name='{tr}Available keys{/tr}'}
-				 	<input type="hidden" name="keyId" value="{$encryption_key.keyId}">
+					<input type="hidden" name="keyId" value="{$encryption_key.keyId}">
+					<input type="hidden" name="new_key" value="{$smarty.request.new_key}">
 					<fieldset id="encryption_keys">
 						<div class="input_submit_container">
 							<table class="table table-striped">
 								<tr>
 									<th>{tr}Name{/tr}</th>
 									<th>{tr}Description{/tr}</th>
+									{if $encryption_algos}
 									<th>{tr}Algorithm{/tr}</th>
+									{/if}
 									<th>{tr}Number of shares{/tr}</th>
 									<th>{tr}Users{/tr}</th>
 									<th>{tr}Encrypted fields{/tr}</th>
@@ -321,9 +324,11 @@
 										<td>
 											{$key.description|escape}
 										</td>
+										{if $encryption_algos}
 										<td>
 											{$key.algo}
 										</td>
+										{/if}
 										<td>
 											{$key.shares}
 										</td>
@@ -440,6 +445,7 @@
 								{/if}
 							</div>
 						</div><br>
+						{if $encryption_algos}
 						<div class="form-group row">
 							<label class="col-form-label col-sm-4" for="algo">
 								{tr}Encryption algorithm{/tr}
@@ -455,6 +461,7 @@
 								</select>
 							</div>
 						</div><br>
+						{/if}
 						{if $prefs.feature_user_encryption neq 'y'}
 						<div class="form-group row">
 							<label class="col-form-label col-sm-4" for="shares">

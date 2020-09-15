@@ -168,6 +168,9 @@ class Services_Encryption_Controller
 
 	private function share($key, &$data)
 	{
+		if ($data['shares']+1 < 2) {
+			throw new Services_Exception_Denied(tr('Key must be shared with minimum of one user.'));
+		}
 		$shares = Secret::share($key, $data['shares']+1, 2);
 		$data['secret'] = $shares[0];
 		return array_slice($shares, 1, count($shares)-1);
