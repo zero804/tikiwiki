@@ -548,7 +548,7 @@ class CryptLib extends TikiLib
 			$key = str_pad(substr($this->key, 0, SODIUM_CRYPTO_SECRETBOX_KEYBYTES), SODIUM_CRYPTO_SECRETBOX_KEYBYTES);
 			$nonce = substr($crypttext, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
 			$ciphertextLength = strlen($crypttext) - SODIUM_CRYPTO_SECRETBOX_NONCEBYTES;
-			$crypttext = trim(substr($crypttext, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, $ciphertextLength));
+			$crypttext = substr($crypttext, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, $ciphertextLength);
 			$rawcleartext = sodium_crypto_secretbox_open($crypttext, $nonce, $key);
 		} elseif ($this->hasCrypt()) {
 			$ivSize = openssl_cipher_iv_length($this->cryptMethod);
