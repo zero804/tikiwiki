@@ -31,6 +31,7 @@ class Services_Encryption_Controller
 
 		$keyId = $input->keyId->int();
 		$users = TikiLib::lib('user')->extract_users($input->users->text(), $prefs['user_show_realnames'] == 'y');
+		$key = null;
 
 		if (empty($keyId)) {
 			$data = [
@@ -78,6 +79,7 @@ class Services_Encryption_Controller
 		return [
 			'keyId' => $keyId,
 			'shares' => $shares,
+			'key' => $key,
 		];
 	}
 
@@ -124,6 +126,9 @@ class Services_Encryption_Controller
 	function action_decrypt_key($input)
 	{
 		$encryption_key = $this->encryptionlib->get_key($input->keyId->int());
+		if (empty($encryption_key)) {
+			throw new Services_Exception_NotFound(tr("Key not found."));
+		}
 		$existing = $input->existing->text();
 		if (! $existing) {
 			$existing = $this->action_get_share_for_key(new JitFilter(['keyId' => $encryption_key['keyId']]));
