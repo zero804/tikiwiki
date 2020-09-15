@@ -41,7 +41,7 @@
 						<tr>
 							{$numbercol = $numbercol+1}
 							<th id="checkbox" style="text-align:center">
-								{select_all checkbox_names='checked[]'}
+								{select_all checkbox_names='checked[]' tablesorter="{$ts.enabled}"}
 							</th>
 							<th id="name">
 								{self_link _sort_arg='sort_mode' _sort_field='name'}{tr}Name{/tr}{/self_link}
@@ -100,8 +100,6 @@
 													{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
 												</a>
 											</action>
-											{* the tiki_p_forum_lock permission has not been implemented *}
-											{if isset($tiki_p_forum_lock) and $tiki_p_forum_lock eq 'y'}
 												{if $channels[user].is_locked eq 'y'}
 													<action>
 														<form action="tiki-admin_forums.php" method="post">
@@ -125,8 +123,6 @@
 														</form>
 													</action>
 												{/if}
-											{/if}
-
 											{if ($tiki_p_admin eq 'y')
 											or ((isset($channels[user].individual) and $channels[user].individual eq 'n')
 											and ($tiki_p_admin_forum eq 'y'))

@@ -225,7 +225,7 @@
             "version": "5.14.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:FortAwesome/Font-Awesome.git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
                 "reference": "c38da7f63e45b7ba12fb33539a4e54677f8e63aa"
             },
             "dist": {
@@ -831,17 +831,17 @@
         },
         {
             "name": "composer/semver",
-            "version": "1.5.1",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/semver.git",
-                "reference": "c6bea70230ef4dd483e6bbcab6005f682ed3a8de"
+                "reference": "114f819054a2ea7db03287f5efb757e2af6e4079"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/composer/semver/composer-semver-c6bea70230ef4dd483e6bbcab6005f682ed3a8de-zip-e0fe47.zip",
-                "reference": "c6bea70230ef4dd483e6bbcab6005f682ed3a8de",
-                "shasum": "44226f994f5fe8cd6446f6e65ff0359de5a3b640"
+                "url": "https://composer.tiki.org/dist/composer/semver/composer-semver-114f819054a2ea7db03287f5efb757e2af6e4079-zip-3a067e.zip",
+                "reference": "114f819054a2ea7db03287f5efb757e2af6e4079",
+                "shasum": "52cc79bad4d1e1676f18f3b2bfa2698ad47844b7"
             },
             "require": {
                 "php": "^5.3.2 || ^7.0"
@@ -888,7 +888,7 @@
                 "validation",
                 "versioning"
             ],
-            "time": "2020-01-13T12:06:48+00:00"
+            "time": "2020-09-09T09:34:06+00:00"
         },
         {
             "name": "container-interop/container-interop",
@@ -5057,9 +5057,8 @@
             "name": "npm-asset/moment-duration-format",
             "version": "2.3.2",
             "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/moment-duration-format/npm-asset-moment-duration-format-2.3.2.zip",
-                "shasum": "4c1c5067c3828225aa6f442449cb08884f16ea3a"
+                "type": "tar",
+                "url": "https://registry.npmjs.org/moment-duration-format/-/moment-duration-format-2.3.2.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -5099,9 +5098,8 @@
             "name": "npm-asset/reveal.js",
             "version": "3.9.2",
             "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/reveal-js/npm-asset-reveal-js-3.9.2.zip",
-                "shasum": "0de63206c3dcbbeddeab6c6aee0f25d3d3dfd2f0"
+                "type": "tar",
+                "url": "https://registry.npmjs.org/reveal.js/-/reveal.js-3.9.2.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -5916,17 +5914,17 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.28",
+            "version": "2.0.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "d1ca58cf33cb21046d702ae3a7b14fdacd9f3260"
+                "reference": "497856a8d997f640b4a516062f84228a772a48a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-d1ca58cf33cb21046d702ae3a7b14fdacd9f3260-zip-0d50db.zip",
-                "reference": "d1ca58cf33cb21046d702ae3a7b14fdacd9f3260",
-                "shasum": "0d317d1745cd813078fea6bf7273d79adcd42a4a"
+                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-497856a8d997f640b4a516062f84228a772a48a8-zip-68e06c.zip",
+                "reference": "497856a8d997f640b4a516062f84228a772a48a8",
+                "shasum": "26c153e99153383d017737cfe4d27b34b24ce422"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -5934,7 +5932,6 @@
             "require-dev": {
                 "phing/phing": "~2.7",
                 "phpunit/phpunit": "^4.8.35|^5.7|^6.0",
-                "sami/sami": "~2.0",
                 "squizlabs/php_codesniffer": "~2.0"
             },
             "suggest": {
@@ -6004,7 +6001,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2020-07-08T09:08:33+00:00"
+            "time": "2020-09-08T04:24:43+00:00"
         },
         {
             "name": "player/flv",
@@ -6800,17 +6797,17 @@
         },
         {
             "name": "scssphp/scssphp",
-            "version": "1.2",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scssphp/scssphp.git",
-                "reference": "ce970268a912dabbfaa0eff65dbc5e4a2a6cb757"
+                "reference": "a05ea68160b7286ebbfd6e5fd7ae9e1a946ad6e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/scssphp/scssphp/scssphp-scssphp-ce970268a912dabbfaa0eff65dbc5e4a2a6cb757-zip-339885.zip",
-                "reference": "ce970268a912dabbfaa0eff65dbc5e4a2a6cb757",
-                "shasum": "c3741f385bf69d6b56b20d3864509b4c3e9df201"
+                "url": "https://composer.tiki.org/dist/scssphp/scssphp/scssphp-scssphp-a05ea68160b7286ebbfd6e5fd7ae9e1a946ad6e1-zip-56f79f.zip",
+                "reference": "a05ea68160b7286ebbfd6e5fd7ae9e1a946ad6e1",
+                "shasum": "1139aca1834ae8e0602e628892ec379c1825412e"
             },
             "require": {
                 "ext-ctype": "*",
@@ -6858,7 +6855,7 @@
                 "scss",
                 "stylesheet"
             ],
-            "time": "2020-08-26T20:47:29+00:00"
+            "time": "2020-09-07T21:15:42+00:00"
         },
         {
             "name": "simile_timeline/simile_timeline",
@@ -8720,9 +8717,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/kornrunner/dbunit/kornrunner-dbunit-ff4c76a8f2eb0daa3d87b028cb945d8429ce3c57-zip-aff625.zip",
+                "url": "https://api.github.com/repos/kornrunner/dbunit/zipball/ff4c76a8f2eb0daa3d87b028cb945d8429ce3c57",
                 "reference": "ff4c76a8f2eb0daa3d87b028cb945d8429ce3c57",
-                "shasum": "f04c4a97c431b9052413a0634064756531d8bda8"
+                "shasum": ""
             },
             "require": {
                 "ext-pdo": "*",
@@ -9580,7 +9577,6 @@
             "keywords": [
                 "tokenizer"
             ],
-            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {

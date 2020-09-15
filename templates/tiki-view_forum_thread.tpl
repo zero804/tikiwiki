@@ -94,6 +94,7 @@
 						</a>
 					{/if}
 				{/if}
+				{* TODO the tiki_p_forum_lock permission has not been implemented so these actions never show*}
 				{if isset($tiki_p_forum_lock) and $tiki_p_forum_lock eq 'y'}
 					{if $thread_info.locked eq 'y'}
 							<a class="dropdown-item" href="{query _type='relative' lock='n'}">

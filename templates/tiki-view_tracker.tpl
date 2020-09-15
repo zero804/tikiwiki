@@ -41,13 +41,31 @@
 						{if $prefs.feature_user_watches eq 'y' and $tiki_p_watch_trackers eq 'y' and $user}
 							<li class="dropdown-item">
 								{if $user_watching_tracker ne 'y'}
-									<a href="tiki-view_tracker.php?trackerId={$trackerId}&amp;watch=add">
-										{icon name="watch"} {tr}Monitor{/tr}
-									</a>
+									<form action="tiki-view_tracker.php" method="post">
+										<input type="hidden" name="trackerId" value="{$trackerId|escape}">
+										{ticket}
+										<button
+												type="submit"
+												name="watch"
+												value="add"
+												class="btn btn-link link-list"
+										>
+											{icon name="watch"} {tr}Monitor{/tr}
+										</button>
+									</form>
 								{else}
-									<a href="tiki-view_tracker.php?trackerId={$trackerId}&amp;watch=stop">
-										{icon name="stop-watching"} {tr}Stop Watching{/tr}
-									</a>
+									<form action="tiki-view_tracker.php" method="post">
+										<input type="hidden" name="trackerId" value="{$trackerId|escape}">
+										{ticket}
+										<button
+												type="submit"
+												name="watch"
+												value="stop"
+												class="btn btn-link link-list"
+										>
+											{icon name="stop-watching"} {tr}Stop monitoring{/tr}
+										</button>
+									</form>
 								{/if}
 							</li>
 						{/if}

@@ -103,14 +103,14 @@ class Services_Forum_Controller
 				$toList = array_column($toList, 'title', 'threadId');
 				$diff = array_diff_key($toList, $util->items);
 				if (count($diff) > 0) {
-					$object = count($util->items) > 1 ? 'topics' : 'topic';
+					$object = $util->itemsCount > 1 ? 'topics' : 'topic';
 					if (isset($input['comments_parentId'])) {
 						unset($diff[$input['comments_parentId']]);
 						$title = tr('Merge selected posts with another topic');
-						$customMsg = count($util->items) === 1 ? tra('Merge this post:') : tra('Merge these posts:');
+						$customMsg = $util->itemsCount === 1 ? tra('Merge this post:') : tra('Merge these posts:');
 					} else {
 						$title = tr('Merge selected topics with another topic');
-						$customMsg = count($util->items) === 1 ? tra('Merge this topic:') : tra('Merge these topics:');
+						$customMsg = $util->itemsCount === 1 ? tra('Merge this topic:') : tra('Merge these topics:');
 					}
 					return [
 						'FORWARD' => [
@@ -137,7 +137,7 @@ class Services_Forum_Controller
 			}
 		//second pass - after popup modal form has been submitted
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			//perform merge
 			$toId = $input['toId'];
 			foreach ($util->items as $id => $topic) {
@@ -217,7 +217,7 @@ class Services_Forum_Controller
 			}
 		//second pass - after popup modal form has been submitted
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			//perform topic move
 			$toId = $input['toId'];
 			foreach ($util->items as $id => $topic) {
@@ -276,7 +276,7 @@ class Services_Forum_Controller
 			}
 		//second pass - after popup modal form has been submitted
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			//perform delete
 			foreach ($util->items as $id => $name) {
 				if (is_numeric($id)) {
@@ -301,7 +301,7 @@ class Services_Forum_Controller
 				return Services_Utilities::refresh($util->extra['referer']);
 			} else {
 				global $base_url;
-				return Services_Utilities::redirect($base_url . 'tiki-forums.php' . $util->extra['anchor']);
+				return Services_Utilities::redirect($base_url . 'tiki-forums.php');
 			}
 		}
 	}
@@ -330,7 +330,7 @@ class Services_Forum_Controller
 			}
 		//second pass - after popup modal form has been submitted
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			//perform attachment delete
 			foreach ($util->items as $id => $name) {
 				if (is_numeric($id)) {
@@ -412,7 +412,7 @@ class Services_Forum_Controller
 				Services_Utilities::modalException(tra('No forums were selected. Please select a forum to delete.'));
 			}
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			foreach ($util->items as $id => $name) {
 				if (is_numeric($id)) {
 					$this->lib->remove_forum($id);
@@ -460,7 +460,7 @@ class Services_Forum_Controller
 				Services_Utilities::modalException(tra('No forum order specified, please specify the order of the forums.'));
 			}
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			$orders = $util->extra['order'];
 			$i = 0;
 			foreach ($util->items as $id => $name) {
@@ -470,7 +470,7 @@ class Services_Forum_Controller
 				$i++;
 			}
 			//prepare feedback
-			$msg = tra('Forums have been reorded');
+			$msg = tra('Forums have been reordered');
 
 			$feedback = [
 				'tpl' => 'action',
@@ -578,7 +578,7 @@ class Services_Forum_Controller
 				Services_Utilities::modalException(tr('No topics were selected. Please select the topics you wish to %0 before clicking the %0 button.', tra($type)));
 			}
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			$fn = $type . '_comment';
 			//do the locking/unlocking
 			foreach ($util->items as $id => $topic) {
@@ -641,7 +641,7 @@ class Services_Forum_Controller
 				Services_Utilities::modalException(tr('No threads were selected. Please select the threads you wish to %0.', tra($type)));
 			}
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
+			$util->setVars($input, $this->filters, 'items');
 			//perform archive/unarchive
 			$fn = $type . '_thread';
 			$this->lib->$fn($util->extra['comments_parentId']);

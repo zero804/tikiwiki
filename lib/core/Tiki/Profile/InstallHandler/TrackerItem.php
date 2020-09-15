@@ -190,7 +190,8 @@ class Tiki_Profile_InstallHandler_TrackerItem extends Tiki_Profile_InstallHandle
 				->fetchAll(['itemId'], ['value' => $trackerItem]);
 			if (count($trackerItems) == 1) {
 				$trackerItemId = ! empty($trackerField[0]['itemId']) ? $trackerField[0]['itemId'] : 0;
-				if ($trklib->remove_tracker_item($trackerItemId)) {
+				$result = $trklib->remove_tracker_item($trackerItemId);
+				if ($result && $result->numRows()) {
 					return true;
 				}
 			}

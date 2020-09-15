@@ -327,12 +327,33 @@ if (! empty($_REQUEST['remove'])) {
 $smarty->assign('mail_msg', '');
 $smarty->assign('email_mon', '');
 if ($prefs['feature_user_watches'] == 'y' and $tiki_p_watch_trackers == 'y') {
-	if ($user and isset($_REQUEST['watch'])) {
-		check_ticket('view-trackers');
+	if ($user and isset($_REQUEST['watch']) and $access->checkCsrf()) {
 		if ($_REQUEST['watch'] == 'add') {
-			$tikilib->add_user_watch($user, 'tracker_modified', $_REQUEST["trackerId"], 'tracker', $tracker_info['name'], "tiki-view_tracker.php?trackerId=" . $_REQUEST["trackerId"]);
+			$result = $tikilib->add_user_watch(
+				$user,
+				'tracker_modified',
+				$_REQUEST["trackerId"],
+				'tracker',
+				$tracker_info['name'],
+				"tiki-view_tracker.php?trackerId=" . $_REQUEST["trackerId"]
+			);
+			if (! empty($result)) {
+				Feedback::success(tr('Tracker now being monitored'));
+			} else {
+				Feedback::error(tr('Tracker monitoring not added'));
+			}
 		} else {
-			$tikilib->remove_user_watch($user, 'tracker_modified', $_REQUEST["trackerId"], 'tracker');
+			$result = $tikilib->remove_user_watch(
+				$user,
+				'tracker_modified',
+				$_REQUEST["trackerId"],
+				'tracker'
+			);
+			if ($result && $result->numRows()) {
+				Feedback::success(tr('Tracker no longer being monitored'));
+			} else {
+				Feedback::error(tr('Tracker monitoring not removed'));
+			}
 		}
 	}
 	$smarty->assign('user_watching_tracker', 'n');
@@ -515,7 +536,7 @@ $smarty->assign('ins_fields', $ins_fields['data']);
 $smarty->assign_by_ref('items', $items["data"]);
 $smarty->assign_by_ref('item_count', $items['cant']);
 $smarty->assign_by_ref('listfields', $listfields);
-$smarty->assign_by_ref('fields_count', count($xfields['data']));
+$smarty->assign('fields_count', count($xfields['data']));
 $users = $userlib->list_all_users();
 $smarty->assign_by_ref('users', $users);
 if ($tiki_p_export_tracker == 'y') {

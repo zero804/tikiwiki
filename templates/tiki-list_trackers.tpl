@@ -177,15 +177,33 @@
 								{if $prefs.feature_user_watches eq 'y' and $tracker.permissions->watch_trackers and $user}
 									{if $tracker.watched}
 										<action>
-											<a href="tiki-view_tracker.php?trackerId={$tracker.trackerId}&amp;watch=stop">
-												{icon name='stop-watching' _menu_text='y' _menu_icon='y' alt="{tr}Stop monitoring{/tr}"}
-											</a>
+											<form action="tiki-view_tracker.php" method="post">
+												<input type="hidden" name="trackerId" value="{$tracker.trackerId|escape}">
+												{ticket}
+												<button
+														type="submit"
+														name="watch"
+														value="stop"
+														class="btn btn-link link-list"
+												>
+													{icon name="stop-watching"} {tr}Stop monitoring{/tr}
+												</button>
+											</form>
 										</action>
 									{else}
 										<action>
-											<a href="tiki-view_tracker.php?trackerId={$tracker.trackerId}&amp;watch=add">
-												{icon name='watch' _menu_text='y' _menu_icon='y' alt="{tr}Monitor{/tr}"}
-											</a>
+											<form action="tiki-view_tracker.php" method="post">
+												<input type="hidden" name="trackerId" value="{$tracker.trackerId|escape}">
+												{ticket}
+												<button
+														type="submit"
+														name="watch"
+														value="add"
+														class="btn btn-link link-list"
+												>
+													{icon name="watch"} {tr}Monitor{/tr}
+												</button>
+											</form>
 										</action>
 									{/if}
 								{/if}

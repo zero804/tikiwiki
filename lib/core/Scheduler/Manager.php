@@ -11,6 +11,7 @@ class Scheduler_Manager
 {
 
 	private $logger;
+	private $hasTempFolderOwnership = true;
 
 	public function __construct(LoggerInterface $logger)
 	{
@@ -93,6 +94,16 @@ class Scheduler_Manager
 		foreach ($runTasks as $runTask) {
 			$schedulerTask = Scheduler_Item::fromArray($runTask, $this->logger);
 
+			if (! $this->hasTempFolderOwnership) {
+				$runRecord = $schedLib->start_scheduler_run($schedulerTask->id);
+				$writingPermissionsError = tra('The console command "scheduler:run" refuses to run the task as it is running as a different system user of the owner of tiki files.');
+
+				$this->logger->error(sprintf(tra("***** Scheduler %s - FAILED *****\n%s"), $schedulerTask->name, $writingPermissionsError));
+				$schedLib->end_scheduler_run($schedulerTask->id, $runRecord['run_id'], 'failed', $writingPermissionsError);
+
+				continue;
+			}
+
 			$this->logger->notice(sprintf(tra('***** Running scheduler %s *****'), $schedulerTask->name));
 			$result = $schedulerTask->execute($runTask['user_run_now']);
 
@@ -139,5 +150,15 @@ class Scheduler_Manager
 				$this->logger->notice(tr("Scheduler %0 (id: %1) is not stalled, no need to heal", $item->name, $item->id));
 			}
 		}
+	}
+
+	/**
+	 * Sets flag that running system user
+	 * has ownership permissions on temp/cache folder
+	 * @param bool $hasTempFolderOwnership
+	 */
+	public function setHasTempFolderOwnership(bool $hasTempFolderOwnership)
+	{
+		$this->hasTempFolderOwnership = $hasTempFolderOwnership;
 	}
 }

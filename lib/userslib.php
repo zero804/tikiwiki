@@ -2293,6 +2293,7 @@ class UsersLib extends TikiLib
 		$ret = $this->fetchAll($query, $bindvars, $maxRecords, $offset);
 		$cant = $this->getOne($query_cant, $mbindvars);
 
+		$perms = Perms::get(['type' => 'group', 'object' => $group]);
 		foreach ($ret as &$res) {
 			if (! $perms->admin_users) {
 				// Filter out sensitive data
@@ -2991,6 +2992,10 @@ class UsersLib extends TikiLib
 		}
 
 		$info = $this->get_page_info($page);
+		if (empty($info)) {
+			return $page;
+		}
+
 		$multilinguallib = TikiLib::lib('multilingual');
 		$bestLangPageId = $multilinguallib->selectLangObj('wiki page', $info['page_id'], $prefs['language']);
 

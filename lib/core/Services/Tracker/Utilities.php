@@ -368,10 +368,14 @@ class Services_Tracker_Utilities
 			'itemId',
 			['trackerId' => $trackerId,]
 		);
-
+		$success = 0;
 		foreach ($items as $itemId) {
-			$this->removeItem($itemId);
+			$result = $this->removeItem($itemId);
+			if ($result && $result->numRows()) {
+				$success++;
+			}
 		}
+		return $success;
 	}
 
 	function importField($trackerId, $field, $preserve, $lastposition=0)
@@ -551,7 +555,7 @@ EXPORT;
 	function removeItem($itemId)
 	{
 		$trklib = TikiLib::lib('trk');
-		$trklib->remove_tracker_item($itemId, true);
+		return $trklib->remove_tracker_item($itemId, true);
 	}
 
 	function removeItemAndReferences($definition, $itemObject, $uncascaded, $replacement)

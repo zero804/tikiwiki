@@ -950,7 +950,7 @@ class UnifiedSearchLib
 			} elseif ($prefs['unified_engine'] === 'elastic') {
 				$connection = $this->getElasticConnection(false);
 
-				if ($connection->getStatus() === 200) {
+				if ($connection->getStatus()->status === 200) {
 					$dataSource->setPrefilter(function ($fields, $entry) {
 						return (new Search_Elastic_Prefilter())->get($fields, $entry);
 					});
