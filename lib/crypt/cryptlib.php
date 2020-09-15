@@ -144,6 +144,24 @@ class CryptLib extends TikiLib
 		throw new Exception(tra('No encryption extension found.'));
 	}
 
+	function isSupported()
+	{
+		return extension_loaded('sodium') || extension_loaded('openssl');
+	}
+
+	function algorithms()
+	{
+		if (extension_loaded('sodium')) {
+			return [];
+		}
+
+		if (extension_loaded('openssl')) {
+			return openssl_get_cipher_methods();
+		}
+
+		return [];
+	}
+
 	//
 	// Test/Check utilities
 	////////////////////////////////
