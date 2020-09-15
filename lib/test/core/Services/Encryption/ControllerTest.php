@@ -144,9 +144,12 @@ class Services_Encryption_ControllerTest extends PHPUnit\Framework\TestCase
 		$user = 'user1';
 		$cryptlib = TikiLib::lib('crypt');
 		$cryptlib->onUserLogin('pass1234');
-		$cb($result);
-		TikiLib::lib('tiki')->table('tiki_encryption_keys')->delete(['keyId' => $result['keyId']]);
-		TikiLib::lib('user')->remove_user('user1');
-		$user = '';
+		try {
+			$cb($result);
+		} finally {
+			TikiLib::lib('tiki')->table('tiki_encryption_keys')->delete(['keyId' => $result['keyId']]);
+			TikiLib::lib('user')->remove_user('user1');
+			$user = '';
+		}
 	}
 }
