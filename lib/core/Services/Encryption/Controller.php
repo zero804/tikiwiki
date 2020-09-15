@@ -107,8 +107,17 @@ class Services_Encryption_Controller
 	function action_get_share_for_key($input)
 	{
 		$crypt = TikiLib::lib('crypt');
-		$crypt->init();
-		$share = $crypt->getUserData('sk.'.$input->keyId->int());
+		try {
+			$crypt->init();
+		} catch (Exception $e) {
+			// anonymous users don't have encryption data and thus - no shared key for them
+			return null;
+		}
+		try {
+			$share = $crypt->getUserData('sk.'.$input->keyId->int());
+		} catch (Exception $e) {
+			throw new Services_Exception_Denied($e->getMessage());
+		}
 		return $share;
 	}
 
