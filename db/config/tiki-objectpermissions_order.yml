@@ -342,3 +342,6 @@ support:
     - live_support
 transition:
     - trigger_transition
+'machine learning':
+    - admin_machine_learning
+    - machine_learning

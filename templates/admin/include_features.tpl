@@ -49,6 +49,7 @@
 					{preference name=feature_shoutbox}
 					{preference name=feature_minichat}
 					{preference name=feature_live_support}
+					{preference name=feature_machine_learning}
 				</div>
 			</fieldset>
 
