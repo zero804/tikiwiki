@@ -3087,15 +3087,8 @@ class TrackerLib extends TikiLib
 		$result = $fieldsTable->fetchAll($fieldsTable->all(), $conditions, $maxRecords, $offset, $fieldsTable->sortMode($sort_mode));
 		$cant = $fieldsTable->fetchCount($conditions);
 
-		$filteredResults = [];
 		$factory = new Tracker_Field_Factory;
 		foreach ($result as & $res) {
-			//filter fields to show only fields that users has permissio to access
-			$canShowField = true;
-			if ($res['type'] == 'F') {
-				$perms = Perms::get('tiki_p_view_freetags');
-				$canShowField = $perms->$permission;
-			}
 			$typeInfo = $factory->getFieldInfo($res['type']);
 			$options = Tracker_Options::fromSerialized($res['options'], $typeInfo);
 			$res['options_array'] = $options->buildOptionsArray();
@@ -3111,13 +3104,10 @@ class TrackerLib extends TikiLib
 				$smarty->assign('languages', $langLib->list_languages());
 			}
 			$ret[] = $res;
-			if ($canShowField) {
-				$filteredResults[] = $res;
-			}
 		}
 
 		return [
-			'data' => $filteredResults,
+			'data' => $result,
 			'cant' => $cant,
 		];
 	}
