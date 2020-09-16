@@ -180,7 +180,7 @@
 		"platform": {
 			"ext-ldap": "0",
 			"ext-soap": "0",
-			"php": "7.2.5"
+			"php": "7.4"
 		},
 		"secure-http": false
 	},
