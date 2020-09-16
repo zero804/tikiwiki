@@ -3056,5 +3056,16 @@ function prefs_feature_list($partial = false)
 			],
 			'default' => 'n',
 		],
+		'feature_machine_learning' => [
+			'name' => tra('Machine learning'),
+			'description' => tra('Define machine learning models, train them and run queries against them.'),
+			'help' => 'Machine+Learning',
+			'type' => 'flag',
+			'default' => 'n',
+			'tags' => ['advanced'],
+			'permission' => [
+				'textFilter' => 'machine learning',
+			],
+		],
 	];
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eea01042d6f9dbc53db12b70206304dc",
+    "content-hash": "3c3cb31bb4348428755a22f8cb6b8643",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -160,6 +160,432 @@
                 "useragent"
             ],
             "time": "2017-06-06T22:20:56+00:00"
+        },
+        {
+            "name": "amphp/amp",
+            "version": "v2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amphp/amp.git",
+                "reference": "f220a51458bf4dd0dedebb171ac3457813c72bbc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/amphp/amp/amphp-amp-f220a51458bf4dd0dedebb171ac3457813c72bbc-zip-5ae514.zip",
+                "reference": "f220a51458bf4dd0dedebb171ac3457813c72bbc",
+                "shasum": "6faf9de2a2a5ce5e41334ceff4fa00da3e07d34e"
+            },
+            "require": {
+                "php": ">=7"
+            },
+            "require-dev": {
+                "amphp/php-cs-fixer-config": "dev-master",
+                "amphp/phpunit-util": "^1",
+                "ext-json": "*",
+                "jetbrains/phpstorm-stubs": "^2019.3",
+                "phpunit/phpunit": "^6.0.9 | ^7",
+                "psalm/phar": "^3.11@dev",
+                "react/promise": "^2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Amp\\": "lib"
+                },
+                "files": [
+                    "lib/functions.php",
+                    "lib/Internal/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Lowrey",
+                    "email": "rdlowrey@php.net"
+                },
+                {
+                    "name": "Aaron Piotrowski",
+                    "email": "aaron@trowski.com"
+                },
+                {
+                    "name": "Bob Weinand",
+                    "email": "bobwei9@hotmail.com"
+                },
+                {
+                    "name": "Niklas Keller",
+                    "email": "me@kelunik.com"
+                }
+            ],
+            "description": "A non-blocking concurrency framework for PHP applications.",
+            "homepage": "http://amphp.org/amp",
+            "keywords": [
+                "async",
+                "asynchronous",
+                "awaitable",
+                "concurrency",
+                "event",
+                "event-loop",
+                "future",
+                "non-blocking",
+                "promise"
+            ],
+            "time": "2020-07-14T21:47:18+00:00"
+        },
+        {
+            "name": "amphp/byte-stream",
+            "version": "v1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amphp/byte-stream.git",
+                "reference": "f0c20cf598a958ba2aa8c6e5a71c697d652c7088"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/amphp/byte-stream/amphp-byte-stream-f0c20cf598a958ba2aa8c6e5a71c697d652c7088-zip-e2c2e2.zip",
+                "reference": "f0c20cf598a958ba2aa8c6e5a71c697d652c7088",
+                "shasum": "9f37710d331729ef58b9f3441c85877ba7b09a1a"
+            },
+            "require": {
+                "amphp/amp": "^2",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "amphp/php-cs-fixer-config": "dev-master",
+                "amphp/phpunit-util": "^1.4",
+                "friendsofphp/php-cs-fixer": "^2.3",
+                "jetbrains/phpstorm-stubs": "^2019.3",
+                "phpunit/phpunit": "^6 || ^7 || ^8",
+                "psalm/phar": "^3.11.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Amp\\ByteStream\\": "lib"
+                },
+                "files": [
+                    "lib/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aaron Piotrowski",
+                    "email": "aaron@trowski.com"
+                },
+                {
+                    "name": "Niklas Keller",
+                    "email": "me@kelunik.com"
+                }
+            ],
+            "description": "A stream abstraction to make working with non-blocking I/O simple.",
+            "homepage": "http://amphp.org/byte-stream",
+            "keywords": [
+                "amp",
+                "amphp",
+                "async",
+                "io",
+                "non-blocking",
+                "stream"
+            ],
+            "time": "2020-06-29T18:35:05+00:00"
+        },
+        {
+            "name": "amphp/parallel",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amphp/parallel.git",
+                "reference": "2c1039bf7ca137eae4d954b14c09a7535d7d4e1c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amphp/parallel/zipball/2c1039bf7ca137eae4d954b14c09a7535d7d4e1c",
+                "reference": "2c1039bf7ca137eae4d954b14c09a7535d7d4e1c",
+                "shasum": ""
+            },
+            "require": {
+                "amphp/amp": "^2",
+                "amphp/byte-stream": "^1.6.1",
+                "amphp/parser": "^1",
+                "amphp/process": "^1",
+                "amphp/serialization": "^1",
+                "amphp/sync": "^1.0.1",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "amphp/php-cs-fixer-config": "dev-master",
+                "amphp/phpunit-util": "^1.1",
+                "phpunit/phpunit": "^8 || ^7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Amp\\Parallel\\": "lib"
+                },
+                "files": [
+                    "lib/Context/functions.php",
+                    "lib/Sync/functions.php",
+                    "lib/Worker/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aaron Piotrowski",
+                    "email": "aaron@trowski.com"
+                },
+                {
+                    "name": "Stephen Coakley",
+                    "email": "me@stephencoakley.com"
+                }
+            ],
+            "description": "Parallel processing component for Amp.",
+            "homepage": "https://github.com/amphp/parallel",
+            "keywords": [
+                "async",
+                "asynchronous",
+                "concurrent",
+                "multi-processing",
+                "multi-threading"
+            ],
+            "time": "2020-04-27T15:12:37+00:00"
+        },
+        {
+            "name": "amphp/parser",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amphp/parser.git",
+                "reference": "f83e68f03d5b8e8e0365b8792985a7f341c57ae1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amphp/parser/zipball/f83e68f03d5b8e8e0365b8792985a7f341c57ae1",
+                "reference": "f83e68f03d5b8e8e0365b8792985a7f341c57ae1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.3",
+                "phpunit/phpunit": "^6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Amp\\Parser\\": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Niklas Keller",
+                    "email": "me@kelunik.com"
+                },
+                {
+                    "name": "Aaron Piotrowski",
+                    "email": "aaron@trowski.com"
+                }
+            ],
+            "description": "A generator parser to make streaming parsers simple.",
+            "homepage": "https://github.com/amphp/parser",
+            "keywords": [
+                "async",
+                "non-blocking",
+                "parser",
+                "stream"
+            ],
+            "time": "2017-06-06T05:29:10+00:00"
+        },
+        {
+            "name": "amphp/process",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amphp/process.git",
+                "reference": "355b1e561b01c16ab3d78fada1ad47ccc96df70e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amphp/process/zipball/355b1e561b01c16ab3d78fada1ad47ccc96df70e",
+                "reference": "355b1e561b01c16ab3d78fada1ad47ccc96df70e",
+                "shasum": ""
+            },
+            "require": {
+                "amphp/amp": "^2",
+                "amphp/byte-stream": "^1.4",
+                "php": ">=7"
+            },
+            "require-dev": {
+                "amphp/php-cs-fixer-config": "dev-master",
+                "amphp/phpunit-util": "^1",
+                "phpunit/phpunit": "^6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Amp\\Process\\": "lib"
+                },
+                "files": [
+                    "lib/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bob Weinand",
+                    "email": "bobwei9@hotmail.com"
+                },
+                {
+                    "name": "Niklas Keller",
+                    "email": "me@kelunik.com"
+                },
+                {
+                    "name": "Aaron Piotrowski",
+                    "email": "aaron@trowski.com"
+                }
+            ],
+            "description": "Asynchronous process manager.",
+            "homepage": "https://github.com/amphp/process",
+            "time": "2019-02-26T16:33:03+00:00"
+        },
+        {
+            "name": "amphp/serialization",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amphp/serialization.git",
+                "reference": "693e77b2fb0b266c3c7d622317f881de44ae94a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amphp/serialization/zipball/693e77b2fb0b266c3c7d622317f881de44ae94a1",
+                "reference": "693e77b2fb0b266c3c7d622317f881de44ae94a1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "amphp/php-cs-fixer-config": "dev-master",
+                "phpunit/phpunit": "^9 || ^8 || ^7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Amp\\Serialization\\": "src"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aaron Piotrowski",
+                    "email": "aaron@trowski.com"
+                },
+                {
+                    "name": "Niklas Keller",
+                    "email": "me@kelunik.com"
+                }
+            ],
+            "description": "Serialization tools for IPC and data storage in PHP.",
+            "homepage": "https://github.com/amphp/serialization",
+            "keywords": [
+                "async",
+                "asynchronous",
+                "serialization",
+                "serialize"
+            ],
+            "time": "2020-03-25T21:39:07+00:00"
+        },
+        {
+            "name": "amphp/sync",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amphp/sync.git",
+                "reference": "613047ac54c025aa800a9cde5b05c3add7327ed4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amphp/sync/zipball/613047ac54c025aa800a9cde5b05c3add7327ed4",
+                "reference": "613047ac54c025aa800a9cde5b05c3add7327ed4",
+                "shasum": ""
+            },
+            "require": {
+                "amphp/amp": "^2.2",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "amphp/php-cs-fixer-config": "dev-master",
+                "amphp/phpunit-util": "^1.1",
+                "phpunit/phpunit": "^9 || ^8 || ^7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Amp\\Sync\\": "src"
+                },
+                "files": [
+                    "src/functions.php",
+                    "src/ConcurrentIterator/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aaron Piotrowski",
+                    "email": "aaron@trowski.com"
+                },
+                {
+                    "name": "Stephen Coakley",
+                    "email": "me@stephencoakley.com"
+                }
+            ],
+            "description": "Mutex, Semaphore, and other synchronization tools for Amp.",
+            "homepage": "https://github.com/amphp/sync",
+            "keywords": [
+                "async",
+                "asynchronous",
+                "mutex",
+                "semaphore",
+                "synchronization"
+            ],
+            "time": "2020-05-07T18:57:50+00:00"
         },
         {
             "name": "avianey/jqdoublescroll",
@@ -1809,13 +2235,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Hesammousavi/bootstrap-v4-rtl.git",
-                "reference": "b1f28ed4f0fd20432b7d6f377992e3445cd84012"
+                "reference": "1dff86c411b08d86b0810f80070c2389692d466e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/hesammousavi/bootstrap-v4-rtl/hesammousavi-bootstrap-v4-rtl-b1f28ed4f0fd20432b7d6f377992e3445cd84012-zip-eed87b.zip",
-                "reference": "b1f28ed4f0fd20432b7d6f377992e3445cd84012",
-                "shasum": "f0532eaa0ad3bc193bce20fe966a42acc0c8865b"
+                "url": "https://composer.tiki.org/dist/hesammousavi/bootstrap-v4-rtl/hesammousavi-bootstrap-v4-rtl-1dff86c411b08d86b0810f80070c2389692d466e-zip-21d94c.zip",
+                "reference": "1dff86c411b08d86b0810f80070c2389692d466e",
+                "shasum": "2d6780eba9300b5d61174c96a35f6f8728746dfa"
             },
             "type": "project",
             "notification-url": "https://packagist.org/downloads/",
@@ -1833,7 +2259,7 @@
                 "bootstra",
                 "bootstrap-rtl"
             ],
-            "time": "2019-12-02T04:50:47+00:00"
+            "time": "2020-09-01T05:04:14+00:00"
         },
         {
             "name": "itsjavi/bootstrap-colorpicker",
@@ -3962,17 +4388,17 @@
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-zendframework-bridge.git",
-                "reference": "4939c81f63a8a4968c108c440275c94955753b19"
+                "reference": "6ede70583e101030bcace4dcddd648f760ddf642"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/laminas/laminas-zendframework-bridge/laminas-laminas-zendframework-bridge-4939c81f63a8a4968c108c440275c94955753b19-zip-5fe315.zip",
-                "reference": "4939c81f63a8a4968c108c440275c94955753b19",
-                "shasum": "7d02b81989d25af9991e19e68a1a6f41262f858b"
+                "url": "https://composer.tiki.org/dist/laminas/laminas-zendframework-bridge/laminas-laminas-zendframework-bridge-6ede70583e101030bcace4dcddd648f760ddf642-zip-1a3342.zip",
+                "reference": "6ede70583e101030bcace4dcddd648f760ddf642",
+                "shasum": "c94f639a49b2fa1d43351f9b0946c97b311ff956"
             },
             "require": {
                 "php": "^5.6 || ^7.0 || ^8.0"
@@ -3983,10 +4409,6 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev",
-                    "dev-develop": "1.1.x-dev"
-                },
                 "laminas": {
                     "module": "Laminas\\ZendFrameworkBridge"
                 }
@@ -4010,7 +4432,7 @@
                 "laminas",
                 "zf"
             ],
-            "time": "2020-08-18T16:34:51+00:00"
+            "time": "2020-09-14T14:23:00+00:00"
         },
         {
             "name": "lcobucci/jwt",
@@ -4069,17 +4491,17 @@
         },
         {
             "name": "league/commonmark",
-            "version": "1.5.4",
+            "version": "1.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "21819c989e69bab07e933866ad30c7e3f32984ba"
+                "reference": "45832dfed6007b984c0d40addfac48d403dc6432"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/league/commonmark/league-commonmark-21819c989e69bab07e933866ad30c7e3f32984ba-zip-df7789.zip",
-                "reference": "21819c989e69bab07e933866ad30c7e3f32984ba",
-                "shasum": "56010939653110ddb168fc68e4c68e735c3132de"
+                "url": "https://composer.tiki.org/dist/league/commonmark/league-commonmark-45832dfed6007b984c0d40addfac48d403dc6432-zip-5cce95.zip",
+                "reference": "45832dfed6007b984c0d40addfac48d403dc6432",
+                "shasum": "9190c7026ba7681a6d2a420bd050f892ab27bc2c"
             },
             "require": {
                 "ext-mbstring": "*",
@@ -4090,7 +4512,7 @@
             },
             "require-dev": {
                 "cebe/markdown": "~1.0",
-                "commonmark/commonmark.js": "0.29.1",
+                "commonmark/commonmark.js": "0.29.2",
                 "erusev/parsedown": "~1.0",
                 "ext-json": "*",
                 "github/gfm": "0.29.0",
@@ -4134,7 +4556,7 @@
                 "md",
                 "parser"
             ],
-            "time": "2020-08-18T01:19:12+00:00"
+            "time": "2020-09-13T14:44:46+00:00"
         },
         {
             "name": "league/commonmark-extras",
@@ -5042,11 +5464,11 @@
         },
         {
             "name": "npm-asset/moment",
-            "version": "2.27.0",
+            "version": "2.28.0",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/moment/npm-asset-moment-2.27.0.zip",
-                "shasum": "6d31ad73ae46a9ccc624ebc9c96fa2acd541cebd"
+                "url": "https://composer.tiki.org/dist/npm-asset/moment/npm-asset-moment-2.28.0.zip",
+                "shasum": "a1cefc57bdd061af4f7c980cf02f153b7b9989fc"
             },
             "type": "npm-asset",
             "license": [
@@ -5057,8 +5479,9 @@
             "name": "npm-asset/moment-duration-format",
             "version": "2.3.2",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/moment-duration-format/-/moment-duration-format-2.3.2.tgz"
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/moment-duration-format/npm-asset-moment-duration-format-2.3.2.zip",
+                "shasum": "4c1c5067c3828225aa6f442449cb08884f16ea3a"
             },
             "type": "npm-asset",
             "license": [
@@ -5098,8 +5521,9 @@
             "name": "npm-asset/reveal.js",
             "version": "3.9.2",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/reveal.js/-/reveal.js-3.9.2.tgz"
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/reveal-js/npm-asset-reveal-js-3.9.2.zip",
+                "shasum": "0de63206c3dcbbeddeab6c6aee0f25d3d3dfd2f0"
             },
             "type": "npm-asset",
             "license": [
@@ -5146,32 +5570,24 @@
         },
         {
             "name": "npm-asset/zxing--library",
-            "version": "0.17.1",
+            "version": "v0.17.2",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:zxing-js/library.git",
+                "reference": "9e131ed963b15a35c22909020604b22b4bd8c8e0"
+            },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/zxing--library/npm-asset-zxing--library-0.17.1.zip",
-                "shasum": "44798bf6314383fc1d17ee37273cabe6a6fef35c"
+                "url": "https://composer.tiki.org/dist/npm-asset/zxing--library/npm-asset-zxing--library-9e131ed963b15a35c22909020604b22b4bd8c8e0-zip-20739a.zip",
+                "reference": "9e131ed963b15a35c22909020604b22b4bd8c8e0",
+                "shasum": "95ed8431f24fda254c8b49b7af1cd202a0fdfefa"
             },
             "require": {
-                "npm-asset/ts-custom-error": ">=3.0.0,<4.0.0",
-                "npm-asset/zxing--text-encoding": "~0.9.0"
+                "npm-asset/ts-custom-error": ">=3.0.0,<4.0.0"
             },
             "type": "npm-asset",
             "license": [
                 "MIT"
-            ]
-        },
-        {
-            "name": "npm-asset/zxing--text-encoding",
-            "version": "0.9.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/zxing--text-encoding/npm-asset-zxing--text-encoding-0.9.0.zip",
-                "shasum": "f477f05b400d05cb77d729b4cf47c37aef3a019c"
-            },
-            "type": "npm-asset",
-            "license": [
-                "(Unlicense OR Apache-2.0)"
             ]
         },
         {
@@ -5407,17 +5823,17 @@
         },
         {
             "name": "pear/archive_tar",
-            "version": "1.4.9",
+            "version": "1.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/Archive_Tar.git",
-                "reference": "c5b00053770e1d72128252c62c2c1a12c26639f0"
+                "reference": "bbb4f10f71a1da2715ec6d9a683f4f23c507a49b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/pear/archive_tar/pear-archive_tar-c5b00053770e1d72128252c62c2c1a12c26639f0-zip-0f3238.zip",
-                "reference": "c5b00053770e1d72128252c62c2c1a12c26639f0",
-                "shasum": "d1798e521b00f4d4b2643d05a5841fbf11c4f4a3"
+                "url": "https://composer.tiki.org/dist/pear/archive_tar/pear-archive_tar-bbb4f10f71a1da2715ec6d9a683f4f23c507a49b-zip-991d40.zip",
+                "reference": "bbb4f10f71a1da2715ec6d9a683f4f23c507a49b",
+                "shasum": "5c30f92fb20821ef63ad6049faabf83c01ef9a76"
             },
             "require": {
                 "pear/pear-core-minimal": "^1.10.0alpha2",
@@ -5469,7 +5885,7 @@
                 "archive",
                 "tar"
             ],
-            "time": "2019-12-04T10:17:28+00:00"
+            "time": "2020-09-15T14:13:23+00:00"
         },
         {
             "name": "pear/console_getopt",
@@ -6383,6 +6799,228 @@
                 "jquery"
             ],
             "time": "2019-10-09T11:41:48+00:00"
+        },
+        {
+            "name": "rubix/ml",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RubixML/RubixML.git",
+                "reference": "a0ce91dc30033c1eaf15bd2b788bc70564364bdb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RubixML/RubixML/zipball/a0ce91dc30033c1eaf15bd2b788bc70564364bdb",
+                "reference": "a0ce91dc30033c1eaf15bd2b788bc70564364bdb",
+                "shasum": ""
+            },
+            "require": {
+                "amphp/parallel": "^1.3",
+                "php": ">=7.2",
+                "psr/log": "^1.1",
+                "rubix/tensor": "^2.0",
+                "symfony/polyfill-mbstring": "^1.0",
+                "symfony/polyfill-php80": "^1.17"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "2.16.*",
+                "phpbench/phpbench": "0.17.*",
+                "phpstan/phpstan": "0.12.*",
+                "phpstan/phpstan-phpunit": "0.12.*",
+                "phpunit/phpunit": "8.5.*"
+            },
+            "suggest": {
+                "ext-gd": "For image manipulation",
+                "ext-igbinary": "For binary serialization of persistables",
+                "ext-mbstring": "For fast multibyte string manipulation",
+                "ext-redis": "To persist models to a Redis DB",
+                "ext-svm": "For Support Vector Machine engine (libsvm)",
+                "ext-tensor": "For fast Matrix/Vector computing",
+                "rubix/extras": "For experimental features"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Rubix\\ML\\": "src/"
+                },
+                "files": [
+                    "src/constants.php",
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew DalPino",
+                    "email": "me@andrewdalpino.com",
+                    "homepage": "https://andrewdalpino.com",
+                    "role": "Lead Engineer"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/RubixML/RubixML/graphs/contributors"
+                }
+            ],
+            "description": "A high-level machine learning and deep learning library for the PHP language.",
+            "homepage": "https://rubixml.com",
+            "keywords": [
+                "Algorithm",
+                "Deep learning",
+                "Linear regression",
+                "Neural network",
+                "Rubix",
+                "TF-IDF",
+                "adaboost",
+                "ai",
+                "analytics",
+                "anomaly detection",
+                "artificial intelligence",
+                "cart",
+                "classification",
+                "classifier",
+                "clustering",
+                "cross validation",
+                "data mining",
+                "data science",
+                "dataset",
+                "dbscan",
+                "dimensionality reduction",
+                "ensemble",
+                "estimator",
+                "etl",
+                "feature extraction",
+                "feature importance",
+                "feature selection",
+                "gaussian mixture",
+                "gbm",
+                "gmm",
+                "gradient boost",
+                "grid search",
+                "image recognition",
+                "imputation",
+                "inference",
+                "isolation forest",
+                "k-means",
+                "k-nearest neighbors",
+                "kmeans",
+                "knn",
+                "local outlier factor",
+                "loda",
+                "lof",
+                "logistic regression",
+                "machine learning",
+                "manifold learning",
+                "mean shift",
+                "ml",
+                "mlp",
+                "multilayer perceptron",
+                "naive bayes",
+                "natural language processing",
+                "nearest neighbors",
+                "nlp",
+                "outlier detection",
+                "php",
+                "php ai",
+                "php machine learning",
+                "php ml",
+                "prediction",
+                "predictive modeling",
+                "random forest",
+                "ranking",
+                "recommendation",
+                "regression",
+                "regressor",
+                "ridge",
+                "rubix ml",
+                "rubixml",
+                "softmax",
+                "supervised learning",
+                "support vector machine",
+                "svm",
+                "t-sne",
+                "text mining",
+                "tf idf",
+                "tsne",
+                "unsupervised learning"
+            ],
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/RubixML",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/rubixml",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2020-09-13T19:08:14+00:00"
+        },
+        {
+            "name": "rubix/tensor",
+            "version": "2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RubixML/Tensor.git",
+                "reference": "6b9d2facf1861ad449b1ca15223fbd250d46fe8b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RubixML/Tensor/zipball/6b9d2facf1861ad449b1ca15223fbd250d46fe8b",
+                "reference": "6b9d2facf1861ad449b1ca15223fbd250d46fe8b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "2.16.*",
+                "phalcon/zephir": "^0.12.14",
+                "phpbench/phpbench": "0.16.*",
+                "phpstan/phpstan": "0.12.*",
+                "phpstan/phpstan-phpunit": "0.12.*",
+                "phpunit/phpunit": "8.5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tensor\\": "src/",
+                    "JAMA\\": "lib/JAMA"
+                },
+                "files": [
+                    "src/constants.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew DalPino",
+                    "email": "me@andrewdalpino.com",
+                    "homepage": "https://andrewdalpino.com",
+                    "role": "Lead Engineer"
+                }
+            ],
+            "description": "Tensor is a library and extension that provides objects for scientific computing in PHP.",
+            "homepage": "https://github.com/RubixML/Tensor",
+            "keywords": [
+                "arithmetic",
+                "computation",
+                "linear-algebra",
+                "math",
+                "matrix",
+                "php",
+                "scientific-computing",
+                "statistics",
+                "tensor",
+                "trigonometry",
+                "vector"
+            ],
+            "time": "2020-04-17T04:55:11+00:00"
         },
         {
             "name": "sabre/dav",
@@ -8717,9 +9355,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kornrunner/dbunit/zipball/ff4c76a8f2eb0daa3d87b028cb945d8429ce3c57",
+                "url": "https://composer.tiki.org/dist/kornrunner/dbunit/kornrunner-dbunit-ff4c76a8f2eb0daa3d87b028cb945d8429ce3c57-zip-aff625.zip",
                 "reference": "ff4c76a8f2eb0daa3d87b028cb945d8429ce3c57",
-                "shasum": ""
+                "shasum": "f04c4a97c431b9052413a0634064756531d8bda8"
             },
             "require": {
                 "ext-pdo": "*",
@@ -9577,6 +10215,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {
