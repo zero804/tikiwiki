@@ -312,9 +312,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/christian-riesen/base32/christian-riesen-base32-80ff0e3b2124e61b4b39e2535709452f70bff367-zip-e5a0fa.zip",
+                "url": "https://api.github.com/repos/ChristianRiesen/base32/zipball/80ff0e3b2124e61b4b39e2535709452f70bff367",
                 "reference": "80ff0e3b2124e61b4b39e2535709452f70bff367",
-                "shasum": "8de7dd26000d192b69df16d372dff128233a2d2e"
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3"
@@ -419,9 +419,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/codeitnowin/barcode/codeitnowin-barcode-6325a15ae904ec401b947e1a3e868de1c2cc80b0-zip-e0db04.zip",
+                "url": "https://api.github.com/repos/codeitnowin/barcode-generator/zipball/6325a15ae904ec401b947e1a3e868de1c2cc80b0",
                 "reference": "6325a15ae904ec401b947e1a3e868de1c2cc80b0",
-                "shasum": "16a1122e60a2f296c6cdb66113fa1ba9e1953095"
+                "shasum": ""
             },
             "require": {
                 "ext-gd": "*",
@@ -1077,9 +1077,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/defuse/php-encryption/defuse-php-encryption-0f407c43b953d571421e0020ba92082ed5fb7620-zip-2377aa.zip",
+                "url": "https://api.github.com/repos/defuse/php-encryption/zipball/0f407c43b953d571421e0020ba92082ed5fb7620",
                 "reference": "0f407c43b953d571421e0020ba92082ed5fb7620",
-                "shasum": "208c96315d3634e11972dc18fd15451bf3fbf47a"
+                "shasum": ""
             },
             "require": {
                 "ext-openssl": "*",
@@ -1305,7 +1305,7 @@
             ],
             "authors": [
                 {
-                    "name": "Osman Üngür",
+                    "name": "Osman Ungur",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -1789,9 +1789,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
+                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
+                "shasum": ""
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -4346,9 +4346,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/league/event/league-event-d2cc124cf9a3fab2bb4ff963307f60361ce4d119-zip-f1c2c3.zip",
+                "url": "https://api.github.com/repos/thephpleague/event/zipball/d2cc124cf9a3fab2bb4ff963307f60361ce4d119",
                 "reference": "d2cc124cf9a3fab2bb4ff963307f60361ce4d119",
-                "shasum": "29f004e2bd0b2dc7fbe91fc7615a5d11ba360fa8"
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0"
@@ -5230,9 +5230,8 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
-                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
+                "type": "tar",
+                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -8239,6 +8238,57 @@
             "time": "2020-08-26T06:32:27+00:00"
         },
         {
+            "name": "teqneers/shamir",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/teqneers/shamir.git",
+                "reference": "d26e62a0e669653c8850992e4a40ff7db7249035"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/teqneers/shamir/zipball/d26e62a0e669653c8850992e4a40ff7db7249035",
+                "reference": "d26e62a0e669653c8850992e4a40ff7db7249035",
+                "shasum": ""
+            },
+            "require": {
+                "ext-bcmath": "*",
+                "php": ">=7.0.0",
+                "symfony/console": "^3.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.5 || ^7.5",
+                "roave/security-advisories": "dev-master"
+            },
+            "suggest": {
+                "ext-openssl": "For using its random generator instead of PHP one"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TQ\\Shamir\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stefan Gehrig",
+                    "email": "gehrig@teqneers.de",
+                    "homepage": "https://teqneers.de/"
+                },
+                {
+                    "name": "Oliver Müller",
+                    "email": "mueller@teqneers.de",
+                    "homepage": "https://teqneers.de/"
+                }
+            ],
+            "description": "This is Shamir's Shared Secret implementation in PHP. It allows you to create shared secrets using the PHP classes or the CLI interface.",
+            "time": "2020-05-10T16:02:01+00:00"
+        },
+        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "2.2.3",
             "source": {
@@ -8297,9 +8347,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/true/punycode/true-punycode-a4d0c11a36dd7f4e7cd7096076cab6d3378a071e-zip-4ceb35.zip",
+                "url": "https://api.github.com/repos/true/php-punycode/zipball/a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
                 "reference": "a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
-                "shasum": "0153b28196219934ea010de766dea03de32a7d89"
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0",
