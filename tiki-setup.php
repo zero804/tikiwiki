@@ -765,6 +765,10 @@ annotatorContent.annotator("addPlugin", "Permissions", {
 
 $headerlib->add_jsfile('lib/jquery_tiki/pluginedit.js');
 
+if ($prefs['feature_machine_learning'] == 'y') {
+	$headerlib->add_jsfile('lib/jquery_tiki/tiki-machine_learning.js');
+}
+
 if (session_id()) {
 	if ($prefs['tiki_cachecontrol_session']) {
 		header('Cache-Control: ' . $prefs['tiki_cachecontrol_session']);

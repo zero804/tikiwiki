@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3c3cb31bb4348428755a22f8cb6b8643",
+    "content-hash": "62087449a830f1e087b36b0b195149dd",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -795,17 +795,17 @@
         },
         {
             "name": "ckeditor/ckeditor",
-            "version": "4.14.1",
+            "version": "4.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ckeditor/ckeditor4-releases.git",
-                "reference": "8eccaf31ad9832a113757d379758996ed2150f60"
+                "reference": "f233b056a20528c442576e661486170a7d84a7b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-8eccaf31ad9832a113757d379758996ed2150f60-zip-6a9bed.zip",
-                "reference": "8eccaf31ad9832a113757d379758996ed2150f60",
-                "shasum": "bacf7935fcc524631c85cf4efababa5a45314165"
+                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-f233b056a20528c442576e661486170a7d84a7b9-zip-d1b452.zip",
+                "reference": "f233b056a20528c442576e661486170a7d84a7b9",
+                "shasum": "4197e9d9ea7165b3eae5bfd409b56006475c9c13"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -833,7 +833,7 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2020-06-17T12:33:25+00:00"
+            "time": "2020-09-07T13:41:04+00:00"
         },
         {
             "name": "codeitnowin/barcode",
@@ -2353,13 +2353,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jasonmunro/cypht.git",
-                "reference": "0c7a095ec0819fa7094d5c9af9191dc945b251f5"
+                "reference": "85b5b1e0b6454578821a5419711641685dfcc57f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jason-munro/cypht/jason-munro-cypht-0c7a095ec0819fa7094d5c9af9191dc945b251f5-zip-779ed2.zip",
-                "reference": "0c7a095ec0819fa7094d5c9af9191dc945b251f5",
-                "shasum": "73ee77f9504258925c53f6e94ac839d7528fc41b"
+                "url": "https://composer.tiki.org/dist/jason-munro/cypht/jason-munro-cypht-85b5b1e0b6454578821a5419711641685dfcc57f-zip-d04d3a.zip",
+                "reference": "85b5b1e0b6454578821a5419711641685dfcc57f",
+                "shasum": "d801ce54c504ec5b1ef2c42f3401156058ec2925"
             },
             "require": {
                 "christian-riesen/base32": "^1.3.2",
@@ -2409,7 +2409,7 @@
                 "webmail",
                 "webmail-client"
             ],
-            "time": "2020-07-31T17:34:46+00:00"
+            "time": "2020-09-17T18:47:11+00:00"
         },
         {
             "name": "jquery-form/form",
@@ -4665,6 +4665,123 @@
             "time": "2018-11-26T11:52:41+00:00"
         },
         {
+            "name": "league/flysystem",
+            "version": "2.0.0-beta.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "f91127d6b65e4e795f49fcd507e712654f852105"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f91127d6b65e4e795f49fcd507e712654f852105",
+                "reference": "f91127d6b65e4e795f49fcd507e712654f852105",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "league/mime-type-detection": "^1.0.0",
+                "php": "^7.2"
+            },
+            "conflict": {
+                "guzzlehttp/ringphp": "<1.1.1"
+            },
+            "require-dev": {
+                "aws/aws-sdk-php": "^3.132.4",
+                "composer/semver": "^3.0",
+                "ext-fileinfo": "*",
+                "phpseclib/phpseclib": "^2.0",
+                "phpstan/phpstan": "^0.12.26",
+                "phpunit/phpunit": "^8.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "File storage abstraction for PHP",
+            "keywords": [
+                "WebDAV",
+                "aws",
+                "cloud",
+                "file",
+                "files",
+                "filesystem",
+                "filesystems",
+                "ftp",
+                "s3",
+                "sftp",
+                "storage"
+            ],
+            "funding": [
+                {
+                    "url": "https://offset.earth/frankdejonge",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/frankdejonge",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/league/flysystem",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-08-23T07:49:36+00:00"
+        },
+        {
+            "name": "league/mime-type-detection",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/mime-type-detection.git",
+                "reference": "fda190b62b962d96a069fcc414d781db66d65b69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/league/mime-type-detection/league-mime-type-detection-fda190b62b962d96a069fcc414d781db66d65b69-zip-1fd401.zip",
+                "reference": "fda190b62b962d96a069fcc414d781db66d65b69",
+                "shasum": "2ab28176856096367c9f5a7ec3c4c3abec05be17"
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.36",
+                "phpunit/phpunit": "^8.5.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\MimeTypeDetection\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "Mime-type detection for Flysystem",
+            "time": "2020-08-09T10:34:01+00:00"
+        },
+        {
             "name": "league/oauth2-server",
             "version": "7.4.0",
             "source": {
@@ -6441,17 +6558,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.55.0",
+            "version": "v1.55.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "a816d3ca242d33aeec1bfdd3548881c98fd5ecba"
+                "reference": "b08c0e80f1ded8383c1f71a39e3da67e7f362dcb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-a816d3ca242d33aeec1bfdd3548881c98fd5ecba-zip-915f1a.zip",
-                "reference": "a816d3ca242d33aeec1bfdd3548881c98fd5ecba",
-                "shasum": "8712b7ca1c0e677554b6f48d2aeb4a4930decbda"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-b08c0e80f1ded8383c1f71a39e3da67e7f362dcb-zip-91c2bd.zip",
+                "reference": "b08c0e80f1ded8383c1f71a39e3da67e7f362dcb",
+                "shasum": "4cad0552efbcc3a088a7a5555ddaa3d0e1d62c68"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -6473,7 +6590,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2020-09-02T22:45:01+00:00"
+            "time": "2020-09-08T14:39:29+00:00"
         },
         {
             "name": "pragmarx/google2fa",
@@ -6799,6 +6916,73 @@
                 "jquery"
             ],
             "time": "2019-10-09T11:41:48+00:00"
+        },
+        {
+            "name": "rubix/extras",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RubixML/Extras.git",
+                "reference": "2af010ed427f5ee333e75bdbf77bf9f38d030feb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RubixML/Extras/zipball/2af010ed427f5ee333e75bdbf77bf9f38d030feb",
+                "reference": "2af010ed427f5ee333e75bdbf77bf9f38d030feb",
+                "shasum": ""
+            },
+            "require": {
+                "league/flysystem": "2.0.0-beta.3",
+                "php": ">=7.2",
+                "rubix/ml": "^0.2.0",
+                "rubix/tensor": "^2.0.4",
+                "wamania/php-stemmer": "^2.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "2.16.*",
+                "league/flysystem-memory": "2.0.0-beta.3",
+                "phpbench/phpbench": "0.17.*",
+                "phpstan/phpstan": "0.12.*",
+                "phpstan/phpstan-phpunit": "0.12.*",
+                "phpunit/phpunit": "8.5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Rubix\\ML\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/RubixML/Extras/graphs/contributors"
+                }
+            ],
+            "description": "Experimental features for the Rubix ML library.",
+            "homepage": "https://rubixml.com",
+            "keywords": [
+                "Deep learning",
+                "Extras",
+                "Neural network",
+                "Rubix",
+                "ai",
+                "analytics",
+                "artificial intelligence",
+                "data mining",
+                "machine learning",
+                "ml",
+                "php",
+                "php ai",
+                "php ml",
+                "php-ml",
+                "rubix ml",
+                "rubixml"
+            ],
+            "time": "2020-09-16T22:37:04+00:00"
         },
         {
             "name": "rubix/ml",
@@ -8136,6 +8320,147 @@
             "time": "2020-07-14T12:35:20+00:00"
         },
         {
+            "name": "symfony/polyfill-iconv",
+            "version": "v1.18.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-iconv.git",
+                "reference": "6c2f78eb8f5ab8eaea98f6d414a5915f2e0fce36"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/6c2f78eb8f5ab8eaea98f6d414a5915f2e0fce36",
+                "reference": "6c2f78eb8f5ab8eaea98f6d414a5915f2e0fce36",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-iconv": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.18-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Iconv\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for the Iconv extension",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "iconv",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-07-14T12:35:20+00:00"
+        },
+        {
+            "name": "symfony/polyfill-intl-grapheme",
+            "version": "v1.18.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-intl-grapheme.git",
+                "reference": "b740103edbdcc39602239ee8860f0f45a8eb9aa5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-intl-grapheme/symfony-polyfill-intl-grapheme-b740103edbdcc39602239ee8860f0f45a8eb9aa5-zip-a34620.zip",
+                "reference": "b740103edbdcc39602239ee8860f0f45a8eb9aa5",
+                "shasum": "fffc14339b039017bf96897687e3b5480879d76f"
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-intl": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.18-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Intl\\Grapheme\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for intl's grapheme_* functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "grapheme",
+                "intl",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2020-07-14T12:35:20+00:00"
+        },
+        {
             "name": "symfony/polyfill-intl-idn",
             "version": "v1.18.1",
             "source": {
@@ -8966,6 +9291,171 @@
             "type": "library"
         },
         {
+            "name": "voku/portable-ascii",
+            "version": "1.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/voku/portable-ascii.git",
+                "reference": "25bcbf01678930251fd572891447d9e318a6e2b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/25bcbf01678930251fd572891447d9e318a6e2b8",
+                "reference": "25bcbf01678930251fd572891447d9e318a6e2b8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0 || ~7.0"
+            },
+            "suggest": {
+                "ext-intl": "Use Intl for transliterator_transliterate() support"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "voku\\": "src/voku/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lars Moelleken",
+                    "homepage": "http://www.moelleken.org/"
+                }
+            ],
+            "description": "Portable ASCII library - performance optimized (ascii) string functions for php.",
+            "homepage": "https://github.com/voku/portable-ascii",
+            "keywords": [
+                "ascii",
+                "clean",
+                "php"
+            ],
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/moelleken",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/voku",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/portable-ascii",
+                    "type": "open_collective"
+                },
+                {
+                    "url": "https://www.patreon.com/voku",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/voku/portable-ascii",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-07-22T23:32:04+00:00"
+        },
+        {
+            "name": "voku/portable-utf8",
+            "version": "5.4.47",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/voku/portable-utf8.git",
+                "reference": "c92522515a2d5ec9b03fd3c9e231b8b277c65121"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/voku/portable-utf8/zipball/c92522515a2d5ec9b03fd3c9e231b8b277c65121",
+                "reference": "c92522515a2d5ec9b03fd3c9e231b8b277c65121",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0",
+                "symfony/polyfill-iconv": "~1.0",
+                "symfony/polyfill-intl-grapheme": "~1.0",
+                "symfony/polyfill-intl-normalizer": "~1.0",
+                "symfony/polyfill-mbstring": "~1.0",
+                "symfony/polyfill-php72": "~1.0",
+                "voku/portable-ascii": "~1.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0 || ~7.0"
+            },
+            "suggest": {
+                "ext-ctype": "Use Ctype for e.g. hexadecimal digit detection",
+                "ext-fileinfo": "Use Fileinfo for better binary file detection",
+                "ext-iconv": "Use iconv for best performance",
+                "ext-intl": "Use Intl for best performance",
+                "ext-json": "Use JSON for string detection",
+                "ext-mbstring": "Use Mbstring for best performance"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "voku\\": "src/voku/"
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "(Apache-2.0 or GPL-2.0)"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Hamid Sarfraz",
+                    "homepage": "http://pageconfig.com/"
+                },
+                {
+                    "name": "Lars Moelleken",
+                    "homepage": "http://www.moelleken.org/"
+                }
+            ],
+            "description": "Portable UTF-8 library - performance optimized (unicode) string functions for php.",
+            "homepage": "https://github.com/voku/portable-utf8",
+            "keywords": [
+                "UTF",
+                "clean",
+                "php",
+                "unicode",
+                "utf-8",
+                "utf8"
+            ],
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/moelleken",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/voku",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/portable-utf8",
+                    "type": "open_collective"
+                },
+                {
+                    "url": "https://www.patreon.com/voku",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/voku/portable-utf8",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-07-26T11:17:51+00:00"
+        },
+        {
             "name": "walkermatt/ol-layerswitcher",
             "version": "3.3.0",
             "dist": {
@@ -8974,6 +9464,51 @@
                 "shasum": "48f4b1e1d9075f3babedbd76962efdbb9ad7d2f1"
             },
             "type": "library"
+        },
+        {
+            "name": "wamania/php-stemmer",
+            "version": "v2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wamania/php-stemmer.git",
+                "reference": "02ca30d47bd4a4e5f75e4900a71bea61334c9917"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wamania/php-stemmer/zipball/02ca30d47bd4a4e5f75e4900a71bea61334c9917",
+                "reference": "02ca30d47bd4a4e5f75e4900a71bea61334c9917",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0",
+                "voku/portable-utf8": "^5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Wamania\\Snowball\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Wamania",
+                    "homepage": "http://wamania.com"
+                }
+            ],
+            "description": "Native PHP5 Stemmer",
+            "keywords": [
+                "php",
+                "porter",
+                "stemmer"
+            ],
+            "time": "2020-05-25T21:11:56+00:00"
         },
         {
             "name": "webuni/commonmark-attributes-extension",
@@ -9807,17 +10342,17 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "5.2.1",
+            "version": "5.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "d870572532cd70bc3fab58f2e23ad423c8404c44"
+                "reference": "069a785b2141f5bcf49f3e353548dc1cce6df556"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpdocumentor/reflection-docblock/phpdocumentor-reflection-docblock-d870572532cd70bc3fab58f2e23ad423c8404c44-zip-fa60a3.zip",
-                "reference": "d870572532cd70bc3fab58f2e23ad423c8404c44",
-                "shasum": "526b8d97bffd79c6cfaadda6d1d647c48a48036c"
+                "url": "https://composer.tiki.org/dist/phpdocumentor/reflection-docblock/phpdocumentor-reflection-docblock-069a785b2141f5bcf49f3e353548dc1cce6df556-zip-d9fc00.zip",
+                "reference": "069a785b2141f5bcf49f3e353548dc1cce6df556",
+                "shasum": "74e201f87e188f15ff9750cef525a01c374e90cf"
             },
             "require": {
                 "ext-filter": "*",
@@ -9855,21 +10390,21 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2020-08-15T11:14:08+00:00"
+            "time": "2020-09-03T19:13:55+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "e878a14a65245fbe78f8080eba03b47c3b705651"
+                "reference": "6a467b8989322d92aa1c8bf2bebcc6e5c2ba55c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpdocumentor/type-resolver/phpdocumentor-type-resolver-e878a14a65245fbe78f8080eba03b47c3b705651-zip-86e821.zip",
-                "reference": "e878a14a65245fbe78f8080eba03b47c3b705651",
-                "shasum": "29af20bb4ba4dc8d5e73d9cc357eee13e3d028be"
+                "url": "https://composer.tiki.org/dist/phpdocumentor/type-resolver/phpdocumentor-type-resolver-6a467b8989322d92aa1c8bf2bebcc6e5c2ba55c0-zip-f0df37.zip",
+                "reference": "6a467b8989322d92aa1c8bf2bebcc6e5c2ba55c0",
+                "shasum": "c004b599370f10f3574a6c3f99bfd5422bbdd01b"
             },
             "require": {
                 "php": "^7.2 || ^8.0",
@@ -9900,7 +10435,7 @@
                 }
             ],
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
-            "time": "2020-06-27T10:12:23+00:00"
+            "time": "2020-09-17T18:55:26+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -11319,7 +11854,9 @@
         "erusev/parsedown": 10,
         "hesammousavi/bootstrap-v4-rtl": 20,
         "jason-munro/cypht": 20,
+        "league/flysystem": 10,
         "npm-asset/html2canvas": 5,
+        "rubix/extras": 20,
         "sorich87/bootstrap-tour": 20,
         "teqneers/shamir": 20,
         "zendframework/zendsearch": 20,
