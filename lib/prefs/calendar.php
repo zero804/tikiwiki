@@ -137,12 +137,6 @@ function prefs_calendar_list()
 			'type' => 'flag',
 			'default' => 'n',
 		],
-		'calendar_fullcalendar' => [
-			'name' => tra('Use FullCalendar to display calendars'),
-			'description' => '',
-			'type' => 'flag',
-			'default' => 'n',
-		],
 		'calendar_description_is_html' => [
 			'name' => tra('Treat calendar item descriptions as HTML'),
 			'description' => tra('Use this if you use the WYSIWYG editor for calendars. This is to handle legacy data from Tiki pre 7.0.'),

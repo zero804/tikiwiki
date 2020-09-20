@@ -876,6 +876,7 @@ class CalendarLib extends TikiLib
 	 */
 	function move_item($calitemId, $delay = 0)
 	{
+		$delay = $this->get_delay($delay);
 		if ($delay != 0) {
 			$query = 'UPDATE `tiki_calendar_items` set start = start + ?, end = end + ? WHERE `calitemId`=?';
 			$this->query($query, [$delay,$delay,$calitemId]);
@@ -888,6 +889,7 @@ class CalendarLib extends TikiLib
 	 */
 	function resize_item($calitemId, $delay = 0)
 	{
+		$delay = $this->get_delay($delay);
 		if ($delay != 0) {
 			$query = 'UPDATE `tiki_calendar_items` set end = end + ? WHERE `calitemId`=?';
 			$this->query($query, [$delay,$calitemId]);
@@ -1923,5 +1925,45 @@ class CalendarLib extends TikiLib
 		$bindvars = [$user, $data, $uri, time(), md5($data), strlen($data)];
 		$this->query($query, $bindvars);
 		return $this->lastInsertId();
+	}
+
+	/**
+	 * Get delay value
+	 *
+	 * @param int|array $delay
+	 * @return mixed
+	 */
+	public function get_delay($delay = 0)
+	{
+		if (empty($delay) || is_string($delay)) {
+			return 0;
+		}
+
+		if (is_numeric($delay)) {
+			return $delay;
+		}
+
+		if (is_array($delay)) {
+			$delayYears = 0;
+			$delayMonths = 0;
+			$delayDays = 0;
+			$delayMilliseconds = 0;
+
+			if (! empty($delay['years'])) {
+				$delayYears = intval($delay['years']) * 31556952;
+			}
+			if (! empty($delay['months'])) {
+				$delayMonths = intval($delay['months']) * 2629700;
+			}
+			if (! empty($delay['days'])) {
+				$delayDays = intval($delay['days']) * 86400;
+			}
+			if (! empty($delay['milliseconds'])) {
+				$delayMilliseconds = $delay['milliseconds'] * 0.001;
+			}
+
+			$delay = $delayYears + $delayMonths + $delayDays + $delayMilliseconds;
+			return $delay;
+		}
 	}
 }

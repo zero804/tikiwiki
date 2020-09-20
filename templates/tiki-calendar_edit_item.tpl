@@ -29,7 +29,7 @@
 				{if $tiki_p_admin_calendar eq 'y'}
 					{button href="tiki-admin_calendars.php" _icon_name="admin" _type="link" _text="{tr}Admin Calendars{/tr}"}
 				{/if}
-				{if $prefs.calendar_fullcalendar neq 'y' or not $edit}
+				{if !$edit}
 					{if $prefs.calendar_export_item == 'y' and $tiki_p_view_calendar eq 'y'}
 						{button href='tiki-calendar_export_ical.php? export=y&calendarItem='|cat:$id _icon_name="export" _type="link" _text="{tr}Export Event as iCal{/tr}"}
 					{/if}
@@ -819,10 +819,8 @@
 				{if $recurrence.id}
 					<input type="submit" class="btn btn-danger" onclick="needToConfirm=false;document.location='tiki-calendar_edit_item.php?recurrenceId={$recurrence.id}&amp;delete=y';return false;" value="{tr}Delete recurrent events{/tr}">
 				{/if}
-				{if $prefs.calendar_fullcalendar eq 'y'}
-					{if $prefs.calendar_export_item == 'y'}
-						{button href='tiki-calendar_export_ical.php? export=y&calendarItem='|cat:$id _text="{tr}Export Event as iCal{/tr}"}
-					{/if}
+				{if $prefs.calendar_export_item == 'y'}
+					{button href='tiki-calendar_export_ical.php? export=y&calendarItem='|cat:$id _text="{tr}Export Event as iCal{/tr}"}
 				{/if}
 				<input type="submit" class="btn btn-link" onclick="needToConfirm=false;document.location='{$referer|escape:'html'}';return false;" value="{tr}Cancel{/tr}">
 			</div>

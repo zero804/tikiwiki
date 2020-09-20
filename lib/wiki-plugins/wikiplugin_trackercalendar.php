@@ -14,7 +14,7 @@ function wikiplugin_trackercalendar_info()
 	return [
 		'name' => tr('Tracker Calendar'),
 		'description' => tr('Create and display a calendar using tracker data'),
-		'prefs' => ['wikiplugin_trackercalendar', 'calendar_fullcalendar'],
+		'prefs' => ['wikiplugin_trackercalendar'],
 		'packages_required' => ['npm-asset/fullcalendar-scheduler' => VendorHelper::getAvailableVendorPath('fullcalendarscheduler', 'npm-asset/fullcalendar-scheduler/dist/scheduler.min.js')],
 		'format' => 'html',
 		'iconname' => 'calendar',

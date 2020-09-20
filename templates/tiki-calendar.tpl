@@ -160,185 +160,165 @@
 	{/if}
 
 	{if $prefs.display_12hr_clock eq 'y'}
-		{assign var="timeFormat" value="h(:mm)TT"}
+		{assign var="timeFormat" value=true}
 	{else}
-		{assign var="timeFormat" value="HH:mm"}
+		{assign var="timeFormat" value=false}
 	{/if}
-	{if $prefs.calendar_fullcalendar neq 'y' or $viewlist eq 'list'}
-		{include file='tiki-calendar_nav.tpl'}
-		{if $viewlist eq 'list'}
-			{include file='tiki-calendar_listmode.tpl'}
-		{elseif $viewmode eq 'day'}
-			{include file='tiki-calendar_daymode.tpl'}
-		{elseif $viewmode eq 'week'}
-			{include file='tiki-calendar_weekmode.tpl'}
-		{else}
-			{include file='tiki-calendar_calmode.tpl'}
-		{/if}
-	{else}
-		{jq}
-			var FC = $.fullCalendar;
-			var MonthView = FC.MonthView;
-			var MultiMonthView;
-
-			MultiMonthView = MonthView.extend({
-
-				fixedWeekCount: false,
-				showNonCurrentDates: true,
-
-				buildGotoAnchorHtml: function (gotoOptions, attrs, innerHtml) {
-					if (attrs.class == 'fc-day-number' && $.isNumeric(innerHtml)) {
-						innerHtml = gotoOptions.format('M/D');
+	{jq}
+		var year = {{$viewyear}};
+		var calendarEl = document.getElementById('calendar');
+		var calendar = new FullCalendar.Calendar(calendarEl, {
+			themeSystem: 'bootstrap',
+			eventTimeFormat: {
+			  hour: 'numeric',
+			  minute: '2-digit',
+			  meridiem: '{{$timeFormat}}',
+			  hour12: '{{$timeFormat}}'
+			},
+			timeZone: '{{$prefs.display_timezone}}',
+			headerToolbar: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'year,semester,quarter,dayGridMonth,timeGridWeek,timeGridDay'
+			},
+			editable: true,
+			events: 'tiki-calendar_json.php',
+			slotMinTime: '{{$minHourOfDay}}',
+			slotMaxTime: '{{$maxHourOfDay}}',
+			buttonText: {
+				today: "{tr}today{/tr}",
+				year: "{tr}year{/tr}",
+				semester: "{tr}semester{/tr}",
+				quarter: "{tr}quarter{/tr}",
+				month: "{tr}month{/tr}",
+				week: "{tr}week{/tr}",
+				day: "{tr}day{/tr}"
+			},
+			allDayText: '{tr}all-day{/tr}',
+			firstDay: {{$firstDayofWeek}},
+			slotDuration: '00:{{if $prefs.calendar_timespan|count_characters == 1}}0{{/if}}{{$prefs.calendar_timespan}}',
+			initialView: {{if $prefs.calendar_view_mode === 'week'}}'timeGridWeek'{{elseif $prefs.calendar_view_mode === 'day'}}'timeGridDay'{{elseif $prefs.calendar_view_mode === 'month'}}'dayGridMonth'{{else}}'{{$prefs.calendar_view_mode}}'{{/if}},
+			views: {
+				quarter: {
+					type: 'dayGrid',
+					duration: { months: 3 },
+					buttonText: 'quarter',
+					dayCellContent: function(dayCell) {
+						return moment(dayCell.date).format('M/D');
+					},
+					visibleRange: function(currentDate) {
+						return {
+							start: moment(currentDate).startOf('month').toDate(),
+							end: moment(currentDate).add('2', 'months').endOf('month').toDate()
+						};
 					}
-
-					return MonthView.prototype.buildGotoAnchorHtml.call(this, gotoOptions, attrs, innerHtml);
 				},
-
-				// If date is out of calendar date ranges
-				isDateInOtherMonth: function (date, dateProfile) {
-					return !dateProfile.currentUnzonedRange.containsDate(date);
+				semester: {
+					type: 'dayGrid',
+					duration: { months: 6 },
+					buttonText: 'semester',
+					dayCellContent: function(dayCell) {
+						return moment(dayCell.date).format('M/D');
+					},
+					visibleRange: function(currentDate) {
+						return {
+							start: moment(currentDate).startOf('month').toDate(),
+							end: moment(currentDate).add('5', 'months').endOf('month').toDate()
+						};
+					}
+				},
+				year: {
+					type: 'dayGrid',
+					buttonText: '{tr}year{/tr}',
+					dayCellContent: function($x) {
+						return moment($x.date).format('M/D');
+					},
+					visibleRange: function(currentDate) {
+						return {
+							start: moment(currentDate).startOf('year').toDate(),
+							end: moment(currentDate).startOf('year').add('11', 'months').endOf('month').toDate()
+						};
+					}
 				}
-			});
-
-			var currentDate = $.fullCalendar.moment('{{$viewyear}}-{{$viewmonth}}-{{$viewday}}');
-
-			FC.defineView('year', {
-				'class': MultiMonthView,
-				duration: { months: 12 },
-				intervalStart: currentDate.startOf('year'),
-				intervalEnd: currentDate.startOf('year').add('11', 'months').endOf('month'),
-			});
-
-			FC.defineView('semester', {
-				'class': MultiMonthView,
-				duration: { months: 6 },
-				intervalStart: currentDate.startOf('month'),
-				intervalEnd: currentDate.add('5', 'months').endOf('month'),
-			});
-
-			FC.defineView('quarter', {
-				'class': MultiMonthView,
-				duration: { months: 3 },
-				intervalStart: currentDate.startOf('month'),
-				intervalEnd: currentDate.add('2', 'months').endOf('month'),
-			});
-
-			$('#calendar').fullCalendar({
-				themeSystem: 'bootstrap4',
-				timeFormat: '{{$timeFormat}}',
-				timezone: '{{$prefs.display_timezone}}',
-				header: {
-					left: 'prev,next today',
-					center: 'title',
-					right: 'year,semester,quarter,month,agendaWeek,agendaDay'
-				},
-				editable: true,
-				events: 'tiki-calendar_json.php',
-				year: {{$viewyear}},
-				month: {{$viewmonth}}-1,
-				day: {{$viewday}},
-				minTime: '{{$minHourOfDay}}',
-				maxTime: '{{$maxHourOfDay}}',
-				monthNames: [ "{tr}January{/tr}", "{tr}February{/tr}", "{tr}March{/tr}", "{tr}April{/tr}", "{tr}May{/tr}", "{tr}June{/tr}", "{tr}July{/tr}", "{tr}August{/tr}", "{tr}September{/tr}", "{tr}October{/tr}", "{tr}November{/tr}", "{tr}December{/tr}"],
-				monthNamesShort: [ "{tr}Jan.{/tr}", "{tr}Feb.{/tr}", "{tr}Mar.{/tr}", "{tr}Apr.{/tr}", "{tr}May{/tr}", "{tr}June{/tr}", "{tr}July{/tr}", "{tr}Aug.{/tr}", "{tr}Sep.{/tr}", "{tr}Oct.{/tr}", "{tr}Nov.{/tr}", "{tr}Dec.{/tr}"],
-				dayNames: ["{tr}Sunday{/tr}", "{tr}Monday{/tr}", "{tr}Tuesday{/tr}", "{tr}Wednesday{/tr}", "{tr}Thursday{/tr}", "{tr}Friday{/tr}", "{tr}Saturday{/tr}"],
-				dayNamesShort: ["{tr}Sun{/tr}", "{tr}Mon{/tr}", "{tr}Tue{/tr}", "{tr}Wed{/tr}", "{tr}Thu{/tr}", "{tr}Fri{/tr}", "{tr}Sat{/tr}"],
-				buttonText: {
-					today: "{tr}today{/tr}",
-					year: "{tr}year{/tr}",
-					semester: "{tr}semester{/tr}",
-					quarter: "{tr}quarter{/tr}",
-					month: "{tr}month{/tr}",
-					week: "{tr}week{/tr}",
-					day: "{tr}day{/tr}"
-				},
-				allDayText: "{tr}all-day{/tr}",
-				firstDay: {{$firstDayofWeek}},
-				slotMinutes: {{$prefs.calendar_timespan}},
-				defaultView: {{if $prefs.calendar_view_mode === 'week'}}'agendaWeek'{{elseif $prefs.calendar_view_mode === 'day'}}'agendaDay'{{else}}'{{$prefs.calendar_view_mode}}'{{/if}},
-				eventAfterRender : function( event, element, view ) {
-					element.attr('title',event.title);
-					element.data('content', event.description);
-					element.popover({ trigger: 'hover', html: true, 'container': 'body', placement: 'bottom'});
-				},
-				eventClick: function(event) {
-					if (event.url && event.editable) {
-						var $this = $(this).tikiModal(" ");
-						$.ajax({
-							dataType: 'html',
-							url: event.url + '&fullcalendar=y&isModal=1',
-							success: function(data){
-								var $dialog = $( "#calendar_dialog" ).remove()
-								$( "#calendar_dialog_content", $dialog ).html(data);
-								$( "#calendar_dialog h1, #calendar_dialog .navbar", $dialog ).remove();
-								$( "#calendar_dialog .modal-title", $dialog ).html(event.title);
-								$dialog.appendTo("body").modal({backdrop:"static"});
-								$this.tikiModal();
-							}
-						});
-			//						$('#calendar_dialog').load(event.url + ' .wikitext');
-			//						$( "#calendar_dialog" ).dialog({ modal: true, title: event.title, width: 'auto', height: 'auto', position: 'center' });
-						return false;
-					}
-				},
-				dayClick: function(date, allDay, jsEvent, view) {
+			},
+			eventDidMount: function(arg) {
+				var event = arg.event;
+				var element = $(arg.el);
+				element.attr('title', event.title);
+				element.data('content', event.extendedProps.description);
+				element.popover({ trigger: 'hover', html: true, 'container': 'body', placement: 'bottom'});
+			},
+			eventClick: function(info) {
+				info.jsEvent.preventDefault();
+				var $this = $(info.el).tikiModal(" ");
+				var event = info.event;
+				if (event.url) {
 					$.ajax({
 						dataType: 'html',
-						url: 'tiki-calendar_edit_item.php?fullcalendar=y&todate=' + date/1000 + '&tzoffset=' + (new Date()).getTimezoneOffset() + '&isModal=1',
+						url: event.url + '&fullcalendar=y&isModal=1',
 						success: function(data){
-							var $dialog = $( "#calendar_dialog" ).remove()
-							$( "#calendar_dialog_content", $dialog ).html(data);
-							$( "#calendar_dialog h1, #calendar_dialog .navbar", $dialog ).remove();
-							$( "#calendar_dialog .modal-title", $dialog ).html();
-							$dialog.appendTo("body").modal({backdrop:"static"});
+							var $dialog = $('#calendar_dialog').remove()
+							$('#calendar_dialog_content', $dialog).html(data);
+							$('#calendar_dialog h1, #calendar_dialog .navbar', $dialog ).remove();
+							$('#calendar_dialog .modal-title', $dialog ).html();
+							$dialog.appendTo('body').modal({backdrop: "static"});
+							$this.tikiModal();
 						}
 					});
-					return false;
-				},
-				eventResize: function(event, delta,revertFunc) {
-					$.post($.service('calendar', 'resize'), {
-						calitemId: event.id,
-						delta: delta.asSeconds()
-					});
-				},
-				eventDrop: function(event, delta, revertFunc) {
-					$.post($.service('calendar', 'move'), {
-						calitemId: event.id,
-						delta: delta.asSeconds()
-					});
-				},
-				height: 'auto'
-			});
-
-		{/jq}
-		{jq notonready=true}
-			addFullCalendarPrint('#calendar', '#calendar-pdf-btn');
-		{/jq}
-		{if $pdf_export eq 'y' and $pdf_warning eq 'n'}
-			<a id="calendar-pdf-btn"  href="#" style="float: right; display: none">{icon name='pdf'} {tr}Export as PDF{/tr}</a>
-		{/if}
-		<div id="test"></div>
-		<style type='text/css'>
-			#calendar {
-				width: 90%;
-				margin: 0 auto;
-			}
-			/* Fix pb with DatePicker */
-			.ui-datepicker {
-				z-index:9999 !important;
-			}
-		</style>
-		<div id='calendar'></div>
-
-		<!--<div id='calendar_dialog'></div>-->
-
-		<div id="calendar_dialog" class="modal fade">
-			<div class="modal-dialog">
-				<div class="modal-content" id="calendar_dialog_content">
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
+				}
+			},
+			dateClick: function(info) {
+				$.ajax({
+					dataType: 'html',
+					url: 'tiki-calendar_edit_item.php?fullcalendar=y&todate=' + info.date.toUnix() + '&tzoffset=' + (new Date()).getTimezoneOffset() + '&isModal=1',
+					success: function(data) {
+						var $dialog = $('#calendar_dialog').remove();
+						$('#calendar_dialog_content', $dialog ).html(data);
+						$('#calendar_dialog h1, #calendar_dialog .navbar', $dialog ).remove();
+						$('#calendar_dialog .modal-title', $dialog ).html();
+						$dialog.appendTo('body').modal({backdrop: "static"});
+					}
+				});
+			},
+			eventResize: function(info) {
+				$.post($.service('calendar', 'resize'), {
+					calitemId: info.event.id,
+					delta: info.delta
+				});
+			},
+			eventDrop: function(info) {
+				$.post($.service('calendar', 'move'), {
+					calitemId: info.event.id,
+					delta: info.delta
+				});
+			},
+			height: 'auto'
+		});
+		calendar.render();
+	{/jq}
+	{jq notonready=true}
+		/* addFullCalendarPrint('#calendar', '#calendar-pdf-btn'); */
+	{/jq}
+	{if $pdf_export eq 'y' and $pdf_warning eq 'n'}
+		<a id="calendar-pdf-btn"  href="#" style="float: right; display: none">{icon name='pdf'} {tr}Export as PDF{/tr}</a>
 	{/if}
+	<div id="test"></div>
+	<style type='text/css'>
+		/* Fix pb with DatePicker */
+		.ui-datepicker {
+			z-index:9999 !important;
+		}
+	</style>
+	<div id='calendar'></div>
+
+	<!--<div id='calendar_dialog'></div>-->
+
+	<div id="calendar_dialog" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content" id="calendar_dialog_content">
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 	<p>&nbsp;</p>
 </div>
 {if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}

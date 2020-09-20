@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c42caf96012e1058429fa5a8742b8268",
+    "content-hash": "b6177bd67953c330ccefb97a2f5d3c95",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -18,7 +18,7 @@
         },
         {
             "name": "adodb/adodb-php",
-            "version": "5.20.18",
+            "version": "v5.20.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ADOdb/ADOdb.git",
@@ -312,9 +312,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ChristianRiesen/base32/zipball/80ff0e3b2124e61b4b39e2535709452f70bff367",
+                "url": "https://composer.tiki.org/dist/christian-riesen/base32/christian-riesen-base32-80ff0e3b2124e61b4b39e2535709452f70bff367-zip-e5a0fa.zip",
                 "reference": "80ff0e3b2124e61b4b39e2535709452f70bff367",
-                "shasum": ""
+                "shasum": "8de7dd26000d192b69df16d372dff128233a2d2e"
             },
             "require": {
                 "php": ">=5.3"
@@ -342,9 +342,9 @@
             "authors": [
                 {
                     "name": "Christian Riesen",
+                    "role": "Developer",
                     "email": "chris.riesen@gmail.com",
-                    "homepage": "http://christianriesen.com",
-                    "role": "Developer"
+                    "homepage": "http://christianriesen.com"
                 }
             ],
             "description": "Base32 encoder/decoder according to RFC 4648",
@@ -369,17 +369,17 @@
         },
         {
             "name": "ckeditor/ckeditor",
-            "version": "4.15.0",
+            "version": "4.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ckeditor/ckeditor4-releases.git",
-                "reference": "f233b056a20528c442576e661486170a7d84a7b9"
+                "reference": "8eccaf31ad9832a113757d379758996ed2150f60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-f233b056a20528c442576e661486170a7d84a7b9-zip-d1b452.zip",
-                "reference": "f233b056a20528c442576e661486170a7d84a7b9",
-                "shasum": "4197e9d9ea7165b3eae5bfd409b56006475c9c13"
+                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-8eccaf31ad9832a113757d379758996ed2150f60-zip-6a9bed.zip",
+                "reference": "8eccaf31ad9832a113757d379758996ed2150f60",
+                "shasum": "bacf7935fcc524631c85cf4efababa5a45314165"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -407,7 +407,7 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2020-09-07T13:41:04+00:00"
+            "time": "2020-06-17T12:33:25+00:00"
         },
         {
             "name": "codeitnowin/barcode",
@@ -419,9 +419,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeitnowin/barcode-generator/zipball/6325a15ae904ec401b947e1a3e868de1c2cc80b0",
+                "url": "https://composer.tiki.org/dist/codeitnowin/barcode/codeitnowin-barcode-6325a15ae904ec401b947e1a3e868de1c2cc80b0-zip-e0db04.zip",
                 "reference": "6325a15ae904ec401b947e1a3e868de1c2cc80b0",
-                "shasum": ""
+                "shasum": "16a1122e60a2f296c6cdb66113fa1ba9e1953095"
             },
             "require": {
                 "ext-gd": "*",
@@ -1010,9 +1010,9 @@
             "authors": [
                 {
                     "name": "Cameron Spear",
+                    "role": "Developer",
                     "email": "cam@cameronspear.com",
-                    "homepage": "http://cameronspear.com",
-                    "role": "Developer"
+                    "homepage": "http://cameronspear.com"
                 }
             ],
             "description": "An unofficial Bootstrap plugin to enable Bootstrap dropdowns to activate on hover and provide a nice user experience.",
@@ -1077,9 +1077,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/defuse/php-encryption/zipball/0f407c43b953d571421e0020ba92082ed5fb7620",
+                "url": "https://composer.tiki.org/dist/defuse/php-encryption/defuse-php-encryption-0f407c43b953d571421e0020ba92082ed5fb7620-zip-2377aa.zip",
                 "reference": "0f407c43b953d571421e0020ba92082ed5fb7620",
-                "shasum": ""
+                "shasum": "208c96315d3634e11972dc18fd15451bf3fbf47a"
             },
             "require": {
                 "ext-openssl": "*",
@@ -1305,7 +1305,7 @@
             ],
             "authors": [
                 {
-                    "name": "Osman Ungur",
+                    "name": "Osman Üngür",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -1728,9 +1728,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
+                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": ""
+                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1927,13 +1927,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jasonmunro/cypht.git",
-                "reference": "10764b7deca9bcdae1d776529d5a94bb6973457e"
+                "reference": "0c7a095ec0819fa7094d5c9af9191dc945b251f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jason-munro/cypht/jason-munro-cypht-10764b7deca9bcdae1d776529d5a94bb6973457e-zip-e2d4a4.zip",
-                "reference": "10764b7deca9bcdae1d776529d5a94bb6973457e",
-                "shasum": "388e5b6020b481e1f4b89c5a7d98b58fc4aea394"
+                "url": "https://composer.tiki.org/dist/jason-munro/cypht/jason-munro-cypht-0c7a095ec0819fa7094d5c9af9191dc945b251f5-zip-779ed2.zip",
+                "reference": "0c7a095ec0819fa7094d5c9af9191dc945b251f5",
+                "shasum": "73ee77f9504258925c53f6e94ac839d7528fc41b"
             },
             "require": {
                 "christian-riesen/base32": "^1.3.2",
@@ -1983,7 +1983,7 @@
                 "webmail",
                 "webmail-client"
             ],
-            "time": "2020-09-17T01:26:59+00:00"
+            "time": "2020-07-31T17:34:46+00:00"
         },
         {
             "name": "jquery-form/form",
@@ -4198,9 +4198,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/event/zipball/d2cc124cf9a3fab2bb4ff963307f60361ce4d119",
+                "url": "https://composer.tiki.org/dist/league/event/league-event-d2cc124cf9a3fab2bb4ff963307f60361ce4d119-zip-f1c2c3.zip",
                 "reference": "d2cc124cf9a3fab2bb4ff963307f60361ce4d119",
-                "shasum": ""
+                "shasum": "29f004e2bd0b2dc7fbe91fc7615a5d11ba360fa8"
             },
             "require": {
                 "php": ">=5.4.0"
@@ -4493,9 +4493,9 @@
             "authors": [
                 {
                     "name": "Michel Fortin",
+                    "role": "Developer",
                     "email": "michel.fortin@michelf.ca",
-                    "homepage": "https://michelf.ca/",
-                    "role": "Developer"
+                    "homepage": "https://michelf.ca/"
                 },
                 {
                     "name": "John Gruber",
@@ -4615,9 +4615,9 @@
             "authors": [
                 {
                     "name": "Fabian Grutschus",
+                    "role": "developer",
                     "email": "f.grutschus@lubyte.de",
-                    "homepage": "http://www.lubyte.de/",
-                    "role": "developer"
+                    "homepage": "http://www.lubyte.de/"
                 }
             ],
             "description": "Library for XMPP protocol (Jabber) connections",
@@ -5009,11 +5009,11 @@
         },
         {
             "name": "npm-asset/fullcalendar",
-            "version": "3.10.2",
+            "version": "5.3.2",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/fullcalendar/npm-asset-fullcalendar-3.10.2.zip",
-                "shasum": "007b1ebb90b4f9ce264ed9928d01f6afae5a8289"
+                "url": "https://composer.tiki.org/dist/npm-asset/fullcalendar/npm-asset-fullcalendar-5.3.2.zip",
+                "shasum": "3612695055cc14a7a680d81af9a61e459231b8f8"
             },
             "type": "npm-asset",
             "license": [
@@ -5108,8 +5108,9 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz"
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
+                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
             },
             "type": "npm-asset",
             "license": [
@@ -6015,17 +6016,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.55.2",
+            "version": "v1.55.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "b08c0e80f1ded8383c1f71a39e3da67e7f362dcb"
+                "reference": "a816d3ca242d33aeec1bfdd3548881c98fd5ecba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-b08c0e80f1ded8383c1f71a39e3da67e7f362dcb-zip-91c2bd.zip",
-                "reference": "b08c0e80f1ded8383c1f71a39e3da67e7f362dcb",
-                "shasum": "4cad0552efbcc3a088a7a5555ddaa3d0e1d62c68"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-a816d3ca242d33aeec1bfdd3548881c98fd5ecba-zip-915f1a.zip",
+                "reference": "a816d3ca242d33aeec1bfdd3548881c98fd5ecba",
+                "shasum": "8712b7ca1c0e677554b6f48d2aeb4a4930decbda"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -6047,7 +6048,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2020-09-08T14:39:29+00:00"
+            "time": "2020-09-02T22:45:01+00:00"
         },
         {
             "name": "pragmarx/google2fa",
@@ -8210,9 +8211,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/true/php-punycode/zipball/a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
+                "url": "https://composer.tiki.org/dist/true/punycode/true-punycode-a4d0c11a36dd7f4e7cd7096076cab6d3378a071e-zip-4ceb35.zip",
                 "reference": "a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
-                "shasum": ""
+                "shasum": "0153b28196219934ea010de766dea03de32a7d89"
             },
             "require": {
                 "php": ">=5.3.0",
@@ -8652,9 +8653,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/Goutte/zipball/4ab5199e3ec0ffde0ee0b5ecf568a4fb8398dbae",
+                "url": "https://composer.tiki.org/dist/fabpot/goutte/fabpot-goutte-4ab5199e3ec0ffde0ee0b5ecf568a4fb8398dbae-zip-208db9.zip",
                 "reference": "4ab5199e3ec0ffde0ee0b5ecf568a4fb8398dbae",
-                "shasum": ""
+                "shasum": "57622d134d0b5693c3de5d72d3f04b5600105eda"
             },
             "require": {
                 "guzzlehttp/guzzle": "^6.0",

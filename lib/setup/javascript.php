@@ -76,7 +76,6 @@ if ($prefs['javascript_enabled'] == 'n') {
 	$prefs['feature_shadowbox'] = 'n';
 	$prefs['feature_wysiwyg'] = 'n';
 	$prefs['feature_ajax'] = 'n';
-	$prefs['calendar_fullcalendar'] = 'n';
 	// assign short variable for use in templates
 	$smarty->assign('js', 0);
 	//for use in setting tags for css menus as fallback for action dropdowns in case of no javascript
