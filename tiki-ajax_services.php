@@ -24,6 +24,7 @@ $inputConfiguration = [[
 		'sort_mode' => 'word',		// templates/search/list/table.tpl:68
 		'watch' => 'alpha',			// templates/comment/post.tpl:58
 		'confirmForm' => 'alpha',	// \Services_Utilities::isConfirmPost
+		'itemId' => 'int', 			// often used in \ParserLib::parse_wiki_argvariable
 	],
 ]];
 
