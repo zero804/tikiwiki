@@ -71,7 +71,7 @@
 									</div>
 								</td>
 								<td>
-									<a href="#" class="arguments"></a>
+									<a href="{service controller=ml action=model_args mlmId=$model.mlmId}" class="arguments"></a>
 									<textarea class="serialized-args d-none"></textarea>
 								</td>
 								<td class="text-right"><button class="remove btn-sm btn-outline-warning">{icon name=remove}</button></td>
