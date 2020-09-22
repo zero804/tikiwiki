@@ -13,14 +13,29 @@
 			<div class="col-sm-8">
 				{if $arg.input_type eq 'text'}
 					<input class="form-control" type="text" name="args[{$arg.name|escape}]" value="{$arg.value|escape}">
-				{elseif $arg.input_type eq 'tokenizer'}
-					<select class="form-control " name="args[{$arg.name|escape}]">
-						{foreach $tokenizers.classes as $tokenizer}
-							<option value="{$tokenizers.path}\{$tokenizer|escape}" {if $arg.value eq $tokenizers.path|cat:'\\'|cat:$tokenizer}selected{/if}>{$tokenizer|escape}</option>
-						{/foreach}
-					</select>
+				{elseif $arg.input_type eq 'rubix'}
+					{if strstr($arg.arg_type,  'Tokenizers')}
+						{assign var="classes" value=$tokenizers}
+					{elseif strstr($arg.arg_type, 'Trees')}
+						{assign var="classes" value=$trees}
+					{elseif strstr($arg.arg_type, 'Kernels')}
+						{assign var="classes" value=$kernels}
+					{else}
+						{assign var="classes" value=[]}
+					{/if}
+					{if $classes}
+						<select class="form-control ml-class" name="args[{$arg.name|escape}][class]" data-path="{$arg.name|escape}" data-href="{service controller=ml action=model_args}">
+							<option value=''>Default</option>
+							{foreach $classes.classes as $tokenizer}
+								<option value="{$classes.path}\{$tokenizer|escape}">{$tokenizer|escape}</option>
+							{/foreach}
+						</select>
+					{else}
+						<input class="form-control ml-class" type="text" name="args[{$arg.name|escape}][class]" data-path="{$arg.name|escape}" data-href="{service controller=ml action=model_args}">
+					{/if}
+					<textarea name="args[{$arg.name|escape}][args]" class="d-none">{$arg.args}</textarea>
 				{else}
-					TODO
+					{tr}Not Supported{/tr}
 				{/if}
 			</div>
 		</div>

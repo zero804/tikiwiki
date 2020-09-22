@@ -54,21 +54,45 @@ class MachineLearningLib extends TikiDb_Bridge
 		$instances = [];
 		$payload = json_decode($payload);
 		foreach ($payload as $learner) {
-			$ref = new ReflectionClass('Rubix\ML\\'.$learner->class);
-			try {
-				$instance = $ref->newInstanceArgs(array_map(function($arg){ return $arg->value; }, $learner->args));
-			} catch (TypeError $e) {
-				Feedback::error($e->getMessage());
-				$instance = tr('(error instantiating)');
-			}
-			$instances[] = [
-				'learner' => preg_replace('/^[^\\\\]*\\\\/', '', $learner->class),
-				'class' => $learner->class,
-				'instance' => $instance,
-				'serialized_args' => json_encode($learner)
-			];
+			$instances[] = $this->hydrate_single($learner->class, $learner->args);
 		}
 		return $instances;
+	}
+
+	function hydrate_single($class, $args)
+	{
+		if (empty($class)) {
+			return [
+				'learner' => null,
+				'class' => null,
+				'instance' => null,
+				'serialized_args' => null
+			];
+		}
+		$ref = new ReflectionClass('Rubix\ML\\'.$class);
+		$instance_args = [];
+		if ($args) {
+			foreach ($args as $arg)
+				if ($arg->input_type == 'rubix') {
+					$iargs = $arg->value;
+					$instance = $this->hydrate_single($iargs->class, $iargs->args);
+					$instance_args[] = $instance['instance'];
+				} else {
+					$instance_args[] = $arg->value;
+				}
+		}
+		try {
+			$instance = $ref->newInstanceArgs($instance_args);
+		} catch (TypeError $e) {
+			Feedback::error(tr('Error instantiating %0 with arguments %1: %2', $class, print_r($instance_args, 1), $e->getMessage()));
+			$instance = tr('(error instantiating)');
+		}
+		return [
+			'learner' => preg_replace('/^[^\\\\]*\\\\/', '', $class),
+			'class' => $class,
+			'instance' => $instance,
+			'serialized_args' => json_encode(['class' => $class, 'args' => $args])
+		];
 	}
 
 	protected function serialize($model)

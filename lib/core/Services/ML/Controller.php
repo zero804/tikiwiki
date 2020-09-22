@@ -158,6 +158,31 @@ class Services_ML_Controller
 		]
 	];
 
+	const TREES = [
+		'path' => 'Graph\Trees',
+		'classes' => [
+			'BallTree',
+			'ITree',
+			'KDTree',
+		]
+	];
+
+	const KERNELS = [
+		'path' => 'Kernels\Distance',
+		'classes' => [
+			'Canberra',
+			'Cosine',
+			'Diagonal',
+			'Euclidean',
+			'Gower',
+			'Hamming',
+			'Jaccard',
+			'Manhattan',
+			'Minkowski',
+			'SafeEuclidean'
+		]
+	];
+
 	public function setUp()
 	{
 		$this->mllib = TikiLib::lib('ml');
@@ -245,12 +270,19 @@ class Services_ML_Controller
 					$type = $param->getType();
 					if ($type->isBuiltin()) {
 						$input_type = 'text';
+					} elseif (strstr($type->getName(), 'Rubix\\ML')) {
+						$input_type = 'rubix';
 					} else {
 						$input_type = $type->getName();
 					}
+					try {
+						$default = $param->getDefaultValue();
+					} catch (ReflectionException $e) {
+						$default = null;
+					}
 					$args[] = [
 						'name' => $param->getName(),
-						'default' => $param->getDefaultValue(),
+						'default' => $default,
 						'arg_type' => $type->getName(),
 						'input_type' => $input_type,
 					];
@@ -266,6 +298,9 @@ class Services_ML_Controller
 				if (isset($arg_values[$arg['name']]) && !empty($arg_values[$arg['name']])) {
 					if ($arg['arg_type'] == 'array') {
 						$args[$key]['value'] =  explode(',', $arg_values[$arg['name']]);
+					} elseif ($arg['input_type'] == 'rubix') {
+						$hydrated = $this->mllib->hydrate_single($arg_values[$arg['name']]['class'], json_decode($arg_values[$arg['name']]['args']));
+						$args[$key]['value'] = json_decode($hydrated['serialized_args'], true);
 					} else {
 						$args[$key]['value'] = $arg_values[$arg['name']];
 					}
@@ -289,7 +324,9 @@ class Services_ML_Controller
 			'title' => tr('%0 arguments', preg_replace('/^[^\\\\]*\\\\/', '', $class)),
 			'class' => $class,
 			'args' => $args,
-			'tokenizers' => self::TOKENIZERS
+			'tokenizers' => self::TOKENIZERS,
+			'trees' => self::TREES,
+			'kernels' => self::KERNELS,
 		];
 	}
 
