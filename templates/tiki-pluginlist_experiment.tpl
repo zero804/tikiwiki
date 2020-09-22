@@ -7,7 +7,7 @@
 		{title help="Forums" url='./'}{tr}Experiment with plugin LIST{/tr}{/title}
 		<form method="post" class="form-horizontal">
 			<div class="form-group">
-				<label for="comment">Plugin LIST content:</label>
+				<label for="comment">{tr}Plugin LIST content:{/tr}</label>
 				<textarea class="form-control" rows="5" name="editwiki" id="editwiki">{$listtext}</textarea>
 			</div>
 			<div class="col-sm-9">
