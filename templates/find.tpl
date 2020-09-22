@@ -18,7 +18,7 @@
 	* find_show_num_rows    : If value = 'y' adds maxRecords field. Value: maxRecords
 	* find_show_date_range  : If value = 'y' adds date range to filter within
 	* find_show_orphans     : If value = 'y' adds a checkbox orphan
-	* find_show_sub         : Broken since r50016. If value = 'y' add a checkbox offering to search child file galleries
+	* find_show_sub         : If value = 'y' add a checkbox offering to search child file galleries
 	* filters               : array( filter_field1 => array( option1_value => option1_text, ... ), filter_field2 => ... )
 	* filter_names          : array( filter_field1 => filter_field1_name, ... )
 	* filter_values         : array( filter_fieldX => filter_fieldX_selected_value, ... )
@@ -48,6 +48,16 @@
 					jQuery("#find").tooltip();
 				{/jq}
 			</div>
+			{if !empty($find_show_sub) and $find_show_sub eq 'y'}
+				<div class="input-group">
+					<label class="control-label col-sm-8 findsub" for="find_sub" >
+						{tr}Search child file galleries{/tr}
+					</label>
+					<div class="col-sm-4" >
+						<input type="checkbox" name="find_sub" id="find_sub" {if $find_sub eq 'y'}checked="checked"{/if}/>
+					</div>
+				</div>
+			{/if}
 			{if !empty($find) or !empty($find_type) or !empty($find_topic) or !empty($find_lang) or !empty($find_langOrphan) or !empty($find_categId) or !empty($find_orphans) or !empty($find_other_val) or $maxRecords ne $prefs.maxRecords}{* $find_date_from & $find_date_to get set usually *}
 				<div class="find-clear-filter text-center">
 					<a href="{$smarty.server.SCRIPT_NAME|escape}?{query find='' type='' types='' topic='' lang='' langOrphan='' categId='' maxRecords=$prefs.maxRecords find_from_Month='' find_from_Day='' find_from_Year='' find_to_Month='' find_to_Day='' find_to_Year=''}"

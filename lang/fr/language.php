@@ -7130,6 +7130,7 @@ $lang = array(
 "Get Cell Range" => "Obtenir la plage de cellules",
 // "img/icons/sheet_get_range.png" => "img/icons/sheet_get_range.png",
 "Find" => "Trouver",
+"Search child file galleries" => "Rechercher dans les sous-galeries",
 "Refresh calculations" => "Rafraichir les calculs",
 "Finish editing" => "Fin de l'édition",
 "Reset Colors" => "Réinitialiser les Couleurs",
