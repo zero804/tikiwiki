@@ -31,6 +31,9 @@ class MachineLearningLib extends TikiDb_Bridge
 	function get_model($mlmId)
 	{
 		$model = $this->table->fetchFullRow(['mlmId' => $mlmId]);
+		if (! $model) {
+			return false;
+		}
 		$model = $this->deserialize($model);
 		$model['instances'] = $this->hydrate($model['payload']);
 		return $model;
@@ -45,7 +48,7 @@ class MachineLearningLib extends TikiDb_Bridge
 	function delete_model($mlmId)
 	{
 		$this->table->delete(['mlmId' => $mlmId]);
-		// TODO: delete trained models from cache
+		TikiLib::lib('cache')->invalidate($mlmId, 'mlmodel');
 		return true;
 	}
 
@@ -93,6 +96,57 @@ class MachineLearningLib extends TikiDb_Bridge
 			'instance' => $instance,
 			'serialized_args' => json_encode(['class' => $class, 'args' => $args])
 		];
+	}
+
+	function train($model, $test = false)
+	{
+		$samples = [];
+		$labels = [];
+
+		$trklib = TikiLib::lib('trk');
+		$items = $trklib->list_items($model['sourceTrackerId'], 0, $test ? 10 : -1);
+		$definition = Tracker_Definition::get($model['sourceTrackerId']);
+		foreach ($items['data'] as $item) {
+			$item = Tracker_Item::fromId($item['itemId']);
+			$sample = [];
+			foreach ($model['trackerFields'] as $fieldId) {
+				$field = $definition->getField($fieldId);
+				$field = $item->prepareFieldOutput($field);
+				$value = $trklib->field_render_value([
+					'field' => $field,
+					'itemId' => $item->getId(),
+				]);
+				if (empty($value)) {
+					continue 2;
+				}
+				$sample[] = $value;
+			}
+			$samples[] = $sample;
+			$labels[] = $item->getId();
+		}
+
+		$dataset = Rubix\ML\Datasets\Labeled::build($samples, $labels);
+		$learner = null;
+		$transformers = [];
+
+		foreach ($model['instances'] as $row) {
+			$instance = $row['instance'];
+			if ($instance instanceof Rubix\ML\Transformers\Transformer) {
+				$transformers[] = $instance;
+			} elseif ($instance instanceof Rubix\ML\Learner) {
+				$learner = $instance;
+			} else {
+				throw new Exception(tr('Not implemented: %0', get_class($instance)));
+			}
+		}
+
+		$estimator = new Rubix\ML\Pipeline($transformers, $learner);
+		$estimator->train($dataset);
+
+		if (! $test) {
+			$cachelib = TikiLib::lib('cache');
+			$cachelib->cacheItem($model['mlmId'], serialize($estimator), 'mlmodel');
+		}
 	}
 
 	protected function serialize($model)

@@ -227,7 +227,7 @@ class Services_ML_Controller
 	{
 		Services_Exception_Denied::checkGlobal('tiki_p_admin_machine_learning');
 
-		$model = $this->mllib->get_model($input->mlmId->int());
+		$model = $this->getModel($input);
 		if ($definition = Tracker_Definition::get($model['sourceTrackerId'])) {
 			$fields = $definition->getFields();
 		} else {
@@ -346,6 +346,46 @@ class Services_ML_Controller
 		];
 	}
 
+	public function action_test($input)
+	{
+		Services_Exception_Denied::checkGlobal('tiki_p_admin_machine_learning');
+
+		$model = $this->getModel($input);
+
+		try {
+			$this->mllib->train($model, true);
+			Feedback::success(tr('Successfully trained a sample of the data using the model.'));
+		} catch (Exception $e) {
+			Feedback::error(tr('Error while trying to train the model: %0', $e->getMessage()));
+		}
+
+		$forward = [
+			'controller' => 'ml',
+			'action' => 'list',
+		];
+		return ['FORWARD' => $forward];
+	}
+
+	public function action_train($input)
+	{
+		Services_Exception_Denied::checkGlobal('tiki_p_admin_machine_learning');
+
+		$model = $this->getModel($input);
+
+		try {
+			$this->mllib->train($model, false);
+			Feedback::success(tr('Successfully trained the model.'));
+		} catch (Exception $e) {
+			Feedback::error(tr('Error while trying to train the model: %0', $e->getMessage()));
+		}
+
+		$forward = [
+			'controller' => 'ml',
+			'action' => 'list',
+		];
+		return ['FORWARD' => $forward];
+	}
+
 	protected function serializeInput($input)
 	{
 		$trackerId = $input->trackerId->int();
@@ -362,5 +402,14 @@ class Services_ML_Controller
 			'trackerFields' => $input->fields->array(),
 			'payload' => $input->payload->text(),
 		];
+	}
+
+	protected function getModel($input)
+	{
+		$model = $this->mllib->get_model($input->mlmId->int());
+		if (! $model) {
+			throw new Services_Exception_NotFound(tr('Model not found.'));
+		}
+		return $model;
 	}
 }
