@@ -400,26 +400,22 @@ function wikiplugin_trackercalendar($data, $params)
 
 	static $id = 0;
 	$headerlib = TikiLib::lib('header');
-	$vendorPath = VendorHelper::getAvailableVendorPath('fullcalendarscheduler', 'npm-asset/fullcalendar-scheduler/dist/scheduler.min.js', false);
-	$oldVendorPath = VendorHelper::getAvailableVendorPath('fullcalendarscheduler', 'fullcalendar/fullcalendar-scheduler/dist/scheduler.min.js', false);
+	$vendorPath = VendorHelper::getAvailableVendorPath('fullcalendarscheduler', 'npm-asset/fullcalendar-scheduler/main.min.js', false);
 
-	if (! $vendorPath && ! $oldVendorPath) {
-		return WikiParser_PluginOutput::userError(tr('To view Tracker Calendar Tiki needs the npm-asset/fullcalendar-scheduler package. If you do not have permission to install this package, ask the site administrator.'));
+	if (!$vendorPath) {
+		return WikiParser_PluginOutput::userError(tr('To view Tracker Calendar Tiki needs the latest npm-asset/fullcalendar-scheduler package. If you do not have permission to install/update this package, ask the site administrator.'));
 	}
 
-	if ($oldVendorPath) {
-		Feedback::warning(tr('The package fullcalendar/fullcalendar-scheduler is deprecated, and replaced by npm-asset/fullcalendar-scheduler. If you do not have permission to install this package, ask the site administrator.'));
-	}
-
-	$vendorPath = $vendorPath ? $vendorPath . '/npm-asset/' : $oldVendorPath . '/fullcalendar/';
-
-	$headerlib->add_cssfile($vendorPath . 'fullcalendar/dist/fullcalendar.min.css');
 	// Disable fullcalendar's force events to be one-line tall
 	$headerlib->add_css('.fc-day-grid-event > .fc-content, .fc-timeline-event > .fc-content { white-space: normal; }');
-	$headerlib->add_cssfile($vendorPath . 'fullcalendar-scheduler/dist/scheduler.min.css');
+
+	$headerlib->add_cssfile('vendor_bundled/vendor/npm-asset/fullcalendar/main.css');
+	$headerlib->add_cssfile($vendorPath . '/npm-asset/fullcalendar-scheduler/main.css');
+	// Disable fullcalendar's force events to be one-line tall
+	$headerlib->add_css('.fc-day-grid-event > .fc-content { white-space: normal; }');
 	$headerlib->add_jsfile('vendor_bundled/vendor/moment/moment/min/moment.min.js', true);
-	$headerlib->add_jsfile($vendorPath . 'fullcalendar/dist/fullcalendar.min.js', true);
-	$headerlib->add_jsfile($vendorPath . 'fullcalendar-scheduler/dist/scheduler.min.js', true);
+	$headerlib->add_jsfile('vendor_bundled/vendor/npm-asset/fullcalendar/main.js', true);
+	$headerlib->add_jsfile($vendorPath . '/npm-asset/fullcalendar-scheduler/main.min.js', true);
 
 	$jit = new JitFilter($params);
 	$definition = Tracker_Definition::get($jit->trackerId->int());
@@ -441,19 +437,19 @@ function wikiplugin_trackercalendar($data, $params)
 		$amonth = 'n';
 	} else {
 		$amonth = 'y';
-		$views[] = 'month';
+		$views[] = 'dayGridMonth';
 	}
 	if (! empty($params['aweek']) and $params['aweek'] != 'y') {
 		$aweek = 'n';
 	} else {
 		$aweek = 'y';
-		$views[] = 'agendaWeek';
+		$views[] = 'resourceTimeGridWeek';
 	}
 	if (! empty($params['aday']) and $params['aday'] != 'y') {
 		$aday = 'n';
 	} else {
 		$aday = 'y';
-		$views[] = 'agendaDay';
+		$views[] = 'resourceTimeGridDay';
 	}
 	if (! empty($params['lyear']) and $params['lyear'] != 'y') {
 		$lyear = 'n';
@@ -489,34 +485,45 @@ function wikiplugin_trackercalendar($data, $params)
 			$ryear = 'n';
 		} else {
 			$ryear = 'y';
-			$views[] = 'timelineYear';
+			$views[] = 'resourceTimelineYear';
 		}
 		if (! empty($params['rmonth']) and $params['rmonth'] != 'y') {
 			$rmonth = 'n';
 		} else {
 			$rmonth = 'y';
-			$views[] = 'timelineMonth';
+			$views[] = 'resourceTimelineMonth';
 		}
 		if (! empty($params['rweek']) and $params['rweek'] != 'y') {
 			$rweek = 'n';
 		} else {
 			$rweek = 'y';
-			$views[] = 'timelineWeek';
+			$views[] = 'resourceTimelineWeek';
 		}
 		if (! empty($params['rday']) and $params['rday'] != 'y') {
 			$rday = 'n';
 		} else {
 			$rday = 'y';
-			$views[] = 'timelineDay';
+			$views[] = 'resourceTimelineDay';
 		}
 	}
 
-	// Define the default View (dView)
-	if (! empty($params['dView'])) {
-		$dView = $params['dView'] == 'resourceWeek' ? 'timelineWeek' : $params['dView'];
-	} else {
-		$dView = 'month';
-	}
+	$dViewMap = [
+		'month' => 'dayGridMonth',
+		'agendaWeek' => 'resourceTimeGridWeek',
+		'agendaDay' => 'resourceTimeGridDay',
+		'list' => 'list',
+		'listMonth' => 'listMonth',
+		'listWeek' => 'listWeek',
+		'listDay' => 'listDay',
+		'timelineYear' => 'resourceTimelineYear',
+		'timelineYear' => 'resourceTimelineYear',
+		'timelineMonth' => 'resourceTimelineMonth',
+		'timelineWeek' => 'resourceTimelineWeek',
+		'resourceWeek' => 'resourceTimelineWeek', // Old value on fullcalendar resources
+		'timelineDay' => 'resourceTimelineDay'
+	];
+
+	$dView = $dViewMap[$params['dView']] ?? 'dayGridMonth';
 
 	// Define the default date (dYear, dMonth, dDay)
 	if (! empty($params['dYear'])) {
@@ -613,7 +620,7 @@ function wikiplugin_trackercalendar($data, $params)
 			'trkitemid' => $params['external'] === 'y' ? $params['trkitemid'] : '',
 			'addAllFields' => $params['external'] === 'y' ? $params['addAllFields'] : '',
 			'useSessionStorage' => $params['external'] === 'y' ? $params['useSessionStorage'] : '',
-			'timeFormat' => $prefs['display_12hr_clock'] === 'y' ? 'h(:mm)TT' : 'HH:mm',
+			'timeFormat' => $prefs['display_12hr_clock'] === 'y',
 			'weekends' => $params['weekends'] === 'y' ? 1 : 0,
 			'utcOffset' => TikiDate::tzServerOffset(TikiLib::lib('tiki')->get_display_timezone()) / 60, // In minutes
 			'maxEvents' => $maxEvents
