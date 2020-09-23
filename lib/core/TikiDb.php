@@ -31,7 +31,7 @@ abstract class TikiDb
 	 */
 	public static function get() // {{{
 	{
-		if (empty(self::$instance) && (!defined('DB_TIKI_SETUP') || DB_TIKI_SETUP)) {
+		if (empty(self::$instance) && (! defined('DB_TIKI_SETUP') || DB_TIKI_SETUP) && ! defined('TIKI_IN_INSTALLER')) {
 			// if we are in the console and database setup has completed then this error needs to be ignored.
 			global $dbfail_url;
 
