@@ -7,7 +7,7 @@
 	<div class="col-sm-7">
 		<div class="input-group">
 			<select name="string_in_db_search_table" class="form-control" id="string_in_db_search_table">
-			<option value="">All tables</option>
+			<option value="">{tr}All tables{/tr}</option>
 			{foreach $tables as $table}
 				<option value="{$table|escape}" {if isset($tableFilter) && $table eq $tableFilter} selected="selected"{/if}>{$table|escape}</option>
 			{/foreach}
