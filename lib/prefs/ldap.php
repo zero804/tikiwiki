@@ -25,7 +25,7 @@ function prefs_ldap_list()
 			'description' => tra('If a user was authenticated by Tiki’s user database, but not found on the LDAP server, Tiki will create an LDAP entry for this user.'),
 			'type' => 'flag',
 			'default' => 'n',
-			'warning' => 'As of this writing, this is not yet implemented, and this option will probably not be offered in future.',
+			'warning' => tra('As of this writing, this is not yet implemented, and this option will probably not be offered in future.'),
 			'tags' => ['experimental'],
 		],
 		'ldap_skip_admin' => [

@@ -10,7 +10,7 @@
 		<input class="form-control" type="hidden" name="accountId" value="{$account.accountId|escape:'attr'}">
 		{ticket}
 		<fieldset>
-			<legend>Account properties</legend>
+			<legend>{tr}Account properties{/tr}</legend>
 			<div class="form-group row">
 				<label class="col-form-label col-md-4">{tr}Account number{/tr} <span class="text-danger">*</span></label>
 				<div class="col-md-8">
