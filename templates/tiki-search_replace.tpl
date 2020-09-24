@@ -1,5 +1,5 @@
 {* $Id$ *}
-{title}Mass Search and Replace{/title}
+{title}{tr}Mass Search and Replace{/tr}{/title}
 
 {remarksbox type="note" title="{tr}Note{/tr}"}
 	{tr}This feature currently searches and replaces within wiki pages only{/tr}
