@@ -11,7 +11,7 @@ function prefs_sitelogo_list()
 		'sitelogo_src' => [
 			'name' => tra('Logo source (image path)'),
 			'type' => 'text',
-			'description' => 'This can be a conventional path to the image file, or the syntax to display an image in a Tiki gallery.',
+			'description' => tra('This can be a conventional path to the image file, or the syntax to display an image in a Tiki gallery.'),
 			'default' => 'img/tiki/Tiki_WCG.png',
 			'tags' => ['basic'],
 		],
