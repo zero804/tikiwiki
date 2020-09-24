@@ -17,4 +17,5 @@ interface Math_Formula_Applicator
   function lessThan($another);
   function moreThan($another);
   function clone($number);
+  function isEmpty();
 }

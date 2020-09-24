@@ -124,6 +124,10 @@ class Math_Formula_Currency implements Math_Formula_Applicator {
     return (float)$this->amount > (float)$amount;
   }
 
+  public function isEmpty() {
+    return empty($this->amount);
+  }
+
   private function calculate($another, $callback) {
     $amount = $this->convertAnother($another);
     $result = $callback($this->amount, $amount);
