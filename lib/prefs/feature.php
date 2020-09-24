@@ -2809,7 +2809,7 @@ function prefs_feature_list($partial = false)
 			'help' => 'Preferences',
 			'helpurl' => 'PreferencesURLtest', // 2011-08-28 ML: what does this do?
 			'keywords' => 'test bogus bogusorama',
-			'default' => 'This is the default value of this preference.',
+			'default' => tra('This is the default value of this preference.'),
 			'detail' => tra('This is the detail.'),
 			'warning' => tra('This is the warning.'),
 			'hint' => tra('This is the hint. Wiki syntax may be used.'),
@@ -3016,7 +3016,7 @@ function prefs_feature_list($partial = false)
 			'name' => tra('Intertiki shared cookie'),
 			'description' => tra('Causes a user who logs into or out of either the slave or master site to be automatically logged into or out of all other sites.'),
 			'type' => 'flag',
-			'hint' => 'The remember me login feature must be on.',
+			'hint' => tra('The remember me login feature must be on.'),
 			'default' => 'n',
 		],
 		'feature_intertiki_server' => [

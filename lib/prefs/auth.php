@@ -88,7 +88,7 @@ function prefs_auth_list()
 			'type' => 'flag',
 			'description' => tra('The user “admin” will be authenticated by <b>only</b> using Tiki’s user database. This option has no effect on users other than “admin”.'),
 			'perspective' => false,
-			'hint' => 'Recommended',
+			'hint' => tra('Recommended'),
 			'default' => 'y',
 		],
 		'auth_phpbb_disable_tikionly' => [
@@ -96,7 +96,7 @@ function prefs_auth_list()
 			'type' => 'flag',
 			'description' => tr('Disable Tiki users who don’t have a phpBB login as they could have been deleted.'),
 			'perspective' => false,
-			'hint' => 'Recommended',
+			'hint' => tra('Recommended'),
 			'default' => 'n',
 		],
 		'auth_phpbb_version' => [
