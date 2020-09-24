@@ -80,6 +80,7 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 			return TikiLib::lib('trk')->field_render_value([
 				'fieldId' => $mirrorField,
 				'value' => $this->getValue(),
+				'itemId' => $this->getItemId()
 			]);
 		} else {
 			return $this->getValue();
