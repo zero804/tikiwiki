@@ -20,7 +20,7 @@
 		<input class="form-control" type="hidden" name="bookId" value="{$bookId}">
 		<input class="form-control" type="hidden" name="accountId" value="{$account.accountId}">
 		<fieldset>
-			<legend>Account properties</legend>
+			<legend>{tr}Account properties{/tr}</legend>
 			<div class="form-group">
 				<label class="control-label col-md-4">{tr}Account number{/tr} <span class="text-danger">*</span></label>
 				<div class="col-md-8">
