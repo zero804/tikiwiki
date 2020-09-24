@@ -302,7 +302,7 @@
 
         {if isset($diagnostic_composer_location) || $diagnostic_composer_output || $composer_management_success || $composer_management_error}
             <br />
-            <h4>Results</h4>
+            <h4>{tr}Results{/tr}</h4>
             {if isset($diagnostic_composer_location) }
                 <p><strong>Composer:</strong> {if $diagnostic_composer_location}{tr}{$diagnostic_composer_location}{/tr}{else}{tr}Composer not found{/tr}{/if}</p>
             {/if}
