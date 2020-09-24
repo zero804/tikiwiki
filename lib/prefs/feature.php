@@ -3001,7 +3001,7 @@ function prefs_feature_list($partial = false)
 			'name' => tra('Intertiki shared cookie'),
 			'description' => tra('Causes a user who logs into or out of either the slave or master site to be automatically logged into or out of all other sites.'),
 			'type' => 'flag',
-			'hint' => 'The remember me login feature must be on.',
+			'hint' => tra('The remember me login feature must be on.'),
 			'default' => 'n',
 		],
 		'feature_intertiki_server' => [
