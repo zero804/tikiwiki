@@ -5,7 +5,7 @@
 	{tab name="{tr}Structure Routing{/tr}"}
 		<h2>{tr}Structure Routing{/tr}</h2>
 		<p>
-		Routes are edited in the user's: My Account / Mail-in panel
+		{tr}Routes are edited in the user's: My Account / Mail-in panel{/tr}
 		</p>
 		{if $prefs.feature_wiki_structure eq 'y'}
 			<table id="table_user_mailin_routing" class="table normal table-striped table-hover">
@@ -35,7 +35,7 @@
 			<p>
 				{tr}Wiki structures feature is not enabled{/tr}
 			</p>
-			<a href="tiki-admin.php?page=wiki&highlighted='feature_wiki_structure'">Go to wiki structure setting</a>
+			<a href="tiki-admin.php?page=wiki&highlighted='feature_wiki_structure'">{tr}Go to wiki structure setting{/tr}</a>
 		{/if}
 
 	{/tab}

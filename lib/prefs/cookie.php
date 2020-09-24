@@ -11,7 +11,7 @@ function prefs_cookie_list()
 		'cookie_name' => [
 			'name' => tra('Cookie name'),
 			'description' => tra("Name of the cookie to remember the user's login"),
-			'hint' => 'Changing the cookie name forces an instant logout for all user sessions. Including yours.',
+			'hint' => tra('Changing the cookie name forces an instant logout for all user sessions. Including yours.'),
 			'type' => 'text',
 			'size' => 35,
 			'perspective' => false,
@@ -28,7 +28,7 @@ function prefs_cookie_list()
 		'cookie_path' => [
 			'name' => tra('Path'),
 			'description' => tra('The path on the server in which the cookie will be available on. Tiki will detect if it is installed in a subdirectory and will use that automatically.'),
-			'hint' => 'N.B. Needs to start with a / character to work properly in Safari',
+			'hint' => tra('N.B. Needs to start with a / character to work properly in Safari'),
 			'type' => 'text',
 			'size' => 35,
 			'perspective' => false,
