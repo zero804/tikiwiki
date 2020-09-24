@@ -732,7 +732,7 @@
 		{/tab}
 
 		{tab name="{tr}Temporary Users{/tr}"}
-			<h2>Invite new temporary user(s)</h2>
+			<h2>{tr}Invite new temporary user(s){/tr}</h2>
 			{$temp_users_enabled = true}
 			{if $prefs['auth_token_access'] != 'y'}
 				{remarksbox type="warning" title="{tr}Token Access Feature Dependency{/tr}"}

@@ -88,7 +88,7 @@ function prefs_freetags_list()
 			'description' => tra('Click on the links below to set or clear a pattern to limit characters accepted in tags. '),
 			'type' => 'text',
 			'size' => '30',
-			'hint' => 'Useful to eliminate characters such as “,” which users can enter by mistake instead of a space.',
+			'hint' => tra('Useful to eliminate characters such as “,” which users can enter by mistake instead of a space.'),
 			'default' => '',
 			],
 			'freetags_lowercase_only' => [
