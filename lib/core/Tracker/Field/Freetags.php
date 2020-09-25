@@ -59,7 +59,7 @@ class Tracker_Field_Freetags extends Tracker_Field_Abstract implements Tracker_F
 
 	function getFieldData(array $requestData = [])
 	{
-		$$data = [];
+		$data = [];
 
 		$ins_id = $this->getInsertId();
 

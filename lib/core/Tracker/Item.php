@@ -358,8 +358,8 @@ class Tracker_Item
 			return false;
 		}
 		
-		//filter fields to show only Tag field that users has permissio to access
-		if ($field['type'] == 'F' && $this->perms['view_freetags'] != 1) {
+		// filter fields to show only Tag field that users has permissio to access
+		if ($field['type'] == 'F' && empty($this->perms['view_freetags'])) {
 			return false;
 		}
 
