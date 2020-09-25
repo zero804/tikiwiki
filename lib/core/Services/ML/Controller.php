@@ -386,6 +386,57 @@ class Services_ML_Controller
 		return ['FORWARD' => $forward];
 	}
 
+	public function action_use($input)
+	{
+		Services_Exception_Denied::checkGlobal('tiki_p_machine_learning');
+
+		$model = $this->getModel($input);
+
+		$itemObject = Tracker_Item::newItem($model['sourceTrackerId']);
+
+		$processedFields = $itemObject->prepareInput($input);
+		foreach ($processedFields as $key => $field) {
+			if (! in_array($field['fieldId'], $model['trackerFields'])) {
+				unset($processedFields[$key]);
+			}
+		}
+
+		$results = [];
+
+		if (! empty($processedFields) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+			try {
+				$results = $this->mllib->probaSample($model, $processedFields);
+				foreach ($results as $itemId => $proba) {
+					$results[$itemId] = ['proba' => $proba, 'fields' => []];
+					$item = Tracker_Item::fromId($itemId);
+					$outputFields = $item->prepareOutput();
+					foreach ($processedFields as $field) {
+						foreach ($outputFields as $outputField) {
+							if ($field['fieldId'] == $outputField['fieldId']) {
+								$results[$itemId]['fields'][] = $outputField;
+							}
+						}
+					}
+				}
+			} catch (Exception $e) {
+				Feedback::error($e->getMessage());
+				$forward = [
+					'controller' => 'ml',
+					'action' => 'list',
+				];
+				return ['FORWARD' => $forward];
+			}
+		}
+
+		return [
+			'title' => tr('Use machine learning model %0', $model['name']),
+			'model' => $model,
+			'trackerId' => $model['sourceTrackerId'],
+			'fields' => $processedFields,
+			'results' => $results,
+		];
+	}
+
 	protected function serializeInput($input)
 	{
 		$trackerId = $input->trackerId->int();
