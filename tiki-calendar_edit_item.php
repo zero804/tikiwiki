@@ -277,6 +277,10 @@ if (isset($_POST['act'])) {
 						$calRecurrence->setDateOfYear(str_pad($_POST['dateOfYear_month'], 2, '0', STR_PAD_LEFT) . str_pad($_POST['dateOfYear_day'], 2, '0', STR_PAD_LEFT));
 						break;
 				}
+				// startPeriod does not exist when using the old non-jscalendar time selector with 3 dropdowns
+				if (empty($_POST['startPeriod'])) {
+					$_POST['startPeriod'] = mktime(0,0,0,$_POST['startPeriod_Month'],$_POST['startPeriod_Day'],$_POST['startPeriod_Year']);
+				}
 				if ($calRecurrence->getId() > 0 && $save['calitemId'] == $calRecurrence->getFirstItemId()) {
 					// modify start period when the first event is updated
 					$calRecurrence->setStartPeriod(TikiDate::getStartDay($save['start'], $displayTimezone));
