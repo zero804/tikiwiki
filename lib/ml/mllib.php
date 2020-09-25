@@ -144,9 +144,29 @@ class MachineLearningLib extends TikiDb_Bridge
 		$estimator->train($dataset);
 
 		if (! $test) {
-			$cachelib = TikiLib::lib('cache');
-			$cachelib->cacheItem($model['mlmId'], serialize($estimator), 'mlmodel');
+			TikiLib::lib('cache')->cacheItem($model['mlmId'], serialize($estimator), 'mlmodel');
 		}
+	}
+
+	function probaSample($model, $processedFields)
+	{
+		$sample = [];
+		foreach ($processedFields as $field) {
+			$value = TikiLib::lib('trk')->field_render_value([
+				'field' => $field,
+			]);
+			$sample[] = $value;
+		}
+
+		$estimator = TikiLib::lib('cache')->getSerialized($model['mlmId'], 'mlmodel');
+		if (! $estimator) {
+			throw new Exception(tr('Model was not trained.'));
+		}
+		$result = $estimator->probaSample($sample);
+		$result = array_filter($result);
+		arsort($result);
+
+		return $result;
 	}
 
 	protected function serialize($model)

@@ -28,7 +28,7 @@
 				<td class="action">
 					{actions}{strip}
 						<action>
-							<a href="#">
+							<a href="{service controller=ml action=use mlmId=$row.mlmId}">
 								{icon name=hammer _menu_text='y' _menu_icon='y' alt="{tr}Use{/tr}"}
 							</a>
 						</action>
