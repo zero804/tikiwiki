@@ -3722,13 +3722,6 @@ class TrackerLib extends TikiLib
 		$resu = $result->fetchRow();
 		if ($resu) {
 			$resu['orderAttachments'] = $resu['value'];
-		} else {
-			$query = "select `orderAttachments`, t.`trackerId` from `tiki_trackers` t ";
-			$query .= " left join `tiki_tracker_items` i on t.`trackerId`=i.`trackerId` ";
-			$query .= " left join `tiki_tracker_item_attachments` a on i.`itemId`=a.`itemId` ";
-			$query .= " where a.`attId`=? ";
-			$result = $this->query($query, [(int) $attId]);
-			$resu = $result->fetchRow();
 		}
 		if (strstr($resu['orderAttachments'], '|')) {
 			$fields = preg_split('/,/', substr($resu['orderAttachments'], strpos($resu['orderAttachments'], '|') + 1));
@@ -6145,7 +6138,7 @@ class TrackerLib extends TikiLib
 
 	public function get_child_items($itemId)
 	{
-		return $this->fetchAll('SELECT permName as field, itemId FROM tiki_tracker_item_fields v INNER JOIN tiki_tracker_fields f ON v.fieldId = f.fieldId WHERE f.type = "r" AND v.value = ?', [$itemId]);
+		return $this->fetchAll('SELECT permName as field, itemId FROM tiki_tracker_item_fields v INNER JOIN tiki_tracker_fields f ON v.fieldId = f.fieldId WHERE f.type = \'r\' AND v.value = ?', [$itemId]);
 	}
 
 	public function get_field_by_perm_name($permName)
@@ -6482,7 +6475,7 @@ class TrackerLib extends TikiLib
 					LEFT JOIN tiki_tracker_item_fields ttif1 ON tti.itemId = ttif1.itemId AND ttif1.fieldId = ?
 					LEFT JOIN tiki_tracker_item_fields ttif2 ON tti.itemId = ttif2.itemId AND ttif2.fieldId = ?
 					LEFT JOIN tiki_tracker_item_fields ttif3 ON tti.itemId = ttif3.itemId AND ttif3.fieldId = ?
-					WHERE tti.trackerId = ? AND ttif1.value = ? AND DATE_FORMAT(FROM_UNIXTIME(ttif2.value), "%Y-%m-%d") <= ?
+					WHERE tti.trackerId = ? AND ttif1.value = ? AND DATE_FORMAT(FROM_UNIXTIME(ttif2.value), \'%Y-%m-%d\') <= ?
 					ORDER BY ttif2.value DESC',
 					[$currencyField['fieldId'], $dateField['fieldId'], $rateField['fieldId'], $trackerId, $currency, $date]);
 			}
