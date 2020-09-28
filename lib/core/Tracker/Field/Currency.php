@@ -107,7 +107,7 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 						'filter' => 'int',
 						'legacy_index' => 9,
 						'profile_reference' => 'tracker_field',
-						'parent' => 'input[name=trackerId]',
+						'parent' => 'currencyTracker',
 						'parentkey' => 'tracker_id',
 						'sort_order' => 'position_nasc',
 					],
