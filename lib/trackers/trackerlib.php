@@ -3722,13 +3722,6 @@ class TrackerLib extends TikiLib
 		$resu = $result->fetchRow();
 		if ($resu) {
 			$resu['orderAttachments'] = $resu['value'];
-		} else {
-			$query = "select `orderAttachments`, t.`trackerId` from `tiki_trackers` t ";
-			$query .= " left join `tiki_tracker_items` i on t.`trackerId`=i.`trackerId` ";
-			$query .= " left join `tiki_tracker_item_attachments` a on i.`itemId`=a.`itemId` ";
-			$query .= " where a.`attId`=? ";
-			$result = $this->query($query, [(int) $attId]);
-			$resu = $result->fetchRow();
 		}
 		if (strstr($resu['orderAttachments'], '|')) {
 			$fields = preg_split('/,/', substr($resu['orderAttachments'], strpos($resu['orderAttachments'], '|') + 1));
