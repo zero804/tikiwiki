@@ -1,0 +1,2 @@
+INSERT INTO `tiki_menu_options` (`menuId`, `type`, `name`, `url`, `position`, `section`, `perm`, `groupname`, `userlevel`) VALUES (42,'s','Machine Learning','tiki-ml-list',820,'feature_machine_learning','tiki_p_machine_learning','',0);
+INSERT INTO `tiki_menu_options` (`menuId`, `type`, `name`, `url`, `position`, `section`, `perm`, `groupname`, `userlevel`) VALUES (42,'o','List Models','tiki-ml-list',825,'feature_machine_learning','tiki_p_machine_learning','',0);

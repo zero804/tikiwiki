@@ -44,6 +44,11 @@
 							</a>
 						</action>
 						<action>
+							<a href="{service controller=ml action=clone mlmId=$row.mlmId}">
+								{icon name=copy _menu_text='y' _menu_icon='y' alt="{tr}Clone{/tr}"}
+							</a>
+						</action>
+						<action>
 							<a href="{service controller=ml action=edit mlmId=$row.mlmId}">
 								{icon name=edit _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 							</a>

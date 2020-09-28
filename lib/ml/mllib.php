@@ -111,6 +111,9 @@ class MachineLearningLib extends TikiDb_Bridge
 			$sample = [];
 			foreach ($model['trackerFields'] as $fieldId) {
 				$field = $definition->getField($fieldId);
+				if (empty($field)) {
+					continue;
+				}
 				$field = $item->prepareFieldOutput($field);
 				$value = $trklib->field_render_value([
 					'field' => $field,
@@ -121,8 +124,15 @@ class MachineLearningLib extends TikiDb_Bridge
 				}
 				$sample[] = $value;
 			}
+			if (empty($sample)) {
+				continue;
+			}
 			$samples[] = $sample;
 			$labels[] = $item->getId();
+		}
+
+		if (empty($samples) || empty($labels)) {
+			throw new Exception(tr("No data found in data source. Check your model settings."));
 		}
 
 		$dataset = Rubix\ML\Datasets\Labeled::build($samples, $labels);
@@ -158,15 +168,27 @@ class MachineLearningLib extends TikiDb_Bridge
 			$sample[] = $value;
 		}
 
-		$estimator = TikiLib::lib('cache')->getSerialized($model['mlmId'], 'mlmodel');
-		if (! $estimator) {
-			throw new Exception(tr('Model was not trained.'));
-		}
+		$estimator = $this->getTrainedModel($model);
+
 		$result = $estimator->probaSample($sample);
 		$result = array_filter($result);
 		arsort($result);
 
 		return $result;
+	}
+
+	function ensureModelTrained($model)
+	{
+		$this->getTrainedModel($model);
+	}
+
+	protected function getTrainedModel($model)
+	{
+		$estimator = TikiLib::lib('cache')->getSerialized($model['mlmId'], 'mlmodel');
+		if (! $estimator || ! $estimator->trained()) {
+			throw new Exception(tr('Model was not trained.'));
+		}
+		return $estimator;
 	}
 
 	protected function serialize($model)
