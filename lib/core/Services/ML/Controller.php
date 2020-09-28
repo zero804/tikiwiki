@@ -213,13 +213,39 @@ class Services_ML_Controller
 			$forward = [
 				'controller' => 'ml',
 				'action' => 'edit',
-				'tabularId' => $mlmId
+				'mlmId' => $mlmId
 			];
 			return ['FORWARD' => $forward];
 		}
 
 		return [
 			'title' => tr('Create Machine Learning Model'),
+		];
+	}
+
+	public function action_clone($input)
+	{
+		Services_Exception_Denied::checkGlobal('tiki_p_admin_machine_learning');
+
+		$existing = $this->mllib->get_model($input->mlmId->int());
+
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$model = $this->serializeInput($input);
+			$model['payload'] = $existing['payload'];
+
+			$mlmId = $this->mllib->set_model(null, $model);
+
+			$forward = [
+				'controller' => 'ml',
+				'action' => 'edit',
+				'mlmId' => $mlmId
+			];
+			return ['FORWARD' => $forward];
+		}
+
+		return [
+			'title' => tr('Clone Machine Learning Model'),
+			'existing' => $existing,
 		];
 	}
 
@@ -391,6 +417,16 @@ class Services_ML_Controller
 		Services_Exception_Denied::checkGlobal('tiki_p_machine_learning');
 
 		$model = $this->getModel($input);
+		try {
+			$this->mllib->ensureModelTrained($model);
+		} catch (Exception $e) {
+			Feedback::error($e->getMessage());
+			$forward = [
+				'controller' => 'ml',
+				'action' => 'list',
+			];
+			return ['FORWARD' => $forward];
+		}
 
 		$itemObject = Tracker_Item::newItem($model['sourceTrackerId']);
 
