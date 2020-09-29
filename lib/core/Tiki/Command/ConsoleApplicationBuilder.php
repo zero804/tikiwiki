@@ -193,6 +193,7 @@ class ConsoleApplicationBuilder
 				new UsersListCommand,
 				new UsersPasswordCommand,
 				new StatsCommand,
+				new MLTrainCommand,
 				],
 			],[
 			'condition'	=> 'checkIsOCRAvailable',

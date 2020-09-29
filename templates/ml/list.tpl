@@ -15,6 +15,7 @@
 {block name="content"}
 	<table class="table">
 		<tr>
+			<th>{tr}ID{/tr}</th>
 			<th>{tr}Name{/tr}</th>
 			<th>{tr}Description{/tr}</th>
 			<th>{tr}Source{/tr}</th>
@@ -22,6 +23,7 @@
 		</tr>
 		{foreach $models as $row}
 			<tr>
+				<td>{$row.mlmId|escape}</td>
 				<td>{$row.name|escape}</td>
 				<td>{$row.description|escape|nl2br}</td>
 				<td>{object_link type=tracker id=$row.sourceTrackerId}</td>
