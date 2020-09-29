@@ -151,6 +151,7 @@ ALTER TABLE `tiki_live_support_modules` ENGINE=InnoDB;
 ALTER TABLE `tiki_live_support_operators` ENGINE=InnoDB;
 ALTER TABLE `tiki_live_support_requests` ENGINE=InnoDB;
 ALTER TABLE `tiki_logs` ENGINE=InnoDB;
+ALTER TABLE `tiki_machine_learning_models` ENGINE=InnoDB;
 ALTER TABLE `tiki_mail_events` ENGINE=InnoDB;
 ALTER TABLE `tiki_mail_queue` ENGINE=InnoDB;
 ALTER TABLE `tiki_mailin_accounts` ENGINE=InnoDB;
