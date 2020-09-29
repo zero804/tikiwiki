@@ -7,11 +7,6 @@
 
 class Services_Tracker_CalendarController
 {
-	function setUp()
-	{
-		Services_Exception_Disabled::check('calendar_fullcalendar');
-	}
-
 	/**
 	 * Returns the section for use with certain features like banning
 	 * @return string

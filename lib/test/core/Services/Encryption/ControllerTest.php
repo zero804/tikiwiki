@@ -31,7 +31,8 @@ class Services_Encryption_ControllerTest extends PHPUnit\Framework\TestCase
 	{
 		$input = new JitFilter([
 			'name' => 'test key',
-			'shares' => 1
+			'shares' => 1,
+			'algo' => 'aes-256-ctr',
 		]);
 		$result = $this->subject->action_save_key($input);
 		$this->assertGreaterThan(0, $result['keyId']);
@@ -44,7 +45,8 @@ class Services_Encryption_ControllerTest extends PHPUnit\Framework\TestCase
 	{
 		$input = new JitFilter([
 			'name' => 'test key',
-			'shares' => 0
+			'shares' => 0,
+			'algo' => 'aes-256-ctr',
 		]);
 		$this->expectException(Services_Exception_Denied::class);
 		$this->expectExceptionMessage('minimum');
@@ -58,6 +60,7 @@ class Services_Encryption_ControllerTest extends PHPUnit\Framework\TestCase
 		$input = new JitFilter([
 			'name' => 'test key',
 			'users' => 'user1, user2',
+			'algo' => 'aes-256-ctr',
 		]);
 		$result = $this->subject->action_save_key($input);
 		$prefs = TikiLib::lib('tiki')->table('tiki_user_preferences')->fetchAll(
@@ -120,7 +123,11 @@ class Services_Encryption_ControllerTest extends PHPUnit\Framework\TestCase
 	{
 		$this->shareKeyWithUser(function($result) {
 			unset($_SESSION['cryptphrase']);
-			$key = $this->subject->action_decrypt_key(new JitFilter(['keyId' => $result['keyId'], 'existing' => $result['shares'][0]]));
+			$key = $this->subject->action_decrypt_key(new JitFilter([
+				'keyId' => $result['keyId'],
+				'existing' => $result['shares'][0],
+				'algo' => 'aes-256-ctr',
+			]));
 			$this->assertEquals($result['key'], $key);
 		});
 	}
@@ -139,6 +146,7 @@ class Services_Encryption_ControllerTest extends PHPUnit\Framework\TestCase
 		$input = new JitFilter([
 			'name' => 'test key',
 			'users' => 'user1',
+			'algo' => 'aes-256-ctr',
 		]);
 		$result = $this->subject->action_save_key($input);
 		$user = 'user1';

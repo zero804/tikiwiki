@@ -46,7 +46,6 @@ if (! isset($_REQUEST['mobile_mode']) || $_REQUEST['mobile_mode'] === 'y') {
 				$prefs['fgal_elfinder_feature'] = 'n';
 				$prefs['wiki_auto_toc'] = 'n';
 				$prefs['feature_smileys'] = 'n';
-				$prefs['calendar_fullcalendar'] = 'n';
 				$prefs['feature_inline_comments'] = 'n';
 				$prefs['feature_jquery_tablesorter'] = 'n';*/
 

@@ -2139,9 +2139,8 @@ class TrackerLib extends TikiLib
 			} catch (Tiki\Encryption\NotFoundException $e) {
 				Feedback::error(tr('Field "%0" is encrypted with a key that no longer exists!', $field['name']));
 			} catch (Tiki\Encryption\Exception $e) {
-				Feedback::error(tr('Field "%0" is encrypted using key "%1" but where was an error enrypting the data: %2', $field['name'], $key->get('name'), $e->getMessage()));
+				Feedback::error(tr('Field "%0" is encrypted using key "%1" but where was an error encrypting the data: %2', $field['name'], $key->get('name'), $e->getMessage()));
 			}
-			$info = '<div class="description form-text">'.$info.'</div>';
 		}
 
 		$conditions = [
@@ -3091,15 +3090,8 @@ class TrackerLib extends TikiLib
 		$result = $fieldsTable->fetchAll($fieldsTable->all(), $conditions, $maxRecords, $offset, $fieldsTable->sortMode($sort_mode));
 		$cant = $fieldsTable->fetchCount($conditions);
 
-		$filteredResults = [];
 		$factory = new Tracker_Field_Factory;
 		foreach ($result as & $res) {
-			//filter fields to show only fields that users has permissio to access
-			$canShowField = true;
-			if ($res['type'] == 'F') {
-				$perms = Perms::get('tiki_p_view_freetags');
-				$canShowField = $perms->$permission;
-			}
 			$typeInfo = $factory->getFieldInfo($res['type']);
 			$options = Tracker_Options::fromSerialized($res['options'], $typeInfo);
 			$res['options_array'] = $options->buildOptionsArray();
@@ -3115,13 +3107,10 @@ class TrackerLib extends TikiLib
 				$smarty->assign('languages', $langLib->list_languages());
 			}
 			$ret[] = $res;
-			if ($canShowField) {
-				$filteredResults[] = $res;
-			}
 		}
 
 		return [
-			'data' => $filteredResults,
+			'data' => $result,
 			'cant' => $cant,
 		];
 	}
@@ -3737,13 +3726,6 @@ class TrackerLib extends TikiLib
 		$resu = $result->fetchRow();
 		if ($resu) {
 			$resu['orderAttachments'] = $resu['value'];
-		} else {
-			$query = "select `orderAttachments`, t.`trackerId` from `tiki_trackers` t ";
-			$query .= " left join `tiki_tracker_items` i on t.`trackerId`=i.`trackerId` ";
-			$query .= " left join `tiki_tracker_item_attachments` a on i.`itemId`=a.`itemId` ";
-			$query .= " where a.`attId`=? ";
-			$result = $this->query($query, [(int) $attId]);
-			$resu = $result->fetchRow();
 		}
 		if (strstr($resu['orderAttachments'], '|')) {
 			$fields = preg_split('/,/', substr($resu['orderAttachments'], strpos($resu['orderAttachments'], '|') + 1));
@@ -6160,7 +6142,7 @@ class TrackerLib extends TikiLib
 
 	public function get_child_items($itemId)
 	{
-		return $this->fetchAll('SELECT permName as field, itemId FROM tiki_tracker_item_fields v INNER JOIN tiki_tracker_fields f ON v.fieldId = f.fieldId WHERE f.type = "r" AND v.value = ?', [$itemId]);
+		return $this->fetchAll('SELECT permName as field, itemId FROM tiki_tracker_item_fields v INNER JOIN tiki_tracker_fields f ON v.fieldId = f.fieldId WHERE f.type = \'r\' AND v.value = ?', [$itemId]);
 	}
 
 	public function get_field_by_perm_name($permName)
@@ -6497,7 +6479,7 @@ class TrackerLib extends TikiLib
 					LEFT JOIN tiki_tracker_item_fields ttif1 ON tti.itemId = ttif1.itemId AND ttif1.fieldId = ?
 					LEFT JOIN tiki_tracker_item_fields ttif2 ON tti.itemId = ttif2.itemId AND ttif2.fieldId = ?
 					LEFT JOIN tiki_tracker_item_fields ttif3 ON tti.itemId = ttif3.itemId AND ttif3.fieldId = ?
-					WHERE tti.trackerId = ? AND ttif1.value = ? AND DATE_FORMAT(FROM_UNIXTIME(ttif2.value), "%Y-%m-%d") <= ?
+					WHERE tti.trackerId = ? AND ttif1.value = ? AND DATE_FORMAT(FROM_UNIXTIME(ttif2.value), \'%Y-%m-%d\') <= ?
 					ORDER BY ttif2.value DESC',
 					[$currencyField['fieldId'], $dateField['fieldId'], $rateField['fieldId'], $trackerId, $currency, $date]);
 			}

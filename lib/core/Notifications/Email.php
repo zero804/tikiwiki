@@ -104,7 +104,7 @@ class Email
 
 		$smarty->assign('siteName', $info['siteName']);
 		$smarty->assign('mentionedBy', $info['mentionedBy']);
-		$smarty->assign('section', $machine . '/' . $info['section']);
+		$smarty->assign('section', $machine . $info['section']);
 
 		return sendEmailNotification($userToNotify, null, $subjectTpl, null, $txtTpl);
 	}

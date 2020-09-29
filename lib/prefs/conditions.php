@@ -21,7 +21,7 @@ function prefs_conditions_list()
 			'description' => tr('Wiki page for Terms of Use content. The page may be translated using the multilingual feature.'),
 			'type' => 'text',
 			'filter' => 'pagename',
-			'default' => 'Terms',
+			'default' => tr('Terms'),
 			'profile_reference' => 'wiki_page',
 		],
 		'conditions_minimum_age' => [

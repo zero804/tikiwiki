@@ -32,7 +32,6 @@
 		{preference name=calendar_export}
 		{preference name=calendar_export_item}
 		{preference name=calendar_addtogooglecal}
-		{preference name=calendar_fullcalendar}
 		{preference name=feature_jscalendar mode=invert}
 		<div class="adminoptionboxchild" id="feature_jscalendar_childcontainer">
 			{preference name=calendar_start_year}

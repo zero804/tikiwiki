@@ -77,9 +77,11 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 	{
 		$mirrorField = $this->getOption('mirrorField');
 		if ($mirrorField && $mirrorField != $this->getFieldId()) {
+			$field = TikiLib::lib('trk')->get_field_info($mirrorField);
+			$field['value'] = $this->getValue();
 			return TikiLib::lib('trk')->field_render_value([
-				'fieldId' => $mirrorField,
-				'value' => $this->getValue(),
+				'field' => $field,
+				'itemId' => $this->getItemId()
 			]);
 		} else {
 			return $this->getValue();

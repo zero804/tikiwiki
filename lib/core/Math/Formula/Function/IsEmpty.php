@@ -16,6 +16,9 @@ class Math_Formula_Function_IsEmpty extends Math_Formula_Function
 				// if the child value is not in the variables (i.e. index) catch exception and return IsEmpty = true
 				return true;
 			}
+			if ($component instanceof Math_Formula_Applicator) {
+				return $component->isEmpty();
+			}
 			if (! empty($component)) {
 				return false;
 			}

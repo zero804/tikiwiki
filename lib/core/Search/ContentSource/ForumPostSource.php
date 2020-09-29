@@ -36,6 +36,7 @@ class Search_ContentSource_ForumPostSource implements Search_ContentSource_Inter
 	{
 		global $prefs;
 
+		/** @var Comments $commentslib */
 		$commentslib = TikiLib::lib('comments');
 		$commentslib->extras_enabled(false);
 		$comment = $commentslib->get_comment($objectId);
@@ -98,6 +99,7 @@ class Search_ContentSource_ForumPostSource implements Search_ContentSource_Inter
 			'hits' => $typeFactory->numeric($comment['hits']),
 			'root_thread_id' => $typeFactory->identifier($root_thread_id),
 			'thread_type' => $typeFactory->identifier($comment['type']),
+			'reply_count' => $typeFactory->numeric(count($thread['data'])),
 			'locked' => $typeFactory->identifier($comment['locked']),
 		];
 

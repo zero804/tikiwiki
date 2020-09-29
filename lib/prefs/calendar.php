@@ -60,7 +60,7 @@ function prefs_calendar_list()
 		],
 		'calendar_timespan' => [
 			'name' => tra('Split hours in periods of'),
-			'description' => 'Times shown in week and day view.',
+			'description' => tra('Times shown in week and day view.'),
 			'type' => 'list',
 			'units' => tra('minutes'),
 			'options' => [
@@ -74,7 +74,7 @@ function prefs_calendar_list()
 		],
 		'calendar_minute_interval' => [
 			'name' => tra('Minute Interval'),
-			'description' => 'Interval to show between minutes on time selectors',
+			'description' => tra('Interval to show between minutes on time selectors'),
 			'type' => 'list',
 			'units' => tra('minutes'),
 			'options' => [
@@ -134,12 +134,6 @@ function prefs_calendar_list()
 		'calendar_export_item' => [
 			'name' => tra('Show "Export Calendar Item" Button'),
 			'description' => tra('Allow exporting a single calendar event as an iCal file'),
-			'type' => 'flag',
-			'default' => 'n',
-		],
-		'calendar_fullcalendar' => [
-			'name' => tra('Use FullCalendar to display calendars'),
-			'description' => '',
 			'type' => 'flag',
 			'default' => 'n',
 		],

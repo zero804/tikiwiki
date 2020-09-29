@@ -7,10 +7,10 @@
 
 namespace Tiki\File;
 
-use Symfony\Component\Process\Process;
 use Tiki\FileGallery\File as TikiFile;
 use Tiki\FileGallery\File;
 use Tiki\Package\VendorHelper;
+use Tiki\Process\Process;
 use TikiLib;
 use WikiParser_PluginArgumentParser;
 

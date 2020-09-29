@@ -129,7 +129,7 @@ function prefs_site_list()
 			'type' => 'text',
 			'size' => 15,
 			'default' => '',
-			'hint' => ' Enter only XXXXXXX-YY (without the UA)',
+			'hint' => tr(' Enter only XXXXXXX-YY (without the UA)'),
 			'dependencies' => [
 				'wikiplugin_googleanalytics',
 			],
