@@ -1534,11 +1534,13 @@ class TrackerLib extends TikiLib
 			. ')' . $join;
 
 		$fieldIds = [];
-		foreach ($listfields as $k => $f) {
-			if (isset($f['fieldId'])) {
-				$fieldIds[] = $f['fieldId'];
-			} else {
-				$fieldIds[] = $k;	// sometimes filterfields are provided with the fieldId only on the array keys
+		if (! empty($listfields)) {
+			foreach ($listfields as $k => $f) {
+				if (isset($f['fieldId'])) {
+					$fieldIds[] = $f['fieldId'];
+				} else {
+					$fieldIds[] = $k;	// sometimes filterfields are provided with the fieldId only on the array keys
+				}
 			}
 		}
 		if (! empty($filterfield)) {
@@ -1678,7 +1680,7 @@ class TrackerLib extends TikiLib
 				}
 
 				$res['itemUsers'] = [];
-				if ($listfields !== null) {
+				if ($listfields !== null && ! empty($listfields)) {
 					$res['field_values'] = $this->get_item_fields($trackerId, $res['itemId'], $listfields, $res['itemUsers']);
 				}
 

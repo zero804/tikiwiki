@@ -76,7 +76,7 @@ class MachineLearningLib extends TikiDb_Bridge
 		$instance_args = [];
 		if ($args) {
 			foreach ($args as $arg)
-				if ($arg->input_type == 'rubix') {
+				if ($arg->input_type == 'rubix' && ! empty($arg->value)) {
 					$iargs = $arg->value;
 					$instance = $this->hydrate_single($iargs->class, $iargs->args);
 					$instance_args[] = $instance['instance'];
@@ -154,7 +154,11 @@ class MachineLearningLib extends TikiDb_Bridge
 		$estimator->train($dataset);
 
 		if (! $test) {
-			TikiLib::lib('cache')->cacheItem($model['mlmId'], serialize($estimator), 'mlmodel');
+			$serialized = serialize($estimator);
+			TikiLib::lib('cache')->cacheItem($model['mlmId'], $serialized, 'mlmodel');
+			if ($serialized != TikiLib::lib('cache')->getCached($model['mlmId'], 'mlmodel')) {
+				throw new Exception(tr('Model trained but could not be saved to cache. Check cache storage permissions.'));
+			}
 		}
 	}
 
