@@ -208,7 +208,13 @@ class Services_ML_Controller
 		Services_Exception_Denied::checkGlobal('tiki_p_admin_machine_learning');
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$mlmId = $this->mllib->set_model(null, $this->serializeInput($input));
+			$model = $this->serializeInput($input);
+
+			if ($template = $input->template->text()) {
+				$model['payload'] = $this->mllib->predefined($template);
+			}
+
+			$mlmId = $this->mllib->set_model(null, $model);
 
 			$forward = [
 				'controller' => 'ml',

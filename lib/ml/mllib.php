@@ -182,6 +182,121 @@ class MachineLearningLib extends TikiDb_Bridge
 		$this->getTrainedModel($model);
 	}
 
+	function predefined($template)
+	{
+		switch ($template) {
+			case 'MLT':
+				return json_encode([
+					[
+						"class" => "Transformers\\TextNormalizer",
+						"args" => []
+					], [
+						"class" => "Transformers\\StopWordFilter",
+						"args" => [
+							[
+								"name" => "stopWords",
+								"default" => [],
+								"arg_type" => "array",
+								"input_type" => "text",
+								"value" => ["i","me","my","myself","we","our","ours","ourselves","you","your","yours","yourself","yourselves","he","him","his","himself","she","her","hers","herself","it","its","itself","they","them","their","theirs","themselves","what","which","who","whom","this","that","these","those","am","is","are","was","were","be","been","being","have","has","had","having","do","does","did","doing","a","an","the","and","but","if","or","because","as","until","while","of","at","by","for","with","about","against","between","into","through","during","before","after","above","below","to","from","up","down","in","out","on","off","over","under","again","further","then","once","here","there","when","where","why","how","all","any","both","each","few","more","most","other","some","such","no","nor","not","only","own","same","so","than","too","very","s","t","can","will","just","don","should","now"]
+							]
+						]
+					], [
+						"class" => "Transformers\\WordCountVectorizer",
+						"args" => [
+							[
+								"name" => "maxVocabulary",
+								"default" => PHP_INT_MAX,
+								"arg_type" => "int",
+								"input_type" => "text",
+								"value" => 10000
+							], [
+								"name" => "minDocumentFrequency",
+								"default" => 1,
+								"arg_type" => "int",
+								"input_type" => "text",
+								"value" => "1"
+							], [
+								"name" => "maxDocumentFrequency",
+								"default" => PHP_INT_MAX,
+								"arg_type" => "int",
+								"input_type" => "text",
+								"value" => 500
+							], [
+								"name" => "tokenizer",
+								"default" => null,
+								"arg_type" => "Rubix\\ML\\Other\\Tokenizers\\Tokenizer",
+								"input_type" => "rubix",
+								"value" => null
+							]
+						]
+					], [
+						"class" => "Transformers\\BM25Transformer",
+						"args" => [
+							[
+								"name" => "alpha",
+								"default" => 1.2,
+								"arg_type" => "float",
+								"input_type" => "text",
+								"value" => 1.2
+							], [
+								"name" => "beta",
+								"default" => 0.75,
+								"arg_type" => "float",
+								"input_type" => "text",
+								"value" => 0.75
+							]
+						]
+					], [
+						"class" => "Classifiers\\KDNeighbors",
+						"args" => [
+							[
+								"name" => "k",
+								"default" => 5,
+								"arg_type" => "int",
+								"input_type" => "text",
+								"value" => 20
+							], [
+								"name" => "weighted",
+								"default" => true,
+								"arg_type" => "bool",
+								"input_type" => "text",
+								"value" => "true"
+							], [
+								"name" => "tree",
+								"default" => null,
+								"arg_type" => "Rubix\\ML\\Graph\\Trees\\Spatial",
+								"input_type" => "rubix",
+								"value" => [
+									"class" => "Graph\\Trees\\BallTree",
+									"args" => [
+										[
+											"name" => "maxLeafSize",
+											"default" => 30,
+											"arg_type" => "int",
+											"input_type" => "text",
+											"value" => 20
+										], [
+											"name" => "kernel",
+											"default" => null,
+											"arg_type" => "Rubix\\ML\\Kernels\\Distance\\Distance",
+											"input_type" => "rubix",
+											"value" => [
+												"class" => "Kernels\\Distance\\Cosine",
+												"args" => []
+											]
+										]
+									]
+								]
+							]
+						]
+					]
+				]);
+			default:
+				return '';
+		}
+	}
+
 	protected function getTrainedModel($model)
 	{
 		$estimator = TikiLib::lib('cache')->getSerialized($model['mlmId'], 'mlmodel');

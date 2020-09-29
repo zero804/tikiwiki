@@ -30,6 +30,18 @@
 				{object_selector _class="form-control" type="tracker" _simplename="trackerId"}
 			</div>
 		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-sm-3">
+				{tr}Model template{/tr}
+				{help url="Machine Learning Models" desc="Choose a predefined ML model designed to solve a common problem or start with a blank model."}
+			</label>
+			<div class="col-sm-9">
+				<select class="form-control" name="template">
+					<option value="">{tr}Start with a blank model{/tr}</option>
+					<option value="MLT">{tr}More like this search{/tr}</option>
+				</select>
+			</div>
+		</div>
 		<div class="form-group submit">
 			<div class="col-sm-9 offset-sm-3">
 				<input type="submit" class="btn btn-primary" value="{tr}Create{/tr}">
