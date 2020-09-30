@@ -63,6 +63,12 @@ function iconset_legacy()
 			],
 			'admin_community' => [
 				'id' => 'large/users',
+				'size' => 2,
+				'sizes' => [
+					3 => [
+						'id' => 'large/user48x48'
+					]
+				]
 			],
 			'admin_connect' => [
 				'id' => 'large/gnome-globe',
@@ -125,6 +131,15 @@ function iconset_legacy()
 			'admin_module' => [
 				'id' => 'large/display-capplet',
 			],
+			'admin_packages' => [
+				'id' => 'large/packets',
+				'size' => 2,
+				'sizes' => [
+					3 => [
+						'id' => 'large/packets48x48'
+					]
+				]
+			],
 			'admin_payment' => [
 				'id' => 'large/payment',
 			],
@@ -134,6 +149,15 @@ function iconset_legacy()
 			'admin_polls' => [
 				'id' => 'large/stock_missing-image',
 			],
+			'admin_print' => [
+				'id' => 'large/printer',
+				'size' => 2,
+				'sizes' => [
+					3 => [
+						'id' => 'large/printer48x48'
+					]
+				]
+			],
 			'admin_profiles' => [
 				'id' => 'large/profiles',
 			],
@@ -142,6 +166,15 @@ function iconset_legacy()
 			],
 			'admin_rss' => [
 				'id' => 'large/feed-icon',
+			],
+			'admin_rtc' => [
+				'id' => 'large/rtc',
+				'size' => 2,
+				'sizes' => [
+					3 => [
+						'id' => 'large/rtc48x48'
+					]
+				]
 			],
 			'admin_score' => [
 				'id' => 'large/stock_about',
@@ -165,13 +198,28 @@ function iconset_legacy()
 				'id' => 'large/socialnetworks',
 			],
 			'admin_stats' => [
-				'id' => 'large/stats48x48',
+				'id' => 'large/stats',
+				'size' => 2,
+				'sizes' => [
+					3 => [
+						'id' => 'large/stats48x48'
+					]
+				]
 			],
 			'admin_textarea' => [
 				'id' => 'large/editing',
 			],
 			'admin_trackers' => [
 				'id' => 'large/gnome-settings-font',
+			],
+			'admin_user' => [
+				'id' => 'large/user',
+				'size' => 2,
+				'sizes' => [
+					3 => [
+						'id' => 'large/user48x48'
+					]
+				]
 			],
 			'admin_userfiles' => [
 				'id' => 'large/userfiles',
