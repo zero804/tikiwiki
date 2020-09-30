@@ -230,12 +230,33 @@ class Tiki_Hm_User_Config extends Hm_Config {
 	 */
 	public function load($username, $key = null) {
 		$this->username = $username;
-		$actual_user = $_SESSION[$this->site_config->get('session_prefix')]['user_override'] ?? $username;
-		$data = TikiLib::lib('tiki')->get_user_preference($actual_user, $_SESSION[$this->site_config->get('session_prefix')]['preference_name']);
+		$session_prefix = $this->site_config->get('session_prefix');
+		$actual_user = $_SESSION[$session_prefix]['user_override'] ?? $username;
+		$data = TikiLib::lib('tiki')->get_user_preference($actual_user, $_SESSION[$session_prefix]['preference_name']);
 		if ($data) {
 			$data = $this->decode($data);
 			$this->config = array_merge($this->config, $data);
 			$this->set_tz();
+		}
+		// merge imap/smtp servers config with session as plugin cypht might be overriding these
+		foreach (['imap_servers', 'smtp_servers'] as $key) {
+			if(! empty($_SESSION[$session_prefix]['user_data'][$key])) {
+				if (empty($this->config[$key])) {
+					$this->config[$key] = [];
+				}
+				foreach ($_SESSION[$session_prefix]['user_data'][$key] as $server) {
+					$found = false;
+					foreach ($this->config[$key] as $cserver) {
+						if ($server['server'] == $cserver['server'] && $server['tls'] == $cserver['tls'] && $server['port'] == $cserver['port'] && $server['user'] == $cserver['user']) {
+							$found = true;
+							break;
+						}
+					}
+					if (! $found) {
+						$this->config[$key][] = $server;
+					}
+				}
+			}
 		}
 	}
 
