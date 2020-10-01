@@ -66,7 +66,7 @@ function iconset_legacy()
 				'size' => 2,
 				'sizes' => [
 					3 => [
-						'id' => 'large/user48x48'
+						'id' => 'large/users48x48'
 					]
 				]
 			],
