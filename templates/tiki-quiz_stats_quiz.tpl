@@ -49,7 +49,7 @@
 			<tr>
 				<td class="username">{$channels[user].user|userlink}</td>
 				<td class="date">{$channels[user].timestamp|tiki_short_datetime}</td>
-				<td class="date">{$channels[user].timeTaken} secs</td>
+				<td class="date">{$channels[user].timeTaken} {tr}secs{/tr}</td>
 				<td class="integer">{$channels[user].points} ({$channels[user].avgavg|string_format:"%.2f"}%)</td>
 				<td class="action">
 					{if $tiki_p_view_user_results eq 'y'}

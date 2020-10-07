@@ -88,7 +88,7 @@
 		{literal}
 			<input type="text" id="data" size="30" width="290" style="width:290px;" onKeyPress="javascript:if(event.keyCode == 13) {write_msg(document.getElementById('data').value,document.getElementById('role').value,document.getElementById('username').value);}">
 			<br>
-			<input type="button" value="send" onClick="javascript:write_msg(document.getElementById('data').value,document.getElementById('role').value,document.getElementById('username').value);">
+			<input type="button" value="{tr}send{/tr}" onClick="javascript:write_msg(document.getElementById('data').value,document.getElementById('role').value,document.getElementById('username').value);">
 		{/literal}
 		<script type='text/javascript'>
 			/* Activate polling of requests */

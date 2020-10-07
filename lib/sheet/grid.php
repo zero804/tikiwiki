@@ -807,7 +807,7 @@ class TikiSheetDataHandler
 	 */
 	function name()
 	{
-		trigger_error("Abstract method call. name() not defined in " . get_class($this), E_USER_ERROR);
+		trigger_error(tr("Abstract method call. %0 not defined in %1", __FUNCTION__ . '()', get_class($this)), E_USER_ERROR);
 	}
 	/** supports
 	 * Function to indicate the features that are supported
@@ -819,7 +819,7 @@ class TikiSheetDataHandler
 	 */
 	function supports($feature)
 	{
-		trigger_error("Abstract method call. supports() not defined in " . get_class($this), E_USER_ERROR);
+		trigger_error(tr("Abstract method call. %0 not defined in %1", __FUNCTION__ . '()', get_class($this)), E_USER_ERROR);
 	}
 
 	/** version
@@ -828,7 +828,7 @@ class TikiSheetDataHandler
 	 */
 	function version()
 	{
-		trigger_error("Abstract method call. version() not defined in " . get_class($this), E_USER_ERROR);
+		trigger_error(tr("Abstract method call. %0 not defined in %1", __FUNCTION__ . '()', get_class($this)), E_USER_ERROR);
 	}
 } //
 
@@ -902,7 +902,7 @@ class TikiSheetSerializeHandler extends TikiSheetDataHandler
 	// name
 	function name()
 	{
-		return "TikiSheet File";
+		return tr("TikiSheet File");
 	}
 
 	// supports
@@ -1029,7 +1029,7 @@ class TikiSheetCSVHandler extends TikiSheetDataHandler
 	// name
 	function name()
 	{
-		return "CSV File (commas)";
+		return tr("CSV File (commas)");
 	}
 
 	// supports
@@ -1301,7 +1301,7 @@ class TikiSheetCSVExcelHandler extends TikiSheetDataHandler
 	// name
 	function name()
 	{
-		return "CSV-Excel File (semicolons)";
+		return tr("CSV-Excel File (semicolons)");
 	}
 
 	// supports
@@ -1670,7 +1670,7 @@ class TikiSheetExcelHandler extends TikiSheetDataHandler
 	// name
 	function name()
 	{
-		return "MS Excel File";
+		return tr("MS Excel File");
 	}
 
 	// supports
@@ -1710,7 +1710,7 @@ class TikiSheetOpenOfficeHandler extends TikiSheetDataHandler
 		$OOoCalc->newCalc();
 		$OOoCalc->setName("export.sxc");
 		$OOoCalc->meta->setCreator("TikiSheet");
-		$OOoCalc->meta->setTitle("TikiSheet Export");
+		$OOoCalc->meta->setTitle(tr("TikiSheet Export"));
 
 		$OOoCalc->content->addFeuille();
 
@@ -1732,7 +1732,7 @@ class TikiSheetOpenOfficeHandler extends TikiSheetDataHandler
 	// name
 	function name()
 	{
-		return "OpenOffice.org";
+		return tr("OpenOffice.org File");
 	}
 
 
@@ -1856,7 +1856,7 @@ class TikiSheetWikiTableHandler extends TikiSheetDataHandler
 	// name
 	function name()
 	{
-		return "CSV File";
+		return tr("CSV File");
 	}
 
 	// supports
@@ -2295,7 +2295,7 @@ class TikiSheetHTMLTableHandler extends TikiSheetDataHandler
 	// name
 	function name()
 	{
-		return "HTML Table";
+		return tr("HTML Table");
 	}
 
 	// supports
