@@ -63,7 +63,7 @@
 		</ul>
 	</li>
 	<li>
-		<a href="#">View</a>
+		<a href="#">{tr}View{/tr}</a>
 		<ul>
 			<li>
 				<a menu="menuViewFunctionReference_menuInstance">{tr}Function Reference{/tr}</a>
@@ -98,7 +98,7 @@
 		</ul>
 	</li>
 	<li>
-		<a href="#">Style</a>
+		<a href="#">{tr}Style{/tr}</a>
 		<ul>
 			<li><a class="cellStyleToggle" onclick="sheetInstance.cellStyleToggle('styleBold'); return false;">{tr}Bold{/tr}</a></li>
 			<li><a class="cellStyleToggle" onclick="sheetInstance.cellStyleToggle('styleItalics'); return false;">{tr}Italics{/tr}</a></li>
