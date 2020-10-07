@@ -44,7 +44,7 @@
 							</span>
 						</td>
 						<td class="text">{$channels[user].canRepeat}</td>
-						<td class="text">{$channels[user].timeLimited} {if $channels[user].timeLimited eq 'y'}({$channels[user].timeLimit} mins){/if}</td>
+						<td class="text">{$channels[user].timeLimited} {if $channels[user].timeLimited eq 'y'}({$channels[user].timeLimit} {tr}mins{/tr}){/if}</td>
 						<td class="integer">{$channels[user].questions}</td>
 						<td class="integer">{$channels[user].results}</td>
 						<td class="action">
