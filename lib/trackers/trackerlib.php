@@ -2139,8 +2139,9 @@ class TrackerLib extends TikiLib
 			} catch (Tiki\Encryption\NotFoundException $e) {
 				Feedback::error(tr('Field "%0" is encrypted with a key that no longer exists!', $field['name']));
 			} catch (Tiki\Encryption\Exception $e) {
-				Feedback::error(tr('Field "%0" is encrypted using key "%1" but where was an error encrypting the data: %2', $field['name'], $key->get('name'), $e->getMessage()));
+				Feedback::error(tr('Field "%0" is encrypted using key "%1" but where was an error enrypting the data: %2', $field['name'], $key->get('name'), $e->getMessage()));
 			}
+			$info = '<div class="description form-text">'.$info.'</div>';
 		}
 
 		$conditions = [

@@ -7616,17 +7616,17 @@
         },
         {
             "name": "scssphp/scssphp",
-            "version": "1.2.1",
+            "version": "1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scssphp/scssphp.git",
-                "reference": "a05ea68160b7286ebbfd6e5fd7ae9e1a946ad6e1"
+                "reference": "ce970268a912dabbfaa0eff65dbc5e4a2a6cb757"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/scssphp/scssphp/scssphp-scssphp-a05ea68160b7286ebbfd6e5fd7ae9e1a946ad6e1-zip-56f79f.zip",
-                "reference": "a05ea68160b7286ebbfd6e5fd7ae9e1a946ad6e1",
-                "shasum": "1139aca1834ae8e0602e628892ec379c1825412e"
+                "url": "https://composer.tiki.org/dist/scssphp/scssphp/scssphp-scssphp-ce970268a912dabbfaa0eff65dbc5e4a2a6cb757-zip-339885.zip",
+                "reference": "ce970268a912dabbfaa0eff65dbc5e4a2a6cb757",
+                "shasum": "c3741f385bf69d6b56b20d3864509b4c3e9df201"
             },
             "require": {
                 "ext-ctype": "*",
@@ -7674,7 +7674,7 @@
                 "scss",
                 "stylesheet"
             ],
-            "time": "2020-09-07T21:15:42+00:00"
+            "time": "2020-08-26T20:47:29+00:00"
         },
         {
             "name": "simile_timeline/simile_timeline",
