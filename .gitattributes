@@ -740,6 +740,8 @@ img/icons/large/mytiki.gif -text
 img/icons/large/mywatches.gif -text
 img/icons/large/news.gif -text
 img/icons/large/notes.gif -text
+img/icons/large/packets.png -text
+img/icons/large/packets48x48.png -text
 img/icons/large/payment.png -text
 img/icons/large/payment48x48.png -text
 img/icons/large/performance.png -text
@@ -748,6 +750,8 @@ img/icons/large/permissions48x48.png -text
 img/icons/large/plugins.png -text
 img/icons/large/plugins48x48.png -text
 img/icons/large/prefs.gif -text
+img/icons/large/printer.png -text
+img/icons/large/printer48x48.png -text
 img/icons/large/profile_debug_mode48x48.png -text
 img/icons/large/profiles.png -text
 img/icons/large/profiles48x48.png -text
@@ -755,11 +759,14 @@ img/icons/large/quizzes48x48.png -text
 img/icons/large/rating.png -text
 img/icons/large/rating48x48.png -text
 img/icons/large/reports48x48.png -text
+img/icons/large/rtc.png -text
+img/icons/large/rtc48x48.png -text
 img/icons/large/semantic.png -text
 img/icons/large/semantic48x48.png -text
 img/icons/large/socialnetworks.png -text
 img/icons/large/socialnetworks48x48.png -text
 img/icons/large/spreadsheet48x48.png -text
+img/icons/large/stats.png -text
 img/icons/large/stats48x48.png -text
 img/icons/large/stock_about.png -text
 img/icons/large/stock_about48x48.png -text
@@ -793,6 +800,7 @@ img/icons/large/trackers_updated.png -text
 img/icons/large/ui48x48.png -text
 img/icons/large/usagelist.txt -text
 img/icons/large/user.png -text
+img/icons/large/user48x48.png -text
 img/icons/large/user_tracker.png -text
 img/icons/large/user_tracker48x48.png -text
 img/icons/large/userfiles.png -text
@@ -1056,6 +1064,7 @@ img/icons/orightcol.png -text
 img/icons/ovmodule.png -text
 img/icons/package.png -text
 img/icons/package_go.png -text
+img/icons/packets.png -text
 img/icons/page.png -text
 img/icons/page_break.png -text
 img/icons/page_copy.png -text
@@ -1109,6 +1118,7 @@ img/icons/resultset_previous.png -text
 img/icons/resultset_previous_fast.png -text
 img/icons/resultset_up.png -text
 img/icons/rss.png -text
+img/icons/rtc.png -text
 img/icons/s_female.png -text
 img/icons/s_male.png -text
 img/icons/script.png -text
