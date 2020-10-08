@@ -308,7 +308,7 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 		self::$runner = null;
 	}
 
-	private function getMirroredHandler()
+	public function getMirroredHandler()
 	{
 		$mirrorField = $this->getOption('mirrorField');
 		$handler = false;

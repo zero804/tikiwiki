@@ -68,14 +68,19 @@ class Math_Formula_Runner
 		} elseif (isset($this->variables[$data])) {
 			$out = $this->variables[$data];
 			$field = TikiLib::lib('trk')->get_field_by_perm_name($data);
-			if ($field && $field['type'] === 'b') {
+			if ($field && ($field['type'] === 'b' || $field['type'] === 'math')) {
 				$definition = Tracker_Definition::get($field['trackerId']);
 				// note: Tracker_Field_Abstract expects permName field values to be in fields subarray
 				// but variables can contain other valuable top level information like itemId
 				$handler = $definition->getFieldFactory()->getHandler($field, $this->variables + ['fields' => $this->variables]);
-				$out = Math_Formula_Currency::fromCurrencyField($handler);
-			} elseif ($field && $field['type'] === 'math') {
-				$out = Math_Formula_Currency::tryFromString($out);
+				if ($field['type'] === 'math' && ($mirroredHandler = $handler->getMirroredHandler())) {
+					$handler = $mirroredHandler;
+				}
+				if ($handler instanceof Tracker_Field_Currency) {
+					$out = Math_Formula_Currency::fromCurrencyField($handler);
+				} elseif ($field['type'] === 'math') {
+					$out = Math_Formula_Currency::tryFromString($out);
+				}
 			}
 		} elseif (false !== $value = $this->findVariable(explode('.', $data), $this->variables)) {
 			$out = $value;
