@@ -176,7 +176,7 @@ if (! empty($page_ref_id)) {
 	$info = null;
 	// others still need a good set page name or they will get confused.
 	// comments of home page were all visible on every structure page
-	$_REQUEST['page'] = $page_info['pageName'];
+	$page = $_REQUEST['page'] = $page_info['pageName'];
 } else {
 	$page_ref_id = '';
 	$smarty->assign('showstructs', $structs_with_perm);
