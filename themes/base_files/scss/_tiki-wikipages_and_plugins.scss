@@ -992,7 +992,20 @@ div.drillshow {
 	list-style: none;
 	border: 1px solid $card-border-color;
 	border-radius: $card-border-radius;
-	padding: 4px 8px;
+}
+
+.plugin-list-editor li.plugin .params {
+	padding: 0.5rem 0.5rem 0;
+}
+
+.plugin-list-editor li.plugin .card-header {
+	padding: 0.25rem 1.5rem;
+}
+
+.plugin-list-editor > .btn-toolbar {
+	margin-bottom: 0.5rem;
+	background-color: #2780E3;
+	color: #fff;
 }
 
 .plugin-list-editor li.plugin .name {
