@@ -3843,7 +3843,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_edit_article_user',
 				'description' => tra('Can edit the user (owner) of articles'),
-				'level' => 'editors',
+				'level' => 'registered',
 				'type' => 'articles',
 				'admin' => false,
 				'prefs' => ['feature_articles'],
@@ -3888,7 +3888,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_submit_article',
 				'description' => tra('Can submit articles'),
-				'level' => 'basic',
+				'level' => 'registered',
 				'type' => 'articles',
 				'admin' => false,
 				'prefs' => ['feature_articles'],
@@ -3897,7 +3897,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_rate_article',
 				'description' => tra('Can rate articles'),
-				'level' => 'basic',
+				'level' => 'registered',
 				'type' => 'articles',
 				'admin' => false,
 				'prefs' => ['feature_articles'],
@@ -3942,7 +3942,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_xmpp_chat',
 				'description' => tra('Can use XMPP chat'),
-				'level' => 'admin',
+				'level' => 'registered',
 				'type' => 'xmpp',
 				'admin' => false,
 				'prefs' => ['xmpp_feature'],
@@ -4443,7 +4443,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_suggest_faq',
 				'description' => tra('Can suggest FAQ questions'),
-				'level' => 'basic',
+				'level' => 'registered',
 				'type' => 'faqs',
 				'admin' => false,
 				'prefs' => ['feature_faqs'],
@@ -4794,7 +4794,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_h5p_admin',
 				'description' => tra('Can administer H5P content'),
-				'level' => 'admins',
+				'level' => 'admin',
 				'type' => 'h5p',
 				'admin' => false,
 				'prefs' => ['h5p_enabled'],
@@ -4902,7 +4902,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_upload_videos',
 				'description' => tra('Can upload video or record from webcam'),
-				'level' => 'editors',
+				'level' => 'registered',
 				'type' => 'media',
 				'admin' => false,
 				'prefs' => ['feature_kaltura'],
@@ -4929,7 +4929,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_download_videos',
 				'description' => tra('Can download media'),
-				'level' => 'registered',
+				'level' => 'basic',
 				'type' => 'media',
 				'admin' => false,
 				'prefs' => ['feature_kaltura'],
@@ -5055,7 +5055,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_payment_view',
 				'description' => tra('Can view payment requests and details'),
-				'level' => 'admin',
+				'level' => 'registered',
 				'type' => 'payment',
 				'admin' => false,
 				'prefs' => ['payment_feature'],
@@ -5064,7 +5064,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_payment_manual',
 				'description' => tra('Can enter manual payments'),
-				'level' => 'admin',
+				'level' => 'editors',
 				'type' => 'payment',
 				'admin' => false,
 				'prefs' => ['payment_feature'],
@@ -5073,7 +5073,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_payment_request',
 				'description' => tra('Can request a payment'),
-				'level' => 'admin',
+				'level' => 'registered',
 				'type' => 'payment',
 				'admin' => false,
 				'prefs' => ['payment_feature'],
@@ -5091,7 +5091,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_perspective_edit',
 				'description' => tra('Can edit the perspective'),
-				'level' => 'basic',
+				'level' => 'admin',
 				'type' => 'perspective',
 				'admin' => false,
 				'prefs' => ['feature_perspective'],
@@ -5100,7 +5100,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_perspective_create',
 				'description' => tra('Can create a perspective'),
-				'level' => 'basic',
+				'level' => 'admin',
 				'type' => 'perspective',
 				'admin' => false,
 				'prefs' => ['feature_perspective'],
@@ -5145,7 +5145,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_vote_poll',
 				'description' => tra('Can vote in polls'),
-				'level' => 'basic',
+				'level' => 'registered',
 				'type' => 'polls',
 				'admin' => false,
 				'prefs' => ['feature_polls'],
@@ -5154,7 +5154,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_view_poll_voters',
 				'description' => tra('Can view poll voters'),
-				'level' => 'basic',
+				'level' => 'registered',
 				'type' => 'polls',
 				'admin' => false,
 				'prefs' => ['feature_polls'],
@@ -5226,7 +5226,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_view_sheet_history',
 				'description' => tra('Can view spreadsheets history'),
-				'level' => 'admin',
+				'level' => 'editors',
 				'type' => 'sheet',
 				'admin' => false,
 				'prefs' => ['feature_sheet'],
@@ -5424,7 +5424,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_modify_tracker_items_pending',
 				'description' => tra('Can change pending tracker items'),
-				'level' => 'registered',
+				'level' => 'editors',
 				'type' => 'trackers',
 				'admin' => false,
 				'prefs' => ['feature_trackers'],
@@ -5433,7 +5433,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_modify_tracker_items_closed',
 				'description' => tra('Can change closed tracker items'),
-				'level' => 'registered',
+				'level' => 'editors',
 				'type' => 'trackers',
 				'admin' => false,
 				'prefs' => ['feature_trackers'],
@@ -5442,7 +5442,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_remove_tracker_items',
 				'description' => tra('Can remove tracker items'),
-				'level' => 'registered',
+				'level' => 'editors',
 				'type' => 'trackers',
 				'admin' => false,
 				'prefs' => ['feature_trackers'],
@@ -5451,7 +5451,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_remove_tracker_items_pending',
 				'description' => tra('Can remove pending tracker items'),
-				'level' => 'registered',
+				'level' => 'editors',
 				'type' => 'trackers',
 				'admin' => false,
 				'prefs' => ['feature_trackers'],
@@ -5460,7 +5460,7 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_remove_tracker_items_closed',
 				'description' => tra('Can remove closed tracker items'),
-				'level' => 'registered',
+				'level' => 'editors',
 				'type' => 'trackers',
 				'admin' => false,
 				'prefs' => ['feature_trackers'],
