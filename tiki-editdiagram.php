@@ -110,7 +110,7 @@ $js = "(function()
 
 		var editorUiInit = EditorUi.prototype.init;
 		EditorUi.prototype.init = function()
-		{	
+		{
 			editorUiInit.apply(this, arguments);
 			var editorUi = this.actions.editorUi;
 			var editor = editorUi.editor;
@@ -122,6 +122,8 @@ $js = "(function()
 
 			function saveDiagramFlow(closeWindow)
 			{
+				editorUi.editor.graph.stopEditing();
+
 				let compressXml = '{$compressXml}';
 
 				if (compressXml) {
@@ -135,7 +137,7 @@ $js = "(function()
 				var pagesAmount = node.children.length;
 				var saveElem = $('{$saveModal}')[0];
 				editorUi.showDialog(saveElem, 400, 200, true, false, null, true);
-				
+
 				function updatePlugin(content, params, callback) {
 					var data = {
 						controller: 'plugin',
@@ -148,13 +150,14 @@ $js = "(function()
 						index: '{$index}',
 						params: params
 					};
-					
+
 					$.ajax({
 						type: 'POST',
 						url: 'tiki-ajax_services.php',
 						dataType: 'json',
 						data: data,
-						success: function() {
+						success: function(result) {
+							reloadTickets();
 							callback();
 						},
 						error: function(xhr, status, message) {
@@ -162,7 +165,7 @@ $js = "(function()
 						}
 					});
 				}
-				
+
 				function uploadFile(content, callback) {
 					var blob = new Blob([content]);
 					content = window.btoa(content);
@@ -179,19 +182,21 @@ $js = "(function()
 						data: content,
 						fileId: fileId,
 					};
-					
+
 					if (galleryId) {
 						data.galleryId = '{$galleryId}';
 					}
-					
+
 					$.ajax({
 						type: 'POST',
 						url: 'tiki-ajax_services.php',
 						dataType: 'json',
 						data: data,
 						success: function(result) {
+							reloadTickets();
+
 							fileId = result.fileId;
-							
+
 							if ('{$page}' && result.fileId) {
 								updatePlugin('', {'fileId': result.fileId}, function() { callback() });
 							} else {
@@ -203,10 +208,10 @@ $js = "(function()
 						}
 					});
 				}
-				
+
 				function saveCache(callback) {
 					var diagramPNGs = {};
-					
+
 					let saveImages = function(diagrams) {
 						var data = {
 							controller: 'diagram',
@@ -216,17 +221,16 @@ $js = "(function()
 							type: 'image/png',
 							content: content,
 							fileId: fileId,
-							ticketsAmount: 3,
 							data: diagrams
 						};
-						
+
 						$.ajax({
 							type: 'POST',
 							url: 'tiki-ajax_services.php',
 							dataType: 'json',
 							data: data,
 							success: function(result) {
-								tickets = result.new_tickets;
+								reloadTickets();
 								callback();
 							},
 							error: function(xhr, status, message) {
@@ -237,7 +241,7 @@ $js = "(function()
 
 					for (var i = 0; i < node.children.length; i++) {
 						let id = node.children[i].id;
-					
+
 						self.getEmbeddedPng(function(pngData) {
 							diagramPNGs[id] = pngData;
 
@@ -247,10 +251,10 @@ $js = "(function()
 						}, null, '<mxfile>' + node.children[i].outerHTML + '</mxfile>');
 					}
 				}
-				
+
 				function afterSaveDiagramCallback() {
-					let exportImageCache = {$exportImageCache};	
-					
+					let exportImageCache = {$exportImageCache};
+
 					if (exportImageCache){
 						saveCache(function() {
 							showModalAfterSave();
@@ -262,12 +266,7 @@ $js = "(function()
 
 				if (fileId || galleryId) {
 					uploadFile(content, function() {
-						if ('{$page}' && fileId) {
-						// if new file and from page
-							updatePlugin(content, {}, afterSaveDiagramCallback());
-						} else {
-							afterSaveDiagramCallback();
-						}
+						afterSaveDiagramCallback();
 					});
 				} else {
 					updatePlugin(content, {}, afterSaveDiagramCallback);
@@ -277,14 +276,14 @@ $js = "(function()
 				function showModalAfterSave() {
 					editor.modified = false;
 					editorUi.hideDialog(saveElem);
-					
+
 					setTimeout(function() {
 						if (newDiagram && closeWindow) {
 							window.location.href = backLocation;
 						} else if (closeWindow) {
 							window.close();
 							window.opener.location.reload(false)
-						} 
+						}
 					}, 500);
 				}
 
@@ -299,36 +298,70 @@ $js = "(function()
 
 					$('div.diagram-error').show();
 				}
+
+				function reloadTickets(numTickets) {
+
+					if (tickets.length >= 1) {
+						return;
+					}
+
+					var data = {
+						controller: 'diagram',
+						action: 'tickets',
+						ticket: tickets.pop(),
+						ticketsAmount: numTickets || 3,
+					};
+
+					$.ajax({
+						type: 'POST',
+						url: 'tiki-ajax_services.php',
+						dataType: 'json',
+						data: data,
+						success: function(result) {
+							tickets = result.new_tickets;
+						},
+						error: function(xhr, status, message) {
+							showErrorMessage(message);
+						}
+					});
+				}
+			}
+
+			function exit() {
+				if (newDiagram) {
+					window.location.href = backLocation;
+				} else {
+					window.close();
+				}
 			}
 
 			editorUi.actions.get('exit').funct = function() {
-				editorUi.confirm(mxResources.get('allChangesLost'), null, function() {
-					editor.modified = false;
-					
-					if (newDiagram) {
-						window.location.href = backLocation;
-					} else {
-						window.close();
-					}
-				}, mxResources.get('cancel'), mxResources.get('discardChanges'));
+				if (editor.modified) {
+					editorUi.confirm(mxResources.get('allChangesLost'), null, function() {
+						editor.modified = false;
+						exit();
+					}, mxResources.get('cancel'), mxResources.get('discardChanges'));
+				} else {
+					exit();
+				}
 			};
 
 			this.saveFile = function(forceDialog) {
 				saveDiagramFlow(false);
 			}
-			
+
 		    mxResources.parse('saveAndExit=Save and Exit');
 		    editorUi.actions.addAction('saveAndExit', function()
 		    {
 		        saveDiagramFlow(true);
 		    });
-		    
+
 		    editorUi.keyHandler.bindAction(83, true, 'saveAndExit', true);
 		    editorUi.actions.get('saveAndExit').shortcut = Editor.ctrlKey + '+Shift+S';
 
 		    var menu = editorUi.menus.get('file');
 		    var oldFunct = menu.funct;
-	
+
 	        menu.funct = function(menu, parent)
 	        {
 	            oldFunct.apply(this, arguments);
@@ -336,7 +369,7 @@ $js = "(function()
 
 	            let submenuItems = $(menu.table).children().children();
 	            let saveAndExit = submenuItems.last();
-	            
+
 	            for (var i = 0; i < submenuItems.length; i++) {
 	                if (submenuItems.get(i).innerText.toLowerCase() == ('Save' + Editor.ctrlKey + '+S').toLowerCase()) {
 	                    saveAndExit.insertAfter($(submenuItems.get(i)).before());
@@ -345,33 +378,33 @@ $js = "(function()
 	            }
 	        };
 	        mxResources.parse(tr('saveUnchanged=Unsaved changes. Click here to save.'));
-		
+
 			editorUi.menubar.addMenu(mxResources.get('saveUnchanged'), function(){
 				saveDiagramFlow(false);
 				$('.geMenubar').children().last().hide();
 			 } );
-			 
+
 			 $('.geMenubar').children().last().css(
 				{'background-color': '#f2dede', 'color': '#a94442 !important', 'padding': '4px 6px 4px 6px',
 				'border': '1px solid #ebccd1', 'border-radius': '3px', 'font-size': '12px'}
 			 );
-			 
+
 			$('.geMenubar').children().last().hide();
-			 
+
 			editor.graph.model.addListener(mxEvent.CHANGE, function(sender, evt){
 				var changes = evt.getProperty('edit').changes;
-				console.log(changes);
+
 				for (var i = 0; i < changes.length; i++)
 				{
 					var change = changes[i];
 					if (change instanceof mxChildChange || change instanceof mxGeometryChange || change instanceof mxStyleChange){
-						
+
 						$('.geMenubar').children().last().show();
 					}
 				}
 			});
-			
-		};    
+
+		};
 		// Adds required resources (disables loading of fallback properties, this can only
 		// be used if we know that all keys are defined in the language specific file)
 		mxResources.loadDefaultBundle = false;

@@ -62,7 +62,14 @@ class Services_Diagram_Controller
 			$cacheLib->cacheItem(md5($diagram->asXML()), $data[$diagramId], 'diagram');
 		}
 
-		if (! empty($input->ticketsAmount->int())) {
+		return $payload;
+	}
+
+	public function action_tickets($input)
+	{
+		$payload = [];
+
+		if (!empty($input->ticketsAmount->int())) {
 			$payload['new_tickets'] = [];
 			$accesslib = TikiLib::lib('access');
 
