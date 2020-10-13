@@ -112,6 +112,8 @@ $js = "(function()
 
 			function saveDiagramFlow(closeWindow)
 			{
+				editorUi.editor.graph.stopEditing();
+
 				let node = editorUi.getXmlFileData();
 				var content = mxUtils.getXml(node);
 				var galleryId = {$galleryId};
@@ -137,7 +139,8 @@ $js = "(function()
 						url: 'tiki-ajax_services.php',
 						dataType: 'json',
 						data: data,
-						success: function() {
+						success: function(result) {
+							reloadTickets();
 							callback();
 						},
 						error: function(xhr, status, message) {
@@ -173,6 +176,8 @@ $js = "(function()
 						dataType: 'json',
 						data: data,
 						success: function(result) {
+							reloadTickets();
+
 							fileId = result.fileId;
 							
 							if ('{$page}' && result.fileId) {
@@ -199,7 +204,6 @@ $js = "(function()
 							type: 'image/png',
 							content: content,
 							fileId: fileId,
-							ticketsAmount: 3,
 							data: diagrams
 						};
 						
@@ -209,7 +213,7 @@ $js = "(function()
 							dataType: 'json',
 							data: data,
 							success: function(result) {
-								tickets = result.new_tickets;
+								reloadTickets();
 								callback();
 							},
 							error: function(xhr, status, message) {
@@ -245,12 +249,7 @@ $js = "(function()
 
 				if (fileId || galleryId) {
 					uploadFile(content, function() {
-						if ('{$page}' && fileId) {
-						// if new file and from page
-							updatePlugin(content, {}, afterSaveDiagramCallback());
-						} else {
-							afterSaveDiagramCallback();
-						}
+						afterSaveDiagramCallback();
 					});
 				} else {
 					updatePlugin(content, {}, afterSaveDiagramCallback);
@@ -282,18 +281,52 @@ $js = "(function()
 
 					$('div.diagram-error').show();
 				}
+
+				function reloadTickets(numTickets) {
+
+					if (tickets.length >= 1) {
+						return;
+					}
+
+					var data = {
+						controller: 'diagram',
+						action: 'tickets',
+						ticket: tickets.pop(),
+						ticketsAmount: numTickets || 3,
+					};
+
+					$.ajax({
+						type: 'POST',
+						url: 'tiki-ajax_services.php',
+						dataType: 'json',
+						data: data,
+						success: function(result) {
+							tickets = result.new_tickets;
+						},
+						error: function(xhr, status, message) {
+							showErrorMessage(message);
+						}
+					});
+				}
+			}
+
+			function exit() {
+				if (newDiagram) {
+					window.location.href = backLocation;
+				} else {
+					window.close();
+				}
 			}
 
 			editorUi.actions.get('exit').funct = function() {
-				editorUi.confirm(mxResources.get('allChangesLost'), null, function() {
-					editor.modified = false;
-					
-					if (newDiagram) {
-						window.location.href = backLocation;
-					} else {
-						window.close();
-					}
-				}, mxResources.get('cancel'), mxResources.get('discardChanges'));
+				if (editor.modified) {
+					editorUi.confirm(mxResources.get('allChangesLost'), null, function() {
+						editor.modified = false;
+						exit();
+					}, mxResources.get('cancel'), mxResources.get('discardChanges'));
+				} else {
+					exit();
+				}
 			};
 
 			this.saveFile = function(forceDialog) {
