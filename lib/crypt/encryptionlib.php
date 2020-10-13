@@ -34,7 +34,13 @@ class EncryptionLib extends TikiDb_Bridge
 
 	function set_key($keyId, $data)
 	{
-		return $this->encryption_keys->insertOrUpdate($data, ['keyId' => $keyId]);
+		$existing = $this->get_key($keyId);
+		if ($existing) {
+			$this->encryption_keys->update($data, ['keyId' => $keyId]);
+			return $keyId;
+		} else {
+			return $this->encryption_keys->insert($data);
+		}
 	}
 
 	function delete_key($keyId)

@@ -346,8 +346,7 @@
 											{icon name='pencil' href='tiki-admin.php?page=security&encryption_key='|cat:$key.keyId}
 										</td>
 										<td>
-											{* TODO add confirmation *}
-											<button type="submit" name="key_delete" value="{$key.keyId}" class="btn btn-link text-danger" style="cursor: pointer">
+											<button type="submit" name="key_delete" value="{$key.keyId}" class="btn btn-link text-danger" style="cursor: pointer" onclick="confirmPopup('{tr}Remove key? Encrypted data will be lost!{/tr}', '{ticket mode=get}')">
 												{icon name='delete'}
 											</button>
 										</td>
@@ -433,13 +432,13 @@
 						{/if}
 						{/if}
 						<div class="form-group row">
-							<label class="col-form-label col-sm-4" for="shares">
+							<label class="col-form-label col-sm-4" for="user_selector_1">
 								{tr}Users to share with{/tr}
 							</label>
 							<div class="col-sm-8">
 								{if $prefs.feature_user_encryption eq 'y'}
 									{capture assign="editable"}{if $encryption_key.keyId}{else}y{/if}{/capture}
-									{user_selector editable='y' multiple='true' name='users' class='form-control' user=$encryption_key.users editable=$editable}
+									{user_selector multiple='true' name='users' class='form-control' user=$encryption_key.users editable=$editable}
 								{else}
 									Depends on "User encryption".
 								{/if}
