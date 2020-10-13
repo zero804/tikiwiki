@@ -287,6 +287,7 @@
 			{/section}
 		</table>
 
+		{ticket}
 		<input type="hidden" name="referer" value="{$referer|escape}">
 		<input type="hidden" name="objectName" value="{$objectName|escape}">
 		<input type="hidden" name="objectType" value="{$objectType|escape}">
