@@ -1721,7 +1721,7 @@ class TrackerLib extends TikiLib
 				$currentOffset++;
 
 				// field is stored in $res. See wether we can add it to the resultset, based on the requested offset
-				if (($currentOffset > $offsetRequested)) {
+				if (! $finished && $currentOffset > $offsetRequested) {
 					$resultCount++;
 					if (empty($kx)) {
 						// ex: if the sort field is non visible, $kx is null
@@ -1732,8 +1732,8 @@ class TrackerLib extends TikiLib
 				}
 
 				if ($resultCount == $maxRecordsRequested) {
+					// have enough items to return but keep filtering out the remainder to test for ownership or status perms
 					$finished = true;
-					break;
 				}
 			} // foreach
 
