@@ -745,9 +745,11 @@ function quickperms_get_filegal()
  */
 function quickperms_get_generic()
 {
+	global $show_disabled_features;
+
 	$userlib = TikiLib::lib('user');
 
-	$databaseperms = $userlib->get_permissions(0, -1, 'permName_asc', '', $_REQUEST['permType'], '', true);
+	$databaseperms = $userlib->get_permissions(0, -1, 'permName_asc', '', $_REQUEST['permType'], '', $show_disabled_features);
 	foreach ($databaseperms['data'] as $perm) {
 		if ($perm['level'] == 'basic') {
 			$quickperms_['basic'][$perm['permName']] = $perm['permName'];

@@ -265,6 +265,8 @@
 		<input type="hidden" name="objectId" value="{$objectId|escape}">
 		<input type="hidden" name="permType" value="{$permType|escape}">
 		<input type="hidden" name="show_disabled_features" value="{$show_disabled_features}">
+		<label for="show_disabled_features3">{tr}Set permissions for disabled features{/tr}</label>
+		<input type="checkbox" name="show_disabled_features" id="show_disabled_features3" {if isset($show_disabled_features) and $show_disabled_features eq 'y'}checked="checked"{/if}>
 		<div class="input_submit_container" style="text-align: center">
 			<input type="submit" class="btn btn-secondary btn-sm" name="assign" value="{tr}Assign{/tr}">
 		</div>
