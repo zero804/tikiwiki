@@ -4148,7 +4148,7 @@ class UsersLib extends TikiLib
 			],
 			[
 				'name' => 'tiki_p_machine_learning',
-				'description' => tra('Can use machine larning models'),
+				'description' => tra('Can use machine learning models'),
 				'level' => 'registered',
 				'type' => 'machine learning',
 				'admin' => false,
