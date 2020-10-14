@@ -23,10 +23,13 @@ class Services_ResultLoader_WebService
 	function __invoke($offset, $count)
 	{
 		$this->client->setParameterPost(
-			[
-				$this->offsetKey => $offset,
-				$this->countKey => $count,
-			]
+			array_merge(
+				$this->client->getRequest()->getPost()->getArrayCopy(),
+				[
+					$this->offsetKey => $offset,
+					$this->countKey  => $count,
+				]
+			)
 		);
 		$this->client->setHeaders(['Accept' => 'application/json']);
 
@@ -34,7 +37,8 @@ class Services_ResultLoader_WebService
 		$response = $this->client->send();
 
 		if (! $response->isSuccess()) {
-			throw new Services_Exception(tr('Remote service inaccessible (%0)', $response->getStatusCode()), 400);
+			$body = json_decode($response->getBody());
+			throw new Services_Exception(tr('Remote service inaccessible (%0), error: "%1"', $response->getStatusCode(), $body->message), 400);
 		}
 
 		$out = json_decode($response->getBody(), true);
