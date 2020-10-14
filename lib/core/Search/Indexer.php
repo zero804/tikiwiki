@@ -23,6 +23,8 @@ class Search_Indexer
 	public $log = null;
 	private $logWriter = null;
 
+	public $errorContext = null;
+
 	public function __construct(Search_Index_Interface $searchIndex, $logWriter = null)
 	{
 		if (! $logWriter instanceof \Laminas\Log\Writer\AbstractWriter) {
@@ -60,6 +62,10 @@ class Search_Indexer
 						break;
 					default:
 						break;
+				}
+
+				if ($this->errorContext) {
+					$error = $this->errorContext.': '.$error;
 				}
 
 				$this->cacheErrors[] = compact('error', 'errstr', 'errfile', 'errline');
@@ -263,6 +269,10 @@ class Search_Indexer
 			$globalFields = $this->getGlobalFields($objectType);
 
 			$contentSource = $this->contentSources[$objectType];
+
+			if (method_exists($contentSource, 'setIndexer')) {
+				$contentSource->setIndexer($this);
+			}
 
 			if (false !== $data = $contentSource->getDocument($objectId, $typeFactory)) {
 				if ($data === null) {
