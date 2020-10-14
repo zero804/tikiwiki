@@ -10,6 +10,7 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 	private $db;
 	private $trklib;
 	private $mode;
+	private $indexer;
 
 	function __construct($mode = '')
 	{
@@ -64,6 +65,10 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 		$fieldPermissions = [];
 
 		foreach (self::getIndexableHandlers($definition, $item) as $handler) {
+			if ($this->indexer) {
+				$this->indexer->errorContext = 'Field '.$handler->getConfiguration('fieldId') . ' / ' . $handler->getConfiguration('name');
+			}
+
 			$documentPart = $handler->getDocumentPart($typeFactory, $this->mode);
 			$data = array_merge($data, $documentPart);
 
@@ -74,6 +79,10 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 					['perm_names' => array_keys($documentPart)]
 				);
 			}
+		}
+
+		if ($this->indexer) {
+			$this->indexer->errorContext = null;
 		}
 
 		$ownerGroup = $itemObject->getOwnerGroup();
@@ -241,5 +250,9 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 		}
 
 		return $source->getFacets();
+	}
+
+	public function setIndexer($indexer) {
+		$this->indexer = $indexer;
 	}
 }

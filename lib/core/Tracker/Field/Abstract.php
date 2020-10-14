@@ -407,7 +407,7 @@ abstract class Tracker_Field_Abstract implements Tracker_Field_Interface, Tracke
 	 * @param mixed $default
 	 * @return mixed
 	 */
-	protected function getConfiguration($key, $default = false)
+	public function getConfiguration($key, $default = false)
 	{
 		return isset($this->definition[$key]) ? $this->definition[$key] : $default;
 	}
