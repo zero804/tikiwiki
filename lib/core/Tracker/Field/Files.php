@@ -104,9 +104,19 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 							'y' => tr('Yes'),
 						],
 					],
+					'browseGallery' => [
+						'name' => tr('Offer to Browse Gallery'),
+						'description' => tr('Let users browse a File Gallery for selecting a file which is already in a Tiki File Gallery.') ,
+						'filter' => 'alpha',
+						'default' => 'y',
+						'options' => [
+							'n' => tr('No'),
+							'y' => tr('Yes'),
+						],
+					],
 					'browseGalleryId' => [
 						'name' => tr('Browse Gallery ID'),
-						'description' => tr('File gallery browse files. Use 0 for root file gallery. (requires elFinder feature - experimental)') . '. ' . tr('Restrict permissions to view the file gallery to hide the button.') ,
+						'description' => tr('File gallery browse files. Use 0 for root file gallery. (requires elFinder feature - experimental)') . '. ' . tr('To hide the button: Disable "Offer to Browse Gallery" or restrict permissions to view the file gallery.') ,
 						'filter' => 'int',
 						'profile_reference' => 'file_gallery',
 					],
@@ -292,7 +302,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 
 		$context['canBrowse'] = false;
 
-		if ($prefs['fgal_tracker_existing_search'] == 'y') {
+		if ($prefs['fgal_tracker_existing_search'] == 'y' && $this->getOption('browseGallery') != 'n' ) {
 			if ($this->getOption('browseGalleryId')) {
 				$defaultGalleryId = $this->getOption('browseGalleryId');
 			} elseif ($this->getOption('galleryId')) {
