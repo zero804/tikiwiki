@@ -237,7 +237,7 @@ class Services_Tracker_SyncController
 		require_once 'lib/smarty_tiki/modifier.sefurl.php';
 		foreach ($manualList as & $item) {
 			$itemId = $item['itemId'];
-			$item['remoteUrl'] = $syncInfo['provider'] . '/' . smarty_modifier_sefurl($itemMap[$itemId], 'trackeritem');
+			$item['remoteUrl'] = $syncInfo['provider'] . '/' . smarty_modifier_sefurl($itemMap[$itemId], 'trackeritem', '', '', 'n');
 		}
 
 		return [
