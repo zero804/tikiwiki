@@ -41,6 +41,7 @@ $cookietab = 1;
 // from tiki-admin_include_textarea.php
 global $tikilib;
 $pluginsAlias = WikiPlugin_Negotiator_Wiki_Alias::getList();
+sort($pluginsAlias);
 $pluginsReal = $parserlib->plugin_get_list(true, false);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$cachelib = TikiLib::lib('cache');
