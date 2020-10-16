@@ -236,6 +236,7 @@ function wikiplugin_cypht_info()
 function wikiplugin_cypht($data, $params)
 {
 	global $tikipath, $tikiroot, $user, $page, $logslib;
+	$headerlib = TikiLib::lib('header');
 
 	static $called = false;
 	if( $called ) {
@@ -399,6 +400,9 @@ function wikiplugin_cypht($data, $params)
 			$logslib->add_log('cypht', $msg);
 		}
 	}
+
+	$js = "$('.draft_folder_select, .sent_folder_select, .trash_folder_select, .delete_folder_select, .rename_folder_select, .rename_parent_folder_select, .parent_folder_select, .archive_folder_select').attr('style', 'background-color: #fff !important; z-index: 1');";
+	$headerlib->add_js($js);
 
 	return '<div class="inline-cypht">'
 		. '<input type="hidden" id="hm_page_key" value="'.Hm_Request_Key::generate().'" />'
