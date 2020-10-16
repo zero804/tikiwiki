@@ -471,9 +471,7 @@
 									<label class="col-md-4 col-form-label">{tr}Authors{/tr}</label>
 									<div class="col-md-8">
 										<select name="wiki_authors_style" id="wiki_authors_style" class="form-control">
-											{if isset($wiki_authors_style_site) && $wiki_authors_style_site eq 'y'}
-												<option value="" style="font-style:italic;border-bottom:1px dashed #666;"{if $wiki_authors_style eq ''} selected="selected"{/if}>{tr}Site default{/tr}</option>
-											{/if}
+											<option value="" style="font-style:italic;border-bottom:1px dashed #666;"{if $wiki_authors_style eq ''} selected="selected"{/if}>{tr}Site default{/tr}</option>
 											<option value="classic"{if $wiki_authors_style eq 'classic'} selected="selected"{/if}>{tr}as Creator &amp; Last Editor{/tr}</option>
 											<option value="business"{if $wiki_authors_style eq 'business'} selected="selected"{/if}>{tr}Business style{/tr}</option>
 											<option value="collaborative"{if $wiki_authors_style eq 'collaborative'} selected="selected"{/if}>{tr}Collaborative style{/tr}</option>
@@ -595,7 +593,7 @@
 							<div class="form-group row">
 								<label for="" class="col-md-4 col-form-label">{tr}Geolocation{/tr}</label>
 								<div class="col-md-8">
-									<div class="map-container form-control" data-geo-center="{$defaultmapcenter}" data-target-field="geolocation" style="height: 250px;"></div>
+									<div class="map-container form-control" data-geo-center="{defaultmapcenter}" data-target-field="geolocation" style="height: 250px;"></div>
 									<input type="hidden" name="geolocation" value="{$geolocation_string}">
 								</div>
 							</div>
