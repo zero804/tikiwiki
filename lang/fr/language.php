@@ -19319,6 +19319,7 @@ $lang = array(
 "Other:" => "Autre :",
 "Attached files limitation" => "Limitation des pièces jointes",
 "The amount of files that can be attached is limited to <strong>%0</strong>. The latest files will be preserved" => "Le nombre de fichiers qui peuvent être attachés est limité à <strong>%0</strong>. Les fichiers les plus récents seront conservés",
+"The amount of files that can be attached is limited to <strong>1</strong>. The latest file will be preserved." => "Le nombre de fichiers qui peuvent être attachés est limité à <strong>1</strong>. Le fichier le plus récent sera conservé.",
 "Browse files" => "Parcourir la liste des fichiers",
 "Browse Files" => "Parcourir la liste des fichiers",
 // "Link to existing Vimeo URL" => "Link to existing Vimeo URL",

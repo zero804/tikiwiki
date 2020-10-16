@@ -1,9 +1,15 @@
 <div id="display_f{$field.fieldId|escape}" class="files-field display_f{$field.fieldId|escape} uninitialized {if $data.replaceFile}replace{/if}" data-galleryid="{$field.galleryId|escape}" data-firstfile="{$field.firstfile|escape}" data-filter="{$field.filter|escape}" data-limit="{$field.limit|escape}">
 	{if $field.canUpload}
 		{if $field.limit}
-			{remarksbox _type=info title="{tr}Attached files limitation{/tr}"}
-				{tr _0=$field.limit}The amount of files that can be attached is limited to <strong>%0</strong>. The latest files will be preserved.{/tr}
-			{/remarksbox}
+			{if $field.limit == 1}
+				{remarksbox _type=info title="{tr}Attached files limitation{/tr}"}
+					{tr }The amount of files that can be attached is limited to <strong>1</strong>. The latest file will be preserved.{/tr}
+				{/remarksbox}
+			{else}
+				{remarksbox _type=info title="{tr}Attached files limitation{/tr}"}
+					{tr _0=$field.limit}The amount of files that can be attached is limited to <strong>%0</strong>. The latest files will be preserved.{/tr}
+				{/remarksbox}
+			{/if}
 		{/if}
 		<ol class="tracker-item-files current-list">
 			{foreach from=$field.files item=info}
