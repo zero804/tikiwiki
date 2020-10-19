@@ -22,6 +22,7 @@ class Scheduler_Task_ShellCommandTask extends Scheduler_Task_CommandTask
 
 		$this->logger->debug(sprintf(tra('Executing shell command: %s'), $command));
 		$process = new Process($command);
+		$process->inheritEnvironmentVariables(true);
 		if (! empty($params['timeout'])) {
 			$process->setTimeout($params['timeout']);
 			$process->setIdleTimeout($params['timeout']);
