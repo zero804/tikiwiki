@@ -134,9 +134,21 @@ class WikiPlugin_Negotiator_Wiki_Alias
 
 			// Do the body conversion
 			if (isset($info['body'])) {
-				if (( isset($info['body']['input']) && $info['body']['input'] == 'ignore' )
-					|| empty($data) ) {
-					$data = isset($info['body']['default']) ? $info['body']['default'] : '';
+				if (! empty($info['body']['input'])) {
+					if (($info['body']['input'] == 'ignore' ) || empty($data)) {
+						$data = isset($info['body']['default']) ? $info['body']['default'] : '';
+					} else if (strpos($info['body']['default'], '%body%') !== false) {
+						// replace the string %body% with the provided body text if not ignoring user input
+						$rules = [
+							'body' => [
+								'input'    => '',
+								'encoding' => null,
+								'default'  => '',
+							],
+						];
+
+						$data = self::replaceArgs($info['body']['default'], $rules, ['body' => $data]);
+					}
 				}
 
 				if (isset($info['body']['params'])) {
