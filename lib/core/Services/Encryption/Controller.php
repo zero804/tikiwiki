@@ -89,9 +89,12 @@ class Services_Encryption_Controller
 
 	function action_get_key($input)
 	{
+		global $prefs;
+
 		$keyId = $input->keyId->int();
 
 		$encryption_key = $this->encryptionlib->get_key($keyId);
+		$encryption_key['users_array'] = TikiLib::lib('user')->extract_users($encryption_key['users'], $prefs['user_show_realnames'] == 'y');
 
 		return [
 			'key' => $encryption_key,
