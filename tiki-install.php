@@ -41,6 +41,7 @@ TikiInit::appendIncludePath($tikipath);
 require_once('db/tiki-db.php');	// to set up multitiki etc if there
 
 $lockFile = 'db/' . $tikidomainslash . 'lock';
+$authAttemptsFile = 'db/' . $tikidomainslash . 'installer_auth_attempts';
 
 // if tiki installer is locked (probably after previous installation) display notice
 if (file_exists($lockFile)) {
@@ -84,12 +85,18 @@ if (file_exists('db/' . $tikidomainslash . 'local.php')) {
 			$_SESSION['accessible'] = true;
 			unset($_POST['dbuser']);
 			unset($_POST['dbpass']);
-		} else {
-			$_SESSION['installer_auth_failure'] = isset($_SESSION['installer_auth_failure']) ? $_SESSION['installer_auth_failure'] + 1 : 1;
 
-			// If there are too many failures during a single session, lock the installer as a precaution
-			if ($_SESSION['installer_auth_failure'] >= 20) {
+			if (file_exists($authAttemptsFile)) {
+				unlink($authAttemptsFile);
+			}
+		} else {
+			$attempts = (int) @file_get_contents($authAttemptsFile);
+
+			if (++$attempts >= 10) {
 				touch($lockFile);
+				unlink($authAttemptsFile);
+			} else {
+				file_put_contents($authAttemptsFile, $attempts);
 			}
 		}
 	}
@@ -109,7 +116,7 @@ if (isset($_SESSION['accessible'])) {
 	$title = 'Tiki Installer Security Precaution';
 	$content = '
 							<p class="text-info mt-lg-3 mx-3">You are attempting to run the Tiki Installer. For your protection, this installer can be used only by a site administrator.To verify that you are a site administrator, enter your <strong><em>database</em></strong> credentials (database username and password) here.</p>
-						
+
 							<p class="text-info mx-3">If you have forgotten your database credentials, find the directory where you have unpacked your Tiki and have a look inside the <strong class="text-yellow-inst">db</strong> folder into the <strong class="text-yellow-inst">local.php</strong> file.</p>
 							<form method="post" action="tiki-install.php" class="text-center">
 								<input type="hidden" name="enterinstall" value="1">
