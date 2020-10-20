@@ -402,7 +402,7 @@ function wikiplugin_trackercalendar($data, $params)
 	$headerlib = TikiLib::lib('header');
 	$vendorPath = VendorHelper::getAvailableVendorPath('fullcalendarscheduler', 'npm-asset/fullcalendar-scheduler/main.min.js', false);
 
-	if (!$vendorPath) {
+	if (! $vendorPath) {
 		return WikiParser_PluginOutput::userError(tr('To view Tracker Calendar Tiki needs the latest npm-asset/fullcalendar-scheduler package. If you do not have permission to install/update this package, ask the site administrator.'));
 	}
 

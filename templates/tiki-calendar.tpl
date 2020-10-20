@@ -176,6 +176,7 @@
 			  hour12: '{{$timeFormat}}'
 			},
 			timeZone: '{{$prefs.display_timezone}}',
+			locale: '{{$prefs.language}}',
 			headerToolbar: {
 				left: 'prev,next today',
 				center: 'title',
@@ -244,6 +245,28 @@
 			eventDidMount: function(arg) {
 				var event = arg.event;
 				var element = $(arg.el);
+				var dayGrid = $('.fc-daygrid-event').length;
+				if (dayGrid > 0) {
+					var backgroundColor = event._def.ui.backgroundColor;
+					var textColor = event._def.ui.textColor;
+					var eventDotElement = element.children('.fc-daygrid-event-dot');
+					var styleDot = getComputedStyle(eventDotElement[0]);
+					var defaultBackgroundColor = String(styleDot.border).match(/(rgb.{14})/)[0];
+					var titleElement = element.children('.fc-event-title');
+
+					var styleElement = getComputedStyle(titleElement[0]);
+					var defaultTextColor = styleElement.color;
+					if (backgroundColor == '#') {
+						backgroundColor = defaultBackgroundColor
+					}
+					if (textColor == '#') {
+						textColor = defaultTextColor;
+					}
+					$(element).parent('.fc-daygrid-event-harness').attr('style', 'background-color: ' + backgroundColor + '; border: 1px solid ' + textColor);
+					$(element).children('.fc-event-time').attr('style', 'color: ' + textColor);
+					$(element).children('.fc-event-title').attr('style', 'color: ' + textColor);
+					eventDotElement.attr('style', 'display:none');
+				}
 				element.attr('title', event.title);
 				element.data('content', event.extendedProps.description);
 				element.popover({ trigger: 'hover', html: true, 'container': 'body', placement: 'bottom'});
@@ -295,18 +318,55 @@
 			height: 'auto'
 		});
 		calendar.render();
-	{/jq}
-	{jq notonready=true}
-		/* addFullCalendarPrint('#calendar', '#calendar-pdf-btn'); */
+		addFullCalendarPrint('#calendar', '#calendar-pdf-btn', calendar);
 	{/jq}
 	{if $pdf_export eq 'y' and $pdf_warning eq 'n'}
-		<a id="calendar-pdf-btn"  href="#" style="float: right; display: none">{icon name='pdf'} {tr}Export as PDF{/tr}</a>
+		<a id="calendar-pdf-btn"  href="#" style="text-align: right; display: none">{icon name='pdf'} {tr}Export as PDF{/tr}</a>
 	{/if}
 	<div id="test"></div>
 	<style type='text/css'>
 		/* Fix pb with DatePicker */
 		.ui-datepicker {
 			z-index:9999 !important;
+		}
+		.fc .fc-scrollgrid, .fc .fc-scrollgrid table,
+		.fc .fc-daygrid-body {
+			width: 100% !important;
+		}
+		.fc-daygrid-event-harness {
+			border-radius: 4px;
+			margin: 0px 3px 0px;
+		}
+		.fc-event {
+			display: block;
+			white-space: break-spaces;
+		}
+		.fc-daygrid-day-events .fc-event-time {
+			color: #ffffff;
+			font-weight: bold;
+		}
+		.fc-daygrid-day-events .fc-event-title {
+			color: #ffffff;
+			font-weight: normal;
+		}
+		.fc-timegrid-event .fc-event-time {
+			font-weight: bold;
+		}
+		.fc-timegrid-event .fc-event-title {
+			font-weight: normal;
+		}
+		@media only screen and (max-width: 767px) {
+			.fc-header-toolbar {
+				display: block !important;
+			}
+			.fc-header-toolbar .fc-toolbar-chunk .btn-group .btn {
+				padding: 0.375rem 0.1rem;
+			}
+		}
+		@media print {
+			.fc .fc-daygrid-day-top {
+				border-bottom: 1px solid #dee2e6;
+			}
 		}
 	</style>
 	<div id='calendar'></div>
