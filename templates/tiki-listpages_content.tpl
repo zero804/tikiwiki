@@ -415,9 +415,18 @@
 		var myfilter='{$find|escape:javascript}';
 	</script>
 	{jq}
-		(function(window,undefined){
-			window.setTimeout( function(){ $('input[data-column=2]').val(myfilter).trigger('change'); } , 1000 );
-		})(window)
+		if (myfilter) {
+			var pageNameColumn = $('#pagename').data('column');
+			$('input[data-column=' + pageNameColumn + ']').val(myfilter);
+
+			var currentFilter = [];
+			for(i = 0; i < $('#listpages1 th:last').data('column'); i++) {
+				var value = i == pageNameColumn ? myfilter : '';
+				currentFilter.push(value);
+			}
+
+			$('#listpages1').data('lastSearch', currentFilter);
+		}
 	{/jq}
 {/if}
 {if !$ts.ajax}
