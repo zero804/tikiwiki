@@ -183,8 +183,12 @@
 			dayMinWidth: 150, // will cause horizontal scrollbars
 		});
 		calendar.render();
+
+		$( document ).ready(function() {
+			addFullCalendarPrint('#' + data.id, '#calendar-pdf-btn', calendar);
+		});
 	});
 {/jq}
 {if $pdf_export eq 'y' and $pdf_warning eq 'n'}
-	<a id="calendar-pdf-btn" data-html2canvas-ignore="true"  href="#" style="float: right; display: none">{icon name="pdf"} {tr}Export as PDF{/tr}</a>
+	<a id="calendar-pdf-btn" data-html2canvas-ignore="true"  href="#" style="text-align: right; display: none">{icon name="pdf"} {tr}Export as PDF{/tr}</a>
 {/if}
