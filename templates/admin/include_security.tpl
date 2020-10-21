@@ -67,9 +67,11 @@
 
 				{preference name=session_protected}
 				{preference name=login_http_basic}
+				<div class="adminoptionboxchild" id="smarty_security_childcontainer">
+					{tr}Please also see:{/tr} <a href="tiki-admin.php?page=login">{tr}HTTPS (SSL) and other login preferences{/tr}</a>
+				</div>
 				{preference name=pass_blacklist}
-
-				{tr}Please also see:{/tr} <a href="tiki-admin.php?page=login">{tr}HTTPS (SSL) and other login preferences{/tr}</a>
+				{preference name=users_admin_actions_require_validation}
 
 				{preference name=newsletter_external_client}
 
