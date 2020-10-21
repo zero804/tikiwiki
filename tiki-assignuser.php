@@ -33,9 +33,26 @@ if (! isset($_REQUEST["assign_user"]) || ($tiki_p_admin != 'y' && $tiki_p_admin_
 $assign_user = $_REQUEST["assign_user"];
 
 if (isset($_REQUEST["action"])) {
+	$canProcess = true;
+
+	if (empty($_POST['confirmpassword'])) {
+		Feedback::error(tr('Password confirmation is required perform this group operation'));
+		$canProcess = false;
+	} else {
+		$passwordCheck = $userlib->validate_user($user, $_POST['confirmpassword']);
+
+		if (empty($passwordCheck[0])) {
+			Feedback::error(tr('Invalid password confirmation. Group operation was not performed.'));
+			$canProcess = false;
+		}
+	}
+
 	if (! isset($_REQUEST["group"])) {
 		Feedback::error(tr('A group must be indicated'));
-	} else {
+		$canProcess = false;
+	}
+
+	if($canProcess) {
 		if ($userChoice == 'y') {
 			$gps = $userlib->get_groups(0, -1, 'groupName_asc', '', '', '', '', $userChoice);
 			$groups = [];
