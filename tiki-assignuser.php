@@ -35,15 +35,17 @@ $assign_user = $_REQUEST["assign_user"];
 if (isset($_REQUEST["action"]) && $access->checkOrigin()) {
 	$canProcess = true;
 
-	if (empty($_POST['confirmpassword'])) {
-		Feedback::error(tr('Password confirmation is required perform this group operation'));
-		$canProcess = false;
-	} else {
-		$passwordCheck = $userlib->validate_user($user, $_POST['confirmpassword']);
-
-		if (empty($passwordCheck[0])) {
-			Feedback::error(tr('Invalid password confirmation. Group operation was not performed.'));
+	if ($prefs['users_admin_actions_require_validation'] == 'y') {
+		if (empty($_POST['confirmpassword'])) {
+			Feedback::error(tr('Password confirmation is required perform this group operation'));
 			$canProcess = false;
+		} else {
+			$passwordCheck = $userlib->validate_user($user, $_POST['confirmpassword']);
+
+			if (empty($passwordCheck[0])) {
+				Feedback::error(tr('Invalid password confirmation. Group operation was not performed.'));
+				$canProcess = false;
+			}
 		}
 	}
 
@@ -55,7 +57,7 @@ if (isset($_REQUEST["action"]) && $access->checkOrigin()) {
 
 	$access->check_authenticity(tr('Are you sure you want to add user %0 to group %1', $_REQUEST['assign_user'], $_REQUEST['group']));
 
-	if($canProcess) {
+	if ($canProcess) {
 		if ($userChoice == 'y') {
 			$gps = $userlib->get_groups(0, -1, 'groupName_asc', '', '', '', '', $userChoice);
 			$groups = [];

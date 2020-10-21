@@ -39,6 +39,14 @@
 					{preference name=users_prefs_remember_closed_rboxes}
 				</div>
 				</fieldset>
+				<fieldset>
+				<legend>
+					{tr}Admin user preferences{/tr}
+				</legend>
+				<div class="adminoptionbox">
+					{preference name=users_admin_actions_require_validation}
+				</div>
+				</fieldset>
 		{/tab}
 		{tab name="{tr}User Features{/tr}"}
 			<br>

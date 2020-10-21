@@ -435,6 +435,7 @@ class Services_User_Controller
 	 */
 	function action_manage_groups($input)
 	{
+		global $prefs;
 		Services_Exception_Denied::checkGlobal('admin_users');
 		$util = new Services_Utilities();
 		//first pass - show confirm modal popup
@@ -449,16 +450,19 @@ class Services_User_Controller
 				}
 
 				$extraFields = [];
-				$extraFields = [
-					[
-						'label' => tr('Please confirm this operation by typing your password'),
-						'field' => 'input',
-						'type' => 'password',
-						'name' => 'confirmpassword',
-						'placeholder' => tr('Password'),
-						'size' => '60'
-					]
-				];
+
+				if ($prefs['users_admin_actions_require_validation'] == 'y') {
+					$extraFields = [
+						[
+							'label' => tr('Please confirm this operation by typing your password'),
+							'field' => 'input',
+							'type' => 'password',
+							'name' => 'confirmpassword',
+							'placeholder' => tr('Password'),
+							'size' => '60'
+						]
+					];
+				}
 
 				//remove from group icon clicked for a specific user
 				if (isset($input['groupremove'])) {
@@ -510,12 +514,14 @@ class Services_User_Controller
 			}
 		//after confirm submit - perform action and return success feedback
 		} elseif ($util->checkCsrf()) {
-			$userlib = TikiLib::lib('user');
-			$pass = $input->offsetGet('confirmpassword');
-			$user = isset($_SESSION['u_info']['login']) ? $_SESSION['u_info']['login'] : '';
-			$ret = $userlib->validate_user($user, $pass);
-			if (! $ret[0]) {
-				Services_Utilities::modalException(tra('Invalid password'));
+			if ($prefs['users_admin_actions_require_validation'] == 'y') {
+				$userlib = TikiLib::lib('user');
+				$pass = $input->offsetGet('confirmpassword');
+				$user = isset($_SESSION['u_info']['login']) ? $_SESSION['u_info']['login'] : '';
+				$ret = $userlib->validate_user($user, $pass);
+				if (! $ret[0]) {
+					Services_Utilities::modalException(tra('Invalid password'));
+				}
 			}
 
 			$util->setDecodedVars($input, $this->filters);

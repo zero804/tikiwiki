@@ -391,6 +391,7 @@ class Services_Group_Controller
 	 */
 	function action_add_user($input)
 	{
+		global $prefs;
 		Services_Exception_Denied::checkGlobal('admin');
 		$util = new Services_Utilities();
 		//first pass - show confirm modal popup
@@ -409,15 +410,18 @@ class Services_Group_Controller
 				}
 
 				$extra = [];
-				$extra['fields'] = [
-					[
-						'label' => tr('Please confirm this operation by typing your password'),
-						'field' => 'input',
-						'type' => 'password',
-						'name' => 'confirmpassword',
-						'placeholder' => tr('Password')
-					]
-				];
+
+				if ($prefs['users_admin_actions_require_validation'] == 'y') {
+					$extra['fields'] = [
+						[
+							'label' => tr('Please confirm this operation by typing your password'),
+							'field' => 'input',
+							'type' => 'password',
+							'name' => 'confirmpassword',
+							'placeholder' => tr('Password')
+						]
+					];
+				}
 
 				return $util->confirm(
 					$msg,
@@ -430,11 +434,14 @@ class Services_Group_Controller
 			//after confirm submit - perform action and return success feedback
 		} elseif ($util->checkCsrf()) {
 			$userlib = TikiLib::lib('user');
-			$pass = $input->offsetGet('confirmpassword');
-			$user = isset($_SESSION['u_info']['login']) ? $_SESSION['u_info']['login'] : '';
-			$ret = $userlib->validate_user($user, $pass);
-			if (! $ret[0]) {
-				Services_Utilities::modalException(tra('Invalid password'));
+
+			if ($prefs['users_admin_actions_require_validation'] == 'y') {
+				$pass = $input->offsetGet('confirmpassword');
+				$user = isset($_SESSION['u_info']['login']) ? $_SESSION['u_info']['login'] : '';
+				$ret = $userlib->validate_user($user, $pass);
+				if (! $ret[0]) {
+					Services_Utilities::modalException(tra('Invalid password'));
+				}
 			}
 
 			$util->setDecodedVars($input, $this->filters);
@@ -474,6 +481,7 @@ class Services_Group_Controller
 	 */
 	function action_ban_user($input)
 	{
+		global $prefs;
 		Services_Exception_Denied::checkGlobal('admin');
 		$util = new Services_Utilities();
 		//first pass - show confirm modal popup
@@ -487,15 +495,18 @@ class Services_Group_Controller
 				}
 
 				$extra = [];
-				$extra['fields'] = [
-					[
-						'label' => tr('Please confirm this operation by typing your password'),
-						'field' => 'input',
-						'type' => 'password',
-						'name' => 'confirmpassword',
-						'placeholder' => tr('Password')
-					]
-				];
+
+				if ($prefs['users_admin_actions_require_validation'] == 'y') {
+					$extra['fields'] = [
+						[
+							'label' => tr('Please confirm this operation by typing your password'),
+							'field' => 'input',
+							'type' => 'password',
+							'name' => 'confirmpassword',
+							'placeholder' => tr('Password')
+						]
+					];
+				}
 
 				return $util->confirm(
 					$msg,
@@ -508,12 +519,15 @@ class Services_Group_Controller
 			//after confirm submit - perform action and return success feedback
 		} elseif ($util->checkCsrf()) {
 			$userlib = TikiLib::lib('user');
-			$pass = $input->offsetGet('confirmpassword');
-			$user = isset($_SESSION['u_info']['login']) ? $_SESSION['u_info']['login'] : '';
-			$ret = $userlib->validate_user($user, $pass);
-			if (! $ret[0]) {
-				Feedback::error(tra('Invalid password.'));
-				return Services_Utilities::closeModal();
+
+			if ($prefs['users_admin_actions_require_validation'] == 'y') {
+				$pass = $input->offsetGet('confirmpassword');
+				$user = isset($_SESSION['u_info']['login']) ? $_SESSION['u_info']['login'] : '';
+				$ret = $userlib->validate_user($user, $pass);
+				if (! $ret[0]) {
+					Feedback::error(tra('Invalid password.'));
+					return Services_Utilities::closeModal();
+				}
 			}
 
 			$util->setDecodedVars($input, $this->filters);
@@ -552,6 +566,7 @@ class Services_Group_Controller
 	 */
 	function action_unban_user($input)
 	{
+		global $prefs;
 		Services_Exception_Denied::checkGlobal('admin');
 		$util = new Services_Utilities();
 		//first pass - show confirm modal popup
@@ -565,15 +580,18 @@ class Services_Group_Controller
 				}
 
 				$extra = [];
-				$extra['fields'] = [
-					[
-						'label' => tr('Please confirm this operation by typing your password'),
-						'field' => 'input',
-						'type' => 'password',
-						'name' => 'confirmpassword',
-						'placeholder' => tr('Password')
-					]
-				];
+
+				if ($prefs['users_admin_actions_require_validation'] == 'y') {
+					$extra['fields'] = [
+						[
+							'label' => tr('Please confirm this operation by typing your password'),
+							'field' => 'input',
+							'type' => 'password',
+							'name' => 'confirmpassword',
+							'placeholder' => tr('Password')
+						]
+					];
+				}
 
 				return $util->confirm($msg, tra('Unban'), $extra);
 			} else {
@@ -589,12 +607,14 @@ class Services_Group_Controller
 				$logslib->add_log('admingroups', 'unbanned ' . $user . ' from ' . $util->extra['group']);
 			}
 
-			$pass = $input->offsetGet('confirmpassword');
-			$user = isset($_SESSION['u_info']['login']) ? $_SESSION['u_info']['login'] : '';
-			$ret = $userlib->validate_user($user, $pass);
-			if (! $ret[0]) {
-				Feedback::error(tra('Invalid password.'));
-				return Services_Utilities::closeModal();
+			if ($prefs['users_admin_actions_require_validation'] == 'y') {
+				$pass = $input->offsetGet('confirmpassword');
+				$user = isset($_SESSION['u_info']['login']) ? $_SESSION['u_info']['login'] : '';
+				$ret = $userlib->validate_user($user, $pass);
+				if (! $ret[0]) {
+					Feedback::error(tra('Invalid password.'));
+					return Services_Utilities::closeModal();
+				}
 			}
 
 			//prepare and send feedback

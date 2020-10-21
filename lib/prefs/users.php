@@ -288,5 +288,12 @@ function prefs_users_list()
 			'tags' => ['basic'],
 			'default' => '',
 		],
+		'users_admin_actions_require_validation' => [
+			'name' => tr('Require admin users to enter their password for some critical actions'),
+			'description' =>
+			tr('User password will be required for critical operations that can compromise the system security or stability, like adding users to the admin group'),
+			'type' => 'flag',
+			'default' => 'y',
+		]
 	];
 }
