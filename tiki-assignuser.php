@@ -35,6 +35,7 @@ $assign_user = $_REQUEST["assign_user"];
 if (isset($_REQUEST["action"])) {
 	$canProcess = true;
 
+	if ($prefs['users_admin_actions_require_validation'] == 'y') {
 	if (empty($_POST['confirmpassword'])) {
 		Feedback::error(tr('Password confirmation is required perform this group operation'));
 		$canProcess = false;
@@ -45,6 +46,7 @@ if (isset($_REQUEST["action"])) {
 			Feedback::error(tr('Invalid password confirmation. Group operation was not performed.'));
 			$canProcess = false;
 		}
+	}
 	}
 
 	if (! isset($_REQUEST["group"])) {
