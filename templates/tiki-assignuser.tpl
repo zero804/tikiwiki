@@ -55,14 +55,7 @@
 								<input type="hidden" value="{$assign_user|escape}" name="assign_user">
 							{/if}
 							<input type="hidden" value="{$sort_mode}" name="sort_mode">
-							<button
-								type="submit"
-								class="btn btn-link p-0 tips"
-								title=":{tr}Remove{/tr}"
-								onclick="confirmPopup('{tr}Remove user from group?{/tr}')"
-							>
-								{icon name='remove' style="vertical-align:middle"}
-							</button>
+							<a href="{bootstrap_modal controller=user action=manage_groups checked=$user_info.login groupremove=$grp|escape}">{icon name='remove' style="vertical-align:middle"}</a>
 						</form>
 					{/if}{if !$smarty.foreach.groups.last},{/if}&nbsp;&nbsp;
 				{/foreach}
@@ -101,67 +94,51 @@
 <form method="post" action="tiki-assignuser.php{if $assign_user}?assign_user={$assign_user|escape:'url'}{/if}">
 	{ticket}
 	<div class="{if $js}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
-<table class="table table-striped table-hover">
-	<tr>
-		<th><a href="tiki-assignuser.php?{if $assign_user}assign_user={$assign_user|escape:url}&amp;{/if}offset={$offset}&amp;maxRecords={$prefs.maxRecords}&amp;sort_mode={if $sort_mode eq 'groupName_desc'}groupName_asc{else}groupName_desc{/if}">{tr}Name{/tr}</a></th>
-		<th><a href="tiki-assignuser.php?{if $assign_user}assign_user={$assign_user|escape:url}&amp;{/if}offset={$offset}&amp;maxRecords={$prefs.maxRecords}&amp;sort_mode={if $sort_mode eq 'groupDesc_desc'}groupDesc_asc{else}groupDesc_desc{/if}">{tr}Description{/tr}</a></th>
-		<th>{tr}Expiration{/tr}</th>
-		<th></th>
-	</tr>
-
-	{section name=user loop=$users}
-		{if $users[user].groupName != 'Anonymous'}
+		<table class="table table-striped table-hover">
 			<tr>
-				<td class="text">
-					{if $tiki_p_admin eq 'y'} {* only full admins can manage groups, not tiki_p_admin_users *}
-						<a class="link" href="tiki-admingroups.php?group={$users[user].groupName|escape:"url"}{if $prefs.feature_tabs ne 'y'}#2{/if}" title="{tr}Edit{/tr}">
-					{/if}
-					{$users[user].groupName|escape}
-					{if $tiki_p_admin eq 'y'}
-						</a>
-					{/if}
-				</td>
-				<td class="text">{tr}{$users[user].groupDesc|escape}{/tr}</td>
-				<td>{if isset($dates[$users[user].groupName]) && !empty($dates[$users[user].groupName]['expire'])}
-					<input type="text" name="new_{$users[user].id}" value="{$dates[$users[user].groupName]['expire']|tiki_short_datetime:'':'n'|escape}" />
-					<input type="hidden" name="old_{$users[user].id}" value="{$dates[$users[user].groupName]['expire']|tiki_short_datetime:'':'n'|escape}" />
-
-				{/if}</td>
-				<td class="action">
-					{if $users[user].what ne 'real'}
-						{$action = 'assign'}
-						{$tooltip = "{tr}Assign{/tr}"}
-						{$iconname = 'add'}
-					{elseif $users[user].groupName ne "Registered"}
-						{$action = 'removegroup'}
-						{$tooltip = "{tr}Unassign{/tr}"}
-						{$iconname = 'remove'}
-					{/if}
-					<form method="post" action="tiki-assignuser.php" class="form-horizontal">
-						{ticket}
-						{if $assign_user}
-							<input type="hidden" value="{$assign_user|escape}" name="assign_user">
-						{/if}
-						<input type="hidden" value="{$users[user].groupName|escape}" name="group">
-						<input type="hidden" value="{$prefs.maxRecords}" name="maxRecords">
-						<input type="hidden" value="{$offset}" name="offset">
-						<input type="hidden" value="{$sort_mode}" name="sort_mode">
-						<button
-							type="submit"
-							name="{$action}"
-							value="assign"
-							class="btn btn-link link-list tips"
-							title=":{$tooltip}"
-						>
-							{icon name="{$iconname}"}
-						</button>
-					</form>
-				</td>
+				<th><a href="tiki-assignuser.php?{if $assign_user}assign_user={$assign_user|escape:url}&amp;{/if}offset={$offset}&amp;maxRecords={$prefs.maxRecords}&amp;sort_mode={if $sort_mode eq 'groupName_desc'}groupName_asc{else}groupName_desc{/if}">{tr}Name{/tr}</a></th>
+				<th><a href="tiki-assignuser.php?{if $assign_user}assign_user={$assign_user|escape:url}&amp;{/if}offset={$offset}&amp;maxRecords={$prefs.maxRecords}&amp;sort_mode={if $sort_mode eq 'groupDesc_desc'}groupDesc_asc{else}groupDesc_desc{/if}">{tr}Description{/tr}</a></th>
+				<th>{tr}Expiration{/tr}</th>
+				<th></th>
 			</tr>
-		{/if}
-	{/section}
-</table>
-</div>
-<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}" />
+
+			{section name=user loop=$users}
+				{if $users[user].groupName != 'Anonymous'}
+					<tr>
+						<td class="text">
+							{if $tiki_p_admin eq 'y'} {* only full admins can manage groups, not tiki_p_admin_users *}
+								<a class="link" href="tiki-admingroups.php?group={$users[user].groupName|escape:"url"}{if $prefs.feature_tabs ne 'y'}#2{/if}" title="{tr}Edit{/tr}">
+							{/if}
+							{$users[user].groupName|escape}
+							{if $tiki_p_admin eq 'y'}
+								</a>
+							{/if}
+						</td>
+						<td class="text">{tr}{$users[user].groupDesc|escape}{/tr}</td>
+						<td>{if isset($dates[$users[user].groupName]) && !empty($dates[$users[user].groupName]['expire'])}
+							<input type="text" name="new_{$users[user].id}" value="{$dates[$users[user].groupName]['expire']|tiki_short_datetime:'':'n'|escape}" />
+							<input type="hidden" name="old_{$users[user].id}" value="{$dates[$users[user].groupName]['expire']|tiki_short_datetime:'':'n'|escape}" />
+
+						{/if}</td>
+						<td class="action">
+							{if $users[user].what ne 'real'}
+								{$action = 'assign'}
+								{$tooltip = "{tr}Assign{/tr}"}
+								{$iconname = 'add'}
+							{elseif $users[user].groupName ne "Registered"}
+								{$action = 'removegroup'}
+								{$tooltip = "{tr}Unassign{/tr}"}
+								{$iconname = 'remove'}
+							{/if}
+							<a href="{bootstrap_modal controller=user action=confirm_usergroup_operation type=$action max_records=$prefs.maxRecords offset=$offset sort_mode=$sort_mode group=$users[user].groupName|escape user=$assign_user|escape}" class="btn btn-link btn-sm tips" title=":{$tooltip}">
+								{icon name="{$iconname}"}
+							</a>
+						</td>
+					</tr>
+				{/if}
+			{/section}
+		</table>
+	</div>
+	<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}" />
 </form>
 {pagination_links cant=$cant_pages step=$prefs.maxRecords offset=$offset}{/pagination_links}

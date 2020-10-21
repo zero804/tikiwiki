@@ -407,20 +407,22 @@ class Services_Group_Controller
 				} else {
 					$msg = tr('Add the following users to group %0?', $input['group']);
 				}
+
+				$extra = [];
+				$extra['fields'] = [
+					[
+						'label' => tr('Please confirm this operation by typing your password'),
+						'field' => 'input',
+						'type' => 'password',
+						'name' => 'confirmpassword',
+						'placeholder' => tr('Password')
+					]
+				];
+
 				return $util->confirm(
 					$msg,
 					tra('Add'),
-					[
-						'fields' => [
-							[
-								'label' => tr('Please confirm this operation by typing your password'),
-								'field' => 'input',
-								'type' => 'password',
-								'name' => 'confirmpassword',
-								'placeholder' => tr('Password')
-							]
-						]
-					]
+					$extra
 				);
 			} else {
 				Services_Utilities::modalException(tra('One or more users must be selected'));
@@ -483,20 +485,22 @@ class Services_Group_Controller
 				} else {
 					$msg = tr('Ban the following users from group %0?', $input['group']);
 				}
+
+				$extra = [];
+				$extra['fields'] = [
+					[
+						'label' => tr('Please confirm this operation by typing your password'),
+						'field' => 'input',
+						'type' => 'password',
+						'name' => 'confirmpassword',
+						'placeholder' => tr('Password')
+					]
+				];
+
 				return $util->confirm(
 					$msg,
 					tra('Ban'),
-					[
-						'fields' => [
-							[
-								'label' => tr('Please confirm this operation by typing your password'),
-								'field' => 'input',
-								'type' => 'password',
-								'name' => 'confirmpassword',
-								'placeholder' => tr('Password')
-							]
-						]
-					]
+					$extra
 				);
 			} else {
 				Services_Utilities::modalException(tra('One or more users must be selected'));
@@ -559,7 +563,19 @@ class Services_Group_Controller
 				} else {
 					$msg = tr('Unban the following users from group %0?', $input['group']);
 				}
-				return $util->confirm($msg, tra('Unban'));
+
+				$extra = [];
+				$extra['fields'] = [
+					[
+						'label' => tr('Please confirm this operation by typing your password'),
+						'field' => 'input',
+						'type' => 'password',
+						'name' => 'confirmpassword',
+						'placeholder' => tr('Password')
+					]
+				];
+
+				return $util->confirm($msg, tra('Unban'), $extra);
 			} else {
 				Services_Utilities::modalException(tra('One or more users must be selected'));
 			}
@@ -572,6 +588,15 @@ class Services_Group_Controller
 				$userlib->unban_user_from_group($user, $util->extra['group']);
 				$logslib->add_log('admingroups', 'unbanned ' . $user . ' from ' . $util->extra['group']);
 			}
+
+			$pass = $input->offsetGet('confirmpassword');
+			$user = isset($_SESSION['u_info']['login']) ? $_SESSION['u_info']['login'] : '';
+			$ret = $userlib->validate_user($user, $pass);
+			if (! $ret[0]) {
+				Feedback::error(tra('Invalid password.'));
+				return Services_Utilities::closeModal();
+			}
+
 			//prepare and send feedback
 			if ($util->itemsCount > 0) {
 				if (count($util->items) === 1) {

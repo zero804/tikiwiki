@@ -37,6 +37,26 @@ class Services_User_Controller
 		$this->lib = TikiLib::lib('user');
 	}
 
+	/**
+	 * Action responsible for showing a modal to confirm the usergroup assignment using a password
+	 * @param $input
+	 * @return array
+	 */
+	function action_confirm_usergroup_operation($input)
+	{
+		$action = $input->type->text();
+
+		return [
+			'title' => tr('Please confirm'),
+			'maxRecords' => $input->max_records->int(),
+			'offset' => $input->offset->int(),
+			'sortMode' => $input->sort_mode->text(),
+			'group' => $input->group->text(),
+			'action' => $action,
+			'assignUser'  => $input->user->text(),
+			'readableAction' => $action == 'assign' ? tr('Assign') : tr('Remove'),
+		];
+	}
 
 	function action_list_users($input)
 	{
@@ -448,6 +468,19 @@ class Services_User_Controller
 				} else {
 					$referer = Services_Utilities::noJsPath();
 				}
+
+				$extraFields = [];
+				$extraFields = [
+					[
+						'label' => tr('Please confirm this operation by typing your password'),
+						'field' => 'input',
+						'type' => 'password',
+						'name' => 'confirmpassword',
+						'placeholder' => tr('Password'),
+						'size' => '60'
+					]
+				];
+
 				//remove from group icon clicked for a specific user
 				if (isset($input['groupremove'])) {
 					$group = $input['groupremove'];
@@ -459,15 +492,7 @@ class Services_User_Controller
 							'group'			=> $group,
 							'referer'		=> $referer,
 							'anchor'		=> $input->anchor->striptags(),
-							'fields' 		=>[
-								[
-									'label' => tr('Please confirm this operation by typing your password'),
-									'field' => 'input',
-									'type' => 'password',
-									'name' => 'confirmpassword',
-									'placeholder' => tr('Password')
-								]
-							]
+							'fields' 		=> $extraFields
 						]
 					);
 				//selected users to be added or removed from selected groups groups
@@ -495,16 +520,7 @@ class Services_User_Controller
 						'items' => $util->items,
 						'extra' => [
 							'referer' => $referer,
-							'fields' => [
-								[
-									'label' => tr('Please confirm this operation by typing your password'),
-									'field' => 'input',
-									'type' => 'password',
-									'name' => 'confirmpassword',
-									'placeholder' => tr('Password'),
-									'size' => '60'
-								]
-							]
+							'fields' => $extraFields
 						],
 						'modal' => '1',
 						'userGroups' => str_replace(['\'','&'], ['%39;','%26'], json_encode($userGroups)),
