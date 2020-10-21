@@ -42,21 +42,7 @@
 				{foreach from=$user_info.groups item=what key=grp name=groups}
 					{if $what eq 'included'}<i>{/if}{$grp|escape}{if $what eq 'included'}</i>{/if}
 					{if $grp != "Anonymous" && $grp != "Registered" and $what neq 'included'}
-						<form method="post" class="form-horizontal d-inline">
-							{ticket}
-							<input type="hidden" value="{$grp|escape}" name="group">
-							<input type="hidden" value="removegroup" name="action">
-							<input type="hidden" value="{$user_info.login|escape}" name="login">
-							<input type="hidden" value="{$prefs.maxRecords}" name="maxRecords">
-							{if isset($offset)}
-								<input type="hidden" value="{$offset}" name="offset">
-							{/if}
-							{if $assign_user}
-								<input type="hidden" value="{$assign_user|escape}" name="assign_user">
-							{/if}
-							<input type="hidden" value="{$sort_mode}" name="sort_mode">
-							<a href="{bootstrap_modal controller=user action=manage_groups checked=$user_info.login groupremove=$grp|escape}">{icon name='remove' style="vertical-align:middle"}</a>
-						</form>
+						<a href="{bootstrap_modal controller=user action=manage_groups checked=$user_info.login groupremove=$grp|escape}">{icon name='remove' style="vertical-align:middle"}</a>
 					{/if}{if !$smarty.foreach.groups.last},{/if}&nbsp;&nbsp;
 				{/foreach}
 			</div>
@@ -121,41 +107,16 @@
 
 						{/if}</td>
 						<td class="action">
-							{if $users[user].what ne 'real'}
-								{$action = 'assign'}
-								{$tooltip = "{tr}Assign{/tr}"}
-								{$iconname = 'add'}
-							{elseif $users[user].groupName ne "Registered"}
-								{$action = 'removegroup'}
-								{$tooltip = "{tr}Unassign{/tr}"}
-								{$iconname = 'remove'}
-							{/if}
-
-							{if $prefs.users_admin_actions_require_validation eq 'y'}
-								<a href="{bootstrap_modal controller=user action=confirm_usergroup_operation type=$action max_records=$prefs.maxRecords offset=$offset sort_mode=$sort_mode group=$users[user].groupName|escape user=$assign_user|escape}" class="btn btn-link btn-sm tips" title=":{$tooltip}">
-									{icon name="{$iconname}"}
-								</a>
-							{else}
-								<form method="post" action="tiki-assignuser.php" class="form-horizontal">
-									{ticket}
-									{if $assign_user}
-										<input type="hidden" value="{$assign_user|escape}" name="assign_user">
-									{/if}
-									<input type="hidden" value="{$users[user].groupName|escape}" name="group">
-									<input type="hidden" value="{$prefs.maxRecords}" name="maxRecords">
-									<input type="hidden" value="{$offset}" name="offset">
-									<input type="hidden" value="{$sort_mode}" name="sort_mode">
-									<input type="hidden" value="{$action}" name="action">
-									<button
-										type="submit"
-										name="{$action}"
-										value="assign"
-										class="btn btn-link link-list tips"
-										title=":{$tooltip}"
-									>
-										{icon name="{$iconname}"}
-									</button>
-								</form>
+							{if $users[user].groupName != 'Registered'}
+								{if $users[user].what ne 'real'}
+									<a href="{bootstrap_modal controller=group action=add_user group=$users[user].groupName|escape user=$assign_user|escape}" class="btn btn-link btn-sm tips" title="{tr}Assign{/tr}">
+										{icon name="add"}
+									</a>
+								{else}
+									<a href="{bootstrap_modal controller=user action=manage_groups checked=$user_info.login groupremove=$users[user].groupName|escape}" class="btn btn-link btn-sm tips" title="{tr}Unassign{/tr}">
+										{icon name='remove'}
+									</a>
+								{/if}
 							{/if}
 						</td>
 					</tr>

@@ -37,27 +37,6 @@ class Services_User_Controller
 		$this->lib = TikiLib::lib('user');
 	}
 
-	/**
-	 * Action responsible for showing a modal to confirm the usergroup assignment using a password
-	 * @param $input
-	 * @return array
-	 */
-	function action_confirm_usergroup_operation($input)
-	{
-		$action = $input->type->text();
-
-		return [
-			'title' => tr('Please confirm'),
-			'maxRecords' => $input->max_records->int(),
-			'offset' => $input->offset->int(),
-			'sortMode' => $input->sort_mode->text(),
-			'group' => $input->group->text(),
-			'action' => $action,
-			'assignUser'  => $input->user->text(),
-			'readableAction' => $action == 'assign' ? tr('Assign') : tr('Remove'),
-		];
-	}
-
 	function action_list_users($input)
 	{
 		$groupIds = $input->groupIds->int();
