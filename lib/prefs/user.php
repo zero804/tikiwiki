@@ -165,7 +165,7 @@ function prefs_user_list($partial = false)
 			'type' => 'flag',
 			'default' => 'n',
 			'dependencies' => [
-				'user_register_pretty_tracker',
+				'user_register_prettytracker',
 			],
 		],
 		'user_register_prettytracker_output' => [
