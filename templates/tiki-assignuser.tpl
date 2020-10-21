@@ -130,9 +130,33 @@
 								{$tooltip = "{tr}Unassign{/tr}"}
 								{$iconname = 'remove'}
 							{/if}
-							<a href="{bootstrap_modal controller=user action=confirm_usergroup_operation type=$action max_records=$prefs.maxRecords offset=$offset sort_mode=$sort_mode group=$users[user].groupName|escape user=$assign_user|escape}" class="btn btn-link btn-sm tips" title=":{$tooltip}">
-								{icon name="{$iconname}"}
-							</a>
+
+							{if $prefs.users_admin_actions_require_validation eq 'y'}
+								<a href="{bootstrap_modal controller=user action=confirm_usergroup_operation type=$action max_records=$prefs.maxRecords offset=$offset sort_mode=$sort_mode group=$users[user].groupName|escape user=$assign_user|escape}" class="btn btn-link btn-sm tips" title=":{$tooltip}">
+									{icon name="{$iconname}"}
+								</a>
+							{else}
+								<form method="post" action="tiki-assignuser.php" class="form-horizontal">
+									{ticket}
+									{if $assign_user}
+										<input type="hidden" value="{$assign_user|escape}" name="assign_user">
+									{/if}
+									<input type="hidden" value="{$users[user].groupName|escape}" name="group">
+									<input type="hidden" value="{$prefs.maxRecords}" name="maxRecords">
+									<input type="hidden" value="{$offset}" name="offset">
+									<input type="hidden" value="{$sort_mode}" name="sort_mode">
+									<input type="hidden" value="{$action}" name="action">
+									<button
+										type="submit"
+										name="{$action}"
+										value="assign"
+										class="btn btn-link link-list tips"
+										title=":{$tooltip}"
+									>
+										{icon name="{$iconname}"}
+									</button>
+								</form>
+							{/if}
 						</td>
 					</tr>
 				{/if}
