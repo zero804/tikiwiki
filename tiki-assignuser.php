@@ -33,6 +33,20 @@ if (! isset($_REQUEST["assign_user"]) || ($tiki_p_admin != 'y' && $tiki_p_admin_
 $assign_user = $_REQUEST["assign_user"];
 
 if (isset($_REQUEST["action"]) && $access->checkOrigin()) {
+	$canProcess = true;
+
+	if (empty($_POST['confirmpassword'])) {
+		Feedback::error(tr('Password confirmation is required perform this group operation'));
+		$canProcess = false;
+	} else {
+		$passwordCheck = $userlib->validate_user($user, $_POST['confirmpassword']);
+
+		if (empty($passwordCheck[0])) {
+			Feedback::error(tr('Invalid password confirmation. Group operation was not performed.'));
+			$canProcess = false;
+		}
+	}
+
 	if (! isset($_REQUEST["group"])) {
 		$smarty->assign('msg', tra("You have to indicate a group"));
 		$smarty->display("error.tpl");
@@ -41,29 +55,31 @@ if (isset($_REQUEST["action"]) && $access->checkOrigin()) {
 
 	$access->check_authenticity(tr('Are you sure you want to add user %0 to group %1', $_REQUEST['assign_user'], $_REQUEST['group']));
 
-	if ($userChoice == 'y') {
-		$gps = $userlib->get_groups(0, -1, 'groupName_asc', '', '', '', '', $userChoice);
-		$groups = [];
-		foreach ($gps['data'] as $g) {
-			$groups[$g['groupName']] = $g;
+	if($canProcess) {
+		if ($userChoice == 'y') {
+			$gps = $userlib->get_groups(0, -1, 'groupName_asc', '', '', '', '', $userChoice);
+			$groups = [];
+			foreach ($gps['data'] as $g) {
+				$groups[$g['groupName']] = $g;
+			}
+		} elseif ($tiki_p_admin != 'y') {
+			$groups = $userlib->get_user_groups_inclusion($user);
 		}
-	} elseif ($tiki_p_admin != 'y') {
-		$groups = $userlib->get_user_groups_inclusion($user);
-	}
-	if ($_REQUEST["action"] == 'assign') {
-		if (! $userlib->group_exists($_REQUEST["group"])) {
-			$smarty->assign('msg', tra("This group is invalid"));
-			$smarty->display("error.tpl");
-			die;
+		if ($_REQUEST["action"] == 'assign') {
+			if (! $userlib->group_exists($_REQUEST["group"])) {
+				$smarty->assign('msg', tra("This group is invalid"));
+				$smarty->display("error.tpl");
+				die;
+			}
+			if ($tiki_p_admin_users == 'y' ||($tiki_p_admin_users == 'y' && array_key_exists($_REQUEST["group"], $groups))) {
+				$userlib->assign_user_to_group($_REQUEST["assign_user"], $_REQUEST["group"]);
+				$logslib->add_log('perms', sprintf("Assigned %s in group %s", $_REQUEST["assign_user"], $_REQUEST["group"]));
+			}
+		} elseif ($_REQUEST["action"] == 'removegroup' && ($tiki_p_admin == 'y' || ($tiki_p_admin_users == 'y' && array_key_exists($_REQUEST["group"], $groups)))) {
+			$access->check_authenticity();
+			$userlib->remove_user_from_group($_REQUEST["assign_user"], $_REQUEST["group"]);
+			$logslib->add_log('perms', sprintf("Removed %s from group %s", $_REQUEST["assign_user"], $_REQUEST["group"]));
 		}
-		if ($tiki_p_admin_users == 'y' ||($tiki_p_admin_users == 'y' && array_key_exists($_REQUEST["group"], $groups))) {
-			$userlib->assign_user_to_group($_REQUEST["assign_user"], $_REQUEST["group"]);
-			$logslib->add_log('perms', sprintf("Assigned %s in group %s", $_REQUEST["assign_user"], $_REQUEST["group"]));
-		}
-	} elseif ($_REQUEST["action"] == 'removegroup' && ($tiki_p_admin == 'y' || ($tiki_p_admin_users == 'y' && array_key_exists($_REQUEST["group"], $groups)))) {
-		$access->check_authenticity();
-		$userlib->remove_user_from_group($_REQUEST["assign_user"], $_REQUEST["group"]);
-		$logslib->add_log('perms', sprintf("Removed %s from group %s", $_REQUEST["assign_user"], $_REQUEST["group"]));
 	}
 }
 

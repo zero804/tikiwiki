@@ -447,6 +447,19 @@ class Services_User_Controller
 				} else {
 					$referer = Services_Utilities::noJsPath();
 				}
+
+				$extraFields = [];
+				$extraFields = [
+					[
+						'label' => tr('Please confirm this operation by typing your password'),
+						'field' => 'input',
+						'type' => 'password',
+						'name' => 'confirmpassword',
+						'placeholder' => tr('Password'),
+						'size' => '60'
+					]
+				];
+
 				//remove from group icon clicked for a specific user
 				if (isset($input['groupremove'])) {
 					$group = $input['groupremove'];
@@ -458,15 +471,7 @@ class Services_User_Controller
 							'group'			=> $group,
 							'referer'		=> $referer,
 							'anchor'		=> $input->anchor->striptags(),
-							'fields' 		=>[
-								[
-									'label' => tr('Please confirm this operation by typing your password'),
-									'field' => 'input',
-									'type' => 'password',
-									'name' => 'confirmpassword',
-									'placeholder' => tr('Password')
-								]
-							]
+							'fields' 		=> $extraFields
 						]
 					);
 				//selected users to be added or removed from selected groups groups
@@ -494,17 +499,8 @@ class Services_User_Controller
 						'items' => $util->items,
 						'extra' => [
 							'referer' => $referer,
-							'fields' => [
-								[
-									'label' => tr('Please confirm this operation by typing your password'),
-									'field' => 'input',
-									'type' => 'password',
-									'name' => 'confirmpassword',
-									'placeholder' => tr('Password'),
-									'size' => '60'
-								]
-							]
-							],
+							'fields' => $extraFields
+						],
 						'modal' => '1',
 						'userGroups' => str_replace(['\'','&'], ['%39;','%26'], json_encode($userGroups)),
 					];
