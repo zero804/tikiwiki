@@ -659,7 +659,7 @@ class PreferencesLib
 						( $info['type'] == 'flag' && $info['value'] == 'y' )
 						|| ( $info['type'] != 'flag' && ! empty($info['value']) )
 				];
-			} elseif ($key == 'profiles') {
+			} elseif ($key === 'profiles') {
 				foreach ((array) $dep as $profile) {
 					$out[] = [
 						'name' => $profile,

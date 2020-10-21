@@ -1921,8 +1921,8 @@ class Comments extends TikiLib
 		// these could be cached or probably queried along with the original query of the tiki_comments table
 		if ($forum_info == null || $forum_info['ui_posts'] == 'y' || $forum_info['ui_level'] == 'y') {
 			$res2 = $this->table('tiki_user_postings')->fetchRow(['posts', 'level'], ['user' => $res['userName']]);
-			$res['user_posts'] = $res2['posts'];
-			$res['user_level'] = $res2['level'];
+			$res['user_posts'] = isset($res2['posts']) ? $res2['posts'] : '0';
+			$res['user_level'] = isset($res2['level']) ? $res2['level'] : '0';
 		}
 		// 'email is public' never has 'y' value, because it is now used to choose the email scrambling method
 		// ... so, we need to test if it's not equal to 'n'
