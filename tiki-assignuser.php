@@ -36,17 +36,17 @@ if (isset($_REQUEST["action"])) {
 	$canProcess = true;
 
 	if ($prefs['users_admin_actions_require_validation'] == 'y') {
-	if (empty($_POST['confirmpassword'])) {
-		Feedback::error(tr('Password confirmation is required perform this group operation'));
-		$canProcess = false;
-	} else {
-		$passwordCheck = $userlib->validate_user($user, $_POST['confirmpassword']);
-
-		if (empty($passwordCheck[0])) {
-			Feedback::error(tr('Invalid password confirmation. Group operation was not performed.'));
+		if (empty($_POST['confirmpassword'])) {
+			Feedback::error(tr('Password confirmation is required perform this group operation'));
 			$canProcess = false;
+		} else {
+			$passwordCheck = $userlib->validate_user($user, $_POST['confirmpassword']);
+
+			if (empty($passwordCheck[0])) {
+				Feedback::error(tr('Invalid password confirmation. Group operation was not performed.'));
+				$canProcess = false;
+			}
 		}
-	}
 	}
 
 	if (! isset($_REQUEST["group"])) {
@@ -54,7 +54,7 @@ if (isset($_REQUEST["action"])) {
 		$canProcess = false;
 	}
 
-	if($canProcess) {
+	if ($canProcess) {
 		if ($userChoice == 'y') {
 			$gps = $userlib->get_groups(0, -1, 'groupName_asc', '', '', '', '', $userChoice);
 			$groups = [];
@@ -72,32 +72,36 @@ if (isset($_REQUEST["action"])) {
 			) {
 				$result = $userlib->assign_user_to_group($_REQUEST["assign_user"], $_REQUEST["group"]);
 				if ($result && $result->numRows()) {
-					Feedback::success(tr('Assigned user %0 to group %1',
+					Feedback::success(tr(
+						'Assigned user %0 to group %1',
 						htmlspecialchars($_REQUEST["assign_user"]),
-						htmlspecialchars($_REQUEST["group"]))
-					);
+						htmlspecialchars($_REQUEST["group"])
+					));
 					$logslib->add_log('perms', sprintf("Assigned %s in group %s", $_REQUEST["assign_user"], $_REQUEST["group"]));
 				} else {
-					Feedback::error(tr('User %0 not assigned to group %1',
-							htmlspecialchars($_REQUEST["assign_user"]),
-							htmlspecialchars($_REQUEST["group"]))
-					);
+					Feedback::error(tr(
+						'User %0 not assigned to group %1',
+						htmlspecialchars($_REQUEST["assign_user"]),
+						htmlspecialchars($_REQUEST["group"])
+					));
 				}
 			}
 		} elseif ($_REQUEST["action"] == 'removegroup' && ($tiki_p_admin == 'y' && $access->checkCsrf()
 				|| ($tiki_p_admin_users == 'y' && array_key_exists($_REQUEST["group"], $groups) && $access->checkCsrf()))) {
 			$result = $userlib->remove_user_from_group($_REQUEST["assign_user"], $_REQUEST["group"]);
 			if ($result && $result->numRows()) {
-				Feedback::success(tr('Removed user %0 from group %1',
-						htmlspecialchars($_REQUEST["assign_user"]),
-						htmlspecialchars($_REQUEST["group"]))
-				);
+				Feedback::success(tr(
+					'Removed user %0 from group %1',
+					htmlspecialchars($_REQUEST["assign_user"]),
+					htmlspecialchars($_REQUEST["group"])
+				));
 				$logslib->add_log('perms', sprintf("Removed %s from group %s", $_REQUEST["assign_user"], $_REQUEST["group"]));
 			} else {
-				Feedback::error(tr('User %0 not removed from group %1',
-						htmlspecialchars($_REQUEST["assign_user"]),
-						htmlspecialchars($_REQUEST["group"]))
-				);
+				Feedback::error(tr(
+					'User %0 not removed from group %1',
+					htmlspecialchars($_REQUEST["assign_user"]),
+					htmlspecialchars($_REQUEST["group"])
+				));
 			}
 		}
 	}
