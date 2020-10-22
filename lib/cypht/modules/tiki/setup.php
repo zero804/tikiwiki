@@ -95,7 +95,10 @@ add_handler('ajax_remove_from_calendar', 'remove_from_calendar', true, 'tiki', '
 
 /* debug mode */
 add_handler('settings', 'process_debug_mode', true, 'tiki', 'save_user_settings', 'before');
+add_handler('settings', 'process_allow_external_images', true, 'tiki', 'save_user_settings', 'before');
 add_output('settings', 'debug_mode_setting', true, 'tiki', 'start_unread_settings', 'before');
+add_output('settings', 'start_advanced_settings', true, 'core', 'end_settings_form', 'before');
+add_output('settings', 'allow_external_images_setting', true, 'tiki', 'start_advanced_settings', 'after');
 
 return array(
 	'allowed_pages' => array(
@@ -122,5 +125,6 @@ return array(
     'rsvp_action' => FILTER_SANITIZE_STRING,
     'calendar_id' => FILTER_VALIDATE_INT,
     'debug_mode' => FILTER_VALIDATE_INT,
+    'allow_external_images' => FILTER_VALIDATE_INT,
 	)
 );

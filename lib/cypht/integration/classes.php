@@ -200,6 +200,9 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 				$_SESSION[$session_prefix]['user_data']['timezone_setting'] = $this->user_defaults['timezone_setting'];
 			}
 		}
+		if (isset($_SESSION[$session_prefix]['user_data']['allow_external_images_setting'])) {
+			$this->set('allow_external_image_sources', $_SESSION[$session_prefix]['user_data']['allow_external_images_setting']);
+		}
 	}
 }
 
