@@ -232,6 +232,7 @@ class UnifiedSearchLib
 
 			if (! empty($indexesToRestore)) {
 				$index->restoreOldIndexes($indexesToRestore, $indexName);
+				$index->endUpdate();
 			}
 
 			$stat['total tiki fields indexed'] = $indexDecorator->getFieldCount();
