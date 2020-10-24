@@ -85,11 +85,18 @@ class Search_MySql_Table extends TikiDb_Table
 		return isset($this->indexes[$indexName]);
 	}
 
+	/**
+	 * Make sure the indexing table contains a certain index. Index will only be added if it is not present on the table.
+	 * @param $fieldName
+	 * @param $type
+	 * @throws Search_MySql_QueryException
+	 */
 	function ensureHasIndex($fieldName, $type)
 	{
 		global $prefs;
 
 		$this->loadDefinition();
+		$fieldName = $this->tfTranslator->normalize($fieldName);
 
 		if (! isset($this->definition[$fieldName]) && $prefs['search_error_missing_field'] === 'y') {
 			if (preg_match('/^tracker_field_/', $fieldName)) {
