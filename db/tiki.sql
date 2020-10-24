@@ -1208,6 +1208,7 @@ CREATE TABLE tiki_h5p_contents (
 	author_comments LONGTEXT NULL,
 	changes      MEDIUMTEXT NULL,
 	default_language VARCHAR(32) NULL,
+	a11y_title VARCHAR(255) NULL,
 	PRIMARY KEY (id),
 	UNIQUE KEY `fileId` (`file_id`)
 )	ENGINE = MyISAM;
