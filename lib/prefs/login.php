@@ -136,7 +136,7 @@ function prefs_login_list()
 			'type' => 'flag',
 			'default' => 'n',
 			'dependencies' => [
-				'login_autologin_redirectlogin_baseurl',
+				'login_autologin_redirectlogin_url',
 				'permission_denied_login_box',
 			],
 			'tags' => ['advanced'],

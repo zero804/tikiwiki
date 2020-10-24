@@ -270,7 +270,11 @@ class Services_H5P_Controller
 		header('Content-type: application/json');
 
 		if ($name) {
-			$out = $editor->getLibraryData($name, $major_version, $minor_version, substr($prefs['language'], 0, 2), '');
+			$out = $editor->getLibraryData(
+				$name, $major_version, $minor_version,
+				substr($prefs['language'], 0, 2),
+				'', '', 'en'
+			);
 
 			// Log library load
 			new H5P_Event(
@@ -288,6 +292,11 @@ class Services_H5P_Controller
 		return json_decode(json_encode($out), true);
 	}
 
+	/**
+	 * @param $input JitFilter
+	 *
+	 * @return array
+	 */
 	function action_list_libraries($input)
 	{
 		global $prefs;
@@ -304,9 +313,14 @@ class Services_H5P_Controller
 		$name = $input->machineName->text();
 		$majorVersion = $input->majorVersion->int();
 		$minorVersion = $input->minorVersion->int();
+		$defaultLanguage = $input->offsetGet('default-language');
 
 		if ($name) {
-			$results = $editor->getLibraryData($name, $majorVersion, $minorVersion, substr($prefs['language'], 0, 2), '');
+			$results = $editor->getLibraryData(
+				$name, $majorVersion, $minorVersion,
+				substr($prefs['language'], 0, 2),
+				'', 'en', $defaultLanguage
+			);
 			$results = json_decode($results, true);
 
 			$results['name'] = $name;
@@ -365,13 +379,9 @@ class Services_H5P_Controller
 			$core = \H5P_H5PTiki::get_h5p_instance('core');
 
 			// Save the valid file
-			$file_id = $core->fs->saveFile($file, $contentId);
+			$file = $core->fs->saveFile($file, $contentId);
+			\H5P_EditorTikiStorage::markFileForCleanup($file, $contentId);
 
-			// Keep track of temporary files so they can be cleaned up later.
-			TikiDb::get()->table('tiki_h5p_tmpfiles')->insert([
-				'path' => $file_id,
-				'created_at' => time(),
-			]);
 		}
 
 		header('Cache-Control: no-cache');

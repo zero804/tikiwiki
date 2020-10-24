@@ -1211,7 +1211,9 @@ WHERE hll.`library_id` = ?',
 					hc.license_version AS licenseVersion,
 					hc.license_extras AS licenseExtras,
 					hc.author_comments AS authorComments,
-					hc.changes AS changes
+					hc.changes AS changes,
+       				hc.default_language AS defaultLanguage,
+        			hc.a11y_title AS a11yTitle
 			FROM `tiki_h5p_contents` hc
 			JOIN `tiki_h5p_libraries` hl ON hl.id = hc.library_id
 			WHERE hc.id =?',
@@ -1224,7 +1226,7 @@ WHERE hll.`library_id` = ?',
 		$metadata_structure = [
 			'title', 'authors', 'source', 'yearFrom', 'yearTo',
 			'license', 'licenseVersion', 'licenseExtras',
-			'authorComments', 'changes',
+			'authorComments', 'changes', 'defaultLanguage', 'a11yTitle',
 		];
 		foreach ($metadata_structure as $property) {
 			if (! empty($row[$property])) {
@@ -1354,13 +1356,13 @@ hcl.`drop_css` AS dropCss, hcl.`dependency_type` AS dependencyType
 	 * library. This means that the content dependencies will have to be rebuilt,
 	 * and the parameters re-filtered.
 	 *
-	 * @param int $library_id
+	 * @param array $library_ids
 	 */
-	public function clearFilteredParameters($library_id)
+	public function clearFilteredParameters($library_ids)
 	{
 		$this->tiki_h5p_contents->update(
 			['filtered' => null],
-			['library_id' => $library_id]
+			['library_id' => $this->tiki_h5p_contents->in($library_ids)]
 		);
 	}
 
@@ -1382,7 +1384,7 @@ hcl.`drop_css` AS dropCss, hcl.`dependency_type` AS dependencyType
 	 *
 	 * @return int
 	 */
-	public function getNumContent($libraryId)
+	public function getNumContent($libraryId, $skip = null)
 	{
 		return $this->tiki_h5p_contents->fetchCount(['library_id' => $libraryId]);
 	}
@@ -1707,5 +1709,28 @@ GROUP BY l.`name`, l.`major_version`, l.`minor_version`');
 	public function getLibraryConfig($libraries = null)
 	{
 		return defined('H5P_LIBRARY_CONFIG') ? H5P_LIBRARY_CONFIG : NULL;
+	}
+
+	/**
+	 * Checks if the given library has a higher version.
+	 *
+	 * @param array $library
+	 *
+	 * @return boolean
+	 */
+	public function libraryHasUpgrade($library)
+	{
+		return ! empty(
+		TikiDb::get()->query(
+			'SELECT `id` FROM `tiki_h5p_libraries` WHERE `name` = ?
+AND (`major_version` > ? OR (`major_version` = ? AND `minor_version` > ?)) LIMIT 1',
+			[
+				$library['machineName'],
+				$library['majorVersion'],
+				$library['majorVersion'],
+				$library['minorVersion'],
+			]
+		)
+		);
 	}
 }
