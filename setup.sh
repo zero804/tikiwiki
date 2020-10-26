@@ -528,11 +528,11 @@ composer_core()
 	then
 		# todo : if exists php;
 		if [ ${LOGCOMPOSERFLAG} = "0" ] ; then
-			"${PHPCLI}" temp/composer.phar self-update --working-dir vendor_bundled "$OPT_QUIET"
+			"${PHPCLI}" temp/composer.phar self-update "$OPT_QUIET"
 			RETURNVAL=$?
 		fi
 		if [ ${LOGCOMPOSERFLAG} = "1" ] ; then
-			"${PHPCLI}" temp/composer.phar self-update --working-dir vendor_bundled "$OPT_QUIET" > ${TIKI_COMPOSER_SELF_UPDATE_LOG}
+			"${PHPCLI}" temp/composer.phar self-update "$OPT_QUIET" > ${TIKI_COMPOSER_SELF_UPDATE_LOG}
 			RETURNVAL=$?
 		fi
 		if [ ${RETURNVAL} -eq 0 ];
