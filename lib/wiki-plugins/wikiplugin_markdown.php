@@ -23,19 +23,10 @@ function wikiplugin_markdown_info() {
 	];
 }
 
-//use League\CommonMark\CommonMarkConverter;
-use League\CommonMark\Converter;
-
 // common requirement for extension packages
+use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
-
-// requirement for league/commonmark-extras extension
-use League\CommonMark\Extras\CommonMarkExtrasExtension;
-
-// requirements for webuni/commonmark-attributes-extension 
-use League\CommonMark\DocParser;
-use League\CommonMark\HtmlRenderer;
-use Webuni\CommonMark\AttributesExtension\AttributesExtension;
+use League\CommonMark\Extension\Attributes\AttributesExtension;
 
 function wikiplugin_markdown($data, $params) {
 
@@ -48,18 +39,18 @@ function wikiplugin_markdown($data, $params) {
 	$md = str_replace('&lt;x&gt;', '', $md);
 	$md = str_replace('<x>', '', $md);
 
+	// create pre-configured Environment
 	$environment = Environment::createCommonMarkEnvironment();
 
-	// add commonmark-extras extension
-	$environment->addExtension(new CommonMarkExtrasExtension());
-
-	// add commonmark-attributes-extension
+	// add Attributes-Extension
 	$environment->addExtension(new AttributesExtension());
 
-	// let's define our configuration
+	// let's define our configurationon
+	$config = ['html_input' => 'escape', 'allow_unsafe_links' => 'false'];
+	
 	$environment->setConfig(['html_input' => 'escape', 'allow_unsafe_links' => false]);
 
-	$converter = new Converter(new DocParser($environment), new HtmlRenderer($environment));
+	$converter = new CommonMarkConverter($config, $environment);
 
 	$md = $converter->convertToHtml($md);
 
