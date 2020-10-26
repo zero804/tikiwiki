@@ -1188,6 +1188,21 @@ if ($s) {
 	);
 }
 
+$s = extension_loaded('soap');
+if ($s) {
+	$php_properties['soap'] = array(
+		'fitness' => tra('good'),
+		'setting' => 'Loaded',
+		'message' => tra('This extension is used by Tiki for some types of web services.')
+	);
+} else {
+	$php_properties['soap'] = array(
+		'fitness' => tra('info'),
+		'setting' => 'Not available',
+		'message' => tra('This extension is used by Tiki for some types of web services.')
+	);
+}
+
 $s = extension_loaded('curl');
 if ($s) {
 	$php_properties['curl'] = array(
