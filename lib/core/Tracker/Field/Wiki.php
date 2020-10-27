@@ -346,7 +346,7 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 				$data = [
 					$baseKey => $typeFactory->identifier($value),
 					"{$baseKey}_text" => $typeFactory->wikitext($info['data']),
-					"{$baseKey}_raw" => $typeFactory->identifier($info['data']),
+					"{$baseKey}_raw" => $typeFactory->plainmediumtext($info['data']),
 					"{$baseKey}_creation_date" => $typeFactory->timestamp($info['created']),
 					"{$baseKey}_modification_date" => $typeFactory->timestamp($info['lastModif']),
 					"{$baseKey}_freshness_days" =>  $typeFactory->numeric($freshness_days),
