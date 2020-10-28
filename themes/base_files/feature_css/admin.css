@@ -407,15 +407,10 @@
 	right: 0px;
 	width: 300px;
 	background-color: #f8f9fa;
-	text-align: right;
 	margin-right: 20px;
 	margin-bottom: 20px;
 	border: 1px solid rgba(0, 0, 0, 0.125);
 	border-radius: 0.25rem;
-}
-
-#suggestionsPopup .sug-header .sug-button-close {
-	float:right;
 }
 
 #suggestionsPopup .sug-header .sug-button-close button {
