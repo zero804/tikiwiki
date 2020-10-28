@@ -13,11 +13,11 @@ class Tracker_Definition
 	private $factory;
 	private $fields;
 
-	public static function get($trackerId)
+	public static function get($trackerId, $useCache = true)
 	{
 		$trackerId = (int) $trackerId;
 
-		if (isset(self::$definitions[$trackerId])) {
+		if ($useCache && isset(self::$definitions[$trackerId])) {
 			return self::$definitions[$trackerId];
 		}
 
