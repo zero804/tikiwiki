@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c485f42739f63a8f666574412e563ce6",
+    "content-hash": "4b4f4f501acb8cc60c7e8df3ad8fee6d",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -5652,6 +5652,19 @@
             "type": "npm-asset",
             "license": [
                 "ISC"
+            ]
+        },
+        {
+            "name": "npm-asset/signature_pad",
+            "version": "2.3.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/signature_pad/npm-asset-signature_pad-2.3.2.zip",
+                "shasum": "8d9aacb1a969528a6fdbbeaaa953dedc318f5ce5"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
             ]
         },
         {
