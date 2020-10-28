@@ -161,7 +161,7 @@ class Tiki_Profile_InstallHandler_WikiPage extends Tiki_Profile_InstallHandler
 
 		$hash = [];
 
-		if ($this->mode == 'create') {
+		if (! isset($this->structure) && $this->mode == 'create') {
 			if ($this->wysiwyg && $this->wysiwyg != 'n') {
 				$this->wysiwyg = 'y';
 				$is_html = true;
