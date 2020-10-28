@@ -1979,6 +1979,7 @@
 		"npm-asset/prefixfree": ">=1.0.10",
 		"npm-asset/reveal.js": "^3.9.2",
 		"npm-asset/sass-svg-uri": ">=1.0",
+		"npm-asset/signature_pad": "^2.3.2",
 		"npm-asset/vue": ">=2.6.10",
 		"npm-asset/zxing--library": ">=0.17.0",
 		"onelogin/php-saml": ">=2.10.0",
