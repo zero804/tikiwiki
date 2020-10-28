@@ -15,7 +15,7 @@
 		<div class="clearfix sug-body">
 			<p>{tr}Do you need help with your Tiki?{/tr}<br/>
 				{tr}You can reach out to a specialist:{/tr}
-				<a target="_blank" title="{tr}Tiki Consultants{/tr}" alt="{tr}Tiki Consultants{/tr}" href="https://tiki.org/Consultants">https://tiki.org/Consultants</a>?</p>
+				<a target="_blank" title="{tr}Tiki Consultants{/tr}" alt="{tr}Tiki Consultants{/tr}" href="https://tiki.org/Consultants">https://tiki.org/Consultants</a></p>
 		</div>
 	</div>
 {/if}
