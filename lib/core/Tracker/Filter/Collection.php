@@ -60,7 +60,7 @@ class Collection
 	function addCloned($permName, self $collection)
 	{
 		foreach ($collection->filters as $filter) {
-			$this->addNew($permName, $filter->getField() . '-' . $filter->getMode())
+			$this->addNew($permName, $filter->getMode())
 				->copyProperties($filter);
 		}
 	}
