@@ -304,30 +304,15 @@ class Services_Tracker_Utilities
 
 	private function getItemFields($itemId, $keyMap)
 	{
-		$table = TikiDb::get()->table('tiki_tracker_item_fields');
-		$dataMap = $table->fetchMap(
-			'fieldId',
-			'value',
-			[
-				'fieldId' => $table->in(array_keys($keyMap)),
-				'itemId' => $itemId,
-			]
-		);
+		$trklib = TikiLib::lib('trk');
+		$item = $trklib->get_tracker_item($itemId);
 
 		$out = [];
-		$trklib = TikiLib::lib('trk');
 		foreach ($keyMap as $fieldId => $name) {
 			$info = $trklib->get_field_info($fieldId);
-
-			if ($info['type'] === 'p') {
-				$handler = $trklib->get_field_handler($info, $trklib->get_tracker_item($itemId));
-				$data = $handler->getFieldData();
-				$out[$name] = $data['value'];
-			} else if (isset($dataMap[$fieldId])) {
-				$out[$name] = $dataMap[$fieldId];
-			} else {
-				$out[$name] = '';
-			}
+			$handler = $trklib->get_field_handler($info, $item);
+			$data = $handler->getFieldData();
+			$out[$name] = $data['value'];
 		}
 
 		return $out;
