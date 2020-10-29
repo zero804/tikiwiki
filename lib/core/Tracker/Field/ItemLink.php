@@ -589,8 +589,14 @@ class Tracker_Field_ItemLink extends Tracker_Field_Abstract implements Tracker_F
 		$label = $this->getItemLabel($item);
 		$baseKey = $this->getBaseKey();
 
+		if ($this->getOption('selectMultipleValues')) {
+			$baseValue = $typeFactory->multivalue(is_array($item) ? $item : explode(',', $item));
+		} else {
+			$baseValue = $typeFactory->identifier($item);
+		}
+
 		$out = [
-			$baseKey => $typeFactory->identifier($item),
+			$baseKey => $baseValue,
 			"{$baseKey}_text" => $typeFactory->sortable($label),
 		];
 
@@ -1105,6 +1111,7 @@ class Tracker_Field_ItemLink extends Tracker_Field_Abstract implements Tracker_F
 		$permName = $this->getConfiguration('permName');
 		$name = $this->getConfiguration('name');
 		$baseKey = $this->getBaseKey();
+		$multivalue = $this->getOption('selectMultipleValues');
 
 		$collection->addNew($permName, 'selector')
 			->setLabel($name)
@@ -1114,11 +1121,15 @@ class Tracker_Field_ItemLink extends Tracker_Field_Abstract implements Tracker_F
 				'tracker_id' => $this->getOption('trackerId'),
 				'_placeholder' => tr(TikiLib::lib('object')->get_title('tracker', $this->getOption('trackerId'))),
 			]))
-			->setApplyCondition(function ($control, Search_Query $query) use ($baseKey) {
+			->setApplyCondition(function ($control, Search_Query $query) use ($baseKey, $multivalue) {
 				$value = $control->getValue();
 
 				if ($value) {
-					$query->filterIdentifier((string) $value, $baseKey);
+					if ($multivalue) {
+						$query->filterMultivalue((string) $value, $baseKey);
+					} else {
+						$query->filterIdentifier((string) $value, $baseKey);
+					}
 				}
 			})
 			;
@@ -1135,14 +1146,23 @@ class Tracker_Field_ItemLink extends Tracker_Field_Abstract implements Tracker_F
 				],
 				true
 			))	// for multi
-			->setApplyCondition(function ($control, Search_Query $query) use ($baseKey) {
+			->setApplyCondition(function ($control, Search_Query $query) use ($permName, $baseKey, $multivalue) {
 				$value = $control->getValue();
 
 				if ($value) {
 					$value = array_map(function ($v) {
 						return str_replace('trackeritem:', '', $v);
 					}, $value);
-					$query->filterMultivalue(implode(' OR ', $value), $baseKey);
+					if ($multivalue) {
+						$sub = $query->getSubQuery("ms_$permName");
+						foreach ($value as $v) {
+							if ($v) {
+								$sub->filterMultivalue((string) $v, $baseKey);
+							}
+						}
+					} else {
+						$query->filterMultivalue(implode(' OR ', $value), $baseKey);
+					}
 				}
 			})
 		;
