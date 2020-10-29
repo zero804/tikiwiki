@@ -140,10 +140,10 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 
 		if ($handler && $handler instanceof Tracker_Field_Indexable) {
 			$out = $handler->getDocumentPart($typeFactory);
+		} else {
+			$baseKey = $this->getBaseKey();
+			$out[$baseKey] = $typeFactory->sortable($value);
 		}
-
-		$baseKey = $this->getBaseKey();
-		$out[$baseKey] = $typeFactory->sortable($value);
 
 		return $out;
 	}
