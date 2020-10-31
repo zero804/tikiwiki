@@ -56,10 +56,10 @@ function tra($content, $lg = '', $unused = false, $args = [])
 		init_language($lang);
 	}
 
-	$out = tra_impl($content, $lang, $args);
+	list($out, $wasTranslated) = tra_impl($content, $lang, $args);
 	$out = typography($out, $lang, true);
 
-	record_string($content, $out);
+	populateCollectedTranslations($content, $out, $wasTranslated);
 
 	return $out;
 }
@@ -126,20 +126,19 @@ function init_language($lg)
  * @param string $lg
  * @param array  $args
  *
- * @return mixed|string
+ * @return array
  */
 function tra_impl($content, $lg = '', $args = [])
 {
 	global $prefs, $tikilib;
-
 	if (empty($content) && $content !== '0') {
-		return '';
+		return ['', false];
 	}
 
 	global ${"lang_$lg"};
 
 	if ($lg and isset(${"lang_$lg"}[$content])) {
-		return tr_replace(${"lang_$lg"}[$content], $args);
+		return [tr_replace(${"lang_$lg"}[$content], $args), true];
 	} else {
 		// If no translation has been found and if the string ends with a punctuation,
 		//   try to translate punctuation separately (e.g. if the content is 'Login:' or 'Login :',
@@ -150,16 +149,18 @@ function tra_impl($content, $lg = '', $args = [])
 		if (in_array($lastCharacter, Language::punctuations)) { // Should stay synchronized with Language_WriteFile::writeStringsToFile()
 			$new_content = substr($content, 0, -1);
 			if (isset(${"lang_$lg"}[$new_content])) {
-				return tr_replace(
-					${"lang_$lg"}[$new_content] . ( isset(${"lang_$lg"}[$lastCharacter])
-					? ${"lang_$lg"}[$lastCharacter]
-					: $lastCharacter ),
-					$args
-				);
+				return [
+					tr_replace(
+						${"lang_$lg"}[$new_content] . ( isset(${"lang_$lg"}[$lastCharacter])
+							? ${"lang_$lg"}[$lastCharacter]
+							: $lastCharacter ),
+						$args
+					),
+					true
+				];
 			}
 		}
 	}
-
 	// ### Trebly:B00624-01:added test on tikilib existence : on the first launch of tra tikilib is not yet set
 	if (isset($prefs['record_untranslated']) && $prefs['record_untranslated'] == 'y' && $lg != 'en' && isset($tikilib)) {
 		$query = 'select `id` from `tiki_untranslated` where `source`=? and `lang`=?';
@@ -169,7 +170,7 @@ function tra_impl($content, $lg = '', $args = [])
 		}
 	}
 
-	return tr_replace($content, $args);
+	return [tr_replace($content, $args), false];
 }
 
 /**
@@ -199,15 +200,17 @@ function tr_replace($content, $args)
 }
 
 /**
- * needs a proper description
+ * Populate the collected strings global variable with information related with the translation
  * @param $original
  * @param $printed
+ * @param $isTranslated
  */
-function record_string($original, $printed)
+function populateCollectedTranslations($original, $printed, $isTranslated)
 {
 	global $interactive_collected_strings;
+
 	if (interactive_enabled()) {
-		$interactive_collected_strings[ md5($original . '___' . $printed) ] = [ $original, html_entity_decode($printed) ];
+		$interactive_collected_strings[md5($original . '___' . $printed)] = [$original, html_entity_decode($printed), $isTranslated];
 	}
 }
 
