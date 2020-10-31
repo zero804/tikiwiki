@@ -56,7 +56,7 @@ function tra($content, $lg = '', $unused = false, $args = [])
 		init_language($lang);
 	}
 
-	list($out, $wasTranslated) = tra_impl($content, $lang, $args);
+	list($content, $out, $wasTranslated) = tra_impl($content, $lang, $args);
 	$out = typography($out, $lang, true);
 
 	populateCollectedTranslations($content, $out, $wasTranslated);
@@ -138,29 +138,35 @@ function tra_impl($content, $lg = '', $args = [])
 	global ${"lang_$lg"};
 
 	if ($lg and isset(${"lang_$lg"}[$content])) {
-		return [tr_replace(${"lang_$lg"}[$content], $args), true];
-	} else {
-		// If no translation has been found and if the string ends with a punctuation,
-		//   try to translate punctuation separately (e.g. if the content is 'Login:' or 'Login :',
-		//   then it will try to translate 'Log In' and ':' separately).
-		// This should avoid duplicated strings like 'Log In' and 'Log In:' that were needed before
-		//   (because there is no space before ':' in english, but there is one in others like french)
-		$lastCharacter = $content[strlen($content) - 1];
-		if (in_array($lastCharacter, Language::punctuations)) { // Should stay synchronized with Language_WriteFile::writeStringsToFile()
-			$new_content = substr($content, 0, -1);
-			if (isset(${"lang_$lg"}[$new_content])) {
-				return [
-					tr_replace(
-						${"lang_$lg"}[$new_content] . ( isset(${"lang_$lg"}[$lastCharacter])
-							? ${"lang_$lg"}[$lastCharacter]
-							: $lastCharacter ),
-						$args
-					),
-					true
-				];
-			}
+		return [$content, tr_replace(${"lang_$lg"}[$content], $args), true];
+	}
+
+	if ($lg and $key = array_search($content, ${"lang_$lg"})) {
+		return [$key, tr_replace($content, $args), true];
+	}
+
+	// If no translation has been found and if the string ends with a punctuation,
+	//   try to translate punctuation separately (e.g. if the content is 'Login:' or 'Login :',
+	//   then it will try to translate 'Log In' and ':' separately).
+	// This should avoid duplicated strings like 'Log In' and 'Log In:' that were needed before
+	//   (because there is no space before ':' in english, but there is one in others like french)
+	$lastCharacter = $content[strlen($content) - 1];
+	if (in_array($lastCharacter, Language::punctuations)) { // Should stay synchronized with Language_WriteFile::writeStringsToFile()
+		$new_content = substr($content, 0, -1);
+		if (isset(${"lang_$lg"}[$new_content])) {
+			return [
+				$content,
+				tr_replace(
+					${"lang_$lg"}[$new_content] . ( isset(${"lang_$lg"}[$lastCharacter])
+						? ${"lang_$lg"}[$lastCharacter]
+						: $lastCharacter ),
+					$args
+				),
+				true
+			];
 		}
 	}
+
 	// ### Trebly:B00624-01:added test on tikilib existence : on the first launch of tra tikilib is not yet set
 	if (isset($prefs['record_untranslated']) && $prefs['record_untranslated'] == 'y' && $lg != 'en' && isset($tikilib)) {
 		$query = 'select `id` from `tiki_untranslated` where `source`=? and `lang`=?';
@@ -170,7 +176,7 @@ function tra_impl($content, $lg = '', $args = [])
 		}
 	}
 
-	return [tr_replace($content, $args), false];
+	return [$content, tr_replace($content, $args), false];
 }
 
 /**
