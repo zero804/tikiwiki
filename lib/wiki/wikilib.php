@@ -1390,7 +1390,8 @@ class WikiLib extends TikiLib
 			$cachelib = TikiLib::lib('cache');
 			$commonKey = '{{{area-id}}}';
 			$cachetag = 'plugindesc' . $this->get_language() . '_js=' . $prefs['javascript_enabled'];
-			if (! $plugins = $cachelib->getSerialized($cachetag)) {
+
+			if (! $plugins = $cachelib->getSerialized($cachetag, '', strtotime('1 week ago'))) {
 				$list = $parserlib->plugin_get_list();
 
 				$plugins = [];

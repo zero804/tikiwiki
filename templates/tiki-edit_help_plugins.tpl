@@ -31,15 +31,17 @@
 			<tr><th>{tr}Description{/tr}</th></tr>
 
 			{section name=i loop=$plugins}
-				<tr>
-					<td>{* $plugins[i].help is generated using the tiki-plugin_help.tpl template *}
-						{if $plugins[i].help eq ''}
-							{tr}No description available{/tr}
-						{else}
-							{$plugins[i].help}
-						{/if}
-					</td>
-				</tr>
+				{if !empty($plugins[i])}
+					<tr>
+						<td>{* $plugins[i].help is generated using the tiki-plugin_help.tpl template *}
+							{if $plugins[i].help eq ''}
+								{tr}No description available{/tr}
+							{else}
+								{$plugins[i].help}
+							{/if}
+						</td>
+					</tr>
+				{/if}
 			{/section}
 		</table>
 	</div>
