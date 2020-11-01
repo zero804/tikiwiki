@@ -104,24 +104,20 @@ class BannerLib extends TikiLib
 
 			case 'useImage':
 				$raw
-					= "<div class='banner $class'><a target='$target' href='banner_click.php?id="
-					. $res["bannerId"] . "&amp;url=" . urlencode($res["url"])
-					. "'><img class='img-fluid' alt='banner' src=\"banner_image.php?id="
-					. $res["bannerId"] . "\" /></a></div>";
-
+					= "<div class='banner $class'><a target='$target' href='banner_click.php?id=" . $res["bannerId"] . "'>
+					<img class='img-fluid' alt='banner' src='banner_image.php?id=" . $res["bannerId"] . "'/></a></div>";
 				break;
 
 			case 'useFixedURL':
 				$raw
-					= "<div class='banner $class'><a target='$target' href='banner_click.php?id="
-					. $res["bannerId"] . "&amp;url=" . urlencode($res["url"]) . "'>"
+					= "<div class='banner $class'><a target='$target' href='banner_click.php?id=" . $res["bannerId"] . "'>"
 					. '<img src="' . $res["fixedURLData"] . '" alt="banner" /></a></div>';
 
 				break;
 
 			case 'useText':
-				$raw = "<a target='$target' class='bannertext' href='banner_click.php?id=" . $res["bannerId"]
-					. "&amp;url=" . urlencode($res["url"]) . "'>"
+				$raw
+					= "<a target='$target' class='bannertext' href='banner_click.php?id=" . $res["bannerId"] . "'>"
 					. $res["textData"] . "</a>";
 
 				break;
@@ -232,8 +228,8 @@ class BannerLib extends TikiLib
 		$bannerId,
 		$client,
 		$url,
-		$title = '',
-		$alt = '',
+		$title,
+		$alt,
 		$use,
 		$imageData,
 		$imageType,

@@ -15,51 +15,36 @@ if (! isset($_REQUEST["id"])) {
 }
 
 $id = (int) $_REQUEST['id'];
-$defaultCache = 'temp';
-$bannercachefile = "$defaultCache/banner.$id";
-
-if (is_file($bannercachefile) and (! isset($_REQUEST["reload"]))) {
-	$size = getimagesize($bannercachefile);
-	$type = $size['mime'];
-
-	header("Content-type: $type");
-	readfile($bannercachefile);
-	exit;
+$defaultCache = 'temp/public';
+if ($tikidomain) {
+	$defaultCache .= "/$tikidomain";
 }
+
+$bannercachefile = "$defaultCache/banner.$id";
 
 require_once('tiki-setup.php');
 
 $access->check_feature('feature_banners');
-
-$bannercachefile = $prefs['tmpDir'];
-
-if ($tikidomain) {
-	$bannercachefile .= "/$tikidomain";
-}
-
-$bannercachefile .= "/banner." . (int)$_REQUEST["id"];
 
 if (is_file($bannercachefile) and (! isset($_REQUEST["reload"]))) {
 	$size = getimagesize($bannercachefile);
 	$type = $size['mime'];
 } else {
 	$bannerlib = TikiLib::lib('banner');
-	$data = $bannerlib->get_banner($_REQUEST["id"]);
-	if (! $data) {
+	$info = $bannerlib->get_banner($_REQUEST["id"]);
+	if (! $info) {
 		die;
 	}
-	$type = $data["imageType"];
-	$data = $data["imageData"];
+	$type = $info["imageType"];
+	$data = $info["imageData"];
 	if ($data) {
-		$fp = fopen($bannercachefile, "wb");
-		fputs($fp, $data);
-		fclose($fp);
+		file_put_contents($bannercachefile, $data);
 	}
 }
 
-header("Content-type: $type");
+header("Content-Type: $type");
 if (is_file($bannercachefile)) {
 	readfile($bannercachefile);
 } else {
-	echo $data;
+	Feedback::error(tr('Banner #%0 image cache file not found', $_REQUEST['id']));
 }

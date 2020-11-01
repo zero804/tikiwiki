@@ -179,7 +179,7 @@
 				{if $hasImage eq 'y'}
 				<label class="col-sm-4 col-form-label">{tr}Current Image{/tr}</label>
 				<div class="col-sm-7">
-					{$imageName}: <img src="{$tempimg}" alt="{tr}Current Image{/tr}">
+					{$imageName}: <img src="banner_image.php?id={$bannerId}" alt="{tr}Current Image{/tr}">
 				</div>
 				{/if}
 			</div>
@@ -231,7 +231,7 @@
 				</div>
 				<div class="col-sm-7 offset-sm-4">
 					<div class="form-text">
-						{tr}Note: To be managed with tiki , your flash banner link should be:{/tr} <a class="link" href="banner_click.php?id={$bannerId}&amp;url={$url}">banner_click.php?id={$bannerId}&amp;url={$url}</a>
+						{tr}Note: To be managed with tiki , your flash banner link should be:{/tr} <a class="link" href="banner_click.php?id={$bannerId}">banner_click.php?id={$bannerId}</a>
 					</div>
 				</div>
 			</div>
