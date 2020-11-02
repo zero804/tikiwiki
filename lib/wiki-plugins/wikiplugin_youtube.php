@@ -192,6 +192,10 @@ function wikiplugin_youtube($data, $params)
 
 function getYoutubeId($sYoutubeUrl)
 {
+	// For some reason still unknown, "last part" alone doesn't work, let's complete the URL
+	if (strpos($sYoutubeUrl, 'youtu') === false) {
+		$sYoutubeUrl = "https://www.youtube.com/watch?v=" . $sYoutubeUrl;
+	}
 	$aParsedUrl = parse_url($sYoutubeUrl);
 	if ($aParsedUrl !== false && ! empty($aParsedUrl['host'])) {
 		if ($aParsedUrl['host'] !== 'youtube.com'

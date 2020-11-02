@@ -3045,7 +3045,7 @@ function prefs_feature_list($partial = false)
 			'description' => tra('Tiki suggestions displayed once per login session based on a list of rules'),
 			'type' => 'flag',
 			'keywords' => 'suggestion suggestions',
-			'default' => 'y',
+			'default' => 'n',
 			'tags' => ['advanced'],
 		],
 		'feature_templated_groups' => [
