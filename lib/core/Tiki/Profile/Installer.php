@@ -807,15 +807,21 @@ class Tiki_Profile_Installer
 		}
 
 		if (count($info['include'])) {
-			$userlib->manage_group($groupName, $info['include']);
+			if (! $dryRun) {
+				$userlib->manage_group($groupName, $info['include']);
+			}
 		}
 
 		foreach ($permissions as $perm => $v) {
 			if ($v == 'y') {
-				$userlib->assign_permission_to_group($perm, $groupName);
+				if (! $dryRun) {
+					$userlib->assign_permission_to_group($perm, $groupName);
+				}
 				$this->setTrackProfileChanges('permission', $v, false, [$perm, $groupName]);
 			} else {
-				$userlib->remove_permission_from_group($perm, $groupName);
+				if (! $dryRun) {
+					$userlib->remove_permission_from_group($perm, $groupName);
+				}
 				$this->setTrackProfileChanges('permission', false, $v, [$perm, $groupName]);
 			}
 			$this->setFeedback(sprintf(tra('Modified permission %s for %s'), $perm, $groupName));
@@ -829,10 +835,14 @@ class Tiki_Profile_Installer
 
 				if ($v == 'y') {
 					$this->setTrackProfileChanges('permission', $data, false, [$perm, $groupName, $data]);
-					$userlib->assign_object_permission($groupName, $data['id'], $data['type'], $perm);
+					if (! $dryRun) {
+						$userlib->assign_object_permission($groupName, $data['id'], $data['type'], $perm);
+					}
 				} else {
 					$this->setTrackProfileChanges('permission', false, $data, [$perm, $groupName, $data]);
-					$userlib->remove_object_permission($groupName, $data['id'], $data['type'], $perm);
+					if (! $dryRun) {
+						$userlib->remove_object_permission($groupName, $data['id'], $data['type'], $perm);
+					}
 				}
 				$this->setFeedback(
 					sprintf(tra('Modified permission %s on %s/%s for %s'), $perm, $data['type'], $data['id'], $groupName)
@@ -842,7 +852,9 @@ class Tiki_Profile_Installer
 
 		global $user;
 		if ($info['autojoin'] == 'y' && $user) {
-			$userlib->assign_user_to_group($user, $groupName);
+			if (! $dryRun) {
+				$userlib->assign_user_to_group($user, $groupName);
+			}
 			$this->setFeedback(tr('User %0 was added to %1', $user, $groupName));
 		}
 	} // }}}
