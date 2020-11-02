@@ -147,7 +147,8 @@ function wikiplugin_youtube($data, $params)
 
 	$sYoutubeId  = getYoutubeId($params['movie']);
 	if (empty($sYoutubeId)) {
-		return '^' . tra('Invalid YouTube URL provided');
+		Feedback::error(tra('Invalid YouTube URL provided'));
+		return '';
 	}
 
 	if ($params['privacyEnhanced'] == 'y') {
@@ -208,7 +209,7 @@ function getYoutubeId($sYoutubeUrl)
 			parse_str(parse_url($sYoutubeUrl, PHP_URL_QUERY), $aQueryString);
 			return $aQueryString["v"];
 		}
-	} elseif (preg_match('/^([\w-_]+)$/', $sYoutubeUrl, $matches)) {
+	} elseif (preg_match('/^([\w\-_]+)$/', $sYoutubeUrl, $matches)) {
 		$sYoutubeId = $sYoutubeUrl;
 	} else {
 		return false;
