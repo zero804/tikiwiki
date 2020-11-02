@@ -557,7 +557,7 @@ class Tiki_Profile_Installer
 		$profile->replaceReferences($permissions, $this->userData);
 		foreach ($permissions as $groupName => $info) {
 			$this->setFeedback(tra('Group changed (or modified)') . ': ' . $groupName);
-			$this->setupGroup($groupName, $info['general'], $info['permissions'], $info['objects'], $groupMap);
+			$this->setupGroup($groupName, $info['general'], $info['permissions'], $info['objects'], $groupMap, $dryRun);
 		}
 
 		foreach ($userhandlers as $description => $installer) {
