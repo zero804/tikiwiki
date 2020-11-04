@@ -25,10 +25,10 @@ class TWVersion
 		//   stable   : Represents stable releases.
 		//   unstable : Represents candidate and test/development releases.
 		//   trunk    : Represents next generation development version.
-		$this->branch 	= 'unstable';
+		$this->branch 	= 'stable';
 
 		// Set everything else, including defaults.
-		$this->version 	= '22.0vcs';	// needs to have no spaces for releases
+		$this->version 	= '22.0';	// needs to have no spaces for releases
 		$this->star		= 'Corona Borealis';
 		$this->releases	= [];
 
@@ -314,6 +314,7 @@ class TWVersion
 				'22.0alpha',
 				'22.0beta',
 				'22.0RC1',
+				'22.0',
 			];
 	}
 
