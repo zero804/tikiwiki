@@ -2839,6 +2839,11 @@ class Comments extends TikiLib
 		$this->table('tiki_comments')->update(['locked' => 'y'], ['threadId' => $threadId]);
 	}
 
+	function get_comment_object($threadId)
+	{
+		return $this->table('tiki_comments')->fetchRow(['object', 'objectType'], ['threadId' => $threadId]);
+	}
+
 	/**
 	 * @param $threadId
 	 * @param $objectId

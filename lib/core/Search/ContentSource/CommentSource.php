@@ -10,6 +10,7 @@ class Search_ContentSource_CommentSource implements Search_ContentSource_Interfa
 	private $types;
 	private $db;
 	private $permissionMap;
+	private $indexer;
 
 	function __construct($types)
 	{
@@ -35,7 +36,17 @@ class Search_ContentSource_CommentSource implements Search_ContentSource_Interfa
 	function getDocument($objectId, Search_Type_Factory_Interface $typeFactory)
 	{
 		$commentslib = TikiLib::lib('comments');
+
+		if ($this->indexer) {
+			$object = $commentslib->get_comment_object($objectId);
+			$this->indexer->errorContext = 'Comment owner '.$object['objectType'] . ' ' . $object['object'];
+		}
+
 		$comment = $commentslib->get_comment($objectId);
+
+		if ($this->indexer) {
+			$this->indexer->errorContext = null;
+		}
 
 		if (! $comment) {
 			return false;
@@ -104,5 +115,9 @@ class Search_ContentSource_CommentSource implements Search_ContentSource_Interfa
 		if (isset($this->permissionMap[$type])) {
 			return $this->permissionMap[$type];
 		}
+	}
+
+	public function setIndexer($indexer) {
+		$this->indexer = $indexer;
 	}
 }
