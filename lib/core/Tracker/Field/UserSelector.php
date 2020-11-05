@@ -672,6 +672,24 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 						$query->filterIdentifier($value, $baseKey);
 					}
 				});
+			$filters->addNew($permName, 'multiselect')
+				->setLabel($name)
+				->setControl(new Tracker\Filter\Control\MultiSelect("tf_{$permName}_ms", $users))
+				->setApplyCondition(function ($control, Search_Query $query) use ($baseKey) {
+					$values = $control->getValues();
+
+					if (! empty($values)) {
+						$sub = $query->getSubQuery("ms_$permName");
+
+						foreach ($values as $v) {
+							if ($v === '-Blank (no data)-') {
+								$sub->filterIdentifier('', $baseKey . '_text');
+							} elseif ($v) {
+								$sub->filterIdentifier((string) $v, $baseKey);
+							}
+						}
+					}
+				});
 		}
 
 		return $filters;
