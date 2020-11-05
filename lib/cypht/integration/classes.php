@@ -141,12 +141,13 @@ class Tiki_Hm_Custom_Session extends Hm_Session {
 }
 
 class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
+	public $settings_per_page;
 	/**
 	 * Load data based on source
 	 * Overrides default configuration for Tiki integration
 	 * @param string $source source location for site configuration
 	 */
-	public function __construct($source, $session_prefix = 'cypht') {
+	public function __construct($source, $session_prefix = 'cypht', $settings_per_page = false) {
 		global $user;
 		parent::__construct($source);
 		// override
@@ -157,11 +158,12 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 		$this->set('auth_type', 'custom');
 		$this->set('output_class', 'Tiki_Hm_Output_HTTP');
 		$this->set('cookie_path', ini_get('session.cookie_path'));
-		if ($user && (empty($_SESSION[$session_prefix]['user_data']) || count($_SESSION[$session_prefix]['user_data']) == 2 || !empty($_SESSION[$session_prefix]['user_override']))) {
+		if ($user && (empty($_SESSION[$session_prefix]['user_data']) || count($_SESSION[$session_prefix]['user_data']) == 2)) {
 			$user_config = new Tiki_Hm_User_Config($this);
 			$user_config->load($user);
 			$_SESSION[$session_prefix]['user_data'] = $user_config->dump();
 		}
+		$this->settings_per_page = $settings_per_page;
 		$output_modules = $this->get('output_modules');
 		$handler_modules = $this->get('handler_modules');
 		foreach ($output_modules as $page => $_) {
@@ -234,8 +236,7 @@ class Tiki_Hm_User_Config extends Hm_Config {
 	public function load($username, $key = null) {
 		$this->username = $username;
 		$session_prefix = $this->site_config->get('session_prefix');
-		$actual_user = $_SESSION[$session_prefix]['user_override'] ?? $username;
-		$data = TikiLib::lib('tiki')->get_user_preference($actual_user, $_SESSION[$session_prefix]['preference_name']);
+		$data = TikiLib::lib('tiki')->get_user_preference($username, $_SESSION[$session_prefix]['preference_name']);
 		if ($data) {
 			$data = $this->decode($data);
 			$this->config = array_merge($this->config, $data);
@@ -285,8 +286,22 @@ class Tiki_Hm_User_Config extends Hm_Config {
 		$this->shuffle();
 		$removed = $this->filter_servers();
 		$data = json_encode($this->config);
-		$actual_user = $_SESSION[$this->site_config->get('session_prefix')]['user_override'] ?? $username;
-		TikiLib::lib('tiki')->set_user_preference($actual_user, $_SESSION[$this->site_config->get('session_prefix')]['preference_name'], $data);
+		if ($this->site_config->settings_per_page) {
+			$util = new Services_Utilities();
+			$util->setTicket();
+			$_POST['ticket'] = $util->getTicket();
+			$servicelib = TikiLib::lib('service');
+			$servicelib->internal('plugin', 'replace', new JitFilter([
+				'ticket' => $util->getTicket(),
+				'page' => $this->site_config->settings_per_page,
+				'message' => "Auto-saving Cypht settings.",
+				'type' => 'cypht',
+				'content' => $data,
+				'index' => 1
+			]));
+		} else {
+			TikiLib::lib('tiki')->set_user_preference($username, $_SESSION[$this->site_config->get('session_prefix')]['preference_name'], $data);
+		}
 		$this->restore_servers($removed);
 	}
 

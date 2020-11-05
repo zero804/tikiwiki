@@ -281,12 +281,12 @@ function wikiplugin_cypht($data, $params)
 		return tra("You do not have the permission that is needed to use this feature:") . " " . $perm;
 	}
 
-	$user_override = null;
+	$settings_per_page = false;
 	if( $params['use_global_settings'] !== 'y' ) {
 		$preference_name = substr('cypht_user_config_'.$page, 0, 40);
 		$session_prefix = substr('cypht_'.$page, 0, 20);
 		if ($params['use_global_settings'] === 'nw') {
-			$user_override = '%';
+			$settings_per_page = $page;
 		}
 	} else {
 		$preference_name = 'cypht_user_config';
@@ -300,7 +300,6 @@ function wikiplugin_cypht($data, $params)
 	}
 
 	$_SESSION[$session_prefix]['preference_name'] = $preference_name;
-	$_SESSION[$session_prefix]['user_override'] = $user_override;
 
 	$_SESSION[$session_prefix]['groupmail'] = $params['groupmail'];
 	$_SESSION[$session_prefix]['group'] = $params['group'];
@@ -312,6 +311,15 @@ function wikiplugin_cypht($data, $params)
 	$_SESSION[$session_prefix]['accountFId'] = $params['accountFId'];
 	$_SESSION[$session_prefix]['datetimeFId'] = $params['datetimeFId'];
 	$_SESSION[$session_prefix]['operatorFId'] = $params['operatorFId'];
+
+	if ($settings_per_page) {
+		if ($data) {
+			$_SESSION[$session_prefix]['user_data'] = json_decode($data, true);
+		} else {
+			$data = TikiLib::lib('tiki')->get_user_preference('%', $preference_name);
+			$_SESSION[$session_prefix]['user_data'] = json_decode($data, true);
+		}
+	}
 
 	define('VENDOR_PATH', $tikipath.'/vendor_bundled/vendor/');
 	define('APP_PATH', VENDOR_PATH.'jason-munro/cypht/');
@@ -336,7 +344,7 @@ function wikiplugin_cypht($data, $params)
 	");
 
 	/* get configuration */
-	$config = new Tiki_Hm_Site_Config_File(APP_PATH.'hm3.rc', $session_prefix);
+	$config = new Tiki_Hm_Site_Config_File(APP_PATH.'hm3.rc', $session_prefix, $settings_per_page);
 
 	// merge existing configuration with plugin params for smtp/imap servers
 	if(! empty($params['imap_server']) && ! empty($params['imap_username']) && ! empty($params['imap_password'])) {
