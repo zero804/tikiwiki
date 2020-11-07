@@ -492,12 +492,12 @@ composer_core()
 	then
 		if exists curl;
 		then
-			curl -s https://getcomposer.org/installer | php -- --install-dir=temp
+			curl -s https://getcomposer.org/installer | php -- --install-dir=temp --1
 		else
-			php -r "eval('?>'.file_get_contents('https://getcomposer.org/installer'));" -- --install-dir=temp
+			php -r "eval('?>'.file_get_contents('https://getcomposer.org/installer'));" -- --install-dir=temp --1
 		fi
 	else
-		php temp/composer.phar self-update
+		php temp/composer.phar self-update --1
 	fi
 
 	if [ ! -f temp/composer.phar ];
