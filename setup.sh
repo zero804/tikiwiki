@@ -504,20 +504,20 @@ composer_core()
 	then
 		if exists curl;
 		then
-			curl -s https://getcomposer.org/installer | php -- --install-dir=temp
+			curl -s https://getcomposer.org/installer | php -- --install-dir=temp --1
 		else
 			# todo : if exists php;
-			php -r "eval('?>'.file_get_contents('https://getcomposer.org/installer'));" -- --install-dir=temp
+			php -r "eval('?>'.file_get_contents('https://getcomposer.org/installer'));" -- --install-dir=temp --1
 		fi
 		# if PATCHCOMPOSERFLAG then modify temp/composer.phar to avoid the warnings
 		# this hack is not yet possible because of a self signature check in temp/composer.phar
 	else
 		# todo : if exists php;
 		if [ ${LOGCOMPOSERFLAG} = "0" ] ; then
-			"${PHPCLI}" temp/composer.phar self-update "$OPT_QUIET"
+			"${PHPCLI}" temp/composer.phar self-update --1 "$OPT_QUIET"
 		fi
 		if [ ${LOGCOMPOSERFLAG} = "1" ] ; then
-			"${PHPCLI}" temp/composer.phar self-update "$OPT_QUIET" > ${TIKI_COMPOSER_SELF_UPDATE_LOG}
+			"${PHPCLI}" temp/composer.phar self-update --1 "$OPT_QUIET" > ${TIKI_COMPOSER_SELF_UPDATE_LOG}
 		fi
 	fi
 
