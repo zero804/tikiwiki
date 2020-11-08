@@ -147,7 +147,8 @@ function wikiplugin_youtube($data, $params)
 
 	$sYoutubeId  = getYoutubeId($params['movie']);
 	if (empty($sYoutubeId)) {
-		return '^' . tra('Invalid YouTube URL provided');
+		Feedback::error(tra('Invalid YouTube URL provided'));
+		return '';
 	}
 
 	if ($params['privacyEnhanced'] == 'y') {
@@ -192,10 +193,6 @@ function wikiplugin_youtube($data, $params)
 
 function getYoutubeId($sYoutubeUrl)
 {
-	// For some reason still unknown, "last part" alone doesn't work, let's complete the URL
-	if (strpos($sYoutubeUrl, 'youtu') === false) {
-		$sYoutubeUrl = "https://www.youtube.com/watch?v=" . $sYoutubeUrl;
-	}
 	$aParsedUrl = parse_url($sYoutubeUrl);
 	if ($aParsedUrl !== false && ! empty($aParsedUrl['host'])) {
 		if ($aParsedUrl['host'] !== 'youtube.com'
@@ -212,7 +209,7 @@ function getYoutubeId($sYoutubeUrl)
 			parse_str(parse_url($sYoutubeUrl, PHP_URL_QUERY), $aQueryString);
 			return $aQueryString["v"];
 		}
-	} elseif (preg_match('/^([\w-_]+)$/', $sYoutubeUrl, $matches)) {
+	} elseif (preg_match('/^([\w\-_]+)$/', $sYoutubeUrl, $matches)) {
 		$sYoutubeId = $sYoutubeUrl;
 	} else {
 		return false;

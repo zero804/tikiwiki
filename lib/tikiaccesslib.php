@@ -857,7 +857,9 @@ class TikiAccessLib extends TikiLib
 						empty($user) &&
 						($prefs['permission_denied_login_box'] == 'y' || ! empty($prefs['permission_denied_url']))
 			) {
-				$_SESSION['loginfrom'] = $_SERVER['REQUEST_URI'];
+				if (empty($_SESSION['loginfrom'])) {
+					$_SESSION['loginfrom'] = $_SERVER['REQUEST_URI'];
+				}
 				if ($prefs['login_autologin'] == 'y' && $prefs['login_autologin_redirectlogin'] == 'y' && ! empty($prefs['login_autologin_redirectlogin_url'])) {
 					$this->redirect($prefs['login_autologin_redirectlogin_url']);
 				}
