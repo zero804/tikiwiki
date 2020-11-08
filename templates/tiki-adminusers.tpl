@@ -397,12 +397,14 @@
 			{/if}
 			{if isset($userinfo.userId) && $userinfo.userId}
 				<h2>{tr}Edit user{/tr} {$userinfo.login|escape}</h2>
+				{assign var=thisloginescaped value=$userinfo.login|escape:'url'}
 				{if $userinfo.login ne 'admin' and $userinfo.editable}
-					{assign var=thisloginescaped value=$userinfo.login|escape:'url'}
 					{button href="tiki-assignuser.php?assign_user=$thisloginescaped" _text="{tr}Assign user to Groups{/tr}" _icon_name='group'}
 				{/if}
 				{if $userinfo.waiting eq 'a'}
-					{button href='tiki-login_validate.php?user='|cat:$thisloginescaped|cat:'&pass='|cat:$userinfo.valid _text="{tr}Validate user{/tr}" _icon_name='ok'}
+					{$thispassescaped = $userinfo.valid|escape:'url'}
+					{if empty($thispassescaped)}{$thispassescaped = 0}{/if}
+					{button href='tiki-login_validate.php?user='|cat:$thisloginescaped|cat:'&pass='|cat:$thispassescaped _text="{tr}Validate user{/tr}" _icon_name='ok'}
 				{/if}
 			{else}
 				<h2>{tr}Add a New User{/tr}</h2>
