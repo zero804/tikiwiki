@@ -668,7 +668,7 @@
                                     </a>
                                 </legend>
                                 {remarksbox type=info title="{tr}Tip{/tr}" close="n"}
-                                {tr}It is recommended to choose the "Require secure (HTTPS) login" option for better security. A security certificate needs to be configured on the server to implement a secure login.{/tr}
+                                {tr}It is recommended to choose the "Require secure (HTTPS) login" option for better security. A security certificate and dedicated IP address are required to implement a secure login.{/tr}
                                 {/remarksbox}
                                 <div style="padding:5px; clear:both"><label for="https_login">{tr}HTTPS login:{/tr}</label>
                                     <select class="form-control" name="https_login" id="https_login" onchange="hidedisabled('httpsoptions',this.value);">
