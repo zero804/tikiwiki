@@ -150,8 +150,10 @@
 			<input type="hidden" name="redirect" value=0>
 			<fieldset id="export_to_yaml">
 				<legend>{tr}Export YAML{/tr}</legend>
-				{if !empty($export_yaml)}
-					<div class="wikitext">{$export_yaml}</div>
+				{if !empty(exported_content)}
+					{foreach $exported_content as $export}
+						<div class="wikitext">{$export}</div>
+					{/foreach}
 				{/if}
 				<div class="form-group row">
 					<label class="col-form-label col-sm-2" for="export_type">{tr}Object type{/tr}</label>
@@ -163,6 +165,14 @@
 						<option value="modules"{if !empty($export_type) && $export_type eq "modules"} selected="selected"{/if}>
 							{tr}Modules{/tr}
 						</option>
+						<option value="pages"{if !empty($export_type) && $export_type eq "pages"} selected="selected"{/if}>
+							{tr}Pages{/tr}
+						</option>
+						{if $tiki_p_admin_trackers eq 'y'}
+							<option value="trackers"{if !empty($export_type) && $export_type eq "trackers"} selected="selected"{/if}>
+								{tr}Trackers{/tr}
+							</option>
+						{/if}
 					</select>
 					</div>
 				</div>
@@ -175,55 +185,79 @@
 						<label for="export_show_added">{tr}Show added preferences{/tr}</label>
 						<input type="checkbox" name="export_show_added" id="export_show_added" {if !empty($smarty.request.export_show_added)} checked="checked"{/if} >
 					</div>
-					<ul id="prefs_to_export_list" class="profile_export_list"{if not empty($export_type) and $export_type neq "prefs"} style=display:none;"{/if}>
-
-						{foreach from=$modified_list key="name" item="data"}
-							<li class="form-check">
-								{if is_array($data.current.expanded)}
-									{assign var=current value=$data.current.expanded|implode:", "}
-									{assign var=current value="[$current]"}
-								{else}
-									{assign var=current value=$data.current.expanded}
-								{/if}
-								<input type="checkbox" class="form-check-input" name="prefs_to_export[{$name}]" value="{$current|escape}"
-									id="checkbox_{$name}"{if isset($prefs_to_export[$name])} checked="checked"{/if}
-								>
-								<label for="checkbox_{$name}" class="form-check-label">
-									{$name} = '<strong>{$current|truncate:40:"...":true|escape}</strong>'{* FIXME: This one line per preference display format is ugly and doesn't work for multiline values *}
-									<em>
-										&nbsp;&nbsp;
-										{if isset($data.default)}
-											{if empty($data.default)}
-												('')
+					<div id="export_options_container">
+						<ul id="prefs_to_export_list" class="profile_export_list"{if not empty($export_type) and $export_type neq "prefs"} style=display:none;"{/if}>
+							{foreach from=$modified_list key="name" item="data"}
+								<li class="form-check">
+									{if is_array($data.current.expanded)}
+										{assign var=current value=$data.current.expanded|implode:", "}
+										{assign var=current value="[$current]"}
+									{else}
+										{assign var=current value=$data.current.expanded}
+									{/if}
+									<input type="checkbox" class="form-check-input" name="prefs_to_export[{$name}]" value="{$current|escape}"
+										   id="checkbox_{$name}"{if isset($prefs_to_export[$name])} checked="checked"{/if}
+									>
+									<label for="checkbox_{$name}" class="form-check-label">
+										{$name} = '<strong>{$current|truncate:40:"...":true|escape}</strong>'{* FIXME: This one line per preference display format is ugly and doesn't work for multiline values *}
+										<em>
+											&nbsp;&nbsp;
+											{if isset($data.default)}
+												{if empty($data.default)}
+													('')
+												{else}
+													{if is_array($data.default)}{assign var=default value=$data.default|implode:", "}{else}{assign var=default value=$data.default}{/if}
+													('{$default|truncate:20:"...":true|escape}')
+												{/if}
 											{else}
-												{if is_array($data.default)}{assign var=default value=$data.default|implode:", "}{else}{assign var=default value=$data.default}{/if}
-												('{$default|truncate:20:"...":true|escape}')
+												({tr}no default{/tr})
 											{/if}
-										{else}
-											({tr}no default{/tr})
-										{/if}
-									</em>
-								</label>
-							</li>
-						{/foreach}
-					</ul>
-					<ul id="modules_to_export_list" class="profile_export_list"{if $export_type neq "modules"} style=display:none;"{/if}>
-
-						{foreach from=$modules_for_export key="name" item="data"}
-							<li class="form-check">
-								<input type="checkbox" class="form-check-input" name="modules_to_export[{$name}]" value="{$data.name|escape}"
-									id="modcheckbox_{$name}"{if isset($modules_to_export[$name])} checked="checked"{/if} />
-								<label for="modcheckbox_{$name}" class="form-check-label">
-									{$data.data.name|escape} :
-									<em>
-										&nbsp;&nbsp;
-										{$data.data.position}
-										{$data.data.order}
-									</em>
-								</label>
-							</li>
-						{/foreach}
-					</ul>
+										</em>
+									</label>
+								</li>
+							{/foreach}
+						</ul>
+						<ul id="modules_to_export_list" class="profile_export_list"{if $export_type neq "modules"} style=display:none;"{/if}>
+							{foreach from=$modules_for_export key="name" item="data"}
+								<li class="form-check">
+									<input type="checkbox" class="form-check-input" name="modules_to_export[{$name}]" value="{$data.name|escape}"
+										   id="modcheckbox_{$name}"{if isset($modules_to_export[$name])} checked="checked"{/if} />
+									<label for="modcheckbox_{$name}" class="form-check-label">
+										{$data.data.name|escape} :
+										<em>
+											&nbsp;&nbsp;
+											{$data.data.position}
+											{$data.data.order}
+										</em>
+									</label>
+								</li>
+							{/foreach}
+						</ul>
+						<ul id="pages_to_export_list" class="profile_export_list"{if $export_type neq "pages"} style=display:none;"{/if}>
+							{foreach from=$pages_for_export item="page"}
+								<li class="form-check">
+									<input type="checkbox" class="form-check-input" name="pages_to_export[{$page.page_id}]" value="{$page.page_id}"
+										   id="pages_checkbox_{$page.page_id}"{if isset($pages_to_export[$page.page_id])} checked="checked"{/if} />
+									<label for="pages_checkbox_{$page.page_id}" class="form-check-label">
+										{$page.pageName|escape}
+									</label>
+								</li>
+							{/foreach}
+						</ul>
+						{if $tiki_p_admin_trackers eq 'y'}
+							<ul id="trackers_to_export_list" class="profile_export_list"{if $export_type neq "trackers"} style=display:none;"{/if}>
+								{foreach from=$trackers_for_export item="tracker"}
+									<li class="form-check">
+										<input type="checkbox" class="form-check-input" name="trackers_to_export[{$tracker.trackerId}]" value="{$tracker.trackerId}"
+											   id="trackers_checkbox_{$tracker.trackerId}"{if isset($trackers_to_export[$tracker.trackerId])} checked="checked"{/if} />
+										<label for="trackers_checkbox_{$tracker.trackerId}" class="form-check-label">
+											{$tracker.name|escape}
+										</label>
+									</li>
+								{/foreach}
+							</ul>
+						{/if}
+					</div>
 					<div class="text-center submit input_submit_container">
 						<input type="submit" class="btn btn-primary" name="export" value="{tr}Export{/tr}" />
 					</div>

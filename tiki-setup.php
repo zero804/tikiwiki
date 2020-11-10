@@ -287,7 +287,7 @@ if ($prefs['pwa_feature'] == 'y') { //pwa test propose, pages to cache
 			}, $items));
 		}
 
-		$pagesAll = $tikilib->get_all_pages();
+		$pagesAll = $tikilib->get_all_pages(['pageName']);
 		$pages['wiki'] = array_map(function ($m) {
 			return str_replace(' ', '-', $m['pageName']);
 		}, $pagesAll);
@@ -746,10 +746,10 @@ annotatorContent.annotator("addPlugin", "Store", {
 		"limit": 20,
 		"uri": "' . $objectIdentifier . '"
 	},
-	
+
 	emulateJSON: true,	// send the data in a form request so we can get it later
 	emulateHTTP: true	// tiki services need GET or POST
-	
+
 });
 annotatorContent.annotator("addPlugin", "Permissions", {
 	user: "' . $user . '",
@@ -757,7 +757,7 @@ annotatorContent.annotator("addPlugin", "Permissions", {
 	showEditPermissionsCheckbox: false,
 	userAuthorize: function(action, annotation, user) {
 		return annotation.permissions[action];
-	}	
+	}
 });
 ');
 	}

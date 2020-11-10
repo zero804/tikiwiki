@@ -162,17 +162,22 @@ class Tiki_Profile_InstallHandler_Tracker extends Tiki_Profile_InstallHandler
 	 * Export trackers
 	 *
 	 * @param Tiki_Profile_Writer $writer
-	 * @param int $trackerId
+	 * @param int|array $trackerIds
 	 * @param bool $all
 	 * @return bool
+	 * @throws Exception
 	 */
-	public static function export(Tiki_Profile_Writer $writer, $trackerId, $all = false) // {{{
+	public static function export(Tiki_Profile_Writer $writer, $trackerIds, $all = false)
 	{
 		$trklib = TikiLib::lib('trk');
 
-		if (isset($trackerId) && ! $all) {
+		if (isset($trackerIds) && ! $all) {
 			$listTrackers = [];
-			$listTrackers[] = ['trackerId' => $trackerId];
+			$trackerIds = (array) $trackerIds;
+
+			foreach ($trackerIds as $trackerId) {
+				$listTrackers[] = ['trackerId' => $trackerId];
+			}
 		} else {
 			$listTrackers = $trklib->list_trackers();
 			$listTrackers = $listTrackers['data'];
@@ -273,12 +278,20 @@ class Tiki_Profile_InstallHandler_Tracker extends Tiki_Profile_InstallHandler
 		return true;
 	} // }}}
 
-	function _export($trackerId, $profileObject) // {{{
+	/**
+	 * Export and dump the output of the profile writer
+	 * @param $trackerIds
+	 * @param $profileObject
+	 * @return string
+	 * @throws Exception
+	 */
+	public function dumpExport($trackerIds, $profileObject)
 	{
 		$writer = new Tiki_Profile_Writer('temp', 'none');
-		self::export($writer, $trackerId);
+		self::export($writer, $trackerIds);
+
 		return $writer->dump();
-	} // }}}
+	}
 
 	/**
 	 * Remove tracker

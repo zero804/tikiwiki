@@ -2301,7 +2301,7 @@ class Services_Tracker_Controller
 		$profileObject = new Tiki_Profile_Object($data, $profile);
 		$profileTrackerInstallHandler = new Tiki_Profile_InstallHandler_Tracker($profileObject, []);
 
-		$export_yaml = $profileTrackerInstallHandler->_export($trackerId, $profileObject);
+		$export_yaml = $profileTrackerInstallHandler->dumpExport($trackerId, $profileObject);
 
 		include_once 'lib/wiki-plugins/wikiplugin_code.php';
 		$export_yaml = wikiplugin_code($export_yaml, ['caption' => 'YAML', 'colors' => 'yaml']);

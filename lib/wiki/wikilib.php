@@ -1150,6 +1150,19 @@ class WikiLib extends TikiLib
 		return $pages;
 	}
 
+	/**
+	 * Get wiki pages by ID
+	 * @param array$pageIds
+	 * @param array $columns The fields to
+	 * @return array|bool
+	 */
+	public function getPagesByIds($pageIds, $columns = [])
+	{
+		return $this->table('tiki_pages')->fetchAll($columns, [
+			'page_id' => $this->table('tiki_pages')->in($pageIds)
+		]);
+	}
+
 	// Like pages are pages that share a word in common with the current page
 	public function get_like_pages($page)
 	{

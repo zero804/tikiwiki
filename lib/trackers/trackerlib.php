@@ -839,6 +839,19 @@ class TrackerLib extends TikiLib
 		return $retval;
 	}
 
+	/**
+	 * Get trackers by ID
+	 * @param array $columns
+	 * @param $trackerIds
+	 * @return array|bool
+	 */
+	public function getTrackersByIds($trackerIds, $columns = [])
+	{
+		return $this->trackers()->fetchAll($columns, [
+			'trackerId' => $this->trackers()->in($trackerIds)
+		]);
+	}
+
 	// This function gets the prefix alias page name e.g. Org:230 for the pretty tracker
 	// wiki page corresponding to a tracker item (230 in the example) using prefix aliases
 	// Returns false if no such page is found.

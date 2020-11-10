@@ -1768,9 +1768,9 @@ class ParserLib extends TikiDb_Bridge
 								break;
 							} else {
 								// The namespace is cutted out
-								$value = substr($page, ($lastNamespaceSeparatorIndex + strlen($prefs['namespace_separator']))); 
+								$value = substr($page, ($lastNamespaceSeparatorIndex + strlen($prefs['namespace_separator'])));
 								break;
-							}							
+							}
 						case 'domain':
 							if ($smarty->getTemplateVars('url_host') != null) {
 								$value = $smarty->getTemplateVars('url_host');
@@ -3255,7 +3255,7 @@ class ParserLib extends TikiDb_Bridge
 
 			if (count($htmlLinksSefurl[1])) {
 				// The case <a href=" ... will catch manually entered links. Only add links to wiki pages
-				$pages = $tikilib->get_all_pages();
+				$pages = $tikilib->get_all_pages(['pageName']);
 				$tikiindex = [];
 				foreach ($htmlLinksSefurl[1] as $link) {
 					// Validate that the link is to a wiki page

@@ -306,42 +306,76 @@ $smarty->assign('modified_list', $modified);
 $assigned_modules_for_export = $modlib->getModulesForExport();
 $smarty->assign('modules_for_export', $assigned_modules_for_export);
 
+$pagesToExport = $tikilib->get_all_pages(['page_id', 'pageName']);
+$smarty->assign('pages_for_export', $pagesToExport);
+
+if ($tiki_p_admin_trackers == 'y') {
+	$trackersToExport = TikiLib::lib('trk')->list_trackers();
+	$smarty->assign('trackers_for_export', $trackersToExport['data']);
+}
+
 if (! isset($_REQUEST['export_type'])) {
 	$_REQUEST['export_type'] = 'prefs';
 }
 $smarty->assign('export_type', $_REQUEST['export_type']);
 
-if (isset($_REQUEST['export'])) {
-	if ($_REQUEST['export_type'] === 'prefs') {
-		$export_yaml = Yaml::dump(
-			[ 'preferences' => $_REQUEST['prefs_to_export'] ],
-			20,
-			1,
-			Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK
-		);
-	} elseif ($_REQUEST['export_type'] === 'modules') {
-		$modules_to_export = [];
-		foreach ($_REQUEST['modules_to_export'] as $k => $v) {
-			$modules_to_export[] = $assigned_modules_for_export[$k];
-		}
-		$export_yaml = Yaml::dump(
-			[ 'objects' => $modules_to_export],
-			20,
-			1,
-			Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK
-		);
-	} else {
-		$export_yaml = '';		// something went wrong?
+if (isset($_REQUEST['export']) && isset($_REQUEST['export_type'])) {
+	$toExport = [];
+	$profile = Tiki_Profile::fromString('dummy', '');
+	$data = [];
+	$profileObject = new Tiki_Profile_Object($data, $profile);
+
+	switch ($_REQUEST['export_type']) {
+		case 'trackers':
+			if (! empty($_REQUEST['trackers_to_export']) && $tiki_p_admin_trackers == 'y') {
+				$requestedTrackersExport = TikiLib::lib('trk')->getTrackersByIds($_REQUEST['trackers_to_export'], ['trackerId', 'name']);
+				$profileTrackerInstallHandler = new Tiki_Profile_InstallHandler_Tracker($profileObject, []);
+
+				$toExport['YAML'] = $profileTrackerInstallHandler->dumpExport(array_column($requestedTrackersExport, 'trackerId'), $profileObject);
+			}
+			break;
+		case 'pages':
+			if (! empty($_REQUEST['pages_to_export'])) {
+				$requestedPagesExport = TikiLib::lib('wiki')->getPagesByIds($_REQUEST['pages_to_export'], ['page_id', 'pageName', 'data']);
+				$profileWikiInstallHandler = new Tiki_Profile_InstallHandler_WikiPage($profileObject, []);
+
+				$toExport['YAML'] = $profileWikiInstallHandler->dumpExport(array_column($requestedPagesExport, 'pageName'), $profileObject);
+
+				if (! empty($requestedPagesExport)) {
+					foreach ($requestedPagesExport as $page) {
+						$toExport[$page['pageName'] . '.wiki'] = $page['data'];
+					}
+				}
+			}
+			break;
+		case 'prefs':
+			$toExport['YAML'] = Yaml::dump(['preferences' => $_REQUEST['prefs_to_export']], 20, 1, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK);
+			break;
+		case 'modules':
+			$modules_to_export = [];
+
+			foreach ($_REQUEST['modules_to_export'] as $k => $v) {
+				$modules_to_export[] = $assigned_modules_for_export[$k];
+			}
+
+			$toExport['YAML'] = Yaml::dump(['objects' => $modules_to_export], 20, 1, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK);
+			break;
 	}
 
-	$export_yaml = preg_replace('/^---\n/', '', $export_yaml);
-	$export_yaml = "{CODE(caption=>YAML,wrap=>0)}\n" . $export_yaml . "{CODE}\n";
-
+	$exportedContent = [];
 	include_once 'lib/wiki-plugins/wikiplugin_code.php';
-	$export_yaml = wikiplugin_code($export_yaml, ['caption' => 'Wiki markup', 'colors' => 'tiki' ], null, []);
-	$export_yaml = preg_replace('/~[\/]?np~/', '', $export_yaml);
 
-	$smarty->assign('export_yaml', $export_yaml);
+	foreach ($toExport as $captionName => $export) {
+		$export = preg_replace('/^---\n/', '', $export);
+		$export = "{CODE(caption=>$captionName,wrap=>0)}\n" . $export . "{CODE}\n";
+		$export = wikiplugin_code($export, ['caption' => $captionName, 'colors' => 'tiki'], null, []);
+
+		$exportedContent[] = preg_replace('/~[\/]?np~/', '', $export);
+	}
+
+	$smarty->assign('exported_content', $exportedContent);
 	$smarty->assign('prefs_to_export', $_REQUEST['prefs_to_export']);
 	$smarty->assign('modules_to_export', $_REQUEST['modules_to_export']);
+	$smarty->assign('pages_to_export', $_REQUEST['pages_to_export']);
+	$smarty->assign('trackers_to_export', $_REQUEST['trackers_to_export']);
 }

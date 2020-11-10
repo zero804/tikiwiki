@@ -318,36 +318,62 @@ class Tiki_Profile_InstallHandler_WikiPage extends Tiki_Profile_InstallHandler
 	 * Export wikipages
 	 *
 	 * @param Tiki_Profile_Writer $writer
-	 * @param string $page
+	 * @param string|array $pageNames
 	 * @param bool $all
 	 * @return bool
+	 * @throws Exception
 	 */
-	public static function export(Tiki_Profile_Writer $writer, $page, $all = false)
+	public static function export(Tiki_Profile_Writer $writer, $pageNames, $all = false)
 	{
 		$tikilib = \TikiLib::lib('tiki');
+		$pagesArray = [];
 
-		$pageName = ! empty($page) ? $page : '';
-		$listPages = $tikilib->list_pages(0, -1, 'pageName_desc', $pageName);
-		if ($listPages['cant'] == 0) {
-			return false;
+		$pageNames = (array) $pageNames;
+
+		foreach ($pageNames as $pageName) {
+			$listPages = $tikilib->list_pages(0, -1, 'pageName_desc', $pageName);
+
+			if ($listPages['cant'] == 0) {
+				continue;
+			}
+
+			$pagesArray[] = $listPages;
 		}
 
-		foreach ($listPages['data'] as $page) {
-			$pageName = $page['pageName'];
-			$writer->writeExternal($pageName, $writer->getReference('wiki_content', $page['data']));
-			$writer->addObject(
-				'wiki_page',
-				$pageName,
-				array_filter([
-					'name' => $pageName,
-					'content' => "wikicontent:$pageName",
-					'description' => $page['description'],
-					'lang' => $page['lang'],
-					'wysiwyg' => $page['wysiwyg'],
-				])
-			);
+		foreach ($pagesArray as $pageData) {
+			foreach ($pageData['data'] as $page) {
+				$pageName = $page['pageName'];
+				$writer->writeExternal($pageName, $writer->getReference('wiki_content', $page['data']));
+				$writer->addObject(
+					'wiki_page',
+					$pageName,
+					array_filter([
+						'name' => $pageName,
+						'content' => "wikicontent:$pageName",
+						'description' => $page['description'],
+						'lang' => $page['lang'],
+						'wysiwyg' => $page['wysiwyg'],
+					])
+				);
+			}
 		}
+
 		return true;
+	}
+
+	/**
+	 * Export and get the output of the profile writer
+	 * @param $pageNames
+	 * @param $profileObject
+	 * @return string
+	 * @throws Exception
+	 */
+	public function dumpExport($pageNames, $profileObject)
+	{
+		$writer = new Tiki_Profile_Writer('temp', 'none');
+		self::export($writer, $pageNames);
+
+		return $writer->dump();
 	}
 
 	/**

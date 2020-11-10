@@ -3384,12 +3384,15 @@ class TikiLib extends TikiDb_Bridge
 	}
 
 	// Returns the name of all pages
-	/**
-	 * @return mixed
-	 */
-	function get_all_pages()
+
+    /**
+     * Get all tiki pages
+     * @param array $columns
+     * @return mixed
+     */
+	function get_all_pages($columns = [])
 	{
-		return $this->table('tiki_pages')->fetchAll(['pageName'], []);
+		return $this->table('tiki_pages')->fetchAll($columns, []);
 	}
 
 	/**
