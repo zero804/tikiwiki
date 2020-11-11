@@ -227,7 +227,8 @@ abstract class Tracker_Field_Abstract implements Tracker_Field_Interface, Tracke
 	function watchCompare($old, $new)
 	{
 		$name = $this->getConfiguration('name');
-		$is_visible = $this->getConfiguration('isHidden', 'n') == 'n';
+		$hidden = $this->getConfiguration('isHidden', 'n');
+		$is_visible = $hidden === 'n'|| $hidden === 'r';	// not hidden or only hidden from rss feeds
 
 		if (! $is_visible) {
 			return '';
