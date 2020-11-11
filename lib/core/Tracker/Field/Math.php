@@ -108,31 +108,7 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 		$value = $this->getValue();
 
 		if ('index' == $this->getOption('recalculate')) {
-			try {
-				$runner = $this->getFormulaRunner();
-				$data = ['itemId' => $this->getItemId()];
-
-				foreach ($runner->inspect() as $fieldName) {
-					if (is_string($fieldName) || is_numeric($fieldName)) {
-						$data[$fieldName] = $this->getItemField($fieldName);
-					}
-				}
-
-				$this->prepareFieldValues($data);
-				// get it again as runner is a static property and could have overridden formula by preparing other field values
-				$runner = $this->getFormulaRunner();
-				$runner->setVariables($data);
-
-				$value = (string)$runner->evaluate();
-			} catch (Math_Formula_Exception $e) {
-				$value = $e->getMessage();
-				trigger_error("Error in Math field calculation: ".$value, E_USER_ERROR);
-			}
-
-			if ($value !== $this->getValue()) {
-				$trklib = TikiLib::lib('trk');
-				$trklib->modify_field($this->getItemId(), $this->getConfiguration('fieldId'), $value);
-			}
+			$value = $this->recalculate();
 		}
 
 		$handler = $this->getMirroredHandler();
@@ -325,5 +301,36 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 		}
 
 		return $handler;
+	}
+
+	public function recalculate()
+	{
+		try {
+			$runner = $this->getFormulaRunner();
+			$data = ['itemId' => $this->getItemId()];
+
+			foreach ($runner->inspect() as $fieldName) {
+				if (is_string($fieldName) || is_numeric($fieldName)) {
+					$data[$fieldName] = $this->getItemField($fieldName);
+				}
+			}
+
+			$this->prepareFieldValues($data);
+			// get it again as runner is a static property and could have overridden formula by preparing other field values
+			$runner = $this->getFormulaRunner();
+			$runner->setVariables($data);
+
+			$value = (string)$runner->evaluate();
+		} catch (Math_Formula_Exception $e) {
+			$value = $e->getMessage();
+			trigger_error("Error in Math field calculation: " . $value, E_USER_ERROR);
+		}
+
+		if ($value !== $this->getValue()) {
+			$trklib = TikiLib::lib('trk');
+			$trklib->modify_field($this->getItemId(), $this->getConfiguration('fieldId'), $value);
+		}
+
+		return $value;
 	}
 }

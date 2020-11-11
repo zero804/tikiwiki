@@ -185,6 +185,7 @@ class ConsoleApplicationBuilder
 				new SchedulerHealCommand,
 				new TrackerExportCommand,
 				new TrackerImportCommand,
+				new TrackerRecalcCommand,
 				new SitemapGenerateCommand,
 				new TikiInfoCommand,
 				new TrackerClearCommand,
