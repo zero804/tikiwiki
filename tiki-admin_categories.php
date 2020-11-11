@@ -387,7 +387,7 @@ $smarty->loadPlugin('smarty_function_permission_link');
 $smarty->loadPlugin('smarty_function_ticket');
 foreach ($categories as $category) {
 	$perms = Perms::get(['type' => 'category', 'object' => $category['categId']]);
-	if ($perms->admin_categories == 'y') {
+	if ($perms->admin_categories) {
 		$data = '<a href="tiki-admin_categories.php?parentId='
 			. $category['parentId']
 			. '&amp;categId='
@@ -687,7 +687,7 @@ if (! empty($errors)) {
 	Feedback::warning($errors);
 }
 
-if (isset($_REQUEST["categId"])) {
+if (! empty($_REQUEST["categId"])) {
 	$access->check_permission('tiki_p_admin_categories', '', 'category', $_REQUEST['categId']);
 	$availableIds = $rolesRepo->getAvailableCategoriesRolesIds($_REQUEST["categId"]);
 	$smarty->assign('availableIds', $availableIds);
