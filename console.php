@@ -136,7 +136,7 @@ if (isset($exceptionToRender)) {
 function custom_error_handler($number, $message, $file, $line) : void
 {
 	// Determine if this error is one of the enabled ones in php config (php.ini, .htaccess, etc)
-	$error_is_enabled = (bool)($number & ini_get('error_reporting') );
+	$error_is_enabled = (bool)($number & (int)ini_get('error_reporting') );
 
 	// Fatal Errors
 	// throw an Error Exception, to be handled by whatever Exception handling logic is available in this context
