@@ -35,8 +35,16 @@ if (! isset($_REQUEST['parentId'])) {
 }
 $smarty->assign('parentId', $_REQUEST['parentId']);
 
+$categories = $categlib->getCategories(null, false, true, true, 'admin_categories');
+$smarty->assign_by_ref('categories', $categories);
 
-$access->check_permission('tiki_p_admin_categories', '', 'category', $_REQUEST['parentId']);
+if (empty($_REQUEST['parentId'])) {
+	if (empty($categories) && $tiki_p_admin_categories !== 'y') {
+		$access->check_permission('tiki_p_admin_categories');
+	}
+} else {
+	$access->check_permission('tiki_p_admin_categories', '', 'category', $_REQUEST['parentId']);
+}
 
 if (! empty($_REQUEST['unassign']) && $access->checkCsrfForm(tra('Unassign objects from category?'))) {
 	$result = $categlib->unassign_all_objects($_REQUEST['parentId']);
@@ -371,14 +379,6 @@ if ($_REQUEST["parentId"]) {
 	$father = 0;
 }
 $smarty->assign('father', $father);
-
-// ---------------------------------------------------
-
-$categories = $categlib->getCategories(null, false);
-if (empty($categories) && $tiki_p_admin_categories != 'y') {
-	$access->check_permission('tiki_p_admin_categories');
-}
-$smarty->assign('categories', $categories);
 
 $treeNodes = [];
 $smarty->loadPlugin('smarty_function_icon');
