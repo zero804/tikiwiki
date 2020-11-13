@@ -9,26 +9,49 @@
 
 class TWVersion
 {
-	public $branch;		// Development cycle
-	public $version;		// This version
-	private $latestMinorRelease;		// Latest release in the same major version release series
-	public $latestRelease;		// Latest release
-	private $isLatestMajorVersion; // Whether or not the current major version is the latest
-	public $releases;		// Array of all releases from website
-	public $star;			// Star being used for this version tree
-	public $svn;			// Is this a Subversion version or a package?
-	public $git;			// Is this a Git version or a package?
+	/**
+	 * @var string 		Set the development branch.  Valid are:
+	   stable   : Represents stable releases.
+	   unstable : Represents candidate and test/development releases.
+	   trunk    : Represents next generation development version.
+	 */
+	public $branch;
+	/**
+	 * @var string This Version. Needs to have no spaces for releases
+	 */
+	public $version;
+	/**
+	 * @var mixed Returns the latest minor release in the same major version release series.
+	 */
+	private $latestMinorRelease;
+	public $latestRelease;
+	/**
+	 * @var mixed Returns the latest minor release in the same major version release series.
+	 */
+	private $isLatestMajorVersion;
+	/**
+	 * @var array all releases from website
+	 */
+	public $releases;
+	/**
+	 * @var string Star being used for this version tree
+	 */
+	public $star;
+	/**
+	 * @var string Is this a Subversion version or a package?
+	 */
+	public $svn;
+	/**
+	 * @var string Is this a Git version or a package?
+	 */
+	public $git;
 
 	function __construct()
 	{
-		// Set the development branch.  Valid are:
-		//   stable   : Represents stable releases.
-		//   unstable : Represents candidate and test/development releases.
-		//   trunk    : Represents next generation development version.
 		$this->branch 	= 'trunk';
 
 		// Set everything else, including defaults.
-		$this->version 	= '23.0vcs';	// needs to have no spaces for releases
+		$this->version 	= '23.0vcs';
 		$this->star		= 'Corona Borealis';
 		$this->releases	= [];
 
@@ -39,7 +62,10 @@ class TWVersion
 		$this->git	= is_dir('.git') ? 'y' : 'n';
 	}
 
-	// Returns the latest minor release in the same major version release series.
+	/**
+	 * Returns the latest minor release in the same major version release series.
+	 * @return mixed
+	 */
 	function getLatestMinorRelease()
 	{
 		$this->pollVersion();
@@ -56,7 +82,10 @@ class TWVersion
 		return preg_replace("/^(\d+\.\d+).*$/", '$1', $this->version);
 	}
 
-	// Returns an array of all used Tiki stars.
+	/**
+	 * Returns an array of all used Tiki stars.
+	 * @return string[]
+	 */
 	function tikiStars()
 	{
 		return [
@@ -96,13 +125,17 @@ class TWVersion
 		];
 	}
 
-	 // Returns an array of all valid versions of Tiki.
+	/**
+	 * Returns an array of all valid versions of Tiki.
+	 *
+	 * These are all the valid release versions of Tiki.
+	 * Newest version goes at the end.
+	 * Release Managers should update this array before release.
+	 *
+	 * @return string[]
+	 */
 	function tikiVersions()
 	{
-		// These are all the valid release versions of Tiki.
-		// Newest version goes at the end.
-		// Release Managers should update this array before
-		// release.
 		return [
 				1 => '1.9.1',
 				'1.9.1.1',
@@ -318,21 +351,28 @@ class TWVersion
 			];
 	}
 
-	// Gets the latest star used by Tiki.
+	/**
+	 * Gets the latest star used by Tiki.
+	 * @return mixed|string
+	 */
 	function getStar()
 	{
 		$stars = $this->tikiStars();
 		return $stars[count($stars)];
 	}
 
-	// Determines the currently-running version of Tiki. eg. 22.0vcs
-	function getVersion()
+	/**
+	 * Determines the currently-running version of Tiki. eg. 22.0vcs
+	 * @return string
+	 */
+		public function getVersion()
 	{
 		return $this->version;
 	}
 
-	// Pulls the list of releases in the current branch of Tiki from
-	// a central site.
+	/**
+	 * Pulls the list of releases in the current branch of Tiki from a central site.
+	 */
 	private function pollVersion()
 	{
 		static $done = false;
@@ -364,14 +404,19 @@ class TWVersion
 		$done = true;
 	}
 
-	// Returns true if the current major version is the latest, false otherwise.
+	/**
+	 * @return mixed Returns true if the current major version is the latest, false otherwise.
+	 */
 	function isLatestMajorVersion()
 	{
 		$this->pollVersion();
 		return $this->isLatestMajorVersion;
 	}
 
-	// Returns true if the current version is the latest in its major version release series, false otherwise.
+	/**
+	 * Returns true if the current version is the latest in its major version release series, false otherwise.
+	 * @return bool
+	 */
 	function isLatestMinorRelease()
 	{
 		$this->pollVersion();
