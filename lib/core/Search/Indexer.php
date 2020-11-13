@@ -161,9 +161,12 @@ class Search_Indexer
 
 		$stat['times']['total'] = $totalTime;
 
-		$this->log('Starting optimization');
-		$this->searchIndex->optimize();
-		$this->log('Finished optimization');
+		global $prefs;
+		if ($prefs['unified_engine'] !== 'elastic') {
+			$this->log('Starting optimization');
+			$this->searchIndex->optimize();
+			$this->log('Finished optimization');
+		}
 		$this->log('Finished rebuild');
 		return $stat;
 	}
