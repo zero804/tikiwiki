@@ -419,19 +419,22 @@ foreach ($categories as $category) {
 			)
 			. '</a>';
 
-		if ($userlib->object_has_one_permission($category['categId'], 'category')) {
-			$title = tra('Edit permissions for this category');
-		} else {
-			$title = tra('Assign permissions');
+		// check for global perm admin perms because the object perm admin_categories grants assign_perm_category
+		if ($tiki_p_assign_perm_category === 'y') {
+			if ($userlib->object_has_one_permission($category['categId'], 'category')) {
+				$title = tra('Edit permissions for this category');
+			} else {
+				$title = tra('Assign permissions');
+			}
+			$data .= smarty_function_permission_link(
+				[
+					'id' => $category['categId'],
+					'type' => 'category',
+					'mode' => 'text',
+				],
+				$smarty->getEmptyInternalTemplate()
+			);
 		}
-		$data .= smarty_function_permission_link(
-			[
-				'id' => $category['categId'],
-				'type' => 'category',
-				'mode' => 'text',
-			],
-			$smarty->getEmptyInternalTemplate()
-		);
 		$popupparams = ['trigger' => 'click', 'fullhtml' => 1, 'center' => true, 'text' => $data];
 		$newdata = '<a class="tips" title="'
 			. tra('Actions')
