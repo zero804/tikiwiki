@@ -417,31 +417,31 @@ if (function_exists('disk_free_space')) {
 if (version_compare(PHP_VERSION, '5.6.0', '<')) {
 	$php_properties['PHP version'] = array(
 		'fitness' => tra('unsure'),
-		'setting' => phpversion(),
+		'setting' => PHP_VERSION,
 		'message' => 'This PHP version is somewhat old. Tiki 12.x LTS or 15.x LTS can be run, but not newer versions. Please see http://doc.tiki.org/Requirements for details.'
 	);
 } elseif (version_compare(PHP_VERSION, '7.0.0', '<')) {
 	$php_properties['PHP version'] = array(
 		'fitness' => tra('unsure'),
-		'setting' => phpversion(),
+		'setting' => PHP_VERSION,
 		'message' => 'This version of PHP is good, and Tiki versions between 15.x LTS and 18.x LTS will work fine on this version of PHP. Please see http://doc.tiki.org/Requirements for details.'
 	);
 } elseif (version_compare(PHP_VERSION, '7.1.0', '<')) {
 	$php_properties['PHP version'] = array(
 		'fitness' => tra('good'),
-		'setting' => phpversion(),
+		'setting' => PHP_VERSION,
 		'message' => 'This version of PHP is good, Tiki 18.x - Tiki 20 will work fine on this version of PHP. Please see http://doc.tiki.org/Requirements for details.'
 	);
 } elseif (version_compare(PHP_VERSION, '7.2.0', '<')) {
 	$php_properties['PHP version'] = array(
 		'fitness' => tra('good'),
-		'setting' => phpversion(),
+		'setting' => PHP_VERSION,
 		'message' => 'This version of PHP is good, Tiki 19.x - Tiki 21.x will work fine on this version of PHP. Please see http://doc.tiki.org/Requirements for details.'
 	);
 } else {
 	$php_properties['PHP version'] = array(
 		'fitness' => tra('good'),
-		'setting' => phpversion(),
+		'setting' => PHP_VERSION,
 		'message' => 'This version of PHP is recent. Versions 19.x and newer will work fine on this version of PHP. Please see http://doc.tiki.org/Requirements for details.'
 	);
 }
@@ -474,7 +474,7 @@ if (function_exists('exec')) {
 		break;
 	}
 	if ($cliCommand) {
-		if (phpversion() == $cliVersion) {
+		if (PHP_VERSION == $cliVersion) {
 			$php_properties['PHP CLI version'] = array(
 				'fitness' => tra('good'),
 				'setting' => $cliVersion,
@@ -2728,7 +2728,7 @@ if ($standalone && ! $nagios) {
 			$email_test_headers = 'From: noreply@tiki.org' . "\n";	// needs a valid sender
 			$email_test_headers .= 'Reply-to: ' . $email . "\n";
 			$email_test_headers .= "Content-type: text/plain; charset=utf-8\n";
-			$email_test_headers .= 'X-Mailer: Tiki-Check - PHP/' . phpversion() . "\n";
+			$email_test_headers .= 'X-Mailer: Tiki-Check - PHP/' . PHP_VERSION . "\n";
 			$email_test_subject = tra('Test mail from Tiki Server Compatibility Test');
 			$email_test_body = tra("Congratulations!\n\nThis server can send emails.\n\n");
 			$email_test_body .= "\t" . tra('Server:') . ' ' . (empty($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_ADDR'] : $_SERVER['SERVER_NAME']) . "\n";

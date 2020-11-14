@@ -10,6 +10,8 @@
  */
 // $Id$
 
+const MIN_PHP_VERSION = '7.4.0';
+
 $in_installer = 1;
 define('TIKI_IN_INSTALLER', 1);
 if (! isset($title)) {
@@ -28,8 +30,8 @@ ini_set('display_errors', 1);
 
 // Check that PHP version is sufficient
 
-if (version_compare(PHP_VERSION, '7.4.0', '<')) {
-	$title = 'PHP 7.4 is required';
+if (version_compare(PHP_VERSION, MIN_PHP_VERSION, '<')) {
+	$title = 'PHP ' . MIN_PHP_VERSION . ' is required';
 	$content = '<p>Please contact your system administrator ( if you are not the one ;) ). Your version: ' . PHP_VERSION . ' <br /> <br /> ' . '</p>';
 	createPage($title, $content);
 }

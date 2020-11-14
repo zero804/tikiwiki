@@ -1190,11 +1190,11 @@ if ($install_step == '2') {
 			$email_test_headers .= 'From: noreply@tiki.org' . "\n";	// needs a valid sender
 			$email_test_headers .= 'Reply-to: ' . $email_test_to . "\n";
 			$email_test_headers .= "Content-type: text/plain; charset=utf-8\n";
-			$email_test_headers .= 'X-Mailer: Tiki/' . $TWV->version . ' - PHP/' . phpversion() . "\n";
+			$email_test_headers .= 'X-Mailer: Tiki/' . $TWV->version . ' - PHP/' . PHP_VERSION . "\n";
 			$email_test_subject = tr('Test mail from Tiki installer %0', $TWV->version);
 			$email_test_body = tra("Congratulations!\n\nYour server can send emails.\n\n");
 			$email_test_body .= "\t" . tra('Tiki version:') . ' ' . $TWV->version . "\n";
-			$email_test_body .= "\t" . tra('PHP version:') . ' ' . phpversion() . "\n";
+			$email_test_body .= "\t" . tra('PHP version:') . ' ' . PHP_VERSION . "\n";
 			$email_test_body .= "\t" . tra('Server:') . ' ' . (empty($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_ADDR'] : $_SERVER['SERVER_NAME']) . "\n";
 			$email_test_body .= "\t" . tra('Sent:') . ' ' . date(DATE_RFC822) . "\n";
 

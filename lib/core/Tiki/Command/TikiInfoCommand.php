@@ -32,13 +32,12 @@ class TikiInfoCommand extends Command
 
 		$TWV = new \TWVersion();
 		$tikiVersion = $TWV->version;
-		$phpVersion = phpversion();
 
 		if (empty($tikiPhpArgument)) {
-			$output->writeln("<info>PHP version: " . $phpVersion . "</info>");
+			$output->writeln("<info>PHP version: " . PHP_VERSION . "</info>");
 			$output->writeln("<info>Tiki version: " . $tikiVersion . "</info>");
 		} elseif ($tikiPhpArgument == 'php') {
-			$output->writeln("<info>" . $phpVersion . "</info>");
+			$output->writeln("<info>" . PHP_VERSION . "</info>");
 		} elseif ($tikiPhpArgument == 'tiki') {
 			$output->writeln("<info>" . $tikiVersion . "</info>");
 		} else {
