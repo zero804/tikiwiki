@@ -25,7 +25,7 @@ class DevUnInstallCommand extends Command
 	protected function configure()
 	{
 		$this
-			->setName('dev:uninstall')
+			->setName('dev:remove')
 			->setDescription('Uninstall development files')
 			->setHelp('Remove composer development vendor files and unit test config. Leaves unit testing database intact.');
 	}

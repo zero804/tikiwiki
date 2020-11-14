@@ -60,8 +60,8 @@
 						<pre>php console.php d:u</pre>
 						<br/><br/>
 						{tr}In case of Tikis with domains <code>site1.example.com</code> & <code>site2.example.com</code>, in a <em>MultiTiki</em> setup, append an argument like <code> --site=sitename.example.com</code>{/tr}
-						<pre>php console.php d:u --site=site1.example.com</pre>
-						<pre>php console.php d:u --site=site2.example.com</pre>
+						<pre>php console.php database:update --site=site1.example.com</pre>
+						<pre>php console.php database:update --site=site2.example.com</pre>
 						<br/><br/>
 						{tr}Click to read more{/tr}
 					">

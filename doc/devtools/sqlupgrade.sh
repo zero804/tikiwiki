@@ -35,7 +35,7 @@ if [ ! -d 'db' ]; then
 	exit 0
 fi
 
-# Update old command 'installer/shell.php' to the newer one 'console.php d:u --site='
+# Update old command 'installer/shell.php' to the newer one 'console.php database:update --site='
 find db/ -name local.php -follow | sed -nr 's/db(\/([a-z0-9_-.]+))?\/local\.php/\2/p' | awk '{system("'$PHP' console.php -n database:update --site=" $0)}'
 
 exit 0
