@@ -126,13 +126,13 @@ function init_language($lg)
  * @param string $lg
  * @param array  $args
  *
- * @return array
+ * @return array (3)
  */
 function tra_impl($content, $lg = '', $args = [])
 {
 	global $prefs, $tikilib;
 	if (empty($content) && $content !== '0') {
-		return ['', false];
+		return ['', false, false];
 	}
 
 	global ${"lang_$lg"};
