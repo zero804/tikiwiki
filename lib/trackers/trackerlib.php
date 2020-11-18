@@ -2078,7 +2078,7 @@ class TrackerLib extends TikiLib
 		$permNames = [];
 		foreach ($fil as $fieldId => $value) {
 			$field = $tracker_definition->getField($fieldId);
-			if ($field !== 'status') {	// not sure why status is in here but it's not a field
+			if (! empty($field)) {
 				if ($field['type'] !== 'W') {    // not for webservices
 					$permNames[$fieldId] = $field['permName'];
 				} else {
@@ -2108,10 +2108,14 @@ class TrackerLib extends TikiLib
 		$values_by_permname = [];
 		$old_values_by_permname = [];
 		foreach ($fil as $fieldId => $value) {
-			$values_by_permname[$permNames[$fieldId]] = $value;
+			if (! empty($permNames[$fieldId])) {
+				$values_by_permname[$permNames[$fieldId]] = $value;
+			}
 		}
 		foreach ($old_values as $fieldId => $value) {
-			$old_values_by_permname[$permNames[$fieldId]] = $value;
+			if (! empty($permNames[$fieldId])) {
+				$old_values_by_permname[$permNames[$fieldId]] = $value;
+			}
 		}
 
 		$arguments = [
