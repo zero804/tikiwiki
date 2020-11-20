@@ -22,6 +22,42 @@
 					<input class="form-control" type="text" name="name" value="{$name|escape}" required>
 				</div>
 			</div>
+			{if $has_odbc}
+			<div class="form-group row">
+				<label class="form-check-label col-sm-2">{tr}External ODBC source?{/tr}</label>
+				<div class="col-sm-10">
+					<div class="form-check">
+						<input class="form-check-input use-odbc" type="checkbox" name="use_odbc" {if $odbc_config}checked{/if} value="1">
+					</div>
+				</div>
+			</div>
+			<div class="odbc-container" {if !$odbc_config}style="display: none"{/if}>
+				<div class="form-group row">
+					<label class="col-form-label col-sm-2 offset-sm-1">{tr}DSN{/tr}</label>
+					<div class="col-sm-9">
+						<input class="form-control" type="text" name="odbc[dsn]" value="{$odbc_config.dsn|escape}">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-form-label col-sm-2 offset-sm-1">{tr}User{/tr}</label>
+					<div class="col-sm-9">
+						<input class="form-control" type="text" name="odbc[user]" value="{$odbc_config.user|escape}">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-form-label col-sm-2 offset-sm-1">{tr}Password{/tr}</label>
+					<div class="col-sm-9">
+						<input class="form-control" type="text" name="odbc[password]" value="{$odbc_config.password|escape}">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-form-label col-sm-2 offset-sm-1">{tr}Table/Schema{/tr}</label>
+					<div class="col-sm-9">
+						<input class="form-control" type="text" name="odbc[table]" value="{$odbc_config.table|escape}">
+					</div>
+				</div>
+			</div>
+			{/if}
 			<div class="form-group row">
 				<label class="col-form-label col-sm-2">{tr}Fields{/tr}</label>
 				<div class="col-sm-10">
@@ -30,6 +66,7 @@
 							<tr>
 								<th>{tr}Field{/tr}</th>
 								<th>{tr}Mode{/tr}</th>
+								<th><abbr title="{tr}Remote Field{/tr}">{tr}RF{/tr}</abbr></th>
 								<th><abbr title="{tr}Primary Key{/tr}">{tr}PK{/tr}</abbr></th>
 								<th><abbr title="{tr}Unique Key{/tr}">{tr}UK{/tr}</abbr></th>
 								<th><abbr title="{tr}Read-Only{/tr}">{tr}RO{/tr}</abbr></th>
@@ -60,6 +97,11 @@
 									</div>
 								</td>
 								<td><span class="field">Field Name</span>:<span class="mode">Mode</span></td>
+								<td>
+									<div class="input-group input-group-sm">
+										<input class="remote-field from-control" type="text" name="remoteField" size="5">
+									</div>
+								</td>
 								<td><input class="primary" type="radio" name="pk"></td>
 								<td><input class="unique-key" type="checkbox"></td>
 								<td><input class="read-only" type="checkbox"></td>
@@ -97,6 +139,11 @@
 											<span class="mode">{$column->getMode()|escape}</span>
 										</a>
 									</td>
+									<td>
+										<div class="input-group input-group-sm">
+											<input class="remote-field form-control" type="text" value="{$column->getRemoteField()|escape}" size="5">
+										</div>
+									</td>
 									<td><input class="primary" type="radio" name="pk" {if $column->isPrimaryKey()} checked {/if}></td>
 									<td><input class="unique-key" type="checkbox" {if $column->isUniqueKey()} checked {/if}></td>
 									<td><input class="read-only" type="checkbox" {if $column->isReadOnly()} checked {/if}></td>
@@ -119,7 +166,7 @@
 									<a href="{service controller=tabular action=select trackerId=$trackerId}" class="btn btn-secondary add-field">{tr}Select Mode{/tr}</a>
 									<textarea name="fields" class="d-none">{$schema->getFormatDescriptor()|json_encode}</textarea>
 								</td>
-								<td colspan="3">
+								<td colspan="6">
 									<div class="radio">
 										<label>
 											<input class="primary" type="radio" name="pk" {if ! $schema->getPrimaryKey()} checked {/if}>

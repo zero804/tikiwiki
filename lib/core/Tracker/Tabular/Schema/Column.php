@@ -12,6 +12,7 @@ class Column
 	const HEADER_PATTERN = '/\[(\*?)(\w+):([^\]]+)\]$/';
 
 	private $permName;
+	private $remoteField = '';
 	private $label;
 	private $mode;
 	private $isPrimary = false;
@@ -41,6 +42,17 @@ class Column
 	function setLabel($label)
 	{
 		$this->label = $label;
+		return $this;
+	}
+
+	function getRemoteField()
+	{
+		return $this->remoteField;
+	}
+
+	function setRemoteField($remoteField)
+	{
+		$this->remoteField = $remoteField;
 		return $this;
 	}
 
@@ -217,6 +229,7 @@ class Column
 	{
 		$column = new self($this->permName, $this->mode);
 		$column->label = $this->label;
+		$column->remoteField = $this->remoteField;
 		$column->isPrimary = $this->isPrimary;
 		$column->isReadOnly = $this->isReadOnly;
 		$column->isExportOnly = $this->isExportOnly;

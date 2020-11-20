@@ -28,10 +28,11 @@ class Manager
 		$info['format_descriptor'] = json_decode($info['format_descriptor'], true) ?: [];
 		$info['filter_descriptor'] = json_decode($info['filter_descriptor'], true) ?: [];
 		$info['config'] = json_decode($info['config'], true) ?: [];
+		$info['odbc_config'] = json_decode($info['odbc_config'], true) ?: [];
 		return $info;
 	}
 
-	function create($name, $trackerId)
+	function create($name, $trackerId, $odbc_config = [])
 	{
 		return $this->table->insert([
 			'name' => $name,
@@ -46,10 +47,11 @@ class Manager
 				'bulk_import' => 0,
 				'skip_unmodified' => 0,
 			]),
+			'odbc_config' => json_encode($odbc_config),
 		]);
 	}
 
-	function update($tabularId, $name, array $fields, array $filters, array $config)
+	function update($tabularId, $name, array $fields, array $filters, array $config, array $odbc_config)
 	{
 		return $this->table->update([
 			'name' => $name,
@@ -62,7 +64,8 @@ class Manager
 				'import_transaction' => (int)! empty($config['import_transaction']),
 				'bulk_import' => (int)! empty($config['bulk_import']),
 				'skip_unmodified' => (int)! empty($config['skip_unmodified']),
-			])
+			]),
+			'odbc_config' => json_encode($odbc_config)
 		], ['tabularId' => $tabularId]);
 	}
 

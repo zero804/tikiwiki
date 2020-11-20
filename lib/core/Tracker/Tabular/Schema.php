@@ -154,6 +154,10 @@ class Schema
 			if (! empty($column['isPrimary'])) {
 				$this->setPrimaryKey($col);
 			}
+
+			if (! empty($column['remoteField'])) {
+				$col->setRemoteField($column['remoteField']);
+			}
 		}
 	}
 
@@ -174,6 +178,7 @@ class Schema
 				'label' => $column->getLabel(),
 				'field' => $column->getField(),
 				'mode' => $column->getMode(),
+				'remoteField' => $column->getRemoteField(),
 				'displayAlign' => $column->getDisplayAlign(),
 				'isPrimary' => $column->isPrimaryKey(),
 				'isReadOnly' => $column->isReadOnly(),

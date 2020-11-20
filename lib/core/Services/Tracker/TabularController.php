@@ -57,7 +57,7 @@ class Services_Tracker_TabularController
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$lib = TikiLib::lib('tabular');
 
-			$tabularId = $lib->create($input->name->text(), $input->trackerId->int());
+			$tabularId = $lib->create($input->name->text(), $input->trackerId->int(), $input->use_odbc->int() ? $input->odbc->array() : []);
 
 			$forward = [
 				'controller' => 'tabular',
@@ -69,11 +69,16 @@ class Services_Tracker_TabularController
 				$forward['prefill'] = true;
 			}
 
+			if (! empty($input->prefill_odbc->text())) {
+				$forward['prefill_odbc'] = true;
+			}
+
 			return ['FORWARD' => $forward];
 		}
 
 		return [
 			'title' => tr('Create Tabular Format'),
+			'has_odbc' => function_exists('odbc_connect'),
 		];
 	}
 
@@ -82,6 +87,7 @@ class Services_Tracker_TabularController
 		$lib = TikiLib::lib('tabular');
 		$info = $lib->getInfo($input->tabularId->int());
 		$prefill = $input->prefill->bool();
+		$prefill_odbc = $input->prefill_odbc->bool();
 		$trackerId = $info['trackerId'];
 
 		Services_Exception_Denied::checkObject('tiki_p_tabular_admin', 'tabular', $info['tabularId']);
@@ -95,7 +101,8 @@ class Services_Tracker_TabularController
 			// $schema->validate();
 
 			$config = ! empty($input->config->none()) ? $input->config->none() : [];
-			$result = $lib->update($info['tabularId'], $input->name->text(), $schema->getFormatDescriptor(), $schema->getFilterDescriptor(), $config);
+			$odbc_config = $input->use_odbc->int() ? $input->odbc->array() : [];
+			$result = $lib->update($info['tabularId'], $input->name->text(), $schema->getFormatDescriptor(), $schema->getFilterDescriptor(), $config, $odbc_config);
 
 			if ($result->numRows() > 0) {
 				Feedback::success('Tabular tracker was updated successfully.');
@@ -110,7 +117,7 @@ class Services_Tracker_TabularController
 			];
 		}
 
-		$schema = $this->getSchema($info, $prefill);
+		$schema = $this->getSchema($info, $prefill, $prefill_odbc);
 
 		return [
 			'title' => tr('Edit Format: %0', $info['name']),
@@ -118,8 +125,10 @@ class Services_Tracker_TabularController
 			'trackerId' => $info['trackerId'],
 			'name' => $info['name'],
 			'config' => $info['config'],
+			'odbc_config' => $info['odbc_config'],
 			'schema' => $schema,
 			'filterCollection' => $schema->getFilterCollection(),
+			'has_odbc' => function_exists('odbc_connect'),
 		];
 	}
 
@@ -253,18 +262,31 @@ class Services_Tracker_TabularController
 		$schema->validate();
 
 		$source = new \Tracker\Tabular\Source\TrackerSource($schema);
-		$writer = new \Tracker\Tabular\Writer\CsvWriter('php://output');
 
-		$name = TikiLib::lib('tiki')->remove_non_word_characters_and_accents($info['name']);
-		$writer->sendHeaders($name . '_export_full.csv');
+		if ($info['odbc_config']) {
+			$writer = new \Tracker\Tabular\Writer\ODBCWriter($info['odbc_config']);
+			$writer->write($source);
 
-		TikiLib::lib('tiki')->allocate_extra(
-			'tracker_export_items',
-			function () use ($writer, $source) {
-				$writer->write($source);
-			}
-		);
-		exit;
+			Feedback::success(tr('Your export was completed successfully.'));
+			return [
+				'FORWARD' => [
+					'controller' => 'tabular',
+					'action' => 'manage',
+				],
+			];
+		} else {
+			$name = TikiLib::lib('tiki')->remove_non_word_characters_and_accents($info['name']);
+			$writer = new \Tracker\Tabular\Writer\CsvWriter('php://output');
+			$writer->sendHeaders($name . '_export_full.csv');
+
+			TikiLib::lib('tiki')->allocate_extra(
+				'tracker_export_items',
+				function () use ($writer, $source) {
+					$writer->write($source);
+				}
+			);
+			exit;
+		}
 	}
 
 	function action_export_partial_csv($input)
@@ -408,10 +430,26 @@ class Services_Tracker_TabularController
 			];
 		}
 
+		if ($_SERVER['REQUEST_METHOD'] == 'POST' && $info['odbc_config']) {
+			$source = new \Tracker\Tabular\Source\ODBCSource($schema, $info['odbc_config']);
+			$writer = new \Tracker\Tabular\Writer\TrackerWriter;
+			$done = $writer->write($source);
+
+			Feedback::success(tr('Your import was completed successfully.'));
+			return [
+				'FORWARD' => [
+					'controller' => 'tabular',
+					'action' => 'list',
+					'tabularId' => $info['tabularId'],
+				]
+			];
+		}
+
 		return [
 			'title' => tr('Import'),
 			'tabularId' => $info['tabularId'],
 			'completed' => $done,
+			'odbc' => !empty($info['odbc_config']),
 		];
 	}
 
@@ -678,7 +716,7 @@ class Services_Tracker_TabularController
 		];
 	}
 
-	private function getSchema(array $info, $prefill = false)
+	private function getSchema(array $info, $prefill = false, $prefill_odbc = false)
 	{
 		$tracker = \Tracker_Definition::get($info['trackerId']);
 
@@ -707,6 +745,84 @@ class Services_Tracker_TabularController
 					'label' => $fieldName,
 					'field' => $permName,
 					'mode' => $columns[0]->getMode(),
+					'displayAlign' => 'left',
+					'isPrimary' => false,
+					'isReadOnly' => false,
+					'isExportOnly' => false,
+					'isUniqueKey' => false
+				];
+			}
+		}
+		if ($prefill_odbc) {
+			$columns = [];
+			$src = new \Tracker\Tabular\Source\ODBCSource($schema, $info['odbc_config']);
+			try {
+				$columns = $src->getRemoteSchema();
+			} catch (Exception $e) {
+				Feedback::error($e->getMessage());
+			}
+			$trackerUtilities = new Services_Tracker_Utilities();
+			$types = $trackerUtilities->getFieldTypes();
+			foreach ($columns as $column) {
+				$permName = preg_replace('/[^a-z0-9]/i', '', $tracker->getConfiguration('name')).$column['name'];
+				$field = $tracker->getFieldFromPermName($permName);
+				if ($field) {
+					$fieldType = $field['type'];
+				} else {
+					switch ($column['type']) {
+						case 'integer':
+						case 'decimal':
+						case 'numeric':
+						case 'smallint':
+						case 'real':
+						case 'float':
+						case 'double':
+						case 'bit':
+						case 'tinyint':
+						case 'bigint':
+							$fieldType = 'n';
+							break;
+						case 'date':
+						case 'time':
+						case 'timestamp':
+						case 'datetime':
+						case 'utcdatetime':
+						case 'utctime':
+							$fieldType = 'j';
+							break;
+						case 'text':
+						case 'longtext':
+						case 'longvarchar':
+							$fieldType = 'a';
+							break;
+						default:
+							$fieldType = 't';
+					}
+					$typeInfo = $types[$fieldType];
+
+					// Populate default field options
+					$options = $trackerUtilities->parseOptions("{}", $typeInfo);
+					$options = $trackerUtilities->buildOptions($options, $fieldType);
+
+					$fieldData = [
+						'trackerId' => $info['trackerId'],
+						'name' => $column['name'],
+						'type' => $fieldType,
+						'isMandatory' => false,
+						'description' => $column['remarks'],
+						'descriptionIsParsed' => '',
+						'permName' => $permName,
+						'options' => $options,
+					];
+
+					$fieldId = $trackerUtilities->createField($fieldData);
+				}
+
+				$descriptor[] = [
+					'label' => $column['name'],
+					'field' => $permName,
+					'mode' => $this->getFieldTypeDefaultMode($fieldType),
+					'remoteField' => $column['name'],
 					'displayAlign' => 'left',
 					'isPrimary' => false,
 					'isReadOnly' => false,

@@ -4159,6 +4159,7 @@ CREATE TABLE `tiki_tabular_formats` (
 	`format_descriptor` TEXT,
 	`filter_descriptor` TEXT,
 	`config` TEXT,
+	`odbc_config` TEXT,
 	KEY `tabular_tracker_ix` (`trackerId`)
 ) ENGINE=MyISAM;
 

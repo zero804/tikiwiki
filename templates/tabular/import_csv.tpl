@@ -20,6 +20,9 @@
 		{/remarksbox}
 	{else}
 		<form class="no-ajax" method="post" action="{service controller=tabular action=import_csv tabularId=$tabularId}" enctype="multipart/form-data">
+			{if $odbc}
+			<p>{tr}Import from remote ODBC source.{/tr}</p>
+			{else}
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="inputGroupText">{tr}CSV File{/tr}</span>
@@ -30,6 +33,7 @@
 					<label class="custom-file-label" for="inputFile">Choose file</label>
 				</div>
 			</div>
+			{/if}
 			<div class="submit">
 				<input class="btn btn-primary" type="submit" value="{tr}Import{/tr}">
 			</div>
