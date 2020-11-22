@@ -1033,4 +1033,8 @@ body {
   margin-right: 15px;
 }
 
+@media print {
+  .page-header, .footer, .main-footer, .modules, .side-col-toggle-container, .pagetitle, .t_navbar, .col2 { display: none !important; }
+}
+
 /*# sourceMappingURL=site.css.map */
