@@ -50,6 +50,9 @@ class DateHelper
 			},
 			function (& $info, $value) use ($permName, $format) {
 				$date = date_create_from_format($format, $value);
+				if (! $date) {
+					$date = date_create_from_format($format.'.v', $value);
+				}
 				if ($date) {
 					$info['fields'][$permName] = $date->getTimestamp();
 				}

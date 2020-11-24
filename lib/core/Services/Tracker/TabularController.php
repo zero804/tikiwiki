@@ -764,7 +764,11 @@ class Services_Tracker_TabularController
 			$trackerUtilities = new Services_Tracker_Utilities();
 			$types = $trackerUtilities->getFieldTypes();
 			foreach ($columns as $column) {
-				$permName = preg_replace('/[^a-z0-9]/i', '', $tracker->getConfiguration('name')).$column['name'];
+				$prefix = $tracker->getConfiguration('fieldPrefix');
+				if (empty($prefix)) {
+					$prefix = strtolower(substr($tracker->getConfiguration('name'), 0, 1)).substr(preg_replace('/[^a-z0-9]/i', '', ucwords(strtolower($tracker->getConfiguration('name')))), 1);
+				}
+				$permName = $prefix.$column['name'];
 				$field = $tracker->getFieldFromPermName($permName);
 				if ($field) {
 					$fieldType = $field['type'];
@@ -830,6 +834,9 @@ class Services_Tracker_TabularController
 					'isUniqueKey' => false
 				];
 			}
+			// reload definition and schema in case new fields were created
+			$tracker = \Tracker_Definition::get($info['trackerId'], false);
+			$schema = new \Tracker\Tabular\Schema($tracker);
 		}
 
 		$schema->loadFormatDescriptor($descriptor);

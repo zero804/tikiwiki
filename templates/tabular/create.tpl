@@ -59,7 +59,7 @@
 			<div class="form-group row">
 				<label class="col-form-label col-sm-2 offset-sm-1">{tr}Password{/tr}</label>
 				<div class="col-sm-9">
-					<input class="form-control" type="text" name="odbc[password]">
+					<input class="form-control" type="password" name="odbc[password]" autocomplete="new-password">
 				</div>
 			</div>
 			<div class="form-group row">
