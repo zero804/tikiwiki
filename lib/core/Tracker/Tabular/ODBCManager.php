@@ -58,6 +58,7 @@ class ODBCManager
 				throw new \Exception(tr("Error updating remote item: %0", odbc_errormsg()));
 			}
 		} else {
+			$row = array_filter($row);
 			$sql = "INSERT INTO {$this->config['table']}(\"".implode('", "', array_keys($row))."\") VALUES (".implode(", ", array_fill(0, count(array_keys($row)), '?')).")";
 			$rs = odbc_prepare($conn, $sql);
 			odbc_execute($rs, array_values($row));
