@@ -110,10 +110,19 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 		if ('index' == $this->getOption('recalculate')) {
 			try {
 				$runner = $this->getFormulaRunner();
-				$data = ['itemId' => $this->getItemId()];
+				$data = [
+					'itemId' => $this->getItemId(),
+					'created' => $this->getData('created'),
+					'createdBy' => $this->getData('createdBy'),
+					'lastModif' => $this->getData('lastModif'),
+					'lastModifBy' => $this->getData('lastModifBy'),
+				];
 
 				foreach ($runner->inspect() as $fieldName) {
 					if (is_string($fieldName) || is_numeric($fieldName)) {
+						if (isset($data[$fieldName])) {
+							continue;
+						}
 						$data[$fieldName] = $this->getItemField($fieldName);
 					}
 				}
@@ -172,6 +181,12 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 			$this->prepareFieldValues($data);
 			if (! isset($data['itemId'])) {
 				$data['itemId'] = $this->getItemId();
+			}
+			if (! isset($data['created'])) {
+				$data['created'] = $this->getData('created');
+				$data['createdBy'] = $this->getData('createdBy');
+				$data['lastModif'] = $this->getData('lastModif');
+				$data['lastModifBy'] = $this->getData('lastModifBy');
 			}
 			$runner = $this->getFormulaRunner();
 			$runner->setVariables($data);
