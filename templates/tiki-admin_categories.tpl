@@ -91,28 +91,29 @@
 				{jq}
 					$('input[type=checkbox][name=applyRoles]').change(function(ele){
 						if($('input[type=checkbox][name=applyRoles]:checked').length > 0){
-							$('#rolesToApply').show();
+							$('#rolesToApply').parent().show("fast");
 						}else{
-							$('#rolesToApply').hide();
+							$('#rolesToApply').parent().hide("fast");
 						}
 					});
 					$('input[type=checkbox][name=applyRoles]').ready(function(ele){
 						if($('input[type=checkbox][name=applyRoles]:checked').length > 0){
-							$('#rolesToApply').show();
+							$('#rolesToApply').parent().show("fast");
 						}else{
-							$('#rolesToApply').hide();
+							$('#rolesToApply').parent().hide("fast");
 						}
 					});
 				{/jq}
 				<div class="form-group row">
 					<div class="col-sm-9 offset-sm-3">
 						<div class="form-check">
-							<label>
-								<input type="checkbox" name="applyRoles" {if !empty($availableIds)}checked="checked"{/if}>
+							<label class="form-check-label">
+								<input type="checkbox" name="applyRoles" class="form-check-input" {if !empty($availableIds)}checked="checked"{/if}>
 								{tr}Apply role permissions to sub-categories{/tr}
 							</label>
-							<select name="rolesToApply[]" id="rolesToApply" class="form-control" multiple="multiple"
-									size="5">
+						</div>
+						<div>
+							<select name="rolesToApply[]" id="rolesToApply" class="form-control" multiple="multiple" size="5">
 								{foreach $roles as $role}
 									<option value="{$role['id']}"
 											{if isset($availableIds) && in_array($role['id'], $availableIds)}selected{/if} >
