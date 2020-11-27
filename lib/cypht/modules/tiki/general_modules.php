@@ -112,6 +112,31 @@ class Hm_Handler_process_allow_external_images extends Hm_Handler_Module {
 }
 
 /**
+ * Set special variable to prevent saving settings on each config update
+ * @subpackage tiki/handler
+ */
+class Hm_Handler_before_save_user_settings extends Hm_Handler_Module {
+    public function process() {
+        if (array_key_exists('save_settings', $this->request->post)) {
+            $this->user_config->set('skip_saving_on_set', true);
+        }
+    }
+}
+
+/**
+ * Remove special variable skipping settings save and save the settings
+ * @subpackage tiki/handler
+ */
+class Hm_Handler_after_save_user_settings extends Hm_Handler_Module {
+    public function process() {
+        if (array_key_exists('save_settings', $this->request->post)) {
+            $this->user_config->del('skip_saving_on_set');
+            $this->user_config->save();
+        }
+    }
+}
+
+/**
  * Expose debug setting
  * @subpackage tiki/output
  */

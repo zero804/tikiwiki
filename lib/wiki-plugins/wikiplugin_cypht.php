@@ -238,6 +238,10 @@ function wikiplugin_cypht($data, $params)
 	global $tikipath, $tikiroot, $user, $page, $logslib;
 	$headerlib = TikiLib::lib('header');
 
+	if (defined('APP_PATH')) {
+		return tr("Cypht already started.");
+	}
+
 	static $called = false;
 	if( $called ) {
 		return tr("Only one cypht plugin per page can be used.");
@@ -300,6 +304,7 @@ function wikiplugin_cypht($data, $params)
 	}
 
 	$_SESSION[$session_prefix]['preference_name'] = $preference_name;
+	$_SESSION[$session_prefix]['settings_per_page'] = $settings_per_page;
 
 	$_SESSION[$session_prefix]['groupmail'] = $params['groupmail'];
 	$_SESSION[$session_prefix]['group'] = $params['group'];

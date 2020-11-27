@@ -26,7 +26,7 @@ class Services_Cypht_Controller
 		require_once $tikipath.'/lib/cypht/integration/classes.php';
 
 		/* get configuration */
-		$config = new Tiki_Hm_Site_Config_File(APP_PATH.'hm3.rc', $session_prefix);
+		$config = new Tiki_Hm_Site_Config_File(APP_PATH.'hm3.rc', $session_prefix, @$_SESSION[$session_prefix]['settings_per_page']);
 
 		/* process the request */
 		$dispatcher = new Hm_Dispatch($config);

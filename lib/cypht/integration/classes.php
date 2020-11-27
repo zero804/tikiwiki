@@ -282,23 +282,26 @@ class Tiki_Hm_User_Config extends Hm_Config {
 	 * @param string $key encryption key (not used)
 	 * @return void
 	 */
-	public function save($username, $key = null) {
+	public function save($username = null, $key = null) {
+		if ($this->get('skip_saving_on_set', false)) {
+			return;
+		}
+		if (empty($username)) {
+			$username = $this->username;
+		}
 		$this->shuffle();
 		$removed = $this->filter_servers();
+		ksort($this->config);
 		$data = json_encode($this->config);
 		if ($this->site_config->settings_per_page) {
-			$util = new Services_Utilities();
-			$util->setTicket();
-			$_POST['ticket'] = $util->getTicket();
-			$servicelib = TikiLib::lib('service');
-			$servicelib->internal('plugin', 'replace', new JitFilter([
-				'ticket' => $util->getTicket(),
+			$util = new Services_Edit_Utilities;
+			$util->replacePlugin(new JitFilter([
 				'page' => $this->site_config->settings_per_page,
 				'message' => "Auto-saving Cypht settings.",
 				'type' => 'cypht',
 				'content' => $data,
 				'index' => 1
-			]));
+			]), false);
 		} else {
 			TikiLib::lib('tiki')->set_user_preference($username, $_SESSION[$this->site_config->get('session_prefix')]['preference_name'], $data);
 		}
