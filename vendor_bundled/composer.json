@@ -225,6 +225,7 @@
 			"../lib/stats",
 			"../lib/tikidate.php",
 			"../lib/webmail",
+			"../lib/calendar/calrecurrence.php",
 			"vendor/adodb/adodb-php/",
 			"vendor/h5p/h5p-core",
 			"vendor/h5p/h5p-editor",
