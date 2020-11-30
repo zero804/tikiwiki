@@ -1029,7 +1029,7 @@ class CategLib extends ObjectLib
 	If considerPermissions is true, only categories that the user has the permission to view are returned.
 	If localized is enabled, category names are translated to the user's language.
 	*/
-	function getCategories($filter = ['type' => 'all'], $considerCategoryFilter = true, $considerPermissions = true, $localized = true)
+	function getCategories($filter = ['type' => 'all'], $considerCategoryFilter = true, $considerPermissions = true, $localized = true, $requiredPerm = 'view_category')
 	{
 		global $prefs;
 		$cachelib = TikiLib::lib('cache');
@@ -1190,7 +1190,7 @@ class CategLib extends ObjectLib
 			Perms::bulk(['type' => 'category'], 'object', $categoryIdentifiers);
 			foreach ($categoryIdentifiers as $categoryIdentifier) {
 				$permissions = Perms::get(['type' => 'category', 'object' => $categoryIdentifier]);
-				if (! $permissions->view_category) {
+				if (! $permissions->$requiredPerm) {
 					unset($ret[$categoryIdentifier]);
 				}
 			}

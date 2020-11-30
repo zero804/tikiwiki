@@ -35,8 +35,16 @@ if (! isset($_REQUEST['parentId'])) {
 }
 $smarty->assign('parentId', $_REQUEST['parentId']);
 
+$categories = $categlib->getCategories(null, false, true, true, 'admin_categories');
+$smarty->assign_by_ref('categories', $categories);
 
-$access->check_permission('tiki_p_admin_categories', '', 'category', $_REQUEST['parentId']);
+if (empty($_REQUEST['parentId'])) {
+	if (empty($categories) && $tiki_p_admin_categories !== 'y') {
+		$access->check_permission('tiki_p_admin_categories');
+	}
+} else {
+	$access->check_permission('tiki_p_admin_categories', '', 'category', $_REQUEST['parentId']);
+}
 
 if (! empty($_REQUEST['unassign']) && $access->checkCsrf(true)) {
 	$result = $categlib->unassign_all_objects($_REQUEST['parentId']);
@@ -372,14 +380,6 @@ if ($_REQUEST["parentId"]) {
 }
 $smarty->assign('father', $father);
 
-// ---------------------------------------------------
-
-$categories = $categlib->getCategories(null, false);
-if (empty($categories) && $tiki_p_admin_categories != 'y') {
-	$access->check_permission('tiki_p_admin_categories');
-}
-$smarty->assign('categories', $categories);
-
 $treeNodes = [];
 $smarty->loadPlugin('smarty_function_icon');
 $smarty->loadPlugin('smarty_function_popup');
@@ -387,7 +387,7 @@ $smarty->loadPlugin('smarty_function_permission_link');
 $smarty->loadPlugin('smarty_function_ticket');
 foreach ($categories as $category) {
 	$perms = Perms::get(['type' => 'category', 'object' => $category['categId']]);
-	if ($perms->admin_categories == 'y') {
+	if ($perms->admin_categories) {
 		$data = '<a href="tiki-admin_categories.php?parentId='
 			. $category['parentId']
 			. '&amp;categId='
@@ -419,19 +419,22 @@ foreach ($categories as $category) {
 			)
 			. '</a>';
 
-		if ($userlib->object_has_one_permission($category['categId'], 'category')) {
-			$title = tra('Edit permissions for this category');
-		} else {
-			$title = tra('Assign permissions');
+		// check for global perm admin perms because the object perm admin_categories grants assign_perm_category
+		if ($tiki_p_assign_perm_category === 'y') {
+			if ($userlib->object_has_one_permission($category['categId'], 'category')) {
+				$title = tra('Edit permissions for this category');
+			} else {
+				$title = tra('Assign permissions');
+			}
+			$data .= smarty_function_permission_link(
+				[
+					'id' => $category['categId'],
+					'type' => 'category',
+					'mode' => 'text',
+				],
+				$smarty->getEmptyInternalTemplate()
+			);
 		}
-		$data .= smarty_function_permission_link(
-			[
-				'id' => $category['categId'],
-				'type' => 'category',
-				'mode' => 'text',
-			],
-			$smarty->getEmptyInternalTemplate()
-		);
 		$popupparams = ['trigger' => 'click', 'fullhtml' => 1, 'center' => true, 'text' => $data];
 		$newdata = '<a class="tips" title="'
 			. tra('Actions')
@@ -687,7 +690,7 @@ if (! empty($errors)) {
 	Feedback::warning($errors);
 }
 
-if (isset($_REQUEST["categId"])) {
+if (! empty($_REQUEST["categId"])) {
 	$access->check_permission('tiki_p_admin_categories', '', 'category', $_REQUEST['categId']);
 	$availableIds = $rolesRepo->getAvailableCategoriesRolesIds($_REQUEST["categId"]);
 	$smarty->assign('availableIds', $availableIds);

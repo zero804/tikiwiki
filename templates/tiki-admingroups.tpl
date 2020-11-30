@@ -97,7 +97,7 @@
 
 					{if $prefs.useGroupHome eq 'y'}
 						<td class="text">
-							<a class="link" href="tiki-index.php?page={$users[user].groupHome|escape:"url"}" title="{tr}Group Homepage{/tr}">{tr}{$users[user].groupHome}{/tr}</a>
+							<a class="link" href="{$users[user].groupHome|sefurl}" title="{tr}Group Homepage{/tr}">{tr}{$users[user].groupHome}{/tr}</a>
 						</td>
 					{/if}
 

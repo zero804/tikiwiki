@@ -242,6 +242,10 @@ function wikiplugin_cypht($data, $params)
 		return tr("Cypht already started.");
 	}
 
+	if (defined('APP_PATH')) {
+		return tr("Cypht already started.");
+	}
+
 	static $called = false;
 	if( $called ) {
 		return tr("Only one cypht plugin per page can be used.");

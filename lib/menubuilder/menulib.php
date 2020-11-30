@@ -262,6 +262,8 @@ class MenuLib extends TikiLib
 				}
 				if ($option['type'] === $treeOut[$parent]['type']) {
 					$option['parent'] = $treeOut[$parent]['parent'];
+				} else if (is_numeric($option['type']) && is_numeric($treeOut[$parent]['type']) && (int) $option['type'] < (int) $treeOut[$parent]['type']) {
+					$option['parent'] = $treeOut[$treeOut[$parent]['parent']]['parent'];
 				} else {
 					$option['parent'] = $parent;
 				}
