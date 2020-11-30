@@ -15,7 +15,6 @@ $access->check_feature('feature_calendar');
 
 $calendarlib = TikiLib::lib('calendar');
 include_once('lib/newsletters/nllib.php');
-include_once('lib/calendar/calrecurrence.php');
 if ($prefs['feature_groupalert'] == 'y') {
 	$groupalertlib = TikiLib::lib('groupalert');
 }
