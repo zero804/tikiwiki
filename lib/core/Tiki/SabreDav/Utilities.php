@@ -179,8 +179,10 @@ class Utilities {
         $rec->setStartPeriod(\TikiDate::getStartDay($firstOccurence, $timezone));
         if (isset($parts['COUNT'])) {
           $rec->setNbRecurrences($parts['COUNT']);
-        } else {
+        } elseif (isset($parts['UNTIL'])) {
           $rec->setEndPeriod(\TikiDate::getStartDay(strtotime($parts['UNTIL']), $timezone));
+        } else {
+          $rec->setEndPeriod(\TikiDate::getStartDay(strtotime(CalDAVBackend::MAX_DATE), $timezone));
         }
         $rec->setLang('en');
         $rec->setNlId(0);
