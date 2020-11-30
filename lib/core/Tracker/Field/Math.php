@@ -333,7 +333,11 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 			if ($field) {
 				$item = TikiLib::lib('trk')->get_tracker_item($this->getItemId());
 				// use calculated value as the mirrored field value to allow handler produce results based on the math calculation
-				$item[$mirrorField] = $item[$this->getFieldId()];
+				if (isset($item[$this->getFieldId()])) {
+					$item[$mirrorField] = $item[$this->getFieldId()];
+				} else {
+					$item[$mirrorField] = $this->getData($this->getConfiguration('permName'));
+				}
 				$handler = TikiLib::lib('trk')->get_field_handler($field, $item);
 				$handler->replaceBaseKey($this->getConfiguration('permName'));
 			}
