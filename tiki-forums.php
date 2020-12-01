@@ -14,7 +14,6 @@ require_once('tiki-setup.php');
 $auto_query_args = ['sort_mode', 'offset', 'find', 'mode'];
 
 $access->check_feature('feature_forums');
-$access->check_permission('tiki_p_forum_read');
 
 // This shows a list of forums everybody can use this listing
 $commentslib = TikiLib::lib('comments');
@@ -48,6 +47,10 @@ if (isset($_REQUEST['numrows'])) {
 $smarty->assign_by_ref('sort_mode', $sort_mode);
 $channels = $commentslib->list_forums($offset, $maxRecords, $sort_mode, $find);
 Perms::bulk([ 'type' => 'forum' ], 'object', $channels['data'], 'forumId');
+
+if (! Perms::get()->forum_read && empty($channels['data'])) {
+	$access->check_permission('tiki_p_forum_read');
+}
 
 $temp_max = count($channels["data"]);
 for ($i = 0; $i < $temp_max; $i++) {
