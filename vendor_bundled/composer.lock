@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d6bdfd1cfc979425fe35e117db759215",
+    "content-hash": "f844f5756341b361af45d7ee6f56a177",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -18,7 +18,7 @@
         },
         {
             "name": "adodb/adodb-php",
-            "version": "5.20.18",
+            "version": "v5.20.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ADOdb/ADOdb.git",
@@ -225,7 +225,7 @@
             "version": "5.15.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:FortAwesome/Font-Awesome.git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
                 "reference": "57005cea6da7d1c67f3466974aecd25485f60452"
             },
             "dist": {
@@ -282,11 +282,11 @@
             ],
             "authors": [
                 {
-                    "name": "piotr",
-                    "email": "hello@piotr.cz"
+                    "name": "Michael Weibel"
                 },
                 {
-                    "name": "Michael Weibel"
+                    "name": "piotr",
+                    "email": "hello@piotr.cz"
                 },
                 {
                     "name": "Alex Knol",
@@ -312,9 +312,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ChristianRiesen/base32/zipball/80ff0e3b2124e61b4b39e2535709452f70bff367",
+                "url": "https://composer.tiki.org/dist/christian-riesen/base32/christian-riesen-base32-80ff0e3b2124e61b4b39e2535709452f70bff367-zip-e5a0fa.zip",
                 "reference": "80ff0e3b2124e61b4b39e2535709452f70bff367",
-                "shasum": ""
+                "shasum": "8de7dd26000d192b69df16d372dff128233a2d2e"
             },
             "require": {
                 "php": ">=5.3"
@@ -342,9 +342,9 @@
             "authors": [
                 {
                     "name": "Christian Riesen",
+                    "role": "Developer",
                     "email": "chris.riesen@gmail.com",
-                    "homepage": "http://christianriesen.com",
-                    "role": "Developer"
+                    "homepage": "http://christianriesen.com"
                 }
             ],
             "description": "Base32 encoder/decoder according to RFC 4648",
@@ -369,17 +369,17 @@
         },
         {
             "name": "ckeditor/ckeditor",
-            "version": "4.15.0",
+            "version": "4.15.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ckeditor/ckeditor4-releases.git",
-                "reference": "f233b056a20528c442576e661486170a7d84a7b9"
+                "reference": "b1aa2f31687b5d48a4f4a9a94d388b525a82663f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-f233b056a20528c442576e661486170a7d84a7b9-zip-d1b452.zip",
-                "reference": "f233b056a20528c442576e661486170a7d84a7b9",
-                "shasum": "4197e9d9ea7165b3eae5bfd409b56006475c9c13"
+                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-b1aa2f31687b5d48a4f4a9a94d388b525a82663f-zip-80fdd6.zip",
+                "reference": "b1aa2f31687b5d48a4f4a9a94d388b525a82663f",
+                "shasum": "c601e19f0908968c1c28388b54e0920fb5d89c8a"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -407,7 +407,7 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2020-09-07T13:41:04+00:00"
+            "time": "2020-11-09T14:21:03+00:00"
         },
         {
             "name": "codeitnowin/barcode",
@@ -419,9 +419,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeitnowin/barcode-generator/zipball/6325a15ae904ec401b947e1a3e868de1c2cc80b0",
+                "url": "https://composer.tiki.org/dist/codeitnowin/barcode/codeitnowin-barcode-6325a15ae904ec401b947e1a3e868de1c2cc80b0-zip-e0db04.zip",
                 "reference": "6325a15ae904ec401b947e1a3e868de1c2cc80b0",
-                "shasum": ""
+                "shasum": "16a1122e60a2f296c6cdb66113fa1ba9e1953095"
             },
             "require": {
                 "ext-gd": "*",
@@ -1010,9 +1010,9 @@
             "authors": [
                 {
                     "name": "Cameron Spear",
+                    "role": "Developer",
                     "email": "cam@cameronspear.com",
-                    "homepage": "http://cameronspear.com",
-                    "role": "Developer"
+                    "homepage": "http://cameronspear.com"
                 }
             ],
             "description": "An unofficial Bootstrap plugin to enable Bootstrap dropdowns to activate on hover and provide a nice user experience.",
@@ -1077,9 +1077,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/defuse/php-encryption/zipball/0f407c43b953d571421e0020ba92082ed5fb7620",
+                "url": "https://composer.tiki.org/dist/defuse/php-encryption/defuse-php-encryption-0f407c43b953d571421e0020ba92082ed5fb7620-zip-2377aa.zip",
                 "reference": "0f407c43b953d571421e0020ba92082ed5fb7620",
-                "shasum": ""
+                "shasum": "208c96315d3634e11972dc18fd15451bf3fbf47a"
             },
             "require": {
                 "ext-openssl": "*",
@@ -1305,7 +1305,7 @@
             ],
             "authors": [
                 {
-                    "name": "Osman Ungur",
+                    "name": "Osman Üngür",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -1728,9 +1728,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
+                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": ""
+                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2353,48 +2353,41 @@
         },
         {
             "name": "laminas/laminas-code",
-            "version": "3.4.1",
+            "version": "3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-code.git",
-                "reference": "1cb8f203389ab1482bf89c0e70a04849bacd7766"
+                "reference": "b549b70c0bb6e935d497f84f750c82653326ac77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/laminas/laminas-code/laminas-laminas-code-1cb8f203389ab1482bf89c0e70a04849bacd7766-zip-5ce872.zip",
-                "reference": "1cb8f203389ab1482bf89c0e70a04849bacd7766",
-                "shasum": "8789c036b18ae3c27b52ae22e8a96b0dc8559ae2"
+                "url": "https://composer.tiki.org/dist/laminas/laminas-code/laminas-laminas-code-b549b70c0bb6e935d497f84f750c82653326ac77-zip-0bc79c.zip",
+                "reference": "b549b70c0bb6e935d497f84f750c82653326ac77",
+                "shasum": "28dd1137448af392b6d375466bc54ec61dbec51a"
             },
             "require": {
-                "laminas/laminas-eventmanager": "^2.6 || ^3.0",
-                "laminas/laminas-zendframework-bridge": "^1.0",
-                "php": "^7.1"
+                "laminas/laminas-eventmanager": "^3.3",
+                "laminas/laminas-zendframework-bridge": "^1.1",
+                "php": "^7.3 || ~8.0.0"
             },
             "conflict": {
                 "phpspec/prophecy": "<1.9.0"
             },
             "replace": {
-                "zendframework/zend-code": "self.version"
+                "zendframework/zend-code": "^3.4.1"
             },
             "require-dev": {
-                "doctrine/annotations": "^1.7",
+                "doctrine/annotations": "^1.10.4",
                 "ext-phar": "*",
-                "laminas/laminas-coding-standard": "^1.0",
-                "laminas/laminas-stdlib": "^2.7 || ^3.0",
-                "phpunit/phpunit": "^7.5.16 || ^8.4"
+                "laminas/laminas-coding-standard": "^1.0.0",
+                "laminas/laminas-stdlib": "^3.3.0",
+                "phpunit/phpunit": "^9.4.2"
             },
             "suggest": {
                 "doctrine/annotations": "Doctrine\\Common\\Annotations >=1.0 for annotation features",
                 "laminas/laminas-stdlib": "Laminas\\Stdlib component"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.4.x-dev",
-                    "dev-develop": "3.5.x-dev",
-                    "dev-dev-4.0": "4.0.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Laminas\\Code\\": "src/"
@@ -2410,7 +2403,7 @@
                 "code",
                 "laminas"
             ],
-            "time": "2019-12-31T16:28:24+00:00"
+            "time": "2020-11-30T20:16:31+00:00"
         },
         {
             "name": "laminas/laminas-config",
@@ -2534,36 +2527,36 @@
         },
         {
             "name": "laminas/laminas-escaper",
-            "version": "2.6.1",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-escaper.git",
-                "reference": "25f2a053eadfa92ddacb609dcbbc39362610da70"
+                "reference": "5e04bc5ae5990b17159d79d331055e2c645e5cc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/laminas/laminas-escaper/laminas-laminas-escaper-25f2a053eadfa92ddacb609dcbbc39362610da70-zip-007a9c.zip",
-                "reference": "25f2a053eadfa92ddacb609dcbbc39362610da70",
-                "shasum": "b9cd510d570bd999c71e415fbccf139f42513d32"
+                "url": "https://composer.tiki.org/dist/laminas/laminas-escaper/laminas-laminas-escaper-5e04bc5ae5990b17159d79d331055e2c645e5cc5-zip-beeaeb.zip",
+                "reference": "5e04bc5ae5990b17159d79d331055e2c645e5cc5",
+                "shasum": "f2f31f4b7a86e395edb2e967978a9e25847ce857"
             },
             "require": {
                 "laminas/laminas-zendframework-bridge": "^1.0",
-                "php": "^5.6 || ^7.0"
+                "php": "^7.3 || ~8.0.0"
             },
             "replace": {
-                "zendframework/zend-escaper": "self.version"
+                "zendframework/zend-escaper": "^2.6.1"
             },
             "require-dev": {
                 "laminas/laminas-coding-standard": "~1.0.0",
-                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2"
+                "phpunit/phpunit": "^9.3",
+                "psalm/plugin-phpunit": "^0.12.2",
+                "vimeo/psalm": "^3.16"
+            },
+            "suggest": {
+                "ext-iconv": "*",
+                "ext-mbstring": "*"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.6.x-dev",
-                    "dev-develop": "2.7.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Laminas\\Escaper\\": "src/"
@@ -2579,7 +2572,7 @@
                 "escaper",
                 "laminas"
             ],
-            "time": "2019-12-31T16:43:30+00:00"
+            "time": "2020-11-17T21:26:43+00:00"
         },
         {
             "name": "laminas/laminas-eventmanager",
@@ -2641,17 +2634,17 @@
         },
         {
             "name": "laminas/laminas-feed",
-            "version": "2.12.3",
+            "version": "2.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-feed.git",
-                "reference": "3c91415633cb1be6f9d78683d69b7dcbfe6b4012"
+                "reference": "fb89aac1984222227f37792dd193d34829a0762f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/laminas/laminas-feed/laminas-laminas-feed-3c91415633cb1be6f9d78683d69b7dcbfe6b4012-zip-52ed44.zip",
-                "reference": "3c91415633cb1be6f9d78683d69b7dcbfe6b4012",
-                "shasum": "716611bdc0015a9af4ec028a5e85fef7f02d5963"
+                "url": "https://composer.tiki.org/dist/laminas/laminas-feed/laminas-laminas-feed-fb89aac1984222227f37792dd193d34829a0762f-zip-1feb30.zip",
+                "reference": "fb89aac1984222227f37792dd193d34829a0762f",
+                "shasum": "93484d527ac489cf1cf154493838a7a9c2a89080"
             },
             "require": {
                 "ext-dom": "*",
@@ -2659,7 +2652,10 @@
                 "laminas/laminas-escaper": "^2.5.2",
                 "laminas/laminas-stdlib": "^3.2.1",
                 "laminas/laminas-zendframework-bridge": "^1.0",
-                "php": "^5.6 || ^7.0"
+                "php": "^7.3 || ~8.0.0"
+            },
+            "conflict": {
+                "laminas/laminas-servicemanager": "<3.3"
             },
             "replace": {
                 "zendframework/zend-feed": "^2.12.0"
@@ -2669,10 +2665,12 @@
                 "laminas/laminas-coding-standard": "~1.0.0",
                 "laminas/laminas-db": "^2.8.2",
                 "laminas/laminas-http": "^2.7",
-                "laminas/laminas-servicemanager": "^2.7.8 || ^3.3",
+                "laminas/laminas-servicemanager": "^3.3",
                 "laminas/laminas-validator": "^2.10.1",
-                "phpunit/phpunit": "^5.7.27 || ^6.5.14 || ^7.5.20",
-                "psr/http-message": "^1.0.1"
+                "phpunit/phpunit": "^9.3",
+                "psalm/plugin-phpunit": "^0.13.0",
+                "psr/http-message": "^1.0.1",
+                "vimeo/psalm": "^4.1"
             },
             "suggest": {
                 "laminas/laminas-cache": "Laminas\\Cache component, for optionally caching feeds between requests",
@@ -2683,12 +2681,6 @@
                 "psr/http-message": "PSR-7 ^1.0.1, if you wish to use Laminas\\Feed\\Reader\\Http\\Psr7ResponseDecorator"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.12.x-dev",
-                    "dev-develop": "2.13.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Laminas\\Feed\\": "src/"
@@ -2704,7 +2696,7 @@
                 "feed",
                 "laminas"
             ],
-            "time": "2020-08-18T13:45:04+00:00"
+            "time": "2020-11-18T21:02:52+00:00"
         },
         {
             "name": "laminas/laminas-filter",
@@ -3065,30 +3057,30 @@
         },
         {
             "name": "laminas/laminas-log",
-            "version": "2.12.0",
+            "version": "2.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-log.git",
-                "reference": "4e92d841b48868714a070b10866e94be80fc92ff"
+                "reference": "71bb2c98e0286c447488e71290ecf0beb44e6ca5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/laminas/laminas-log/laminas-laminas-log-4e92d841b48868714a070b10866e94be80fc92ff-zip-480756.zip",
-                "reference": "4e92d841b48868714a070b10866e94be80fc92ff",
-                "shasum": "f743b547566f6bb9ee3429567c86d61f9cdd865b"
+                "url": "https://composer.tiki.org/dist/laminas/laminas-log/laminas-laminas-log-71bb2c98e0286c447488e71290ecf0beb44e6ca5-zip-9a3309.zip",
+                "reference": "71bb2c98e0286c447488e71290ecf0beb44e6ca5",
+                "shasum": "a1d487399f5cf5e34631102f6930388e3fc4d385"
             },
             "require": {
-                "laminas/laminas-servicemanager": "^2.7.5 || ^3.0.3",
-                "laminas/laminas-stdlib": "^2.7 || ^3.0",
+                "laminas/laminas-servicemanager": "^3.3.0",
+                "laminas/laminas-stdlib": "^3.0",
                 "laminas/laminas-zendframework-bridge": "^1.0",
-                "php": "^5.6 || ^7.0",
+                "php": "^7.3 || ~8.0.0",
                 "psr/log": "^1.1.2"
             },
             "provide": {
                 "psr/log-implementation": "1.0.0"
             },
             "replace": {
-                "zendframework/zend-log": "self.version"
+                "zendframework/zend-log": "^2.12.0"
             },
             "require-dev": {
                 "laminas/laminas-coding-standard": "~1.0.0",
@@ -3098,7 +3090,8 @@
                 "laminas/laminas-mail": "^2.6.1",
                 "laminas/laminas-validator": "^2.10.1",
                 "mikey179/vfsstream": "^1.6.7",
-                "phpunit/phpunit": "^5.7.27 || ^6.5.14 || ^7.5.15"
+                "phpspec/prophecy-phpunit": "^2.0",
+                "phpunit/phpunit": "^9.4.1"
             },
             "suggest": {
                 "ext-mongo": "mongo extension to use Mongo writer",
@@ -3110,10 +3103,6 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "2.12.x-dev",
-                    "dev-develop": "2.13.x-dev"
-                },
                 "laminas": {
                     "component": "Laminas\\Log",
                     "config-provider": "Laminas\\Log\\ConfigProvider"
@@ -3135,7 +3124,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2019-12-31T17:18:59+00:00"
+            "time": "2020-11-19T17:09:53+00:00"
         },
         {
             "name": "laminas/laminas-mail",
@@ -3418,38 +3407,34 @@
         },
         {
             "name": "laminas/laminas-server",
-            "version": "2.8.1",
+            "version": "2.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-server.git",
-                "reference": "4aaca9174c40a2fab2e2aa77999da99f71bdd88e"
+                "reference": "9cce0abbdff0d873add767e36389b9df348bc0b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/laminas/laminas-server/laminas-laminas-server-4aaca9174c40a2fab2e2aa77999da99f71bdd88e-zip-1f1bc1.zip",
-                "reference": "4aaca9174c40a2fab2e2aa77999da99f71bdd88e",
-                "shasum": "bd3febb546151939b7aa4a26aa98b49d679aa44f"
+                "url": "https://composer.tiki.org/dist/laminas/laminas-server/laminas-laminas-server-9cce0abbdff0d873add767e36389b9df348bc0b5-zip-551c77.zip",
+                "reference": "9cce0abbdff0d873add767e36389b9df348bc0b5",
+                "shasum": "8920549d564c68ec1c504733f735d466cf56e605"
             },
             "require": {
                 "laminas/laminas-code": "^2.5 || ^3.0",
                 "laminas/laminas-stdlib": "^2.5 || ^3.0",
                 "laminas/laminas-zendframework-bridge": "^1.0",
-                "php": "^5.6 || ^7.0"
+                "php": "^7.3 || ~8.0.0"
             },
             "replace": {
-                "zendframework/zend-server": "self.version"
+                "zendframework/zend-server": "^2.8.1"
             },
             "require-dev": {
                 "laminas/laminas-coding-standard": "~1.0.0",
-                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.4"
+                "phpunit/phpunit": "^9.3",
+                "psalm/plugin-phpunit": "^0.13.0",
+                "vimeo/psalm": "^4.2"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.8.x-dev",
-                    "dev-develop": "2.9.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Laminas\\Server\\": "src/"
@@ -3465,11 +3450,11 @@
                 "laminas",
                 "server"
             ],
-            "time": "2019-12-31T17:43:03+00:00"
+            "time": "2020-11-23T22:59:16+00:00"
         },
         {
             "name": "laminas/laminas-servicemanager",
-            "version": "3.4.1",
+            "version": "3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-servicemanager.git",
@@ -3666,17 +3651,17 @@
         },
         {
             "name": "laminas/laminas-stdlib",
-            "version": "3.3.0",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-stdlib.git",
-                "reference": "b9d84eaa39fde733356ea948cdef36c631f202b6"
+                "reference": "d81c7ffe602ed0e6ecb18691019111c0f4bf1efe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/laminas/laminas-stdlib/laminas-laminas-stdlib-b9d84eaa39fde733356ea948cdef36c631f202b6-zip-d66958.zip",
-                "reference": "b9d84eaa39fde733356ea948cdef36c631f202b6",
-                "shasum": "7fdf849310844b470e9c496b74d0079759a4eb21"
+                "url": "https://composer.tiki.org/dist/laminas/laminas-stdlib/laminas-laminas-stdlib-d81c7ffe602ed0e6ecb18691019111c0f4bf1efe-zip-c51b8c.zip",
+                "reference": "d81c7ffe602ed0e6ecb18691019111c0f4bf1efe",
+                "shasum": "3662910dc622cfd04b4cc9f0f55e75cb952b1720"
             },
             "require": {
                 "laminas/laminas-zendframework-bridge": "^1.0",
@@ -3688,15 +3673,9 @@
             "require-dev": {
                 "laminas/laminas-coding-standard": "~1.0.0",
                 "phpbench/phpbench": "^0.17.1",
-                "phpunit/phpunit": "^9.3.7"
+                "phpunit/phpunit": "~9.3.7"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.3.x-dev",
-                    "dev-develop": "3.4.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Laminas\\Stdlib\\": "src/"
@@ -3712,7 +3691,7 @@
                 "laminas",
                 "stdlib"
             ],
-            "time": "2020-08-25T09:08:16+00:00"
+            "time": "2020-11-19T20:18:59+00:00"
         },
         {
             "name": "laminas/laminas-tag",
@@ -3997,17 +3976,17 @@
         },
         {
             "name": "lcobucci/jwt",
-            "version": "3.3.3",
+            "version": "3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lcobucci/jwt.git",
-                "reference": "c1123697f6a2ec29162b82f170dd4a491f524773"
+                "reference": "958a9873a63b0244a72f6e354ccc86019ee674a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/lcobucci/jwt/lcobucci-jwt-c1123697f6a2ec29162b82f170dd4a491f524773-zip-51bd2e.zip",
-                "reference": "c1123697f6a2ec29162b82f170dd4a491f524773",
-                "shasum": "8a2e7276848170bd77d78b81def91f5dc486fd36"
+                "url": "https://composer.tiki.org/dist/lcobucci/jwt/lcobucci-jwt-958a9873a63b0244a72f6e354ccc86019ee674a5-zip-0f4dd0.zip",
+                "reference": "958a9873a63b0244a72f6e354ccc86019ee674a5",
+                "shasum": "4c8f4b139692759d849d6628acf29aff9a761b2f"
             },
             "require": {
                 "ext-mbstring": "*",
@@ -4021,6 +4000,9 @@
                 "phpunit/phpunit": "^5.7 || ^7.3",
                 "squizlabs/php_codesniffer": "~2.3"
             },
+            "suggest": {
+                "lcobucci/clock": "*"
+            },
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -4030,7 +4012,12 @@
             "autoload": {
                 "psr-4": {
                     "Lcobucci\\JWT\\": "src"
-                }
+                },
+                "files": [
+                    "compat/class-aliases.php",
+                    "compat/json-exception-polyfill.php",
+                    "compat/lcobucci-clock-polyfill.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -4048,7 +4035,7 @@
                 "JWS",
                 "jwt"
             ],
-            "time": "2020-08-20T13:22:28+00:00"
+            "time": "2020-11-27T01:17:14+00:00"
         },
         {
             "name": "league/commonmark",
@@ -4129,9 +4116,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/event/zipball/d2cc124cf9a3fab2bb4ff963307f60361ce4d119",
+                "url": "https://composer.tiki.org/dist/league/event/league-event-d2cc124cf9a3fab2bb4ff963307f60361ce4d119-zip-f1c2c3.zip",
                 "reference": "d2cc124cf9a3fab2bb4ff963307f60361ce4d119",
-                "shasum": ""
+                "shasum": "29f004e2bd0b2dc7fbe91fc7615a5d11ba360fa8"
             },
             "require": {
                 "php": ">=5.4.0"
@@ -4424,9 +4411,9 @@
             "authors": [
                 {
                     "name": "Michel Fortin",
+                    "role": "Developer",
                     "email": "michel.fortin@michelf.ca",
-                    "homepage": "https://michelf.ca/",
-                    "role": "Developer"
+                    "homepage": "https://michelf.ca/"
                 },
                 {
                     "name": "John Gruber",
@@ -5039,8 +5026,9 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz"
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
+                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
             },
             "type": "npm-asset",
             "license": [
@@ -5075,24 +5063,32 @@
         },
         {
             "name": "npm-asset/zxing--library",
-            "version": "v0.17.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/zxing-js/library.git",
-                "reference": "9e131ed963b15a35c22909020604b22b4bd8c8e0"
-            },
+            "version": "0.18.3",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/zxing--library/npm-asset-zxing--library-9e131ed963b15a35c22909020604b22b4bd8c8e0-zip-20739a.zip",
-                "reference": "9e131ed963b15a35c22909020604b22b4bd8c8e0",
-                "shasum": "95ed8431f24fda254c8b49b7af1cd202a0fdfefa"
+                "url": "https://composer.tiki.org/dist/npm-asset/zxing--library/npm-asset-zxing--library-0.18.3.zip",
+                "shasum": "923fb76bb3305f0b78e74ddc7f2fc64c2b01cb76"
             },
             "require": {
-                "npm-asset/ts-custom-error": ">=3.0.0,<4.0.0"
+                "npm-asset/ts-custom-error": ">=3.0.0,<4.0.0",
+                "npm-asset/zxing--text-encoding": "~0.9.0"
             },
             "type": "npm-asset",
             "license": [
                 "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/zxing--text-encoding",
+            "version": "0.9.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/zxing--text-encoding/npm-asset-zxing--text-encoding-0.9.0.zip",
+                "shasum": "f477f05b400d05cb77d729b4cf47c37aef3a019c"
+            },
+            "type": "npm-asset",
+            "license": [
+                "(Unlicense OR Apache-2.0)"
             ]
         },
         {
@@ -5328,17 +5324,17 @@
         },
         {
             "name": "pear/archive_tar",
-            "version": "1.4.10",
+            "version": "1.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/Archive_Tar.git",
-                "reference": "bbb4f10f71a1da2715ec6d9a683f4f23c507a49b"
+                "reference": "17d355cb7d3c4ff08e5729f29cd7660145208d9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/pear/archive_tar/pear-archive_tar-bbb4f10f71a1da2715ec6d9a683f4f23c507a49b-zip-991d40.zip",
-                "reference": "bbb4f10f71a1da2715ec6d9a683f4f23c507a49b",
-                "shasum": "5c30f92fb20821ef63ad6049faabf83c01ef9a76"
+                "url": "https://composer.tiki.org/dist/pear/archive_tar/pear-archive_tar-17d355cb7d3c4ff08e5729f29cd7660145208d9d-zip-857dbf.zip",
+                "reference": "17d355cb7d3c4ff08e5729f29cd7660145208d9d",
+                "shasum": "52fbad17e3c787e8ac74f6047c8c0eab6b158354"
             },
             "require": {
                 "pear/pear-core-minimal": "^1.10.0alpha2",
@@ -5390,7 +5386,7 @@
                 "archive",
                 "tar"
             ],
-            "time": "2020-09-15T14:13:23+00:00"
+            "time": "2020-11-19T22:10:24+00:00"
         },
         {
             "name": "pear/console_getopt",
@@ -6307,17 +6303,17 @@
         },
         {
             "name": "sabre/dav",
-            "version": "4.1.2",
+            "version": "4.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sabre-io/dav.git",
-                "reference": "e1f617a4112da461bfc31aa4e87e0e6ac0bd6ed0"
+                "reference": "b903eeedfbdcd6cab7935661ec6dc2d90cdf8a1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sabre/dav/sabre-dav-e1f617a4112da461bfc31aa4e87e0e6ac0bd6ed0-zip-28655c.zip",
-                "reference": "e1f617a4112da461bfc31aa4e87e0e6ac0bd6ed0",
-                "shasum": "e60b54bbd12834a282495e8249cd91b2f385ef92"
+                "url": "https://composer.tiki.org/dist/sabre/dav/sabre-dav-b903eeedfbdcd6cab7935661ec6dc2d90cdf8a1e-zip-94d89a.zip",
+                "reference": "b903eeedfbdcd6cab7935661ec6dc2d90cdf8a1e",
+                "shasum": "3ce29135fb79c57742ad3546bc95377ee383a86a"
             },
             "require": {
                 "ext-ctype": "*",
@@ -6340,7 +6336,7 @@
             },
             "require-dev": {
                 "evert/phpdoc-md": "~0.1.0",
-                "friendsofphp/php-cs-fixer": "^2.16.3",
+                "friendsofphp/php-cs-fixer": "^2.16.7",
                 "monolog/monolog": "^1.18",
                 "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": "^7.5 || ^8.5 || ^9.0"
@@ -6384,7 +6380,7 @@
                 "framework",
                 "iCalendar"
             ],
-            "time": "2020-10-04T07:21:47+00:00"
+            "time": "2020-11-09T07:48:35+00:00"
         },
         {
             "name": "sabre/event",
@@ -6559,17 +6555,17 @@
         },
         {
             "name": "sabre/vobject",
-            "version": "4.3.2",
+            "version": "4.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sabre-io/vobject.git",
-                "reference": "e17daaf92a12d39e93ab404929673573e3bb85bf"
+                "reference": "58f9f9b46a1080c0130bd86f4df9a568aacb9c79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sabre/vobject/sabre-vobject-e17daaf92a12d39e93ab404929673573e3bb85bf-zip-674020.zip",
-                "reference": "e17daaf92a12d39e93ab404929673573e3bb85bf",
-                "shasum": "2018dc8f2844e5ca0de8a41dbe5b02c2e7f0d8ba"
+                "url": "https://composer.tiki.org/dist/sabre/vobject/sabre-vobject-58f9f9b46a1080c0130bd86f4df9a568aacb9c79-zip-adbc27.zip",
+                "reference": "58f9f9b46a1080c0130bd86f4df9a568aacb9c79",
+                "shasum": "4207d3ca6ccc2199771a4ef0bb40ce1c23933831"
             },
             "require": {
                 "ext-mbstring": "*",
@@ -6577,7 +6573,7 @@
                 "sabre/xml": "^2.1"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "~2.16.1",
+                "friendsofphp/php-cs-fixer": "~2.16.7",
                 "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": "^7.5 || ^8.5 || ^9.0"
             },
@@ -6653,7 +6649,7 @@
                 "xCal",
                 "xCard"
             ],
-            "time": "2020-10-03T11:15:54+00:00"
+            "time": "2020-11-09T04:31:38+00:00"
         },
         {
             "name": "sabre/xml",
@@ -6721,17 +6717,17 @@
         },
         {
             "name": "scssphp/scssphp",
-            "version": "1.3",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scssphp/scssphp.git",
-                "reference": "261cd018025d5790e135a1e5b694d6af186e6bca"
+                "reference": "f7c9088320e218ca42e4ef0074259a1ba24ec93a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/scssphp/scssphp/scssphp-scssphp-261cd018025d5790e135a1e5b694d6af186e6bca-zip-3da715.zip",
-                "reference": "261cd018025d5790e135a1e5b694d6af186e6bca",
-                "shasum": "3c816177fe87a3da9c952f6c54a66a04d8c5f01a"
+                "url": "https://composer.tiki.org/dist/scssphp/scssphp/scssphp-scssphp-f7c9088320e218ca42e4ef0074259a1ba24ec93a-zip-14b22c.zip",
+                "reference": "f7c9088320e218ca42e4ef0074259a1ba24ec93a",
+                "shasum": "50066402b1bb603bc55cad946ae0a5d0c60580df"
             },
             "require": {
                 "ext-ctype": "*",
@@ -6740,8 +6736,9 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5 || ^8.3 || ^9.4",
-                "sass/sass-spec": "2020.08.10",
+                "sass/sass-spec": "2020.10.29",
                 "squizlabs/php_codesniffer": "~3.5",
+                "symfony/phpunit-bridge": "^5.1",
                 "twbs/bootstrap": "~4.3",
                 "zurb/foundation": "~6.5"
             },
@@ -6779,7 +6776,7 @@
                 "scss",
                 "stylesheet"
             ],
-            "time": "2020-10-29T11:09:57+00:00"
+            "time": "2020-11-07T20:53:41+00:00"
         },
         {
             "name": "simile_timeline/simile_timeline",
@@ -6945,7 +6942,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v3.4.46",
+            "version": "v3.4.47",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -7004,7 +7001,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.46",
+            "version": "v3.4.47",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -7071,17 +7068,17 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v5.1.8",
+            "version": "v5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "6cbebda22ffc0d4bb8fea0c1311c2ca54c4c8fa0"
+                "reference": "b8d8eb06b0942e84a69e7acebc3e9c1e6e6e7256"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/css-selector/symfony-css-selector-6cbebda22ffc0d4bb8fea0c1311c2ca54c4c8fa0-zip-7f51e7.zip",
-                "reference": "6cbebda22ffc0d4bb8fea0c1311c2ca54c4c8fa0",
-                "shasum": "839de4b3de9eebb46c2444f83c935e766850cd3b"
+                "url": "https://composer.tiki.org/dist/symfony/css-selector/symfony-css-selector-b8d8eb06b0942e84a69e7acebc3e9c1e6e6e7256-zip-bf988f.zip",
+                "reference": "b8d8eb06b0942e84a69e7acebc3e9c1e6e6e7256",
+                "shasum": "175ceb5fa307130ad1004e885ed4e80b67516cb4"
             },
             "require": {
                 "php": ">=7.2.5"
@@ -7115,21 +7112,21 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2020-10-24T12:01:57+00:00"
+            "time": "2020-10-28T21:31:18+00:00"
         },
         {
             "name": "symfony/debug",
-            "version": "v4.4.16",
+            "version": "v4.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "c87adf3fc1cd0bf4758316a3a150d50a8f957ef4"
+                "reference": "65fe7b49868378319b82da3035fb30801b931c47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-c87adf3fc1cd0bf4758316a3a150d50a8f957ef4-zip-8380ce.zip",
-                "reference": "c87adf3fc1cd0bf4758316a3a150d50a8f957ef4",
-                "shasum": "86e434500a7eb46862f610e59173c452b2cca620"
+                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-65fe7b49868378319b82da3035fb30801b931c47-zip-c1f064.zip",
+                "reference": "65fe7b49868378319b82da3035fb30801b931c47",
+                "shasum": "28eb2456c489743fb3b71daef9c3a759c2e16766"
             },
             "require": {
                 "php": ">=7.1.3",
@@ -7167,11 +7164,11 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2020-10-24T11:50:19+00:00"
+            "time": "2020-10-28T20:42:29+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v3.4.46",
+            "version": "v3.4.47",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
@@ -7237,17 +7234,17 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.4.16",
+            "version": "v4.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "e74b873395b7213d44d1397bd4a605cd1632a68a"
+                "reference": "17b83e36a911aefa2cfe04bbf6328ec4c040c1b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-e74b873395b7213d44d1397bd4a605cd1632a68a-zip-f333ff.zip",
-                "reference": "e74b873395b7213d44d1397bd4a605cd1632a68a",
-                "shasum": "522bf26dcb83b79d297e2e8ad637a5de9e7f1bcc"
+                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-17b83e36a911aefa2cfe04bbf6328ec4c040c1b2-zip-a45066.zip",
+                "reference": "17b83e36a911aefa2cfe04bbf6328ec4c040c1b2",
+                "shasum": "25dba4b1d49e0d7f30ac26d5346333c25af0ba33"
             },
             "require": {
                 "php": ">=7.1.3",
@@ -7278,21 +7275,21 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2020-10-24T11:50:19+00:00"
+            "time": "2020-11-11T22:20:15+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v4.4.16",
+            "version": "v4.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "26f63b8d4e92f2eecd90f6791a563ebb001abe31"
+                "reference": "9f1d1d883b79a91ef320c0c6e803494e042ef36e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/finder/symfony-finder-26f63b8d4e92f2eecd90f6791a563ebb001abe31-zip-072082.zip",
-                "reference": "26f63b8d4e92f2eecd90f6791a563ebb001abe31",
-                "shasum": "154f6c4425dbd216cbe66c51d329175b11e6067c"
+                "url": "https://composer.tiki.org/dist/symfony/finder/symfony-finder-9f1d1d883b79a91ef320c0c6e803494e042ef36e-zip-dd0870.zip",
+                "reference": "9f1d1d883b79a91ef320c0c6e803494e042ef36e",
+                "shasum": "161a2ee12c631a7f63716f7cb436412a320f9a9e"
             },
             "require": {
                 "php": ">=7.1.3"
@@ -7322,7 +7319,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2020-10-24T11:50:19+00:00"
+            "time": "2020-11-17T19:45:34+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -7753,7 +7750,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.46",
+            "version": "v3.4.47",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -7797,7 +7794,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.46",
+            "version": "v3.4.47",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -7898,6 +7895,10 @@
                 }
             ],
             "description": "This is Shamir's Shared Secret implementation in PHP. It allows you to create shared secrets using the PHP classes or the CLI interface.",
+            "support": {
+                "issues": "https://github.com/teqneers/shamir/issues",
+                "source": "https://github.com/teqneers/shamir/tree/master"
+            },
             "time": "2020-05-10T16:02:01+00:00"
         },
         {
@@ -7959,9 +7960,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/true/php-punycode/zipball/a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
+                "url": "https://composer.tiki.org/dist/true/punycode/true-punycode-a4d0c11a36dd7f4e7cd7096076cab6d3378a071e-zip-4ceb35.zip",
                 "reference": "a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
-                "shasum": ""
+                "shasum": "0153b28196219934ea010de766dea03de32a7d89"
             },
             "require": {
                 "php": ">=5.3.0",
@@ -8276,36 +8277,31 @@
         },
         {
             "name": "doctrine/instantiator",
-            "version": "1.3.1",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "f350df0268e904597e3bd9c4685c53e0e333feea"
+                "reference": "d56bf6102915de5702778fe20f2de3b2fe570b5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/doctrine/instantiator/doctrine-instantiator-f350df0268e904597e3bd9c4685c53e0e333feea-zip-11a760.zip",
-                "reference": "f350df0268e904597e3bd9c4685c53e0e333feea",
-                "shasum": "0844274a5e03596f26d836302745fc537d85e514"
+                "url": "https://composer.tiki.org/dist/doctrine/instantiator/doctrine-instantiator-d56bf6102915de5702778fe20f2de3b2fe570b5b-zip-22e5fb.zip",
+                "reference": "d56bf6102915de5702778fe20f2de3b2fe570b5b",
+                "shasum": "0875b226ccda10b12443da9ad183e37e2af96690"
             },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^6.0",
+                "doctrine/coding-standard": "^8.0",
                 "ext-pdo": "*",
                 "ext-phar": "*",
-                "phpbench/phpbench": "^0.13",
-                "phpstan/phpstan-phpunit": "^0.11",
-                "phpstan/phpstan-shim": "^0.11",
-                "phpunit/phpunit": "^7.0"
+                "phpbench/phpbench": "^0.13 || 1.0.0-alpha2",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-phpunit": "^0.12",
+                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.2.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Doctrine\\Instantiator\\": "src/Doctrine/Instantiator/"
@@ -8319,7 +8315,7 @@
                 {
                     "name": "Marco Pivetta",
                     "email": "ocramius@gmail.com",
-                    "homepage": "http://ocramius.github.com/"
+                    "homepage": "https://ocramius.github.io/"
                 }
             ],
             "description": "A small, lightweight utility to instantiate objects in PHP without invoking their constructors",
@@ -8328,7 +8324,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2020-05-29T17:27:14+00:00"
+            "time": "2020-11-10T18:47:58+00:00"
         },
         {
             "name": "fabpot/goutte",
@@ -8488,17 +8484,17 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.10.1",
+            "version": "1.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5"
+                "reference": "776f831124e9c62e1a2c601ecc52e776d8bb7220"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/myclabs/deep-copy/myclabs-deep-copy-969b211f9a51aa1f6c01d1d2aef56d3bd91598e5-zip-1bc29d.zip",
-                "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
-                "shasum": "5aeb39ff9d29ed62c3daac5403c948c0c86b382a"
+                "url": "https://composer.tiki.org/dist/myclabs/deep-copy/myclabs-deep-copy-776f831124e9c62e1a2c601ecc52e776d8bb7220-zip-7a0f97.zip",
+                "reference": "776f831124e9c62e1a2c601ecc52e776d8bb7220",
+                "shasum": "9366bb7cb9273b7e8f461e10f4ba1ee9f88c8e0d"
             },
             "require": {
                 "php": "^7.1 || ^8.0"
@@ -8532,7 +8528,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2020-06-29T13:22:24+00:00"
+            "time": "2020-11-13T09:40:50+00:00"
         },
         {
             "name": "n98/junit-xml",
@@ -8572,17 +8568,17 @@
         },
         {
             "name": "overtrue/phplint",
-            "version": "2.1.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/phplint.git",
-                "reference": "11f1ac8c583013897fc3f77634530588073a414d"
+                "reference": "7debe3100d8b7e92b28db9de5adab991e9b3b419"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/overtrue/phplint/overtrue-phplint-11f1ac8c583013897fc3f77634530588073a414d-zip-98fc0c.zip",
-                "reference": "11f1ac8c583013897fc3f77634530588073a414d",
-                "shasum": "922187a7727816c5e0bf3c550905565e1120d940"
+                "url": "https://composer.tiki.org/dist/overtrue/phplint/overtrue-phplint-7debe3100d8b7e92b28db9de5adab991e9b3b419-zip-e76c4b.zip",
+                "reference": "7debe3100d8b7e92b28db9de5adab991e9b3b419",
+                "shasum": "e9d4c50d9606711ee6df5bd831c9c5a041a37984"
             },
             "require": {
                 "ext-json": "*",
@@ -8634,32 +8630,33 @@
                 "phplint",
                 "syntax"
             ],
-            "time": "2020-10-02T04:37:14+00:00"
+            "time": "2020-11-25T14:31:25+00:00"
         },
         {
             "name": "phar-io/manifest",
-            "version": "1.0.3",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phar-io/manifest.git",
-                "reference": "7761fcacf03b4d4f16e7ccb606d4879ca431fcf4"
+                "reference": "85265efd3af7ba3ca4b2a2c34dbfc5788dd29133"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phar-io/manifest/phar-io-manifest-7761fcacf03b4d4f16e7ccb606d4879ca431fcf4-zip-16fcd4.zip",
-                "reference": "7761fcacf03b4d4f16e7ccb606d4879ca431fcf4",
-                "shasum": "9051b37db5fce799ae44ec3e0137b918f68a8962"
+                "url": "https://composer.tiki.org/dist/phar-io/manifest/phar-io-manifest-85265efd3af7ba3ca4b2a2c34dbfc5788dd29133-zip-e9d1de.zip",
+                "reference": "85265efd3af7ba3ca4b2a2c34dbfc5788dd29133",
+                "shasum": "261379e7eb8a29e1ad3cdd249bf2c1f1265bf364"
             },
             "require": {
                 "ext-dom": "*",
                 "ext-phar": "*",
-                "phar-io/version": "^2.0",
-                "php": "^5.6 || ^7.0"
+                "ext-xmlwriter": "*",
+                "phar-io/version": "^3.0.1",
+                "php": "^7.2 || ^8.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -8689,24 +8686,24 @@
                 }
             ],
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
-            "time": "2018-07-08T19:23:20+00:00"
+            "time": "2020-06-27T14:33:11+00:00"
         },
         {
             "name": "phar-io/version",
-            "version": "2.0.1",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phar-io/version.git",
-                "reference": "45a2ec53a73c70ce41d55cedef9063630abaf1b6"
+                "reference": "726c026815142e4f8677b7cb7f2249c9ffb7ecae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phar-io/version/phar-io-version-45a2ec53a73c70ce41d55cedef9063630abaf1b6-zip-8d9b61.zip",
-                "reference": "45a2ec53a73c70ce41d55cedef9063630abaf1b6",
-                "shasum": "ad3eb5c28376611ba8272f9ef14f2e0e9d9430b1"
+                "url": "https://composer.tiki.org/dist/phar-io/version/phar-io-version-726c026815142e4f8677b7cb7f2249c9ffb7ecae-zip-7d43f8.zip",
+                "reference": "726c026815142e4f8677b7cb7f2249c9ffb7ecae",
+                "shasum": "ecc8f9c3f912f5cd3099e8c82bbc52e7623ca148"
             },
             "require": {
-                "php": "^5.6 || ^7.0"
+                "php": "^7.2 || ^8.0"
             },
             "type": "library",
             "autoload": {
@@ -8736,7 +8733,7 @@
                 }
             ],
             "description": "Library for handling version information and constraints",
-            "time": "2018-07-08T19:19:57+00:00"
+            "time": "2020-11-30T09:21:21+00:00"
         },
         {
             "name": "phpcompatibility/php-compatibility",
@@ -9007,22 +9004,22 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "7.0.10",
+            "version": "7.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "f1884187926fbb755a9aaf0b3836ad3165b478bf"
+                "reference": "ad0dcd7b184e76f7198a1fe07685bfbec3ae911a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit/php-code-coverage/phpunit-php-code-coverage-f1884187926fbb755a9aaf0b3836ad3165b478bf-zip-4df554.zip",
-                "reference": "f1884187926fbb755a9aaf0b3836ad3165b478bf",
-                "shasum": "933c8e9fb50bd96ca2ec1569b16193ab1d82da32"
+                "url": "https://composer.tiki.org/dist/phpunit/php-code-coverage/phpunit-php-code-coverage-ad0dcd7b184e76f7198a1fe07685bfbec3ae911a-zip-cc8d34.zip",
+                "reference": "ad0dcd7b184e76f7198a1fe07685bfbec3ae911a",
+                "shasum": "4ab9707f0d6dda3474b70208e03a2d2ca31a926a"
             },
             "require": {
                 "ext-dom": "*",
                 "ext-xmlwriter": "*",
-                "php": "^7.2",
+                "php": ">=7.2",
                 "phpunit/php-file-iterator": "^2.0.2",
                 "phpunit/php-text-template": "^1.2.1",
                 "phpunit/php-token-stream": "^3.1.1",
@@ -9066,27 +9063,27 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-11-20T13:55:58+00:00"
+            "time": "2020-11-30T08:35:22+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
-            "version": "2.0.2",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
-                "reference": "050bedf145a257b1ff02746c31894800e5122946"
+                "reference": "4b49fb70f067272b659ef0174ff9ca40fdaa6357"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit/php-file-iterator/phpunit-php-file-iterator-050bedf145a257b1ff02746c31894800e5122946-zip-f3c112.zip",
-                "reference": "050bedf145a257b1ff02746c31894800e5122946",
-                "shasum": "482c7b8da5c8a7d506d4298e74d00cd821ced8d6"
+                "url": "https://composer.tiki.org/dist/phpunit/php-file-iterator/phpunit-php-file-iterator-4b49fb70f067272b659ef0174ff9ca40fdaa6357-zip-0922d5.zip",
+                "reference": "4b49fb70f067272b659ef0174ff9ca40fdaa6357",
+                "shasum": "01b93fad45325209b8a1283c9da6541d42ddceb5"
             },
             "require": {
-                "php": "^7.1"
+                "php": ">=7.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.1"
+                "phpunit/phpunit": "^8.5"
             },
             "type": "library",
             "extra": {
@@ -9116,7 +9113,7 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2018-09-13T20:33:42+00:00"
+            "time": "2020-11-30T08:25:21+00:00"
         },
         {
             "name": "phpunit/php-text-template",
@@ -9161,23 +9158,23 @@
         },
         {
             "name": "phpunit/php-timer",
-            "version": "2.1.2",
+            "version": "2.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "1038454804406b0b5f5f520358e78c1c2f71501e"
+                "reference": "2454ae1765516d20c4ffe103d85a58a9a3bd5662"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit/php-timer/phpunit-php-timer-1038454804406b0b5f5f520358e78c1c2f71501e-zip-39fd80.zip",
-                "reference": "1038454804406b0b5f5f520358e78c1c2f71501e",
-                "shasum": "90985d5a6a54edc9889e60320f5b9a8ec381691d"
+                "url": "https://composer.tiki.org/dist/phpunit/php-timer/phpunit-php-timer-2454ae1765516d20c4ffe103d85a58a9a3bd5662-zip-0873e4.zip",
+                "reference": "2454ae1765516d20c4ffe103d85a58a9a3bd5662",
+                "shasum": "f461d2d2df277d8cfccfe7878399b75ede0e6b9f"
             },
             "require": {
-                "php": "^7.1"
+                "php": ">=7.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.0"
+                "phpunit/phpunit": "^8.5"
             },
             "type": "library",
             "extra": {
@@ -9206,25 +9203,25 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2019-06-07T04:22:29+00:00"
+            "time": "2020-11-30T08:20:02+00:00"
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "3.1.1",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "995192df77f63a59e47f025390d2d1fdf8f425ff"
+                "reference": "472b687829041c24b25f475e14c2f38a09edf1c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit/php-token-stream/phpunit-php-token-stream-995192df77f63a59e47f025390d2d1fdf8f425ff-zip-c295d3.zip",
-                "reference": "995192df77f63a59e47f025390d2d1fdf8f425ff",
-                "shasum": "07452c3d62ce7db8abb489e083f03e8304a3d12f"
+                "url": "https://composer.tiki.org/dist/phpunit/php-token-stream/phpunit-php-token-stream-472b687829041c24b25f475e14c2f38a09edf1c2-zip-13b227.zip",
+                "reference": "472b687829041c24b25f475e14c2f38a09edf1c2",
+                "shasum": "f9b18359a42bdd7b644d82eea5edccfde69229cd"
             },
             "require": {
                 "ext-tokenizer": "*",
-                "php": "^7.1"
+                "php": ">=7.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^7.0"
@@ -9256,43 +9253,43 @@
                 "tokenizer"
             ],
             "abandoned": true,
-            "time": "2019-09-17T06:23:10+00:00"
+            "time": "2020-11-30T08:38:46+00:00"
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.5.8",
+            "version": "8.5.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "34c18baa6a44f1d1fbf0338907139e9dce95b997"
+                "reference": "8e86be391a58104ef86037ba8a846524528d784e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit/phpunit/phpunit-phpunit-34c18baa6a44f1d1fbf0338907139e9dce95b997-zip-8cb19f.zip",
-                "reference": "34c18baa6a44f1d1fbf0338907139e9dce95b997",
-                "shasum": "ae066d5d67c423b42ce53d32f713596495e94cdd"
+                "url": "https://composer.tiki.org/dist/phpunit/phpunit/phpunit-phpunit-8e86be391a58104ef86037ba8a846524528d784e-zip-c10f1f.zip",
+                "reference": "8e86be391a58104ef86037ba8a846524528d784e",
+                "shasum": "c6472b240b21d80f7a859e91a0a10decf8d18868"
             },
             "require": {
-                "doctrine/instantiator": "^1.2.0",
+                "doctrine/instantiator": "^1.3.1",
                 "ext-dom": "*",
                 "ext-json": "*",
                 "ext-libxml": "*",
                 "ext-mbstring": "*",
                 "ext-xml": "*",
                 "ext-xmlwriter": "*",
-                "myclabs/deep-copy": "^1.9.1",
-                "phar-io/manifest": "^1.0.3",
-                "phar-io/version": "^2.0.1",
-                "php": "^7.2",
-                "phpspec/prophecy": "^1.8.1",
-                "phpunit/php-code-coverage": "^7.0.7",
+                "myclabs/deep-copy": "^1.10.0",
+                "phar-io/manifest": "^2.0.1",
+                "phar-io/version": "^3.0.2",
+                "php": ">=7.2",
+                "phpspec/prophecy": "^1.10.3",
+                "phpunit/php-code-coverage": "^7.0.12",
                 "phpunit/php-file-iterator": "^2.0.2",
                 "phpunit/php-text-template": "^1.2.1",
                 "phpunit/php-timer": "^2.1.2",
                 "sebastian/comparator": "^3.0.2",
                 "sebastian/diff": "^3.0.2",
-                "sebastian/environment": "^4.2.2",
-                "sebastian/exporter": "^3.1.1",
+                "sebastian/environment": "^4.2.3",
+                "sebastian/exporter": "^3.1.2",
                 "sebastian/global-state": "^3.0.0",
                 "sebastian/object-enumerator": "^3.0.3",
                 "sebastian/resource-operations": "^2.0.1",
@@ -9339,7 +9336,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2020-06-22T07:06:58+00:00"
+            "time": "2020-12-01T04:53:52+00:00"
         },
         {
             "name": "phpunit/phpunit-selenium",
@@ -9417,23 +9414,23 @@
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/code-unit-reverse-lookup.git",
-                "reference": "4419fcdb5eabb9caa61a27c7a1db532a6b55dd18"
+                "reference": "1de8cd5c010cb153fcd68b8d0f64606f523f7619"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian/code-unit-reverse-lookup/sebastian-code-unit-reverse-lookup-4419fcdb5eabb9caa61a27c7a1db532a6b55dd18-zip-2b8d33.zip",
-                "reference": "4419fcdb5eabb9caa61a27c7a1db532a6b55dd18",
-                "shasum": "c2eda4ddb76dc7e748bfd7ad7dc116f88fa5a72d"
+                "url": "https://composer.tiki.org/dist/sebastian/code-unit-reverse-lookup/sebastian-code-unit-reverse-lookup-1de8cd5c010cb153fcd68b8d0f64606f523f7619-zip-035629.zip",
+                "reference": "1de8cd5c010cb153fcd68b8d0f64606f523f7619",
+                "shasum": "d8a24d218ea2d92c60c95f98e7d384081f521851"
             },
             "require": {
-                "php": "^5.6 || ^7.0"
+                "php": ">=5.6"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.7 || ^6.0"
+                "phpunit/phpunit": "^8.5"
             },
             "type": "library",
             "extra": {
@@ -9458,29 +9455,29 @@
             ],
             "description": "Looks up which function or method a line of code belongs to",
             "homepage": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/",
-            "time": "2017-03-04T06:30:41+00:00"
+            "time": "2020-11-30T08:15:22+00:00"
         },
         {
             "name": "sebastian/comparator",
-            "version": "3.0.2",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "5de4fc177adf9bce8df98d8d141a7559d7ccf6da"
+                "reference": "1071dfcef776a57013124ff35e1fc41ccd294758"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian/comparator/sebastian-comparator-5de4fc177adf9bce8df98d8d141a7559d7ccf6da-zip-bbaa6e.zip",
-                "reference": "5de4fc177adf9bce8df98d8d141a7559d7ccf6da",
-                "shasum": "7efeb607d79c4f2a8ea2b3b61d323618d4ec1a7d"
+                "url": "https://composer.tiki.org/dist/sebastian/comparator/sebastian-comparator-1071dfcef776a57013124ff35e1fc41ccd294758-zip-bb528e.zip",
+                "reference": "1071dfcef776a57013124ff35e1fc41ccd294758",
+                "shasum": "12810a04e1e8d2e80a00846c58be4b7553f38c11"
             },
             "require": {
-                "php": "^7.1",
+                "php": ">=7.1",
                 "sebastian/diff": "^3.0",
                 "sebastian/exporter": "^3.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.1"
+                "phpunit/phpunit": "^8.5"
             },
             "type": "library",
             "extra": {
@@ -9499,6 +9496,10 @@
             ],
             "authors": [
                 {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                },
+                {
                     "name": "Jeff Welch",
                     "email": "whatthejeff@gmail.com"
                 },
@@ -9509,10 +9510,6 @@
                 {
                     "name": "Bernhard Schussek",
                     "email": "bschussek@2bepublished.at"
-                },
-                {
-                    "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Provides the functionality to compare PHP values for equality",
@@ -9522,24 +9519,24 @@
                 "compare",
                 "equality"
             ],
-            "time": "2018-07-12T15:12:46+00:00"
+            "time": "2020-11-30T08:04:30+00:00"
         },
         {
             "name": "sebastian/diff",
-            "version": "3.0.2",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "720fcc7e9b5cf384ea68d9d930d480907a0c1a29"
+                "reference": "14f72dd46eaf2f2293cbe79c93cc0bc43161a211"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian/diff/sebastian-diff-720fcc7e9b5cf384ea68d9d930d480907a0c1a29-zip-e6ed91.zip",
-                "reference": "720fcc7e9b5cf384ea68d9d930d480907a0c1a29",
-                "shasum": "d8ba265d7aea08892bcadd7e6fd79fd66e4663b8"
+                "url": "https://composer.tiki.org/dist/sebastian/diff/sebastian-diff-14f72dd46eaf2f2293cbe79c93cc0bc43161a211-zip-72210d.zip",
+                "reference": "14f72dd46eaf2f2293cbe79c93cc0bc43161a211",
+                "shasum": "79fbff6f0190657691027fff3d327f1ea58c47f1"
             },
             "require": {
-                "php": "^7.1"
+                "php": ">=7.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^7.5 || ^8.0",
@@ -9562,12 +9559,12 @@
             ],
             "authors": [
                 {
-                    "name": "Kore Nordmann",
-                    "email": "mail@kore-nordmann.de"
-                },
-                {
                     "name": "Sebastian Bergmann",
                     "email": "sebastian@phpunit.de"
+                },
+                {
+                    "name": "Kore Nordmann",
+                    "email": "mail@kore-nordmann.de"
                 }
             ],
             "description": "Diff implementation",
@@ -9578,24 +9575,24 @@
                 "unidiff",
                 "unified diff"
             ],
-            "time": "2019-02-04T06:01:07+00:00"
+            "time": "2020-11-30T07:59:04+00:00"
         },
         {
             "name": "sebastian/environment",
-            "version": "4.2.3",
+            "version": "4.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "464c90d7bdf5ad4e8a6aea15c091fec0603d4368"
+                "reference": "d47bbbad83711771f167c72d4e3f25f7fcc1f8b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian/environment/sebastian-environment-464c90d7bdf5ad4e8a6aea15c091fec0603d4368-zip-90efac.zip",
-                "reference": "464c90d7bdf5ad4e8a6aea15c091fec0603d4368",
-                "shasum": "59866773600b87131b8ca979bfb3555d12f2f72d"
+                "url": "https://composer.tiki.org/dist/sebastian/environment/sebastian-environment-d47bbbad83711771f167c72d4e3f25f7fcc1f8b0-zip-4a4178.zip",
+                "reference": "d47bbbad83711771f167c72d4e3f25f7fcc1f8b0",
+                "shasum": "7e3ef6f1ce6ff2f6dd4774a48eb1f773e45be261"
             },
             "require": {
-                "php": "^7.1"
+                "php": ">=7.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^7.5"
@@ -9631,24 +9628,24 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2019-11-20T08:46:58+00:00"
+            "time": "2020-11-30T07:53:42+00:00"
         },
         {
             "name": "sebastian/exporter",
-            "version": "3.1.2",
+            "version": "3.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "68609e1261d215ea5b21b7987539cbfbe156ec3e"
+                "reference": "6b853149eab67d4da22291d36f5b0631c0fd856e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian/exporter/sebastian-exporter-68609e1261d215ea5b21b7987539cbfbe156ec3e-zip-9c68c0.zip",
-                "reference": "68609e1261d215ea5b21b7987539cbfbe156ec3e",
-                "shasum": "39de73997dd22661e9796d1c74bfc88df5a025ae"
+                "url": "https://composer.tiki.org/dist/sebastian/exporter/sebastian-exporter-6b853149eab67d4da22291d36f5b0631c0fd856e-zip-c4ea5c.zip",
+                "reference": "6b853149eab67d4da22291d36f5b0631c0fd856e",
+                "shasum": "7e74330aa80c35444aeadcda1ad8b4aa0314548b"
             },
             "require": {
-                "php": "^7.0",
+                "php": ">=7.0",
                 "sebastian/recursion-context": "^3.0"
             },
             "require-dev": {
@@ -9698,24 +9695,24 @@
                 "export",
                 "exporter"
             ],
-            "time": "2019-09-14T09:02:43+00:00"
+            "time": "2020-11-30T07:47:53+00:00"
         },
         {
             "name": "sebastian/global-state",
-            "version": "3.0.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/global-state.git",
-                "reference": "edf8a461cf1d4005f19fb0b6b8b95a9f7fa0adc4"
+                "reference": "474fb9edb7ab891665d3bfc6317f42a0a150454b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian/global-state/sebastian-global-state-edf8a461cf1d4005f19fb0b6b8b95a9f7fa0adc4-zip-8a717f.zip",
-                "reference": "edf8a461cf1d4005f19fb0b6b8b95a9f7fa0adc4",
-                "shasum": "8bb8d588fa1de4caae2e11021ddee724cfaa837e"
+                "url": "https://composer.tiki.org/dist/sebastian/global-state/sebastian-global-state-474fb9edb7ab891665d3bfc6317f42a0a150454b-zip-f552f5.zip",
+                "reference": "474fb9edb7ab891665d3bfc6317f42a0a150454b",
+                "shasum": "b2b5abd1796bf403bce9f98e33882766ac4fdca2"
             },
             "require": {
-                "php": "^7.2",
+                "php": ">=7.2",
                 "sebastian/object-reflector": "^1.1.1",
                 "sebastian/recursion-context": "^3.0"
             },
@@ -9752,24 +9749,24 @@
             "keywords": [
                 "global state"
             ],
-            "time": "2019-02-01T05:30:01+00:00"
+            "time": "2020-11-30T07:43:24+00:00"
         },
         {
             "name": "sebastian/object-enumerator",
-            "version": "3.0.3",
+            "version": "3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/object-enumerator.git",
-                "reference": "7cfd9e65d11ffb5af41198476395774d4c8a84c5"
+                "reference": "e67f6d32ebd0c749cf9d1dbd9f226c727043cdf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian/object-enumerator/sebastian-object-enumerator-7cfd9e65d11ffb5af41198476395774d4c8a84c5-zip-360ba9.zip",
-                "reference": "7cfd9e65d11ffb5af41198476395774d4c8a84c5",
-                "shasum": "4e114c9ba666caf088946fb6a647aa0d0cd32548"
+                "url": "https://composer.tiki.org/dist/sebastian/object-enumerator/sebastian-object-enumerator-e67f6d32ebd0c749cf9d1dbd9f226c727043cdf2-zip-03d120.zip",
+                "reference": "e67f6d32ebd0c749cf9d1dbd9f226c727043cdf2",
+                "shasum": "a2fdf060d87653c0dbcd2e62f02e7691931b3750"
             },
             "require": {
-                "php": "^7.0",
+                "php": ">=7.0",
                 "sebastian/object-reflector": "^1.1.1",
                 "sebastian/recursion-context": "^3.0"
             },
@@ -9799,24 +9796,24 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
-            "time": "2017-08-03T12:35:26+00:00"
+            "time": "2020-11-30T07:40:27+00:00"
         },
         {
             "name": "sebastian/object-reflector",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/object-reflector.git",
-                "reference": "773f97c67f28de00d397be301821b06708fca0be"
+                "reference": "9b8772b9cbd456ab45d4a598d2dd1a1bced6363d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian/object-reflector/sebastian-object-reflector-773f97c67f28de00d397be301821b06708fca0be-zip-56c4ab.zip",
-                "reference": "773f97c67f28de00d397be301821b06708fca0be",
-                "shasum": "4062dcdcb8e5ac7c352b5e99cc432f585649a51d"
+                "url": "https://composer.tiki.org/dist/sebastian/object-reflector/sebastian-object-reflector-9b8772b9cbd456ab45d4a598d2dd1a1bced6363d-zip-ed7173.zip",
+                "reference": "9b8772b9cbd456ab45d4a598d2dd1a1bced6363d",
+                "shasum": "d4d7406ffe601dabf8bd0fcff287bb1bd1a3530a"
             },
             "require": {
-                "php": "^7.0"
+                "php": ">=7.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.0"
@@ -9844,24 +9841,24 @@
             ],
             "description": "Allows reflection of object attributes, including inherited and non-public ones",
             "homepage": "https://github.com/sebastianbergmann/object-reflector/",
-            "time": "2017-03-29T09:07:27+00:00"
+            "time": "2020-11-30T07:37:18+00:00"
         },
         {
             "name": "sebastian/recursion-context",
-            "version": "3.0.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/recursion-context.git",
-                "reference": "5b0cd723502bac3b006cbf3dbf7a1e3fcefe4fa8"
+                "reference": "367dcba38d6e1977be014dc4b22f47a484dac7fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian/recursion-context/sebastian-recursion-context-5b0cd723502bac3b006cbf3dbf7a1e3fcefe4fa8-zip-ab6a2f.zip",
-                "reference": "5b0cd723502bac3b006cbf3dbf7a1e3fcefe4fa8",
-                "shasum": "b8d031bc33d177c9fc1061b2053462dcf26c155e"
+                "url": "https://composer.tiki.org/dist/sebastian/recursion-context/sebastian-recursion-context-367dcba38d6e1977be014dc4b22f47a484dac7fb-zip-05720f.zip",
+                "reference": "367dcba38d6e1977be014dc4b22f47a484dac7fb",
+                "shasum": "7b3e258e453d116103272f0df82285422625456a"
             },
             "require": {
-                "php": "^7.0"
+                "php": ">=7.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.0"
@@ -9883,12 +9880,12 @@
             ],
             "authors": [
                 {
-                    "name": "Jeff Welch",
-                    "email": "whatthejeff@gmail.com"
-                },
-                {
                     "name": "Sebastian Bergmann",
                     "email": "sebastian@phpunit.de"
+                },
+                {
+                    "name": "Jeff Welch",
+                    "email": "whatthejeff@gmail.com"
                 },
                 {
                     "name": "Adam Harvey",
@@ -9897,24 +9894,24 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
-            "time": "2017-03-03T06:23:57+00:00"
+            "time": "2020-11-30T07:34:24+00:00"
         },
         {
             "name": "sebastian/resource-operations",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/resource-operations.git",
-                "reference": "4d7a795d35b889bf80a0cc04e08d77cedfa917a9"
+                "reference": "31d35ca87926450c44eae7e2611d45a7a65ea8b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian/resource-operations/sebastian-resource-operations-4d7a795d35b889bf80a0cc04e08d77cedfa917a9-zip-41a624.zip",
-                "reference": "4d7a795d35b889bf80a0cc04e08d77cedfa917a9",
-                "shasum": "de53b1532100ff2761badcd2ac6084b67b939434"
+                "url": "https://composer.tiki.org/dist/sebastian/resource-operations/sebastian-resource-operations-31d35ca87926450c44eae7e2611d45a7a65ea8b3-zip-a5cfde.zip",
+                "reference": "31d35ca87926450c44eae7e2611d45a7a65ea8b3",
+                "shasum": "a46edff27ea6eafe81a45ace5cf6825213c40ec6"
             },
             "require": {
-                "php": "^7.1"
+                "php": ">=7.1"
             },
             "type": "library",
             "extra": {
@@ -9939,24 +9936,24 @@
             ],
             "description": "Provides a list of PHP built-in functions that operate on resources",
             "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
-            "time": "2018-10-04T04:07:39+00:00"
+            "time": "2020-11-30T07:30:19+00:00"
         },
         {
             "name": "sebastian/type",
-            "version": "1.1.3",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/type.git",
-                "reference": "3aaaa15fa71d27650d62a948be022fe3b48541a3"
+                "reference": "0150cfbc4495ed2df3872fb31b26781e4e077eb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian/type/sebastian-type-3aaaa15fa71d27650d62a948be022fe3b48541a3-zip-40dcaa.zip",
-                "reference": "3aaaa15fa71d27650d62a948be022fe3b48541a3",
-                "shasum": "2ac3530f0158b794c0f3bedfd41d3709392b5df7"
+                "url": "https://composer.tiki.org/dist/sebastian/type/sebastian-type-0150cfbc4495ed2df3872fb31b26781e4e077eb4-zip-66512d.zip",
+                "reference": "0150cfbc4495ed2df3872fb31b26781e4e077eb4",
+                "shasum": "b40b561b6280fa179f53916c813a2e01ad8dcf04"
             },
             "require": {
-                "php": "^7.2"
+                "php": ">=7.2"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.2"
@@ -9985,7 +9982,7 @@
             ],
             "description": "Collection of value objects that represent the types of the PHP type system",
             "homepage": "https://github.com/sebastianbergmann/type",
-            "time": "2019-07-02T08:10:15+00:00"
+            "time": "2020-11-30T07:25:11+00:00"
         },
         {
             "name": "sebastian/version",
@@ -10129,17 +10126,17 @@
         },
         {
             "name": "symfony/browser-kit",
-            "version": "v5.1.8",
+            "version": "v5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/browser-kit.git",
-                "reference": "65b7d208280f2700f43ba44a8059a25d7b01347b"
+                "reference": "4fc769a12282a12bc47f883f04f01ff3777e369b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/browser-kit/symfony-browser-kit-65b7d208280f2700f43ba44a8059a25d7b01347b-zip-5cf2fa.zip",
-                "reference": "65b7d208280f2700f43ba44a8059a25d7b01347b",
-                "shasum": "252aea66f6505557e06a5ef337ca9840c7748b42"
+                "url": "https://composer.tiki.org/dist/symfony/browser-kit/symfony-browser-kit-4fc769a12282a12bc47f883f04f01ff3777e369b-zip-3d7f26.zip",
+                "reference": "4fc769a12282a12bc47f883f04f01ff3777e369b",
+                "shasum": "234cf0261b6454d83386ccd833cdf963a2971b2e"
             },
             "require": {
                 "php": ">=7.2.5",
@@ -10179,11 +10176,11 @@
             ],
             "description": "Symfony BrowserKit Component",
             "homepage": "https://symfony.com",
-            "time": "2020-10-24T12:01:57+00:00"
+            "time": "2020-11-14T11:04:29+00:00"
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v5.1.8",
+            "version": "v5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
@@ -10371,6 +10368,8 @@
     },
     "platform-dev": [],
     "platform-overrides": {
+        "ext-ldap": "0",
+        "ext-soap": "0",
         "php": "7.4"
     },
     "plugin-api-version": "1.1.0"
