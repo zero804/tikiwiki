@@ -1,7 +1,7 @@
 {* $Id$ *}
 {if !$ts.ajax}
 	{block name=title}
-		{title help="forums" admpage="forums"}{tr}Forums{/tr}{/title}
+		{title help="Forums" admpage="forums"}{tr}Forums{/tr}{/title}
 	{/block}
 	<div class="t_navbar mb-4">
 		{if $tiki_p_admin_forum eq 'y'}
