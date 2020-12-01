@@ -510,26 +510,29 @@ class CleanVendors
 
 		// we remove standard files afterward so we have less files to search through
 		self::removeStandard($vendors);
-		self::addIndexFile($vendors);
-
-		// now we process theme files
-		$themes = __DIR__ . '/../../../../themes/';
-		$fs->ensureDirectoryExists($themes);
-		self::addIndexFile($themes);
+		self::addIndexFiles($vendors);
 	}
 
-	private static function addIndexFile($path)
-	{
-		if (file_exists($path) || ! is_writable($path)) {
-			return;
-		}
+	/**
+	 * Add index.php files to prevent directory browsing to a directory and its subdirectories
+	 * @param string $path		Root directory to add index.php files in.
+	 */
 
-		file_put_contents($path . 'index.php', '<?php header("location: ../index.php"); die;');
+	private static function addIndexFiles(string $path): void
+	{
+		$dirs = glob($path . '{,.}*[!.]', GLOB_MARK | GLOB_BRACE | GLOB_ONLYDIR);
+		foreach ($dirs as $dir){
+			$file = $dir . 'index.php';
+			if (!file_exists($file)) {
+				file_put_contents($file, '');
+			}
+			self::addIndexFiles($dir);
+		}
 	}
 
 	/**
 	 * Removes all files exactly matching $standardFiles entries.
-	 * Case-insensative evaluation. Will search subdirectories.
+	 * Case-insensitive evaluation. Will search subdirectories.
 	 * @param string $base	The base directory to search from.
 	 */
 	private static function removeStandard(string $base): void
