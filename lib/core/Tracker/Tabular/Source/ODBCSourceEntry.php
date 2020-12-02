@@ -7,7 +7,7 @@
 
 namespace Tracker\Tabular\Source;
 
-class ODBCSourceEntry
+class ODBCSourceEntry implements SourceEntryInterface
 {
 	private $data;
 

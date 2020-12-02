@@ -230,6 +230,22 @@ class Schema
 		return $this->primaryKey;
 	}
 
+	function isPrimaryKeyAutoIncrement()
+	{
+		if ($this->primaryKey) {
+			$field = $this->definition->getFieldFromPermName($this->primaryKey->getField());
+			return $field && $field['type'] == 'q';
+		} else {
+			foreach ($this->columns as $column) {
+				if ($column->isPrimaryKey()) {
+					$field = $this->definition->getFieldFromPermName($column->getField());
+					return $field && $field['type'] == 'q';
+				}
+			}
+		}
+		return false;
+	}
+
 	private function lookupMode($permName, $mode)
 	{
 		foreach ($this->columns as $column) {

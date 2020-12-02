@@ -73,4 +73,72 @@ class Manager
 	{
 		return $this->table->delete(['tabularId' => $tabularId]);
 	}
+
+	function syncItemSaved($args)
+	{
+		$definition = \Tracker_Definition::get($args['trackerId']);
+		$tabularId = $definition->getConfiguration('tabularSync');
+		if (empty($tabularId)) {
+			return;
+		}
+		$tabular = $this->getInfo($tabularId);
+		if (empty($tabular['tabularId'])) {
+			Feedback::error(tr("Tracker remote synchronization configured with a tabular format that does not exist."));
+			return;
+		}
+		$entry = [];
+		foreach ($args['values_by_permname'] as $field => $value) {
+			if (! isset($args['old_values_by_permname'][$field]) || $value != $args['old_values_by_permname'][$field]) {
+				$entry[$field] = $value;
+			}
+		}
+		$trklib = \TikiLib::lib('trk');
+		$schema = $this->getSchema($definition, $tabular);
+		# TODO: handle errors and missing connection to remote source
+		$writer = new Writer\ODBCWriter($tabular['odbc_config']);
+		$remote = $writer->sync($schema, $entry, $args['values_by_permname']);
+		foreach ($remote as $field => $value) {
+			if (isset($args['values_by_permname'][$field])) {
+				if ($value != $args['values_by_permname'][$field]) {
+					$field = $definition->getFieldFromPermName($field);
+					$trklib->modify_field($args['object'], $field['fieldId'], $value);
+				}
+			}
+		}
+	}
+
+	function syncItemDeleted($args)
+	{
+		$definition = \Tracker_Definition::get($args['trackerId']);
+		$tabularId = $definition->getConfiguration('tabularSync');
+		if (empty($tabularId)) {
+			return;
+		}
+		$tabular = $this->getInfo($tabularId);
+		if (empty($tabular['tabularId'])) {
+			Feedback::error(tr("Tracker remote synchronization configured with a tabular format that does not exist."));
+			return;
+		}
+		$schema = $this->getSchema($definition, $tabular);
+		foreach ($schema->getColumns() as $column) {
+			if ($column->isPrimaryKey()) {
+				$field = $definition->getFieldFromPermName($column->getField());
+				$id = $args['values'][$field['fieldId']] ?: null;
+				if ($id) {
+					$writer = new Writer\ODBCWriter($tabular['odbc_config']);
+					$writer->delete($column->getRemoteField(), $id);
+					break;
+				}
+			}
+		}
+	}
+
+	private function getSchema($definition, $tabular) {
+		$schema = new Schema($definition);
+		$schema->loadFormatDescriptor($tabular['format_descriptor']);
+		$schema->loadFilterDescriptor($tabular['filter_descriptor']);
+		$schema->loadConfig($tabular['config']);
+
+		return $schema;
+	}
 }

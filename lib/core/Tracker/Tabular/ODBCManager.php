@@ -41,30 +41,56 @@ class ODBCManager
 		$this->stopErrorHandler();
 	}
 
-	public function replace($pk, $row) {
+	public function replace($pk, $id, $row) {
 		$this->handleErrors();
 		$conn = $this->getConnection();
-		$id = $row[$pk];
-		$sql = "SELECT \"{$pk}\" FROM {$this->config['table']} WHERE {$pk} = ?";
-		$rs = odbc_prepare($conn, $sql);
-		odbc_execute($rs, [$id]);
-		if (odbc_num_rows($rs) > 0) {
+		if ($id) {
+			$sql = "SELECT \"{$pk}\" FROM {$this->config['table']} WHERE \"{$pk}\" = ?";
+			$rs = odbc_prepare($conn, $sql);
+			odbc_execute($rs, [$id]);
+			$exists = odbc_num_rows($rs) > 0;
+		} else {
+			$exists = false;
+			$id = null;
+		}
+		if ($exists) {
 			$sql = "UPDATE {$this->config['table']} SET ".implode(', ', array_map(function($k) { return "\"{$k}\" = ?"; }, array_keys($row)))." WHERE \"{$pk}\" = ?";
 			$rs = odbc_prepare($conn, $sql);
 			$params = array_map(function($v){ return empty($v) ? null : $v; }, array_values($row));
 			$params[] = $id;
 			odbc_execute($rs, $params);
 			if (odbc_error()) {
-				throw new \Exception(tr("Error updating remote item: %0", odbc_errormsg()));
+				$this->errors[] = tr("Error updating remote item: %0", odbc_errormsg());
 			}
+			$sql = "SELECT * FROM {$this->config['table']} WHERE \"{$pk}\" = ?";
+			$rs = odbc_prepare($conn, $sql);
+			odbc_execute($rs, [$id]);
+			$result = odbc_fetch_array($rs);
 		} else {
 			$row = array_filter($row);
 			$sql = "INSERT INTO {$this->config['table']}(\"".implode('", "', array_keys($row))."\") VALUES (".implode(", ", array_fill(0, count(array_keys($row)), '?')).")";
 			$rs = odbc_prepare($conn, $sql);
 			odbc_execute($rs, array_values($row));
 			if (odbc_error()) {
-				throw new \Exception(tr("Error inserting remote item: %0", odbc_errormsg()));
+				$this->errors[] = tr("Error inserting remote item: %0", odbc_errormsg());
 			}
+			$sql = "SELECT * FROM {$this->config['table']} WHERE \"{$pk}\" = @@IDENTITY";
+			$rs = odbc_prepare($conn, $sql);
+			odbc_execute($rs, []);
+			$result = odbc_fetch_array($rs);
+		}
+		$this->stopErrorHandler();
+		return $result;
+	}
+
+	public function delete($pk, $id) {
+		$this->handleErrors();
+		$conn = $this->getConnection();
+		$sql = "DELETE FROM {$this->config['table']} WHERE \"{$pk}\" = ?";
+		$rs = odbc_prepare($conn, $sql);
+		odbc_execute($rs, [$id]);
+		if (odbc_error()) {
+			$this->errors[] = tr("Error deleting remote item: %0", odbc_errormsg());
 		}
 		$this->stopErrorHandler();
 	}

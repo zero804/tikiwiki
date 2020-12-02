@@ -7,7 +7,7 @@
 
 namespace Tracker\Tabular\Source;
 
-class CsvSourceEntry
+class CsvSourceEntry implements SourceEntryInterface
 {
 	private $data;
 

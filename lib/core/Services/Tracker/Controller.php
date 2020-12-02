@@ -1993,6 +1993,7 @@ class Services_Tracker_Controller
 				'logo' => $input->logo->text(),
 				'useFormClasses' => $input->useFormClasses->int() ? 'y' : 'n',
 				'formClasses' => $input->formClasses->text(),
+				'tabularSync' => $input->tabularSync->int(),
 			];
 
 			$trackerId = $this->utilities->updateTracker($trackerId, $data);
@@ -2034,6 +2035,7 @@ class Services_Tracker_Controller
 			'groupforAlert' => $groupforAlert,
 			'showeachuser' => $groupalertlib->GetShowEachUser('tracker', 'trackerId', $groupforAlert),
 			'sectionFormats' => $trklib->getGlobalSectionFormats(),
+			'remoteTabulars' => TikiLib::lib('tabular')->getList(['odbc_config' => new TikiDb_Expr('$$ != ? AND $$ IS NOT NULL', ['[]'])]),
 		];
 	}
 

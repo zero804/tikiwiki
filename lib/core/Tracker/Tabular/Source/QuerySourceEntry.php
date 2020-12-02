@@ -7,7 +7,7 @@
 
 namespace Tracker\Tabular\Source;
 
-class QuerySourceEntry
+class QuerySourceEntry implements SourceEntryInterface
 {
 	private $data;
 

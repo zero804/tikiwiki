@@ -7,7 +7,7 @@
 
 namespace Tracker\Tabular\Source;
 
-class TrackerSourceEntry
+class TrackerSourceEntry implements SourceEntryInterface
 {
 	private $item;
 	private $data;

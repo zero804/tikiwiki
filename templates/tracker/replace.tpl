@@ -526,6 +526,22 @@
 				</div>
 			{/accordion_group}
 		{/if}
+		{if $prefs.tracker_tabular_enabled eq 'y' and $remoteTabulars}
+			{accordion_group title="{tr}Remote synchronization{/tr}"}
+				<div class="form-group row mx-0">
+					<label for="tabularSync">{tr}Choose tabular format{/tr}</label>
+					<select name="tabularSync" id="tabularSync" class="form-control">
+						<option value="">{tr}None{/tr}</option>
+						{foreach item=tabular from=$remoteTabulars}
+							<option value="{$tabular.tabularId|escape}"
+								{if $tabular.tabularId eq $info.tabularSync} selected="selected"{/if}>
+								{$tabular.name|escape}
+							</option>
+						{/foreach}
+					</select>
+				</div>
+			{/accordion_group}
+		{/if}
 	{/accordion}
 	<div class="form-group row mx-0 submit">
 		<input type="hidden" name="confirm" value="1">
