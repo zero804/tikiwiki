@@ -13,7 +13,7 @@ $categlib = TikiLib::lib('categ');
 $rolesRepo = TikiLib::lib('roles');
 
 $roles = TikiLib::lib('user')->list_role_groups();
-if (isset($_REQUEST["categId"])) {
+if (! empty($_REQUEST["categId"])) {
 	$info = $categlib->get_category($_REQUEST["categId"]);
 } else {
 	$_REQUEST["categId"] = 0;
@@ -36,7 +36,6 @@ if (! isset($_REQUEST['parentId'])) {
 $smarty->assign('parentId', $_REQUEST['parentId']);
 
 $categories = $categlib->getCategories(null, false, true, true, 'admin_categories');
-$smarty->assign_by_ref('categories', $categories);
 
 if (empty($_REQUEST['parentId'])) {
 	if (empty($categories) && $tiki_p_admin_categories !== 'y') {
@@ -268,6 +267,7 @@ if (isset($_REQUEST["save"]) && isset($_REQUEST["name"]) && strlen($_REQUEST["na
 			);
 			if ($tiki_p_admin_categories != 'y' || ! empty($_REQUEST['parentPerms'])) {
 				$userlib->copy_object_permissions($_REQUEST['parentId'], $newcategId, 'category');
+				Perms::getInstance()->clear();
 			}
 			Feedback::success(tr('Category %0 created', htmlspecialchars($_REQUEST["name"])));
 		} catch (Exception $e) {
@@ -379,6 +379,14 @@ if ($_REQUEST["parentId"]) {
 	$father = 0;
 }
 $smarty->assign('father', $father);
+
+// ---------------------------------------------------
+
+$categories = $categlib->getCategories(null, false, true, true, 'admin_categories');
+if (empty($categories) && $tiki_p_admin_categories != 'y') {
+	$access->check_permission('tiki_p_admin_categories');
+}
+$smarty->assign('categories', $categories);
 
 $treeNodes = [];
 $smarty->loadPlugin('smarty_function_icon');
