@@ -28,6 +28,11 @@ class Perms_ResolverFactory_ObjectFactory implements Perms_ResolverFactory
 		$this->parent = $parent;
 	}
 
+	function clear()
+	{
+		$this->known = [];
+	}
+
 	function getHash(array $context)
 	{
 		if (isset($context['type'], $context['object'])) {
