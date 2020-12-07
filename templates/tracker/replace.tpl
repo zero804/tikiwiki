@@ -540,6 +540,14 @@
 						{/foreach}
 					</select>
 				</div>
+				<div class="form-group row depends" data-on="tabularSync">
+					<label for="tabularSyncModifiedField">{tr}Last revision/modification field{/tr}
+					<a class="tikihelp text-info" title="{tr}Field selection{/tr}: {tr}Choose one of the tracker fields if remote items update its value every time a change happens. This will ensure only updated items get synchronized when importing from remote source.{/tr}">
+						{icon name=information}
+					</a>
+					</label>
+					{object_selector type=trackerfield tracker_id=$info.trackerId _simplevalue=$info.tabularSyncModifiedField _simplename="tabularSyncModifiedField"}
+				</div>
 			{/accordion_group}
 		{/if}
 	{/accordion}

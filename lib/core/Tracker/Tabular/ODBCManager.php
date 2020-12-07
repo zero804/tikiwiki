@@ -29,12 +29,18 @@ class ODBCManager
 		return $result;
 	}
 
-	public function iterate($fields) {
+	public function iterate($fields, $modifiedField = null, $lastImport = null) {
 		$this->handleErrors();
+		$conn = $this->getConnection();
 		$select = implode('", "', $fields);
 		$sql = "SELECT \"{$select}\" FROM {$this->config['table']}";
-		$conn = $this->getConnection();
-		$rs = odbc_exec($conn, $sql);
+		if ($modifiedField && $lastImport) {
+			$sql .= " WHERE \"{$modifiedField}\" >= ?";
+			$rs = odbc_prepare($conn, $sql);
+			odbc_execute($rs, [$lastImport]);
+		} else {
+			$rs = odbc_exec($conn, $sql);
+		}
 		while ($row = odbc_fetch_array($rs)) {
 			yield $row;
 		}

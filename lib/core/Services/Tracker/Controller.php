@@ -1994,6 +1994,7 @@ class Services_Tracker_Controller
 				'useFormClasses' => $input->useFormClasses->int() ? 'y' : 'n',
 				'formClasses' => $input->formClasses->text(),
 				'tabularSync' => $input->tabularSync->int(),
+				'tabularSyncModifiedField' => $input->tabularSyncModifiedField->int(),
 			];
 
 			$trackerId = $this->utilities->updateTracker($trackerId, $data);

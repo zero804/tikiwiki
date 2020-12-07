@@ -20,11 +20,23 @@ class ODBCSource implements SourceInterface
 
 	function getEntries()
 	{
+		$definition = $this->schema->getDefinition();
+		$modifiedField = $definition->getConfiguration('tabularSyncModifiedField');
+		$lastImport = $definition->getConfiguration('tabularSyncLastImport', null);
+		if ($modifiedField) {
+			$modifiedField = $definition->getField($modifiedField);
+		}
+		if ($lastImport) {
+			$lastImport = gmdate("Y-m-d H:i:s", $lastImport);
+		}
 		$fields = [];
 		foreach ($this->schema->getColumns() as $column) {
 			$fields[] = $column->getRemoteField();
+			if ($modifiedField && $modifiedField['permName'] == $column->getField()) {
+				$modifiedField = $column->getRemoteField();
+			}
 		}
-		foreach ($this->odbc_manager->iterate($fields) as $row) {
+		foreach ($this->odbc_manager->iterate($fields, $modifiedField, $lastImport) as $row) {
 			yield new ODBCSourceEntry($row);
 		}
 	}
@@ -46,5 +58,12 @@ class ODBCSource implements SourceInterface
 			];
 		}
 		return $result;
+	}
+
+	function importSuccess() {
+		$definition = $this->schema->getDefinition();
+		if ($definition->getConfiguration('tabularSyncModifiedField')) {
+			\TikiLib::lib('trk')->replace_tracker_option($definition->getConfiguration('trackerId'), 'tabularSyncLastImport', time());
+		}
 	}
 }

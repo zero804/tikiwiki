@@ -162,6 +162,10 @@ class TrackerWriter
 			return $result;
 		});
 
+		if (method_exists($source, 'importSuccess')) {
+			$source->importSuccess();
+		}
+
 		return true;
 	}
 
