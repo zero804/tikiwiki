@@ -251,7 +251,7 @@ class Tiki_Profile_InstallHandler_WikiPage extends Tiki_Profile_InstallHandler
 				$page_ref_id = 0;
 				// create a new structure with just the new wiki page if the profile structure: parameter is set to zero
 				$structlib->s_create_page(null, null, $finalName, '', 0);
-			} elseif (ctype_digit($this->structure)) {
+			} elseif (is_numeric($this->structure)) {
 				$page_ref_id = $this->structure;
 			} else {
 				$page_ref_id = (int) $structlib->get_struct_ref_id($this->structure);
