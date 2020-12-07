@@ -1833,7 +1833,7 @@ class TrackerLib extends TikiLib
 		$_GET = $get;
 	}
 
-	public function replace_item($trackerId, $itemId, $ins_fields, $status = '', $ins_categs = 0, $bulk_import = false)
+	public function replace_item($trackerId, $itemId, $ins_fields, $status = '', $ins_categs = 0, $bulk_import = false, $skip_sync = false)
 	{
 		global $user, $prefs, $tiki_p_admin_trackers, $tiki_p_admin_users;
 		$final_event = 'tiki.trackeritem.update';
@@ -2130,6 +2130,7 @@ class TrackerLib extends TikiLib
 			'values_by_permname' => $values_by_permname,
 			'old_values_by_permname' => $old_values_by_permname,
 			'bulk_import' => $bulk_import,
+			'skip_sync' => $skip_sync,
 			'aggregate' => sha1("trackeritem/$currentItemId"),
 		];
 

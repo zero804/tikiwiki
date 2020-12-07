@@ -13,6 +13,7 @@ class Services_Tracker_Utilities
 			'validate' => isset($item['validate']) ? $item['validate'] : true,
 			'skip_categories' => false,
 			'bulk_import' => isset($item['bulk_import']) ? $item['bulk_import'] : false,
+			'skip_sync' => $item['skip_sync'] ?? false,
 		]);
 
 		return $newItem;
@@ -24,6 +25,7 @@ class Services_Tracker_Utilities
 			'validate' => isset($item['validate']) ? $item['validate'] : true,
 			'skip_categories' => false,
 			'bulk_import' => isset($item['bulk_import']) ? $item['bulk_import'] : false,
+			'skip_sync' => $item['skip_sync'] ?? false,
 		]);
 	}
 
@@ -41,6 +43,7 @@ class Services_Tracker_Utilities
 			'validate' => false,
 			'skip_categories' => true,
 			'bulk_import' => true,
+			'skip_sync' => true,
 		]);
 	}
 
@@ -95,7 +98,7 @@ class Services_Tracker_Utilities
 		}
 
 		if (! $options['validate'] || count($errors) == 0) {
-			$newItem = $trklib->replace_item($trackerId, $itemId, ['data' => $fields], $status, 0, $options['bulk_import']);
+			$newItem = $trklib->replace_item($trackerId, $itemId, ['data' => $fields], $status, 0, $options['bulk_import'], $options['skip_sync']);
 			return $newItem;
 		}
 

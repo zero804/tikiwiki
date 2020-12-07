@@ -76,6 +76,10 @@ class Manager
 
 	function syncItemSaved($args)
 	{
+		if (isset($args['skip_sync']) && $args['skip_sync']) {
+			return;
+		}
+
 		$definition = \Tracker_Definition::get($args['trackerId']);
 		$tabularId = $definition->getConfiguration('tabularSync');
 		if (empty($tabularId)) {
@@ -109,6 +113,10 @@ class Manager
 
 	function syncItemDeleted($args)
 	{
+		if (isset($args['skip_sync']) && $args['skip_sync']) {
+			return;
+		}
+
 		$definition = \Tracker_Definition::get($args['trackerId']);
 		$tabularId = $definition->getConfiguration('tabularSync');
 		if (empty($tabularId)) {

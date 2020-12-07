@@ -108,6 +108,10 @@ class Tracker_Field_AutoIncrement extends Tracker_Field_Abstract implements Trac
 
 	function handleSave($value, $oldValue)
 	{
+		if ($this->getTrackerDefinition()->getConfiguration('tabularSync') && $value) {
+			// remote source should be able to insert auto-increment values
+			return ['value' => $value];
+		}
 		$value = false;
 		if ($this->getOption('itemId') == 'itemId') {
 			$value = $this->getItemId();
@@ -138,12 +142,24 @@ class Tracker_Field_AutoIncrement extends Tracker_Field_Abstract implements Trac
 			->setRenderTransform(function ($value) {
 				return $value;
 			})
+			->setParseIntoTransform(function (& $info, $value) use ($permName) {
+				$info['fields'][$permName] = $value;
+			})
 			;
 		$schema->addNew($permName, 'formatted')
 			->setLabel($this->getConfiguration('name'))
 			->addIncompatibility($permName, 'default')
 			->setRenderTransform(function ($value) use ($prepend, $append) {
 				return $prepend . $value . $append;
+			})
+			->setParseIntoTransform(function (& $info, $value) use ($permName, $prepend, $append) {
+				if (substr($value, 0, strlen($prepend)) === $prepend) {
+					$value = substr($value, strlen($prepend));
+				}
+				if (substr($value, 0-strlen($append)) === $append) {
+					$value = substr($value, 0, 0-strlen($append));
+				}
+				$info['fields'][$permName] = $value;
 			})
 			;
 

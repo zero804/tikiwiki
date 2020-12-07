@@ -38,6 +38,7 @@ class TrackerWriter
 				$info = [
 					'itemId' => false,
 					'fields' => [],
+					'skip_sync' => $source instanceOf \Tracker\Tabular\Source\ODBCSource,
 				];
 
 				foreach ($columns as $column) {
