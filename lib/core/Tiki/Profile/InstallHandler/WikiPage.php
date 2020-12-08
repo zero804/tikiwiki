@@ -164,7 +164,7 @@ class Tiki_Profile_InstallHandler_WikiPage extends Tiki_Profile_InstallHandler
 		$hash = [];
 
 
-		if (! isset($this->structure) && $this->mode == 'create') {
+		if ($this->mode == 'create') {
 			// wysiwyg settings
 			if ($this->wysiwyg) {
 				if ($this->wysiwyg != 'n') {
@@ -187,8 +187,13 @@ class Tiki_Profile_InstallHandler_WikiPage extends Tiki_Profile_InstallHandler
 			if (! $this->message) {
 				$this->message = tra('Created by profile installer');
 			}
-			if (! $tikilib->create_page($finalName, 0, $this->content, time(), $this->message, 'admin', '0.0.0.0', $this->description, $this->lang, $is_html, $hash, $this->wysiwyg, $this->wiki_authors_style)) {
-				return null;
+			if (! isset($this->structure)) {	// if we're adding the page to a structure then don't create it first here
+				if (! $tikilib->create_page(
+					$finalName, 0, $this->content, time(), $this->message, 'admin', '0.0.0.0',
+					$this->description, $this->lang, $is_html, $hash, $this->wysiwyg, $this->wiki_authors_style
+				)) {
+					return null;
+				}
 			}
 		} else {
 			$info = $tikilib->get_page_info($finalName, true, true);
@@ -248,11 +253,20 @@ class Tiki_Profile_InstallHandler_WikiPage extends Tiki_Profile_InstallHandler
 
 		// only create a new structure or add a new page to a structure if the structure parameter has been set AND mode is 'create'
 		if (isset($this->structure) && $this->mode == 'create') {
+			$options = [
+				'description'        => $this->description,
+				'lang'               => $this->lang,
+				'is_html'            => $is_html,
+				'hash'               => $hash,
+				'wysiwyg'            => $this->wysiwyg,
+				'wiki_authors_style' => $this->wiki_authors_style,
+			];
+
 			$structlib = TikiLib::lib('struct');
 			if ($this->structure === 0) {
 				$page_ref_id = 0;
 				// create a new structure with just the new wiki page if the profile structure: parameter is set to zero
-				$structlib->s_create_page(null, null, $finalName, '', 0);
+				$structlib->s_create_page(null, null, $finalName, '', 0, $options);
 			} elseif (is_numeric($this->structure)) {
 				$page_ref_id = $this->structure;
 			} else {
@@ -269,7 +283,7 @@ class Tiki_Profile_InstallHandler_WikiPage extends Tiki_Profile_InstallHandler
 				} else {
 					$structure_parent = $page_ref_id;
 				}
-				$structlib->s_create_page($structure_parent, $page_ref_id, $finalName, '', $structure_id);
+				$structlib->s_create_page($structure_parent, $page_ref_id, $finalName, '', $structure_id, $options);
 			}
 		}
 

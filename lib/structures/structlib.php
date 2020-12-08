@@ -259,13 +259,23 @@ class StructLib extends TikiLib
 		$creator = isset($options['creator']) ? $options['creator'] : tra('system');
 		$creator_msg = isset($options['creator_msg']) ? $options['creator_msg'] : tra('created from structure');
 		$ip_source = isset($options['ip_source']) ? $options['ip_source'] : '0.0.0.0';
+		$description = isset($options['description']) ? $options['description'] : '';
+		$lang = isset($options['lang']) ? $options['lang'] : '';
+		$is_html = isset($options['is_html']) ? $options['is_html'] : false;
+		$hash = isset($options['hash']) ? $options['hash'] : false;
+		$wysiwyg = isset($options['wysiwyg']) ? $options['wysiwyg'] : null;
+		$wiki_authors_style = isset($options['wiki_authors_style']) ? $options['wiki_authors_style'] : '';
 
 		// If the page doesn't exist then create a new wiki page!
 		$newpagebody = '';
 		if ($hide_toc !== 'y') {
 			$newpagebody = tra("Table of contents") . ":" . "{toc}";
 		}
-		$created = $this->create_page($name, 0, $newpagebody, $this->now, $creator_msg, $creator, $ip_source, '', false, '', ['parent_id' => $parent_id]);
+
+		$created = $this->create_page(
+			$name, 0, $newpagebody, $this->now, $creator_msg, $creator, $ip_source, $description,
+			$lang, $is_html, $hash, $wysiwyg, $wiki_authors_style
+		);
 
 		if (! empty($parent_id) || $created || ! $this->page_is_in_structure($name)) {
 			// if were not trying to add a duplicate structure head
