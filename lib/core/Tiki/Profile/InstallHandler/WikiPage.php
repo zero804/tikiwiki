@@ -260,6 +260,8 @@ class Tiki_Profile_InstallHandler_WikiPage extends Tiki_Profile_InstallHandler
 				'hash'               => $hash,
 				'wysiwyg'            => $this->wysiwyg,
 				'wiki_authors_style' => $this->wiki_authors_style,
+				'content'            => $this->content,
+				'hide_toc'           => empty($this->content) ? 'n' : 'y',
 			];
 
 			$structlib = TikiLib::lib('struct');

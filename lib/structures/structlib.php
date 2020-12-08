@@ -269,8 +269,9 @@ class StructLib extends TikiLib
 		// If the page doesn't exist then create a new wiki page!
 		$newpagebody = '';
 		if ($hide_toc !== 'y') {
-			$newpagebody = tra("Table of contents") . ":" . "{toc}";
+			$newpagebody = tra("Table of contents") . ":" . "{toc}\n\n";
 		}
+		$newpagebody .= isset($options['content']) ? $options['content'] : '';
 
 		$created = $this->create_page(
 			$name, 0, $newpagebody, $this->now, $creator_msg, $creator, $ip_source, $description,
