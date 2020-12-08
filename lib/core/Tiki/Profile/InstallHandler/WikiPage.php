@@ -130,6 +130,8 @@ class Tiki_Profile_InstallHandler_WikiPage extends Tiki_Profile_InstallHandler
 
 	function _install()
 	{
+		global $prefs;
+
 		// Normalize mode
 		$this->canInstall();
 
@@ -161,14 +163,21 @@ class Tiki_Profile_InstallHandler_WikiPage extends Tiki_Profile_InstallHandler
 
 		$hash = [];
 
+
 		if (! isset($this->structure) && $this->mode == 'create') {
-			if ($this->wysiwyg && $this->wysiwyg != 'n') {
-				$this->wysiwyg = 'y';
-				$is_html = true;
+			// wysiwyg settings
+			if ($this->wysiwyg) {
+				if ($this->wysiwyg != 'n') {
+					$this->wysiwyg = 'y';
+				} else {
+					$this->wysiwyg = 'n';
+				}
 			} else {
-				$this->wysiwyg = 'n';
-				$is_html = false;
+				$this->wysiwyg = ($prefs['feature_wysiwyg'] === 'y' && $prefs['wysiwyg_default'] === 'y') ? 'y' : 'n';
 			}
+			$is_html = ($this->wysiwyg === 'y' && $prefs['wysiwyg_htmltowiki'] !== 'y');
+
+			// locking
 			if ($this->locked == 'y') {
 				$hash['lock_it'] = 'y';
 			} else {
@@ -184,20 +193,13 @@ class Tiki_Profile_InstallHandler_WikiPage extends Tiki_Profile_InstallHandler
 		} else {
 			$info = $tikilib->get_page_info($finalName, true, true);
 
-			if (! $this->wysiwyg || $this->wysiwyg == 'n') {
-				if (! empty($info['wysiwyg']) && $this->wysiwyg != 'n') {
-					$this->wysiwyg = $info['wysiwyg'];
-				} else {
-					$this->wysiwyg = 'n';
-				}
-				if (isset($info['is_html'])) {
-					$is_html = $info['is_html'];
-				} else {
-					$is_html = false;
-				}
-			} else {
-				$this->wysiwyg = 'y';
-				$is_html = true;
+			if (! $this->wysiwyg && ! empty($info['wysiwyg'])) {
+				$this->wysiwyg = $info['wysiwyg'];
+			}
+			if (isset($info['is_html'])) {
+				$is_html = $info['is_html'];
+			} else if ($this->wysiwyg === 'y') {
+				$is_html = ($prefs['wysiwyg_htmltowiki'] !== 'y');
 			}
 
 			if (! $this->description) {
