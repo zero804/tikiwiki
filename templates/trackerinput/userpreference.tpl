@@ -1,10 +1,10 @@
 {if $field.options_map.type eq 'password'}
 	{if ($prefs.auth_method neq 'cas' || ($prefs.cas_skip_admin eq 'y' && $user eq 'admin')) and $prefs.change_password neq 'n'}
-		<input type="password" name="{$field.ins_id}" class="form-control">
+		<input type="password" name="{$field.ins_id}" id="{$field.ins_id|escape}" class="form-control">
 		<br><i>Leave empty if password is to remain unchanged</i>
 	{/if}
 {elseif $field.options_map.type eq 'language'}
-	<select name="{$field.ins_id}" class="form-control">
+	<select name="{$field.ins_id}" id="{$field.ins_id|escape}" class="form-control">
 		{section name=ix loop=$languages}
 			<option value="{$languages[ix].value|escape}" {if $field.value eq $languages[ix].value}selected="selected"{/if}>
 				{$languages[ix].name}
@@ -13,7 +13,7 @@
 		<option value=''{if !$field.value} selected="selected"{/if}>{tr}Site default{/tr}</option>
 	</select>
 {elseif $field.options_map.type eq 'country'}
-	<select name="{$field.ins_id}" class="form-control">
+	<select name="{$field.ins_id}" id="{$field.ins_id|escape}" class="form-control">
 		<option value="Other"{if $field.value eq "Other"} selected="selected"{/if}>
 			{tr}Other{/tr}
 		</option>
@@ -26,7 +26,7 @@
 		{/strip}{/foreach}
 	</select>
 {elseif $field.options_map.type eq 'display_timezone'}
-	<select name="{$field.ins_id}" class="form-control">
+	<select name="{$field.ins_id}" id="{$field.ins_id|escape}" class="form-control">
 		<option value=""{if empty($field.value)} selected="selected"{/if} style="font-style:italic;">
 			{tr}Detect user time zone if browser allows, otherwise site default{/tr}
 		</option>
@@ -42,5 +42,5 @@
 		{/foreach}
 	</select>
 {else}
-	<input type="text" name="{$field.ins_id}" value="{$field.value|escape}" class="form-control">
+	<input type="text" name="{$field.ins_id}" id="{$field.ins_id|escape}" value="{$field.value|escape}" class="form-control">
 {/if}
