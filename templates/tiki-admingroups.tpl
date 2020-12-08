@@ -357,36 +357,41 @@
 									{tr}Select the user selector field from the above tracker to link a tracker item to the user upon registration.{/tr}
 								</div>
 							</div>
-							{jq}
-								$("#userstracker, #groupstracker").change(function () {
-								var $element = this.id,
-								$fields = $element == 'userstracker' ? $('select[name=usersfield]') : $('select[name=groupfield]'),
-								$showid = $element == 'userstracker' ? '#usersfielddiv' : '#groupfielddiv';
-								if ($(this).val() > 0) {
-								$.getJSON($.service('tracker', 'list_fields'), {trackerId: $(this).val()}, function (data) {
-								if (data && data.fields) {
-								if (data.fields.length > 0) {
-								$fields.empty().append('
-								<option value="0">{tr}choose a field ...{/tr}</option>
-								'); var sel = ''; $(data.fields).each(function () { if (this.type === 'u' && this.options_array[0] == 1) { sel = ' selected="selected"'; } else { sel = ''; } $fields.append('
-								<option value="' + this.fieldId + '"
-								' + sel + '>' + this.fieldId + ' - ' + this.name + '</option>'); }); } else { $fields.empty().append('
-								<option value="0">{tr}No fields in this tracker{/tr}</option>
-								');
-								}
-								$($showid).show();
-								$('#registerfields').show();
-								if (jqueryTiki.chosen) {
-								$fields.trigger("chosen:updated");
-								}
-								}
-								});
-								} else {
-								$fields.empty();
-								$($showid).hide();
-								}
-								});
-							{/jq}
+{jq}
+	$("#userstracker, #groupstracker").change(function () {
+		var $element = this.id,
+			$fields = $element == 'userstracker' ? $('select[name=usersfield]') : $('select[name=groupfield]'),
+			$showid = $element == 'userstracker' ? '#usersfielddiv' : '#groupfielddiv';
+		if ($(this).val() > 0) {
+			$.getJSON($.service('tracker', 'list_fields'), {trackerId: $(this).val()}, function (data) {
+				if (data && data.fields) {
+					if (data.fields.length > 0) {
+						$fields.empty().append('<option value="0">{tr}choose a field ...{/tr}</option>');
+						var sel = '';
+						$(data.fields).each(function () {
+							if (this.type === 'u' && this.options_array[0] == 1) {
+								sel = ' selected="selected"';
+							} else {
+								sel = '';
+							}
+							$fields.append('<option value="' + this.fieldId + '"' + sel + '>' + this.fieldId + ' - ' + this.name + '</option>');
+						});
+					} else {
+						$fields.empty().append('<option value="0">{tr}No fields in this tracker{/tr}</option>');
+					}
+					$($showid).show();
+					$('#registerfields').show();
+					if (jqueryTiki.chosen) {
+						$fields.trigger("chosen:updated");
+					}
+				}
+			});
+		} else {
+			$fields.empty();
+			$($showid).hide();
+		}
+	});
+{/jq}
 						{/if}
 						{if isset($userstrackerid)}
 							{button href="tiki-admin_tracker_fields.php?trackerId=$userstrackerid" _text="{tr}Admin{/tr} $ugr"}
