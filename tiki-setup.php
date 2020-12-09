@@ -151,7 +151,7 @@ require_once('lib/setup/theme.php');
 /* Cookie consent setup, has to be after the JS decision and wiki setup */
 
 $cookie_consent_html = '';
-if ($prefs['cookie_consent_feature'] === 'y' && strpos($_SERVER['PHP_SELF'], 'tiki-cookie-jar.php') === false) {
+if ($prefs['cookie_consent_feature'] === 'y' && strpos($_SERVER['PHP_SELF'], 'tiki-cookie-jar.php') === false && http_response_code() !== false) {
 	if (! empty($_REQUEST['cookie_consent_checkbox']) || $prefs['site_closed'] === 'y') {
 		// js disabled
 		setCookieSection($prefs['cookie_consent_name'], 'y');	// set both real cookie and tiki_cookie_jar
