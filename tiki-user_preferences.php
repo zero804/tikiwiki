@@ -107,6 +107,15 @@ if ($prefs['feature_userPreferences'] == 'y' && isset($_POST["new_info"]) && $ac
 	}
 
 	$tikilib->set_user_preference($userwatch, 'user_information', $_POST['user_information']);
+
+	TikiLib::events()->trigger(
+		'tiki.user.update',
+		[
+			'type' => 'user',
+			'object' => $userwatch,
+			'user' => $GLOBALS['user'],
+		]
+	);
 }
 
 if ($prefs['feature_userPreferences'] == 'y' && isset($_POST["new_prefs"]) && $access->checkCsrf()) {
@@ -339,6 +348,15 @@ if (isset($_POST['chgadmin']) && $access->checkCsrf()) {
 			if ($prefs['feature_intertiki'] == 'y' && ! empty($prefs['feature_intertiki_mymaster']) && $prefs['feature_intertiki_import_preferences'] == 'y') { //send to the master
 				$userlib->interSendUserInfo($prefs['interlist'][$prefs['feature_intertiki_mymaster']], $userwatch);
 			}
+
+			TikiLib::events()->trigger(
+				'tiki.user.update',
+				[
+					'type' => 'user',
+					'object' => $userwatch,
+					'user' => $GLOBALS['user'],
+				]
+			);
 		} else {
 			Feedback::error(tr('Invalid email address "%0"', $_POST['email']));
 		}
@@ -431,6 +449,10 @@ if ($prefs['twoFactorAuth'] == 'y' && $generate) {
 
 if (isset($_POST['deleteaccount']) && $tiki_p_delete_account == 'y' && $access->checkCsrf(true)) {
 	$userlib->remove_user($userwatch);
+
+	$unifiedsearchlib = TikiLib::lib('unifiedsearch');
+	$unifiedsearchlib->invalidateObject('user', $userwatch);
+
 	if ($user == $userwatch) {
 		header('Location: tiki-logout.php');
 	} elseif ($tiki_p_admin_users == 'y') {
