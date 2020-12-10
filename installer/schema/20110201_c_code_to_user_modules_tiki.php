@@ -77,7 +77,7 @@ function upgrade_20110201_c_code_to_user_modules_tiki($installer)
 
 			if ($prefs['sitemycode_publish'] === 'y') {
 				$installer->query(
-					"INSERT INTO `tiki_modules` (name,position,ord,cache_time,params,groups) VALUES " .
+					"INSERT INTO `tiki_modules` (name,position,ord,cache_time,params,`groups`) VALUES " .
 					"('sitemycode','t',1,7200,'nobox=y','a:0:{}');"
 				);
 			}
@@ -98,7 +98,7 @@ function upgrade_20110201_c_code_to_user_modules_tiki($installer)
 		);
 
 		$installer->query(
-			"INSERT INTO `tiki_modules` (name,position,ord,cache_time,params,groups) VALUES " .
+			"INSERT INTO `tiki_modules` (name,position,ord,cache_time,params,`groups`) VALUES " .
 			"('secondary_sitemenu_custom_code','t',1,7200,'nobox=y','a:0:{}');"
 		);
 	}
@@ -117,7 +117,7 @@ function upgrade_20110201_c_code_to_user_modules_tiki($installer)
 		);
 
 		$installer->query(
-			"INSERT INTO `tiki_modules` (name,position,ord,cache_time,params,groups) VALUES " .
+			"INSERT INTO `tiki_modules` (name,position,ord,cache_time,params,`groups`) VALUES " .
 			"('sitemenu_custom_code','o',1,7200,'nobox=y','a:0:{}');"
 		);
 	}
@@ -136,7 +136,7 @@ function upgrade_20110201_c_code_to_user_modules_tiki($installer)
 		);
 
 		$installer->query(
-			"INSERT INTO `tiki_modules` (name,position,ord,cache_time,params,groups) VALUES " .
+			"INSERT INTO `tiki_modules` (name,position,ord,cache_time,params,`groups`) VALUES " .
 			"('topbar_custom_code','o',1,7200,'nobox=y','a:0:{}');"
 		);
 	}
@@ -154,7 +154,7 @@ function upgrade_20110201_c_code_to_user_modules_tiki($installer)
 		);
 
 		$installer->query(
-			"INSERT INTO `tiki_modules` (name,position,ord,cache_time,params,groups) VALUES " .
+			"INSERT INTO `tiki_modules` (name,position,ord,cache_time,params,`groups`) VALUES " .
 			"('custom_center_column_header','p',1,7200,'nobox=y','a:0:{}');"
 		);
 	}
@@ -173,7 +173,7 @@ function upgrade_20110201_c_code_to_user_modules_tiki($installer)
 
 		if ($prefs['feature_bot_logo'] === 'y') {
 			$installer->query(
-				"INSERT INTO `tiki_modules` (name,position,ord,cache_time,params,groups) VALUES " .
+				"INSERT INTO `tiki_modules` (name,position,ord,cache_time,params,`groups`) VALUES " .
 				"('bot_logo_code','b',1,7200,'nobox=y','a:0:{}');"
 			);
 		}
