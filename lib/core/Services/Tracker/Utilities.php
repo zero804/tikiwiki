@@ -119,6 +119,9 @@ class Services_Tracker_Utilities
 					$field['value'] = $value;
 					$fields[$field['fieldId']] = $field;
 				}
+			} elseif ($field = $definition->getField($key)) {
+				$field['value'] = $value;
+				$fields[$field['fieldId']] = $field;
 			} elseif ($field = $definition->getFieldFromPermName($key)) {
 				$field['value'] = $value;
 				$fields[$field['fieldId']] = $field;

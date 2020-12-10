@@ -37,21 +37,42 @@ class ODBCWriter
 		}
 	}
 
-	function sync(\Tracker\Tabular\Schema $schema, array $entry, array $full_entry)
+	/**
+	 * Called after trackeritem save event, this method updates remote data source with local changes
+	 */
+	function sync(\Tracker\Tabular\Schema $schema, int $item_id, array $old_values, array $new_values)
 	{
 		$schema->validate();
 		$columns = $schema->getColumns();
 
+		// prepare the remote entry to replace - send only the following:
+		// - changed values
+		// - fields that do not store value in Tiki db like ItemsList (they might have changed as well)
+		// - schema primary key (needed for remote updates but usually does not change locally, e.g. AutoIncrement)
+		$entry = [];
+		$pk = $schema->getPrimaryKey();
+		if ($pk) {
+			$pk = $pk->getField();
+		}
+		foreach ($new_values as $permName => $value) {
+			if (! isset($old_values[$permName]) || $value != $old_values[$permName] || $permName == $pk) {
+				$entry[$permName] = $value;
+			} else {
+				$field = $schema->getDefinition()->getFieldFromPermname($permName);
+				if ($field && $field['type'] == 'l') {
+					$entry[$permName] = $value;
+				}
+			}
+		}
+
 		$row = [];
 		$pk = null;
 		$id = null;
-		$mapping = [];
 		foreach ($columns as $column) {
 			if (! isset($entry[$column->getField()]) && ! $column->isPrimaryKey()) {
 				continue;
 			}
-			$mapping[$column->getRemoteField()] = $column->getField();
-			$row[$column->getRemoteField()] = $full_entry[$column->getField()];
+			$row[$column->getRemoteField()] = $column->render($entry[$column->getField()], ['itemId' => $item_id]);
 			if ($column->isPrimaryKey()) {
 				$pk = $column->getRemoteField();
 				$id = $row[$pk];
@@ -60,11 +81,30 @@ class ODBCWriter
 				}
 			}
 		}
-		$result = $this->odbc_manager->replace($pk, $id, $row);
+
+		if ($pk) {
+			$result = $this->odbc_manager->replace($pk, $id, $row);
+		} else {
+			$existing = [];
+			foreach ($columns as $column) {
+				if (isset($old_values[$column->getField()])) {
+					$existing[$column->getRemoteField()] = $column->render($old_values[$column->getField()], ['itemId' => $item_id]);
+				}
+			}
+			$result = $this->odbc_manager->replaceWithoutPK($existing, $row);
+		}
+
+		// map back the remote values to local field values
 		$mapped = [];
-		foreach ($result as $remoteField => $value) {
-			if (isset($mapping[$remoteField])) {
-				$mapped[$mapping[$remoteField]] = $value;
+		foreach ($columns as $column) {
+			$permName = $column->getField();
+			$remoteField = $column->getRemoteField();
+			if (isset($result[$remoteField])) {
+				$info = [];
+				$column->parseInto($info, $result[$remoteField]);
+				if (isset($info['fields'][$permName])) {
+					$mapped[$permName] = $info['fields'][$permName];
+				}
 			}
 		}
 		return $mapped;

@@ -170,11 +170,11 @@ class Column
 		return call_user_func_array($this->renderTransform, func_get_args());
 	}
 
-	function parseInto(& $info, $value)
+	function parseInto(& $info, $value, $extra = null)
 	{
 		$c = $this->parseIntoTransform;
 		if (! $this->isReadOnly) {
-			$c($info, $value);
+			$c($info, $value, $extra);
 		}
 	}
 

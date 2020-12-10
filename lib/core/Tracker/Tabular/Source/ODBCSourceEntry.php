@@ -30,6 +30,6 @@ class ODBCSourceEntry implements SourceEntryInterface
 	function parseInto(& $info, $column)
 	{
 		$entry = $this->data[$column->getRemoteField()];
-		$column->parseInto($info, $entry);
+		$column->parseInto($info, $entry, $this->data);
 	}
 }

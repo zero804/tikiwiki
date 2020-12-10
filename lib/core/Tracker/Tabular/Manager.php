@@ -90,17 +90,11 @@ class Manager
 			Feedback::error(tr("Tracker remote synchronization configured with a tabular format that does not exist."));
 			return;
 		}
-		$entry = [];
-		foreach ($args['values_by_permname'] as $field => $value) {
-			if (! isset($args['old_values_by_permname'][$field]) || $value != $args['old_values_by_permname'][$field]) {
-				$entry[$field] = $value;
-			}
-		}
 		$trklib = \TikiLib::lib('trk');
 		$schema = $this->getSchema($definition, $tabular);
 		# TODO: handle errors and missing connection to remote source
 		$writer = new Writer\ODBCWriter($tabular['odbc_config']);
-		$remote = $writer->sync($schema, $entry, $args['values_by_permname']);
+		$remote = $writer->sync($schema, $args['object'], $args['old_values_by_permname'], $args['values_by_permname']);
 		foreach ($remote as $field => $value) {
 			if (isset($args['values_by_permname'][$field])) {
 				if ($value != $args['values_by_permname'][$field]) {
@@ -141,7 +135,7 @@ class Manager
 		}
 	}
 
-	private function getSchema($definition, $tabular) {
+	public function getSchema($definition, $tabular) {
 		$schema = new Schema($definition);
 		$schema->loadFormatDescriptor($tabular['format_descriptor']);
 		$schema->loadFilterDescriptor($tabular['filter_descriptor']);

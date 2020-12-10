@@ -1096,6 +1096,63 @@ class Tracker_Field_ItemLink extends Tracker_Field_Abstract implements Tracker_F
 					})
 					;
 			}
+
+			// linked items have their own tabular sync, so use that to map fields
+			$remoteSchema = null;
+			$definition = Tracker_Definition::get($this->getOption('trackerId'));
+			if ($definition) {
+				$tabular = null;
+				$tabularId = $definition->getConfiguration('tabularSync');
+				if ($tabularId) {
+					$tabular = TikiLib::lib('tabular')->getInfo($tabularId);
+				}
+				if ($tabular) {
+					$remoteSchema = TikiLib::lib('tabular')->getSchema($definition, $tabular);
+				}
+			}
+
+			if ($remoteSchema) {
+				$schema->addNew($permName, 'lookup-advanced')
+					->setLabel($name)
+					->addIncompatibility($permName, 'id')
+					->addQuerySource('text', "tracker_field_{$permName}_text")
+					->setRenderTransform(function ($value, $extra) {
+						$useTextLabel = empty(array_filter($this->getOption('displayFieldsList')));
+						if (isset($extra['text']) && $useTextLabel) {
+							return $extra['text'];
+						} else {
+							return $this->getItemLabel($value, ['list_mode' => 'csv']);
+						}
+					})
+					->setParseIntoTransform(function (& $info, $value, $extra = null) use ($permName, $remoteSchema) {
+						if ($extra) {
+							$remoteItem = [];
+							foreach ($remoteSchema->getColumns() as $column) {
+								if (isset($extra[$column->getRemoteField()])) {
+									$field = $remoteSchema->getDefinition()->getFieldFromPermname($column->getField());
+									if ($field) {
+										$remoteItem[$field['fieldId']] = $extra[$column->getRemoteField()];
+									}
+								}
+							}
+							$items = TikiLib::lib('trk')->list_items($remoteSchema->getDefinition()->getConfiguration('trackerId'), 0, 1, '', '', array_keys($remoteItem), '', '', '', array_values($remoteItem), '', null, true, true);
+							if ($items['cant'] > 0) {
+								$info['fields'][$permName] = $items['data'][0]['itemId'];
+							} else {
+								$remoteInfo = [
+									'itemId' => false,
+									'status' => $remoteSchema->getDefinition()->getConfiguration('newItemStatus'),
+									'fields' => $remoteItem,
+									'skip_sync' => true,
+								];
+								$utilities = new Services_Tracker_Utilities();
+								$info['fields'][$permName] = $utilities->insertItem($remoteSchema->getDefinition(), $remoteInfo);
+							}
+						}
+					})
+					;
+			}
+
 			$schema->addNew($permName, 'name')
 				->setLabel($name)
 				->setReadOnly(true)
