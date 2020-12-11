@@ -27,6 +27,7 @@
 				{preference name=allocate_time_tracker_export_items}
 				{preference name=allocate_time_tracker_clear_items}
 
+				{preference name=feature_warn_on_edit}
 				{preference name=ajax_inline_edit}
 				<div class="adminoptionboxchild" id="ajax_inline_edit_childcontainer">
 					{preference name=ajax_inline_edit_trackerlist}
