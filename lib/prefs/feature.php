@@ -2126,10 +2126,11 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_warn_on_edit' => [
 			'name' => tra('Warn on edit conflict'),
-			'description' => tra('When a user is editing a page, the edit button will be colored red and the name of the user editing the page will be displayed as a tooltip. If the user saves or cancels his or her edit or if the indicated amount of time passes the edit button will be displayed normally. This feature is useful to prevent collisions when editing pages.'),
+			'description' => tra('When another user is editing a page, spreadsheet or tracker item, you will be warned about a possible conflict. This feature is useful to prevent collisions when editing.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'tags' => ['basic'],
+			'keywords' => 'semaphore',
 		],
 		'feature_wiki_undo' => [
 			'name' => tra('Undo'),
