@@ -49,7 +49,12 @@ function smarty_modifier_slug($string, $length = 70, $mixedCase = false, $breakW
 
 	$asciiOnly = $prefs['url_only_ascii'] === 'y';
 
-	$str = TikiLib::lib('slugmanager')->generate($prefs['wiki_url_scheme'], $string, $asciiOnly);
+	/** @var \Tiki\Wiki\SlugManager $slugManager */
+	$slugManager = TikiLib::lib('slugmanager');
+	// when used as a modifier in a smarty template (e.g. {$row.title|slug})
+	// we don't want the -2 at the end if a wiki page also exists, so disable the validator fn
+	$slugManager->setValidationCallback(function () {return false;});
+	$str = $slugManager->generate($prefs['wiki_url_scheme'], $string, $asciiOnly);
 
 	if (!$asciiOnly) {
 		$str = urlencode($str);
