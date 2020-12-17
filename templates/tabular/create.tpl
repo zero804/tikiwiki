@@ -27,7 +27,7 @@
 			</div>
 		</div>
 		<div class="form-group row mb-4">
-			<label class="form-check-label col-sm-3">{tr}Initializite this format with the current tracker fields{/tr}</label>
+			<label class="form-check-label col-sm-3">{tr}Initialize this format with the current tracker fields{/tr}</label>
 			<div class="col-sm-9">
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" name="prefill">
