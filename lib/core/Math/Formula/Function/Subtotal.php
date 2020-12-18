@@ -9,7 +9,7 @@ class Math_Formula_Function_Subtotal extends Math_Formula_Function
 {
 	function evaluate($element)
 	{
-		$allowed = ['list', 'group', 'aggregate', 'separators', 'formula'];
+		$allowed = ['list', 'group', 'aggregate', 'separators', 'formula', 'having', 'transformers'];
 
 		if ($extra = $element->getExtraValues($allowed)) {
 			$this->error(tr('Unexpected values: %0', implode(', ', $extra)));
@@ -42,6 +42,16 @@ class Math_Formula_Function_Subtotal extends Math_Formula_Function
 		$formula = $element->formula;
 		if (! $formula) {
 			$formula = [];
+		}
+
+		$having = $element->having;
+		if (! $having) {
+			$having = [];
+		}
+
+		$transformers = $element->transformers;
+		if (! $transformers) {
+			$transformers = [];
 		}
 
 		$out = [];
@@ -78,6 +88,20 @@ class Math_Formula_Function_Subtotal extends Math_Formula_Function
 				if (class_exists($class)) {
 					$op = new $class;
 					$out[$group_value][$position] = $op->evaluateTemplate($rows[$position], function($child) { return $child; });
+				} else {
+					$out[$group_value][$position] = '';
+				}
+				// process having clause
+				if (isset($having[$position])) {
+					$pass = $this->evaluateChild($having[$position], ['$1' => $out[$group_value][$position]]);
+					if (! $pass) {
+						unset($out[$group_value]);
+						break;
+					}
+				}
+				// transform
+				if (isset($transformers[$position])) {
+					$out[$group_value][$position] = $this->evaluateChild($transformers[$position], ['$1' => $out[$group_value][$position]]);
 				}
 			}
 		}
