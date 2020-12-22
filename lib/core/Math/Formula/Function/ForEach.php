@@ -30,7 +30,11 @@ class Math_Formula_Function_ForEach extends Math_Formula_Function
 
 		if (is_array($list)) {
 			foreach ($list as $values) {
-				$out[] = $this->evaluateChild($formula, $values);
+				if (is_array($values)) {
+					$out[] = $this->evaluateChild($formula, $values);
+				} else {
+					$out[] = $this->evaluateChild($formula, ['$1' => $values]);
+				}
 			}
 		}
 

@@ -83,13 +83,18 @@ class Math_Formula_Function_Subtotal extends Math_Formula_Function
 		// evaluate aggregate function for each field
 		foreach ($out as $group_value => $rows) {
 			foreach ($aggregate as $position => $field) {
-				$function = str_replace(' ', '', ucwords(str_replace('-', ' ', $formula[$position] ?? 'add')));
-				$class = 'Math_Formula_Function_'.$function;
-				if (class_exists($class)) {
-					$op = new $class;
-					$out[$group_value][$position] = $op->evaluateTemplate($rows[$position], function($child) { return $child; });
-				} else {
-					$out[$group_value][$position] = '';
+				$simple = false;
+				if (is_string($formula[$position])) {
+					$function = str_replace(' ', '', ucwords(str_replace('-', ' ', $formula[$position] ?? 'add')));
+					$class = 'Math_Formula_Function_'.$function;
+					if (class_exists($class)) {
+						$op = new $class;
+						$out[$group_value][$position] = $op->evaluateTemplate($rows[$position], function($child) { return $child; });
+						$simple = true;
+					}
+				}
+				if (! $simple) {
+					$out[$group_value][$position] = $this->evaluateChild($formula[$position], ['$1' => $rows[$position]]);
 				}
 				// process having clause
 				if (isset($having[$position])) {
