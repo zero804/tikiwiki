@@ -795,42 +795,7 @@ class UnifiedSearchLib
 
 		switch ($prefs['unified_engine']) {
 			case 'mysql':
-				global $tikilib;
-				$unifiedsearchlib = TikiLib::lib('unifiedsearch');
-				$totalDocuments = $this->getLastRebuildDocsCount();
-
-				$info = [];
-
-				list($engine, $version, $indexName) = $unifiedsearchlib->getCurrentEngineDetails();
-				if (! empty($version)) {
-					$info['MySQL Version'] = $version;
-				}
-				if (! empty($indexName)) {
-					$info[tr('MySQL Index %0', $indexName)] = tr(
-						'%0 documents, using %1 of %2 indexes',
-						$totalDocuments,
-						count(TikiDb::get()->fetchAll("SHOW INDEXES FROM $indexName")),
-						Search_MySql_Table::MAX_MYSQL_INDEXES_PER_TABLE
-					);
-				}
-
-				$query = "SELECT table_name, table_rows FROM information_schema.tables " .
-						 "WHERE table_schema = DATABASE() AND table_name like 'index_pref%'";
-
-				$prefIndexes = TikiDb::get()->query($query);
-
-				foreach ($prefIndexes->result as $prefIndex) {
-					$prefIndexName = $prefIndex['table_name'];
-					$prefTotalDocs = $prefIndex['table_rows'];
-					$info[tr('MySQL Index %0', $prefIndexName)] = tr('%0 documents', $prefTotalDocs);
-				}
-
-				$lastRebuild = $tikilib->get_preference('unified_last_rebuild');
-				if (! empty($lastRebuild)) {
-					$info['MySQL Last Rebuild Index'] = $tikilib->get_long_date($lastRebuild) . ', ' . $tikilib->get_long_time($lastRebuild);
-				}
-
-				return $info;
+				return $this->getMySqlEngineInfo();
 			case 'elastic':
 				$info = [];
 
@@ -899,10 +864,57 @@ class UnifiedSearchLib
 					$info[tr('Information Missing')] = $e->getMessage();
 				}
 
+				if ($prefs['unified_elastic_mysql_search_fallback'] === 'y') {
+					$info = array_merge($info, $this->getMySqlEngineInfo());
+				}
+
 				return $info;
 			default:
 				return [];
 		}
+	}
+
+	/**
+	 * Retrieve Mysql Engine Stats
+	 * @return array
+	 */
+	private function getMySqlEngineInfo(): array
+	{
+		global $tikilib;
+
+		$info = [];
+		$totalDocuments = $this->getLastRebuildDocsCount();
+
+		list($engine, $version) = $this->getCurrentEngineDetails();
+		if (! empty($version)) {
+			$info['MySQL Version'] = $version;
+		}
+
+		$query = "SELECT table_name, table_rows FROM information_schema.tables " .
+			"WHERE table_schema = DATABASE() AND table_name like 'index_%'";
+		$indexResult = TikiDb::get()->query($query)->result;
+
+		foreach ($indexResult as $index) {
+			$indexName = $index['table_name'] ?: '';
+			if (preg_match('/index_([a-z1-9]+$)/', $indexName)) {
+				$info[tr('MySQL Index %0', $indexName)] = tr(
+					'%0 documents, using %1 of %2 indexes',
+					$totalDocuments,
+					count(TikiDb::get()->fetchAll("SHOW INDEXES FROM $indexName")),
+					Search_MySql_Table::MAX_MYSQL_INDEXES_PER_TABLE
+				);
+				continue;
+			}
+
+			$info[tr('MySQL Index %0', $indexName)] = tr('%0 documents', $index['table_rows'] ?: 0);
+		}
+
+		$lastRebuild = $tikilib->get_preference('unified_last_rebuild');
+		if (! empty($lastRebuild)) {
+			$info['MySQL Last Rebuild Index'] = $tikilib->get_long_date($lastRebuild) . ', ' . $tikilib->get_long_time($lastRebuild);
+		}
+
+		return $info;
 	}
 
 	public function getElasticIndexInfo($indexName)
