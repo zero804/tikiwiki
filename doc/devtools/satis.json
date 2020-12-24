@@ -1048,6 +1048,28 @@
 		{
 			"type": "package",
 			"package": {
+				"name": "jquery/plugins/fitvidjs",
+				"version": "1.2.0",
+				"dist": {
+					"url": "https://github.com/davatron5000/FitVids.js/archive/v1.2.0.zip",
+					"type": "zip"
+				}
+			}
+		},
+		{
+			"type": "package",
+			"package": {
+				"name": "jquery-plugins/fitvidjs",
+				"version": "1.2.0",
+				"dist": {
+					"url": "https://github.com/davatron5000/FitVids.js/archive/v1.2.0.zip",
+					"type": "zip"
+				}
+			}
+		},
+		{
+			"type": "package",
+			"package": {
 				"name": "jquery/plugins/form",
 				"version": "3.25.0",
 				"dist": {
@@ -1810,7 +1832,6 @@
 		"bombayworks/zendframework1": ">=1.12.3",
 		"bower-asset/fontawesome": ">=5.3.1",
 		"bower-asset/bootstrap-rtol": "^4.3.1",
-		"bower-asset/jquery.fitvids": "^1.2.0",
 		"bower-asset/swfobject": "^2.2",
 		"bower-asset/wodo.texteditor": "^0.5.9",
 		"candy-chat/xmpp-prebind-php": "dev-master",
