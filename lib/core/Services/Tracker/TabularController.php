@@ -736,7 +736,6 @@ class Services_Tracker_TabularController
 
 		unset($types['A']); // Attachment (deprecated)
 		unset($types['w']); // Dynamic Items List
-		unset($types['g']); // Group Selector
 		unset($types['h']); // Header
 		unset($types['icon']); // Icon
 		unset($types['LANG']); // Language
@@ -764,6 +763,7 @@ class Services_Tracker_TabularController
 				$mode  = 'y/n';
 				break;
 			case 'e': // Category
+			case 'g': // Group Selector
 				$mode = 'id';
 				break;
 			case 'd': // Dropdown
