@@ -11,7 +11,7 @@
  * Letter key: ~g~
  *
  */
-class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Tracker_Field_Filterable
+class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Tracker_Field_Exportable, Tracker_Field_Filterable
 {
 	public static function getTypes()
 	{
@@ -136,7 +136,7 @@ class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Trac
 				// user not in any of the required groups, use the global default $group and warn
 				$defGroup = $group;
 				Feedback::warning(tr('User not in any of the required groups for GroupSelector field'));
-			} else if (count($includedGroups) === 1) {
+			} elseif (count($includedGroups) === 1) {
 				// just the one, easy
 				$defGroup = array_shift($includedGroups);
 			} else {
@@ -257,7 +257,8 @@ class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Trac
 		];
 	}
 
-	function getProvidedFields() {
+	function getProvidedFields()
+	{
 		$baseKey = $this->getBaseKey();
 		return [$baseKey, "{$baseKey}_text"];
 	}
@@ -312,5 +313,109 @@ class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Trac
 			});
 
 		return $filters;
+	}
+
+	/**
+	 * Get user groups
+	 *
+	 * @return array
+	 */
+	private function getApplicableUserGroups()
+	{
+		static $cache = [];
+		$fieldId = $this->getConfiguration('fieldId');
+
+		if (! isset($cache[$fieldId])) {
+			$userGroups = TikiLib::lib('user')->get_groups();
+		}
+		$cache[$fieldId] = $userGroups['cant'] > 0 ? $userGroups['data'] : [];
+
+		return $cache[$fieldId];
+	}
+
+	/**
+	 * Get tabular schema for user groups
+	 *
+	 * @return \Tracker\Tabular\Schema
+	 */
+	public function getTabularSchema()
+	{
+		$schema = new Tracker\Tabular\Schema($this->getTrackerDefinition());
+		$permName = $this->getConfiguration('permName');
+		$name = $this->getConfiguration('name');
+
+		$sourceUserGroups = $this->getApplicableUserGroups();
+
+		$invertGroupName = array_flip(array_map(function ($item) {
+			return $item['groupName'];
+		}, $sourceUserGroups));
+
+		$invertGroupId = array_flip(array_map(function ($item) {
+			return $item['id'];
+		}, $sourceUserGroups));
+
+		$schema->addNew($permName, 'id')
+			->setLabel($name)
+			->addQuerySource('itemId', 'object_id')
+			->addQuerySource('usergroup_name', 'title')
+			->setRenderTransform(function ($value, $extra) use ($sourceUserGroups, $invertGroupName, $invertGroupId) {
+				$extraUsergroupName = isset($extra['usergroup_name']) ? $extra['usergroup_name'] : '';
+				if (! empty($value)
+					&&  isset($invertGroupName[$value])
+					&& is_numeric($extraUsergroupName)
+				) {
+					return $value;
+				}
+
+				if (! empty($value) &&  isset($invertGroupId[$value])) {
+					return $value;
+				}
+
+				$itemId = isset($extra['itemId']) ? $extra['itemId'] : null;
+				$invertKey = isset($invertGroupName[$extraUsergroupName]) ? $invertGroupName[$extraUsergroupName] : null;
+				if (! isset($invertKey) && ! isset($itemId)) {
+					return '#invalid';
+				}
+
+				if (! isset($invertKey)) {
+					$trackerItem = TikiLib::lib('trk')->get_tracker_item($itemId);
+					$trackerItemInvert = array_flip(array_map(function ($item) use ($value) {
+						if ($item === $value) {
+							return $item;
+						}
+					}, $trackerItem));
+
+					if (isset($trackerItemInvert[$value]) && is_numeric($trackerItemInvert[$value])) {
+						$invertKey = isset($invertGroupName[$value]) ? $invertGroupName[$value] : null;
+					}
+				}
+
+				$userGroupId = ! empty($sourceUserGroups[$invertKey]['id']) ? $sourceUserGroups[$invertKey]['id'] : 0;
+				if ($userGroupId > 0) {
+					return $userGroupId;
+				}
+
+				return '#invalid';
+			})
+			->setParseIntoTransform(function (&$info, $value) use ($permName) {
+				if ($value != '#invalid') {
+					$info['fields'][$permName] = $value;
+				}
+			})
+		;
+
+		$schema->addNew($permName, 'name')
+			->setLabel($name)
+			->setRenderTransform(function ($value) {
+				return $value;
+			})
+			->setParseIntoTransform(function (&$info, $value) use ($permName) {
+				if ($value != '#invalid') {
+					$info['fields'][$permName] = $value;
+				}
+			})
+		;
+
+		return $schema;
 	}
 }
