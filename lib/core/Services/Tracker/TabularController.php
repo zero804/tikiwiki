@@ -449,7 +449,7 @@ class Services_Tracker_TabularController
 			'title' => tr('Import'),
 			'tabularId' => $info['tabularId'],
 			'completed' => $done,
-			'odbc' => !empty($info['odbc_config']),
+			'odbc' => ! empty($info['odbc_config']),
 		];
 	}
 
@@ -766,9 +766,9 @@ class Services_Tracker_TabularController
 			foreach ($columns as $column) {
 				$prefix = $tracker->getConfiguration('fieldPrefix');
 				if (empty($prefix)) {
-					$prefix = strtolower(substr($tracker->getConfiguration('name'), 0, 1)).substr(preg_replace('/[^a-z0-9]/i', '', ucwords(strtolower($tracker->getConfiguration('name')))), 1);
+					$prefix = strtolower(substr($tracker->getConfiguration('name'), 0, 1)) . substr(preg_replace('/[^a-z0-9]/i', '', ucwords(strtolower($tracker->getConfiguration('name')))), 1);
 				}
-				$permName = $prefix.$column['name'];
+				$permName = $prefix . $column['name'];
 				$field = $tracker->getFieldFromPermName($permName);
 				if ($field) {
 					$fieldType = $field['type'];
@@ -859,7 +859,6 @@ class Services_Tracker_TabularController
 
 		unset($types['A']); // Attachment (deprecated)
 		unset($types['w']); // Dynamic Items List
-		unset($types['g']); // Group Selector
 		unset($types['h']); // Header
 		unset($types['icon']); // Icon
 		unset($types['LANG']); // Language
@@ -887,6 +886,7 @@ class Services_Tracker_TabularController
 				$mode  = 'y/n';
 				break;
 			case 'e': // Category
+			case 'g': // Group Selector
 				$mode = 'id';
 				break;
 			case 'd': // Dropdown

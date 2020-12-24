@@ -51,7 +51,7 @@ class Manager
 		]);
 	}
 
-	function update($tabularId, $name, array $fields, array $filters, array $config, array $odbc_config)
+	function update($tabularId, $name, array $fields, array $filters, array $config, array $odbc_config = [])
 	{
 		return $this->table->update([
 			'name' => $name,
@@ -135,7 +135,8 @@ class Manager
 		}
 	}
 
-	public function getSchema($definition, $tabular) {
+	public function getSchema($definition, $tabular)
+	{
 		$schema = new Schema($definition);
 		$schema->loadFormatDescriptor($tabular['format_descriptor']);
 		$schema->loadFilterDescriptor($tabular['filter_descriptor']);
