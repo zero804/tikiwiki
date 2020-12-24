@@ -39,19 +39,18 @@ class ItemTest extends TestCase
 		global $prefs;
 
 		$logger = new Tiki_Log('UnitTests', LogLevel::ERROR);
-		$scheduler = new Scheduler_Item(
-			null,
-			'Test Scheduler',
-			'Test Scheduler',
-			'ConsoleCommandTask',
-			'{"console_command":"index:rebuild"}',
-			'*/10 * * * *',
-			'active',
-			0,
-			0,
-			null,
-			$logger
-		);
+		$scheduler = Scheduler_Item::fromArray([
+			'id' => null,
+			'name' => 'Test Scheduler',
+			'description' => 'Test Scheduler',
+			'task' => 'ConsoleCommandTask',
+			'params' => '{"console_command":"index:rebuild"}',
+			'run_time' => '*/10 * * * *',
+			'status' => 'active',
+			're_run' => 0,
+			'run_only_once' => 0,
+			'user_run_now' => null,
+		], $logger);
 
 		$scheduler->save();
 
@@ -94,19 +93,19 @@ class ItemTest extends TestCase
 		global $prefs;
 
 		$logger = new Tiki_Log('UnitTests', LogLevel::ERROR);
-		$scheduler = new Scheduler_Item(
-			null,
-			'Test Scheduler',
-			'Test Scheduler',
-			'ConsoleCommandTask',
-			'{"console_command":"index:rebuild"}',
-			'*/10 * * * *',
-			'active',
-			0,
-			0,
-			null,
-			$logger
-		);
+		$scheduler = Scheduler_Item::fromArray([
+			'id' => null,
+			'name' => 'Test Scheduler',
+			'description' => 'Test Scheduler',
+			'task' => 'ConsoleCommandTask',
+			'params' => '{"console_command":"index:rebuild"}',
+			'run_time' => '*/10 * * * *',
+			'status' => 'active',
+			're_run' => 0,
+			'run_only_once' => 0,
+			'user_run_now' => null,
+		], $logger);
+
 
 		$scheduler->save();
 		self::$items[] = $scheduler->id;
@@ -140,19 +139,18 @@ class ItemTest extends TestCase
 	{
 		global $prefs, $tikilib;
 		$logger = new Tiki_Log('UnitTests', LogLevel::ERROR);
-		$scheduler = new Scheduler_Item(
-			null,
-			'Test Scheduler',
-			'Test Scheduler',
-			'ShellCommandTask',
-			'{"shell_command":"php -v","timeout":""}',
-			'* * * * *',
-			'active',
-			0,
-			1,
-			null,
-			$logger
-		);
+		$scheduler = Scheduler_Item::fromArray([
+			'id' => null,
+			'name' => 'Test Scheduler',
+			'description' => 'Test Scheduler',
+			'task' => 'ShellCommandTask',
+			'params' => '{"shell_command":"php -v","timeout":""}',
+			'run_time' => '* * * * *',
+			'status' => 'active',
+			're_run' => 0,
+			'run_only_once' => 1,
+			'user_run_now' => null,
+		], $logger);
 
 		$scheduler->save();
 		self::$items[] = $scheduler->id;
@@ -179,19 +177,18 @@ class ItemTest extends TestCase
 		global $prefs, $tikilib;
 
 		$logger = new Tiki_Log('UnitTests', LogLevel::ERROR);
-		$scheduler = new Scheduler_Item(
-			null,
-			'Test Scheduler',
-			'Test Scheduler',
-			'ConsoleCommandTask',
-			'{"console_command":"index:rebuild"}',
-			'*/10 * * * *',
-			'active',
-			0,
-			0,
-			null,
-			$logger
-		);
+		$scheduler = Scheduler_Item::fromArray([
+			'id' => null,
+			'name' => 'Test Scheduler',
+			'description' => 'Test Scheduler',
+			'task' => 'ConsoleCommandTask',
+			'params' => '{"console_command":"index:rebuild"}',
+			'run_time' => '*/10 * * * *',
+			'status' => 'active',
+			're_run' => 0,
+			'run_only_once' => 0,
+			'user_run_now' => null,
+		], $logger);
 
 		$scheduler->save();
 		self::$items[] = $scheduler->id;

@@ -42,35 +42,33 @@ class ManagerTest extends TestCase
 	{
 
 		$logger = new Tiki_Log('UnitTests', LogLevel::ERROR);
-		$scheduler1 = new Scheduler_Item(
-			null,
-			'Test Scheduler',
-			'Test Scheduler',
-			'ConsoleCommandTask',
-			'{"console_command":"list"}',
-			'* * * * *',
-			'active',
-			0,
-			0,
-			null,
-			$logger
-		);
-		$scheduler1->creation_date = time() - 60;
+		$scheduler1 = Scheduler_Item::fromArray([
+			'id' => null,
+			'name' => 'Test Scheduler',
+			'description' => 'Test Scheduler',
+			'task' => 'ConsoleCommandTask',
+			'params' => '{"console_command":"list"}',
+			'run_time' => '* * * * *',
+			'status' => 'active',
+			're_run' => 0,
+			'run_only_once' => 0,
+			'creation_date' => time() - 60,
+			'user_run_now' => null,
+		], $logger);
 
-		$scheduler2 = new Scheduler_Item(
-			null,
-			'Test Scheduler',
-			'Test Scheduler',
-			'ConsoleCommandTask',
-			'{"console_command":"list"}',
-			'*/1 * * * *',
-			'active',
-			0,
-			0,
-			null,
-			$logger
-		);
-		$scheduler2->creation_date = time() - 60;
+		$scheduler2 = Scheduler_Item::fromArray([
+			'id' => null,
+			'name' => 'Test Scheduler',
+			'description' => 'Test Scheduler',
+			'task' => 'ConsoleCommandTask',
+			'params' => '{"console_command":"list"}',
+			'run_time' => '*/1 * * * *',
+			'status' => 'active',
+			're_run' => 0,
+			'run_only_once' => 0,
+			'creation_date' => time() - 60,
+			'user_run_now' => null,
+		], $logger);
 
 		$scheduler1->save();
 		$scheduler2->save();
@@ -95,65 +93,35 @@ class ManagerTest extends TestCase
 		$userlib->add_user(self::USER, 'abc', 'a@example.com');
 
 		$logger = new Tiki_Log('UnitTests', LogLevel::ERROR);
-		$scheduler1 = new Scheduler_Item(
-			null,
-			'Test Scheduler',
-			'Test Scheduler',
-			'ConsoleCommandTask',
-			'{"console_command":"list"}',
-			'* * * * *',
-			Scheduler_Item::STATUS_ACTIVE,
-			0,
-			0,
-			self::USER,
-			$logger
-		);
 
-		$scheduler2 = new Scheduler_Item(
-			null,
-			'Test Scheduler',
-			'Test Scheduler',
-			'ConsoleCommandTask',
-			'{"console_command":"list"}',
-			'* * * * *',
-			Scheduler_Item::STATUS_INACTIVE,
-			0,
-			0,
-			self::USER,
-			$logger
-		);
+		$scheduler1Data = [
+			'id' => null,
+			'name' => 'Test Scheduler',
+			'description' => 'Test Scheduler',
+			'task' => 'ConsoleCommandTask',
+			'params' => '{"console_command":"list"}',
+			'run_time' => '* * * * *',
+			'status' => Scheduler_Item::STATUS_ACTIVE,
+			're_run' => 0,
+			'run_only_once' => 0,
+			'user_run_now' => self::USER,
+		];
 
-		$scheduler3 = new Scheduler_Item(
-			null,
-			'Test Scheduler',
-			'Test Scheduler',
-			'ConsoleCommandTask',
-			'{"console_command":"list"}',
-			'* * * * *',
-			Scheduler_Item::STATUS_INACTIVE,
-			0,
-			0,
-			null,
-			$logger
-		);
-		$scheduler3->creation_date = time() - 60;
+		$scheduler1 = Scheduler_Item::fromArray($scheduler1Data, $logger);
 
+		$scheduler2Data = $scheduler1Data;
+		$scheduler2Data['status'] = Scheduler_Item::STATUS_INACTIVE;
 
-		$scheduler4 = new Scheduler_Item(
-			null,
-			'Test Scheduler',
-			'Test Scheduler',
-			'ConsoleCommandTask',
-			'{"console_command":"list"}',
-			'* * * * *',
-			'active',
-			0,
-			0,
-			null,
-			$logger
-		);
-		$scheduler4->creation_date = time() - 60;
+		$scheduler2 = Scheduler_Item::fromArray($scheduler2Data, $logger);
 
+		$scheduler3Data = $scheduler2Data;
+		$scheduler3Data['user_run_now'] = null;
+		$scheduler3Data['creation_date'] = time() - 60;
+		$scheduler3 = Scheduler_Item::fromArray($scheduler3Data, $logger);
+
+		$scheduler4Data = $scheduler3Data;
+		$scheduler4Data['status'] = Scheduler_Item::STATUS_ACTIVE;
+		$scheduler4 = Scheduler_Item::fromArray($scheduler4Data, $logger);
 
 		$scheduler1->save();
 		$scheduler2->save();
@@ -181,5 +149,59 @@ class ManagerTest extends TestCase
 		$manager = new Scheduler_Manager($logger);
 		$manager->run();
 		$this->assertEquals($lastRun2['id'], $scheduler2->getLastRun()['id']);
+	}
+
+	/**
+	 * @covers Scheduler_Manager::shouldRun
+	 */
+	public function testShouldRun()
+	{
+		$schedulerStub = $this->createMock(Scheduler_Item::class);
+		$schedulerStub->user_run_now = 1;
+		$schedulerStub->run_time = '*/5 * * * *'; // Every 5 min
+		$schedulerStub
+			->method('getLastRun')
+			->willReturn([
+				'end_time' => strtotime('15 min ago')
+			]);
+
+		$schedulerStub
+			->method('getPreviousRunDate')
+			->willReturn(strtotime('10 min ago'));
+
+		$managerStub = $this->createPartialMock(Scheduler_Manager::class, []);
+		$shouldRun = $managerStub->shouldRun($schedulerStub);
+
+		$this->assertTrue($shouldRun);
+
+		$schedulerStub->user_run_now = null;
+		$shouldRun = $managerStub->shouldRun($schedulerStub);
+
+		$this->assertTrue($shouldRun);
+	}
+
+	/**
+	 * @covers Scheduler_Manager::shouldRun
+	 */
+	public function testShouldNotRun()
+	{
+		$schedulerStub = $this->createMock(Scheduler_Item::class);
+		$schedulerStub->user_run_now = 0;
+		$schedulerStub->run_time = '0 * * * *'; // Every hour
+
+		$schedulerStub
+			->method('getLastRun')
+			->willReturn([
+				'end_time' => strtotime('15 min ago')
+			]);
+
+		$schedulerStub
+			->method('getPreviousRunDate')
+			->willReturn(time() - (time() % 3600));
+
+		$managerStub = $this->createPartialMock(Scheduler_Manager::class, ['shouldRun']);
+		$shouldRun = $managerStub->shouldRun($schedulerStub);
+
+		$this->assertFalse($shouldRun);
 	}
 }

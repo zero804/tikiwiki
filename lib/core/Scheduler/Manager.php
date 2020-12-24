@@ -33,9 +33,12 @@ class Scheduler_Manager
 		$runTasks = [];
 		$reRunTasks = [];
 
+		$activeSchedulers = array_map(function ($schedulerData) {
+			return Scheduler_Item::fromArray($schedulerData, $this->logger);
+		}, $activeSchedulers);
+
 		// Check for stalled tasks
-		foreach ($activeSchedulers as $scheduler) {
-			$schedulerTask = Scheduler_Item::fromArray($scheduler, $this->logger);
+		foreach ($activeSchedulers as $schedulerTask) {
 			if ($schedulerTask->isStalled()) {
 				$this->logger->info(tr("Scheduler %0 (id: %1) is stalled", $schedulerTask->name, $schedulerTask->id));
 
@@ -45,42 +48,31 @@ class Scheduler_Manager
 			}
 		}
 
-		foreach ($activeSchedulers as $scheduler) {
+		foreach ($activeSchedulers as $schedulerTask) {
 			try {
-				$lastRun = $schedLib->get_scheduler_runs($scheduler["id"], 1);
-				if (count($lastRun) == 1) {
-					$lastRunDate = $lastRun[0]["end_time"];
-				} else {
-					$lastRunDate = (isset($scheduler["creation_date"]) ? $scheduler["creation_date"] : time());
-				}
-
-				$lastRunDate = (int)($lastRunDate - ($lastRunDate % 60));
-				$lastShould = Scheduler_Utils::get_previous_run_date($scheduler['run_time']);
-
-				if ((isset($lastRunDate) && $lastShould >= $lastRunDate)
-					|| ! empty($scheduler['user_run_now'])) {
-					$runTasks[] = $scheduler;
-					$this->logger->info(sprintf("Run scheduler %s", $scheduler['name']));
+				if ($this->shouldRun($schedulerTask)) {
+					$runTasks[] = $schedulerTask;
+					$this->logger->info(sprintf("Run scheduler %s", $schedulerTask->name));
 					continue;
 				}
 			} catch (\Scheduler\Exception\CrontimeFormatException $e) {
-				$this->logger->error(sprintf(tra("Skip scheduler %s - %s"), $scheduler['name'], $e->getMessage()));
+				$this->logger->error(sprintf(tra("Skip scheduler %s - %s"), $schedulerTask->name, $e->getMessage()));
 				continue;
 			}
 
 			// Check which tasks should run if they failed previously (last execution)
-			if ($scheduler['re_run']) {
-				$reRunTasks[] = $scheduler;
+			if ($schedulerTask->re_run) {
+				$reRunTasks[] = $schedulerTask;
 				continue;
 			}
 
-			$this->logger->info(sprintf("Skip scheduler %s - Not scheduled to run at this time", $scheduler['name']));
+			$this->logger->info(sprintf("Skip scheduler %s - Not scheduled to run at this time", $schedulerTask->name));
 		}
 
 		foreach ($reRunTasks as $task) {
-			$status = $schedLib->get_run_status($task['id']);
+			$status = $schedLib->get_run_status($task->id);
 			if ($status == 'failed') {
-				$this->logger->info(sprintf("Re-run scheduler %s - Last run has failed", $scheduler['name']));
+				$this->logger->info(sprintf("Re-run scheduler %s - Last run has failed", $task->name));
 				$runTasks[] = $task;
 			}
 		}
@@ -88,11 +80,11 @@ class Scheduler_Manager
 		if (empty($runTasks)) {
 			$this->logger->notice("No active schedulers were found to run at this time.");
 		} else {
-			//$output->writeln(sprintf("Total of %d schedulers to run.", sizeof($runTasks)), OutputInterface::VERBOSITY_VERY_VERBOSE);
+			$this->logger->debug(sprintf("Total of %d schedulers to run.", sizeof($runTasks)));
 		}
 
 		foreach ($runTasks as $runTask) {
-			$schedulerTask = Scheduler_Item::fromArray($runTask, $this->logger);
+			$schedulerTask = $runTask;
 
 			if (! $this->hasTempFolderOwnership) {
 				$runRecord = $schedLib->start_scheduler_run($schedulerTask->id);
@@ -105,7 +97,7 @@ class Scheduler_Manager
 			}
 
 			$this->logger->notice(sprintf(tra('***** Running scheduler %s *****'), $schedulerTask->name));
-			$result = $schedulerTask->execute($runTask['user_run_now']);
+			$result = $schedulerTask->execute();
 
 			if ($result['status'] == 'failed') {
 				$this->logger->error(sprintf(tra("***** Scheduler %s - FAILED *****\n%s"), $schedulerTask->name, $result['message']));
@@ -160,5 +152,26 @@ class Scheduler_Manager
 	public function setHasTempFolderOwnership(bool $hasTempFolderOwnership)
 	{
 		$this->hasTempFolderOwnership = $hasTempFolderOwnership;
+	}
+
+	/**
+	 *
+	 */
+	public function shouldRun(Scheduler_Item $scheduler): bool
+	{
+		if (! empty($scheduler->user_run_now)) {
+			return true;
+		}
+
+		if ($lastRun = $scheduler->getLastRun()) {
+			$lastRunDate = $lastRun['end_time'];
+		} else {
+			$lastRunDate = isset($scheduler->creation_date) ? $scheduler->creation_date : time();
+		}
+
+		$lastRunDate = (int)($lastRunDate - ($lastRunDate % 60));
+		$lastShould = $scheduler->getPreviousRunDate();
+
+		return (isset($lastRunDate) && $lastShould >= $lastRunDate);
 	}
 }

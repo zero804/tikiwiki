@@ -34,18 +34,8 @@ class Scheduler_Item
 		'TikiCheckerCommandTask' => 'TikiCheckerCommand',
 	];
 
-	public function __construct($id, $name, $description, $task, $params, $run_time, $status, $re_run, $run_only_once, $user_run_now, LoggerInterface $logger)
+	public function __construct(LoggerInterface $logger)
 	{
-		$this->id = $id;
-		$this->name = $name;
-		$this->description = $description;
-		$this->task = $task;
-		$this->params = $params;
-		$this->run_time = $run_time;
-		$this->status = $status;
-		$this->re_run = $re_run;
-		$this->run_only_once = $run_only_once;
-		$this->user_run_now = $user_run_now;
 		$this->logger = $logger;
 	}
 
@@ -235,11 +225,9 @@ class Scheduler_Item
 	}
 
 	/**
-	 * @param string	$userTriggered	True if user triggered the execution, false otherwise.
-	 *
 	 * @return	array	The execution status and output message
 	 */
-	public function execute($userTriggered = null)
+	public function execute()
 	{
 		$schedlib = TikiLib::lib('scheduler');
 		$status = $schedlib->get_run_status($this->id);
@@ -294,8 +282,9 @@ class Scheduler_Item
 		$executionStatus = $result ? 'done' : 'failed';
 		$outputMessage = $task->getOutput();
 
-		if (isset($userTriggered)) {
+		if (isset($this->user_run_now)) {
 			$userlib = TikiLib::lib('user');
+			$userTriggered = $this->user_run_now;
 			$email = $userlib->get_user_email($userTriggered);
 			$outputMessage = sprintf('Run triggered by %s - %s.' . PHP_EOL, $userTriggered, $email) . (empty($outputMessage) ? '' : '<hr>') . $outputMessage;
 		}
@@ -329,6 +318,23 @@ class Scheduler_Item
 	}
 
 	/**
+	 * Return timestamp of the last time the scheduler should have run
+	 */
+	public function getPreviousRunDate()
+	{
+		$cron = $this->run_time;
+
+		if (! Scheduler_Utils::validate_cron_time_format($cron)) {
+			throw new Scheduler\Exception\CrontimeFormatException(tra('Invalid cron time format'));
+		}
+
+		$cron = Cron\CronExpression::factory($cron);
+
+
+		return $cron->getPreviousRunDate()->getTimestamp();
+	}
+
+	/**
 	 * Transforms an array (from schedulers lib) to a Scheduler_Item object
 	 *
 	 * @param array 			$scheduler	The scheduler details
@@ -338,18 +344,11 @@ class Scheduler_Item
 	 */
 	public static function fromArray(array $scheduler, $logger)
 	{
-		return new self(
-			$scheduler['id'],
-			$scheduler['name'],
-			$scheduler['description'],
-			$scheduler['task'],
-			$scheduler['params'],
-			$scheduler['run_time'],
-			$scheduler['status'],
-			$scheduler['re_run'],
-			$scheduler['run_only_once'],
-			$scheduler['user_run_now'],
-			$logger
-		);
+		$item = new self($logger);
+		foreach ($scheduler as $attr => $value) {
+			$item->$attr = $value;
+		}
+
+		return $item;
 	}
 }
