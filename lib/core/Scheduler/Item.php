@@ -330,8 +330,10 @@ class Scheduler_Item
 
 		$cron = Cron\CronExpression::factory($cron);
 
+		$delayMinutes = (int)TikiLib::lib('tiki')->get_preference('scheduler_delay', 0);
+		$delaySeconds = $delayMinutes * 60;
 
-		return $cron->getPreviousRunDate()->getTimestamp();
+		return $cron->getPreviousRunDate("{$delayMinutes} minutes ago")->getTimestamp() + $delaySeconds;
 	}
 
 	/**

@@ -120,6 +120,7 @@
 			<fieldset id="Scheduler">
 				<legend>{tr}Scheduler Settings{/tr}</legend>
 				{preference name=feature_scheduler}
+				{preference name=scheduler_delay}
 				{preference name=scheduler_stalled_timeout}
 				{preference name=scheduler_notify_on_stalled}
 				<div class="adminoptionboxchild" id="scheduler_notify_on_stalled_childcontainer">

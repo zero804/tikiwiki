@@ -221,4 +221,34 @@ class ItemTest extends TestCase
 		$this->assertEmpty($lastRun['end_time']);
 		$this->assertFalse((bool)$lastRun['healed']);
 	}
+
+	public function testGetPreviousRunDateWithNoDelay()
+	{
+		$schedulerStub = $this->createPartialMock(Scheduler_Item::class, []);
+		$schedulerStub->user_run_now = 1;
+		$schedulerStub->run_time = '0 * * * *'; // Every hour
+
+		$time = time();
+		$expectedTime = $time - ($time % 3600); // We want the hour on 0 minutes
+		$runDate = $schedulerStub->getPreviousRunDate();
+
+		$this->assertEquals($expectedTime, $runDate);
+	}
+
+	public function testGetPreviousRunDateWithDelay()
+	{
+		global $prefs;
+		$delay = 30; // 30 min delay
+		$prefs['scheduler_delay'] = $delay;
+
+		$schedulerStub = $this->createPartialMock(Scheduler_Item::class, []);
+		$schedulerStub->user_run_now = 1;
+		$schedulerStub->run_time = '0 * * * *'; // Every hour
+		$time = time();
+		$expectedTime = $time - ($time % 3600) + ($delay * 60); // We want the hour on 0 minutes
+		$runDate = $schedulerStub->getPreviousRunDate();
+
+		$this->assertEquals($expectedTime, $runDate);
+		$this->assertLessThan(time(), $runDate);
+	}
 }

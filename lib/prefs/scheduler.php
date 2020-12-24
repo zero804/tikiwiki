@@ -62,5 +62,13 @@ function prefs_scheduler_list($partial = false)
 			'filter' => 'digits',
 			'tags' => ['advanced'],
 		],
+		'scheduler_delay' => [
+			'name' => tr('Delay scheduled time (minutes)'),
+			'description' => tr('When calculating if the jobs should run, take the delay into consideration'),
+			'type' => 'text',
+			'filter' => 'digits',
+			'default' => 0,
+			'tags' => ['advanced'],
+		],
 	];
 }
