@@ -129,6 +129,13 @@ function prefs_jquery_list($partial = false)
 			'type' => 'flag',
 			'default' => 'n',
 		],
+		'jquery_fitvidjs_additional_domains' => [
+			'name' => tra('FitVids.js additional domains'),
+			'description' => tra('Youtube and Vimeo are supported by default. Also apply FitVids.js to videos from these domains.'),
+			'type' => 'textarea',
+			'size' => '5',
+			'default' => '',
+		],
 		'jquery_timeago' => [
 			'name' => tra('jQuery Timeago'),
 			'description' => tra('jQuery plugin for fuzzy timestamps.'),

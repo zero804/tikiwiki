@@ -530,8 +530,9 @@ if (typeof $.fn.button.noConflict === "function") {
 	$headerlib->add_cssfile('vendor_bundled/vendor/jquery/jquery-timepicker-addon/dist/jquery-ui-timepicker-addon.css');
 }
 if ($prefs['jquery_fitvidjs'] == 'y') {
+	$customSelectors = \Tiki\Lib\FitVidJs\FitVidJs::getCustomSelector();
 	$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/fitvidjs/jquery.fitvids.js')
-				->add_jq_onready('$("article").fitVids();');		// apply fitvid to any video in the middle section
+				->add_jq_onready('$("article").fitVids(' . $customSelectors . ');'); // apply fitvid to any video in the middle section
 }
 if ($prefs['feature_jquery_superfish'] == 'y') {
 	$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/superfish/dist/js/superfish.js');

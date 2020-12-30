@@ -197,6 +197,9 @@
 					{preference name=jquery_ui_chosen_sortable}
 				</div>
 				{preference name=jquery_fitvidjs}
+				<div class="adminoptionboxchild" id="jquery_fitvidjs_childcontainer">
+					{preference name=jquery_fitvidjs_additional_domains}
+				</div>
 				{preference name=jquery_timeago}
 				{preference name=jquery_jqdoublescroll}
 				{preference name=tiki_prefix_css}
